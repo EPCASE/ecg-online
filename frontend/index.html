@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ECG Lecture — Entraînement à l'interprétation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="logo">〜♥</span>
+    <div>
+      <h1>ECG&nbsp;Lecture</h1>
+      <p class="tagline">Entraînement à l'interprétation — correction ouverte par IA</p>
+    </div>
+  </div>
+  <div class="header-actions">
+    <span id="health-badge" class="badge badge-muted">connexion…</span>
+  </div>
+</header>
+
+<main class="layout">
+  <!-- ─────────── Sélecteur de cas ─────────── -->
+  <aside class="sidebar">
+    <div class="sidebar-head">
+      <h2>Banque de cas</h2>
+      <span id="cases-count" class="pill"></span>
+    </div>
+    <div id="family-filters" class="filters"></div>
+    <ul id="case-list" class="case-list"></ul>
+  </aside>
+
+  <!-- ─────────── Zone principale ─────────── -->
+  <section class="content">
+    <div id="welcome" class="welcome">
+      <div class="welcome-card">
+        <h2>Bienvenue 👋</h2>
+        <p>Choisis un cas dans la banque à gauche. Observe le tracé, rédige
+           ton interprétation <strong>en texte libre</strong>, puis lance la
+           correction. L'IA compare ta réponse à celle de l'enseignant et te
+           renvoie un <strong>score</strong> et un <strong>commentaire pédagogique</strong>.</p>
+        <ul class="tips">
+          <li>💡 Structure ta réponse : rythme, fréquence, axe, conduction, repolarisation, diagnostic.</li>
+          <li>🎯 Le diagnostic principal compte le plus.</li>
+          <li>🔍 Clique sur un tracé pour l'agrandir.</li>
+        </ul>
+      </div>
+    </div>
+
+    <article id="case-view" class="case-view hidden">
+      <div class="case-header">
+        <div>
+          <span id="case-family" class="chip"></span>
+          <h2 id="case-title"></h2>
+        </div>
+        <span id="case-num" class="case-num"></span>
+      </div>
+
+      <p id="case-context" class="case-context"></p>
+
+      <div id="case-images" class="ecg-gallery"></div>
+
+      <div class="answer-block">
+        <label for="answer">Ton interprétation</label>
+        <textarea id="answer" rows="6"
+          placeholder="Ex. Rythme sinusal régulier à 75/min, axe normal, PR normal, QRS fins, sus-décalage ST en… évoquant…"></textarea>
+        <div class="answer-actions">
+          <button id="grade-btn" class="btn-primary">
+            <span class="btn-label">Corriger ma réponse</span>
+            <span class="spinner hidden"></span>
+          </button>
+          <button id="clear-btn" class="btn-ghost">Effacer</button>
+        </div>
+      </div>
+
+      <!-- Résultat -->
+      <div id="result" class="result hidden"></div>
+    </article>
+  </section>
+</main>
+
+<!-- Lightbox images -->
+<div id="lightbox" class="lightbox hidden">
+  <img id="lightbox-img" src="" alt="Tracé ECG agrandi" />
+</div>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,1123 @@
+{
+  "pdf": "ECG 12.pdf",
+  "dpi": 200,
+  "n_cases": 75,
+  "cases": [
+    {
+      "num": 1,
+      "pages": [
+        19,
+        22
+      ],
+      "trace_pages": [
+        19,
+        20
+      ],
+      "images": [
+        "cas_01.png",
+        "cas_01_p2.png"
+      ],
+      "titre_docx": "inversion des électrodes"
+    },
+    {
+      "num": 2,
+      "pages": [
+        23,
+        36
+      ],
+      "trace_pages": [
+        23,
+        24
+      ],
+      "images": [
+        "cas_02.png",
+        "cas_02_p2.png"
+      ],
+      "titre_docx": "tremblement et faux diagnostic d’arythmie atriale"
+    },
+    {
+      "num": 3,
+      "pages": [
+        37,
+        42
+      ],
+      "trace_pages": [
+        37
+      ],
+      "images": [
+        "cas_03.png"
+      ],
+      "titre_docx": "ECG normal"
+    },
+    {
+      "num": 4,
+      "pages": [
+        43,
+        45
+      ],
+      "trace_pages": [
+        43
+      ],
+      "images": [
+        "cas_04.png"
+      ],
+      "titre_docx": "hypertrophie auriculaire gauche"
+    },
+    {
+      "num": 5,
+      "pages": [
+        46,
+        48
+      ],
+      "trace_pages": [
+        46
+      ],
+      "images": [
+        "cas_05.png"
+      ],
+      "titre_docx": "hypertrophie auriculaire droite"
+    },
+    {
+      "num": 6,
+      "pages": [
+        49,
+        51
+      ],
+      "trace_pages": [
+        49
+      ],
+      "images": [
+        "cas_06.png"
+      ],
+      "titre_docx": "hypertrophie ventriculaire gauche"
+    },
+    {
+      "num": 7,
+      "pages": [
+        52,
+        57
+      ],
+      "trace_pages": [
+        52
+      ],
+      "images": [
+        "cas_07.png"
+      ],
+      "titre_docx": "hypertrophie ventriculaire droite"
+    },
+    {
+      "num": 8,
+      "pages": [
+        58,
+        60
+      ],
+      "trace_pages": [
+        58
+      ],
+      "images": [
+        "cas_08.png"
+      ],
+      "titre_docx": "activation ventriculaire normale"
+    },
+    {
+      "num": 9,
+      "pages": [
+        61,
+        63
+      ],
+      "trace_pages": [
+        61
+      ],
+      "images": [
+        "cas_09.png"
+      ],
+      "titre_docx": "bloc de branche droite complet"
+    },
+    {
+      "num": 10,
+      "pages": [
+        64,
+        66
+      ],
+      "trace_pages": [
+        64,
+        66
+      ],
+      "images": [
+        "cas_10.png",
+        "cas_10_p2.png"
+      ],
+      "titre_docx": "bloc bifasciculaire"
+    },
+    {
+      "num": 11,
+      "pages": [
+        67,
+        70
+      ],
+      "trace_pages": [
+        67,
+        68
+      ],
+      "images": [
+        "cas_11.png",
+        "cas_11_p2.png"
+      ],
+      "titre_docx": "syncopes chez un patient avec bloc de branche droite et hémibloc antérieur gauche"
+    },
+    {
+      "num": 12,
+      "pages": [
+        71,
+        73
+      ],
+      "trace_pages": [
+        71
+      ],
+      "images": [
+        "cas_12.png"
+      ],
+      "titre_docx": "bloc de branche droite et hypertrophie ventriculaire droite"
+    },
+    {
+      "num": 13,
+      "pages": [
+        74,
+        76
+      ],
+      "trace_pages": [
+        74,
+        76
+      ],
+      "images": [
+        "cas_13.png",
+        "cas_13_p2.png"
+      ],
+      "titre_docx": "bloc de branche gauche complet"
+    },
+    {
+      "num": 14,
+      "pages": [
+        77,
+        79
+      ],
+      "trace_pages": [
+        77,
+        79
+      ],
+      "images": [
+        "cas_14.png",
+        "cas_14_p2.png"
+      ],
+      "titre_docx": "bloc de branche alternant"
+    },
+    {
+      "num": 15,
+      "pages": [
+        80,
+        81
+      ],
+      "trace_pages": [
+        80
+      ],
+      "images": [
+        "cas_15.png"
+      ],
+      "titre_docx": "bloc indifférencié"
+    },
+    {
+      "num": 16,
+      "pages": [
+        82,
+        88
+      ],
+      "trace_pages": [
+        82,
+        84
+      ],
+      "images": [
+        "cas_16.png",
+        "cas_16_p2.png"
+      ],
+      "titre_docx": "hémibloc antérieur gauche"
+    },
+    {
+      "num": 17,
+      "pages": [
+        89,
+        90
+      ],
+      "trace_pages": [
+        89
+      ],
+      "images": [
+        "cas_17.png"
+      ],
+      "titre_docx": "bradycardie sinusale du sportif"
+    },
+    {
+      "num": 18,
+      "pages": [
+        91,
+        93
+      ],
+      "trace_pages": [
+        91
+      ],
+      "images": [
+        "cas_18.png"
+      ],
+      "titre_docx": "dysfonction sinusale symptomatique"
+    },
+    {
+      "num": 19,
+      "pages": [
+        94,
+        96
+      ],
+      "trace_pages": [
+        94
+      ],
+      "images": [
+        "cas_19.png"
+      ],
+      "titre_docx": "bloc sino-auriculaire du deuxième degré"
+    },
+    {
+      "num": 20,
+      "pages": [
+        97,
+        99
+      ],
+      "trace_pages": [
+        97
+      ],
+      "images": [
+        "cas_20.png"
+      ],
+      "titre_docx": "pause sinusale"
+    },
+    {
+      "num": 21,
+      "pages": [
+        100,
+        102
+      ],
+      "trace_pages": [
+        100,
+        102
+      ],
+      "images": [
+        "cas_21.png",
+        "cas_21_p2.png"
+      ],
+      "titre_docx": "dysfonction sinusale avec échappement jonctionnel"
+    },
+    {
+      "num": 22,
+      "pages": [
+        103,
+        105
+      ],
+      "trace_pages": [
+        103
+      ],
+      "images": [
+        "cas_22.png"
+      ],
+      "titre_docx": "dysfonction sinusale et stimulateur cardiaque"
+    },
+    {
+      "num": 23,
+      "pages": [
+        106,
+        108
+      ],
+      "trace_pages": [
+        106
+      ],
+      "images": [
+        "cas_23.png"
+      ],
+      "titre_docx": "BAV du premier degré"
+    },
+    {
+      "num": 24,
+      "pages": [
+        109,
+        111
+      ],
+      "trace_pages": [
+        109,
+        111
+      ],
+      "images": [
+        "cas_24.png",
+        "cas_24_p2.png"
+      ],
+      "titre_docx": "BAV du second degré type 1 (Mobitz 1)"
+    },
+    {
+      "num": 25,
+      "pages": [
+        112,
+        114
+      ],
+      "trace_pages": [
+        112
+      ],
+      "images": [
+        "cas_25.png"
+      ],
+      "titre_docx": "BAV du second degré type 2 (Mobitz 2)"
+    },
+    {
+      "num": 26,
+      "pages": [
+        115,
+        117
+      ],
+      "trace_pages": [
+        115
+      ],
+      "images": [
+        "cas_26.png"
+      ],
+      "titre_docx": "BAV du second degré type 2/1"
+    },
+    {
+      "num": 27,
+      "pages": [
+        118,
+        120
+      ],
+      "trace_pages": [
+        118
+      ],
+      "images": [
+        "cas_27.png"
+      ],
+      "titre_docx": "BAV de haut degré et hyperkaliémie"
+    },
+    {
+      "num": 28,
+      "pages": [
+        121,
+        123
+      ],
+      "trace_pages": [
+        121,
+        123
+      ],
+      "images": [
+        "cas_28.png",
+        "cas_28_p2.png"
+      ],
+      "titre_docx": "BAV du troisième degré et échappement jonctionnel"
+    },
+    {
+      "num": 29,
+      "pages": [
+        124,
+        125
+      ],
+      "trace_pages": [
+        124
+      ],
+      "images": [
+        "cas_29.png"
+      ],
+      "titre_docx": "BAV du troisième degré et échappement distal"
+    },
+    {
+      "num": 30,
+      "pages": [
+        126,
+        127
+      ],
+      "trace_pages": [
+        126
+      ],
+      "images": [
+        "cas_30.png"
+      ],
+      "titre_docx": "BAV du troisième degré et FA"
+    },
+    {
+      "num": 31,
+      "pages": [
+        128,
+        130
+      ],
+      "trace_pages": [
+        128,
+        129
+      ],
+      "images": [
+        "cas_31.png",
+        "cas_31_p2.png"
+      ],
+      "titre_docx": "maladie de l’oreillette"
+    },
+    {
+      "num": 32,
+      "pages": [
+        131,
+        135
+      ],
+      "trace_pages": [
+        131
+      ],
+      "images": [
+        "cas_32.png"
+      ],
+      "titre_docx": "pause post-réductionnelle"
+    },
+    {
+      "num": 33,
+      "pages": [
+        136,
+        138
+      ],
+      "trace_pages": [
+        136,
+        138
+      ],
+      "images": [
+        "cas_33.png",
+        "cas_33_p2.png"
+      ],
+      "titre_docx": "extrasystoles atriales"
+    },
+    {
+      "num": 34,
+      "pages": [
+        139,
+        141
+      ],
+      "trace_pages": [
+        139
+      ],
+      "images": [
+        "cas_34.png"
+      ],
+      "titre_docx": "extrasystoles ventriculaires"
+    },
+    {
+      "num": 35,
+      "pages": [
+        142,
+        144
+      ],
+      "trace_pages": [
+        142
+      ],
+      "images": [
+        "cas_35.png"
+      ],
+      "titre_docx": "salve de tachycardie ventriculaire non soutenue"
+    },
+    {
+      "num": 36,
+      "pages": [
+        145,
+        149
+      ],
+      "trace_pages": [
+        145,
+        146
+      ],
+      "images": [
+        "cas_36.png",
+        "cas_36_p2.png"
+      ],
+      "titre_docx": "extrasystoles ventriculaires et risque de mort subite"
+    },
+    {
+      "num": 37,
+      "pages": [
+        150,
+        152
+      ],
+      "trace_pages": [
+        150,
+        152
+      ],
+      "images": [
+        "cas_37.png",
+        "cas_37_p2.png"
+      ],
+      "titre_docx": "fibrillation atriale"
+    },
+    {
+      "num": 38,
+      "pages": [
+        153,
+        155
+      ],
+      "trace_pages": [
+        153
+      ],
+      "images": [
+        "cas_38.png"
+      ],
+      "titre_docx": "fibrillation atriale lente"
+    },
+    {
+      "num": 39,
+      "pages": [
+        156,
+        158
+      ],
+      "trace_pages": [
+        156
+      ],
+      "images": [
+        "cas_39.png"
+      ],
+      "titre_docx": "arythmie sinusale respiratoire"
+    },
+    {
+      "num": 40,
+      "pages": [
+        159,
+        161
+      ],
+      "trace_pages": [
+        159
+      ],
+      "images": [
+        "cas_40.png"
+      ],
+      "titre_docx": "tachycardie sinusale"
+    },
+    {
+      "num": 41,
+      "pages": [
+        162,
+        165
+      ],
+      "trace_pages": [
+        162,
+        164
+      ],
+      "images": [
+        "cas_41.png",
+        "cas_41_p2.png"
+      ],
+      "titre_docx": "flutter commun"
+    },
+    {
+      "num": 42,
+      "pages": [
+        166,
+        169
+      ],
+      "trace_pages": [
+        166,
+        167
+      ],
+      "images": [
+        "cas_42.png",
+        "cas_42_p2.png"
+      ],
+      "titre_docx": "flutter commun rapide"
+    },
+    {
+      "num": 43,
+      "pages": [
+        170,
+        175
+      ],
+      "trace_pages": [
+        170,
+        171
+      ],
+      "images": [
+        "cas_43.png",
+        "cas_43_p2.png"
+      ],
+      "titre_docx": "tachycardie jonctionnelle sur voie accessoire"
+    },
+    {
+      "num": 44,
+      "pages": [
+        176,
+        182
+      ],
+      "trace_pages": [
+        176,
+        177
+      ],
+      "images": [
+        "cas_44.png",
+        "cas_44_p2.png"
+      ],
+      "titre_docx": "tachycardie jonctionnelle par réentrée intranodale"
+    },
+    {
+      "num": 45,
+      "pages": [
+        183,
+        185
+      ],
+      "trace_pages": [
+        183
+      ],
+      "images": [
+        "cas_45.png"
+      ],
+      "titre_docx": "tachycardie supraventriculaire à QRS larges"
+    },
+    {
+      "num": 46,
+      "pages": [
+        186,
+        188
+      ],
+      "trace_pages": [
+        186,
+        187
+      ],
+      "images": [
+        "cas_46.png",
+        "cas_46_p2.png"
+      ],
+      "titre_docx": "tachycardie jonctionnelle antidromique sur voie accessoire"
+    },
+    {
+      "num": 47,
+      "pages": [
+        189,
+        191
+      ],
+      "trace_pages": [
+        189,
+        190
+      ],
+      "images": [
+        "cas_47.png",
+        "cas_47_p2.png"
+      ],
+      "titre_docx": "tachycardie ventriculaire sur myocardiopathie ischémique"
+    },
+    {
+      "num": 48,
+      "pages": [
+        192,
+        194
+      ],
+      "trace_pages": [
+        192
+      ],
+      "images": [
+        "cas_48.png"
+      ],
+      "titre_docx": "critères diagnostiques d’une tachycardie à QRS larges"
+    },
+    {
+      "num": 49,
+      "pages": [
+        195,
+        197
+      ],
+      "trace_pages": [
+        195,
+        196
+      ],
+      "images": [
+        "cas_49.png",
+        "cas_49_p2.png"
+      ],
+      "titre_docx": "fibrillation atriale et bloc de branche"
+    },
+    {
+      "num": 50,
+      "pages": [
+        198,
+        201
+      ],
+      "trace_pages": [
+        198,
+        199
+      ],
+      "images": [
+        "cas_50.png",
+        "cas_50_p2.png"
+      ],
+      "titre_docx": "fibrillation ventriculaire sur myocardiopathie ischémique"
+    },
+    {
+      "num": 51,
+      "pages": [
+        202,
+        205
+      ],
+      "trace_pages": [
+        202,
+        204
+      ],
+      "images": [
+        "cas_51.png",
+        "cas_51_p2.png"
+      ],
+      "titre_docx": "torsade de pointes"
+    },
+    {
+      "num": 52,
+      "pages": [
+        206,
+        210
+      ],
+      "trace_pages": [
+        206,
+        207
+      ],
+      "images": [
+        "cas_52.png",
+        "cas_52_p2.png"
+      ],
+      "titre_docx": "mort subite et syndrome de Wolff-Parkinson-White"
+    },
+    {
+      "num": 53,
+      "pages": [
+        211,
+        214
+      ],
+      "trace_pages": [
+        211,
+        212
+      ],
+      "images": [
+        "cas_53.png",
+        "cas_53_p2.png"
+      ],
+      "titre_docx": "embolie pulmonaire"
+    },
+    {
+      "num": 54,
+      "pages": [
+        215,
+        217
+      ],
+      "trace_pages": [
+        215
+      ],
+      "images": [
+        "cas_54.png"
+      ],
+      "titre_docx": "embolie pulmonaire sévère"
+    },
+    {
+      "num": 55,
+      "pages": [
+        218,
+        220
+      ],
+      "trace_pages": [
+        218,
+        220
+      ],
+      "images": [
+        "cas_55.png",
+        "cas_55_p2.png"
+      ],
+      "titre_docx": "péricardite"
+    },
+    {
+      "num": 56,
+      "pages": [
+        221,
+        223
+      ],
+      "trace_pages": [
+        221
+      ],
+      "images": [
+        "cas_56.png"
+      ],
+      "titre_docx": "épanchement péricardique"
+    },
+    {
+      "num": 57,
+      "pages": [
+        224,
+        226
+      ],
+      "trace_pages": [
+        224
+      ],
+      "images": [
+        "cas_57.png"
+      ],
+      "titre_docx": "myocardite"
+    },
+    {
+      "num": 58,
+      "pages": [
+        227,
+        229
+      ],
+      "trace_pages": [
+        227
+      ],
+      "images": [
+        "cas_58.png"
+      ],
+      "titre_docx": "syndrome coronarien aigu ST+ antérieur"
+    },
+    {
+      "num": 59,
+      "pages": [
+        230,
+        232
+      ],
+      "trace_pages": [
+        230
+      ],
+      "images": [
+        "cas_59.png"
+      ],
+      "titre_docx": "syndrome coronarien aigu ST+ inférieur"
+    },
+    {
+      "num": 60,
+      "pages": [
+        233,
+        236
+      ],
+      "trace_pages": [
+        233,
+        234
+      ],
+      "images": [
+        "cas_60.png",
+        "cas_60_p2.png"
+      ],
+      "titre_docx": "syndrome coronarien aigu inférieur avec extension au ventricule droit"
+    },
+    {
+      "num": 61,
+      "pages": [
+        237,
+        239
+      ],
+      "trace_pages": [
+        237,
+        238
+      ],
+      "images": [
+        "cas_61.png",
+        "cas_61_p2.png"
+      ],
+      "titre_docx": "syndrome coronarien aigu inférieur avec extension au ventricule droit et à la paroi postérieure"
+    },
+    {
+      "num": 62,
+      "pages": [
+        240,
+        243
+      ],
+      "trace_pages": [
+        240,
+        241
+      ],
+      "images": [
+        "cas_62.png",
+        "cas_62_p2.png"
+      ],
+      "titre_docx": "SCA ST+ et bloc de branche gauche"
+    },
+    {
+      "num": 63,
+      "pages": [
+        244,
+        246
+      ],
+      "trace_pages": [
+        244
+      ],
+      "images": [
+        "cas_63.png"
+      ],
+      "titre_docx": "SCA ST+ et risque de mort subite"
+    },
+    {
+      "num": 64,
+      "pages": [
+        247,
+        249
+      ],
+      "trace_pages": [
+        247,
+        248
+      ],
+      "images": [
+        "cas_64.png",
+        "cas_64_p2.png"
+      ],
+      "titre_docx": "SCA ST+ et RIVA"
+    },
+    {
+      "num": 65,
+      "pages": [
+        250,
+        252
+      ],
+      "trace_pages": [
+        250
+      ],
+      "images": [
+        "cas_65.png"
+      ],
+      "titre_docx": "SCA ST+ inférieur et bloc auriculoventriculaire"
+    },
+    {
+      "num": 66,
+      "pages": [
+        253,
+        255
+      ],
+      "trace_pages": [
+        253,
+        255
+      ],
+      "images": [
+        "cas_66.png",
+        "cas_66_p2.png"
+      ],
+      "titre_docx": "SCA sans sus-décalage du segment ST"
+    },
+    {
+      "num": 67,
+      "pages": [
+        256,
+        258
+      ],
+      "trace_pages": [
+        256
+      ],
+      "images": [
+        "cas_67.png"
+      ],
+      "titre_docx": "SCA sans sus-décalage du segment ST"
+    },
+    {
+      "num": 68,
+      "pages": [
+        259,
+        261
+      ],
+      "trace_pages": [
+        259
+      ],
+      "images": [
+        "cas_68.png"
+      ],
+      "titre_docx": "lésion du tronc commun de la coronaire gauche"
+    },
+    {
+      "num": 69,
+      "pages": [
+        262,
+        264
+      ],
+      "trace_pages": [
+        262
+      ],
+      "images": [
+        "cas_69.png"
+      ],
+      "titre_docx": "anévrisme du ventricule gauche"
+    },
+    {
+      "num": 70,
+      "pages": [
+        265,
+        267
+      ],
+      "trace_pages": [
+        265
+      ],
+      "images": [
+        "cas_70.png"
+      ],
+      "titre_docx": "angor spastique de Prinzmetal"
+    },
+    {
+      "num": 71,
+      "pages": [
+        268,
+        271
+      ],
+      "trace_pages": [
+        268
+      ],
+      "images": [
+        "cas_71.png"
+      ],
+      "titre_docx": "Takotsubo"
+    },
+    {
+      "num": 72,
+      "pages": [
+        272,
+        274
+      ],
+      "trace_pages": [
+        272
+      ],
+      "images": [
+        "cas_72.png"
+      ],
+      "titre_docx": "hypokaliémie"
+    },
+    {
+      "num": 73,
+      "pages": [
+        275,
+        277
+      ],
+      "trace_pages": [
+        275,
+        277
+      ],
+      "images": [
+        "cas_73.png",
+        "cas_73_p2.png"
+      ],
+      "titre_docx": "hyperkaliémie"
+    },
+    {
+      "num": 74,
+      "pages": [
+        278,
+        279
+      ],
+      "trace_pages": [
+        278
+      ],
+      "images": [
+        "cas_74.png"
+      ],
+      "titre_docx": "syndrome de Brugada"
+    },
+    {
+      "num": 75,
+      "pages": [
+        280,
+        307
+      ],
+      "trace_pages": [
+        280,
+        283
+      ],
+      "images": [
+        "cas_75.png",
+        "cas_75_p2.png"
+      ],
+      "titre_docx": "amylose"
+    }
+  ]
+}
