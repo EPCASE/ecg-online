@@ -192,6 +192,7 @@ def create_app() -> Flask:
 
         # Recueil optionnel (Google Sheets) — non bloquant, no-op si non configuré.
         # On archive le titre RÉEL (côté serveur), jamais la version anonymisée.
+        meta = payload.get("meta") if isinstance(payload.get("meta"), dict) else {}
         collector.collect_answer(
             num_i,
             case.get("titre", ""),
@@ -200,6 +201,7 @@ def create_app() -> Flask:
             correspondance=result.get("correspondance", ""),
             backend=backend_used,
             session=str(payload.get("session", "")),
+            meta=meta,
         )
 
         status = 200 if not corr.error else 502
