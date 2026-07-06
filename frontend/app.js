@@ -5,6 +5,7 @@ let ACTIVE_FAMILY = "all";
 let CURRENT = null;
 let CURRENT_QCM = null;              // QCM du cas courant (question + options)
 let QCM_SELECTED = new Set();        // lettres cochées
+let CURRENT_PAGES2 = [];             // images secondaires (page 2+) révélées après correction
 
 const $ = (sel) => document.querySelector(sel);
 const el = (tag, cls, html) => {
@@ -97,18 +98,29 @@ async function openCase(num) {
 
   const gal = $("#case-images");
   gal.innerHTML = "";
-  (c.images || []).forEach((img) => {
+  // Page 1 = image de présentation (cas_XX.png), toujours visible.
+  // Page 2+ (cas_XX_p2.png…) = réservée, révélée après correction sous le commentaire IA.
+  const allImages = c.images || [];
+  // Robustesse : la « page 1 » est l'image SANS suffixe _p2/_p3… (repli : la 1ʳᵉ).
+  const isSecondary = (name) => /_p\d+\.\w+$/i.test(String(name));
+  const page1Img = allImages.find((img) => !isSecondary(img)) || allImages[0];
+  CURRENT_PAGES2 = allImages.filter((img) => img !== page1Img);
+  if (page1Img) {
     const im = el("img");
-    im.src = `${API}/images/${img}`;
+    im.src = `${API}/images/${page1Img}`;
     im.alt = `Tracé ECG cas ${c.num}`;
     im.loading = "lazy";
     im.onclick = () => openLightbox(im.src);
     gal.appendChild(im);
-  });
+  }
 
   $("#answer").value = "";
   $("#result").classList.add("hidden");
   $("#result").innerHTML = "";
+  // Réinitialise la page 2 (masquée tant que l'étudiant n'a pas corrigé).
+  const p2 = $("#case-page2");
+  p2.classList.add("hidden");
+  p2.innerHTML = "";
 
   // Réinitialise le mode + charge le QCM du cas
   setMode("free");
@@ -123,7 +135,11 @@ function setMode(mode) {
   $("#mode-free").classList.toggle("active", !isQcm);
   $("#mode-qcm").classList.toggle("active", isQcm);
   $("#free-block").classList.toggle("hidden", isQcm);
-  $("#result").classList.toggle("hidden", isQcm || $("#result").innerHTML === "");
+  const hasResult = $("#result").innerHTML !== "";
+  $("#result").classList.toggle("hidden", isQcm || !hasResult);
+  // La page 2 suit le résultat : visible seulement en mode libre, après correction.
+  const hasPage2 = $("#case-page2").innerHTML !== "";
+  $("#case-page2").classList.toggle("hidden", isQcm || !hasResult || !hasPage2);
   $("#qcm-block").classList.toggle("hidden", !isQcm);
 }
 
@@ -347,7 +363,30 @@ function renderResult(d) {
       </div>
     </details>
   `;
+  revealPage2();
   box.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+/* ─────────── Page 2 du tracé (révélée après correction) ─────────── */
+function revealPage2() {
+  const p2 = $("#case-page2");
+  if (!p2) return;
+  if (!CURRENT_PAGES2 || CURRENT_PAGES2.length === 0) {
+    p2.classList.add("hidden");
+    p2.innerHTML = "";
+    return;
+  }
+  const imgs = CURRENT_PAGES2.map((img) =>
+    `<img src="${API}/images/${img}" alt="Tracé ECG (suite) cas ${CURRENT ? CURRENT.num : ""}" loading="lazy" />`
+  ).join("");
+  p2.innerHTML =
+    `<h4 class="page2-title">🔬 Tracé complémentaire</h4>` +
+    `<div class="ecg-gallery">${imgs}</div>`;
+  p2.classList.remove("hidden");
+  // Clic pour agrandir (comme la galerie principale).
+  p2.querySelectorAll("img").forEach((im) => {
+    im.onclick = () => openLightbox(im.src);
+  });
 }
 
 /* ─────────── Mise en page « référence enseignant » ─────────── */
@@ -420,6 +459,7 @@ function wireGlobal() {
   $("#clear-btn").onclick = () => {
     $("#answer").value = "";
     $("#result").classList.add("hidden");
+    $("#case-page2").classList.add("hidden");
     $("#answer").focus();
   };
   // Bascule de mode

@@ -154,6 +154,14 @@ body {
 }
 .ecg-gallery img:hover { transform: scale(1.005); }
 
+/* Page 2 du tracé — révélée après correction, sous le commentaire IA */
+.case-page2 { margin-top: 22px; animation: fade 0.35s ease; }
+.case-page2 .page2-title {
+  margin: 0 0 12px; font-size: 13px; text-transform: uppercase;
+  letter-spacing: 0.06em; color: var(--accent-2);
+}
+.case-page2 .ecg-gallery { margin-bottom: 0; }
+
 /* Answer block */
 .answer-block { margin-bottom: 20px; }
 .answer-block label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 14px; }
