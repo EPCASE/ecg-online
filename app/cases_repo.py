@@ -21,6 +21,25 @@ IMAGES_DIR = os.path.join(DATA_DIR, "ecg_images")
 # Champs jamais renvoyés par l'API tant que l'étudiant n'a pas répondu.
 _HIDDEN_FIELDS = {"interpretation_ref", "commentaires", "qcm"}
 
+# Anonymisation : le `titre` d'un cas EST le diagnostic (ex. « fibrillation
+# atriale »). Affiché tel quel dans la barre latérale, il vend la mèche. Quand
+# ECG_ANONYMIZE est actif (défaut), l'API publique remplace le titre par
+# « Cas N » — la vraie valeur n'atteint jamais le navigateur. Le titre réel
+# reste disponible côté serveur (correction, recueil, /full enseignant) et est
+# réintégré dans la réponse APRÈS correction (bloc « reference.titre »).
+_ANONYMIZE = os.environ.get("ECG_ANONYMIZE", "1").strip().lower() not in (
+    "0", "false", "no", "off", "")
+
+
+def anonymize_enabled() -> bool:
+    return _ANONYMIZE
+
+
+def anon_titre(num) -> str:
+    """Libellé neutre d'un cas pour l'affichage anonymisé (« Cas 12 »)."""
+    return f"Cas {num}"
+
+
 
 @lru_cache(maxsize=1)
 def _load_raw() -> dict:
@@ -55,7 +74,10 @@ def get_case(num: int) -> Optional[dict]:
 
 
 def families() -> List[dict]:
-    """Compte des cas par famille, pour les filtres du front."""
+    """Compte des cas par famille, pour les filtres du front.
+    Anonymisation active → liste vide (les familles trahissent le diagnostic)."""
+    if _ANONYMIZE:
+        return []
     counts: dict = {}
     for c in all_cases():
         fam = c.get("famille", "autre")
@@ -67,18 +89,27 @@ def families() -> List[dict]:
 
 
 def public_case(case: dict) -> dict:
-    """Version « énoncé » d'un cas : contexte + images, SANS la correction."""
-    return {k: v for k, v in case.items() if k not in _HIDDEN_FIELDS}
+    """Version « énoncé » d'un cas : contexte + images, SANS la correction.
+    Si l'anonymisation est active, le `titre` (= diagnostic) est masqué et la
+    `famille` (ex. « ischémie ») est retirée — elle trahirait aussi le cas."""
+    pub = {k: v for k, v in case.items() if k not in _HIDDEN_FIELDS}
+    if _ANONYMIZE:
+        pub["titre"] = anon_titre(case.get("num"))
+        pub["famille"] = None
+    return pub
 
 
 def public_index() -> List[dict]:
-    """Liste légère pour le sélecteur (num, titre, famille, nb images)."""
+    """Liste légère pour le sélecteur (num, titre, famille, nb images).
+    Si l'anonymisation est active, `titre` = « Cas N » et `famille` est masquée
+    (la famille — ex. « ischémie » — trahirait aussi le diagnostic)."""
     out = []
     for c in all_cases():
+        num = c.get("num")
         out.append({
-            "num": c.get("num"),
-            "titre": c.get("titre"),
-            "famille": c.get("famille"),
+            "num": num,
+            "titre": anon_titre(num) if _ANONYMIZE else c.get("titre"),
+            "famille": None if _ANONYMIZE else c.get("famille"),
             "images": c.get("images", []),
             "has_qcm": bool((c.get("qcm") or {}).get("options")),
         })

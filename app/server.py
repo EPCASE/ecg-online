@@ -36,6 +36,7 @@ from . import cases_repo
 from . import scoring_config
 from . import golden_config
 from . import neuro_grader
+from . import collector
 from .grader import grade, DEFAULT_MODEL
 
 FRONTEND_DIR = os.path.abspath(
@@ -81,6 +82,8 @@ def create_app() -> Flask:
             "openai_key": bool(os.environ.get("OPENAI_API_KEY")),
             "grader_backend": GRADER_BACKEND,
             "neuro": neuro_grader.status(),
+            "collector": collector.status(),
+            "anonymize": cases_repo.anonymize_enabled(),
         })
 
     # ---- Banque de cas --------------------------------------------------
@@ -165,6 +168,19 @@ def create_app() -> Flask:
             "fiche_secours": (ref or {}).get("fiche_secours", {}),
         }
         result["scoring"] = scoring
+
+        # Recueil optionnel (Google Sheets) — non bloquant, no-op si non configuré.
+        # On archive le titre RÉEL (côté serveur), jamais la version anonymisée.
+        collector.collect_answer(
+            num_i,
+            case.get("titre", ""),
+            answer,
+            score=result.get("score"),
+            correspondance=result.get("correspondance", ""),
+            backend=backend_used,
+            session=str(payload.get("session", "")),
+        )
+
         status = 200 if not corr.error else 502
         return jsonify(result), status
 
