@@ -23,3 +23,10 @@ Thumbs.db
 *.log
 tmp/
 _scratch/
+
+# Scripts jetables de debug/smoke-test (préfixes dédiés, à la racine).
+# NB : ne touche pas aux __init__.py ni à _audit_mapping.py (suivis volontairement).
+/_tmp_*.py
+/_smoke_*.py
+/_analyze_*.py
+/_debug_*.py
