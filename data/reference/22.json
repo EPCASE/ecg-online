@@ -1,0 +1,76 @@
+{
+  "num": 22,
+  "titre": "dysfonction sinusale et stimulateur cardiaque",
+  "famille": "conduction",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence régulière imposée par le stimulateur au niveau atrial. Rythme non sinusal spontané : on observe des artéfacts de stimulation réguliers, chacun suivi d’une dépolarisation atriale, témoignant d’une stimulation atriale. La conduction auriculo-ventriculaire est conservée : chaque activité atriale stimulée est suivie après un intervalle fixe inférieur à 200 ms d’un QRS. Axe des QRS à environ -20°. Les QRS sont fins, sans aspect de stimulation ventriculaire ni signe d’hypertrophie : il s’agit donc de complexes QRS spontanés. Absence de trouble de la repolarisation, QT de durée normale. Conclusion : fonctionnement attendu d’un stimulateur double chambre chez un patient implanté pour dysfonction sinusale, avec stimulation atriale et conduction AV native conservée, les QRS étant spontanés.",
+  "points_cles": [
+    {
+      "label": "Identifier des spikes/artéfacts de stimulation réguliers suivis d’une dépolarisation atriale",
+      "rang": "A"
+    },
+    {
+      "label": "Conclure à des activités atriales stimulées, non spontanées sinusales et non rétrogrades",
+      "rang": "A"
+    },
+    {
+      "label": "Reconnaître que les QRS sont spontanés/non stimulés, car fins et détectés après conduction AV native",
+      "rang": "A"
+    },
+    {
+      "label": "Décrire une conduction AV conservée avec intervalle fixe inférieur à 200 ms entre stimulation atriale et QRS",
+      "rang": "B"
+    },
+    {
+      "label": "Mentionner le fonctionnement attendu d’un stimulateur double chambre implanté pour dysfonction sinusale",
+      "rang": "A"
+    },
+    {
+      "label": "Préciser l’absence de trouble de repolarisation et QT normal",
+      "rang": "C"
+    },
+    {
+      "label": "Préciser l’axe des QRS à -20° et l’absence d’hypertrophie",
+      "rang": "C"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé montre des artéfacts de stimulation réguliers suivis d’une dépolarisation atriale : les activités atriales sont stimulées. Les QRS ne sont pas stimulés : ils sont fins, spontanés, après conduction auriculo-ventriculaire conservée. Il s’agit du fonctionnement attendu d’un stimulateur double chambre implanté pour dysfonction sinusale.",
+    "criteres_indispensables": [
+      {
+        "label": "Diagnostic : fonctionnement attendu d’un stimulateur double chambre pour dysfonction sinusale",
+        "rang": "A"
+      },
+      {
+        "label": "Activités atriales stimulées : spikes suivis d’une dépolarisation atriale",
+        "rang": "A"
+      },
+      {
+        "label": "Complexes QRS spontanés, non stimulés",
+        "rang": "A"
+      },
+      {
+        "label": "Conduction auriculo-ventriculaire conservée avec QRS après stimulation atriale",
+        "rang": "B"
+      },
+      {
+        "label": "QRS fins, axe environ -20°, sans hypertrophie",
+        "rang": "C"
+      },
+      {
+        "label": "Absence de trouble de repolarisation et QT normal",
+        "rang": "C"
+      }
+    ],
+    "diagnostic_principal": "Fonctionnement attendu d’un stimulateur double chambre pour dysfonction sinusale : stimulation atriale avec QRS spontanés",
+    "pieges": [
+      "Conclure à des activités atriales spontanées sinusales malgré les spikes précédant les ondes atriales.",
+      "Interpréter les QRS comme stimulés alors qu’ils sont fins et spontanés.",
+      "Diagnostiquer des activités atriales rétrogrades, non décrites ici.",
+      "Méconnaître la conduction AV conservée : la stimulation est atriale, la stimulation ventriculaire est inhibée."
+    ],
+    "references_item": "EDN Item 236 — Troubles de la conduction intracardiaque : chapitre sur les stimulateurs cardiaques, nombre de sondes, programmation et indications dans la dysfonction sinusale.",
+    "citation_source": "« Les complexes QRS ne sont pas stimulés et sont spontanés. »"
+  },
+  "error": null
+}

@@ -1,0 +1,101 @@
+{
+  "num": 3,
+  "titre": "ECG normal",
+  "famille": "normal",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence cardiaque régulière autour de 70/min, dans les limites de la normale. Rythme sinusal normal : ondes P d’origine sinusale (positives en DI, DII et précordiales gauches, négatives en aVR), avec une onde P avant chaque QRS et un QRS après chaque onde P. Pas d’anomalie de morphologie de l’onde P en faveur d’une hypertrophie auriculaire. Conduction auriculo-ventriculaire normale avec PR fixe et normal entre 120 et 200 ms. Axe des QRS normal, positif en DI et aVF, donc entre 0 et +90°. QRS fins (< 100 ms), sans argument pour bloc de branche, hémibloc, hypertrophie ventriculaire gauche ou droite, ni microvoltage ; indice de Sokolow non en faveur d’une HVG. Pas d’onde Q pathologique de nécrose, seulement de petites ondes q physiologiques en V5-V6. Repolarisation normale : absence de sus- ou sous-décalage significatif du ST, ondes T de polarité et d’amplitude normales avec négativité attendue en aVR et V1. QT normal, mesuré à environ 400 ms et QTc autour de 420 ms. Conclusion : électrocardiogramme strictement normal.",
+  "points_cles": [
+    {
+      "label": "Conclusion diagnostique : ECG strictement normal",
+      "rang": "A"
+    },
+    {
+      "label": "Fréquence cardiaque normale autour de 70 bpm",
+      "rang": "A"
+    },
+    {
+      "label": "Rythme sinusal normal : P sinusales et relation 1:1 P-QRS",
+      "rang": "A"
+    },
+    {
+      "label": "PR fixe et normal entre 120 et 200 ms",
+      "rang": "A"
+    },
+    {
+      "label": "QRS fins (< 100 ms) et axe normal (DI et aVF positifs)",
+      "rang": "A"
+    },
+    {
+      "label": "Absence d’hypertrophie auriculaire ou ventriculaire, notamment pas d’HVG",
+      "rang": "B"
+    },
+    {
+      "label": "Absence d’onde Q pathologique ; q physiologiques en V5-V6",
+      "rang": "B"
+    },
+    {
+      "label": "Repolarisation normale : pas de sus/sous-décalage ST, T normales",
+      "rang": "A"
+    },
+    {
+      "label": "QT/QTc normal (QT 400 ms, QTc 420 ms)",
+      "rang": "B"
+    },
+    {
+      "label": "Ne pas retenir hémibloc antérieur gauche, séquelle antéro-septale, HVG ou HVD",
+      "rang": "A"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Ce tracé illustre une analyse systématique d’un ECG en rythme sinusal normal. Tous les critères de normalité sont remplis : fréquence normale, conduction normale, axe et QRS normaux, absence d’hypertrophie, d’onde Q pathologique et de trouble de repolarisation, QT normal. Il faut savoir conclure à un ECG strictement normal.",
+    "criteres_indispensables": [
+      {
+        "label": "Affirmer le diagnostic principal : ECG strictement normal",
+        "rang": "A"
+      },
+      {
+        "label": "Identifier un rythme sinusal normal avec onde P avant chaque QRS et QRS après chaque onde P",
+        "rang": "A"
+      },
+      {
+        "label": "Fréquence cardiaque normale, environ 70 bpm",
+        "rang": "A"
+      },
+      {
+        "label": "Conduction AV normale : PR fixe et normal (120–200 ms)",
+        "rang": "A"
+      },
+      {
+        "label": "QRS fins avec axe normal (DI et aVF positifs)",
+        "rang": "A"
+      },
+      {
+        "label": "Repolarisation normale : pas de sus- ou sous-décalage ST significatif, ondes T normales",
+        "rang": "A"
+      },
+      {
+        "label": "QT normal (QT mesuré 400 ms, QTc 420 ms)",
+        "rang": "B"
+      },
+      {
+        "label": "Absence d’hypertrophie ventriculaire gauche/droite et auriculaire",
+        "rang": "B"
+      },
+      {
+        "label": "Absence d’onde Q pathologique de nécrose ; q physiologiques en V5-V6",
+        "rang": "B"
+      }
+    ],
+    "diagnostic_principal": "ECG strictement normal",
+    "pieges": [
+      "Ne pas hésiter à conclure à un ECG normal lorsque tous les critères de normalité sont présents.",
+      "Ne pas confondre petites ondes q physiologiques en V5-V6 avec une séquelle d’infarctus antéro-septal.",
+      "Ne pas diagnostiquer à tort un hémibloc antérieur gauche alors que l’axe est normal.",
+      "Ne pas surdiagnostiquer une HVG ou une HVD en l’absence de critères de voltage/morphologie.",
+      "Distinguer « rythme sinusal » et « rythme sinusal normal » : il faut une relation 1:1 entre ondes P et QRS."
+    ],
+    "references_item": "EDN — ECG : indications et interprétation ; analyse systématique d’un ECG normal, rythme sinusal normal, fréquence normale de repos, conduction, axe, QRS et repolarisation.",
+    "citation_source": "« Si tous les critères de normalité d’un ECG sont remplis […] il faut savoir affirmer qu’il est normal… »"
+  },
+  "error": null
+}

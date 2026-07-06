@@ -1,0 +1,81 @@
+{
+  "num": 4,
+  "titre": "hypertrophie auriculaire gauche",
+  "famille": "hypertrophie",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence non précisée sur l’énoncé. Le tracé est en rythme sinusal. La conduction atrio-ventriculaire n’est pas décrite comme anormale. L’axe n’est pas précisé. Les QRS ne présentent pas de critère d’hypertrophie ventriculaire gauche selon l’indice de Sokolow, négatif (< 36 mm). L’analyse des ondes P montre une altération majeure compatible avec une hypertrophie auriculaire gauche : onde P élargie > 120 ms, bifide en DI, DII, DIII, aVF et de V3 à V6, avec composante négative élargie en V1. La repolarisation montre un trouble latéral avec ondes T négatives, fréquent dans la myocardiopathie hypertrophique. Conclusion : ECG en rythme sinusal avec aspect typique d’hypertrophie auriculaire gauche, sans critère de Sokolow positif.",
+  "points_cles": [
+    {
+      "label": "Rythme sinusal",
+      "rang": "B"
+    },
+    {
+      "label": "Hypertrophie auriculaire gauche comme diagnostic principal",
+      "rang": "A"
+    },
+    {
+      "label": "Onde P élargie > 120 ms / > 110 ms seuil pathologique",
+      "rang": "A"
+    },
+    {
+      "label": "Onde P bifide/crochetée en dérivations inférieures et latérales, notamment DI-DII-DIII-aVF et V3-V6",
+      "rang": "A"
+    },
+    {
+      "label": "Composante négative élargie en V1",
+      "rang": "A"
+    },
+    {
+      "label": "Indice de Sokolow négatif (< 36 mm), pas d’HVG électrique selon ce critère",
+      "rang": "B"
+    },
+    {
+      "label": "Troubles de repolarisation latérale avec ondes T négatives, fréquents dans la myocardiopathie hypertrophique",
+      "rang": "B"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé est en rythme sinusal et montre une hypertrophie auriculaire gauche typique. Le diagnostic repose sur une onde P élargie, crochetée/bifide dans plusieurs dérivations et une composante terminale négative élargie en V1. L’indice de Sokolow est négatif, tandis qu’il existe des ondes T négatives latérales, fréquentes dans la myocardiopathie hypertrophique.",
+    "criteres_indispensables": [
+      {
+        "label": "Diagnostic d’hypertrophie auriculaire gauche",
+        "rang": "A"
+      },
+      {
+        "label": "Onde P élargie au-delà du seuil pathologique, en pratique > 120 ms",
+        "rang": "A"
+      },
+      {
+        "label": "Morphologie bifide/crochetée de l’onde P, en double bosse",
+        "rang": "A"
+      },
+      {
+        "label": "Composante négative élargie en V1",
+        "rang": "A"
+      },
+      {
+        "label": "Rythme sinusal",
+        "rang": "B"
+      },
+      {
+        "label": "Absence de critère de Sokolow positif : indice < 36 mm",
+        "rang": "B"
+      },
+      {
+        "label": "Trouble de repolarisation latérale avec ondes T négatives",
+        "rang": "B"
+      }
+    ],
+    "diagnostic_principal": "Hypertrophie auriculaire gauche",
+    "pieges": [
+      "Répondre onde P normale alors que sa durée et sa morphologie sont pathologiques.",
+      "Confondre avec une hypertrophie auriculaire droite : l’amplitude de P n’est pas l’élément principal ici, c’est l’élargissement et l’aspect bifide.",
+      "Diagnostiquer une hypertrophie bi-auriculaire sans argument fourni pour une composante droite.",
+      "Interpréter la composante négative en V1 comme une activation atriale rétrograde plutôt que comme un critère d’hypertrophie auriculaire gauche.",
+      "Conclure à une hypertrophie ventriculaire gauche sur Sokolow alors que l’indice est négatif."
+    ],
+    "references_item": "EDN — Question électrocardiogramme : hypertrophie auriculaire gauche, onde P de durée > 110 ms (en pratique 120 ms) avec composante négative > 40 ms en V1. EDN — Insuffisance mitrale : hypertrophie auriculaire gauche fréquemment observée.",
+    "citation_source": "« Le diagnostic d'hypertrophie auriculaire gauche repose donc essentiellement sur la mise en évidence d’une onde P élargie avec une morphologie crochetée »"
+  },
+  "error": null
+}

@@ -1,0 +1,78 @@
+{
+  "num": 67,
+  "titre": "SCA sans sus-décalage du segment ST",
+  "famille": "ischemie",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence ventriculaire rapide à environ 130/min. Rythme non sinusal, irrégulier, sans ondes P individualisables, compatible avec une fibrillation auriculaire. Le PR n’est pas mesurable du fait de la FA. Axe non précisé sur les données fournies. QRS non élargis, sans onde q pathologique rapportée. La repolarisation est anormale avec un sous-décalage significatif du segment ST en V3-V4 et des ondes T négatives ou plates diffuses en DI, aVL, DII, DIII, aVF et V4-V6 ; absence de sus-décalage du ST. Conclusion : fibrillation auriculaire rapide associée à des troubles diffus de la repolarisation, avec sous-décalage antéro-apical compatible avec un SCA sans sus-décalage du ST/angor instable secondaire dans ce contexte, en l’absence de sus-décalage ou d’ondes q.",
+  "points_cles": [
+    {
+      "label": "Identifier une fibrillation auriculaire rapide à environ 130 bpm",
+      "rang": "A"
+    },
+    {
+      "label": "Dire que le rythme n’est pas sinusal, avec PR non mesurable",
+      "rang": "A"
+    },
+    {
+      "label": "Décrire un sous-décalage significatif du segment ST en V3-V4, territoire antéro-apical",
+      "rang": "A"
+    },
+    {
+      "label": "Décrire des troubles diffus de la repolarisation avec ondes T négatives ou plates en DI, aVL, DII, DIII, aVF, V4-V6",
+      "rang": "A"
+    },
+    {
+      "label": "Mentionner l’absence de sus-décalage du ST et l’absence d’ondes q",
+      "rang": "B"
+    },
+    {
+      "label": "Conclure à un SCA sans sus-décalage du ST / angor instable secondaire dans le contexte d’une FA rapide chez coronarienne",
+      "rang": "B"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "L’ECG montre une fibrillation auriculaire rapide à 130 bpm, associée à des troubles de repolarisation diffus. Il existe un sous-décalage significatif en V3-V4 et des ondes T négatives ou plates dans de nombreuses dérivations, sans sus-décalage ni ondes q. Dans le contexte décrit par Pierre, il s’agit d’anomalies liées au passage en FA, évoquant un angor instable secondaire chez une patiente coronarienne stable.",
+    "criteres_indispensables": [
+      {
+        "label": "Diagnostic principal : fibrillation auriculaire rapide",
+        "rang": "A"
+      },
+      {
+        "label": "Fréquence d’environ 130 bpm",
+        "rang": "A"
+      },
+      {
+        "label": "Troubles diffus de la repolarisation",
+        "rang": "A"
+      },
+      {
+        "label": "Sous-décalage significatif du ST en V3-V4 / territoire antéro-apical",
+        "rang": "A"
+      },
+      {
+        "label": "Ondes T négatives ou plates en DI, aVL, DII, DIII, aVF, V4-V6",
+        "rang": "B"
+      },
+      {
+        "label": "Absence de sus-décalage du ST et absence d’ondes q",
+        "rang": "B"
+      },
+      {
+        "label": "Interprétation contextuelle : angor instable secondaire/SCA sans sus-décalage, facteur déclenchant FA",
+        "rang": "B"
+      }
+    ],
+    "diagnostic_principal": "Fibrillation auriculaire rapide avec troubles diffus de la repolarisation, compatible avec SCA sans sus-décalage du ST / angor instable secondaire",
+    "pieges": [
+      "Conclure à une tachycardie sinusale : le rythme est une fibrillation auriculaire.",
+      "Conclure à une tachycardie atriale plutôt qu’à une FA.",
+      "Ne retenir que le sous-décalage en V3-V4 et oublier les troubles diffus de la repolarisation.",
+      "Surdiagnostiquer un STEMI : il n’y a pas de sus-décalage du ST.",
+      "Interpréter les anomalies comme un infarctus constitué avec ondes q : il n’y a pas d’ondes q rapportées.",
+      "Oublier que dans le contexte pédagogique, le facteur déclenchant est le passage en FA et que les anomalies peuvent se normaliser après ralentissement."
+    ],
+    "references_item": "SCA sans sus-décalage du segment ST ; angor instable lorsque la troponine n’augmente pas ; EDN Item 231 — ECG : indications et interprétation ; référentiel cardiologie SCA/IDM sans sus-décalage persistant du ST.",
+    "citation_source": "« Un passage en fibrillation auriculaire ou une anémie sont souvent associés chez un patient coronarien stable à la mise en évidence d'un sous-décalage du segment ST »"
+  },
+  "error": null
+}

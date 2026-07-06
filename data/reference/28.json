@@ -1,0 +1,81 @@
+{
+  "num": 28,
+  "titre": "BAV du troisième degré et échappement jonctionnel",
+  "famille": "conduction",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence ventriculaire régulière à environ 53/min. Activité atriale sinusale régulière visible, mais sans relation fixe avec les complexes QRS : les intervalles PR sont variables, traduisant une dissociation atrioventriculaire complète. Axe des QRS normal. QRS fins, réguliers, sans hypertrophie ventriculaire gauche ni onde Q de nécrose ; cette finesse des QRS oriente vers un échappement haut situé, jonctionnel. Pas de trouble de la repolarisation ST-T et intervalle QT de durée normale. Conclusion : bloc auriculoventriculaire du troisième degré, ou BAV complet, avec échappement jonctionnel régulier.",
+  "points_cles": [
+    {
+      "label": "BAV du troisième degré / BAV complet",
+      "rang": "A"
+    },
+    {
+      "label": "Dissociation atrioventriculaire : activité atriale sinusale régulière sans relation avec les QRS, PR variables",
+      "rang": "A"
+    },
+    {
+      "label": "Échappement jonctionnel",
+      "rang": "A"
+    },
+    {
+      "label": "Rythme ventriculaire régulier à 53 bpm",
+      "rang": "B"
+    },
+    {
+      "label": "QRS fins et réguliers, orientant vers un échappement haut situé",
+      "rang": "B"
+    },
+    {
+      "label": "Axe normal",
+      "rang": "C"
+    },
+    {
+      "label": "Absence d’HVG et d’ondes Q de nécrose",
+      "rang": "C"
+    },
+    {
+      "label": "Absence de troubles de repolarisation et QT normal",
+      "rang": "C"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé montre une activité atriale sinusale régulière et des QRS fins réguliers, mais totalement dissociés : aucune relation fixe P-QRS, avec PR variables. Il s’agit donc d’un BAV complet, avec échappement jonctionnel compte tenu des QRS fins et de la fréquence ventriculaire modérément ralentie autour de 53/min. Il n’y a pas d’anomalie de repolarisation ni d’allongement du QT sur ce tracé.",
+    "criteres_indispensables": [
+      {
+        "label": "Identifier un BAV du troisième degré / BAV complet",
+        "rang": "A"
+      },
+      {
+        "label": "Décrire la dissociation atrioventriculaire : ondes P sinusales sans relation avec les QRS, PR variables",
+        "rang": "A"
+      },
+      {
+        "label": "Identifier l’échappement jonctionnel",
+        "rang": "A"
+      },
+      {
+        "label": "Mentionner des QRS fins, réguliers, en faveur d’un échappement jonctionnel",
+        "rang": "B"
+      },
+      {
+        "label": "Fréquence ventriculaire régulière à 53 bpm",
+        "rang": "B"
+      },
+      {
+        "label": "Ne pas décrire de trouble de repolarisation ; QT normal",
+        "rang": "C"
+      }
+    ],
+    "diagnostic_principal": "Bloc auriculoventriculaire complet avec échappement jonctionnel",
+    "pieges": [
+      "Confondre avec un BAV 2 Mobitz 2 : ici aucune onde P n’est conduite et il existe une dissociation complète.",
+      "Confondre avec un BAV 2/1 : ici il n’y a pas d’alternance conduction/non-conduction mais une absence de relation P-QRS.",
+      "Prendre les QRS fins pour un rythme sinusal conduit : l’activité atriale et ventriculaire est dissociée.",
+      "Conclure à un échappement ventriculaire alors que les QRS sont fins, orientant vers un échappement jonctionnel.",
+      "Oublier de vérifier le QT et la repolarisation, importants dans les BAV complets du fait du risque de torsades de pointes."
+    ],
+    "references_item": "EDN — Troubles de conduction / blocs auriculoventriculaires ; EDN Item 231 — ECG : indications et interprétation ; référentiel : BAV complet, dissociation atrioventriculaire, orientation du siège du bloc par durée du QRS et fréquence de l’échappement, risque de torsade de pointes.",
+    "citation_source": "« Il n’existe pas de relation entre les ondes P et les complexes QRS, les “intervalles PR” sont variables »"
+  },
+  "error": null
+}

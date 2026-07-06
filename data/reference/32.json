@@ -1,0 +1,88 @@
+{
+  "num": 32,
+  "titre": "pause post-réductionnelle",
+  "famille": "rythme",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence initialement rapide avec tachycardie irrégulière, puis arrêt de l’arythmie avec pause > 2 secondes avant reprise. Rythme initial non sinusal : activité atriale rapide, polymorphe, anarchique avec trémulation de la ligne de base, compatible avec une fibrillation atriale conduite ; après la pause, réapparition d’une onde P suivie d’un QRS, avec reprise d’une activité sinusale normale. Conduction AV non analysable pendant la FA ; pas d’argument pour un BAV paroxystique pendant la pause puisqu’aucune activité atriale n’est identifiable. Axe non précisé. QRS larges d’emblée et après reprise, avec morphologie de bloc de branche droite complet. Repolarisation non contributive/non précisée. Conclusion : fibrillation atriale paroxystique conduite avec bloc de branche droite complet, se réduisant pendant l’enregistrement et révélant une pause sinusale post-réductionnelle (> 2 s), expliquant les syncopes dans le cadre d’une maladie rythmique de l’oreillette.",
+  "points_cles": [
+    {
+      "label": "Tachycardie initiale irrégulière à QRS larges",
+      "rang": "A"
+    },
+    {
+      "label": "Activité atriale rapide, polymorphe, anarchique avec trémulation de la ligne de base : fibrillation atriale",
+      "rang": "A"
+    },
+    {
+      "label": "FA conduite avec aspect de bloc de branche droite complet, et non tachycardie ventriculaire",
+      "rang": "A"
+    },
+    {
+      "label": "Réduction de l’arythmie pendant l’enregistrement suivie d’une pause > 2 secondes",
+      "rang": "A"
+    },
+    {
+      "label": "Absence d’activité atriale identifiable pendant la pause, puis onde P suivie d’un QRS",
+      "rang": "A"
+    },
+    {
+      "label": "Diagnostic de pause sinusale post-réductionnelle / maladie rythmique de l’oreillette",
+      "rang": "A"
+    },
+    {
+      "label": "Reprise d’une activité sinusale normale avec même aspect de bloc de branche droite",
+      "rang": "B"
+    },
+    {
+      "label": "Pas d’argument pour une pause sur BAV paroxystique",
+      "rang": "B"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé débute par une tachycardie supraventriculaire irrégulière à QRS larges correspondant à une fibrillation atriale conduite avec bloc de branche droite complet. L’arythmie se réduit pendant l’enregistrement et laisse place à une pause de plus de 2 secondes sans activité atriale identifiable, puis à la reprise d’un rythme sinusal. Il s’agit d’une pause sinusale post-réductionnelle, variante de maladie rythmique de l’oreillette expliquant les syncopes après palpitations.",
+    "criteres_indispensables": [
+      {
+        "label": "Identifier la tachycardie initiale comme supraventriculaire : fibrillation atriale paroxystique",
+        "rang": "A"
+      },
+      {
+        "label": "Décrire l’irrégularité de la tachycardie et l’activité atriale anarchique/trémulation de la ligne de base",
+        "rang": "A"
+      },
+      {
+        "label": "Mentionner les QRS larges par bloc de branche droite complet",
+        "rang": "A"
+      },
+      {
+        "label": "Reconnaître la réduction de la FA suivie d’une pause > 2 secondes",
+        "rang": "A"
+      },
+      {
+        "label": "Qualifier la pause de pause sinusale post-réductionnelle",
+        "rang": "A"
+      },
+      {
+        "label": "Noter l’absence d’activité atriale pendant la pause, excluant une pause par BAV paroxystique",
+        "rang": "B"
+      },
+      {
+        "label": "Mentionner la reprise d’un rythme sinusal avec onde P suivie d’un QRS",
+        "rang": "B"
+      },
+      {
+        "label": "Relier palpitations à la FA paroxystique et syncopes aux pauses post-réductionnelles",
+        "rang": "B"
+      }
+    ],
+    "diagnostic_principal": "Fibrillation atriale paroxystique conduite avec bloc de branche droite complet, compliquée d’une pause sinusale post-réductionnelle",
+    "pieges": [
+      "Conclure à une tachycardie ventriculaire devant les QRS larges sans reconnaître la FA conduite avec bloc de branche droite.",
+      "Interpréter la pause comme un BAV paroxystique alors qu’aucune activité atriale n’est identifiable pendant la pause.",
+      "Méconnaître le mécanisme post-réductionnel de la pause et la rattacher à une simple bradycardie isolée.",
+      "Oublier que les syncopes sont expliquées par les pauses post-réductionnelles, alors que les palpitations sont liées aux épisodes de FA paroxystique."
+    ],
+    "references_item": "Référentiel EDN — Maladie rythmique de l’oreillette : syndrome brady-tachy et pauses post-réductionnelles ; EDN Item 231 — ECG : indications et interprétation.",
+    "citation_source": "« épisodes de fibrillation auriculaire et pause survenant uniquement au moment de la réduction de l’arythmie »"
+  },
+  "error": null
+}

@@ -1,0 +1,85 @@
+{
+  "num": 40,
+  "titre": "tachycardie sinusale",
+  "famille": "rythme",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence ventriculaire rapide, environ 170/min. Rythme régulier d’origine sinusale : rapport oreillettes/ventricules 1/1, chaque QRS étant précédé d’une onde P sinusale, positive en DI, DII, V5-V6 et négative en aVR. La conduction auriculo-ventriculaire est conservée avec un PR compatible avec une conduction 1/1. Axe et morphologie des QRS non décrits comme anormaux dans les données fournies ; complexes QRS non élargis rapportés. Repolarisation non signalée comme pathologique dans l’interprétation de référence. Conclusion : tachycardie sinusale à 170 bpm, vraisemblablement réactionnelle dans le contexte de fièvre/surinfection, anémie, insuffisance rénale et décompensation cardiaque ; il ne s’agit pas d’une fibrillation atriale, d’un flutter ni d’une tachycardie par réentrée.",
+  "points_cles": [
+    {
+      "label": "Identifier une tachycardie à environ 170 bpm",
+      "rang": "A"
+    },
+    {
+      "label": "Reconnaître l’origine sinusale : ondes P sinusales positives en DI, DII, V5-V6 et négatives en aVR",
+      "rang": "A"
+    },
+    {
+      "label": "Rapport oreillettes/ventricules 1/1 avec ondes P précédant et commandant les QRS",
+      "rang": "A"
+    },
+    {
+      "label": "Conclusion diagnostique : tachycardie sinusale",
+      "rang": "A"
+    },
+    {
+      "label": "Ne pas conclure à une fibrillation atriale, un flutter ou une tachycardie par réentrée",
+      "rang": "B"
+    },
+    {
+      "label": "Contexte compatible avec une tachycardie sinusale réactionnelle : fièvre/surinfection, anémie, insuffisance rénale, décompensation cardiaque",
+      "rang": "B"
+    },
+    {
+      "label": "Traitement orienté vers les causes plutôt que vers la tachycardie elle-même",
+      "rang": "C"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé montre une tachycardie régulière à 170 bpm d’origine sinusale. Les ondes P sinusales précèdent les QRS avec un rapport oreillettes/ventricules 1/1, positives en DI, DII, V5, V6 et négatives en aVR. Dans ce contexte, il s’agit d’une tachycardie sinusale réactionnelle plutôt que d’un trouble du rythme par réentrée ou d’une arythmie atriale.",
+    "criteres_indispensables": [
+      {
+        "label": "Diagnostic principal : tachycardie sinusale",
+        "rang": "A"
+      },
+      {
+        "label": "Fréquence rapide autour de 170 bpm",
+        "rang": "A"
+      },
+      {
+        "label": "Ondes P sinusales précédant chaque QRS",
+        "rang": "A"
+      },
+      {
+        "label": "Rapport oreillettes/ventricules 1/1",
+        "rang": "A"
+      },
+      {
+        "label": "Morphologie sinusale des ondes P : positives en DI, DII, V5, V6 et négatives en aVR",
+        "rang": "A"
+      },
+      {
+        "label": "Écarter fibrillation atriale, flutter atrial et tachycardies par réentrée",
+        "rang": "B"
+      },
+      {
+        "label": "Caractère réactionnel possible dans le contexte : fièvre, surinfection, anémie, insuffisance rénale, décompensation cardiaque",
+        "rang": "B"
+      },
+      {
+        "label": "Principe thérapeutique : traiter les causes de la tachycardie",
+        "rang": "C"
+      }
+    ],
+    "diagnostic_principal": "Tachycardie sinusale",
+    "pieges": [
+      "Confondre la tachycardie sinusale rapide avec un flutter atrial ou une tachycardie supraventriculaire par réentrée.",
+      "Conclure à une fibrillation atriale alors que l’activité atriale est organisée avec conduction 1/1.",
+      "Omettre de rechercher les ondes P sinusales avant chaque QRS.",
+      "Considérer systématiquement cette tachycardie comme un trouble du rythme primaire alors qu’elle est souvent réactionnelle.",
+      "Traiter la fréquence isolément sans rechercher ni corriger les causes : fièvre, anémie, insuffisance cardiaque, infection, hypovolémie, etc."
+    ],
+    "references_item": "EDN Item 231 — ECG : indications et interprétation ; troubles du rythme supraventriculaire et diagnostic différentiel des tachycardies régulières.",
+    "citation_source": "« Les ondes P sinusales précèdent et commandent la survenue des complexes QRS. »"
+  },
+  "error": null
+}

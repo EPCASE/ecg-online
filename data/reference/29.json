@@ -1,0 +1,93 @@
+{
+  "num": 29,
+  "titre": "BAV du troisième degré et échappement distal",
+  "famille": "conduction",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence : bradycardie ventriculaire majeure, régulière, autour de 20/min, avec activité atriale régulière plus rapide autour de 110/min. Rythme : activité atriale d’allure sinusale, correspondant à une tachycardie sinusale réflexe, non conduite. Conduction : dissociation atrioventriculaire complète, sans relation fixe entre les ondes P et les QRS, compatible avec un bloc auriculoventriculaire du troisième degré. Axe : non précisé. QRS : complexes ventriculaires larges, réguliers, traduisant un échappement probablement ventriculaire, très lent et fragile. Repolarisation : ondes T amples et fines ; intervalle QT court compte tenu de la fréquence très lente. Conclusion : bloc auriculoventriculaire complet avec dissociation atrioventriculaire et échappement ventriculaire très lent, dans un contexte d’hyperkaliémie chez un insuffisant rénal ; tracé à très haut risque, sans argument pour flutter atrial.",
+  "points_cles": [
+    {
+      "label": "Bradycardie ventriculaire majeure régulière à environ 20/min",
+      "rang": "A"
+    },
+    {
+      "label": "Activité atriale sinusale régulière rapide, tachycardie sinusale réflexe autour de 110/min",
+      "rang": "A"
+    },
+    {
+      "label": "Dissociation atrioventriculaire complète",
+      "rang": "A"
+    },
+    {
+      "label": "Diagnostic de BAV du troisième degré/complet",
+      "rang": "A"
+    },
+    {
+      "label": "QRS larges et réguliers, échappement probablement ventriculaire très lent",
+      "rang": "A"
+    },
+    {
+      "label": "Ne pas confondre tachycardie sinusale réflexe avec flutter atrial",
+      "rang": "B"
+    },
+    {
+      "label": "Ondes T amples et fines dans le contexte d’hyperkaliémie",
+      "rang": "B"
+    },
+    {
+      "label": "QT court au vu de la fréquence très lente",
+      "rang": "C"
+    },
+    {
+      "label": "Contexte d’hyperkaliémie chez un insuffisant rénal avec risque majeur de mort subite",
+      "rang": "B"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé montre une bradycardie ventriculaire régulière très sévère, environ 20/min, avec une activité atriale sinusale régulière rapide autour de 110/min. L’absence de relation entre ondes P et QRS signe une dissociation atrioventriculaire complète : il s’agit d’un BAV III avec échappement probablement ventriculaire, large et très lent. Le contexte est celui d’une hyperkaliémie chez un insuffisant rénal, avec ondes T amples et fines, et il ne faut pas confondre la tachycardie sinusale réflexe avec un flutter atrial.",
+    "criteres_indispensables": [
+      {
+        "label": "Identifier un BAV du troisième degré / bloc auriculoventriculaire complet",
+        "rang": "A"
+      },
+      {
+        "label": "Décrire la dissociation atrioventriculaire entre activité atriale et ventriculaire",
+        "rang": "A"
+      },
+      {
+        "label": "Mentionner la bradycardie ventriculaire majeure régulière à environ 20 bpm",
+        "rang": "A"
+      },
+      {
+        "label": "Décrire une activité atriale sinusale régulière rapide / tachycardie sinusale réflexe autour de 110 bpm",
+        "rang": "A"
+      },
+      {
+        "label": "Décrire des QRS larges et réguliers avec échappement probablement ventriculaire très lent",
+        "rang": "A"
+      },
+      {
+        "label": "Rejeter le diagnostic de flutter atrial et ne pas confondre avec la tachycardie sinusale",
+        "rang": "B"
+      },
+      {
+        "label": "Mentionner les ondes T amples et fines et le contexte d’hyperkaliémie",
+        "rang": "B"
+      },
+      {
+        "label": "Mentionner un QT court au vu de la fréquence lente",
+        "rang": "C"
+      }
+    ],
+    "diagnostic_principal": "Bloc auriculoventriculaire complet (BAV III) avec dissociation atrioventriculaire et échappement probablement ventriculaire très lent",
+    "pieges": [
+      "Confondre la tachycardie sinusale réflexe avec un flutter atrial.",
+      "Diagnostiquer à tort un BAV II Mobitz 2 ou un BAV 5/1 au lieu d’un BAV complet.",
+      "Ne pas rechercher la dissociation complète entre ondes P et QRS.",
+      "Sous-estimer la gravité de l’échappement ventriculaire très lent, notamment en contexte d’hyperkaliémie.",
+      "Oublier que les ondes P sinusales sont positives en DI, DII, V3-V6 et négatives en aVR, contrairement à l’aspect en dents de scie du flutter dans les dérivations inférieures."
+    ],
+    "references_item": "EDN — Troubles de conduction / ECG : interprétation des BAV II et BAV III ; référentiel mentionnant le BAV comme facteur favorisant les torsades de pointes via bradycardie et allongement du QT. Hyperkaliémie : urgence diagnostique et thérapeutique chez l’insuffisant rénal.",
+    "citation_source": "« Ce tracé correspond à un bloc auriculoventriculaire complet survenant dans le cadre d’une hyperkaliémie »"
+  },
+  "error": null
+}

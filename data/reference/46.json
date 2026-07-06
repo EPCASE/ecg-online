@@ -1,0 +1,94 @@
+{
+  "num": 46,
+  "titre": "tachycardie jonctionnelle antidromique sur voie accessoire",
+  "famille": "rythme",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence rapide, compatible avec une tachycardie régulière. Le rythme est une tachycardie régulière, avec activité atriale difficile à individualiser ; un rapport VA 1/1 est possible, l’oreillette pouvant se projeter dans la branche ascendante de l’onde T. La conduction auriculo-ventriculaire ne peut pas être analysée de façon fiable pendant cet accès ; sur le second tracé après arrêt par manœuvre vagale, il existe en rythme sinusal une pré-excitation avec PR court < 120 ms et onde delta. L’axe n’est pas précisé. Les QRS sont larges, monomorphes, avec un aspect compatible avec une activation ventriculaire par voie accessoire ; le second tracé montre des QRS élargis par pré-excitation, d’aspect proche de la première tachycardie. La repolarisation n’est pas l’élément diagnostique principal ; des troubles de repolarisation en rapport avec la pré-excitation sont décrits sur le tracé sinusal. Au total : tachycardie régulière à QRS larges monomorphes ; les diagnostics possibles sont une tachycardie ventriculaire ou une tachycardie jonctionnelle antidromique sur voie accessoire, cette dernière étant étayée par la mise en évidence secondaire d’un syndrome de Wolff–Parkinson–White avec PR court, onde delta et arrêt d’une tachycardie par manœuvre vagale.",
+  "points_cles": [
+    {
+      "label": "Tachycardie régulière à QRS larges",
+      "rang": "A"
+    },
+    {
+      "label": "QRS monomorphes",
+      "rang": "A"
+    },
+    {
+      "label": "Activité atriale difficile à individualiser, possible rapport VA 1/1",
+      "rang": "B"
+    },
+    {
+      "label": "Diagnostics à évoquer : tachycardie ventriculaire ou tachycardie jonctionnelle antidromique sur voie accessoire",
+      "rang": "A"
+    },
+    {
+      "label": "FA éliminée par le caractère régulier",
+      "rang": "A"
+    },
+    {
+      "label": "Torsade de pointes et fibrillation ventriculaire éliminées par le caractère monomorphe/organisé des QRS",
+      "rang": "A"
+    },
+    {
+      "label": "Second tracé : arrêt par manœuvre vagale d’une tachycardie à QRS fins et retour sinusal",
+      "rang": "B"
+    },
+    {
+      "label": "Pré-excitation en rythme sinusal : PR court < 120 ms, onde delta, QRS élargis",
+      "rang": "A"
+    },
+    {
+      "label": "Aspect de QRS proche de celui de la première tachycardie en faveur d’une tachycardie antidromique sur voie accessoire",
+      "rang": "B"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé initial montre une tachycardie régulière à QRS larges, monomorphe, avec activité atriale difficile à voir. Les diagnostics à retenir devant ce tracé sont tachycardie ventriculaire ou tachycardie antidromique sur voie accessoire ; la régularité exclut une FA et le caractère monomorphe exclut torsade de pointes et fibrillation ventriculaire. Le second tracé documente une voie accessoire avec pré-excitation en rythme sinusal, soutenant le diagnostic de tachycardie antidromique dans un syndrome de Wolff–Parkinson–White.",
+    "criteres_indispensables": [
+      {
+        "label": "Identifier une tachycardie régulière à QRS larges",
+        "rang": "A"
+      },
+      {
+        "label": "Préciser le caractère monomorphe des QRS",
+        "rang": "A"
+      },
+      {
+        "label": "Retenir comme diagnostics possibles : tachycardie ventriculaire et tachycardie antidromique sur voie accessoire",
+        "rang": "A"
+      },
+      {
+        "label": "Exclure la fibrillation atriale du fait de la régularité",
+        "rang": "A"
+      },
+      {
+        "label": "Exclure torsade de pointes et fibrillation ventriculaire du fait de l’aspect monomorphe/organisé",
+        "rang": "A"
+      },
+      {
+        "label": "Mentionner l’activité atriale difficile à individualiser, possible VA 1/1",
+        "rang": "B"
+      },
+      {
+        "label": "Reconnaître la voie accessoire sur le second tracé : PR court < 120 ms et onde delta",
+        "rang": "A"
+      },
+      {
+        "label": "Mentionner que la tachycardie antidromique mime une tachycardie ventriculaire par son aspect de QRS larges",
+        "rang": "B"
+      }
+    ],
+    "diagnostic_principal": "Tachycardie régulière à QRS larges monomorphes : tachycardie ventriculaire ou tachycardie jonctionnelle antidromique sur voie accessoire ; voie accessoire/Wolff–Parkinson–White documentée secondairement",
+    "pieges": [
+      "Diagnostiquer une fibrillation atriale alors que la tachycardie est régulière.",
+      "Conclure à une torsade de pointes malgré des QRS monomorphes.",
+      "Conclure à une fibrillation ventriculaire alors que l’activité est organisée et régulière.",
+      "Écarter trop vite la tachycardie ventriculaire devant une tachycardie à QRS larges : elle reste un diagnostic possible.",
+      "Ne pas penser à une tachycardie antidromique sur voie accessoire lorsque la pré-excitation n’est pas connue.",
+      "Confondre tachycardie orthodromique à QRS fins et tachycardie antidromique à QRS larges."
+    ],
+    "references_item": "EDN Item 231 — ECG : indications et interprétation ; troubles du rythme supraventriculaires et ventriculaires, syndrome de Wolff–Parkinson–White / voie accessoire.",
+    "citation_source": "« tachycardie antidromique avec QRS larges et aspect majeur de pré-excitation »"
+  },
+  "error": null
+}

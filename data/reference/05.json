@@ -1,0 +1,85 @@
+{
+  "num": 5,
+  "titre": "hypertrophie auriculaire droite",
+  "famille": "hypertrophie",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence non précisée sur le tracé fourni. Rythme sinusal. La conduction atrio-ventriculaire n’est pas signalée comme anormale. Axe non précisé. Les ondes P ont une durée normale mais sont amples, fines et pointues, mesurées à environ 3 mm en DII, avec une amplitude plus importante en DII-DIII qu’en DI et une positivité exclusive en V1 : aspect typique d’hypertrophie auriculaire droite. Les QRS comportent des ondes R amples en précordiales droites V1-V2, en faveur d’une hypertrophie ventriculaire droite associée. Pas d’anomalie de repolarisation ST/T ni du QT rapportée dans l’interprétation de référence. Conclusion : ECG en rythme sinusal montrant une hypertrophie auriculaire droite, associée à des signes d’hypertrophie ventriculaire droite.",
+  "points_cles": [
+    {
+      "label": "Rythme sinusal",
+      "rang": "B"
+    },
+    {
+      "label": "Onde P de durée normale",
+      "rang": "A"
+    },
+    {
+      "label": "Onde P ample, fine/pointue, environ 3 mm en DII, dépassant le seuil de 2,5 mm",
+      "rang": "A"
+    },
+    {
+      "label": "Amplitude de P plus importante en DII-DIII qu’en DI",
+      "rang": "B"
+    },
+    {
+      "label": "Positivité exclusive de l’onde P en V1",
+      "rang": "A"
+    },
+    {
+      "label": "Diagnostic d’hypertrophie auriculaire droite",
+      "rang": "A"
+    },
+    {
+      "label": "Ondes R amples en V1-V2 en faveur d’une hypertrophie ventriculaire droite associée",
+      "rang": "B"
+    },
+    {
+      "label": "Ne pas conclure à une onde P normale, une hypertrophie auriculaire gauche, une bi-auriculaire ou une activation atriale rétrograde",
+      "rang": "A"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "L’ECG est en rythme sinusal et montre des critères d’hypertrophie auriculaire droite : onde P de durée le plus souvent normale mais ample, pointue, à 3 mm en DII, avec positivité exclusive en V1. Des ondes R amples en V1-V2 suggèrent une hypertrophie ventriculaire droite associée. Le diagnostic principal attendu est donc une hypertrophie auriculaire droite, et non une hypertrophie auriculaire gauche ou bi-auriculaire.",
+    "criteres_indispensables": [
+      {
+        "label": "Diagnostic principal : hypertrophie auriculaire droite",
+        "rang": "A"
+      },
+      {
+        "label": "Rythme sinusal",
+        "rang": "B"
+      },
+      {
+        "label": "Onde P de durée normale",
+        "rang": "A"
+      },
+      {
+        "label": "Onde P ample et pointue en DII, mesurée à 3 mm ou > 2,5 mm",
+        "rang": "A"
+      },
+      {
+        "label": "Positivité exclusive de l’onde P en V1",
+        "rang": "A"
+      },
+      {
+        "label": "Amplitude de P plus importante en DII-DIII qu’en DI",
+        "rang": "B"
+      },
+      {
+        "label": "Ondes R amples en V1-V2 en faveur d’une hypertrophie ventriculaire droite associée",
+        "rang": "B"
+      }
+    ],
+    "diagnostic_principal": "Hypertrophie auriculaire droite",
+    "pieges": [
+      "Répondre onde P normale alors que son amplitude est pathologique.",
+      "Confondre avec une hypertrophie auriculaire gauche : ici la durée de l’onde P reste normale et l’anomalie principale est l’amplitude/pointu de P.",
+      "Conclure à une hypertrophie bi-auriculaire sans argument fourni.",
+      "Évoquer une activation atriale rétrograde alors que le rythme est sinusal avec onde P positive/typique.",
+      "Oublier les signes associés d’hypertrophie ventriculaire droite en V1-V2."
+    ],
+    "references_item": "EDN Item 231 — ECG : indications et interprétation ; référentiel : hypertrophie atriale droite, onde P > 2,5 mm en D2 ou > 2 mm en V1/V2.",
+    "citation_source": "« Le diagnostic d'hypertrophie auriculaire droite repose donc essentiellement sur la mise en évidence d’une onde P ample et dépassant 2.5 mm en DII »"
+  },
+  "error": null
+}

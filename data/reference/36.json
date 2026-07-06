@@ -1,0 +1,94 @@
+{
+  "num": 36,
+  "titre": "extrasystoles ventriculaires et risque de mort subite",
+  "famille": "rythme",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence non précisément chiffrable sur les données fournies. Rythme sinusal. Conduction auriculo-ventriculaire sans anomalie rapportée ; complexes QRS de durée légèrement augmentée, avec axe normal. On observe des extrasystoles ventriculaires très précoces, à couplage très court avec le QRS précédent, survenant sur la phase ascendante initiale de l’onde T précédente, réalisant un phénomène « R sur T » ; aspect de bigéminisme en fin de tracé. La repolarisation doit donc être analysée en insistant sur le caractère vulnérable de cette survenue sur l’onde T. Conclusion : extrasystoles ventriculaires à couplage très court, marqueur de gravité rythmique chez ce patient avec syncope et antécédent d’infarctus, à risque d’arythmie ventriculaire maligne/fibrillation ventriculaire et de mort subite.",
+  "points_cles": [
+    {
+      "label": "Rythme sinusal",
+      "rang": "B"
+    },
+    {
+      "label": "QRS de durée légèrement augmentée",
+      "rang": "B"
+    },
+    {
+      "label": "Axe normal",
+      "rang": "B"
+    },
+    {
+      "label": "Extrasystoles ventriculaires très précoces",
+      "rang": "A"
+    },
+    {
+      "label": "Couplage très court avec le QRS précédent",
+      "rang": "A"
+    },
+    {
+      "label": "Survenue sur la phase ascendante/sommet de l’onde T : phénomène R sur T",
+      "rang": "A"
+    },
+    {
+      "label": "Aspect de bigéminisme en fin de tracé",
+      "rang": "B"
+    },
+    {
+      "label": "Marqueur de gravité avec risque de fibrillation ventriculaire/mort subite",
+      "rang": "A"
+    },
+    {
+      "label": "Pas de doublet ni triplet ventriculaire décrit",
+      "rang": "B"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé montre un rythme sinusal avec QRS légèrement élargis et axe normal, associé à des extrasystoles ventriculaires très précoces. L’élément central est le couplage très court : l’ESV survient sur la phase ascendante de l’onde T précédente, correspondant à un phénomène R sur T. Ce caractère est un marqueur majeur de gravité, pouvant déclencher une fibrillation ventriculaire et exposer à un risque de mort subite.",
+    "criteres_indispensables": [
+      {
+        "label": "Diagnostic d’extrasystoles ventriculaires à couplage court/très court",
+        "rang": "A"
+      },
+      {
+        "label": "Reconnaître le caractère très précoce sur l’onde T précédente",
+        "rang": "A"
+      },
+      {
+        "label": "Identifier le phénomène R sur T / phase vulnérable",
+        "rang": "A"
+      },
+      {
+        "label": "Mentionner le risque d’arythmie ventriculaire maligne, fibrillation ventriculaire ou mort subite",
+        "rang": "A"
+      },
+      {
+        "label": "Rythme sinusal de base",
+        "rang": "B"
+      },
+      {
+        "label": "QRS légèrement élargis et axe normal",
+        "rang": "B"
+      },
+      {
+        "label": "Aspect de bigéminisme en fin de tracé",
+        "rang": "B"
+      },
+      {
+        "label": "Contexte aggravant : syncope/lipothymie et antécédent d’infarctus",
+        "rang": "B"
+      }
+    ],
+    "diagnostic_principal": "Extrasystoles ventriculaires à couplage très court, phénomène R sur T, à haut risque d’arythmie ventriculaire maligne/fibrillation ventriculaire",
+    "pieges": [
+      "Répondre couplage long au lieu de couplage court.",
+      "Ne pas reconnaître la survenue de l’ESV sur la phase ascendante ou le sommet de l’onde T.",
+      "Banaliser des extrasystoles ventriculaires alors qu’elles sont ici un marqueur de risque vital.",
+      "Confondre avec un doublet ou un triplet ventriculaire, non retenus dans le QCM.",
+      "Diagnostiquer une dysfonction sinusale alors que le rythme de base est sinusal.",
+      "Oublier le lien avec la fibrillation ventriculaire/mort subite, surtout dans un contexte de syncope."
+    ],
+    "references_item": "EDN Item 231 — ECG : indications et interprétation ; EDN Item 232 — Troubles du rythme et de conduction ; EDN Item 334 — Arrêt cardiorespiratoire / prise en charge d’un arrêt cardiaque",
+    "citation_source": "« L’existence d’un couplage court entre l’extrasystole ventriculaire et le complexe QRS précédent représente un indicateur majeur de risque rythmique. »"
+  },
+  "error": null
+}

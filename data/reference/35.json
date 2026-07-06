@@ -1,0 +1,105 @@
+{
+  "num": 35,
+  "titre": "salve de tachycardie ventriculaire non soutenue",
+  "famille": "rythme",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence difficile à préciser sur ce tracé comportant une salve, avec un rythme de base sinusal. La conduction auriculo-ventriculaire est compatible avec un rythme sinusal, avec des complexes sinusaux à QRS fins ; on note une déviation axiale gauche. Le tracé montre également 2 extrasystoles ventriculaires isolées. Survient une salve de tachycardie à QRS larges, monomorphes, comportant 10 complexes, de réduction spontanée et durant moins de 30 secondes. La repolarisation n’est pas l’élément discriminant ici. Conclusion : extrasystoles ventriculaires associées à une salve de tachycardie ventriculaire non soutenue monomorphe ; pas d’argument pour une torsade de pointes ni pour une tachycardie ventriculaire soutenue.",
+  "points_cles": [
+    {
+      "label": "Rythme de base sinusal",
+      "rang": "B"
+    },
+    {
+      "label": "Complexes QRS fins sur les complexes sinusaux",
+      "rang": "B"
+    },
+    {
+      "label": "Déviation axiale gauche",
+      "rang": "B"
+    },
+    {
+      "label": "Présence de 2 extrasystoles ventriculaires isolées",
+      "rang": "A"
+    },
+    {
+      "label": "Salve de tachycardie à QRS larges",
+      "rang": "A"
+    },
+    {
+      "label": "Salve monomorphe de 10 complexes",
+      "rang": "A"
+    },
+    {
+      "label": "Réduction spontanée, durée < 30 secondes",
+      "rang": "A"
+    },
+    {
+      "label": "Diagnostic de tachycardie ventriculaire non soutenue",
+      "rang": "A"
+    },
+    {
+      "label": "Exclusion d’une torsade de pointes du fait du caractère monomorphe",
+      "rang": "B"
+    },
+    {
+      "label": "Absence de tachycardie ventriculaire soutenue",
+      "rang": "B"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé montre un rythme sinusal avec QRS fins et déviation axiale gauche, associé à des extrasystoles ventriculaires. L’anomalie principale est une salve de tachycardie à QRS larges monomorphes de 10 complexes, spontanément résolutive et durant moins de 30 secondes. Il s’agit donc d’une tachycardie ventriculaire non soutenue, et non d’une torsade de pointes ni d’une TV soutenue.",
+    "criteres_indispensables": [
+      {
+        "label": "Identifier une salve de tachycardie ventriculaire non soutenue",
+        "rang": "A"
+      },
+      {
+        "label": "Préciser le caractère à QRS larges de la salve",
+        "rang": "A"
+      },
+      {
+        "label": "Préciser le caractère monomorphe de la salve",
+        "rang": "A"
+      },
+      {
+        "label": "Mentionner la durée < 30 secondes ou la réduction spontanée",
+        "rang": "A"
+      },
+      {
+        "label": "Mentionner les 10 complexes de la salve",
+        "rang": "B"
+      },
+      {
+        "label": "Identifier les extrasystoles ventriculaires isolées",
+        "rang": "A"
+      },
+      {
+        "label": "Décrire le rythme sinusal de base avec QRS fins",
+        "rang": "B"
+      },
+      {
+        "label": "Mentionner la déviation axiale gauche",
+        "rang": "B"
+      },
+      {
+        "label": "Écarter la torsade de pointes du fait de l’absence de polymorphisme",
+        "rang": "B"
+      },
+      {
+        "label": "Ne pas conclure à une tachycardie ventriculaire soutenue",
+        "rang": "A"
+      }
+    ],
+    "diagnostic_principal": "Salve de tachycardie ventriculaire non soutenue monomorphe, associée à des extrasystoles ventriculaires",
+    "pieges": [
+      "Confondre la salve monomorphe avec une torsade de pointes, qui est polymorphe.",
+      "Conclure à une tachycardie ventriculaire soutenue alors que la salve se réduit spontanément et dure moins de 30 secondes.",
+      "Répondre doublets ventriculaires : un doublet correspond seulement à 2 extrasystoles ventriculaires consécutives, alors qu’ici la salve comporte 10 complexes.",
+      "Confondre avec un bigéminisme ventriculaire, non décrit comme alternance régulière un complexe sinusal / une ESV.",
+      "Oublier les extrasystoles ventriculaires isolées associées."
+    ],
+    "references_item": "EDN Item 231 — ECG : indications et interprétation ; référentiel : définition d’une tachycardie ventriculaire non soutenue à partir d’a minima 3 battements consécutifs, durant moins de 30 secondes.",
+    "citation_source": "« une salve de tachycardie à QRS larges et monomorphes »"
+  },
+  "error": null
+}

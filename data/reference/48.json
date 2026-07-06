@@ -1,0 +1,69 @@
+{
+  "num": 48,
+  "titre": "critères diagnostiques d’une tachycardie à QRS larges",
+  "famille": "rythme",
+  "model": "gpt-5.5",
+  "reponse_attendue": "ECG 12 dérivations montrant une tachycardie régulière à QRS larges, à environ 106/min. Le rythme n’est pas sinusal au niveau ventriculaire : on identifie une activité atriale sinusale plus lente, visible notamment en précordiales (V3-V5), indépendante des QRS, réalisant une dissociation auriculo-ventriculaire ; il n’y a donc pas de relation PR fixe interprétable. L’axe n’est pas l’élément discriminant ici. Les QRS sont larges, avec un complexe particulier : le 3e QRS est fin/prématuré par rapport au cycle de tachycardie, suivant une onde P sinusale visible en fin de l’onde T précédente, correspondant à un complexe de capture. La repolarisation n’apporte pas d’argument principal rapporté sur ce tracé. L’association tachycardie à QRS larges + dissociation auriculo-ventriculaire + complexe de capture certifie le diagnostic de tachycardie ventriculaire.",
+  "points_cles": [
+    {
+      "label": "Identifier une tachycardie à QRS larges à environ 106 bpm",
+      "rang": "A"
+    },
+    {
+      "label": "Évoquer les diagnostics différentiels d’une tachycardie à QRS larges : TV, TSV avec bloc de branche, tachycardie antidromique",
+      "rang": "B"
+    },
+    {
+      "label": "Mettre en évidence une dissociation auriculo-ventriculaire avec activité atriale sinusale plus lente et indépendante des QRS",
+      "rang": "A"
+    },
+    {
+      "label": "Reconnaître le 3e QRS fin comme un complexe de capture suivant une onde P sinusale",
+      "rang": "A"
+    },
+    {
+      "label": "Conclure que dissociation AV et capture certifient une tachycardie ventriculaire",
+      "rang": "A"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé montre une tachycardie régulière à QRS larges à 106 bpm. Le diagnostic de tachycardie ventriculaire est certifié par la dissociation auriculo-ventriculaire avec activité atriale sinusale indépendante, et par la présence d’un complexe de capture : le 3e QRS est fin après une onde P sinusale. Les alternatives d’une tachycardie supraventriculaire avec bloc de branche ou antidromique sont à connaître, mais écartées par ces deux signes.",
+    "criteres_indispensables": [
+      {
+        "label": "Diagnostic principal : tachycardie ventriculaire",
+        "rang": "A"
+      },
+      {
+        "label": "Tachycardie à QRS larges à 106 bpm",
+        "rang": "A"
+      },
+      {
+        "label": "Dissociation auriculo-ventriculaire avec activité atriale sinusale plus lente et indépendante des QRS",
+        "rang": "A"
+      },
+      {
+        "label": "Complexe de capture : 3e QRS fin suivant une onde P sinusale",
+        "rang": "A"
+      },
+      {
+        "label": "Mention que dissociation AV + capture certifient le diagnostic de TV",
+        "rang": "A"
+      },
+      {
+        "label": "Diagnostics différentiels possibles d’une tachycardie à QRS larges : TSV avec bloc de branche ou tachycardie antidromique",
+        "rang": "B"
+      }
+    ],
+    "diagnostic_principal": "Tachycardie ventriculaire",
+    "pieges": [
+      "Conclure à un flutter atrial avec bloc de branche sans rechercher la dissociation auriculo-ventriculaire.",
+      "Confondre tachycardie supraventriculaire à QRS larges et tachycardie ventriculaire en négligeant l’analyse des ondes P.",
+      "Ne pas reconnaître le complexe de capture, notamment le 3e QRS fin suivant une onde P sinusale.",
+      "Exiger une tachycardie très rapide pour diagnostiquer une TV : ici la fréquence est de 106 bpm.",
+      "Confondre avec torsade de pointes ou fibrillation ventriculaire, alors que le tracé décrit une tachycardie organisée à QRS larges."
+    ],
+    "references_item": "EDN — Troubles du rythme ventriculaire ; ECG : indications et interprétation ; figures référentielles sur captures et fusions ventriculaires.",
+    "citation_source": "« On observe parfois comme sur ce tracé, une dissociation auriculo-ventriculaire avec activité atriale sinusale ce qui permet de certifier le diagnostic de TV. »"
+  },
+  "error": null
+}

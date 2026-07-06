@@ -1,0 +1,73 @@
+{
+  "num": 14,
+  "titre": "bloc de branche alternant",
+  "famille": "conduction",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence non précisée sur les éléments fournis. Le tracé montre une activité atriale avec ondes P, mais comporte des anomalies de conduction atrio-ventriculaire avec des ondes P bloquées. La conduction débute avec un espace PR normal sur des complexes à aspect de bloc de branche droite complet, puis apparaît un aspect de bloc de branche gauche complet avec intervalle PR allongé ; le tracé comporte ensuite une onde P bloquée, puis à nouveau un bloc de branche droite complet, puis une nouvelle onde P bloquée. L’axe n’est pas précisé. Les QRS sont larges par blocs de branche complets, avec alternance d’une morphologie de bloc de branche droite complet et de bloc de branche gauche complet. Pas d’élément de repolarisation exploitable/rapporté en dehors du contexte de troubles majeurs de conduction intraventriculaire. Conclusion : bloc de branche alternant, associé à des troubles de conduction atrio-ventriculaire avec ondes P bloquées, ECG très préoccupant dans un contexte de syncopes, imposant une prise en charge urgente avec stimulation temporaire puis discussion d’un stimulateur définitif en l’absence de cause curable.",
+  "points_cles": [
+    {
+      "label": "Identifier un bloc de branche alternant",
+      "rang": "A"
+    },
+    {
+      "label": "Décrire l’alternance bloc de branche droite complet / bloc de branche gauche complet",
+      "rang": "A"
+    },
+    {
+      "label": "Reconnaître les ondes P bloquées traduisant un trouble de conduction atrio-ventriculaire",
+      "rang": "A"
+    },
+    {
+      "label": "Mentionner le PR normal sur l’aspect BBD puis allongé sur l’aspect BBG",
+      "rang": "B"
+    },
+    {
+      "label": "Conclure à un ECG préoccupant chez un patient syncopal nécessitant hospitalisation urgente/stimulation",
+      "rang": "B"
+    },
+    {
+      "label": "Ne pas réduire l’interprétation à un simple BBD ou simple BBG isolé",
+      "rang": "A"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé met en évidence une alternance de morphologies de bloc de branche complet : bloc de branche droite complet puis bloc de branche gauche complet. Cette alternance s’associe à des anomalies de conduction atrio-ventriculaire, avec PR allongé sur certains complexes et ondes P bloquées. Le diagnostic attendu est un bloc de branche alternant, très préoccupant chez un patient ayant des syncopes répétées.",
+    "criteres_indispensables": [
+      {
+        "label": "Diagnostic de bloc de branche alternant",
+        "rang": "A"
+      },
+      {
+        "label": "Présence d’un bloc de branche droite complet",
+        "rang": "A"
+      },
+      {
+        "label": "Présence d’un bloc de branche gauche complet",
+        "rang": "A"
+      },
+      {
+        "label": "Ondes P bloquées",
+        "rang": "A"
+      },
+      {
+        "label": "PR normal puis PR allongé selon les complexes décrits",
+        "rang": "B"
+      },
+      {
+        "label": "Contexte de syncopes et nécessité d’une prise en charge urgente/stimulation",
+        "rang": "B"
+      }
+    ],
+    "diagnostic_principal": "Bloc de branche alternant",
+    "pieges": [
+      "Diagnostiquer uniquement un bloc de branche droite isolé.",
+      "Diagnostiquer uniquement un bloc de branche gauche isolé.",
+      "Oublier les ondes P bloquées et donc sous-estimer le trouble de conduction atrio-ventriculaire.",
+      "Conclure à un tracé rassurant alors que le texte insiste sur le caractère extrêmement préoccupant chez un patient syncopal.",
+      "Ajouter un hémibloc antérieur gauche alors qu’il n’est pas retenu dans les réponses attendues ni décrit dans l’interprétation de référence."
+    ],
+    "references_item": "EDN — Troubles de conduction / ECG : bloc de branche alternant. Renvoi au référentiel : tracé de bloc alternant avec aspect de bloc de branche droite interrompu par deux battements avec aspect de bloc de branche gauche.",
+    "citation_source": "« L’électrocardiogramme est extrêmement préoccupant et nécessite une hospitalisation en urgence avec nécessité d’une stimulation temporaire. »"
+  },
+  "error": null
+}

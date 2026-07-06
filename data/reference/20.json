@@ -1,0 +1,97 @@
+{
+  "num": 20,
+  "titre": "pause sinusale",
+  "famille": "rythme",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence initialement normale, autour de 60/min, puis survenue d’une pause prolongée de 4–5 secondes avec bradycardie paroxystique. Le rythme de base est sinusal. L’intervalle PR est limite. L’axe des QRS est gauche. Les QRS sont larges, > 120 ms, avec une morphologie de bloc de branche droite complet, associée à un hémibloc antérieur gauche : il s’agit donc d’un trouble de conduction bifasciculaire. Sur le plan de la repolarisation, pas d’anomalie spécifique rapportée dans les données fournies. La pause n’est pas liée à un bloc auriculo-ventriculaire : il n’existe pas d’ondes P bloquées pendant la pause, aucune activité atriale n’étant identifiable. Après la pause, reprise par une séquence onde P–QRS–T, puis pause plus courte avec un échappement non précédé d’onde P. Conclusion : dysfonction sinusale avec pauses sinusales paroxystiques prolongées et symptomatiques, sur ECG comportant un bloc de branche droite complet associé à un hémibloc antérieur gauche, sans argument pour BAV paroxystique ni fibrillation auriculaire lente.",
+  "points_cles": [
+    {
+      "label": "Diagnostic principal : pause sinusale / dysfonction sinusale paroxystique prolongée et symptomatique",
+      "rang": "A"
+    },
+    {
+      "label": "Absence d’ondes P pendant la pause : absence d’activité atriale visible",
+      "rang": "A"
+    },
+    {
+      "label": "Ne pas conclure à un BAV : absence d’ondes P bloquées pendant la pause",
+      "rang": "A"
+    },
+    {
+      "label": "Rythme initial sinusal avec fréquence initiale autour de 60 bpm",
+      "rang": "B"
+    },
+    {
+      "label": "QRS larges > 120 ms avec bloc de branche droite complet",
+      "rang": "A"
+    },
+    {
+      "label": "Axe gauche associé, compatible avec hémibloc antérieur gauche",
+      "rang": "B"
+    },
+    {
+      "label": "Trouble de conduction bifasciculaire : BBD complet + hémibloc antérieur gauche",
+      "rang": "B"
+    },
+    {
+      "label": "Échappement en fin de tracé : QRS non précédé d’onde P",
+      "rang": "C"
+    },
+    {
+      "label": "Intervalle PR limite",
+      "rang": "C"
+    },
+    {
+      "label": "Exclure fibrillation atriale lente : rythme de base sinusal et pause sans activité atriale fibrillatoire décrite",
+      "rang": "B"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé montre un rythme initial sinusal à environ 60/min, avec QRS larges de bloc de branche droite complet associé à un axe gauche, donc hémibloc antérieur gauche. La pause prolongée de 4–5 secondes se fait sans onde P visible ni onde P bloquée : il s’agit d’une pause sinusale, et non d’un BAV paroxystique. En fin de tracé, un échappement non précédé d’onde P est décrit.",
+    "criteres_indispensables": [
+      {
+        "label": "Identifier une pause sinusale / dysfonction sinusale paroxystique",
+        "rang": "A"
+      },
+      {
+        "label": "Mentionner l’absence d’ondes P pendant la pause",
+        "rang": "A"
+      },
+      {
+        "label": "Affirmer l’absence d’ondes P bloquées et donc l’absence d’argument pour BAV lors de la pause",
+        "rang": "A"
+      },
+      {
+        "label": "Reconnaître le bloc de branche droite complet avec QRS > 120 ms",
+        "rang": "A"
+      },
+      {
+        "label": "Mentionner l’axe gauche / hémibloc antérieur gauche associé",
+        "rang": "B"
+      },
+      {
+        "label": "Rythme de base sinusal, fréquence initiale autour de 60 bpm",
+        "rang": "B"
+      },
+      {
+        "label": "Décrire l’échappement non précédé d’une onde P en fin de tracé",
+        "rang": "C"
+      },
+      {
+        "label": "Ne pas diagnostiquer une fibrillation auriculaire lente",
+        "rang": "B"
+      }
+    ],
+    "diagnostic_principal": "Pause sinusale paroxystique prolongée, dans le cadre d’une dysfonction sinusale, associée à un bloc de branche droite complet et un hémibloc antérieur gauche",
+    "pieges": [
+      "Confondre la pause sinusale avec un BAV III paroxystique : dans le BAV, des ondes P bloquées devraient être visibles.",
+      "Oublier que l’absence de QRS pendant la pause s’explique ici par l’absence d’ondes P.",
+      "Conclure à tort à une fibrillation auriculaire lente alors que le rythme initial est sinusal.",
+      "Ne pas identifier le trouble de conduction bifasciculaire : bloc de branche droite complet + hémibloc antérieur gauche.",
+      "Se laisser piéger par l’absence de nom des dérivations sur le tracé, qui complexifie l’analyse."
+    ],
+    "references_item": "EDN Item 231 — ECG : indications et interprétation ; référentiel sur la pause sinusale, incluant anomalie de l’automatisme sinusal ou bloc sinoauriculaire du troisième degré paroxystique.",
+    "citation_source": "« l’absence de complexes QRS durant la pause s’explique par l’absence d’ondes P »"
+  },
+  "error": null
+}

@@ -18,6 +18,7 @@
     </div>
   </div>
   <div class="header-actions">
+    <a href="/curation" class="badge badge-muted" style="text-decoration:none" title="Régler le barème (enseignant)">⚙ Barème</a>
     <span id="health-badge" class="badge badge-muted">connexion…</span>
   </div>
 </header>
@@ -63,7 +64,14 @@
 
       <div id="case-images" class="ecg-gallery"></div>
 
-      <div class="answer-block">
+      <!-- Bascule de mode : réponse libre / QCM -->
+      <div id="mode-switch" class="mode-switch">
+        <button id="mode-free" class="mode-btn active" data-mode="free">✍️ Réponds librement</button>
+        <button id="mode-qcm" class="mode-btn" data-mode="qcm">☑️ Teste le QCM</button>
+      </div>
+
+      <!-- Mode réponse libre -->
+      <div id="free-block" class="answer-block">
         <label for="answer">Ton interprétation</label>
         <textarea id="answer" rows="6"
           placeholder="Ex. Rythme sinusal régulier à 75/min, axe normal, PR normal, QRS fins, sus-décalage ST en… évoquant…"></textarea>
@@ -76,7 +84,20 @@
         </div>
       </div>
 
-      <!-- Résultat -->
+      <!-- Mode QCM -->
+      <div id="qcm-block" class="qcm-block hidden">
+        <p id="qcm-question" class="qcm-question"></p>
+        <ul id="qcm-options" class="qcm-options"></ul>
+        <div class="answer-actions">
+          <button id="qcm-submit" class="btn-primary">
+            <span class="btn-label">Valider mes réponses</span>
+          </button>
+          <button id="qcm-reset" class="btn-ghost">Réinitialiser</button>
+        </div>
+        <div id="qcm-result" class="qcm-result hidden"></div>
+      </div>
+
+      <!-- Résultat (réponse libre) -->
       <div id="result" class="result hidden"></div>
     </article>
   </section>

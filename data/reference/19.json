@@ -1,0 +1,85 @@
+{
+  "num": 19,
+  "titre": "bloc sino-auriculaire du deuxième degré",
+  "famille": "conduction",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence initialement normale, environ 60–70/min, puis bradycardie brutale à 30–35/min, avec fréquence divisée par deux. Le rythme reste d’origine sinusale tout au long du tracé : les ondes P sinusales sont visibles et toutes conduites. La conduction atrio-ventriculaire est normale, sans BAV, avec un PR limite autour de 190 ms. L’axe des QRS est normal ; les QRS sont fins, sans argument pour hypertrophie ventriculaire gauche ni onde Q de nécrose. La repolarisation montre des ondes T négatives en DII, DIII, aVF et V1–V3, pouvant être en rapport avec la coronaropathie connue ; l’intervalle QT est normal. La conclusion est celle d’une dysfonction sinusale, très probablement un bloc sino-auriculaire du deuxième degré, expliquant le ralentissement brutal par blocage d’un influx sinusal sur deux.",
+  "points_cles": [
+    {
+      "label": "Bradycardie brutale avec fréquence divisée par 2, après fréquence initiale normale",
+      "rang": "A"
+    },
+    {
+      "label": "Activité atriale sinusale conservée tout au long du tracé",
+      "rang": "A"
+    },
+    {
+      "label": "Dysfonction sinusale par probable bloc sino-auriculaire du deuxième degré",
+      "rang": "A"
+    },
+    {
+      "label": "Absence de trouble de conduction atrio-ventriculaire / absence de BAV ; toutes les ondes P conduites, PR limite ≈ 190 ms",
+      "rang": "A"
+    },
+    {
+      "label": "QRS fins, axe normal",
+      "rang": "B"
+    },
+    {
+      "label": "Troubles de repolarisation : ondes T négatives en DII, DIII, aVF, V1–V3, possiblement liés à la coronaropathie",
+      "rang": "B"
+    },
+    {
+      "label": "QT normal",
+      "rang": "C"
+    },
+    {
+      "label": "Absence d’HVG et absence d’ondes Q de nécrose",
+      "rang": "C"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé montre une activité atriale sinusale conservée, avec conduction atrio-ventriculaire normale, mais une bradycardie brutale par division de la fréquence cardiaque par deux. Cet aspect correspond à une dysfonction sinusale, en faveur d’un bloc sino-auriculaire du second degré, par blocage intermittent d’un influx sinusal. Il existe aussi des troubles de repolarisation à type d’ondes T négatives inférieures et antérieures, possiblement en rapport avec la coronaropathie.",
+    "criteres_indispensables": [
+      {
+        "label": "Diagnostic principal : dysfonction sinusale par probable bloc sino-auriculaire du deuxième degré",
+        "rang": "A"
+      },
+      {
+        "label": "Bradycardie / ralentissement brutal avec fréquence cardiaque divisée par deux",
+        "rang": "A"
+      },
+      {
+        "label": "Activité atriale sinusale conservée",
+        "rang": "A"
+      },
+      {
+        "label": "Absence de BAV : toutes les ondes P sont conduites, PR limite autour de 190 ms",
+        "rang": "A"
+      },
+      {
+        "label": "QRS fins avec axe normal",
+        "rang": "B"
+      },
+      {
+        "label": "Troubles de repolarisation : ondes T négatives en DII, DIII, aVF, V1–V3, en rapport possible avec la coronaropathie",
+        "rang": "B"
+      },
+      {
+        "label": "QT de durée normale",
+        "rang": "C"
+      }
+    ],
+    "diagnostic_principal": "Dysfonction sinusale avec probable bloc sino-auriculaire du deuxième degré",
+    "pieges": [
+      "Conclure à un bloc sino-auriculaire du premier degré : il n’a pas de traduction ECG et n’explique pas la bradycardie.",
+      "Conclure à un bloc sino-auriculaire du troisième degré : aucune activité sinusale ne serait détectée.",
+      "Interpréter la bradycardie comme un BAV : ici les ondes P visibles sont conduites avec PR limite mais sans bloc atrio-ventriculaire.",
+      "Oublier que la fréquence cardiaque est brutalement divisée par deux, argument central pour le bloc sino-auriculaire du deuxième degré.",
+      "Négliger les troubles de repolarisation liés au contexte de coronaropathie."
+    ],
+    "references_item": "EDN — Dysfonction sinusale et blocs sino-atriaux ; EDN Item 231 — ECG : indications et interprétation, incluant l’analyse des troubles de conduction et de repolarisation.",
+    "citation_source": "« le bloc sino-auriculaire du second degré […] explique une fréquence cardiaque subitement divisée par 2 »"
+  },
+  "error": null
+}

@@ -1,0 +1,97 @@
+{
+  "num": 21,
+  "titre": "dysfonction sinusale avec échappement jonctionnel",
+  "famille": "rythme",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence ventriculaire lente, régulière, à environ 30–40/min : il s’agit d’une bradycardie. Le rythme n’est pas sinusal, avec absence d’onde P sinusale identifiable tout au long du tracé. Les QRS ne sont pas précédés d’une onde P sinusale ; l’intervalle PR, lorsqu’une activité atriale rétrograde est visible, est de durée normale. L’axe des QRS est normal. Les QRS sont fins, réguliers, sans signe d’hypertrophie ventriculaire gauche ni onde Q de nécrose, en faveur d’un échappement jonctionnel. On observe une activité atriale négative dans les dérivations inférieures, inscrite dans l’onde T, compatible avec une conduction atriale rétrograde. Il n’existe pas de trouble de la repolarisation et le QT est normal. Conclusion : dysfonction sinusale, possiblement par bloc sino-auriculaire complet/du troisième degré ou défaut d’automatisme sinusal, avec échappement jonctionnel et conduction rétrograde ; pas d’argument pour un BAV complet.",
+  "points_cles": [
+    {
+      "label": "Bradycardie régulière à 30–40 bpm",
+      "rang": "A"
+    },
+    {
+      "label": "Absence d’onde P sinusale sur tout le tracé : rythme non sinusal/dysfonction sinusale",
+      "rang": "A"
+    },
+    {
+      "label": "QRS fins, réguliers, non précédés d’onde P sinusale : échappement jonctionnel",
+      "rang": "A"
+    },
+    {
+      "label": "Activité atriale rétrograde : onde négative dans les dérivations inférieures, notamment dans l’onde T/fin QRS-début ST",
+      "rang": "A"
+    },
+    {
+      "label": "Diagnostic principal : dysfonction sinusale avec échappement jonctionnel et conduction rétrograde",
+      "rang": "A"
+    },
+    {
+      "label": "Bloc sino-auriculaire du troisième degré possible, sans nécessité de trancher avec perte d’automatisme sinusal",
+      "rang": "B"
+    },
+    {
+      "label": "Axe normal, absence d’HVG et d’ondes Q de nécrose",
+      "rang": "B"
+    },
+    {
+      "label": "Absence de trouble de repolarisation et QT normal",
+      "rang": "B"
+    },
+    {
+      "label": "Ne pas conclure à un BAV III",
+      "rang": "A"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé montre une bradycardie régulière à 30–40/min sans onde P sinusale visible, avec QRS fins réguliers non précédés d’onde P, correspondant à un échappement jonctionnel. Une activité atriale négative dans les dérivations inférieures, visible dans l’onde T, traduit une conduction atriale rétrograde. L’ensemble signe une dysfonction sinusale, possiblement par bloc sino-auriculaire du troisième degré ou défaut d’automatisme sinusal, sans intérêt clinique à distinguer ces mécanismes ici.",
+    "criteres_indispensables": [
+      {
+        "label": "Identifier la bradycardie régulière à 30–40 bpm",
+        "rang": "A"
+      },
+      {
+        "label": "Mentionner l’absence d’onde P sinusale tout au long du tracé",
+        "rang": "A"
+      },
+      {
+        "label": "Conclure à une dysfonction sinusale",
+        "rang": "A"
+      },
+      {
+        "label": "Identifier l’échappement jonctionnel : QRS fins réguliers non précédés d’onde P",
+        "rang": "A"
+      },
+      {
+        "label": "Identifier la conduction atriale rétrograde : activité atriale négative en dérivations inférieures, dans l’onde T/fin QRS-début ST",
+        "rang": "A"
+      },
+      {
+        "label": "Dire que le bloc sino-auriculaire du troisième degré est possible",
+        "rang": "B"
+      },
+      {
+        "label": "Préciser que les QRS sont fins avec axe normal",
+        "rang": "B"
+      },
+      {
+        "label": "Mentionner l’absence de troubles de repolarisation et QT normal",
+        "rang": "B"
+      },
+      {
+        "label": "Écarter le diagnostic de BAV III",
+        "rang": "A"
+      }
+    ],
+    "diagnostic_principal": "Dysfonction sinusale avec échappement jonctionnel et conduction atriale rétrograde",
+    "pieges": [
+      "Diagnostiquer à tort un BAV III : ici il n’y a pas d’activité sinusale conduite ou dissociée, mais une absence d’onde P sinusale avec échappement jonctionnel.",
+      "Oublier de rechercher l’activité atriale rétrograde négative dans les dérivations inférieures, parfois masquée dans l’onde T ou près du QRS/ST.",
+      "Vouloir trancher absolument entre perte de l’automatisme sinusal et bloc sino-auriculaire complet, distinction sans implication clinique selon le texte.",
+      "Confondre échappement jonctionnel et échappement ventriculaire : les QRS sont fins, en faveur d’un foyer jonctionnel.",
+      "Négliger le caractère potentiellement urgent des blocs sino-auriculaires du troisième degré et des syncopes sur dysfonction sinusale."
+    ],
+    "references_item": "EDN — Troubles du rythme/conduction ; ECG : interprétation ; dysfonction sinusale et bloc sino-auriculaire du troisième degré, avec degré d’urgence de prise en charge selon le référentiel cité.",
+    "citation_source": "« l’important étant de correctement porter le diagnostic de dysfonction sinusale »"
+  },
+  "error": null
+}

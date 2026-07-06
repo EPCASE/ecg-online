@@ -1,0 +1,76 @@
+{
+  "num": 66,
+  "titre": "SCA sans sus-décalage du segment ST",
+  "famille": "ischemie",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence non précisée sur le tracé fourni. Rythme sinusal. Conduction auriculo-ventriculaire non décrite comme anormale ; complexes QRS fins. Axe non précisé. Les QRS sont fins, sans argument fourni pour un bloc de branche ni pour une séquelle de nécrose. La repolarisation montre un sous-décalage significatif du segment ST en V1 à V4, associé à des ondes T négatives, sans sus-décalage du segment ST. Dans le contexte de douleurs thoraciques d’effort puis de repos, ECG per-douloureux et légère élévation enzymatique, l’ensemble est en faveur d’un syndrome coronarien aigu sans sus-décalage du ST de territoire antérieur, correspondant à un NSTEMI antérieur.",
+  "points_cles": [
+    {
+      "label": "Rythme sinusal",
+      "rang": "B"
+    },
+    {
+      "label": "Complexes QRS fins",
+      "rang": "B"
+    },
+    {
+      "label": "Sous-décalage significatif du segment ST en V1 à V4",
+      "rang": "A"
+    },
+    {
+      "label": "Ondes T négatives en V1 à V4",
+      "rang": "B"
+    },
+    {
+      "label": "Absence de sus-décalage du segment ST",
+      "rang": "A"
+    },
+    {
+      "label": "Contexte clinique avec élévation enzymatique orientant vers NSTEMI plutôt qu’angor instable",
+      "rang": "A"
+    },
+    {
+      "label": "Conclusion : SCA sans sus-décalage du ST antérieur / NSTEMI antérieur",
+      "rang": "A"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "L’ECG montre un rythme sinusal avec QRS fins. L’anomalie essentielle est un sous-décalage significatif du ST en V1 à V4 avec ondes T négatives, sans sus-décalage. Dans le contexte de douleur thoracique et d’élévation enzymatique, le diagnostic attendu est un SCA sans sus-décalage du ST antérieur, c’est-à-dire un NSTEMI antérieur.",
+    "criteres_indispensables": [
+      {
+        "label": "Diagnostic principal : SCA sans sus-décalage du segment ST antérieur / NSTEMI antérieur",
+        "rang": "A"
+      },
+      {
+        "label": "Sous-décalage significatif du segment ST dans les dérivations V1 à V4",
+        "rang": "A"
+      },
+      {
+        "label": "Absence de sus-décalage du segment ST, excluant un STEMI antérieur sur ce tracé",
+        "rang": "A"
+      },
+      {
+        "label": "Ondes T négatives associées en V1 à V4",
+        "rang": "B"
+      },
+      {
+        "label": "Rythme sinusal et QRS fins",
+        "rang": "B"
+      },
+      {
+        "label": "Élévation enzymatique permettant de retenir NSTEMI plutôt qu’angor instable",
+        "rang": "A"
+      }
+    ],
+    "diagnostic_principal": "NSTEMI antérieur / SCA sans sus-décalage du segment ST antérieur",
+    "pieges": [
+      "Diagnostiquer à tort un SCA ST+ antérieur alors qu’il n’existe pas de sus-décalage du ST.",
+      "Conclure à une séquelle de nécrose antérieure ou postérieure : le texte de référence ne rapporte pas d’ondes Q de nécrose ni d’argument de séquelle.",
+      "Oublier que l’élévation enzymatique distingue NSTEMI et angor instable, l’aspect ECG pouvant être similaire.",
+      "Sous-estimer un sous-décalage du ST antérieur dynamique, qui doit être interprété avec le contexte douloureux."
+    ],
+    "references_item": "EDN — Syndrome coronarien aigu sans sus-décalage du segment ST ; EDN Item 231 — ECG : indications et interprétation ; référentiel : tracé de NSTEMI dans le territoire latéral cité comme exemple.",
+    "citation_source": "« Par définition dans un NSTEMI, il n'existe pas de sus-décalage du segment ST. »"
+  },
+  "error": null
+}

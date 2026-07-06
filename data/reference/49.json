@@ -1,0 +1,84 @@
+{
+  "num": 49,
+  "titre": "fibrillation atriale et bloc de branche",
+  "famille": "conduction",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence ventriculaire rapide, avec une tachycardie très irrégulière. Le rythme n’est pas sinusal sur ce tracé : absence d’ondes P sinusales individualisables, trémulation de la ligne de base avec activité atriale rapide, irrégulière et anarchique, en faveur d’une fibrillation atriale. L’intervalle PR n’est donc pas analysable. Axe non précisé par les données fournies. Les QRS sont larges (> 120 ms), monomorphes, avec une morphologie de bloc de branche droite complet : aspect rsR’ en V1 et onde S large en DI et V6. La repolarisation n’est pas décrite comme porteuse d’anomalie spécifique ; l’aspect monomorphe des QRS écarte une torsade de pointes ou une fibrillation ventriculaire. Conclusion : fibrillation atriale avec réponse ventriculaire rapide, associée à un bloc de branche droite complet préexistant, donc tachycardie supraventriculaire à QRS larges par bloc de branche.",
+  "points_cles": [
+    {
+      "label": "Tachycardie irrégulière à QRS larges monomorphes",
+      "rang": "A"
+    },
+    {
+      "label": "Diagnostic de fibrillation atriale : activité atriale rapide, irrégulière, anarchique / trémulation de la ligne de base, absence de rythme sinusal analysable",
+      "rang": "A"
+    },
+    {
+      "label": "Bloc de branche droite complet : QRS > 120 ms, rsR’ en V1, onde S large en DI et V6",
+      "rang": "A"
+    },
+    {
+      "label": "Comprendre que les QRS larges sont liés au bloc de branche associé dans une tachycardie supraventriculaire",
+      "rang": "A"
+    },
+    {
+      "label": "Éliminer torsade de pointes et fibrillation ventriculaire devant des QRS monomorphes",
+      "rang": "B"
+    },
+    {
+      "label": "PR non analysable en fibrillation atriale",
+      "rang": "B"
+    },
+    {
+      "label": "Après cardioversion : même aspect de BBD complet en rythme sinusal, avec hypertrophie auriculaire gauche comme substrat atrial favorable",
+      "rang": "C"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé montre une tachycardie très irrégulière à QRS larges monomorphes. L’activité atriale rapide, irrégulière et anarchique avec trémulation de la ligne de base fait retenir une fibrillation atriale. Les QRS larges ont une morphologie de bloc de branche droite complet, expliquant la tachycardie supraventriculaire à QRS larges.",
+    "criteres_indispensables": [
+      {
+        "label": "Diagnostic principal : fibrillation atriale associée à un bloc de branche droite complet",
+        "rang": "A"
+      },
+      {
+        "label": "Tachycardie irrégulière / très irrégulière",
+        "rang": "A"
+      },
+      {
+        "label": "QRS larges monomorphes",
+        "rang": "A"
+      },
+      {
+        "label": "Critères de bloc de branche droite complet : QRS > 120 ms, rsR’ en V1, onde S large en V6 et DI",
+        "rang": "A"
+      },
+      {
+        "label": "Activité atriale rapide, irrégulière, anarchique / trémulation de la ligne de base en faveur d’une FA",
+        "rang": "A"
+      },
+      {
+        "label": "Ne pas conclure à torsade de pointes ou fibrillation ventriculaire car QRS monomorphes",
+        "rang": "B"
+      },
+      {
+        "label": "Même aspect de BBD complet après réduction en rythme sinusal, en faveur d’une tachycardie supraventriculaire avec bloc de branche",
+        "rang": "B"
+      },
+      {
+        "label": "Hypertrophie auriculaire gauche en rythme sinusal comme substrat favorable aux arythmies atriales",
+        "rang": "C"
+      }
+    ],
+    "diagnostic_principal": "Fibrillation atriale avec bloc de branche droite complet",
+    "pieges": [
+      "Ne pas prendre les QRS larges pour une tachycardie ventriculaire polymorphe, une torsade de pointes ou une fibrillation ventriculaire : les QRS sont monomorphes.",
+      "Ne pas exclure une fibrillation atriale sous prétexte que les QRS sont larges : un bloc de branche associé élargit toutes les tachycardies supraventriculaires.",
+      "Ne pas diagnostiquer un flutter droit ou gauche : l’activité atriale décrite est rapide, irrégulière et anarchique, non organisée.",
+      "Ne pas oublier que le PR n’est pas interprétable en fibrillation atriale."
+    ],
+    "references_item": "EDN Item 231 — ECG : indications et interprétation ; EDN Item 234 — Fibrillation atriale ; troubles de conduction intraventriculaire / bloc de branche.",
+    "citation_source": "« Devant une tachycardie très irrégulière, le premier diagnostic à évoquer est celui de fibrillation atriale même si les complexes QRS sont larges »"
+  },
+  "error": null
+}

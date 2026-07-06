@@ -1,0 +1,81 @@
+{
+  "num": 56,
+  "titre": "épanchement péricardique",
+  "famille": "pericarde",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence élevée compatible avec une tachycardie, rythme sinusal. La conduction auriculo-ventriculaire n’appelle pas d’anomalie décrite. L’axe n’est pas précisé. Les QRS sont fins/non élargis d’après les éléments fournis, avec surtout un microvoltage diffus : absence de QRS d’amplitude > 5 mm dans les dérivations périphériques et absence de QRS d’amplitude > 10 mm dans les précordiales. On observe une alternance électrique des complexes QRS, particulièrement en V3-V4, avec alternance d’amplitude d’un complexe à l’autre. La repolarisation n’est pas décrite comme spécifique. Conclusion : ECG typique d’épanchement péricardique abondant, dans ce contexte post-implantation de défibrillateur, associant tachycardie sinusale, microvoltage diffus et alternance électrique.",
+  "points_cles": [
+    {
+      "label": "Tachycardie sinusale",
+      "rang": "A"
+    },
+    {
+      "label": "Microvoltage diffus des QRS",
+      "rang": "A"
+    },
+    {
+      "label": "Définition du microvoltage : QRS ≤ 5 mm en périphériques et/ou ≤ 10 mm en précordiales, ici absence de dépassement de ces seuils",
+      "rang": "B"
+    },
+    {
+      "label": "Alternance électrique des QRS, surtout en V3-V4",
+      "rang": "A"
+    },
+    {
+      "label": "Conclusion : aspect typique d’épanchement péricardique abondant",
+      "rang": "A"
+    },
+    {
+      "label": "Contexte compatible avec perforation de sonde de défibrillateur et épanchement/tamponnade",
+      "rang": "B"
+    },
+    {
+      "label": "Ne pas retenir hypertrophie auriculaire droite ou gauche",
+      "rang": "B"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "L’ECG montre une tachycardie sinusale associée à un microvoltage diffus des complexes QRS. Il existe une alternance électrique des QRS, bien visible en précordiales notamment V3-V4. Dans ce contexte, l’association microvoltage + alternance électrique évoque un épanchement péricardique abondant, possiblement compliqué de tamponnade.",
+    "criteres_indispensables": [
+      {
+        "label": "Diagnostic principal : épanchement péricardique abondant",
+        "rang": "A"
+      },
+      {
+        "label": "Tachycardie sinusale",
+        "rang": "A"
+      },
+      {
+        "label": "Microvoltage des complexes QRS diffus",
+        "rang": "A"
+      },
+      {
+        "label": "Alternance électrique des QRS",
+        "rang": "A"
+      },
+      {
+        "label": "Alternance bien visible en V3-V4",
+        "rang": "B"
+      },
+      {
+        "label": "Seuils de microvoltage : pas de QRS > 5 mm en périphériques et pas de QRS > 10 mm en précordiales",
+        "rang": "B"
+      },
+      {
+        "label": "Évoquer le contexte de tamponnade/perforation de sonde de défibrillateur si intégré au raisonnement clinique",
+        "rang": "B"
+      }
+    ],
+    "diagnostic_principal": "Épanchement péricardique abondant",
+    "pieges": [
+      "Confondre le microvoltage diffus avec un ECG simplement peu amplifié sans en donner les seuils.",
+      "Oublier l’alternance électrique, élément très évocateur lorsque l’épanchement est abondant.",
+      "Retenir une hypertrophie auriculaire droite ou gauche alors qu’elle n’est pas décrite et n’est pas la réponse attendue.",
+      "Conclure à tort à une amylose uniquement sur le microvoltage : le contexte aigu post-procédure et l’alternance électrique orientent vers l’épanchement péricardique.",
+      "Chercher des anomalies spécifiques de repolarisation non fournies par le texte de référence."
+    ],
+    "references_item": "EDN — Item péricardite aiguë / tamponnade : ECG caractéristique avec microvoltage et parfois alternance électrique ; EDN Item ECG : indications et interprétation.",
+    "citation_source": "« Une alternance électrique peut également être observée chez un patient avec épanchement péricardique abondant »"
+  },
+  "error": null
+}

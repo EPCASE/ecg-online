@@ -1,0 +1,89 @@
+{
+  "num": 47,
+  "titre": "tachycardie ventriculaire sur myocardiopathie ischémique",
+  "famille": "rythme",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence : tachycardie régulière. Rythme : activité atriale difficile à identifier, sans argument formel fourni pour une activité sinusale ; pas de complexes de capture ou de fusion décrits. Conduction : intervalle PR non analysable sur ce tracé de tachycardie à QRS larges. Axe non précisé. QRS : complexes larges, réguliers, monomorphes, avec un aspect peu évocateur d’un simple bloc de branche. Repolarisation : non contributive/non précisée dans les éléments fournis. Conclusion : chez cet homme de 64 ans, avec antécédent d’infarctus du myocarde inférieur et lipothymie, le diagnostic le plus probable devant cette tachycardie régulière à QRS larges monomorphes est une tachycardie ventriculaire, à prendre en charge comme une urgence potentiellement vitale.",
+  "points_cles": [
+    {
+      "label": "Tachycardie régulière à QRS larges",
+      "rang": "A"
+    },
+    {
+      "label": "QRS larges monomorphes",
+      "rang": "A"
+    },
+    {
+      "label": "Activité atriale difficile à identifier",
+      "rang": "B"
+    },
+    {
+      "label": "Absence de complexes de capture ou de fusion décrite",
+      "rang": "C"
+    },
+    {
+      "label": "Contexte d’antécédent d’infarctus du myocarde / myocardiopathie ischémique",
+      "rang": "A"
+    },
+    {
+      "label": "Diagnostic principal : tachycardie ventriculaire très probable",
+      "rang": "A"
+    },
+    {
+      "label": "Différentiels : tachycardie supraventriculaire avec bloc de branche, flutter atrial ou tachycardie jonctionnelle avec bloc de branche",
+      "rang": "B"
+    },
+    {
+      "label": "Urgence potentiellement vitale avec surveillance rythmique et hémodynamique",
+      "rang": "B"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé montre une tachycardie régulière à QRS larges monomorphes, avec activité atriale difficile à identifier. Chez un patient ayant un antécédent d’infarctus du myocarde et une lipothymie, le diagnostic le plus probable est une tachycardie ventriculaire. L’absence d’activité atriale dissociée clairement visible ou de complexes de capture/fusion n’exclut pas la TV dans ce contexte.",
+    "criteres_indispensables": [
+      {
+        "label": "Diagnostic principal : tachycardie ventriculaire très probable",
+        "rang": "A"
+      },
+      {
+        "label": "Tachycardie régulière à QRS larges",
+        "rang": "A"
+      },
+      {
+        "label": "QRS larges monomorphes",
+        "rang": "A"
+      },
+      {
+        "label": "Antécédent d’infarctus du myocarde / myocardiopathie ischémique comme contexte majeur en faveur de TV",
+        "rang": "A"
+      },
+      {
+        "label": "Activité atriale difficile à identifier",
+        "rang": "B"
+      },
+      {
+        "label": "Absence de complexes de capture ou de fusion sur ce tracé",
+        "rang": "C"
+      },
+      {
+        "label": "Aspect des QRS peu évocateur d’un bloc de branche supraventriculaire",
+        "rang": "B"
+      },
+      {
+        "label": "Hémodynamique altérée/lipothymie : urgence potentiellement vitale",
+        "rang": "B"
+      }
+    ],
+    "diagnostic_principal": "Tachycardie ventriculaire",
+    "pieges": [
+      "Conclure à un flutter atrial avec bloc de branche sans preuve d’activité atriale organisée conduisant aux ventricules.",
+      "Conclure à une tachycardie jonctionnelle avec bloc de branche malgré le contexte d’infarctus ancien et les QRS larges monomorphes.",
+      "Attendre de voir une dissociation AV, des captures ou des fusions pour retenir la TV : leur absence visible n’élimine pas le diagnostic.",
+      "Sous-estimer la gravité : toute tachycardie régulière à QRS larges doit être considérée comme une TV jusqu’à preuve du contraire.",
+      "Confondre avec une fibrillation ventriculaire ou une torsade de pointes alors que le tracé est régulier et monomorphe."
+    ],
+    "references_item": "EDN — ECG : indications et interprétation ; Troubles du rythme ventriculaire / tachycardie ventriculaire ; Mécanismes d’une TV : réentrée, mécanisme le plus fréquent sur cardiopathie ischémique.",
+    "citation_source": "« toute tachycardie régulière à QRS larges est une tachycardie ventriculaire jusqu’à preuve du contraire »"
+  },
+  "error": null
+}

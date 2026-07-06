@@ -1,0 +1,77 @@
+{
+  "num": 64,
+  "titre": "SCA ST+ et RIVA",
+  "famille": "ischemie",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence ventriculaire autour de 80/min. Rythme non sinusal prédominant, d’origine ventriculaire, compatible avec un rythme idioventriculaire accéléré : QRS larges, réguliers, avec onde P visible par moments et survenue d’un complexe de fusion. PR non interprétable sur les complexes ventriculaires, du fait de la dissociation/compétition avec l’activité sinusale. Axe non précisé. QRS larges (> 120 ms) de morphologie ventriculaire, sans argument pour un simple bloc de branche droit sinusal. Repolarisation : sus-décalage ST ample dans le territoire inférieur et en V5-V6, avec sous-décalage de V1 à V3, compatible avec atteinte postérieure associée ; lors de la reprise sinusale, le sus-décalage inférieur et postérieur est mis en évidence. Conclusion : RIVA avec complexe de fusion, arythmie de reperfusion dans le cadre d’un SCA ST+ inférieur/postérieur reperfusé, ici après fibrinolyse ; ce n’est pas une tachycardie ventriculaire rapide.",
+  "points_cles": [
+    {
+      "label": "Identifier un RIVA : rythme ventriculaire focal, fréquence environ 80/min, QRS larges",
+      "rang": "A"
+    },
+    {
+      "label": "Reconnaître le contexte de SCA ST+ reperfusé/arythmie de reperfusion",
+      "rang": "A"
+    },
+    {
+      "label": "Décrire le complexe de fusion avec onde P identifiable",
+      "rang": "A"
+    },
+    {
+      "label": "Décrire le sus-décalage ST inférieur et latéral V5-V6",
+      "rang": "B"
+    },
+    {
+      "label": "Décrire le sous-décalage V1-V3 évocateur d’atteinte postérieure associée",
+      "rang": "B"
+    },
+    {
+      "label": "Ne pas conclure à une tachycardie ventriculaire pour une fréquence < 100/min, ni à un rythme sinusal avec BBD",
+      "rang": "B"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé montre un rythme idioventriculaire accéléré : rythme d’origine ventriculaire à environ 80/min avec QRS larges, dans un contexte de reperfusion d’un SCA ST+. Une onde P est visible et un complexe de fusion est présent. La repolarisation montre un sus-décalage inférieur et V5-V6, avec sous-décalage V1-V3 suggérant une extension postérieure.",
+    "criteres_indispensables": [
+      {
+        "label": "Diagnostic de RIVA retenu, et non tachycardie ventriculaire rapide",
+        "rang": "A"
+      },
+      {
+        "label": "Fréquence ventriculaire autour de 80/min avec QRS larges, rythme d’origine ventriculaire",
+        "rang": "A"
+      },
+      {
+        "label": "Complexe de fusion/compétition avec activité sinusale ou onde P identifiable",
+        "rang": "A"
+      },
+      {
+        "label": "Contexte de SCA ST+ reperfusé, arythmie typique de reperfusion",
+        "rang": "A"
+      },
+      {
+        "label": "Sus-décalage ST inférieur avec extension V5-V6",
+        "rang": "B"
+      },
+      {
+        "label": "Sous-décalage V1-V3/atteinte postérieure associée",
+        "rang": "B"
+      },
+      {
+        "label": "Absence d’argument pour rythme sinusal avec bloc de branche droit",
+        "rang": "C"
+      }
+    ],
+    "diagnostic_principal": "Rythme idioventriculaire accéléré (RIVA) avec complexe de fusion, arythmie de reperfusion sur SCA ST+ inférieur/postérieur reperfusé",
+    "pieges": [
+      "Confondre le RIVA à 80/min avec une tachycardie ventriculaire : la TV n’est appropriée que si la fréquence dépasse 100/min selon le texte.",
+      "Parler de « tachycardie ventriculaire lente » pour une fréquence inférieure à 100/min.",
+      "Interpréter les QRS larges comme un simple bloc de branche droite en rythme sinusal.",
+      "Oublier le complexe de fusion et l’onde P identifiable.",
+      "Manquer le contexte de reperfusion d’infarctus inférieur/postérieur."
+    ],
+    "references_item": "Le RIVA n’est pas mentionné dans le référentiel. Référence générale impliquée : EDN Item 231 — ECG : indications et interprétation ; syndrome coronarien aigu avec sus-décalage du ST selon référentiel de cardiologie.",
+    "citation_source": "« Le RIVA constitue une arythmie typique de reperfusion »"
+  },
+  "error": null
+}

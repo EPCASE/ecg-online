@@ -1,0 +1,93 @@
+{
+  "num": 12,
+  "titre": "bloc de branche droite et hypertrophie ventriculaire droite",
+  "famille": "conduction",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence cardiaque régulière autour de 70/min. Rythme sinusal, avec conduction atrio-ventriculaire 1/1 et intervalle PR de durée normale. Hypertrophie atriale droite avec onde P positive en V1 > 2 mm. Axe des QRS dévié à droite, avec aspect S1Q3. Les QRS sont larges, mesurés à environ 150 ms, avec morphologie typique de bloc de branche droite complet. Il existe des arguments d’hypertrophie ventriculaire droite : très grande amplitude de l’onde R/R’ en V1, associée à une onde S profonde et large en DI et V6. La repolarisation montre des ondes T négatives en V1-V3. Conclusion : ECG en rythme sinusal montrant un bloc de branche droite complet associé à une hypertrophie ventriculaire droite, avec hypertrophie atriale droite, dans un contexte de cœur pulmonaire chronique.",
+  "points_cles": [
+    {
+      "label": "Rythme sinusal à environ 70/min",
+      "rang": "A"
+    },
+    {
+      "label": "Conduction AV normale : conduction 1/1, PR normal",
+      "rang": "B"
+    },
+    {
+      "label": "Hypertrophie atriale droite : onde P positive en V1 > 2 mm",
+      "rang": "A"
+    },
+    {
+      "label": "QRS larges à 150 ms avec aspect de bloc de branche droite complet",
+      "rang": "A"
+    },
+    {
+      "label": "Déviation axiale droite et aspect S1Q3",
+      "rang": "B"
+    },
+    {
+      "label": "Hypertrophie ventriculaire droite : grande amplitude de R/R’ en V1 et S profonde/larges en DI et V6",
+      "rang": "A"
+    },
+    {
+      "label": "Troubles de repolarisation droits : ondes T négatives en V1-V3",
+      "rang": "B"
+    },
+    {
+      "label": "Conclusion : bloc de branche droite complet associé à une hypertrophie ventriculaire droite",
+      "rang": "A"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé montre un rythme sinusal à environ 70/min avec conduction AV normale. Les QRS sont larges à 150 ms avec un bloc de branche droite complet, associé à une déviation axiale droite, une hypertrophie atriale droite et des critères d’hypertrophie ventriculaire droite. Les ondes T négatives en V1-V3 complètent le tableau de cœur pulmonaire chronique.",
+    "criteres_indispensables": [
+      {
+        "label": "Diagnostic principal : bloc de branche droite complet associé à une hypertrophie ventriculaire droite",
+        "rang": "A"
+      },
+      {
+        "label": "QRS larges autour de 150 ms avec morphologie caractéristique de bloc de branche droite",
+        "rang": "A"
+      },
+      {
+        "label": "Critères d’HVD : grande amplitude de R/R’ en V1 et onde S profonde/large en DI et V6",
+        "rang": "A"
+      },
+      {
+        "label": "Déviation axiale droite",
+        "rang": "B"
+      },
+      {
+        "label": "Hypertrophie atriale droite : onde P positive en V1 > 2 mm",
+        "rang": "A"
+      },
+      {
+        "label": "Rythme sinusal à environ 70/min",
+        "rang": "A"
+      },
+      {
+        "label": "Conduction AV normale avec PR normal",
+        "rang": "B"
+      },
+      {
+        "label": "Ondes T négatives en V1-V3",
+        "rang": "B"
+      },
+      {
+        "label": "Aspect S1Q3",
+        "rang": "C"
+      }
+    ],
+    "diagnostic_principal": "Bloc de branche droite complet associé à une hypertrophie ventriculaire droite",
+    "pieges": [
+      "Ne pas conclure à un bloc de branche gauche : la morphologie est celle d’un bloc de branche droite.",
+      "Ne pas méconnaître l’hypertrophie ventriculaire droite malgré le bloc de branche droite complet.",
+      "Ne pas attribuer uniquement la déviation axiale droite à un hémibloc postérieur gauche : la grande onde R’ en V1 oriente vers l’HVD.",
+      "Ne pas oublier l’hypertrophie atriale droite, suggérée par l’onde P positive en V1 > 2 mm.",
+      "Ne pas interpréter les ondes T négatives de V1 à V3 isolément comme une ischémie sans tenir compte du BBD et de l’HVD."
+    ],
+    "references_item": "EDN — ECG : indications et interprétation ; signes électriques d’hypertrophie auriculaire droite et d’hypertrophie ventriculaire droite ; troubles de conduction intraventriculaire / bloc de branche droite.",
+    "citation_source": "« En présence d’un bloc de branche droite complet, les signes suivants sont évocateurs d’hypertrophie ventriculaire droite »"
+  },
+  "error": null
+}

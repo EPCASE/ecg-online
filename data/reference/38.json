@@ -1,0 +1,89 @@
+{
+  "num": 38,
+  "titre": "fibrillation atriale lente",
+  "famille": "rythme",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence ventriculaire lente, autour de 40/min, avec rythme très irrégulier. Il n’y a pas de rythme sinusal identifiable : absence d’ondes P sinusales, remplacées par une trémulation de la ligne de base correspondant à une activité atriale rapide, irrégulière et anarchique, compatible avec une fibrillation atriale. Le PR n’est donc pas mesurable. L’axe des QRS est normal. Les QRS sont fins, sans morphologie de bloc de branche décrite et sans signe d’hypertrophie ventriculaire gauche. La repolarisation ne montre pas de trouble significatif. Conclusion : fibrillation atriale à réponse ventriculaire lente, ou FA lente/brady-arythmie, sans argument pour BAV complet car le rythme ventriculaire est lent mais irrégulier.",
+  "points_cles": [
+    {
+      "label": "Fibrillation atriale identifiée : absence d’ondes P sinusales et activité atriale rapide, irrégulière, anarchique avec trémulation de la ligne de base",
+      "rang": "A"
+    },
+    {
+      "label": "Réponse ventriculaire lente/bradycardie autour de 40/min, inférieure à 60/min",
+      "rang": "A"
+    },
+    {
+      "label": "Rythme ventriculaire très irrégulier avec diastoles longues, orientant vers FA lente plutôt que BAV complet",
+      "rang": "A"
+    },
+    {
+      "label": "QRS fins",
+      "rang": "B"
+    },
+    {
+      "label": "Axe des QRS normal",
+      "rang": "B"
+    },
+    {
+      "label": "Absence de signes d’hypertrophie ventriculaire gauche",
+      "rang": "C"
+    },
+    {
+      "label": "Absence de troubles de la repolarisation",
+      "rang": "B"
+    },
+    {
+      "label": "PR non mesurable en l’absence d’ondes P organisées",
+      "rang": "B"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé montre une bradycardie irrégulière à QRS fins autour de 40/min. L’absence d’ondes P organisées, remplacées par une activité atriale rapide, irrégulière et anarchique avec trémulation de la ligne de base, signe une fibrillation atriale. La lenteur de la réponse ventriculaire avec irrégularité persistante conduit au diagnostic de FA lente, et non de BAV complet.",
+    "criteres_indispensables": [
+      {
+        "label": "Diagnostic principal : fibrillation atriale lente / FA à réponse ventriculaire lente",
+        "rang": "A"
+      },
+      {
+        "label": "Activité atriale rapide, irrégulière, anarchique avec trémulation de la ligne de base et absence d’ondes P sinusales",
+        "rang": "A"
+      },
+      {
+        "label": "Fréquence ventriculaire lente, environ 40/min ou < 60/min",
+        "rang": "A"
+      },
+      {
+        "label": "Irrégularité nette de la fréquence ventriculaire avec diastoles longues",
+        "rang": "A"
+      },
+      {
+        "label": "QRS fins",
+        "rang": "B"
+      },
+      {
+        "label": "Absence de trouble de repolarisation",
+        "rang": "B"
+      },
+      {
+        "label": "Axe normal des QRS",
+        "rang": "B"
+      },
+      {
+        "label": "Absence de signes d’hypertrophie ventriculaire gauche",
+        "rang": "C"
+      }
+    ],
+    "diagnostic_principal": "Fibrillation atriale lente",
+    "pieges": [
+      "Confondre FA lente et bloc auriculoventriculaire complet : un rythme ventriculaire parfaitement régulier suggérerait plutôt un BAV complet avec échappement, alors qu’ici il est lent et irrégulier.",
+      "Diagnostiquer une dysfonction sinusale alors qu’il n’y a pas d’ondes P sinusales organisées.",
+      "Parler d’ondes P bloquées : l’activité atriale est anarchique, non organisée en ondes P conduites ou bloquées.",
+      "Confondre avec un flutter atrial : il n’y a pas d’activité atriale régulière en dents de scie décrite.",
+      "Oublier de qualifier la FA de lente en raison de la réponse ventriculaire autour de 40/min."
+    ],
+    "references_item": "EDN Item 231 — ECG : indications et interprétation ; troubles du rythme supraventriculaire / fibrillation atriale.",
+    "citation_source": "« Quand le rythme ventriculaire est lent et irrégulier, cela suggère que la conduction est altérée mais toujours présente »"
+  },
+  "error": null
+}

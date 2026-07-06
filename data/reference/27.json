@@ -1,0 +1,89 @@
+{
+  "num": 27,
+  "titre": "BAV de haut degré et hyperkaliémie",
+  "famille": "conduction",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence ventriculaire lente, bradycardie à environ 35/min, avec rythme irrégulier. L’activité atriale est sinusale, des ondes P étant visibles avant les QRS conduits, mais avec plusieurs ondes P consécutives bloquées selon les cycles : il s’agit d’un bloc auriculoventriculaire de haut degré, et non d’une fibrillation atriale. Les QRS sont larges, avec un aspect de bloc de branche droit complet. La repolarisation montre des ondes T diffuses amples, fines/pointues et symétriques, avec un QT relativement court compte tenu de la bradycardie. Conclusion : BAV de haut degré sur hyperkaliémie menaçante chez un patient insuffisant rénal dialysé.",
+  "points_cles": [
+    {
+      "label": "Bradycardie irrégulière à environ 35 bpm",
+      "rang": "B"
+    },
+    {
+      "label": "Activité atriale sinusale visible, excluant une fibrillation atriale",
+      "rang": "A"
+    },
+    {
+      "label": "Plusieurs ondes P consécutives bloquées avec alternance d’ondes P conduites",
+      "rang": "A"
+    },
+    {
+      "label": "Diagnostic de bloc auriculoventriculaire de haut degré",
+      "rang": "A"
+    },
+    {
+      "label": "QRS larges avec aspect de bloc de branche droit complet",
+      "rang": "B"
+    },
+    {
+      "label": "Ondes T amples, fines/pointues et symétriques",
+      "rang": "A"
+    },
+    {
+      "label": "QT relativement court au vu de la bradycardie",
+      "rang": "B"
+    },
+    {
+      "label": "Conclusion : BAV de haut degré sur hyperkaliémie",
+      "rang": "A"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "ECG de bradycardie irrégulière à environ 35 bpm avec activité atriale sinusale et plusieurs ondes P consécutives bloquées, définissant un BAV de haut degré. Les QRS sont larges avec aspect de bloc de branche droit complet. Les ondes T amples, fines/pointues et symétriques avec QT relativement court orientent vers une hyperkaliémie menaçante chez ce patient insuffisant rénal sévère.",
+    "criteres_indispensables": [
+      {
+        "label": "Identifier un BAV de haut degré",
+        "rang": "A"
+      },
+      {
+        "label": "Décrire plusieurs ondes P consécutives bloquées alternant avec des ondes P conduites",
+        "rang": "A"
+      },
+      {
+        "label": "Reconnaître les signes d’hyperkaliémie : ondes T amples, pointues/fines et symétriques",
+        "rang": "A"
+      },
+      {
+        "label": "Conclure à un BAV de haut degré sur hyperkaliémie",
+        "rang": "A"
+      },
+      {
+        "label": "Mentionner la bradycardie irrégulière autour de 35 bpm",
+        "rang": "B"
+      },
+      {
+        "label": "Mentionner l’activité atriale sinusale visible / absence de fibrillation atriale",
+        "rang": "B"
+      },
+      {
+        "label": "Mentionner les QRS larges avec aspect de bloc de branche droit complet",
+        "rang": "B"
+      },
+      {
+        "label": "Mentionner le QT relativement court malgré la bradycardie",
+        "rang": "C"
+      }
+    ],
+    "diagnostic_principal": "Bloc auriculoventriculaire de haut degré sur hyperkaliémie",
+    "pieges": [
+      "Confondre avec une fibrillation atriale alors que des ondes P sinusales sont visibles.",
+      "Répondre BAV 1 isolé : le problème principal est le blocage de plusieurs ondes P consécutives.",
+      "Évoquer une hypokaliémie alors que les ondes T amples, pointues et symétriques et le QT relativement court orientent vers l’hyperkaliémie.",
+      "Oublier que l’hyperkaliémie peut donner des troubles de conduction, dont un BAV, et des QRS élargis.",
+      "Exiger un signe ECG pathognomonique d’hyperkaliémie : aucun n’est requis ni pathognomonique."
+    ],
+    "references_item": "Référentiel EDN — Bloc auriculoventriculaire de haut degré : plusieurs ondes P bloquées consécutives alternant avec des ondes P conduites ; EDN Item 231 — ECG : indications et interprétation ; dyskaliémies/hyperkaliémie sévère et anomalies ECG.",
+    "citation_source": "Ce tracé de BAV de haut degré (2 ondes P consécutives bloquées) survient dans le cadre d’une hyperkaliémie menaçante"
+  },
+  "error": null
+}

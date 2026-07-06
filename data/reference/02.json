@@ -1,0 +1,73 @@
+{
+  "num": 2,
+  "titre": "tremblement et faux diagnostic d’arythmie atriale",
+  "famille": "rythme",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence ventriculaire non précisée mais complexes QRS parfaitement réguliers. Rythme sinusal : une onde P est clairement identifiable avant chaque QRS, notamment en DII ainsi qu’en V5-V6, ce qui va contre une fibrillation auriculaire. La conduction auriculo-ventriculaire n’est pas décrite comme anormale. Axe non précisé. Les QRS ont un aspect caractéristique de bloc de branche gauche. La repolarisation n’est pas interprétable au-delà du contexte de QRS larges/BBG et aucune anomalie ST-T ou QT spécifique n’est rapportée. Le tracé montre une ondulation/trémulation de la ligne de base dans plusieurs dérivations, non présente partout, correspondant à un parasitage lié au tremblement parkinsonien ; il ne faut pas conclure à une arythmie atriale. Conclusion : rythme sinusal avec bloc de branche gauche et artéfact de ligne de base par tremblement, mimant à tort une fibrillation/flutter atrial.",
+  "points_cles": [
+    {
+      "label": "Identifier un rythme sinusal avec onde P avant chaque QRS, surtout en DII et V5-V6",
+      "rang": "A"
+    },
+    {
+      "label": "Reconnaître le parasitage/trémulation de la ligne de base lié au tremblement parkinsonien",
+      "rang": "A"
+    },
+    {
+      "label": "Éliminer une fibrillation auriculaire : QRS réguliers et rythme sinusal visible dans certaines dérivations",
+      "rang": "A"
+    },
+    {
+      "label": "Ne pas retenir flutter atrial, tachycardie atriale ou autre arythmie atriale sur ce tracé",
+      "rang": "B"
+    },
+    {
+      "label": "Décrire l’aspect caractéristique de bloc de branche gauche",
+      "rang": "B"
+    },
+    {
+      "label": "Savoir qu’un repositionnement des électrodes près de la racine des membres peut améliorer l’enregistrement",
+      "rang": "C"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé montre une trémulation/ondulation de la ligne de base dans plusieurs dérivations, liée au tremblement parkinsonien, pouvant mimer une arythmie atriale. Le diagnostic de fibrillation auriculaire est écarté car une onde P sinusale est visible avant chaque QRS dans certaines dérivations et les QRS sont parfaitement réguliers. L’ECG associe donc un rythme sinusal, un parasitage de ligne de base et un aspect de bloc de branche gauche.",
+    "criteres_indispensables": [
+      {
+        "label": "Diagnostic principal : parasitage de la ligne de base par tremblement, mimant une arythmie atriale",
+        "rang": "A"
+      },
+      {
+        "label": "Rythme sinusal : onde P identifiable avant chaque QRS dans au moins certaines dérivations, notamment DII/V5-V6",
+        "rang": "A"
+      },
+      {
+        "label": "Exclusion de la fibrillation auriculaire : complexes QRS parfaitement réguliers",
+        "rang": "A"
+      },
+      {
+        "label": "Mention de l’ondulation/trémulation de la ligne de base non présente dans toutes les dérivations",
+        "rang": "B"
+      },
+      {
+        "label": "Aspect caractéristique de bloc de branche gauche",
+        "rang": "B"
+      },
+      {
+        "label": "Intérêt d’un tracé de meilleure qualité/repositionnement des électrodes aux racines des membres",
+        "rang": "C"
+      }
+    ],
+    "diagnostic_principal": "Rythme sinusal avec parasitage de la ligne de base lié au tremblement parkinsonien, mimant à tort une arythmie atriale ; aspect de bloc de branche gauche",
+    "pieges": [
+      "Diagnostiquer à tort une fibrillation auriculaire devant l’ondulation de la ligne de base.",
+      "Confondre l’artéfact avec un flutter atrial ou une tachycardie atriale.",
+      "Oublier de vérifier la régularité des QRS et la présence d’ondes P dans les dérivations moins parasitées.",
+      "Interpréter un ECG de mauvaise qualité sans reconnaître les parasites/artéfacts.",
+      "Introduire inutilement anticoagulants ou antiarythmiques sur un faux diagnostic d’arythmie."
+    ],
+    "references_item": "Pas d’exemple spécifique de tracé parasité dans le référentiel ; renvoi général aux valeurs normales de l’ECG / interprétation ECG.",
+    "citation_source": "« les complexes QRS étaient parfaitement réguliers rendant improbable le diagnostic de FA conduite »"
+  },
+  "error": null
+}

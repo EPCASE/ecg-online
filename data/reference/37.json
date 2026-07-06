@@ -1,0 +1,93 @@
+{
+  "num": 37,
+  "titre": "fibrillation atriale",
+  "famille": "rythme",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence ventriculaire rapide, autour de 160/min. Rythme non sinusal : absence d’onde P sinusale individualisable, avec tachycardie irrégulière à QRS fins et trémulation/ondulations continues de la ligne de base, en faveur d’une fibrillation atriale. Conduction auriculo-ventriculaire non analysable par absence d’ondes P organisées ; complexes QRS fins, d’axe normal, sans argument pour une hypertrophie ventriculaire gauche. Repolarisation sans anomalie significative, pas de trouble ST-T décrit. Conclusion : fibrillation atriale rapide, à QRS fins, sans trouble de repolarisation associé.",
+  "points_cles": [
+    {
+      "label": "Tachycardie irrégulière à QRS fins, environ 160 bpm",
+      "rang": "A"
+    },
+    {
+      "label": "Absence d’onde P sinusale individualisable / rythme non sinusal",
+      "rang": "A"
+    },
+    {
+      "label": "Trémulation ou ondulations continues de la ligne de base",
+      "rang": "A"
+    },
+    {
+      "label": "Diagnostic de fibrillation atriale",
+      "rang": "A"
+    },
+    {
+      "label": "Axe QRS normal",
+      "rang": "B"
+    },
+    {
+      "label": "Absence de signes d’hypertrophie ventriculaire gauche",
+      "rang": "B"
+    },
+    {
+      "label": "Absence de troubles de la repolarisation",
+      "rang": "B"
+    },
+    {
+      "label": "Ne pas conclure à un flutter commun ni à une tachycardie sinusale",
+      "rang": "B"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé montre une tachycardie irrégulière à QRS fins, aux alentours de 160 bpm. L’absence d’ondes P sinusales organisées et la trémulation de la ligne de base orientent vers une fibrillation atriale. Les QRS sont fins, d’axe normal, sans signe d’HVG ni trouble de repolarisation décrit.",
+    "criteres_indispensables": [
+      {
+        "label": "Diagnostic principal : fibrillation atriale",
+        "rang": "A"
+      },
+      {
+        "label": "Tachycardie irrégulière à QRS fins",
+        "rang": "A"
+      },
+      {
+        "label": "Fréquence ventriculaire augmentée, environ 160 bpm",
+        "rang": "A"
+      },
+      {
+        "label": "Absence d’onde P sinusale individualisable",
+        "rang": "A"
+      },
+      {
+        "label": "Trémulation/ondulations continues de la ligne de base",
+        "rang": "A"
+      },
+      {
+        "label": "Cycles RR irrégulièrement irréguliers",
+        "rang": "B"
+      },
+      {
+        "label": "Axe normal des QRS",
+        "rang": "B"
+      },
+      {
+        "label": "Absence de signes d’hypertrophie ventriculaire gauche",
+        "rang": "B"
+      },
+      {
+        "label": "Absence de trouble de la repolarisation",
+        "rang": "B"
+      }
+    ],
+    "diagnostic_principal": "Fibrillation atriale",
+    "pieges": [
+      "Confondre avec une tachycardie sinusale : en FA il n’y a pas d’onde P sinusale organisée et le rythme est irrégulier.",
+      "Confondre avec un flutter commun : la trémulation de FA est anarchique, sans activité atriale organisée en dents de scie régulières.",
+      "Conclure à une tachycardie jonctionnelle alors que l’irrégularité complète et la ligne de base trémulante orientent vers une FA.",
+      "Évoquer une tachycardie ventriculaire malgré des QRS fins et l’absence d’argument fourni pour une origine ventriculaire.",
+      "Oublier de mentionner le terme attendu de trémulation de la ligne de base."
+    ],
+    "references_item": "Fibrillation atriale à petites mailles ; Fibrillation atriale à grosses mailles",
+    "citation_source": "« Le tracé de FA caractéristique à connaitre pour les EDN/ECOS est celui d’une tachycardie irrégulière à QRS fins. »"
+  },
+  "error": null
+}

@@ -1,0 +1,103 @@
+{
+  "num": 43,
+  "titre": "tachycardie jonctionnelle sur voie accessoire",
+  "famille": "rythme",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence ventriculaire rapide à environ 180/min. Rythme régulier non sinusal, avec activité atriale difficile à individualiser, possiblement visible dans l’onde T avec un rapport 1/1 ; le caractère parfaitement régulier rend une fibrillation atriale très improbable. La conduction AV/PR n’est pas analysable pendant la tachycardie ; après interruption par massage sinocarotidien, le rythme sinusal révèle une pré-excitation avec PR court < 120 ms. Axe non précisé. QRS fins pendant la tachycardie, ce qui écarte une TV dans ce contexte ; en rythme sinusal, présence d’une onde delta avec QRS élargis, puis disparition de la pré-excitation après ablation. Repolarisation difficilement analysable en tachycardie, avec possible onde P’ rétrograde dans le segment ST/onde T ; en rythme sinusal pré-excité, troubles de repolarisation secondaires à la pré-excitation. Conclusion : tachycardie régulière à QRS fins compatible avec une tachycardie jonctionnelle orthodromique sur voie accessoire, dans le cadre d’un syndrome de Wolff-Parkinson-White ; diagnostics différentiels initiaux possibles : flutter commun/autre tachycardie atriale organisée ou tachycardie jonctionnelle par réentrée intranodale.",
+  "points_cles": [
+    {
+      "label": "Tachycardie régulière à QRS fins à environ 180 bpm",
+      "rang": "A"
+    },
+    {
+      "label": "Rythme non sinusal ; activité atriale difficile à voir, possiblement dans l’onde T avec rapport 1/1",
+      "rang": "B"
+    },
+    {
+      "label": "FA très improbable du fait de la parfaite régularité",
+      "rang": "A"
+    },
+    {
+      "label": "QRS fins en tachycardie rendant le diagnostic de TV non retenu dans ce cas",
+      "rang": "A"
+    },
+    {
+      "label": "Hypothèses devant tachycardie régulière à QRS fins : flutter/arythmie atriale organisée ou tachycardie jonctionnelle",
+      "rang": "A"
+    },
+    {
+      "label": "Arrêt brutal par manœuvre vagale, en faveur d’une tachycardie jonctionnelle",
+      "rang": "A"
+    },
+    {
+      "label": "En rythme sinusal : pré-excitation avec PR court < 120 ms, onde delta et QRS larges",
+      "rang": "A"
+    },
+    {
+      "label": "Diagnostic final : tachycardie jonctionnelle orthodromique sur voie accessoire, syndrome de Wolff-Parkinson-White",
+      "rang": "A"
+    },
+    {
+      "label": "Troubles de repolarisation secondaires à la pré-excitation en rythme sinusal",
+      "rang": "B"
+    },
+    {
+      "label": "Après ablation : disparition de la pré-excitation, PR non court, onde delta absente, QRS fins",
+      "rang": "C"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé initial montre une tachycardie régulière non sinusale à QRS fins autour de 180/min, avec activité atriale difficile à individualiser. Les diagnostics initiaux possibles sont une tachycardie atriale organisée, notamment flutter commun, ou une tachycardie jonctionnelle ; la FA est très improbable car le rythme est parfaitement régulier et les QRS fins ne font pas retenir une TV. L’arrêt brutal par manœuvre vagale puis la découverte en rythme sinusal d’un PR court, d’une onde delta et de QRS larges conduisent au diagnostic de tachycardie jonctionnelle orthodromique sur voie accessoire, dans un syndrome de Wolff-Parkinson-White.",
+    "criteres_indispensables": [
+      {
+        "label": "Identifier une tachycardie régulière à QRS fins, environ 180 bpm",
+        "rang": "A"
+      },
+      {
+        "label": "Dire qu’il s’agit d’une tachycardie non sinusale avec activité atriale peu visible/possiblement dans l’onde T",
+        "rang": "B"
+      },
+      {
+        "label": "Écarter ou rendre très improbable la FA en raison de la régularité",
+        "rang": "A"
+      },
+      {
+        "label": "Ne pas retenir la TV pour le tracé initial du fait des QRS fins",
+        "rang": "A"
+      },
+      {
+        "label": "Citer les hypothèses adaptées : flutter commun/autre arythmie atriale organisée et tachycardie jonctionnelle",
+        "rang": "A"
+      },
+      {
+        "label": "Mentionner que l’arrêt par manœuvre vagale est très en faveur d’une tachycardie jonctionnelle",
+        "rang": "A"
+      },
+      {
+        "label": "Reconnaître la pré-excitation en rythme sinusal : PR < 120 ms, onde delta, QRS larges",
+        "rang": "A"
+      },
+      {
+        "label": "Conclure à une tachycardie jonctionnelle orthodromique sur voie accessoire dans le cadre d’un syndrome de Wolff-Parkinson-White",
+        "rang": "A"
+      },
+      {
+        "label": "Signaler les troubles de repolarisation associés à la pré-excitation",
+        "rang": "B"
+      }
+    ],
+    "diagnostic_principal": "Tachycardie jonctionnelle orthodromique sur voie accessoire — syndrome de Wolff-Parkinson-White",
+    "pieges": [
+      "Diagnostiquer une fibrillation atriale malgré le caractère parfaitement régulier de la tachycardie.",
+      "Conclure à une TV alors que le tracé décrit une tachycardie à QRS fins.",
+      "Oublier les diagnostics différentiels initiaux d’une tachycardie régulière à QRS fins : flutter commun/autre arythmie atriale organisée et tachycardie jonctionnelle.",
+      "Confondre tachycardie jonctionnelle orthodromique sur voie accessoire et tachycardie antidromique : ici les QRS sont fins pendant la tachycardie.",
+      "Ne pas exploiter l’arrêt brutal par manœuvre vagale, qui oriente fortement vers une tachycardie jonctionnelle.",
+      "Méconnaître les signes ECG de pré-excitation en rythme sinusal : PR court, onde delta, QRS larges.",
+      "Interpréter les troubles de repolarisation de la pré-excitation comme une ischémie sans tenir compte du contexte."
+    ],
+    "references_item": "Référentiel EDN — ECG : indications et interprétation ; figure/tracé de voie accessoire. Aspect caractéristique de voie accessoire : PR court, onde delta, QRS large.",
+    "citation_source": "« il s’agit d’une tachycardie régulière non sinusale à QRS fins »"
+  },
+  "error": null
+}

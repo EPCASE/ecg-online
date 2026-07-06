@@ -266,10 +266,124 @@ textarea:focus { outline: none; border-color: var(--accent-2); box-shadow: 0 0 0
 .reference summary {
   padding: 14px 20px; cursor: pointer; font-weight: 600; font-size: 14px;
   background: var(--panel); user-select: none;
+  display: flex; align-items: center; gap: 10px;
 }
 .reference summary:hover { background: var(--panel-2); }
-.reference .ref-body { padding: 16px 20px; color: var(--text-muted); line-height: 1.65; font-size: 13.5px; white-space: pre-wrap; }
-.reference .ref-body h5 { color: var(--text); margin: 0 0 6px; font-size: 13px; }
+.reference summary .ref-ic { font-size: 16px; }
+.reference .ref-body { padding: 4px 20px 18px; }
+
+/* Sections structurées de la référence enseignant */
+.ref-section { padding: 16px 0; border-top: 1px solid var(--border); }
+.ref-section:first-child { border-top: none; }
+.ref-section h5 {
+  margin: 0 0 12px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.07em;
+  color: var(--text); display: flex; align-items: center; gap: 8px;
+}
+.ref-dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+.ref-dot.interp { background: var(--accent-2); box-shadow: 0 0 0 3px rgba(79,209,197,0.15); }
+.ref-dot.comment { background: var(--accent); box-shadow: 0 0 0 3px rgba(255,90,110,0.15); }
+.ref-intro { color: var(--text); font-weight: 600; margin: 0 0 10px; font-size: 13.5px; }
+.ref-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.ref-list li {
+  position: relative; padding: 8px 12px 8px 30px; font-size: 13.5px; line-height: 1.5;
+  color: var(--text); background: var(--bg-soft); border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.ref-list li::before {
+  content: "›"; position: absolute; left: 12px; top: 7px;
+  color: var(--accent-2); font-weight: 800; font-size: 14px;
+}
+.ref-interp .ref-list li { border-left: 3px solid rgba(79,209,197,0.5); }
+.ref-prose p {
+  margin: 0 0 10px; font-size: 13.5px; line-height: 1.68; color: var(--text-muted);
+}
+.ref-prose p:first-child { color: var(--text); }
+.ref-prose p:last-child { margin-bottom: 0; }
+
+/* ─────────── Bascule de mode (libre / QCM) ─────────── */
+.mode-switch {
+  display: inline-flex; gap: 4px; padding: 4px; margin-bottom: 18px;
+  background: var(--bg-soft); border: 1px solid var(--border); border-radius: 12px;
+}
+.mode-btn {
+  border: none; background: transparent; color: var(--text-muted);
+  font-family: inherit; font-size: 13.5px; font-weight: 600; cursor: pointer;
+  padding: 9px 18px; border-radius: 9px; transition: all 0.15s;
+}
+.mode-btn:hover:not(.active):not(:disabled) { color: var(--text); }
+.mode-btn.active {
+  background: linear-gradient(135deg, var(--accent-2), #6ee7db);
+  color: #06231f; box-shadow: 0 4px 12px rgba(79,209,197,0.25);
+}
+.mode-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ─────────── QCM ─────────── */
+.qcm-block { animation: fade 0.25s ease; margin-bottom: 20px; }
+.qcm-question {
+  font-size: 15.5px; font-weight: 600; margin: 0 0 4px; line-height: 1.5;
+}
+.qcm-question::after {
+  content: attr(data-hint); display: block; font-size: 12px; font-weight: 500;
+  color: var(--text-muted); margin-top: 3px;
+}
+.qcm-options { list-style: none; margin: 14px 0 16px; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.qcm-option {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 16px; border-radius: 12px; cursor: pointer;
+  border: 1px solid var(--border); background: var(--panel);
+  transition: all 0.14s; user-select: none;
+}
+.qcm-option:hover { border-color: var(--accent-2); transform: translateX(2px); }
+.qcm-option .qcm-check {
+  width: 24px; height: 24px; border-radius: 7px; flex-shrink: 0;
+  border: 2px solid var(--border); display: grid; place-items: center;
+  font-size: 14px; font-weight: 800; color: transparent; transition: all 0.14s;
+}
+.qcm-option.selected { border-color: var(--accent-2); background: rgba(79,209,197,0.07); }
+.qcm-option.selected .qcm-check { background: var(--accent-2); border-color: var(--accent-2); color: #06231f; }
+.qcm-option .qcm-text { flex: 1; font-size: 14px; line-height: 1.4; }
+.qcm-option .qcm-letter {
+  font-size: 12px; font-weight: 800; color: var(--text-muted);
+  background: var(--panel-2); width: 24px; height: 24px; border-radius: 6px;
+  display: grid; place-items: center; flex-shrink: 0;
+}
+
+/* États après validation */
+.qcm-option.st-correct { border-color: rgba(52,211,153,0.6); background: rgba(52,211,153,0.1); cursor: default; }
+.qcm-option.st-correct .qcm-check { background: var(--good); border-color: var(--good); color: #04231a; }
+.qcm-option.st-correct .qcm-letter { color: var(--good); }
+.qcm-option.st-missed { border-color: rgba(251,191,36,0.6); background: rgba(251,191,36,0.08); cursor: default; }
+.qcm-option.st-missed .qcm-check { border-color: var(--warn); color: var(--warn); }
+.qcm-option.st-missed .qcm-letter { color: var(--warn); }
+.qcm-option.st-wrong { border-color: rgba(248,113,113,0.6); background: rgba(248,113,113,0.09); cursor: default; }
+.qcm-option.st-wrong .qcm-check { background: var(--bad); border-color: var(--bad); color: #2a0b0b; }
+.qcm-option.st-wrong .qcm-letter { color: var(--bad); }
+.qcm-option.st-neutral { opacity: 0.7; cursor: default; }
+
+.qcm-result { margin-top: 4px; animation: fade 0.3s ease; }
+.qcm-verdict {
+  display: flex; align-items: center; gap: 18px;
+  padding: 16px 20px; border-radius: 12px; border: 1px solid var(--border);
+  background: var(--panel);
+}
+.qcm-verdict.good { border-color: rgba(52,211,153,0.4); background: rgba(52,211,153,0.07); }
+.qcm-verdict.warn { border-color: rgba(251,191,36,0.4); background: rgba(251,191,36,0.07); }
+.qcm-verdict.bad { border-color: rgba(248,113,113,0.4); background: rgba(248,113,113,0.07); }
+.qcm-score {
+  font-size: 30px; font-weight: 800; line-height: 1; flex-shrink: 0;
+}
+.qcm-score small { font-size: 12px; color: var(--text-muted); font-weight: 600; }
+.qcm-verdict.good .qcm-score { color: var(--good); }
+.qcm-verdict.warn .qcm-score { color: var(--warn); }
+.qcm-verdict.bad .qcm-score { color: var(--bad); }
+.qcm-expected { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+.qcm-expected b { color: var(--text); }
+.qcm-legend { display: flex; gap: 16px; margin-top: 12px; font-size: 12px; color: var(--text-muted); }
+.qcm-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.qcm-legend i { width: 11px; height: 11px; border-radius: 4px; display: inline-block; }
+.qcm-legend i.st-correct { background: var(--good); }
+.qcm-legend i.st-missed { background: var(--warn); }
+.qcm-legend i.st-wrong { background: var(--bad); }
 
 /* ─────────── Lightbox ─────────── */
 .lightbox {

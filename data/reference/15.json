@@ -1,0 +1,96 @@
+{
+  "num": 15,
+  "titre": "bloc indifférencié",
+  "famille": "conduction",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence cardiaque régulière à environ 55/min. Rythme sinusal, avec conduction atrio-ventriculaire 1/1 et intervalle PR de durée normale. Axe gauche. Les QRS sont élargis à 150 ms, sans morphologie typique de bloc de branche droit ni de bloc de branche gauche : l’aspect rS en V1 n’est pas compatible avec un bloc de branche droit et l’aspect qR en DI n’est pas compatible avec un bloc de branche gauche. On note également un rabotage des ondes R dans tout le précordium. La repolarisation montre des ondes T négatives en DI-aVL ; QT non précisé. Conclusion : ECG en rythme sinusal avec QRS larges correspondant à un bloc indifférencié, associé à une hypertrophie auriculaire gauche selon le QCM.",
+  "points_cles": [
+    {
+      "label": "Rythme sinusal à environ 55/min",
+      "rang": "B"
+    },
+    {
+      "label": "Conduction atrio-ventriculaire normale : conduction 1/1, PR normal",
+      "rang": "B"
+    },
+    {
+      "label": "QRS larges à 150 ms",
+      "rang": "A"
+    },
+    {
+      "label": "Absence de morphologie caractéristique de bloc de branche droit ou gauche",
+      "rang": "A"
+    },
+    {
+      "label": "Diagnostic de bloc indifférencié",
+      "rang": "A"
+    },
+    {
+      "label": "Axe gauche",
+      "rang": "B"
+    },
+    {
+      "label": "Rabotage des ondes R dans le précordium",
+      "rang": "C"
+    },
+    {
+      "label": "Ondes T négatives en DI-aVL",
+      "rang": "C"
+    },
+    {
+      "label": "Hypertrophie auriculaire gauche retenue dans le QCM",
+      "rang": "B"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé montre un rythme sinusal lent autour de 55/min avec conduction atrio-ventriculaire normale. Les QRS sont larges à 150 ms, mais sans critères de bloc de branche droit ni de bloc de branche gauche : il s’agit donc d’un bloc indifférencié. S’y associent un axe gauche, un rabotage des ondes R précordiales, des ondes T négatives en DI-aVL et une hypertrophie auriculaire gauche retenue dans le QCM.",
+    "criteres_indispensables": [
+      {
+        "label": "Diagnostic principal : bloc indifférencié",
+        "rang": "A"
+      },
+      {
+        "label": "QRS larges, durée > 120 ms et ici 150 ms",
+        "rang": "A"
+      },
+      {
+        "label": "Absence d’aspect caractéristique de bloc de branche droit ou gauche",
+        "rang": "A"
+      },
+      {
+        "label": "Rythme sinusal à environ 55/min",
+        "rang": "B"
+      },
+      {
+        "label": "Conduction atrio-ventriculaire normale avec PR normal",
+        "rang": "B"
+      },
+      {
+        "label": "Hypertrophie auriculaire gauche retenue dans les réponses du QCM",
+        "rang": "B"
+      },
+      {
+        "label": "Axe gauche",
+        "rang": "B"
+      },
+      {
+        "label": "Rabotage des ondes R dans tout le précordium",
+        "rang": "C"
+      },
+      {
+        "label": "Ondes T négatives en DI-aVL",
+        "rang": "C"
+      }
+    ],
+    "diagnostic_principal": "Bloc indifférencié",
+    "pieges": [
+      "Ne pas conclure à un bloc de branche droite : l’aspect rS en V1 ne correspond pas à un BBD typique.",
+      "Ne pas conclure à un bloc de branche gauche : l’aspect qR en DI ne correspond pas à un BBG typique.",
+      "Ne pas chercher une morphologie spécifique de bloc indifférencié : c’est un diagnostic d’élimination devant un QRS large sans critères de BBD ou BBG.",
+      "Ne pas omettre l’hypertrophie auriculaire gauche, réponse attendue au QCM."
+    ],
+    "references_item": "Aucune référence spécifique au bloc indifférencié dans l’EDN Item 236 — Troubles de la conduction intracardiaque ni dans l’EDN Item 231 — Électrocardiogramme, selon le texte fourni.",
+    "citation_source": "« diagnostic d'élimination en présence d'un QRS large (> 120 ms) mais ne présentant pas les caractéristiques d'un bloc de branche droite ou gauche »"
+  },
+  "error": null
+}

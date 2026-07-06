@@ -1,0 +1,105 @@
+{
+  "num": 60,
+  "titre": "syndrome coronarien aigu inférieur avec extension au ventricule droit",
+  "famille": "ischemie",
+  "model": "gpt-5.5",
+  "reponse_attendue": "ECG avec fréquence non précisée, sans onde P sinusale identifiable : il existe une dysfonction sinusale avec rythme d’échappement, à QRS modérément élargis à 115 ms. On note une probable conduction atriale rétrograde, visible sous forme d’une activité atriale dans la partie initiale de l’onde T, négative dans les dérivations inférieures ; le PR n’est donc pas analysable comme un rythme sinusal. L’axe n’est pas précisé. Les QRS comportent des ondes q dans les dérivations inférieures. La repolarisation montre un sus-décalage du segment ST en territoire inférieur, en onde de Pardee, avec sous-décalage réciproque en DI et aVL. L’enregistrement complémentaire en dérivations droites/postérieures montre un sus-décalage significatif en V3R-V4R avec ondes q profondes. Conclusion : SCA ST+ inférieur aigu, compliqué d’une dysfonction sinusale et avec extension au ventricule droit, imposant l’enregistrement précoce des dérivations droites et une prise en charge urgente de reperfusion.",
+  "points_cles": [
+    {
+      "label": "Diagnostic de SCA ST+ inférieur aigu",
+      "rang": "A"
+    },
+    {
+      "label": "Sus-décalage ST en dérivations inférieures avec aspect d’onde de Pardee",
+      "rang": "A"
+    },
+    {
+      "label": "Sous-décalage miroir en DI et aVL",
+      "rang": "A"
+    },
+    {
+      "label": "Extension au ventricule droit sur sus-décalage significatif en V3R-V4R",
+      "rang": "A"
+    },
+    {
+      "label": "Dysfonction sinusale avec absence d’ondes P visualisables",
+      "rang": "A"
+    },
+    {
+      "label": "Rythme d’échappement à QRS modérément élargis, 115 ms",
+      "rang": "B"
+    },
+    {
+      "label": "Probable conduction atriale rétrograde, activité atriale négative dans les dérivations inférieures au début de l’onde T",
+      "rang": "B"
+    },
+    {
+      "label": "Ondes q dans les dérivations inférieures et q profondes en dérivations droites",
+      "rang": "B"
+    },
+    {
+      "label": "ECG 18 dérivations obligatoire/précoce devant un SCA ST+ inférieur",
+      "rang": "A"
+    },
+    {
+      "label": "Dysfonction sinusale relativement fréquente dans le SCA ST+ inférieur",
+      "rang": "C"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé montre un SCA ST+ inférieur aigu : sus-décalage ST inférieur en onde de Pardee avec miroir en DI-aVL et ondes q inférieures. L’absence d’ondes P traduit une dysfonction sinusale avec échappement à QRS modérément élargis et probable conduction atriale rétrograde. Les dérivations droites V3R-V4R objectivent un sus-décalage significatif avec ondes q profondes, en faveur d’une extension au ventricule droit.",
+    "criteres_indispensables": [
+      {
+        "label": "SCA ST+ inférieur aigu / infarctus inférieur avec sus-décalage ST",
+        "rang": "A"
+      },
+      {
+        "label": "Sus-décalage ST dans les dérivations inférieures",
+        "rang": "A"
+      },
+      {
+        "label": "Sous-décalage réciproque en DI et aVL",
+        "rang": "A"
+      },
+      {
+        "label": "Extension au ventricule droit diagnostiquée sur dérivations droites V3R-V4R",
+        "rang": "A"
+      },
+      {
+        "label": "Sus-décalage > 1 mm ou significatif en V3R-V4R",
+        "rang": "A"
+      },
+      {
+        "label": "Dysfonction sinusale : absence d’ondes P visualisables",
+        "rang": "A"
+      },
+      {
+        "label": "Probable conduction atriale rétrograde",
+        "rang": "B"
+      },
+      {
+        "label": "QRS d’échappement modérément élargis à 115 ms",
+        "rang": "B"
+      },
+      {
+        "label": "Ondes q inférieures, et ondes q profondes en dérivations droites",
+        "rang": "B"
+      },
+      {
+        "label": "Nécessité d’un ECG 18 dérivations / dérivations droites précoce",
+        "rang": "A"
+      }
+    ],
+    "diagnostic_principal": "SCA ST+ inférieur aigu avec extension au ventricule droit, associé à une dysfonction sinusale avec probable conduction atriale rétrograde",
+    "pieges": [
+      "Ne pas conclure à un infarctus antéro-septal ou latéral : le territoire principal est inférieur avec miroir en DI-aVL.",
+      "Ne pas méconnaître l’extension au ventricule droit : elle nécessite des dérivations droites V3R-V4R précoces.",
+      "Ne pas considérer l’absence d’ondes P comme un ECG normal : elle traduit ici une dysfonction sinusale avec échappement.",
+      "Ne pas omettre la conduction atriale rétrograde, visible dans la partie initiale de l’onde T, négative en inférieur.",
+      "Ne pas oublier que le sus-décalage en dérivations droites peut être fugace et disparaître en 10 à 12 heures."
+    ],
+    "references_item": "EDN — ECG : SCA ST+ inférieur avec extension au ventricule droit ; référentiel incluant un tracé avec sus-décalage ST en DII, DIII, aVF, miroir en DI-aVL, et sus-décalage en V3R-V4R.",
+    "citation_source": "« l'anomalie électrocardiographique caractérisant une extension au ventricule droit est l'existence d'un sus-décalage > 1 mm »"
+  },
+  "error": null
+}

@@ -1,0 +1,84 @@
+{
+  "num": 25,
+  "titre": "BAV du second degré type 2 (Mobitz 2)",
+  "famille": "conduction",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence ventriculaire proche de 60/min, avec un rythme irrégulier du fait d’une pause au milieu du tracé. L’activité atriale est sinusale et régulière. Les ondes P sont initialement conduites avec un intervalle PR limite, mais constant avant et après la pause ; la pause correspond à une onde P bloquée, non suivie de QRS, sans allongement progressif préalable du PR. L’axe est compatible avec un hémibloc antérieur gauche. Les QRS sont élargis avec morphologie de bloc de branche droit complet associé à l’hémibloc antérieur gauche. Pas d’anomalie de repolarisation spécifique rapportée ; QT non commenté. Conclusion : bloc auriculoventriculaire du deuxième degré type 2, ou Mobitz 2, sur trouble de conduction infranodal probable à QRS larges, de mauvais pronostic avec risque d’évolution vers un BAV complet.",
+  "points_cles": [
+    {
+      "label": "Diagnostic de BAV du deuxième degré type 2 / Mobitz 2",
+      "rang": "A"
+    },
+    {
+      "label": "Onde P bloquée inopinée, non suivie de QRS",
+      "rang": "A"
+    },
+    {
+      "label": "PR des complexes conduits constant, sans allongement progressif préalable",
+      "rang": "A"
+    },
+    {
+      "label": "Activité atriale sinusale et régulière",
+      "rang": "B"
+    },
+    {
+      "label": "Rythme irrégulier avec pause, fréquence proche de 60 bpm",
+      "rang": "B"
+    },
+    {
+      "label": "QRS élargis avec bloc de branche droit complet et hémibloc antérieur gauche",
+      "rang": "B"
+    },
+    {
+      "label": "Ne pas conclure à un BAV II type 1/Wenckebach ni à une dysfonction sinusale",
+      "rang": "A"
+    },
+    {
+      "label": "Risque élevé d’évolution vers BAV complet, indication de stimulateur selon le texte pédagogique",
+      "rang": "C"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "ECG avec activité atriale sinusale régulière et rythme ventriculaire irrégulier par pause liée à une onde P bloquée. Les PR conduits restent constants avant et après la pause, sans allongement progressif : il s’agit d’un BAV du 2e degré type 2 (Mobitz 2). Les QRS sont larges avec bloc de branche droit complet et hémibloc antérieur gauche, suggérant un trouble infranodal à mauvais pronostic.",
+    "criteres_indispensables": [
+      {
+        "label": "Identifier un BAV du second degré type 2 / Mobitz 2",
+        "rang": "A"
+      },
+      {
+        "label": "Décrire une onde P bloquée non suivie de QRS",
+        "rang": "A"
+      },
+      {
+        "label": "Mentionner l’absence d’allongement progressif du PR et le PR constant des complexes conduits",
+        "rang": "A"
+      },
+      {
+        "label": "Reconnaître une activité atriale sinusale régulière",
+        "rang": "B"
+      },
+      {
+        "label": "Décrire la pause/irrégularité ventriculaire avec fréquence proche de 60 bpm",
+        "rang": "B"
+      },
+      {
+        "label": "Signaler les QRS larges avec bloc de branche droit complet et hémibloc antérieur gauche",
+        "rang": "B"
+      },
+      {
+        "label": "Mentionner le risque d’évolution vers BAV complet / mauvais pronostic / indication de stimulateur",
+        "rang": "C"
+      }
+    ],
+    "diagnostic_principal": "Bloc auriculoventriculaire du deuxième degré type 2 (Mobitz 2)",
+    "pieges": [
+      "Confondre avec un BAV du second degré type 1 : il n’y a pas d’allongement progressif du PR.",
+      "Conclure à une dysfonction sinusale : l’activité atriale est sinusale et régulière, la pause est due à une onde P bloquée.",
+      "Considérer le tracé comme normal malgré la pause et l’onde P non conduite.",
+      "Méconnaître la gravité du Mobitz 2 à QRS larges, souvent infranodal et à risque de BAV complet."
+    ],
+    "references_item": "EDN — Troubles de conduction / BAV : Mobitz 2 défini par une onde P bloquée inopinée sans allongement préalable du PR ; trouble le plus souvent infranodal, à QRS larges, évoluant fréquemment vers BAV complet.",
+    "citation_source": "« les ondes P bloquées non suivies de QRS surviennent inopinément, sans allongement préalable de l’espace PR »"
+  },
+  "error": null
+}

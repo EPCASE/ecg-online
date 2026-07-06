@@ -1,0 +1,85 @@
+{
+  "num": 17,
+  "titre": "bradycardie sinusale du sportif",
+  "famille": "rythme",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence ventriculaire régulière lente, autour de 40/min. Rythme sinusal : ondes P sinusales précédant chaque QRS, sans activité atriale rétrograde. La conduction atrio-ventriculaire est normale avec un intervalle PR de durée normale, sans argument pour un BAV du 2e degré. Axe électrique normal. QRS fins, sans bloc de branche complet, sans hypertrophie ventriculaire gauche et sans onde Q de nécrose. Repolarisation sans anomalie significative, intervalle QT de durée normale. Conclusion : bradycardie sinusale physiologique du sportif d’endurance.",
+  "points_cles": [
+    {
+      "label": "Rythme sinusal",
+      "rang": "A"
+    },
+    {
+      "label": "Bradycardie sinusale autour de 40/min",
+      "rang": "A"
+    },
+    {
+      "label": "Conduction atrio-ventriculaire normale avec PR normal, pas de BAV du 2e degré",
+      "rang": "A"
+    },
+    {
+      "label": "QRS fins, axe normal, pas de bloc de branche complet",
+      "rang": "B"
+    },
+    {
+      "label": "Absence d’anomalie de repolarisation et QT normal",
+      "rang": "B"
+    },
+    {
+      "label": "Conclusion : bradycardie sinusale physiologique du sportif",
+      "rang": "A"
+    },
+    {
+      "label": "Pas d’activité atriale rétrograde",
+      "rang": "B"
+    },
+    {
+      "label": "Absence d’HVG et d’ondes Q de nécrose",
+      "rang": "C"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "ECG d’un marathonien montrant un rythme sinusal lent, environ 40/min, correspondant à une bradycardie sinusale. La conduction AV est normale, les QRS sont fins d’axe normal, sans anomalie de repolarisation ni allongement du QT. Dans ce contexte de sportif d’endurance asymptomatique, il s’agit d’une bradycardie sinusale physiologique liée à l’hypertonie vagale, sans indication de traitement.",
+    "criteres_indispensables": [
+      {
+        "label": "Diagnostic principal : bradycardie sinusale physiologique du sportif",
+        "rang": "A"
+      },
+      {
+        "label": "Rythme sinusal",
+        "rang": "A"
+      },
+      {
+        "label": "Fréquence cardiaque lente, environ 40/min ou < 50/min au repos",
+        "rang": "A"
+      },
+      {
+        "label": "Conduction atrio-ventriculaire normale, PR normal, absence de BAV du second degré",
+        "rang": "A"
+      },
+      {
+        "label": "QRS fins, axe normal, absence de bloc de branche complet",
+        "rang": "B"
+      },
+      {
+        "label": "Absence de trouble de la repolarisation et QT normal",
+        "rang": "B"
+      },
+      {
+        "label": "Contexte d’hypertonie vagale du sportif d’endurance, non pathologique en l’absence de symptômes",
+        "rang": "B"
+      }
+    ],
+    "diagnostic_principal": "Bradycardie sinusale physiologique du sportif",
+    "pieges": [
+      "Confondre bradycardie sinusale physiologique et dysfonction sinusale pathologique nécessitant un stimulateur.",
+      "Diagnostiquer à tort un BAV du second degré alors que la conduction atrio-ventriculaire et le PR sont normaux.",
+      "Interpréter l’activité atriale comme rétrograde alors que le rythme est sinusal.",
+      "Conclure à un bloc de branche complet alors que les QRS sont fins.",
+      "Proposer des investigations ou un traitement systématique chez un sportif asymptomatique avec hypertonie vagale."
+    ],
+    "references_item": "EDN Item 231 — ECG : indications et interprétation ; référentiel sur la dépendance du nœud sinusal au système nerveux autonome et l’hypervagotonie du sportif d’endurance.",
+    "citation_source": "« une hypertonie vagale fréquemment observée chez les patients sportifs peut expliquer une bradycardie physiologique »"
+  },
+  "error": null
+}

@@ -1,0 +1,93 @@
+{
+  "num": 23,
+  "titre": "BAV du premier degré",
+  "famille": "conduction",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence cardiaque normale, environ 60/min, sur un rythme régulier sinusal. Toutes les ondes P sont suivies d’un QRS, avec un intervalle PR fixe mais très allongé, supérieur à 200 ms, estimé autour de 500 ms, compatible avec un bloc atrio-ventriculaire du premier degré. L’axe des QRS est normal ; les QRS sont fins, sans hypertrophie ventriculaire gauche et sans onde Q de nécrose. On note une hypertrophie auriculaire gauche avec ondes P allongées et bifides en DI-DII. Il n’existe pas de trouble de la repolarisation, et l’intervalle QT est de durée normale. Conclusion : ECG en rythme sinusal avec BAV du premier degré marqué, sans onde P bloquée ni pré-excitation, associé à une hypertrophie auriculaire gauche.",
+  "points_cles": [
+    {
+      "label": "Rythme régulier sinusal à environ 60/min",
+      "rang": "A"
+    },
+    {
+      "label": "BAV du premier degré : PR fixe et constant > 200 ms, environ 500 ms",
+      "rang": "A"
+    },
+    {
+      "label": "Toutes les ondes P sont conduites, sans onde P bloquée ; fréquence ventriculaire égale à la fréquence atriale",
+      "rang": "A"
+    },
+    {
+      "label": "QRS fins avec axe normal",
+      "rang": "B"
+    },
+    {
+      "label": "Hypertrophie auriculaire gauche : onde P allongée, bifide en DI-DII",
+      "rang": "B"
+    },
+    {
+      "label": "Absence de pré-excitation ventriculaire",
+      "rang": "B"
+    },
+    {
+      "label": "Absence de troubles de la repolarisation et QT normal",
+      "rang": "C"
+    },
+    {
+      "label": "Absence d’HVG et d’ondes Q de nécrose",
+      "rang": "C"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé montre un rythme régulier sinusal à fréquence normale, autour de 60/min. L’élément central est un BAV du premier degré : chaque onde P est conduite avec un PR fixe, très allongé, supérieur à 200 ms, environ 500 ms. Les QRS sont fins, d’axe normal, sans trouble de repolarisation ni pré-excitation ; une hypertrophie auriculaire gauche est décrite.",
+    "criteres_indispensables": [
+      {
+        "label": "Diagnostic principal de BAV du premier degré",
+        "rang": "A"
+      },
+      {
+        "label": "Intervalle PR fixe et constant > 200 ms, ici très allongé autour de 500 ms",
+        "rang": "A"
+      },
+      {
+        "label": "Toutes les ondes P sont suivies d’un QRS : absence d’ondes P bloquées",
+        "rang": "A"
+      },
+      {
+        "label": "Rythme sinusal régulier à fréquence normale environ 60/min",
+        "rang": "A"
+      },
+      {
+        "label": "QRS fins",
+        "rang": "B"
+      },
+      {
+        "label": "Absence de pré-excitation ventriculaire sur voie accessoire",
+        "rang": "B"
+      },
+      {
+        "label": "Hypertrophie auriculaire gauche avec onde P allongée/bifide en DI-DII",
+        "rang": "B"
+      },
+      {
+        "label": "Absence de trouble de la repolarisation et QT normal",
+        "rang": "C"
+      },
+      {
+        "label": "Axe des QRS normal, absence d’HVG et d’ondes Q de nécrose",
+        "rang": "C"
+      }
+    ],
+    "diagnostic_principal": "Bloc atrio-ventriculaire du premier degré",
+    "pieges": [
+      "Ne pas confondre BAV du premier degré avec BAV de degré supérieur : il n’y a pas d’onde P bloquée, chaque onde P est conduite.",
+      "Ne pas conclure à une dysfonction sinusale : le rythme est sinusal et la fréquence est normale.",
+      "Ne pas parler d’activité atriale rétrograde : les ondes P sinusales précèdent les QRS.",
+      "Ne pas diagnostiquer une pré-excitation : l’anomalie est un PR très allongé, non un PR court avec onde delta.",
+      "Ne pas attribuer une bradycardie au BAV du premier degré : par définition les ventricules suivent les oreillettes."
+    ],
+    "references_item": "EDN — Troubles de conduction auriculo-ventriculaire / BAV du premier degré ; EDN Item 231 — ECG : indications et interprétation.",
+    "citation_source": "« chaque onde P est conduite) et un espace PR dépassant 200 ms »"
+  },
+  "error": null
+}

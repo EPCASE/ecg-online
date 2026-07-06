@@ -1,0 +1,84 @@
+{
+  "num": 13,
+  "titre": "bloc de branche gauche complet",
+  "famille": "conduction",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence cardiaque régulière autour de 75/min. Rythme sinusal, avec conduction atrio-ventriculaire 1/1 et intervalle PR de durée normale. Axe non précisé. Les QRS sont larges, mesurés à environ 150 ms, avec une morphologie typique de bloc de branche gauche complet : QRS globalement négatifs en V1-V2, de type QS ou rS, et QRS positifs avec onde R large en DI et V6. La repolarisation est secondairement modifiée, avec sous-décalage du ST et onde T négative en V6, et sus-décalage du ST avec onde T positive en V1-V3. Conclusion : ECG en rythme sinusal montrant un bloc de branche gauche complet typique.",
+  "points_cles": [
+    {
+      "label": "Rythme sinusal",
+      "rang": "A"
+    },
+    {
+      "label": "Fréquence cardiaque environ 75/min",
+      "rang": "B"
+    },
+    {
+      "label": "Conduction atrio-ventriculaire normale : conduction 1/1, PR normal",
+      "rang": "B"
+    },
+    {
+      "label": "QRS larges à 150 ms, donc > 120 ms",
+      "rang": "A"
+    },
+    {
+      "label": "Morphologie de bloc de branche gauche : QRS négatif QS ou rS en V1-V2",
+      "rang": "A"
+    },
+    {
+      "label": "Morphologie de bloc de branche gauche : onde R large positive en DI et V6",
+      "rang": "A"
+    },
+    {
+      "label": "Troubles secondaires de repolarisation : ST sous-décalé/T négative en V6 et ST sus-décalé/T positive en V1-V3",
+      "rang": "B"
+    },
+    {
+      "label": "Conclusion diagnostique : bloc de branche gauche complet",
+      "rang": "A"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé montre un rythme sinusal à environ 75/min avec conduction AV normale. Les QRS sont larges à 150 ms, avec aspect typique de bloc de branche gauche complet : QRS négatifs en V1-V2 et onde R large en DI/V6. Les anomalies de repolarisation associées sont attendues dans le BBG : sous-décalage ST/T négative latérale et sus-décalage ST antérieur droit.",
+    "criteres_indispensables": [
+      {
+        "label": "Diagnostic principal : bloc de branche gauche complet",
+        "rang": "A"
+      },
+      {
+        "label": "QRS larges, durée 150 ms ou > 120 ms",
+        "rang": "A"
+      },
+      {
+        "label": "Aspect rS ou QS, globalement négatif en V1-V2",
+        "rang": "A"
+      },
+      {
+        "label": "Onde R large/exclusive positive en DI et V6",
+        "rang": "A"
+      },
+      {
+        "label": "Rythme sinusal",
+        "rang": "A"
+      },
+      {
+        "label": "Conduction atrio-ventriculaire normale avec PR normal",
+        "rang": "B"
+      },
+      {
+        "label": "Troubles de repolarisation secondaires compatibles avec BBG : ST- et T négative en V6, ST+ et T positive en V1-V3",
+        "rang": "B"
+      }
+    ],
+    "diagnostic_principal": "Bloc de branche gauche complet",
+    "pieges": [
+      "Ne pas conclure à un bloc de branche droite : dans le BBG les QRS sont négatifs en V1-V2 et larges/positifs en dérivations latérales.",
+      "Ne pas confondre avec un bloc indifférencié : la morphologie est typique de BBG complet.",
+      "Ne pas surinterpréter les troubles de repolarisation discordants comme un infarctus sans autre argument : ils sont fréquents dans le BBG et peuvent mimer un infarctus.",
+      "Ne pas oublier que le caractère complet repose sur une durée de QRS > 120 ms, ici 150 ms."
+    ],
+    "references_item": "EDN Item 231 — ECG : indications et interprétation ; référentiel : critères diagnostiques du bloc de branche gauche complet.",
+    "citation_source": "Ce patient présente un aspect caractéristique de bloc de branche gauche complet."
+  },
+  "error": null
+}

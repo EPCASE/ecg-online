@@ -1,0 +1,88 @@
+{
+  "num": 54,
+  "titre": "embolie pulmonaire sévère",
+  "famille": "embolie",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence cardiaque à 91/min. Rythme supraventriculaire avec un doublet d’extrasystoles atriales ; pas d’argument fourni pour une arythmie soutenue. Espace PR normal. Axe non précisé dans les données disponibles. Les QRS sont larges, de durée > 120 ms, avec morphologie de bloc de branche droite complet : aspect rSR’ en V1 et qRS en V6 avec onde S large et traînante. Il existe un aspect S1q3T3 avec onde T négative en DIII, ainsi que des ondes T négatives en V1-V3, compatibles avec un retentissement aigu sur le cœur droit et une ischémie fonctionnelle septo-antérieure. Conclusion : ECG évocateur, dans le contexte clinique, d’un cœur pulmonaire aigu par embolie pulmonaire massive, responsable d’un choc obstructif, avec bloc de branche droite complet comme signe de gravité.",
+  "points_cles": [
+    {
+      "label": "Diagnostic principal : choc obstructif sur embolie pulmonaire massive / cœur pulmonaire aigu",
+      "rang": "A"
+    },
+    {
+      "label": "Bloc de branche droite complet : QRS > 120 ms, rSR’ en V1, S large et traînante en V6",
+      "rang": "A"
+    },
+    {
+      "label": "Aspect S1q3T3 avec onde T négative en DIII",
+      "rang": "A"
+    },
+    {
+      "label": "Ondes T négatives en V1-V3",
+      "rang": "A"
+    },
+    {
+      "label": "Fréquence cardiaque à 91 bpm",
+      "rang": "B"
+    },
+    {
+      "label": "Doublet d’extrasystoles atriales",
+      "rang": "B"
+    },
+    {
+      "label": "PR normal",
+      "rang": "B"
+    },
+    {
+      "label": "ECG d’EP non sensible ni spécifique, mais rarement normal dans l’EP massive",
+      "rang": "C"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "L’ECG montre des signes de cœur pulmonaire aigu : bloc de branche droite complet, aspect S1q3T3 et ondes T négatives en V1-V3. Dans le contexte clinique, ces anomalies orientent vers une embolie pulmonaire massive compliquée de choc obstructif. Le bloc de branche droite complet est un signe de gravité lié à la surcharge brutale du ventricule droit.",
+    "criteres_indispensables": [
+      {
+        "label": "Retenir le diagnostic d’embolie pulmonaire massive / choc obstructif",
+        "rang": "A"
+      },
+      {
+        "label": "Identifier un bloc de branche droite complet avec QRS > 120 ms",
+        "rang": "A"
+      },
+      {
+        "label": "Décrire l’aspect de BBD complet : rSR’ en V1 et S large traînante en V6",
+        "rang": "A"
+      },
+      {
+        "label": "Mentionner l’aspect S1q3T3, notamment T négative en DIII",
+        "rang": "A"
+      },
+      {
+        "label": "Mentionner les ondes T négatives en V1-V3",
+        "rang": "A"
+      },
+      {
+        "label": "Relier ces signes à une surcharge aiguë du ventricule droit / cœur pulmonaire aigu",
+        "rang": "B"
+      },
+      {
+        "label": "Signaler le doublet d’extrasystoles atriales",
+        "rang": "B"
+      },
+      {
+        "label": "Signaler PR normal et fréquence 91 bpm",
+        "rang": "B"
+      }
+    ],
+    "diagnostic_principal": "Choc obstructif sur embolie pulmonaire massive avec cœur pulmonaire aigu et bloc de branche droite complet",
+    "pieges": [
+      "Conclure à un infarctus antérieur/choc cardiogénique devant les ondes T négatives en V1-V3 sans intégrer le BBD complet et le contexte d’EP massive.",
+      "Considérer l’ECG comme spécifique d’embolie pulmonaire : l’ECG d’EP n’est ni sensible ni spécifique.",
+      "Oublier que le bloc de branche droite complet dans ce contexte est rare et constitue un signe de gravité.",
+      "Ne pas reconnaître l’aspect S1q3T3 ou le bloc de branche droite complet."
+    ],
+    "references_item": "EDN — Embolie pulmonaire : évoquer l’EP devant dyspnée aiguë, malaise/syncope, douleur thoracique ou état de choc ; ECG comme examen d’orientation indispensable, non sensible ni spécifique, mais rarement normal dans l’EP massive. EDN Item 231 — ECG : indications et interprétation.",
+    "citation_source": "« L'apparition d'un bloc de branche droite complet est donc rare lors de la survenue d'une embolie pulmonaire, représente un signe de gravité »"
+  },
+  "error": null
+}

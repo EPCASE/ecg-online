@@ -1,0 +1,76 @@
+{
+  "num": 74,
+  "titre": "syndrome de Brugada",
+  "famille": "genetique",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence non précisée sur les éléments fournis. Rythme et conduction auriculo-ventriculaire non décrits ; pas d’anomalie de PR rapportée. Axe non précisé. QRS : aspect évocateur en précordiales droites avec sus-décalage du segment ST en dôme en V1, V2, V3, supérieur à 2 mm dans au moins une de ces dérivations. Repolarisation : ondes T négatives dans les mêmes dérivations V1 à V3, sans image en miroir ; pas d’argument fourni pour un QT long. Conclusion : ECG évocateur d’un syndrome de Brugada, dans un contexte à haut risque clinique de syncope nocturne et d’antécédents familiaux de mort subite.",
+  "points_cles": [
+    {
+      "label": "Sus-décalage ST en dôme en V1-V3",
+      "rang": "A"
+    },
+    {
+      "label": "Sus-ST > 2 mm dans au moins une dérivation précordiale droite",
+      "rang": "A"
+    },
+    {
+      "label": "Ondes T négatives en V1-V3",
+      "rang": "A"
+    },
+    {
+      "label": "Absence de miroir",
+      "rang": "B"
+    },
+    {
+      "label": "Conclusion diagnostique : syndrome de Brugada",
+      "rang": "A"
+    },
+    {
+      "label": "Contexte de syncope nocturne et antécédent familial de mort subite = gravité/avis spécialisé",
+      "rang": "B"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "L’ECG montre un sus-décalage ST en dôme dans les dérivations précordiales droites V1 à V3, avec ondes T négatives dans les mêmes dérivations et absence de miroir. Cet aspect est évocateur d’un syndrome de Brugada. Dans ce contexte de syncope nocturne et d’antécédents familiaux de mort subite, il s’agit d’un tracé à risque justifiant un bilan cardiologique spécialisé et un dépistage familial.",
+    "criteres_indispensables": [
+      {
+        "label": "Identifier le syndrome de Brugada comme diagnostic principal",
+        "rang": "A"
+      },
+      {
+        "label": "Décrire le sus-décalage ST en dôme en V1, V2, V3",
+        "rang": "A"
+      },
+      {
+        "label": "Mentionner un sus-ST > 2 mm dans au moins une des dérivations V1-V3",
+        "rang": "A"
+      },
+      {
+        "label": "Mentionner les ondes T négatives en V1-V3",
+        "rang": "A"
+      },
+      {
+        "label": "Mentionner l’absence de miroir",
+        "rang": "B"
+      },
+      {
+        "label": "Relier le contexte de syncope nocturne/repos et mort subite familiale à un risque de gravité",
+        "rang": "B"
+      },
+      {
+        "label": "Évoquer le bilan spécialisé et le dépistage familial",
+        "rang": "C"
+      }
+    ],
+    "diagnostic_principal": "Syndrome de Brugada",
+    "pieges": [
+      "Ne pas diagnostiquer un syndrome coronarien aigu antérieur : le sus-décalage est en dôme en V1-V3 et sans miroir selon le texte fourni.",
+      "Ne pas conclure à un syndrome du QT long : aucun allongement du QT n’est décrit.",
+      "Ne pas retenir une myocardiopathie hypertrophique ou une dysplasie arythmogène du ventricule droit sur les seules données de ce tracé.",
+      "Ne pas banaliser une syncope nocturne chez un jeune avec antécédents familiaux de mort subite."
+    ],
+    "references_item": "EDN — Item Syncopes : syndrome de Brugada mentionné dans l’item Syncopes.",
+    "citation_source": "« Le diagnostic se fait sur l’ECG de repos, par la présence d’un sus-décalage en dôme en V1, V2, V3. »"
+  },
+  "error": null
+}

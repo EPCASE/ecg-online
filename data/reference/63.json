@@ -1,0 +1,81 @@
+{
+  "num": 63,
+  "titre": "SCA ST+ et risque de mort subite",
+  "famille": "ischemie",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence initialement compatible avec un rythme sinusal sur ce tracé de scope à 2 dérivations, avant une accélération brutale. Rythme initial sinusal. Conduction auriculo-ventriculaire non analysable en détail sur ce scope ; pas d’élément fourni sur le PR. Axe non interprétable sur ces 2 dérivations. QRS initialement analysables, puis une extrasystole ventriculaire survient et déclenche une tachyarythmie ventriculaire extrêmement rapide, polymorphe et anarchique, sans organisation identifiable, correspondant à une fibrillation ventriculaire. Repolarisation : sus-décalage de grande amplitude en V5 avec onde de Pardee, en faveur d’un SCA ST+ antérieur. Conclusion : SCA ST+ antérieur, ici sur thrombose de stent, compliqué d’une fibrillation ventriculaire déclenchée par une ESV, responsable d’une mort subite récupérée par choc électrique externe.",
+  "points_cles": [
+    {
+      "label": "Identifier le sus-décalage de grande amplitude en V5 avec onde de Pardee",
+      "rang": "A"
+    },
+    {
+      "label": "Conclure à un SCA ST+ de territoire antérieur",
+      "rang": "A"
+    },
+    {
+      "label": "Reconnaître une fibrillation ventriculaire : tachycardie extrêmement rapide, polymorphe, anarchique",
+      "rang": "A"
+    },
+    {
+      "label": "Noter le rythme sinusal initial",
+      "rang": "B"
+    },
+    {
+      "label": "Identifier l’extrasystole ventriculaire déclenchante",
+      "rang": "B"
+    },
+    {
+      "label": "Mentionner le contexte de thrombose de stent et mort subite récupérée par choc électrique externe",
+      "rang": "B"
+    },
+    {
+      "label": "Ne pas conclure à une torsade de pointes, une TV organisée ou un rythme idio-ventriculaire accéléré",
+      "rang": "A"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé de scope montre initialement un rythme sinusal avec un sus-décalage majeur en V5, type onde de Pardee, compatible avec un SCA ST+ antérieur. Une extrasystole ventriculaire déclenche ensuite une fibrillation ventriculaire, trouble du rythme ventriculaire extrêmement rapide, polymorphe et anarchique. Dans le contexte, il s’agit d’une thrombose de stent compliquée de mort subite récupérée par choc électrique externe.",
+    "criteres_indispensables": [
+      {
+        "label": "Diagnostic de SCA ST+ antérieur",
+        "rang": "A"
+      },
+      {
+        "label": "Sus-décalage de grande amplitude en V5 / onde de Pardee",
+        "rang": "A"
+      },
+      {
+        "label": "Diagnostic de fibrillation ventriculaire",
+        "rang": "A"
+      },
+      {
+        "label": "Description de la FV comme tachycardie extrêmement rapide, polymorphe et anarchique",
+        "rang": "A"
+      },
+      {
+        "label": "ESV déclenchante",
+        "rang": "B"
+      },
+      {
+        "label": "Rythme sinusal initial",
+        "rang": "B"
+      },
+      {
+        "label": "Contexte de thrombose de stent et mort subite récupérée par choc électrique externe",
+        "rang": "B"
+      }
+    ],
+    "diagnostic_principal": "SCA ST+ antérieur compliqué d’une fibrillation ventriculaire",
+    "pieges": [
+      "Confondre la fibrillation ventriculaire avec une tachycardie ventriculaire organisée.",
+      "Diagnostiquer une torsade de pointes alors que le tracé est décrit comme anarchique et correspond à une FV.",
+      "Conclure à un rythme idio-ventriculaire accéléré, incompatible avec la tachyarythmie extrêmement rapide décrite.",
+      "Oublier le sus-décalage en V5 / onde de Pardee et donc le SCA ST+ antérieur.",
+      "Négliger l’ESV déclenchante dans le contexte d’ischémie aiguë."
+    ],
+    "references_item": "EDN — Syndrome coronarien aigu ST+ ; troubles du rythme ventriculaire compliquant l’infarctus du myocarde ; fibrillation ventriculaire et mort subite ; choc électrique externe immédiat.",
+    "citation_source": "« Une fibrillation ventriculaire générée par l’ischémie est responsable de la plupart des décès »"
+  },
+  "error": null
+}

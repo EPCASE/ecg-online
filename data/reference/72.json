@@ -1,0 +1,76 @@
+{
+  "num": 72,
+  "titre": "hypokaliémie",
+  "famille": "metabolique",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence ventriculaire régulière à environ 80/min. Rythme sinusal, avec ondes P sinusales précédant chaque QRS. Conduction auriculo-ventriculaire normale avec intervalle PR normal ; QRS fins. Axe électrique dévié à gauche. Les complexes QRS sont de durée normale, sans argument pour trouble de conduction intraventriculaire. La repolarisation montre un allongement apparent de l’intervalle QT lié à une onde U large/ample en fin de repolarisation. Dans le contexte d’introduction récente de furosémide, cet ECG est en faveur d’une hypokaliémie, sur rythme sinusal, sans argument pour BAV du 2e degré ni hyperkaliémie.",
+  "points_cles": [
+    {
+      "label": "Rythme sinusal à environ 80 bpm",
+      "rang": "A"
+    },
+    {
+      "label": "PR normal et QRS fins",
+      "rang": "A"
+    },
+    {
+      "label": "Déviation axiale gauche",
+      "rang": "B"
+    },
+    {
+      "label": "Onde U large/ample avec allongement apparent du QT",
+      "rang": "A"
+    },
+    {
+      "label": "Contexte de furosémide récent orientant vers une hypokaliémie",
+      "rang": "A"
+    },
+    {
+      "label": "Ne pas conclure à une hyperkaliémie ni à un BAV du 2e degré",
+      "rang": "B"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "L’ECG montre un rythme sinusal à 80 bpm, avec PR normal et QRS fins, associé à une déviation axiale gauche. La repolarisation est marquée par une onde U large responsable d’un allongement apparent de l’intervalle QT. Dans le contexte d’introduction récente de furosémide, l’ensemble est en faveur d’une hypokaliémie.",
+    "criteres_indispensables": [
+      {
+        "label": "Diagnostic principal : signes ECG en faveur d’une hypokaliémie",
+        "rang": "A"
+      },
+      {
+        "label": "Rythme sinusal, fréquence environ 80 bpm",
+        "rang": "A"
+      },
+      {
+        "label": "PR normal et QRS fins",
+        "rang": "A"
+      },
+      {
+        "label": "Présence d’une onde U large/ample en fin de repolarisation",
+        "rang": "A"
+      },
+      {
+        "label": "Allongement apparent du QT lié à l’onde U",
+        "rang": "A"
+      },
+      {
+        "label": "Contexte déclenchant : introduction récente de furosémide",
+        "rang": "B"
+      },
+      {
+        "label": "Déviation axiale gauche",
+        "rang": "B"
+      }
+    ],
+    "diagnostic_principal": "Hypokaliémie",
+    "pieges": [
+      "Confondre l’onde U avec une onde T et mesurer à tort un QT incluant l’onde U.",
+      "Diagnostiquer une hyperkaliémie alors que le tracé évoque une hypokaliémie.",
+      "Conclure à un bloc auriculo-ventriculaire du 2e degré malgré un rythme sinusal avec PR normal.",
+      "Oublier le contexte médicamenteux de furosémide, cause fréquente d’hypokaliémie."
+    ],
+    "references_item": "EDN Item 231 — ECG : indications et interprétation ; référentiel des troubles hydro-électrolytiques : hypokaliémie ECG avec onde T plate/négative, ST sous-décalé, QRS normal, onde U et allongement apparent du QT, risque de troubles du rythme ventriculaire.",
+    "citation_source": "« une onde U ample [...] doit faire évoquer prioritairement une hypokaliémie »"
+  },
+  "error": null
+}

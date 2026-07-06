@@ -1,0 +1,84 @@
+{
+  "num": 57,
+  "titre": "myocardite",
+  "famille": "pericarde",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence non précisée sur les éléments fournis. Le rythme est sinusal. La conduction auriculo-ventriculaire n’est pas signalée comme anormale. L’axe n’est pas précisé. Les QRS sont fins, avec présence de petites ondes q dans les dérivations inférieures. La repolarisation montre un sus-décalage du segment ST d’amplitude modérée dans les dérivations inférieures, sans miroir. Dans le contexte clinique évocateur d’épisode viral récent avec douleur thoracique et élévation de troponine, cet aspect de sus-décalage inférieur modéré sans miroir, après exclusion d’un SCA ST+ si doute, évoque en priorité une myocardite.",
+  "points_cles": [
+    {
+      "label": "Rythme sinusal",
+      "rang": "B"
+    },
+    {
+      "label": "QRS fins",
+      "rang": "B"
+    },
+    {
+      "label": "Petites ondes q en dérivations inférieures",
+      "rang": "B"
+    },
+    {
+      "label": "Sus-décalage ST modéré dans les dérivations inférieures",
+      "rang": "A"
+    },
+    {
+      "label": "Absence de miroir",
+      "rang": "A"
+    },
+    {
+      "label": "Diagnostic principal : myocardite dans un contexte viral/douleur thoracique/troponine élevée",
+      "rang": "A"
+    },
+    {
+      "label": "SCA ST+ = principal diagnostic différentiel à éliminer si doute",
+      "rang": "B"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé montre un rythme sinusal avec QRS fins, petites ondes q inférieures et sus-décalage ST inférieur modéré sans miroir. Dans le contexte d’un patient jeune avec épisode viral récent, douleur thoracique et troponine élevée, l’ensemble évoque une myocardite. Le principal piège est de conclure trop vite à un SCA ST+ : la myocardite peut mimer un syndrome coronarien et nécessite souvent une coronarographie si le doute persiste.",
+    "criteres_indispensables": [
+      {
+        "label": "Diagnostic principal : myocardite",
+        "rang": "A"
+      },
+      {
+        "label": "Sus-décalage du segment ST d’amplitude modérée dans les dérivations inférieures",
+        "rang": "A"
+      },
+      {
+        "label": "Absence de miroir",
+        "rang": "A"
+      },
+      {
+        "label": "Contexte clinique évocateur : patient jeune, épisode viral récent, douleur thoracique/troponine élevée",
+        "rang": "A"
+      },
+      {
+        "label": "Rythme sinusal",
+        "rang": "B"
+      },
+      {
+        "label": "QRS fins",
+        "rang": "B"
+      },
+      {
+        "label": "Petites ondes q dans les dérivations inférieures",
+        "rang": "B"
+      },
+      {
+        "label": "Différentiel majeur : SCA ST+ à éliminer en cas de doute",
+        "rang": "B"
+      }
+    ],
+    "diagnostic_principal": "Myocardite",
+    "pieges": [
+      "Diagnostiquer un SCA ST+ uniquement sur le sus-décalage inférieur sans tenir compte de l’absence de miroir et du contexte viral.",
+      "Oublier que la myocardite peut avoir un ECG non typique, parfois proche d’un SCA ou d’une péricardite.",
+      "Confondre myocardite et péricardite isolée : l’élévation de troponine et l’IRM orientent vers une atteinte myocardique/myopéricardite.",
+      "Extrapoler un territoire coronaire systématisé alors que le texte insiste sur le caractère parfois diffus ou non systématisé des anomalies de myocardite."
+    ],
+    "references_item": "Diagnostic de myocardite évoqué comme diagnostic différentiel du syndrome coronarien aigu avec modification ECG et élévation de troponine ; EDN Item 231 — ECG : indications et interprétation ; items EDN relatifs au syndrome coronarien aigu et aux douleurs thoraciques.",
+    "citation_source": "« Le diagnostic différentiel principal de myocardite est celui de SCA ST+. »"
+  },
+  "error": null
+}

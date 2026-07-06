@@ -1,0 +1,93 @@
+{
+  "num": 31,
+  "titre": "maladie de l’oreillette",
+  "famille": "rythme",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Premier tracé : tachycardie irrégulière à QRS fins, à environ 170/min, non sinusale, avec activité atriale rapide, polymorphe et anarchique donnant une trémulation de la ligne de base ; PR non mesurable en l’absence d’ondes P sinusales organisées. L’axe des QRS est normal, les QRS sont fins, sans hypertrophie ventriculaire gauche ni onde Q de nécrose. Il n’existe pas de trouble de la repolarisation et le QT est de durée normale. Conclusion : fibrillation atriale à conduction ventriculaire rapide. Second tracé : rythme sinusal avec bradycardie sinusale à environ 40/min, conduction atrio-ventriculaire normale avec PR normal, axe normal, QRS fins sans HVG ni onde Q de nécrose, repolarisation sans anomalie et QT normal. L’association des deux tracés — fibrillation atriale rapide et bradycardie sinusale par dysfonction sinusale — correspond à une maladie de l’oreillette, ou syndrome bradycardie-tachycardie.",
+  "points_cles": [
+    {
+      "label": "Identifier sur le premier tracé une tachycardie irrégulière à QRS fins à environ 170/min",
+      "rang": "A"
+    },
+    {
+      "label": "Décrire l’activité atriale rapide, polymorphe/anarchique avec trémulation de la ligne de base",
+      "rang": "A"
+    },
+    {
+      "label": "Conclure à une fibrillation atriale avec conduction ventriculaire rapide",
+      "rang": "A"
+    },
+    {
+      "label": "Identifier sur le second tracé un rythme sinusal avec bradycardie sinusale à environ 40/min",
+      "rang": "A"
+    },
+    {
+      "label": "Mentionner une conduction AV normale avec PR normal sur le second tracé",
+      "rang": "B"
+    },
+    {
+      "label": "Décrire des QRS fins avec axe normal, sans HVG ni ondes Q de nécrose",
+      "rang": "B"
+    },
+    {
+      "label": "Signaler l’absence de trouble de repolarisation et un QT normal",
+      "rang": "B"
+    },
+    {
+      "label": "Conclure à une maladie de l’oreillette / syndrome bradycardie-tachycardie par alternance tachyarythmie atriale et dysfonction sinusale",
+      "rang": "A"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Les deux ECG illustrent une maladie de l’oreillette : alternance d’une tachyarythmie atriale et d’une bradycardie sinusale. Le premier tracé montre une FA à conduction ventriculaire rapide, irrégulière, à QRS fins, autour de 170/min. Le second montre un rythme sinusal avec bradycardie sinusale autour de 40/min et conduction AV normale.",
+    "criteres_indispensables": [
+      {
+        "label": "Diagnostic principal : maladie de l’oreillette / syndrome bradycardie-tachycardie",
+        "rang": "A"
+      },
+      {
+        "label": "Premier tracé : fibrillation atriale à conduction ventriculaire rapide",
+        "rang": "A"
+      },
+      {
+        "label": "Tachycardie irrégulière à QRS fins autour de 170/min",
+        "rang": "A"
+      },
+      {
+        "label": "Activité atriale rapide, polymorphe, anarchique avec trémulation de la ligne de base",
+        "rang": "A"
+      },
+      {
+        "label": "Second tracé : rythme sinusal avec bradycardie sinusale autour de 40/min",
+        "rang": "A"
+      },
+      {
+        "label": "Conduction atrio-ventriculaire normale et PR normal sur le second tracé",
+        "rang": "B"
+      },
+      {
+        "label": "QRS fins, axe normal, sans HVG ni onde Q de nécrose",
+        "rang": "B"
+      },
+      {
+        "label": "Absence de troubles de repolarisation et QT normal",
+        "rang": "B"
+      },
+      {
+        "label": "Association typique : dysfonction sinusale + arythmie supra-ventriculaire",
+        "rang": "A"
+      }
+    ],
+    "diagnostic_principal": "Maladie de l’oreillette / syndrome bradycardie-tachycardie associant fibrillation atriale rapide et bradycardie sinusale par dysfonction sinusale",
+    "pieges": [
+      "Ne pas conclure à un BAV paroxystique ou permanent : la maladie de l’oreillette associe ici dysfonction sinusale et arythmie supra-ventriculaire.",
+      "Ne pas confondre avec un syndrome de Wolff-Parkinson-White : les QRS sont fins et aucun élément de pré-excitation n’est décrit.",
+      "Ne pas qualifier le premier tracé de tachycardie régulière : l’irrégularité et l’activité atriale anarchique orientent vers la FA.",
+      "Ne pas omettre le second tracé : le diagnostic repose sur l’alternance FA rapide / bradycardie sinusale.",
+      "Ne pas inventer de trouble de repolarisation, d’HVG ou d’onde Q de nécrose : ils sont absents dans l’interprétation de référence."
+    ],
+    "references_item": "EDN Item 231 — ECG : indications et interprétation ; référentiel des troubles du rythme : maladie rythmique de l’oreillette, syndrome brady-tachy, dysfonction sinusale et troubles du rythme atrial.",
+    "citation_source": "« alternance entre des épisodes de tachycardie [...] et des épisodes de bradycardie en rapport avec une dysfonction sinusale »"
+  },
+  "error": null
+}

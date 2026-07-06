@@ -1,0 +1,92 @@
+{
+  "num": 33,
+  "titre": "extrasystoles atriales",
+  "famille": "rythme",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence cardiaque lente, autour de 50/min. Rythme de base sinusal, avec conduction atrio-ventriculaire 1/1 et intervalle PR normal. Présence d’un battement prématuré : le QRS qui le suit est fin, identique aux autres complexes, en faveur d’une extrasystole supraventriculaire ; l’activité atriale prématurée est visible notamment en V1 à la fin de l’onde T, ce qui signe une extrasystole atriale plutôt que jonctionnelle. Le cycle suivant l’extrasystole est plus long que le cycle de base. Axe des QRS dévié à gauche ; QRS fins, durée environ 90 ms, sans argument pour hypertrophie ventriculaire gauche ni onde Q de nécrose. Repolarisation anormale avec ondes T négatives ou biphasiques en DIII, aVF et de V3 à V6. Conclusion : rythme sinusal bradycarde avec extrasystole atriale conduite à QRS fin, associée à des troubles de la repolarisation ventriculaire.",
+  "points_cles": [
+    {
+      "label": "Rythme de base sinusal, fréquence environ 50/min",
+      "rang": "A"
+    },
+    {
+      "label": "Identification d’un battement prématuré supraventriculaire à QRS fin identique aux QRS de base",
+      "rang": "A"
+    },
+    {
+      "label": "Diagnostic d’extrasystole atriale, avec activité atriale prématurée visible notamment en V1 à la fin de l’onde T",
+      "rang": "A"
+    },
+    {
+      "label": "Élimination de l’extrasystole ventriculaire du fait du QRS fin non modifié",
+      "rang": "B"
+    },
+    {
+      "label": "Conduction atrio-ventriculaire normale : 1/1, PR normal",
+      "rang": "B"
+    },
+    {
+      "label": "Cycle suivant l’extrasystole plus long que le cycle de base",
+      "rang": "B"
+    },
+    {
+      "label": "QRS fins à 90 ms, axe gauche, pas d’HVG ni onde Q de nécrose",
+      "rang": "B"
+    },
+    {
+      "label": "Troubles de repolarisation : T négatives ou biphasiques en DIII, aVF et V3-V6",
+      "rang": "A"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé montre un rythme de base sinusal lent autour de 50/min avec un battement prématuré à QRS fin et identique aux complexes de base. L’activité atriale prématurée, visible notamment en V1 à la fin de l’onde T, permet de retenir une extrasystole atriale. Il existe également des troubles de la repolarisation avec ondes T négatives ou biphasiques en inférieur et de V3 à V6.",
+    "criteres_indispensables": [
+      {
+        "label": "Rythme de base sinusal",
+        "rang": "A"
+      },
+      {
+        "label": "Fréquence cardiaque environ 50 battements/minute",
+        "rang": "B"
+      },
+      {
+        "label": "Battement prématuré à QRS fin et identique aux complexes de base",
+        "rang": "A"
+      },
+      {
+        "label": "Diagnostic principal : extrasystole atriale",
+        "rang": "A"
+      },
+      {
+        "label": "Activité atriale prématurée/onde P’ pouvant être cachée dans l’onde T, visible sur ce tracé notamment en V1",
+        "rang": "A"
+      },
+      {
+        "label": "Absence d’extrasystole ventriculaire car QRS fin non modifié",
+        "rang": "B"
+      },
+      {
+        "label": "Conduction AV normale : 1/1, PR normal",
+        "rang": "B"
+      },
+      {
+        "label": "Troubles de la repolarisation ventriculaire : T négatives ou biphasiques en DIII, aVF et V3-V6",
+        "rang": "A"
+      },
+      {
+        "label": "QRS fins, environ 90 ms, avec déviation axiale gauche",
+        "rang": "B"
+      }
+    ],
+    "diagnostic_principal": "Rythme sinusal avec extrasystole atriale conduite à QRS fin et troubles de la repolarisation ventriculaire",
+    "pieges": [
+      "Confondre l’extrasystole atriale avec une extrasystole ventriculaire : le QRS prématuré est fin et identique aux autres complexes.",
+      "Ne pas rechercher l’onde P’ dans l’onde T : l’extrasystole atriale peut être cachée pendant la repolarisation ventriculaire.",
+      "Conclure trop vite à une extrasystole jonctionnelle alors qu’une activité atriale prématurée est identifiable, notamment en V1.",
+      "Omettre les troubles de repolarisation associés, avec ondes T négatives ou biphasiques en DIII, aVF et V3 à V6."
+    ],
+    "references_item": "Référentiel EDN — Extrasystole atriale ; Extrasystole atriale sur l’onde T. Item ECG / troubles du rythme : reconnaissance d’une extrasystole atriale et de ses diagnostics différentiels.",
+    "citation_source": "« Le complexe QRS qui suit l'extrasystole est généralement fin et non modifié par rapport aux complexes de base. »"
+  },
+  "error": null
+}

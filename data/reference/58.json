@@ -1,0 +1,81 @@
+{
+  "num": 58,
+  "titre": "syndrome coronarien aigu ST+ antérieur",
+  "famille": "ischemie",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence non précisée sur l’énoncé. Le tracé est en rythme sinusal. La conduction auriculo-ventriculaire (PR), l’axe et la durée des QRS ne sont pas décrits comme anormaux dans l’interprétation fournie. L’anomalie majeure concerne la repolarisation : sus-décalage du segment ST de V1 à V4, associé à un sus-décalage en DI, aVL et aVR, englobant l’onde T avec aspect d’onde de Pardee ; il existe un sous-décalage du ST en miroir dans les dérivations inférieures et en V6. L’ensemble est caractéristique d’un syndrome coronarien aigu avec sus-décalage du ST en phase aiguë, de topographie antéro-septo-apicale avec extension latérale haute, en rapport avec une occlusion proximale de l’IVA en amont de la première septale.",
+  "points_cles": [
+    {
+      "label": "Rythme sinusal",
+      "rang": "B"
+    },
+    {
+      "label": "Sus-décalage ST de V1 à V4",
+      "rang": "A"
+    },
+    {
+      "label": "Sus-décalage ST en DI, aVL et aVR",
+      "rang": "B"
+    },
+    {
+      "label": "Sus-décalage englobant l’onde T : onde de Pardee",
+      "rang": "A"
+    },
+    {
+      "label": "Sous-décalage ST en miroir dans les dérivations inférieures et en V6",
+      "rang": "A"
+    },
+    {
+      "label": "Diagnostic de SCA ST+ aigu antéro-septo-apical",
+      "rang": "A"
+    },
+    {
+      "label": "Territoire compatible avec occlusion proximale de l’IVA en amont de la première septale",
+      "rang": "B"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "ECG en rythme sinusal montrant un sus-décalage du ST de V1 à V4, également en DI, aVL et aVR, avec aspect d’onde de Pardee. Il existe un sous-décalage en miroir dans les dérivations inférieures et en V6. Le diagnostic attendu est un SCA ST+ aigu antéro-septo-apical, correspondant ici à une occlusion proximale de l’IVA.",
+    "criteres_indispensables": [
+      {
+        "label": "Identifier un syndrome coronarien aigu avec sus-décalage du ST en phase aiguë",
+        "rang": "A"
+      },
+      {
+        "label": "Localiser le sus-décalage principal en antérieur/antéro-septo-apical : V1 à V4",
+        "rang": "A"
+      },
+      {
+        "label": "Décrire l’onde de Pardee : sus-décalage englobant l’onde T",
+        "rang": "A"
+      },
+      {
+        "label": "Mentionner le miroir : sous-décalage ST dans les dérivations inférieures et en V6",
+        "rang": "A"
+      },
+      {
+        "label": "Signaler les sus-décalages associés en DI, aVL et aVR",
+        "rang": "B"
+      },
+      {
+        "label": "Mentionner le rythme sinusal",
+        "rang": "B"
+      },
+      {
+        "label": "Relier au territoire IVA proximale, en amont de la première septale",
+        "rang": "B"
+      }
+    ],
+    "diagnostic_principal": "SCA ST+ aigu antéro-septo-apical",
+    "pieges": [
+      "Chercher d’abord le sous-décalage en miroir au lieu de traquer le sus-décalage territorial.",
+      "Conclure à un SCA ST+ inférieur, latéral bas ou postérieur alors que le sus-décalage principal est antéro-septo-apical de V1 à V4.",
+      "Oublier que le sus-décalage englobant l’onde T correspond à une onde de Pardee.",
+      "Négliger le miroir inférieur et en V6, qui renforce le diagnostic.",
+      "Interpréter isolément aVR sans intégrer le territoire antérieur et l’atteinte proximale de l’IVA."
+    ],
+    "references_item": "EDN — Syndrome coronarien aigu ST+ ; EDN Item 231 — ECG : indications et interprétation. Principes cités : sus-décalage significatif dans au moins 2 dérivations adjacentes, seuils de 2 mm de V1 à V3 et 1 mm ailleurs, recherche du miroir, onde de Pardee.",
+    "citation_source": "« sus-décalage convexe vers le haut, en dôme, parfois très ample [...], englobant l'onde T »"
+  },
+  "error": null
+}

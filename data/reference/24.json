@@ -1,0 +1,81 @@
+{
+  "num": 24,
+  "titre": "BAV du second degré type 1 (Mobitz 1)",
+  "famille": "conduction",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence cardiaque proche de 60/min, avec rythme ventriculaire irrégulier. L’activité atriale est sinusale et régulière. Il existe des ondes P conduites et des ondes P bloquées, signant un bloc auriculoventriculaire du second degré. L’analyse du PR montre une séquence répétitive avec allongement progressif de l’intervalle PR jusqu’à une onde P non conduite, puis reprise de la conduction avec un PR court revenant à la valeur de base : aspect de BAV du second degré type 1, dit Mobitz 1 ou Luciani-Wenckebach. Les QRS ont un aspect de bloc incomplet droit avec axe gauche, compatible avec un hémibloc antérieur gauche associé. Conclusion : bloc auriculoventriculaire du second degré type 1 (Mobitz 1/Luciani-Wenckebach).",
+  "points_cles": [
+    {
+      "label": "Rythme irrégulier avec fréquence cardiaque proche de 60 bpm",
+      "rang": "B"
+    },
+    {
+      "label": "Activité atriale sinusale et régulière",
+      "rang": "A"
+    },
+    {
+      "label": "Présence d’ondes P conduites et d’ondes P bloquées définissant un BAV du second degré",
+      "rang": "A"
+    },
+    {
+      "label": "Allongement progressif du PR jusqu’à une onde P bloquée puis PR court après la pause",
+      "rang": "A"
+    },
+    {
+      "label": "Diagnostic : BAV du second degré type 1 = Mobitz 1 = Luciani-Wenckebach",
+      "rang": "A"
+    },
+    {
+      "label": "QRS avec bloc incomplet droit et axe gauche/hémibloc antérieur gauche associé",
+      "rang": "B"
+    },
+    {
+      "label": "Ne pas conclure à un BAV du premier degré ou à un Mobitz 2",
+      "rang": "A"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé montre une activité atriale sinusale régulière avec rythme ventriculaire irrégulier autour de 60 bpm. La présence d’ondes P conduites et bloquées définit un BAV du second degré. L’allongement progressif du PR jusqu’à une onde P bloquée, puis un PR court à la reprise, identifie un BAV du second degré type 1, aussi appelé Mobitz 1 ou Luciani-Wenckebach. Un bloc incomplet droit avec axe gauche/hémibloc antérieur gauche est associé.",
+    "criteres_indispensables": [
+      {
+        "label": "Identifier un bloc auriculoventriculaire du second degré par présence d’ondes P conduites et d’ondes P bloquées",
+        "rang": "A"
+      },
+      {
+        "label": "Décrire l’allongement progressif de l’intervalle PR avant l’onde P bloquée",
+        "rang": "A"
+      },
+      {
+        "label": "Nommer le diagnostic principal : BAV du second degré type 1 / Mobitz 1 / Luciani-Wenckebach",
+        "rang": "A"
+      },
+      {
+        "label": "Mentionner que l’activité atriale est sinusale et régulière",
+        "rang": "A"
+      },
+      {
+        "label": "Mentionner le rythme irrégulier et la fréquence proche de 60 bpm",
+        "rang": "B"
+      },
+      {
+        "label": "Mentionner l’aspect de bloc incomplet droit avec axe gauche/hémibloc antérieur gauche associé",
+        "rang": "B"
+      },
+      {
+        "label": "Distinguer du BAV du premier degré et du BAV du second degré Mobitz 2",
+        "rang": "B"
+      }
+    ],
+    "diagnostic_principal": "Bloc auriculoventriculaire du second degré type 1 (Mobitz 1 / Luciani-Wenckebach)",
+    "pieges": [
+      "Conclure à un BAV du premier degré alors qu’il existe des ondes P bloquées.",
+      "Conclure à un BAV du second degré type Mobitz 2 : dans Mobitz 2, le PR reste fixe avant et après l’onde P bloquée.",
+      "Oublier que Luciani-Wenckebach, Mobitz 1 et BAV du second degré type 1 désignent le même trouble.",
+      "Ne pas analyser la dynamique du PR sur plusieurs cycles.",
+      "Ignorer l’association morphologique décrite : bloc incomplet droit avec axe gauche/hémibloc antérieur gauche."
+    ],
+    "references_item": "EDN — Bloc auriculoventriculaire du deuxième degré type 1 / Mobitz 1 / Luciani-Wenckebach ; ECG : indications et interprétation.",
+    "citation_source": "« l’intervalle PR s’allonge progressivement puis une onde P est bloquée »"
+  },
+  "error": null
+}

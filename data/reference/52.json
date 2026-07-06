@@ -1,0 +1,81 @@
+{
+  "num": 52,
+  "titre": "mort subite et syndrome de Wolff-Parkinson-White",
+  "famille": "genetique",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence ventriculaire très rapide, avec des cycles ventriculaires parfois très courts. Rythme irrégulier, compatible avec une fibrillation atriale conduite rapidement ; il ne s’agit pas d’une activité atriale sinusale organisée. La conduction auriculo-ventriculaire se fait de façon variable par une voie accessoire, traduisant une pré-excitation ; l’analyse du PR n’est pas pertinente en tachyarythmie irrégulière. Axe des QRS globalement stable, élément permettant de ne pas retenir une tachycardie ventriculaire polymorphe type torsade de pointes. Les QRS sont larges, polymorphes, avec alternance de complexes très élargis pré-excités, de complexes plus fins par conduction nodale et de complexes intermédiaires de fusion, donnant un aspect « en accordéon ». Pas d’argument à retenir ici pour un bloc de branche gauche ni pour un syndrome coronaire aigu inférieur. La repolarisation est difficilement interprétable dans ce contexte de tachycardie à QRS larges polymorphes. Conclusion : fibrillation auriculaire sur voie accessoire dans le cadre d’un syndrome de Wolff-Parkinson-White, avec réponse ventriculaire très rapide exposant à la dégénérescence en fibrillation ventriculaire et à la mort subite.",
+  "points_cles": [
+    {
+      "label": "Diagnostic de fibrillation auriculaire conduite par une voie accessoire dans un syndrome de Wolff-Parkinson-White",
+      "rang": "A"
+    },
+    {
+      "label": "Tachycardie irrégulière à QRS larges polymorphes",
+      "rang": "A"
+    },
+    {
+      "label": "Rythme ventriculaire très rapide avec cycles ventriculaires très courts",
+      "rang": "A"
+    },
+    {
+      "label": "Pré-excitation avec alternance de QRS très élargis, fins et intermédiaires, aspect en accordéon",
+      "rang": "A"
+    },
+    {
+      "label": "Risque de dégénérescence en fibrillation ventriculaire / mort subite",
+      "rang": "A"
+    },
+    {
+      "label": "Axe des QRS ne changeant pas, argument contre une torsade de pointes",
+      "rang": "B"
+    },
+    {
+      "label": "Ne pas conclure à un bloc de branche gauche ou à un SCA inférieur",
+      "rang": "B"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé correspond à une fibrillation auriculaire conduite rapidement par une voie accessoire chez un patient avec syndrome de Wolff-Parkinson-White. L’ECG montre une tachycardie irrégulière à QRS larges polymorphes, très rapide, avec aspect variable des QRS en « accordéon ». Cette situation est à haut risque de dégénérescence en fibrillation ventriculaire et de mort subite.",
+    "criteres_indispensables": [
+      {
+        "label": "Identifier une fibrillation auriculaire sur voie accessoire / WPW",
+        "rang": "A"
+      },
+      {
+        "label": "Décrire une tachycardie irrégulière à QRS larges polymorphes",
+        "rang": "A"
+      },
+      {
+        "label": "Mentionner la fréquence ventriculaire très rapide avec cycles ventriculaires très courts",
+        "rang": "A"
+      },
+      {
+        "label": "Reconnaître la pré-excitation / conduction par voie accessoire",
+        "rang": "A"
+      },
+      {
+        "label": "Décrire l’aspect variable des QRS : très élargis, fins et intermédiaires, aspect en accordéon",
+        "rang": "B"
+      },
+      {
+        "label": "Mentionner le risque de fibrillation ventriculaire et mort subite",
+        "rang": "B"
+      },
+      {
+        "label": "Différencier d’une torsade de pointes par l’absence de changement d’axe des QRS",
+        "rang": "C"
+      }
+    ],
+    "diagnostic_principal": "Fibrillation auriculaire sur voie accessoire dans un syndrome de Wolff-Parkinson-White",
+    "pieges": [
+      "Prendre cette tachycardie irrégulière à QRS larges pour un bloc de branche gauche.",
+      "Confondre avec une tachycardie ventriculaire polymorphe type torsade de pointes alors que l’axe des QRS ne change pas.",
+      "Méconnaître la fibrillation auriculaire du fait de QRS larges et polymorphes.",
+      "Administrer ou raisonner comme pour une FA banale sans tenir compte de la voie accessoire et du risque vital.",
+      "Interpréter à tort comme un syndrome coronaire aigu inférieur."
+    ],
+    "references_item": "Fibrillation atriale sur voie accessoire avec fréquence ventriculaire irrégulière et très rapide : aspect variable des complexes QRS (aspect en accordéon) ; Fibrillation auriculaire sur voie accessoire.",
+    "citation_source": "« un épisode de fibrillation atriale sur voie accessoire se traduit par une tachycardie irrégulière à QRS larges, polymorphes »"
+  },
+  "error": null
+}

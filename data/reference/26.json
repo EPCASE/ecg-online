@@ -1,0 +1,89 @@
+{
+  "num": 26,
+  "titre": "BAV du second degré type 2/1",
+  "famille": "conduction",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence ventriculaire lente à 43/min, rythme régulier. L’activité atriale est sinusale, avec des ondes P de même morphologie ; une onde P précède chaque QRS conduit, mais une seconde onde P est systématiquement visible en fin d’onde T et n’est pas suivie de QRS. Il existe donc une conduction atrio-ventriculaire 2/1 : une onde P sur deux est conduite et une onde P sur deux est bloquée, réalisant un BAV du second degré type 2/1. Les QRS sont fins, d’axe normal, sans argument pour hypertrophie ventriculaire gauche ni onde Q de nécrose. Il n’y a pas de trouble de la repolarisation et le QT est de durée normale. Conclusion : bradycardie régulière par bloc atrio-ventriculaire du second degré 2/1, sans bloc de branche gauche ni BAV complet.",
+  "points_cles": [
+    {
+      "label": "Identifier une bradycardie régulière autour de 43 bpm",
+      "rang": "B"
+    },
+    {
+      "label": "Reconnaître une activité atriale sinusale avec ondes P de même morphologie",
+      "rang": "B"
+    },
+    {
+      "label": "Repérer l’onde P bloquée en fin d’onde T",
+      "rang": "A"
+    },
+    {
+      "label": "Décrire une onde P sur deux conduite et une onde P sur deux bloquée",
+      "rang": "A"
+    },
+    {
+      "label": "Conclure à un BAV du second degré 2/1",
+      "rang": "A"
+    },
+    {
+      "label": "Mentionner des QRS fins et un axe normal",
+      "rang": "B"
+    },
+    {
+      "label": "Absence d’HVG, d’ondes Q de nécrose et de troubles de la repolarisation",
+      "rang": "C"
+    },
+    {
+      "label": "QT de durée normale",
+      "rang": "C"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé montre une bradycardie régulière à 43/min avec activité atriale sinusale. Une onde P sur deux est conduite et une onde P sur deux est bloquée, la P bloquée étant à rechercher en fin d’onde T : il s’agit d’un BAV 2/1. Les QRS sont fins, d’axe normal, sans trouble de repolarisation ni allongement du QT.",
+    "criteres_indispensables": [
+      {
+        "label": "Diagnostic principal : BAV du second degré 2/1",
+        "rang": "A"
+      },
+      {
+        "label": "Mise en évidence d’une onde P bloquée en fin d’onde T",
+        "rang": "A"
+      },
+      {
+        "label": "Rapport de conduction : une onde P sur deux conduite, une sur deux bloquée",
+        "rang": "A"
+      },
+      {
+        "label": "Bradycardie régulière à environ 43 bpm",
+        "rang": "B"
+      },
+      {
+        "label": "Activité atriale sinusale visible, ondes P de même morphologie",
+        "rang": "B"
+      },
+      {
+        "label": "QRS fins, axe normal",
+        "rang": "B"
+      },
+      {
+        "label": "Absence de troubles de la repolarisation et QT normal",
+        "rang": "C"
+      },
+      {
+        "label": "Ne pas classer le BAV 2/1 en Mobitz 1 ou Mobitz 2 sur ce seul tracé",
+        "rang": "B"
+      }
+    ],
+    "diagnostic_principal": "BAV du second degré type 2/1",
+    "pieges": [
+      "Confondre l’onde P bloquée en fin d’onde T avec une anomalie de repolarisation.",
+      "Diagnostiquer à tort un bigéminisme atrial.",
+      "Conclure à un BAV du troisième degré alors que les QRS conduits sont précédés d’une onde P avec conduction 2/1.",
+      "Parler de bloc de branche gauche alors que les QRS sont fins.",
+      "Étiqueter le BAV 2/1 comme Mobitz 1 ou Mobitz 2 sans tracé long ni argument supplémentaire."
+    ],
+    "references_item": "EDN Item 231 — ECG : indications et interprétation ; troubles de conduction atrio-ventriculaire, BAV du second degré 2/1 inclassable entre Mobitz 1 et Mobitz 2, largeur des QRS comme élément d’orientation du siège du bloc.",
+    "citation_source": "« Toute la difficulté de ce tracé consiste à mettre en évidence l’onde P bloquée en fin d’onde T. »"
+  },
+  "error": null
+}

@@ -1,0 +1,81 @@
+{
+  "num": 62,
+  "titre": "SCA ST+ et bloc de branche gauche",
+  "famille": "conduction",
+  "model": "gpt-5.5",
+  "reponse_attendue": "ECG 12 dérivations en rythme sinusal, avec fréquence non précisée sur les données fournies. L’intervalle PR est normal. L’axe est gauche. Les QRS sont larges, supérieurs à 120 ms, avec une morphologie de bloc de branche gauche complet : aspect QS en V1 et positivité exclusive en V6. La repolarisation est anormale avec un sus-décalage du segment ST de V1 à V4, de grande amplitude, supérieur à 5 mm en V2-V3. Dans le contexte de douleur thoracique typique, cet ECG évoque un syndrome coronaire aigu avec sus-décalage du ST de territoire antérieur sur bloc de branche gauche complet, correspondant ici à une occlusion proximale de l’IVA nécessitant une reperfusion urgente.",
+  "points_cles": [
+    {
+      "label": "Rythme sinusal",
+      "rang": "B"
+    },
+    {
+      "label": "Intervalle PR normal",
+      "rang": "B"
+    },
+    {
+      "label": "Bloc de branche gauche complet : QRS > 120 ms, QS en V1, positivité exclusive en V6",
+      "rang": "A"
+    },
+    {
+      "label": "Axe gauche",
+      "rang": "B"
+    },
+    {
+      "label": "Sus-décalage ST antérieur de V1 à V4, très ample en V2-V3 (> 5 mm)",
+      "rang": "A"
+    },
+    {
+      "label": "Diagnostic de SCA ST+ antérieur dans un contexte de douleur thoracique, malgré le BBG",
+      "rang": "A"
+    },
+    {
+      "label": "Indication de reperfusion/coronarographie urgente si forte suspicion clinique",
+      "rang": "A"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé montre un rythme sinusal avec PR normal et un bloc de branche gauche complet : QRS larges, QS en V1, positivité exclusive en V6 et axe gauche. La repolarisation est marquée par un sus-décalage ST antérieur de V1 à V4, très ample en V2-V3, évocateur dans ce contexte d’un SCA ST+ antérieur. Le texte insiste sur la difficulté d’interprétation du ST en présence d’un BBG et sur l’intérêt d’une reperfusion urgente si la suspicion clinique est forte.",
+    "criteres_indispensables": [
+      {
+        "label": "Identifier le bloc de branche gauche complet",
+        "rang": "A"
+      },
+      {
+        "label": "Décrire les critères du BBG : QRS > 120 ms, positivité exclusive en V6, QS en V1",
+        "rang": "A"
+      },
+      {
+        "label": "Reconnaître le sus-décalage ST antérieur de V1 à V4, de grande amplitude en V2-V3",
+        "rang": "A"
+      },
+      {
+        "label": "Conclure à un syndrome coronaire aigu avec sus-décalage ST de territoire antérieur",
+        "rang": "A"
+      },
+      {
+        "label": "Mentionner le rythme sinusal et le PR normal",
+        "rang": "B"
+      },
+      {
+        "label": "Mentionner l’axe gauche",
+        "rang": "B"
+      },
+      {
+        "label": "Relier le diagnostic au contexte de douleur thoracique et à l’indication de reperfusion urgente",
+        "rang": "A"
+      }
+    ],
+    "diagnostic_principal": "Syndrome coronaire aigu avec sus-décalage du ST de territoire antérieur sur bloc de branche gauche complet",
+    "pieges": [
+      "Dire que l’ECG est ininterprétable du seul fait du bloc de branche gauche.",
+      "Ne retenir que le bloc de branche gauche sans analyser le sus-décalage ST antérieur de grande amplitude.",
+      "Confondre avec un bloc de branche droit avec hémibloc antérieur gauche.",
+      "Conclure à un SCA inférieur alors que les anomalies décrites sont antérieures V1-V4.",
+      "Considérer tout bloc de branche gauche isolé comme un équivalent automatique d’infarctus en l’absence de contexte clinique évocateur."
+    ],
+    "references_item": "EDN Item 231 — ECG : indications et interprétation ; référentiel SCA : douleur thoracique, bloc de branche gauche et équivalent de sus-décalage ST en cas de forte suspicion clinique.",
+    "citation_source": "« un sus-décalage très ample en V1-V2 (critères de Sgarbossa) »"
+  },
+  "error": null
+}

@@ -1,0 +1,93 @@
+{
+  "num": 16,
+  "titre": "hémibloc antérieur gauche",
+  "famille": "conduction",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence cardiaque régulière autour de 65/min. Rythme sinusal, avec conduction atrio-ventriculaire 1/1 et intervalle PR de durée normale. Axe des QRS dévié à gauche. Les QRS sont fins, mesurés à environ 90 ms, sans argument pour un bloc de branche indifférencié ; morphologie évocatrice avec aspect rS dans les dérivations inférieures, qR en DI et aVL, et onde q en V1-V2. Pas d’argument fourni pour hypertrophie ventriculaire gauche ni hypertrophie auriculaire gauche, pas d’aspect de séquelle de nécrose inférieure. Repolarisation sans anomalie, QT non signalé comme anormal. Conclusion : ECG en rythme sinusal avec aspect caractéristique d’hémibloc antérieur gauche.",
+  "points_cles": [
+    {
+      "label": "Rythme sinusal à environ 65 battements/minute",
+      "rang": "B"
+    },
+    {
+      "label": "Conduction atrio-ventriculaire normale : conduction 1/1, PR normal",
+      "rang": "B"
+    },
+    {
+      "label": "QRS fins, durée environ 90 ms",
+      "rang": "A"
+    },
+    {
+      "label": "Déviation axiale gauche des QRS",
+      "rang": "A"
+    },
+    {
+      "label": "Morphologie d’hémibloc antérieur gauche : rS en dérivations inférieures, qR en DI/aVL",
+      "rang": "A"
+    },
+    {
+      "label": "Absence de troubles de la repolarisation",
+      "rang": "B"
+    },
+    {
+      "label": "Conclusion diagnostique : hémibloc antérieur gauche",
+      "rang": "A"
+    },
+    {
+      "label": "Ne pas conclure à HVG, HAG, bloc de branche indifférencié ou séquelle de nécrose inférieure",
+      "rang": "B"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé montre un rythme sinusal à environ 65/min avec conduction AV normale et QRS fins. L’élément déterminant est une déviation axiale gauche sur QRS fin, avec aspect rS dans les dérivations inférieures et qR en DI/aVL, compatible avec un hémibloc antérieur gauche. Il n’existe pas de trouble de repolarisation décrit.",
+    "criteres_indispensables": [
+      {
+        "label": "Diagnostic principal : hémibloc antérieur gauche",
+        "rang": "A"
+      },
+      {
+        "label": "Déviation axiale gauche des QRS",
+        "rang": "A"
+      },
+      {
+        "label": "QRS fins ou de durée normale, ici environ 90 ms",
+        "rang": "A"
+      },
+      {
+        "label": "Aspect rS dans les dérivations inférieures",
+        "rang": "A"
+      },
+      {
+        "label": "Aspect qR en DI et aVL",
+        "rang": "A"
+      },
+      {
+        "label": "Rythme sinusal autour de 65/min",
+        "rang": "B"
+      },
+      {
+        "label": "Conduction AV normale avec PR normal",
+        "rang": "B"
+      },
+      {
+        "label": "Absence de troubles de la repolarisation",
+        "rang": "B"
+      },
+      {
+        "label": "Absence d’hypertrophie ventriculaire gauche à retenir dans l’attendu",
+        "rang": "B"
+      }
+    ],
+    "diagnostic_principal": "Hémibloc antérieur gauche",
+    "pieges": [
+      "Confondre la déviation axiale gauche avec une hypertrophie ventriculaire gauche.",
+      "Diagnostiquer un bloc de branche indifférencié alors que les QRS sont fins.",
+      "Interpréter les ondes q ou la morphologie inférieure comme une séquelle de nécrose inférieure.",
+      "Retenir une hypertrophie auriculaire gauche, non décrite dans l’interprétation de référence.",
+      "Oublier que le critère majeur ici est la déviation axiale gauche sur QRS fin."
+    ],
+    "references_item": "EDN — ECG : diagnostic d’hémibloc ; caractéristiques électrocardiographiques des hémiblocs, notamment déviation axiale gauche au-delà de −30° pour l’hémibloc antérieur gauche et QRS normal ou très modérément élargi.",
+    "citation_source": "« La déviation axiale gauche sur un QRS fin [...] doit faire évoquer l'existence d’un hémibloc antérieur gauche »"
+  },
+  "error": null
+}

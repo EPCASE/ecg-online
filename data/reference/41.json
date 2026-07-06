@@ -1,0 +1,89 @@
+{
+  "num": 41,
+  "titre": "flutter commun",
+  "famille": "rythme",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence ventriculaire proche de 75/min, pour une activité atriale rapide autour de 270/min. Le rythme n’est pas sinusal : on observe une activité atriale régulière, monomorphe, faite d’ondes F de flutter sans retour à la ligne isoélectrique. La conduction atrio-ventriculaire est principalement de type 4/1 ; le PR n’est pas interprétable en rythme sinusal. L’axe n’est pas spécifiquement anormal dans les éléments fournis. Les QRS sont fins. La repolarisation n’appelle pas d’anomalie spécifique décrite ici. Les ondes F ont l’aspect typique en dents de scie dans les dérivations inférieures DII-DIII-aVF, sont peu voltées en DI, positives en V1 et négatives en V6. Conclusion : flutter atrial commun typique, originaire de l’oreillette droite, à circuit antihoraire passant par l’isthme cavo-tricuspide, avec conduction AV principalement 4/1.",
+  "points_cles": [
+    {
+      "label": "Diagnostic de flutter atrial commun typique",
+      "rang": "A"
+    },
+    {
+      "label": "Origine oreillette droite, macro-réentrée passant par l’isthme cavo-tricuspide, sens antihoraire",
+      "rang": "A"
+    },
+    {
+      "label": "Activité atriale rapide régulière monomorphe autour de 270/min",
+      "rang": "A"
+    },
+    {
+      "label": "Ondes F en dents de scie dans les dérivations inférieures sans retour à la ligne isoélectrique",
+      "rang": "A"
+    },
+    {
+      "label": "Activité atriale peu voltée/plate en DI, positive en V1, négative en V6",
+      "rang": "B"
+    },
+    {
+      "label": "Conduction atrio-ventriculaire principalement 4/1 avec fréquence ventriculaire proche de 75/min",
+      "rang": "B"
+    },
+    {
+      "label": "QRS fins",
+      "rang": "B"
+    },
+    {
+      "label": "Ne pas conclure à un rythme sinusal, une fibrillation atriale, un flutter gauche ou une tachycardie jonctionnelle",
+      "rang": "A"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "ECG montrant un flutter atrial commun typique : activité atriale rapide, régulière et monomorphe, avec ondes F en dents de scie dans les dérivations inférieures. La conduction AV est principalement 4/1, donnant une fréquence ventriculaire proche de 75/min, avec QRS fins. Il s’agit d’un flutter de l’oreillette droite, antihoraire, passant par l’isthme cavo-tricuspide.",
+    "criteres_indispensables": [
+      {
+        "label": "Identifier un flutter atrial commun typique",
+        "rang": "A"
+      },
+      {
+        "label": "Préciser l’origine oreillette droite / macro-réentrée droite",
+        "rang": "A"
+      },
+      {
+        "label": "Mentionner le circuit antihoraire passant par l’isthme cavo-tricuspide",
+        "rang": "A"
+      },
+      {
+        "label": "Décrire les ondes F en dents de scie en DII-DIII-aVF, sans ligne isoélectrique",
+        "rang": "A"
+      },
+      {
+        "label": "Décrire une activité atriale régulière monomorphe rapide, environ 270/min",
+        "rang": "A"
+      },
+      {
+        "label": "Mentionner la conduction AV principalement 4/1 et la fréquence ventriculaire proche de 75/min",
+        "rang": "B"
+      },
+      {
+        "label": "Mentionner QRS fins",
+        "rang": "B"
+      },
+      {
+        "label": "Morphologie complémentaire : DI peu voltée/plate, V1 positive, V6 négative",
+        "rang": "B"
+      }
+    ],
+    "diagnostic_principal": "Flutter atrial commun typique de l’oreillette droite, antihoraire, avec conduction atrio-ventriculaire principalement 4/1",
+    "pieges": [
+      "Confondre avec une fibrillation atriale : ici l’activité atriale est régulière, monomorphe, organisée.",
+      "Conclure à un rythme sinusal alors qu’il n’y a pas d’ondes P sinusales mais des ondes F continues.",
+      "Diagnostiquer un flutter gauche/atypique alors que la morphologie est celle d’un flutter commun droit : dents de scie en dérivations inférieures, DI peu voltée, V1 positive, V6 négative.",
+      "Confondre avec une tachycardie jonctionnelle : l’activité atriale de flutter est visible et organisée.",
+      "Oublier que la réponse ventriculaire peut être 4/1 et non nécessairement 2/1 autour de 150/min."
+    ],
+    "references_item": "EDN Item 231 — ECG : indications et interprétation ; Flutter commun : ondes F en dents de scie en DII-DIII-aVF, plates en DI, positives en V1 et négatives en V6 ; macro-réentrée de l’oreillette droite passant par l’isthme cavo-tricuspide.",
+    "citation_source": "« Le flutter atrial commun correspond à une macro-réentrée (large circuit) de l’oreillette droite. »"
+  },
+  "error": null
+}

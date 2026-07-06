@@ -1,0 +1,85 @@
+{
+  "num": 51,
+  "titre": "torsade de pointes",
+  "famille": "rythme",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence très rapide pendant l’épisode, autour de 220/min. Le premier complexe est sinusal, avec un intervalle QT extrêmement allongé ; l’épisode est déclenché après un doublet d’extrasystoles ventriculaires. La conduction auriculo-ventriculaire n’est pas interprétable durant la tachycardie ; le QRS sinusal permet surtout de constater l’allongement majeur du QT. Pendant la tachycardie, les QRS sont larges, polymorphes, irréguliers, avec changement progressif de l’axe électrique et aspect de rotation des pointes autour de la ligne isoélectrique. La repolarisation montre un QT très allongé avant et après l’épisode. L’ensemble correspond à une torsade de pointes, c’est-à-dire une tachycardie ventriculaire polymorphe sur QT long, rapide, spontanément résolutive en environ 7 secondes, expliquant les lipothymies/syncopes.",
+  "points_cles": [
+    {
+      "label": "Diagnostic de torsade de pointes",
+      "rang": "A"
+    },
+    {
+      "label": "QT extrêmement/majeurement allongé sur les complexes sinusaux avant et après l’épisode",
+      "rang": "A"
+    },
+    {
+      "label": "Tachycardie ventriculaire polymorphe à QRS larges",
+      "rang": "A"
+    },
+    {
+      "label": "Changement progressif/cyclique de l’axe des QRS avec aspect de torsion autour de la ligne isoélectrique",
+      "rang": "A"
+    },
+    {
+      "label": "Fréquence rapide autour de 220/min",
+      "rang": "B"
+    },
+    {
+      "label": "Épisode irrégulier et spontanément résolutif, durant environ 7 secondes",
+      "rang": "B"
+    },
+    {
+      "label": "Déclenchement par extrasystoles ventriculaires dans un contexte de QT long",
+      "rang": "B"
+    },
+    {
+      "label": "Contexte favorisant : hypokaliémie possible sur diarrhées et médicaments allongeant le QT, macrolide et antihistaminique",
+      "rang": "C"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé montre un complexe sinusal avec QT extrêmement allongé, suivi d’extrasystoles ventriculaires puis d’une tachycardie rapide polymorphe à QRS larges. Les QRS changent progressivement d’axe avec un aspect de torsion autour de la ligne isoélectrique, et l’épisode se réduit spontanément en quelques secondes. Le diagnostic attendu est une torsade de pointes sur allongement majeur du QT, favorisée ici par diarrhées/hypokaliémie possible et médicaments allongeant le QT.",
+    "criteres_indispensables": [
+      {
+        "label": "Identifier une torsade de pointes comme diagnostic principal",
+        "rang": "A"
+      },
+      {
+        "label": "Mentionner l’allongement majeur/extrême de l’intervalle QT sur les complexes sinusaux",
+        "rang": "A"
+      },
+      {
+        "label": "Décrire une tachycardie polymorphe à QRS larges",
+        "rang": "A"
+      },
+      {
+        "label": "Décrire le changement progressif/cyclique de l’axe ou la torsion autour de la ligne isoélectrique",
+        "rang": "A"
+      },
+      {
+        "label": "Préciser la réduction spontanée de l’épisode",
+        "rang": "B"
+      },
+      {
+        "label": "Noter le déclenchement par extrasystoles ventriculaires",
+        "rang": "B"
+      },
+      {
+        "label": "Évoquer les facteurs favorisants du QT long fournis : hypokaliémie sur diarrhées, macrolide et antihistaminique",
+        "rang": "C"
+      }
+    ],
+    "diagnostic_principal": "Torsade de pointes de réduction spontanée sur allongement majeur de l’intervalle QT",
+    "pieges": [
+      "Diagnostiquer une fibrillation ventriculaire : l’épisode est organisé en tachycardie polymorphe avec torsion des QRS et réduction spontanée.",
+      "Diagnostiquer une tachycardie ventriculaire monomorphe : les QRS sont polymorphes avec changement d’axe progressif.",
+      "Diagnostiquer une fibrillation auriculaire avec bloc de branche : il s’agit d’une arythmie ventriculaire à QRS larges sur QT long.",
+      "Parler de torsade de pointes sans identifier le QT long : « pas de QT long, pas de torsade ».",
+      "Confondre avec une tachycardie jonctionnelle : la tachycardie est à QRS larges polymorphes, non jonctionnelle."
+    ],
+    "references_item": "EDN Item 231 — ECG : indications et interprétation ; troubles du rythme ventriculaire et allongement de l’intervalle QT (références impliquées par le texte).",
+    "citation_source": "« pas de QT long, pas de torsade »"
+  },
+  "error": null
+}

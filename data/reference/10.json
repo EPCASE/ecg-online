@@ -1,0 +1,93 @@
+{
+  "num": 10,
+  "titre": "bloc bifasciculaire",
+  "famille": "conduction",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence cardiaque régulière autour de 65/min. Rythme sinusal, avec des ondes P conduites. Conduction auriculo-ventriculaire ralentie : intervalle PR fixe allongé > 200 ms, compatible avec un BAV du 1er degré. Axe électrique dévié à gauche. Les QRS sont larges, mesurés à environ 140 ms, avec une morphologie de bloc de branche droite complet : aspect rsR’ en V1 et qRS en V6 avec onde S large et traînante terminale. La déviation axiale gauche associée, avec onde q en D1 et onde S large en DII, traduit un hémibloc antérieur gauche. La repolarisation n’est pas décrite comme porteuse d’anomalie spécifique sur ce tracé. Conclusion : rythme sinusal à 65/min avec BAV du 1er degré, bloc de branche droite complet et hémibloc antérieur gauche, soit un bloc bifasciculaire associé à un BAV1 ; ne pas conclure formellement à un bloc trifasciculaire.",
+  "points_cles": [
+    {
+      "label": "Rythme sinusal à environ 65/min",
+      "rang": "A"
+    },
+    {
+      "label": "BAV du 1er degré : ondes P toutes conduites, PR fixe > 200 ms",
+      "rang": "A"
+    },
+    {
+      "label": "QRS larges à 140 ms",
+      "rang": "B"
+    },
+    {
+      "label": "Bloc de branche droite complet : rsR’ en V1 et S large traînante en V6",
+      "rang": "A"
+    },
+    {
+      "label": "Déviation axiale gauche avec arguments d’hémibloc antérieur gauche",
+      "rang": "A"
+    },
+    {
+      "label": "Conclusion : bloc bifasciculaire = BBD complet + hémibloc antérieur gauche, associé à BAV1",
+      "rang": "A"
+    },
+    {
+      "label": "Ne pas affirmer un bloc trifasciculaire sur ce seul tracé",
+      "rang": "B"
+    },
+    {
+      "label": "Absence de bloc de branche gauche",
+      "rang": "B"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé montre un rythme sinusal autour de 65/min avec BAV du 1er degré. Les QRS sont larges avec aspect typique de bloc de branche droite complet, associé à une déviation axiale gauche compatible avec un hémibloc antérieur gauche. L’ensemble correspond à un bloc bifasciculaire associé à un BAV1, sans pouvoir affirmer un bloc trifasciculaire.",
+    "criteres_indispensables": [
+      {
+        "label": "Diagnostic principal : bloc bifasciculaire associant bloc de branche droite complet et hémibloc antérieur gauche",
+        "rang": "A"
+      },
+      {
+        "label": "Rythme sinusal",
+        "rang": "A"
+      },
+      {
+        "label": "BAV du 1er degré : PR fixe > 200 ms avec toutes les ondes P conduites",
+        "rang": "A"
+      },
+      {
+        "label": "Bloc de branche droite complet : QRS larges, rsR’ en V1, S large traînante en V6",
+        "rang": "A"
+      },
+      {
+        "label": "Hémibloc antérieur gauche : déviation axiale gauche, q en D1 et S large en DII",
+        "rang": "A"
+      },
+      {
+        "label": "QRS larges d’environ 140 ms",
+        "rang": "B"
+      },
+      {
+        "label": "Fréquence cardiaque environ 65/min",
+        "rang": "B"
+      },
+      {
+        "label": "Ne pas retenir un bloc de branche gauche",
+        "rang": "B"
+      },
+      {
+        "label": "Ne pas affirmer formellement un bloc trifasciculaire sur ce tracé",
+        "rang": "B"
+      }
+    ],
+    "diagnostic_principal": "Bloc bifasciculaire : bloc de branche droite complet associé à un hémibloc antérieur gauche, avec BAV du 1er degré",
+    "pieges": [
+      "Qualifier à tort le tracé de bloc de branche gauche alors que la morphologie est celle d’un bloc de branche droite.",
+      "Oublier l’hémibloc antérieur gauche devant la déviation axiale gauche associée au bloc de branche droite.",
+      "Attribuer la déviation axiale gauche à un bloc de branche droite isolé : un BBD isolé ne l’explique pas.",
+      "Affirmer abusivement un bloc trifasciculaire en présence d’un bloc bifasciculaire avec BAV1.",
+      "Omettre le BAV du 1er degré malgré un PR fixe > 200 ms avec conduction de toutes les ondes P."
+    ],
+    "references_item": "EDN Item 231 — ECG : indications et interprétation ; notions de conduction intraventriculaire, bloc bifasciculaire et BAV du 1er degré citées par le référentiel.",
+    "citation_source": "« Il n’est pas possible d’affirmer sur ce tracé que le bloc est trifasciculaire. »"
+  },
+  "error": null
+}

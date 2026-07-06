@@ -1,0 +1,89 @@
+{
+  "num": 50,
+  "titre": "fibrillation ventriculaire sur myocardiopathie ischémique",
+  "famille": "rythme",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence difficilement mesurable lors de l’épisode terminal, correspondant à une tachyarythmie ventriculaire très rapide. Le tracé initial montre un rythme sinusal, avec conduction auriculo-ventriculaire non signalée comme anormale. L’axe n’est pas l’élément déterminant ici. Les QRS sinusaux s’inscrivent sur des séquelles de nécrose antérieure étendue, avec ondes Q de V1 à V4 et également dans les dérivations inférieures. La repolarisation montre un sus-décalage persistant du segment ST, en faveur d’une reperfusion incomplète ou tardive après infarctus étendu. On observe des extrasystoles ventriculaires très préoccupantes, à couplage très court, tombant sur le sommet de l’onde T, de même morphologie sur le tracé suivant, déclenchant une salve de tachycardie ventriculaire polymorphe non soutenue puis un épisode de fibrillation ventriculaire : tachycardie à QRS larges, irrégulière, polymorphe et anarchique, ayant nécessité un choc électrique pour rétablir un rythme sinusal viable. Conclusion : séquelles de nécrose antérieure étendue, avec atteinte inférieure associée, sus-décalage ST persistant et extrasystoles ventriculaires à couplage court déclenchant une fibrillation ventriculaire dans un contexte de myocardiopathie ischémique post-infarctus reperfusé tardivement.",
+  "points_cles": [
+    {
+      "label": "Rythme sinusal sur le tracé initial",
+      "rang": "B"
+    },
+    {
+      "label": "Séquelles de nécrose antérieure étendue avec ondes Q de V1 à V4",
+      "rang": "A"
+    },
+    {
+      "label": "Ondes Q dans les dérivations inférieures, compatibles avec séquelle inférieure associée",
+      "rang": "B"
+    },
+    {
+      "label": "Sus-décalage persistant du segment ST évoquant une reperfusion incomplète ou tardive",
+      "rang": "A"
+    },
+    {
+      "label": "Extrasystoles ventriculaires à couplage très court, tombant sur l’onde T",
+      "rang": "A"
+    },
+    {
+      "label": "Déclenchement d’une tachycardie ventriculaire polymorphe non soutenue puis d’une fibrillation ventriculaire",
+      "rang": "A"
+    },
+    {
+      "label": "Fibrillation ventriculaire : QRS larges, polymorphes, irréguliers, activité anarchique",
+      "rang": "A"
+    },
+    {
+      "label": "Nécessité d’un choc électrique pour rétablir un rythme sinusal viable",
+      "rang": "B"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé s’inscrit dans un post-infarctus antérieur étendu reperfusé tardivement avec FEVG sévèrement altérée. Il associe un rythme sinusal, des séquelles de nécrose antérieure étendue avec ondes Q également inférieures, un sus-décalage ST persistant, et des extrasystoles ventriculaires très précoces tombant sur l’onde T. Ces ESV déclenchent ensuite une tachycardie ventriculaire polymorphe puis une fibrillation ventriculaire, rythmologie anarchique à QRS larges nécessitant un choc électrique.",
+    "criteres_indispensables": [
+      {
+        "label": "Diagnostic principal : fibrillation ventriculaire déclenchée par une extrasystole ventriculaire précoce dans un contexte de myocardiopathie ischémique post-infarctus",
+        "rang": "A"
+      },
+      {
+        "label": "Reconnaître les extrasystoles ventriculaires à couplage très court, sur le sommet de l’onde T",
+        "rang": "A"
+      },
+      {
+        "label": "Décrire la FV comme tachycardie anarchique à QRS larges, polymorphes et irréguliers",
+        "rang": "A"
+      },
+      {
+        "label": "Identifier la séquelle de nécrose antérieure étendue avec ondes Q de V1 à V4",
+        "rang": "A"
+      },
+      {
+        "label": "Mentionner le sus-décalage persistant du ST indiquant une reperfusion incomplète ou tardive",
+        "rang": "A"
+      },
+      {
+        "label": "Mentionner les ondes Q inférieures / séquelle inférieure associée",
+        "rang": "B"
+      },
+      {
+        "label": "Mentionner que le choc électrique rétablit une activité électrique viable",
+        "rang": "B"
+      },
+      {
+        "label": "Rythme sinusal sur le tracé initial",
+        "rang": "B"
+      }
+    ],
+    "diagnostic_principal": "Fibrillation ventriculaire déclenchée par extrasystole ventriculaire précoce sur myocardiopathie ischémique post-infarctus avec séquelles de nécrose antérieure étendue et sus-décalage ST persistant",
+    "pieges": [
+      "Ne pas confondre les extrasystoles ventriculaires à couplage court avec des extrasystoles atriales.",
+      "Ne pas manquer le caractère très péjoratif d’une ESV tombant sur l’onde T.",
+      "Ne pas limiter l’interprétation aux séquelles de nécrose : le point critique est le déclenchement de TV polymorphe puis FV.",
+      "Ne pas interpréter la fibrillation ventriculaire comme une tachycardie régulière monomorphe : elle est large, irrégulière, polymorphe et anarchique.",
+      "Ne pas oublier le sus-décalage ST persistant post-infarctus, en faveur d’une reperfusion incomplète ou tardive."
+    ],
+    "references_item": "Référentiel ECG — Fibrillation ventriculaire : ECG 12 dérivations d’une FV ; fibrillation ventriculaire en larges fuseaux, puis retour en rythme sinusal par choc électrique. EDN Item 231 — ECG : indications et interprétation ; items EDN relatifs au syndrome coronarien aigu/infarctus du myocarde et à l’arrêt cardiaque/mort subite.",
+    "citation_source": "« Le choc électrique est le seul traitement permettant de rétablir une activité électrique cardiaque viable. »"
+  },
+  "error": null
+}

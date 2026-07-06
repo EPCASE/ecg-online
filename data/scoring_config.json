@@ -1,0 +1,1020 @@
+{
+  "version": 1,
+  "updated": "2026-07-06T04:01:32",
+  "cases": {
+    "2": {
+      "roles": {
+        "Identifier un rythme sinusal avec onde P avant chaque QRS, surtout en DII et V5-V6": "validant",
+        "Reconnaître le parasitage/trémulation de la ligne de base lié au tremblement parkinsonien": "validant",
+        "Éliminer une fibrillation auriculaire : QRS réguliers et rythme sinusal visible dans certaines dérivations": "complementaire",
+        "Ne pas retenir flutter atrial, tachycardie atriale ou autre arythmie atriale sur ce tracé": "complementaire",
+        "Décrire l’aspect caractéristique de bloc de branche gauche": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": [
+        "Savoir qu’un repositionnement des électrodes près de la racine des membres peut améliorer l’enregistrement"
+      ]
+    },
+    "3": {
+      "roles": {
+        "Conclusion diagnostique : ECG strictement normal": "validant",
+        "Fréquence cardiaque normale autour de 70 bpm": "complementaire",
+        "Rythme sinusal normal : P sinusales et relation 1:1 P-QRS": "complementaire",
+        "PR fixe et normal entre 120 et 200 ms": "complementaire",
+        "QRS fins (< 100 ms) et axe normal (DI et aVF positifs)": "complementaire",
+        "Absence d’hypertrophie auriculaire ou ventriculaire, notamment pas d’HVG": "complementaire",
+        "Absence d’onde Q pathologique ; q physiologiques en V5-V6": "complementaire",
+        "Repolarisation normale : pas de sus/sous-décalage ST, T normales": "complementaire",
+        "QT/QTc normal (QT 400 ms, QTc 420 ms)": "complementaire",
+        "Ne pas retenir hémibloc antérieur gauche, séquelle antéro-septale, HVG ou HVD": "complementaire"
+      },
+      "extra_validants": []
+    },
+    "4": {
+      "roles": {
+        "Rythme sinusal": "complementaire",
+        "Hypertrophie auriculaire gauche comme diagnostic principal": "validant",
+        "Onde P élargie > 120 ms / > 110 ms seuil pathologique": "validant",
+        "Onde P bifide/crochetée en dérivations inférieures et latérales, notamment DI-DII-DIII-aVF et V3-V6": "complementaire",
+        "Composante négative élargie en V1": "complementaire",
+        "Indice de Sokolow négatif (< 36 mm), pas d’HVG électrique selon ce critère": "complementaire",
+        "Troubles de repolarisation latérale avec ondes T négatives, fréquents dans la myocardiopathie hypertrophique": "complementaire"
+      },
+      "extra_validants": []
+    },
+    "5": {
+      "roles": {
+        "Rythme sinusal": "complementaire",
+        "Onde P de durée normale": "complementaire",
+        "Onde P ample, fine/pointue, environ 3 mm en DII, dépassant le seuil de 2,5 mm": "complementaire",
+        "Amplitude de P plus importante en DII-DIII qu’en DI": "complementaire",
+        "Positivité exclusive de l’onde P en V1": "complementaire",
+        "Diagnostic d’hypertrophie auriculaire droite": "validant",
+        "Ondes R amples en V1-V2 en faveur d’une hypertrophie ventriculaire droite associée": "complementaire",
+        "Ne pas conclure à une onde P normale, une hypertrophie auriculaire gauche, une bi-auriculaire ou une activation atriale rétrograde": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "6": {
+      "roles": {
+        "Rythme sinusal": "complementaire",
+        "Hypertrophie ventriculaire gauche électrique par augmentation des voltages : R amples en V5-V6 et S profondes en V1-V2": "validant",
+        "Indice de Sokolow positif, autour de 43 mm, supérieur à 35 mm": "complementaire",
+        "Ondes T positives en précordiales gauches, orientant vers une HVG dite diastolique": "complementaire",
+        "Absence d’argument à retenir pour bloc de branche gauche incomplet ou hémibloc antérieur/postérieur gauche d’après le texte fourni": "complementaire",
+        "Contexte étiologique mentionné : insuffisance aortique significative avec dilatation et HVG à l’échographie": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "7": {
+      "roles": {
+        "Rythme sinusal": "complementaire",
+        "Bloc auriculo-ventriculaire du 1er degré avec PR à 230 ms": "complementaire",
+        "QRS fins": "complementaire",
+        "Déviation axiale droite à environ 130°": "complementaire",
+        "Hypertrophie ventriculaire droite": "validant",
+        "Rapport R/S > 1 en V1 avec grandes ondes R en V1-V2": "complementaire",
+        "Ondes T négatives/troubles de repolarisation en précordiales droites V1 à V4": "complementaire",
+        "Ne pas conclure à une HVG, une hypertrophie biventriculaire, un microvoltage ou des amplitudes normales": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "8": {
+      "roles": {
+        "ECG normal / activation ventriculaire normale": "validant",
+        "Rythme sinusal à environ 60/min": "complementaire",
+        "Conduction atrio-ventriculaire normale : conduction 1/1, PR normal": "complementaire",
+        "QRS fins, durée 85 ms": "complementaire",
+        "Axe normal": "complementaire",
+        "Absence d’HVG et absence d’ondes Q de nécrose": "complementaire",
+        "Petite onde q physiologique en V5-V6, liée à l’activation septale": "complementaire",
+        "Aspect normal rS en V1": "complementaire",
+        "Aspect normal qR en V6": "complementaire",
+        "Absence de trouble de la repolarisation et QT normal": "complementaire"
+      },
+      "extra_validants": []
+    },
+    "9": {
+      "roles": {
+        "Rythme sinusal à environ 80/min": "complementaire",
+        "Conduction atrio-ventriculaire normale : conduction 1/1, PR normal": "complementaire",
+        "QRS larges à 130 ms, donc bloc de branche complet": "complementaire",
+        "Morphologie de bloc de branche droite en V1 : rSR’ avec onde R’ terminale": "complementaire",
+        "Morphologie de bloc de branche droite en V6 : qRS avec onde S large et traînante terminale": "complementaire",
+        "Axe normal": "complementaire",
+        "Absence d’HVG et absence d’ondes Q de nécrose": "complementaire",
+        "Absence de troubles de la repolarisation et QT normal": "complementaire",
+        "Conclusion diagnostique : bloc de branche droite complet typique": "validant"
+      },
+      "extra_validants": []
+    },
+    "10": {
+      "roles": {
+        "Rythme sinusal à environ 65/min": "complementaire",
+        "BAV du 1er degré : ondes P toutes conduites, PR fixe > 200 ms": "complementaire",
+        "QRS larges à 140 ms": "complementaire",
+        "Bloc de branche droite complet : rsR’ en V1 et S large traînante en V6": "validant",
+        "Déviation axiale gauche avec arguments d’hémibloc antérieur gauche": "validant",
+        "Conclusion : bloc bifasciculaire = BBD complet + hémibloc antérieur gauche, associé à BAV1": "validant",
+        "Ne pas affirmer un bloc trifasciculaire sur ce seul tracé": "complementaire",
+        "Absence de bloc de branche gauche": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "11": {
+      "roles": {
+        "Rythme sinusal à environ 85/min": "complementaire",
+        "Conduction AV 1/1 avec PR normal sur l’ECG 12 dérivations": "complementaire",
+        "QRS larges à 130 ms": "complementaire",
+        "Bloc de branche droite complet : rSR’ en V1 et S large traînante en V6": "validant",
+        "Déviation axiale gauche avec critères d’hémibloc antérieur gauche": "validant",
+        "Conclusion : bloc bifasciculaire = BBD complet + hémibloc antérieur gauche": "complementaire",
+        "Contexte de syncopes : risque de BAV complet infrahissien/paroxystique justifiant télémétrie": "complementaire"
+      },
+      "extra_validants": []
+    },
+    "12": {
+      "roles": {
+        "Rythme sinusal à environ 70/min": "complementaire",
+        "Conduction AV normale : conduction 1/1, PR normal": "complementaire",
+        "Hypertrophie atriale droite : onde P positive en V1 > 2 mm": "complementaire",
+        "QRS larges à 150 ms avec aspect de bloc de branche droite complet": "validant",
+        "Déviation axiale droite et aspect S1Q3": "complementaire",
+        "Hypertrophie ventriculaire droite : grande amplitude de R/R’ en V1 et S profonde/larges en DI et V6": "validant",
+        "Troubles de repolarisation droits : ondes T négatives en V1-V3": "complementaire",
+        "Conclusion : bloc de branche droite complet associé à une hypertrophie ventriculaire droite": "complementaire"
+      },
+      "extra_validants": []
+    },
+    "13": {
+      "roles": {
+        "Rythme sinusal": "complementaire",
+        "Fréquence cardiaque environ 75/min": "complementaire",
+        "Conduction atrio-ventriculaire normale : conduction 1/1, PR normal": "complementaire",
+        "QRS larges à 150 ms, donc > 120 ms": "complementaire",
+        "Morphologie de bloc de branche gauche : QRS négatif QS ou rS en V1-V2": "complementaire",
+        "Morphologie de bloc de branche gauche : onde R large positive en DI et V6": "complementaire",
+        "Troubles secondaires de repolarisation : ST sous-décalé/T négative en V6 et ST sus-décalé/T positive en V1-V3": "complementaire",
+        "Conclusion diagnostique : bloc de branche gauche complet": "validant"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "14": {
+      "roles": {
+        "Identifier un bloc de branche alternant": "complementaire",
+        "Décrire l’alternance bloc de branche droite complet / bloc de branche gauche complet": "validant",
+        "Reconnaître les ondes P bloquées traduisant un trouble de conduction atrio-ventriculaire": "complementaire",
+        "Mentionner le PR normal sur l’aspect BBD puis allongé sur l’aspect BBG": "complementaire",
+        "Conclure à un ECG préoccupant chez un patient syncopal nécessitant hospitalisation urgente/stimulation": "complementaire",
+        "Ne pas réduire l’interprétation à un simple BBD ou simple BBG isolé": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "16": {
+      "roles": {
+        "Rythme sinusal à environ 65 battements/minute": "complementaire",
+        "Conduction atrio-ventriculaire normale : conduction 1/1, PR normal": "complementaire",
+        "QRS fins, durée environ 90 ms": "complementaire",
+        "Déviation axiale gauche des QRS": "complementaire",
+        "Morphologie d’hémibloc antérieur gauche : rS en dérivations inférieures, qR en DI/aVL": "complementaire",
+        "Absence de troubles de la repolarisation": "complementaire",
+        "Conclusion diagnostique : hémibloc antérieur gauche": "validant",
+        "Ne pas conclure à HVG, HAG, bloc de branche indifférencié ou séquelle de nécrose inférieure": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "17": {
+      "roles": {
+        "Rythme sinusal": "complementaire",
+        "Bradycardie sinusale autour de 40/min": "validant",
+        "Conduction atrio-ventriculaire normale avec PR normal, pas de BAV du 2e degré": "complementaire",
+        "QRS fins, axe normal, pas de bloc de branche complet": "complementaire",
+        "Absence d’anomalie de repolarisation et QT normal": "complementaire",
+        "Conclusion : bradycardie sinusale physiologique du sportif": "complementaire",
+        "Pas d’activité atriale rétrograde": "complementaire",
+        "Absence d’HVG et d’ondes Q de nécrose": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "18": {
+      "roles": {
+        "Bradycardie sinusale marquée, fréquence environ 20–30/min": "complementaire",
+        "Rythme sinusal avec ondes P sinusales visibles": "complementaire",
+        "Diagnostic de dysfonction sinusale": "validant",
+        "Conduction AV préservée en 1/1 avec PR normal, absence de BAV/BAV III": "complementaire",
+        "QRS fins avec axe normal": "complementaire",
+        "Absence d’HVG et d’ondes Q de nécrose": "complementaire",
+        "Absence de trouble de la repolarisation et QT normal": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "19": {
+      "roles": {
+        "Bradycardie brutale avec fréquence divisée par 2, après fréquence initiale normale": "complementaire",
+        "Activité atriale sinusale conservée tout au long du tracé": "complementaire",
+        "Dysfonction sinusale par probable bloc sino-auriculaire du deuxième degré": "validant",
+        "Absence de trouble de conduction atrio-ventriculaire / absence de BAV ; toutes les ondes P conduites, PR limite ≈ 190 ms": "complementaire",
+        "QRS fins, axe normal": "complementaire",
+        "Troubles de repolarisation : ondes T négatives en DII, DIII, aVF, V1–V3, possiblement liés à la coronaropathie": "complementaire",
+        "QT normal": "complementaire",
+        "Absence d’HVG et absence d’ondes Q de nécrose": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "20": {
+      "roles": {
+        "Diagnostic principal : pause sinusale / dysfonction sinusale paroxystique prolongée et symptomatique": "validant",
+        "Absence d’ondes P pendant la pause : absence d’activité atriale visible": "complementaire",
+        "Ne pas conclure à un BAV : absence d’ondes P bloquées pendant la pause": "complementaire",
+        "Rythme initial sinusal avec fréquence initiale autour de 60 bpm": "complementaire",
+        "QRS larges > 120 ms avec bloc de branche droite complet": "complementaire",
+        "Axe gauche associé, compatible avec hémibloc antérieur gauche": "complementaire",
+        "Trouble de conduction bifasciculaire : BBD complet + hémibloc antérieur gauche": "complementaire",
+        "Échappement en fin de tracé : QRS non précédé d’onde P": "complementaire",
+        "Intervalle PR limite": "complementaire",
+        "Exclure fibrillation atriale lente : rythme de base sinusal et pause sans activité atriale fibrillatoire décrite": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "21": {
+      "roles": {
+        "Bradycardie régulière à 30–40 bpm": "complementaire",
+        "Absence d’onde P sinusale sur tout le tracé : rythme non sinusal/dysfonction sinusale": "complementaire",
+        "QRS fins, réguliers, non précédés d’onde P sinusale : échappement jonctionnel": "complementaire",
+        "Activité atriale rétrograde : onde négative dans les dérivations inférieures, notamment dans l’onde T/fin QRS-début ST": "complementaire",
+        "Diagnostic principal : dysfonction sinusale avec échappement jonctionnel et conduction rétrograde": "validant",
+        "Bloc sino-auriculaire du troisième degré possible, sans nécessité de trancher avec perte d’automatisme sinusal": "complementaire",
+        "Axe normal, absence d’HVG et d’ondes Q de nécrose": "complementaire",
+        "Absence de trouble de repolarisation et QT normal": "complementaire",
+        "Ne pas conclure à un BAV III": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "22": {
+      "roles": {
+        "Identifier des spikes/artéfacts de stimulation réguliers suivis d’une dépolarisation atriale": "validant",
+        "Conclure à des activités atriales stimulées, non spontanées sinusales et non rétrogrades": "complementaire",
+        "Reconnaître que les QRS sont spontanés/non stimulés, car fins et détectés après conduction AV native": "complementaire",
+        "Décrire une conduction AV conservée avec intervalle fixe inférieur à 200 ms entre stimulation atriale et QRS": "complementaire",
+        "Mentionner le fonctionnement attendu d’un stimulateur double chambre implanté pour dysfonction sinusale": "complementaire",
+        "Préciser l’absence de trouble de repolarisation et QT normal": "complementaire",
+        "Préciser l’axe des QRS à -20° et l’absence d’hypertrophie": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "23": {
+      "roles": {
+        "Rythme régulier sinusal à environ 60/min": "validant",
+        "BAV du premier degré : PR fixe et constant > 200 ms, environ 500 ms": "validant",
+        "Toutes les ondes P sont conduites, sans onde P bloquée ; fréquence ventriculaire égale à la fréquence atriale": "complementaire",
+        "QRS fins avec axe normal": "complementaire",
+        "Hypertrophie auriculaire gauche : onde P allongée, bifide en DI-DII": "complementaire",
+        "Absence de pré-excitation ventriculaire": "complementaire",
+        "Absence de troubles de la repolarisation et QT normal": "complementaire",
+        "Absence d’HVG et d’ondes Q de nécrose": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "24": {
+      "roles": {
+        "Rythme irrégulier avec fréquence cardiaque proche de 60 bpm": "complementaire",
+        "Activité atriale sinusale et régulière": "complementaire",
+        "Présence d’ondes P conduites et d’ondes P bloquées définissant un BAV du second degré": "complementaire",
+        "Allongement progressif du PR jusqu’à une onde P bloquée puis PR court après la pause": "complementaire",
+        "Diagnostic : BAV du second degré type 1 = Mobitz 1 = Luciani-Wenckebach": "validant",
+        "QRS avec bloc incomplet droit et axe gauche/hémibloc antérieur gauche associé": "complementaire",
+        "Ne pas conclure à un BAV du premier degré ou à un Mobitz 2": "validant"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "25": {
+      "roles": {
+        "Diagnostic de BAV du deuxième degré type 2 / Mobitz 2": "validant",
+        "Onde P bloquée inopinée, non suivie de QRS": "complementaire",
+        "PR des complexes conduits constant, sans allongement progressif préalable": "complementaire",
+        "Activité atriale sinusale et régulière": "complementaire",
+        "Rythme irrégulier avec pause, fréquence proche de 60 bpm": "complementaire",
+        "QRS élargis avec bloc de branche droit complet et hémibloc antérieur gauche": "complementaire",
+        "Ne pas conclure à un BAV II type 1/Wenckebach ni à une dysfonction sinusale": "validant",
+        "Risque élevé d’évolution vers BAV complet, indication de stimulateur selon le texte pédagogique": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "26": {
+      "roles": {
+        "Identifier une bradycardie régulière autour de 43 bpm": "complementaire",
+        "Reconnaître une activité atriale sinusale avec ondes P de même morphologie": "complementaire",
+        "Repérer l’onde P bloquée en fin d’onde T": "complementaire",
+        "Décrire une onde P sur deux conduite et une onde P sur deux bloquée": "complementaire",
+        "Conclure à un BAV du second degré 2/1": "validant",
+        "Mentionner des QRS fins et un axe normal": "complementaire",
+        "Absence d’HVG, d’ondes Q de nécrose et de troubles de la repolarisation": "complementaire",
+        "QT de durée normale": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "27": {
+      "roles": {
+        "Bradycardie irrégulière à environ 35 bpm": "complementaire",
+        "Activité atriale sinusale visible, excluant une fibrillation atriale": "complementaire",
+        "Plusieurs ondes P consécutives bloquées avec alternance d’ondes P conduites": "complementaire",
+        "Diagnostic de bloc auriculoventriculaire de haut degré": "complementaire",
+        "QRS larges avec aspect de bloc de branche droit complet": "complementaire",
+        "Ondes T amples, fines/pointues et symétriques": "complementaire",
+        "QT relativement court au vu de la bradycardie": "complementaire",
+        "Conclusion : BAV de haut degré sur hyperkaliémie": "validant"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "28": {
+      "roles": {
+        "BAV du troisième degré / BAV complet": "validant",
+        "Dissociation atrioventriculaire : activité atriale sinusale régulière sans relation avec les QRS, PR variables": "complementaire",
+        "Échappement jonctionnel": "complementaire",
+        "Rythme ventriculaire régulier à 53 bpm": "complementaire",
+        "QRS fins et réguliers, orientant vers un échappement haut situé": "complementaire",
+        "Axe normal": "complementaire",
+        "Absence d’HVG et d’ondes Q de nécrose": "complementaire",
+        "Absence de troubles de repolarisation et QT normal": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "29": {
+      "roles": {
+        "Bradycardie ventriculaire majeure régulière à environ 20/min": "complementaire",
+        "Activité atriale sinusale régulière rapide, tachycardie sinusale réflexe autour de 110/min": "complementaire",
+        "Dissociation atrioventriculaire complète": "complementaire",
+        "Diagnostic de BAV du troisième degré/complet": "validant",
+        "QRS larges et réguliers, échappement probablement ventriculaire très lent": "complementaire",
+        "Ne pas confondre tachycardie sinusale réflexe avec flutter atrial": "complementaire",
+        "Ondes T amples et fines dans le contexte d’hyperkaliémie": "complementaire",
+        "QT court au vu de la fréquence très lente": "complementaire",
+        "Contexte d’hyperkaliémie chez un insuffisant rénal avec risque majeur de mort subite": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "30": {
+      "roles": {
+        "Bradycardie régulière à environ 45 bpm": "complementaire",
+        "Activité atriale rapide, polymorphe, anarchique avec trémulation de la ligne de base : fibrillation atriale": "validant",
+        "QRS fins et parfaitement réguliers malgré la FA, donc non conduits": "complementaire",
+        "Diagnostic de bloc auriculo-ventriculaire complet / BAV du troisième degré": "validant",
+        "Échappement jonctionnel": "complementaire",
+        "Absence de troubles de la repolarisation": "complementaire",
+        "Intervalle QT normal": "complementaire",
+        "Éviter de conclure à un BAV 2 Mobitz 2, une dysfonction sinusale ou une tachycardie sinusale": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "31": {
+      "roles": {
+        "Identifier sur le premier tracé une tachycardie irrégulière à QRS fins à environ 170/min": "complementaire",
+        "Décrire l’activité atriale rapide, polymorphe/anarchique avec trémulation de la ligne de base": "complementaire",
+        "Conclure à une fibrillation atriale avec conduction ventriculaire rapide": "validant",
+        "Identifier sur le second tracé un rythme sinusal avec bradycardie sinusale à environ 40/min": "validant",
+        "Mentionner une conduction AV normale avec PR normal sur le second tracé": "complementaire",
+        "Décrire des QRS fins avec axe normal, sans HVG ni ondes Q de nécrose": "complementaire",
+        "Signaler l’absence de trouble de repolarisation et un QT normal": "complementaire",
+        "Conclure à une maladie de l’oreillette / syndrome bradycardie-tachycardie par alternance tachyarythmie atriale et dysfonction sinusale": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "32": {
+      "roles": {
+        "Tachycardie initiale irrégulière à QRS larges": "complementaire",
+        "Activité atriale rapide, polymorphe, anarchique avec trémulation de la ligne de base : fibrillation atriale": "validant",
+        "FA conduite avec aspect de bloc de branche droite complet, et non tachycardie ventriculaire": "complementaire",
+        "Réduction de l’arythmie pendant l’enregistrement suivie d’une pause > 2 secondes": "complementaire",
+        "Absence d’activité atriale identifiable pendant la pause, puis onde P suivie d’un QRS": "complementaire",
+        "Diagnostic de pause sinusale post-réductionnelle / maladie rythmique de l’oreillette": "validant",
+        "Reprise d’une activité sinusale normale avec même aspect de bloc de branche droite": "complementaire",
+        "Pas d’argument pour une pause sur BAV paroxystique": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "33": {
+      "roles": {
+        "Rythme de base sinusal, fréquence environ 50/min": "complementaire",
+        "Identification d’un battement prématuré supraventriculaire à QRS fin identique aux QRS de base": "complementaire",
+        "Diagnostic d’extrasystole atriale, avec activité atriale prématurée visible notamment en V1 à la fin de l’onde T": "validant",
+        "Élimination de l’extrasystole ventriculaire du fait du QRS fin non modifié": "complementaire",
+        "Conduction atrio-ventriculaire normale : 1/1, PR normal": "complementaire",
+        "Cycle suivant l’extrasystole plus long que le cycle de base": "complementaire",
+        "QRS fins à 90 ms, axe gauche, pas d’HVG ni onde Q de nécrose": "complementaire",
+        "Troubles de repolarisation : T négatives ou biphasiques en DIII, aVF et V3-V6": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "34": {
+      "roles": {
+        "Rythme de base sinusal": "complementaire",
+        "Extrasystoles ventriculaires identifiées : complexes prématurés à QRS larges non précédés d’activité atriale": "validant",
+        "Organisation en trigéminisme ventriculaire : deux battements sinusaux normaux puis une ESV": "complementaire",
+        "PR normal / conduction atrio-ventriculaire normale": "complementaire",
+        "QRS sinusaux fins à 85 ms, axe normal": "complementaire",
+        "Absence d’hypertrophie ventriculaire gauche et absence d’ondes Q de nécrose": "complementaire",
+        "Absence de troubles de repolarisation et QT normal": "complementaire",
+        "Repos compensateur et activité atriale rétrograde sous forme d’encoche dans l’onde T": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "35": {
+      "roles": {
+        "Rythme de base sinusal": "complementaire",
+        "Complexes QRS fins sur les complexes sinusaux": "complementaire",
+        "Déviation axiale gauche": "complementaire",
+        "Présence de 2 extrasystoles ventriculaires isolées": "complementaire",
+        "Salve de tachycardie à QRS larges": "complementaire",
+        "Salve monomorphe de 10 complexes": "complementaire",
+        "Réduction spontanée, durée < 30 secondes": "complementaire",
+        "Diagnostic de tachycardie ventriculaire non soutenue": "validant",
+        "Exclusion d’une torsade de pointes du fait du caractère monomorphe": "complementaire",
+        "Absence de tachycardie ventriculaire soutenue": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "36": {
+      "roles": {
+        "Rythme sinusal": "complementaire",
+        "QRS de durée légèrement augmentée": "complementaire",
+        "Axe normal": "complementaire",
+        "Extrasystoles ventriculaires très précoces": "validant",
+        "Couplage très court avec le QRS précédent": "validant",
+        "Survenue sur la phase ascendante/sommet de l’onde T : phénomène R sur T": "complementaire",
+        "Aspect de bigéminisme en fin de tracé": "complementaire",
+        "Marqueur de gravité avec risque de fibrillation ventriculaire/mort subite": "complementaire",
+        "Pas de doublet ni triplet ventriculaire décrit": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "37": {
+      "roles": {
+        "Tachycardie irrégulière à QRS fins, environ 160 bpm": "complementaire",
+        "Absence d’onde P sinusale individualisable / rythme non sinusal": "complementaire",
+        "Trémulation ou ondulations continues de la ligne de base": "complementaire",
+        "Diagnostic de fibrillation atriale": "validant",
+        "Axe QRS normal": "complementaire",
+        "Absence de signes d’hypertrophie ventriculaire gauche": "complementaire",
+        "Absence de troubles de la repolarisation": "complementaire",
+        "Ne pas conclure à un flutter commun ni à une tachycardie sinusale": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "38": {
+      "roles": {
+        "Fibrillation atriale identifiée : absence d’ondes P sinusales et activité atriale rapide, irrégulière, anarchique avec trémulation de la ligne de base": "validant",
+        "Réponse ventriculaire lente/bradycardie autour de 40/min, inférieure à 60/min": "complementaire",
+        "Rythme ventriculaire très irrégulier avec diastoles longues, orientant vers FA lente plutôt que BAV complet": "complementaire",
+        "QRS fins": "complementaire",
+        "Axe des QRS normal": "complementaire",
+        "Absence de signes d’hypertrophie ventriculaire gauche": "complementaire",
+        "Absence de troubles de la repolarisation": "complementaire",
+        "PR non mesurable en l’absence d’ondes P organisées": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "39": {
+      "roles": {
+        "Diagnostic d’arythmie sinusale respiratoire physiologique chez un adolescent asymptomatique": "validant",
+        "Rythme sinusal avec ondes P de morphologie normale avant les QRS": "validant",
+        "Irrégularité sinusale périodique des intervalles PP avec accélérations et ralentissements successifs suivant la respiration": "complementaire",
+        "Intervalle PR normal, pas de BAV": "complementaire",
+        "Reste de l’ECG dans les limites de la normale, avec éventuellement petite onde U normale": "complementaire",
+        "Ne pas conclure à une dysfonction sinusale, fibrillation atriale ou bloc sinoatrial": "validant"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "40": {
+      "roles": {
+        "Identifier une tachycardie à environ 170 bpm": "complementaire",
+        "Reconnaître l’origine sinusale : ondes P sinusales positives en DI, DII, V5-V6 et négatives en aVR": "complementaire",
+        "Rapport oreillettes/ventricules 1/1 avec ondes P précédant et commandant les QRS": "complementaire",
+        "Conclusion diagnostique : tachycardie sinusale": "validant",
+        "Ne pas conclure à une fibrillation atriale, un flutter ou une tachycardie par réentrée": "complementaire",
+        "Contexte compatible avec une tachycardie sinusale réactionnelle : fièvre/surinfection, anémie, insuffisance rénale, décompensation cardiaque": "complementaire",
+        "Traitement orienté vers les causes plutôt que vers la tachycardie elle-même": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "41": {
+      "roles": {
+        "Diagnostic de flutter atrial commun typique": "validant",
+        "Origine oreillette droite, macro-réentrée passant par l’isthme cavo-tricuspide, sens antihoraire": "complementaire",
+        "Activité atriale rapide régulière monomorphe autour de 270/min": "complementaire",
+        "Ondes F en dents de scie dans les dérivations inférieures sans retour à la ligne isoélectrique": "complementaire",
+        "Activité atriale peu voltée/plate en DI, positive en V1, négative en V6": "complementaire",
+        "Conduction atrio-ventriculaire principalement 4/1 avec fréquence ventriculaire proche de 75/min": "complementaire",
+        "QRS fins": "complementaire",
+        "Ne pas conclure à un rythme sinusal, une fibrillation atriale, un flutter gauche ou une tachycardie jonctionnelle": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "42": {
+      "roles": {
+        "Tachycardie régulière à QRS fins à environ 170 bpm": "complementaire",
+        "Rythme non sinusal ; PR non interprétable en tachycardie": "complementaire",
+        "QRS fins rendant la TV très improbable": "complementaire",
+        "Régularité rendant la fibrillation atriale très improbable": "complementaire",
+        "Hypothèses initiales : flutter/arythmie atriale organisée ou tachycardie jonctionnelle": "complementaire",
+        "Diagnostic retenu : flutter commun rapide, probablement à conduction 2/1": "validant",
+        "Ondes F en dents de scie dans les dérivations inférieures, démasquées par bloc AV transitoire sous striadyne/manœuvre vagale": "complementaire",
+        "Manœuvre vagale/striadyne ralentit ou interrompt transitoirement la conduction AV sans arrêter le circuit du flutter": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "43": {
+      "roles": {
+        "Tachycardie régulière à QRS fins à environ 180 bpm": "complementaire",
+        "Rythme non sinusal ; activité atriale difficile à voir, possiblement dans l’onde T avec rapport 1/1": "complementaire",
+        "FA très improbable du fait de la parfaite régularité": "complementaire",
+        "QRS fins en tachycardie rendant le diagnostic de TV non retenu dans ce cas": "complementaire",
+        "Hypothèses devant tachycardie régulière à QRS fins : flutter/arythmie atriale organisée ou tachycardie jonctionnelle": "complementaire",
+        "Arrêt brutal par manœuvre vagale, en faveur d’une tachycardie jonctionnelle": "complementaire",
+        "En rythme sinusal : pré-excitation avec PR court < 120 ms, onde delta et QRS larges": "complementaire",
+        "Diagnostic final : tachycardie jonctionnelle orthodromique sur voie accessoire, syndrome de Wolff-Parkinson-White": "validant",
+        "Troubles de repolarisation secondaires à la pré-excitation en rythme sinusal": "complementaire",
+        "Après ablation : disparition de la pré-excitation, PR non court, onde delta absente, QRS fins": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "44": {
+      "roles": {
+        "Tachycardie régulière à QRS fins autour de 200/min": "complementaire",
+        "Rythme non sinusal pendant la crise, activité atriale difficile à voir": "complementaire",
+        "Ondes P’ rétrogrades en fin de QRS, négatives en inférieur et positives en V1/aVR": "complementaire",
+        "QRS fins : diagnostic de TV écarté dans l’interprétation de référence": "complementaire",
+        "Régularité parfaite rendant la fibrillation atriale très improbable": "complementaire",
+        "Hypothèses initiales : flutter/arythmie atriale organisée ou tachycardie jonctionnelle": "complementaire",
+        "Arrêt brutal sous isoptine avec reprise d’un rythme sinusal": "complementaire",
+        "Absence d’aspect de pré-excitation sur le tracé sinusal": "complementaire",
+        "Diagnostic final : tachycardie jonctionnelle par réentrée intranodale": "validant"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "45": {
+      "roles": {
+        "Tachycardie régulière à QRS larges monomorphes au début du tracé": "complementaire",
+        "Exclure FA devant la régularité ; exclure torsade de pointes/fibrillation ventriculaire devant le caractère monomorphe organisé": "complementaire",
+        "Hypothèses initiales : tachycardie ventriculaire ou tachycardie supraventriculaire avec bloc de branche": "complementaire",
+        "Massage sinocarotidien/manœuvre vagale ralentissant la conduction nodale et révélant l’activité atriale": "complementaire",
+        "Activité atriale rapide, organisée, régulière, monomorphe à environ 260/min": "complementaire",
+        "Diagnostic final : flutter atrial horaire avec conduction initiale 2/1": "validant",
+        "QRS compatibles avec bloc de branche droit : R’ en V1, S large et traînante en V6": "validant",
+        "Déviation axiale gauche compatible avec hémibloc antérieur gauche ; bloc bifasciculaire": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "46": {
+      "roles": {
+        "Tachycardie régulière à QRS larges": "complementaire",
+        "QRS monomorphes": "complementaire",
+        "Activité atriale difficile à individualiser, possible rapport VA 1/1": "complementaire",
+        "Diagnostics à évoquer : tachycardie ventriculaire ou tachycardie jonctionnelle antidromique sur voie accessoire": "validant",
+        "FA éliminée par le caractère régulier": "complementaire",
+        "Torsade de pointes et fibrillation ventriculaire éliminées par le caractère monomorphe/organisé des QRS": "complementaire",
+        "Second tracé : arrêt par manœuvre vagale d’une tachycardie à QRS fins et retour sinusal": "complementaire",
+        "Pré-excitation en rythme sinusal : PR court < 120 ms, onde delta, QRS élargis": "complementaire",
+        "Aspect de QRS proche de celui de la première tachycardie en faveur d’une tachycardie antidromique sur voie accessoire": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "47": {
+      "roles": {
+        "Tachycardie régulière à QRS larges": "complementaire",
+        "QRS larges monomorphes": "complementaire",
+        "Activité atriale difficile à identifier": "complementaire",
+        "Absence de complexes de capture ou de fusion décrite": "complementaire",
+        "Contexte d’antécédent d’infarctus du myocarde / myocardiopathie ischémique": "complementaire",
+        "Diagnostic principal : tachycardie ventriculaire très probable": "validant",
+        "Différentiels : tachycardie supraventriculaire avec bloc de branche, flutter atrial ou tachycardie jonctionnelle avec bloc de branche": "complementaire",
+        "Urgence potentiellement vitale avec surveillance rythmique et hémodynamique": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "48": {
+      "roles": {
+        "Identifier une tachycardie à QRS larges à environ 106 bpm": "complementaire",
+        "Évoquer les diagnostics différentiels d’une tachycardie à QRS larges : TV, TSV avec bloc de branche, tachycardie antidromique": "complementaire",
+        "Mettre en évidence une dissociation auriculo-ventriculaire avec activité atriale sinusale plus lente et indépendante des QRS": "complementaire",
+        "Reconnaître le 3e QRS fin comme un complexe de capture suivant une onde P sinusale": "complementaire",
+        "Conclure que dissociation AV et capture certifient une tachycardie ventriculaire": "validant"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "49": {
+      "roles": {
+        "Tachycardie irrégulière à QRS larges monomorphes": "complementaire",
+        "Diagnostic de fibrillation atriale : activité atriale rapide, irrégulière, anarchique / trémulation de la ligne de base, absence de rythme sinusal analysable": "validant",
+        "Bloc de branche droite complet : QRS > 120 ms, rsR’ en V1, onde S large en DI et V6": "complementaire",
+        "Comprendre que les QRS larges sont liés au bloc de branche associé dans une tachycardie supraventriculaire": "validant",
+        "Éliminer torsade de pointes et fibrillation ventriculaire devant des QRS monomorphes": "complementaire",
+        "PR non analysable en fibrillation atriale": "complementaire",
+        "Après cardioversion : même aspect de BBD complet en rythme sinusal, avec hypertrophie auriculaire gauche comme substrat atrial favorable": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "50": {
+      "roles": {
+        "Rythme sinusal sur le tracé initial": "complementaire",
+        "Séquelles de nécrose antérieure étendue avec ondes Q de V1 à V4": "complementaire",
+        "Ondes Q dans les dérivations inférieures, compatibles avec séquelle inférieure associée": "complementaire",
+        "Sus-décalage persistant du segment ST évoquant une reperfusion incomplète ou tardive": "complementaire",
+        "Extrasystoles ventriculaires à couplage très court, tombant sur l’onde T": "complementaire",
+        "Déclenchement d’une tachycardie ventriculaire polymorphe non soutenue puis d’une fibrillation ventriculaire": "complementaire",
+        "Fibrillation ventriculaire : QRS larges, polymorphes, irréguliers, activité anarchique": "validant",
+        "Nécessité d’un choc électrique pour rétablir un rythme sinusal viable": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "51": {
+      "roles": {
+        "Diagnostic de torsade de pointes": "validant",
+        "QT extrêmement/majeurement allongé sur les complexes sinusaux avant et après l’épisode": "validant",
+        "Tachycardie ventriculaire polymorphe à QRS larges": "complementaire",
+        "Changement progressif/cyclique de l’axe des QRS avec aspect de torsion autour de la ligne isoélectrique": "complementaire",
+        "Fréquence rapide autour de 220/min": "complementaire",
+        "Épisode irrégulier et spontanément résolutif, durant environ 7 secondes": "complementaire",
+        "Déclenchement par extrasystoles ventriculaires dans un contexte de QT long": "complementaire",
+        "Contexte favorisant : hypokaliémie possible sur diarrhées et médicaments allongeant le QT, macrolide et antihistaminique": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "52": {
+      "roles": {
+        "Diagnostic de fibrillation auriculaire conduite par une voie accessoire dans un syndrome de Wolff-Parkinson-White": "validant",
+        "Tachycardie irrégulière à QRS larges polymorphes": "complementaire",
+        "Rythme ventriculaire très rapide avec cycles ventriculaires très courts": "complementaire",
+        "Pré-excitation avec alternance de QRS très élargis, fins et intermédiaires, aspect en accordéon": "complementaire",
+        "Risque de dégénérescence en fibrillation ventriculaire / mort subite": "complementaire",
+        "Axe des QRS ne changeant pas, argument contre une torsade de pointes": "complementaire",
+        "Ne pas conclure à un bloc de branche gauche ou à un SCA inférieur": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "53": {
+      "roles": {
+        "Tachycardie sinusale à 110 bpm": "validant",
+        "PR normal": "complementaire",
+        "QRS limite à 100 ms avec aspect de retard droit": "complementaire",
+        "Aspect S1Q3 : onde S en DI et onde q en DIII": "validant",
+        "Onde T négative en DIII réalisant un aspect S1Q3T3": "complementaire",
+        "Absence de troubles majeurs de repolarisation / pas d’argument pour SCA ST+": "complementaire",
+        "Conclusion : ECG évocateur d’embolie pulmonaire": "validant",
+        "Rappeler que l’ECG est peu spécifique et qu’un ECG normal n’élimine pas l’EP": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "54": {
+      "roles": {
+        "Diagnostic principal : choc obstructif sur embolie pulmonaire massive / cœur pulmonaire aigu": "validant",
+        "Bloc de branche droite complet : QRS > 120 ms, rSR’ en V1, S large et traînante en V6": "validant",
+        "Aspect S1q3T3 avec onde T négative en DIII": "complementaire",
+        "Ondes T négatives en V1-V3": "complementaire",
+        "Fréquence cardiaque à 91 bpm": "complementaire",
+        "Doublet d’extrasystoles atriales": "complementaire",
+        "PR normal": "complementaire",
+        "ECG d’EP non sensible ni spécifique, mais rarement normal dans l’EP massive": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "55": {
+      "roles": {
+        "Diagnostic principal : péricardite aiguë": "validant",
+        "Rythme sinusal": "complementaire",
+        "Sous-décalage diffus du segment PQ, surtout DI-DII, avec sus-décalage en aVR": "complementaire",
+        "Sus-décalage diffus du segment ST, concave vers le haut, dans plusieurs dérivations hors aVR/V1": "complementaire",
+        "Ondes T positives suivant le sus-décalage ST au stade initial": "complementaire",
+        "Sous-décalage du ST en aVR et V1 seulement": "complementaire",
+        "Variations d’amplitude des QRS évoquant un épanchement péricardique": "complementaire",
+        "Différenciation avec SCA : pas de territoire coronaire systématisé, absence de miroir sauf aVR/V1, absence d’ondes Q de nécrose si mentionnée": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "56": {
+      "roles": {
+        "Tachycardie sinusale": "complementaire",
+        "Microvoltage diffus des QRS": "validant",
+        "Définition du microvoltage : QRS ≤ 5 mm en périphériques et/ou ≤ 10 mm en précordiales, ici absence de dépassement de ces seuils": "complementaire",
+        "Alternance électrique des QRS, surtout en V3-V4": "validant",
+        "Conclusion : aspect typique d’épanchement péricardique abondant": "validant",
+        "Contexte compatible avec perforation de sonde de défibrillateur et épanchement/tamponnade": "complementaire",
+        "Ne pas retenir hypertrophie auriculaire droite ou gauche": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "57": {
+      "roles": {
+        "Rythme sinusal": "complementaire",
+        "QRS fins": "complementaire",
+        "Petites ondes q en dérivations inférieures": "complementaire",
+        "Sus-décalage ST modéré dans les dérivations inférieures": "validant",
+        "Absence de miroir": "validant",
+        "Diagnostic principal : myocardite dans un contexte viral/douleur thoracique/troponine élevée": "validant",
+        "SCA ST+ = principal diagnostic différentiel à éliminer si doute": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "58": {
+      "roles": {
+        "Rythme sinusal": "complementaire",
+        "Sus-décalage ST de V1 à V4": "complementaire",
+        "Sus-décalage ST en DI, aVL et aVR": "complementaire",
+        "Sus-décalage englobant l’onde T : onde de Pardee": "complementaire",
+        "Sous-décalage ST en miroir dans les dérivations inférieures et en V6": "complementaire",
+        "Diagnostic de SCA ST+ aigu antéro-septo-apical": "validant",
+        "Territoire compatible avec occlusion proximale de l’IVA en amont de la première septale": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "59": {
+      "roles": {
+        "Rythme sinusal": "complementaire",
+        "Sus-décalage ST systématisé en territoire inférieur (DII, DIII, aVF)": "complementaire",
+        "Aspect d’onde de Pardee englobant l’onde T": "complementaire",
+        "Sous-décalage en miroir en aVL et V2": "complementaire",
+        "Ondes q dans les dérivations inférieures": "complementaire",
+        "Conclusion : SCA ST+ inférieur": "validant",
+        "Ne pas conclure à une reperfusion inutile du fait des ondes q": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "60": {
+      "roles": {
+        "Diagnostic de SCA ST+ inférieur aigu": "validant",
+        "Sus-décalage ST en dérivations inférieures avec aspect d’onde de Pardee": "complementaire",
+        "Sous-décalage miroir en DI et aVL": "complementaire",
+        "Extension au ventricule droit sur sus-décalage significatif en V3R-V4R": "complementaire",
+        "Dysfonction sinusale avec absence d’ondes P visualisables": "complementaire",
+        "Rythme d’échappement à QRS modérément élargis, 115 ms": "complementaire",
+        "Probable conduction atriale rétrograde, activité atriale négative dans les dérivations inférieures au début de l’onde T": "complementaire",
+        "Ondes q dans les dérivations inférieures et q profondes en dérivations droites": "complementaire",
+        "ECG 18 dérivations obligatoire/précoce devant un SCA ST+ inférieur": "complementaire",
+        "Dysfonction sinusale relativement fréquente dans le SCA ST+ inférieur": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "61": {
+      "roles": {
+        "Diagnostic de SCA ST+ inférieur aigu avec sus-décalage inférieur ample/onde de Pardee": "validant",
+        "Extension postérieure suspectée par grande onde R et sous-décalage miroir en V1-V2, confirmable par V7-V9": "complementaire",
+        "ECG 18 dérivations obligatoire devant infarctus inférieur pour rechercher extension droite et postérieure": "complementaire",
+        "Extension au ventricule droit sur sus-décalage significatif en dérivations droites V3R-V4R": "complementaire",
+        "Sous-décalage en miroir en DI-aVL et en V1-V2": "complementaire",
+        "Bradycardie à QRS fins avec possible trouble de conduction atrio-ventriculaire 2/1": "complementaire",
+        "Sus-décalage moins ample en V4-V6 et aspect inféro-latéral": "complementaire",
+        "Ondes q inférieures et de V4 à V6": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "62": {
+      "roles": {
+        "Rythme sinusal": "complementaire",
+        "Intervalle PR normal": "complementaire",
+        "Bloc de branche gauche complet : QRS > 120 ms, QS en V1, positivité exclusive en V6": "validant",
+        "Axe gauche": "complementaire",
+        "Sus-décalage ST antérieur de V1 à V4, très ample en V2-V3 (> 5 mm)": "complementaire",
+        "Diagnostic de SCA ST+ antérieur dans un contexte de douleur thoracique, malgré le BBG": "validant",
+        "Indication de reperfusion/coronarographie urgente si forte suspicion clinique": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "63": {
+      "roles": {
+        "Identifier le sus-décalage de grande amplitude en V5 avec onde de Pardee": "complementaire",
+        "Conclure à un SCA ST+ de territoire antérieur": "validant",
+        "Reconnaître une fibrillation ventriculaire : tachycardie extrêmement rapide, polymorphe, anarchique": "complementaire",
+        "Noter le rythme sinusal initial": "complementaire",
+        "Identifier l’extrasystole ventriculaire déclenchante": "complementaire",
+        "Mentionner le contexte de thrombose de stent et mort subite récupérée par choc électrique externe": "complementaire",
+        "Ne pas conclure à une torsade de pointes, une TV organisée ou un rythme idio-ventriculaire accéléré": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "64": {
+      "roles": {
+        "Identifier un RIVA : rythme ventriculaire focal, fréquence environ 80/min, QRS larges": "validant",
+        "Reconnaître le contexte de SCA ST+ reperfusé/arythmie de reperfusion": "validant",
+        "Décrire le complexe de fusion avec onde P identifiable": "complementaire",
+        "Décrire le sus-décalage ST inférieur et latéral V5-V6": "complementaire",
+        "Décrire le sous-décalage V1-V3 évocateur d’atteinte postérieure associée": "complementaire",
+        "Ne pas conclure à une tachycardie ventriculaire pour une fréquence < 100/min, ni à un rythme sinusal avec BBD": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "65": {
+      "roles": {
+        "SCA ST+ inférieur": "validant",
+        "Sus-décalage ST systématisé au territoire inférieur": "complementaire",
+        "Miroir en DI, aVL et V1": "complementaire",
+        "Bloc auriculo-ventriculaire de haut degré": "validant",
+        "Activité atriale sinusale avec ondes P bloquées": "complementaire",
+        "Possible BAV complet avec échappement nodal": "complementaire",
+        "Ondes q dans le territoire inférieur": "complementaire",
+        "Possibles ondes q latérales en V4-V6": "complementaire",
+        "Ne pas conclure à un flutter atrial ni à un RIVA": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "66": {
+      "roles": {
+        "Rythme sinusal": "complementaire",
+        "Complexes QRS fins": "complementaire",
+        "Sous-décalage significatif du segment ST en V1 à V4": "validant",
+        "Ondes T négatives en V1 à V4": "complementaire",
+        "Absence de sus-décalage du segment ST": "complementaire",
+        "Contexte clinique avec élévation enzymatique orientant vers NSTEMI plutôt qu’angor instable": "complementaire",
+        "Conclusion : SCA sans sus-décalage du ST antérieur / NSTEMI antérieur": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "67": {
+      "roles": {
+        "Identifier une fibrillation auriculaire rapide à environ 130 bpm": "validant",
+        "Dire que le rythme n’est pas sinusal, avec PR non mesurable": "complementaire",
+        "Décrire un sous-décalage significatif du segment ST en V3-V4, territoire antéro-apical": "validant",
+        "Décrire des troubles diffus de la repolarisation avec ondes T négatives ou plates en DI, aVL, DII, DIII, aVF, V4-V6": "complementaire",
+        "Mentionner l’absence de sus-décalage du ST et l’absence d’ondes q": "complementaire",
+        "Conclure à un SCA sans sus-décalage du ST / angor instable secondaire dans le contexte d’une FA rapide chez coronarienne": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "68": {
+      "roles": {
+        "Rythme sinusal à 95 bpm": "complementaire",
+        "Sus-décalage du ST en aVR, important, mesuré à 3 mm": "complementaire",
+        "Sus-décalage du ST également en V1, mesuré à 2 mm": "complementaire",
+        "Sous-décalage diffus et important du ST, notamment inférieur et V3-V6": "complementaire",
+        "Association sus-ST aVR/V1 + sous-ST diffus évocatrice d’ischémie étendue": "complementaire",
+        "Signe de gravité imposant une prise en charge urgente comme SCA avec sus-décalage ST": "complementaire"
+      },
+      "extra_validants": [
+        "Syndrome coronarien à la phase aigue avec sus-décalage du segment ST"
+      ],
+      "removed": [
+        "Diagnostic évoqué : lésion du tronc commun gauche et/ou lésions tritronculaires sévères"
+      ]
+    },
+    "69": {
+      "roles": {
+        "Rythme sinusal": "complementaire",
+        "PR normal": "complementaire",
+        "QRS larges > 120 ms avec aspect de bloc de branche droite complet": "complementaire",
+        "Axe droit": "complementaire",
+        "Séquelle de nécrose antéro-septo-apicale : onde q et rabotage des R de V1 à V4": "complementaire",
+        "Sus-décalage modéré en V3 avec troubles de repolarisation de V1 à V4": "complementaire",
+        "Conclusion : possible anévrisme du ventricule gauche sur large séquelle antérieure à distance de l’infarctus": "validant",
+        "Ne pas conclure à un bloc de branche gauche ou hémibloc antérieur gauche": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "70": {
+      "roles": {
+        "Rythme sinusal": "complementaire",
+        "Sus-décalage ST majeur > 10 mm en territoire inférieur": "complementaire",
+        "Aspect en dôme monophasique englobant l’onde T": "complementaire",
+        "Sous-décalage en miroir en DI, aVL, V3-V5": "complementaire",
+        "Extrasystole ventriculaire puis doublet d’extrasystoles ventriculaires": "complementaire",
+        "Conclusion : SCA ST+ inférieur": "validant",
+        "Contexte compatible avec angor de Prinzmetal/spasme coronaire droit, sus-décalage transitoire régressif sous trinitrine": "validant"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "71": {
+      "roles": {
+        "Rythme sinusal": "complementaire",
+        "QRS fins avec axe gauche en faveur d’un hémibloc antérieur gauche": "complementaire",
+        "Absence d’argument pour un bloc de branche gauche": "complementaire",
+        "Ondes T négatives géantes pathologiques dans le territoire inférieur et de V2 à V6": "validant",
+        "Intervalle QT allongé": "validant",
+        "Évoquer le Takotsubo comme diagnostic différentiel de SCA, diagnostic d’exclusion": "validant"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "72": {
+      "roles": {
+        "Rythme sinusal à environ 80 bpm": "complementaire",
+        "PR normal et QRS fins": "complementaire",
+        "Déviation axiale gauche": "complementaire",
+        "Onde U large/ample avec allongement apparent du QT": "complementaire",
+        "Contexte de furosémide récent orientant vers une hypokaliémie": "validant",
+        "Ne pas conclure à une hyperkaliémie ni à un BAV du 2e degré": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "73": {
+      "roles": {
+        "Diagnostic d’hyperkaliémie menaçante avec signes ECG": "validant",
+        "Ondes T amples, pointues et symétriques, notamment V3 à V5": "complementaire",
+        "QRS extrêmement élargis proches de 200 ms": "complementaire",
+        "Élargissement QRS sans aspect typique de bloc de branche droit ou gauche": "complementaire",
+        "Activité atriale difficile à identifier ; rythme sinusal non affirmable": "complementaire",
+        "Fréquence cardiaque environ 90 bpm": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": [
+        "Contexte d’insuffisance rénale sévère/anurie et urgence vitale"
+      ]
+    },
+    "74": {
+      "roles": {
+        "Sus-décalage ST en dôme en V1-V3": "complementaire",
+        "Sus-ST > 2 mm dans au moins une dérivation précordiale droite": "complementaire",
+        "Ondes T négatives en V1-V3": "complementaire",
+        "Absence de miroir": "complementaire",
+        "Conclusion diagnostique : syndrome de Brugada": "validant"
+      },
+      "extra_validants": [],
+      "removed": [
+        "Contexte de syncope nocturne et antécédent familial de mort subite = gravité/avis spécialisé"
+      ]
+    },
+    "75": {
+      "roles": {
+        "Rythme sinusal avec ondes P peu voltées": "complementaire",
+        "PR normal, pas de BAV du premier degré": "complementaire",
+        "Microvoltage des QRS dans les dérivations périphériques/frontales (< 5 mm)": "complementaire",
+        "Absence de microvoltage précordial franc : QRS > 10 mm en V3-V4": "validant",
+        "Pseudo-ondes q de nécrose en V1-V2": "complementaire",
+        "Troubles de la repolarisation inféro-latéraux : ondes T aplaties ou négatives": "complementaire",
+        "Conclusion : ECG en faveur d’une atteinte cardiaque de l’amylose": "validant"
+      },
+      "extra_validants": [],
+      "removed": []
+    },
+    "1": {
+      "roles": {
+        "Identifier l’inversion des électrodes des deux bras, poignet droit et poignet gauche": "validant",
+        "Décrire la dérivation DI inversée avec onde P, QRS et onde T négatifs": "complementaire",
+        "Ne pas conclure à une vraie déviation axiale droite ou à un trouble de repolarisation latérale": "complementaire",
+        "Rythme paraissant sinusal, fréquence normale, PR normal, QRS fins, QT normal": "complementaire",
+        "Progression normale de l’onde R dans les dérivations précordiales": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": [
+        "Évoquer très secondairement la dextrocardie comme diagnostic différentiel rare devant DI négative"
+      ]
+    }
+  }
+}

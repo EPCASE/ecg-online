@@ -1,0 +1,85 @@
+{
+  "num": 45,
+  "titre": "tachycardie supraventriculaire à QRS larges",
+  "famille": "rythme",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Au début du tracé, il existe une tachycardie régulière à QRS larges, monomorphes. Le rythme n’est pas sinusal ; l’analyse de la conduction atrio-ventriculaire initiale est limitée par la tachycardie, mais la manœuvre vagale ralentit la conduction nodale et démasque une activité atriale rapide, régulière et monomorphe à environ 260/min, avec conduction initiale 2/1. L’axe est dévié à gauche, compatible avec un hémibloc antérieur gauche. Les QRS sont larges avec morphologie de bloc de branche droit (R’ en V1, onde S large et traînante en V6), réalisant avec l’hémibloc antérieur gauche un bloc bifasciculaire. La repolarisation n’apporte pas d’argument rapporté ici pour un autre diagnostic. Conclusion : tachycardie supraventriculaire organisée par flutter atrial horaire de l’oreillette droite, initialement conduit en 2/1, avec bloc de branche droit associé à un hémibloc antérieur gauche ; devant le début du tracé, les hypothèses initiales légitimes étaient tachycardie ventriculaire ou tachycardie supraventriculaire avec bloc de branche.",
+  "points_cles": [
+    {
+      "label": "Tachycardie régulière à QRS larges monomorphes au début du tracé",
+      "rang": "A"
+    },
+    {
+      "label": "Exclure FA devant la régularité ; exclure torsade de pointes/fibrillation ventriculaire devant le caractère monomorphe organisé",
+      "rang": "A"
+    },
+    {
+      "label": "Hypothèses initiales : tachycardie ventriculaire ou tachycardie supraventriculaire avec bloc de branche",
+      "rang": "A"
+    },
+    {
+      "label": "Massage sinocarotidien/manœuvre vagale ralentissant la conduction nodale et révélant l’activité atriale",
+      "rang": "B"
+    },
+    {
+      "label": "Activité atriale rapide, organisée, régulière, monomorphe à environ 260/min",
+      "rang": "A"
+    },
+    {
+      "label": "Diagnostic final : flutter atrial horaire avec conduction initiale 2/1",
+      "rang": "A"
+    },
+    {
+      "label": "QRS compatibles avec bloc de branche droit : R’ en V1, S large et traînante en V6",
+      "rang": "B"
+    },
+    {
+      "label": "Déviation axiale gauche compatible avec hémibloc antérieur gauche ; bloc bifasciculaire",
+      "rang": "B"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le début du tracé montre une tachycardie régulière à QRS larges monomorphes : les diagnostics initiaux à discuter sont une tachycardie ventriculaire ou une tachycardie supraventriculaire avec bloc de branche. La manœuvre vagale ralentit la conduction nodale et révèle une activité atriale rapide, organisée et régulière à 260/min. Le diagnostic final est un flutter atrial horaire de l’oreillette droite, initialement conduit en 2/1, avec bloc de branche droit et hémibloc antérieur gauche.",
+    "criteres_indispensables": [
+      {
+        "label": "Identifier une tachycardie régulière à QRS larges monomorphes",
+        "rang": "A"
+      },
+      {
+        "label": "Citer les hypothèses initiales correctes : tachycardie ventriculaire et tachycardie supraventriculaire avec bloc de branche",
+        "rang": "A"
+      },
+      {
+        "label": "Ne pas retenir FA, torsade de pointes ou fibrillation ventriculaire comme diagnostics du début du tracé",
+        "rang": "A"
+      },
+      {
+        "label": "Mentionner que la manœuvre vagale/massage sinocarotidien révèle l’activité atriale sous-jacente",
+        "rang": "B"
+      },
+      {
+        "label": "Décrire une activité atriale rapide, régulière, organisée, monomorphe à environ 260/min",
+        "rang": "A"
+      },
+      {
+        "label": "Conclure à un flutter atrial horaire avec conduction 2/1 initiale",
+        "rang": "A"
+      },
+      {
+        "label": "Décrire le bloc de branche droit associé à l’hémibloc antérieur gauche/bloc bifasciculaire",
+        "rang": "B"
+      }
+    ],
+    "diagnostic_principal": "Flutter atrial horaire de l’oreillette droite, initialement conduit en 2/1, avec bloc de branche droit et hémibloc antérieur gauche",
+    "pieges": [
+      "Conclure à une fibrillation atriale alors que la tachycardie est régulière.",
+      "Conclure à une torsade de pointes ou une fibrillation ventriculaire alors que les QRS sont monomorphes et organisés.",
+      "S’arrêter au diagnostic de tachycardie ventriculaire sans intégrer l’effet du massage sinocarotidien révélant l’activité atriale.",
+      "Méconnaître qu’une tachycardie supraventriculaire peut être à QRS larges en présence d’un bloc de branche.",
+      "Exiger la connaissance détaillée de la morphologie du flutter horaire, non attendue aux EDN/ECOS selon le texte."
+    ],
+    "references_item": "EDN Item 231 — ECG : indications et interprétation ; troubles du rythme supraventriculaires et tachycardies à QRS larges (références impliquées par le cas).",
+    "citation_source": "« les 2 diagnostics à évoquer sont donc ceux de tachycardie ventriculaire ou de tachycardie supraventriculaire avec bloc de branche. »"
+  },
+  "error": null
+}

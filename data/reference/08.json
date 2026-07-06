@@ -1,0 +1,105 @@
+{
+  "num": 8,
+  "titre": "activation ventriculaire normale",
+  "famille": "normal",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence cardiaque régulière à environ 60/min. Rythme sinusal, avec conduction atrio-ventriculaire 1/1 et intervalle PR de durée normale. Axe électrique normal. Les QRS sont fins, mesurés à 85 ms, sans hypertrophie ventriculaire gauche et sans onde Q de nécrose ; la petite onde q fine et de faible amplitude en V5-V6 est physiologique, correspondant à l’activation septale. Morphologie d’activation ventriculaire normale avec aspect rS en V1 et qR en V6. Il n’existe pas de trouble de la repolarisation, et l’intervalle QT est de durée normale. Conclusion : ECG normal, avec activation ventriculaire normale.",
+  "points_cles": [
+    {
+      "label": "ECG normal / activation ventriculaire normale",
+      "rang": "A"
+    },
+    {
+      "label": "Rythme sinusal à environ 60/min",
+      "rang": "A"
+    },
+    {
+      "label": "Conduction atrio-ventriculaire normale : conduction 1/1, PR normal",
+      "rang": "A"
+    },
+    {
+      "label": "QRS fins, durée 85 ms",
+      "rang": "A"
+    },
+    {
+      "label": "Axe normal",
+      "rang": "B"
+    },
+    {
+      "label": "Absence d’HVG et absence d’ondes Q de nécrose",
+      "rang": "B"
+    },
+    {
+      "label": "Petite onde q physiologique en V5-V6, liée à l’activation septale",
+      "rang": "A"
+    },
+    {
+      "label": "Aspect normal rS en V1",
+      "rang": "A"
+    },
+    {
+      "label": "Aspect normal qR en V6",
+      "rang": "A"
+    },
+    {
+      "label": "Absence de trouble de la repolarisation et QT normal",
+      "rang": "B"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé correspond à une activation ventriculaire normale chez une jeune femme asymptomatique. Le rythme est sinusal à environ 60/min, la conduction AV et le PR sont normaux, les QRS sont fins avec axe normal. Les aspects rS en V1 et qR en V6 sont normaux, avec petite q septale physiologique en V5-V6, sans trouble de repolarisation ni QT anormal.",
+    "criteres_indispensables": [
+      {
+        "label": "Conclure à un ECG normal / activation ventriculaire normale",
+        "rang": "A"
+      },
+      {
+        "label": "Identifier un rythme sinusal à environ 60/min",
+        "rang": "A"
+      },
+      {
+        "label": "Mentionner une conduction AV normale avec PR normal",
+        "rang": "A"
+      },
+      {
+        "label": "Reconnaître des QRS fins, durée 85 ms",
+        "rang": "A"
+      },
+      {
+        "label": "Décrire l’aspect rS normal en V1",
+        "rang": "A"
+      },
+      {
+        "label": "Décrire l’aspect qR normal en V6",
+        "rang": "A"
+      },
+      {
+        "label": "Interpréter les petites q en V5-V6 comme physiologiques, septales, et non pathologiques",
+        "rang": "A"
+      },
+      {
+        "label": "Mentionner l’axe normal",
+        "rang": "B"
+      },
+      {
+        "label": "Mentionner l’absence d’HVG et d’ondes Q de nécrose",
+        "rang": "B"
+      },
+      {
+        "label": "Mentionner l’absence de troubles de repolarisation et un QT normal",
+        "rang": "B"
+      }
+    ],
+    "diagnostic_principal": "ECG normal — activation ventriculaire normale",
+    "pieges": [
+      "Qualifier les petites ondes q en V5-V6 d’ondes Q pathologiques ou de nécrose.",
+      "Oublier que l’aspect rS en V1 est normal dans l’activation ventriculaire normale.",
+      "Oublier que l’aspect qR en V6 est normal, avec q septale physiologique possible.",
+      "Diagnostiquer à tort un bloc de branche alors que les QRS sont fins à 85 ms.",
+      "Surinterpréter la durée des QRS : le texte rappelle que la valeur pathologique pratique est surtout > 120 ms pour un bloc de branche complet."
+    ],
+    "references_item": "EDN — ECG : indications et interprétation ; activation ventriculaire normale et durée des QRS. Renvoi fourni : durée normale des QRS de l’ordre de 80 ms, valeur pathologique pratique surtout > 120 ms correspondant au bloc de branche complet.",
+    "citation_source": "« l’aspect normal en V1 est donc rS [...] l’aspect normal en V6 est donc qR »"
+  },
+  "error": null
+}

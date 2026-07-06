@@ -1,0 +1,77 @@
+{
+  "num": 18,
+  "titre": "dysfonction sinusale symptomatique",
+  "famille": "rythme",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence ventriculaire très lente, autour de 20–30/min, correspondant à une bradycardie sinusale marquée. Le rythme est sinusal : ondes P bien visibles, d’origine sinusale (positives en DI, DII et précordiales gauches, négatives en aVR), précédant chaque QRS. La conduction atrio-ventriculaire est conservée, en 1/1, avec intervalle PR normal ; il n’y a pas d’onde P bloquée ni d’argument pour un BAV, notamment pas de BAV III. Axe des QRS normal. Les QRS sont fins, sans hypertrophie ventriculaire gauche et sans onde Q de nécrose. Pas de trouble de la repolarisation, intervalle QT de durée normale. Conclusion : bradycardie sinusale majeure par dysfonction sinusale symptomatique.",
+  "points_cles": [
+    {
+      "label": "Bradycardie sinusale marquée, fréquence environ 20–30/min",
+      "rang": "A"
+    },
+    {
+      "label": "Rythme sinusal avec ondes P sinusales visibles",
+      "rang": "A"
+    },
+    {
+      "label": "Diagnostic de dysfonction sinusale",
+      "rang": "A"
+    },
+    {
+      "label": "Conduction AV préservée en 1/1 avec PR normal, absence de BAV/BAV III",
+      "rang": "A"
+    },
+    {
+      "label": "QRS fins avec axe normal",
+      "rang": "B"
+    },
+    {
+      "label": "Absence d’HVG et d’ondes Q de nécrose",
+      "rang": "C"
+    },
+    {
+      "label": "Absence de trouble de la repolarisation et QT normal",
+      "rang": "B"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé montre une bradycardie sinusale très marquée, avec activité atriale sinusale clairement identifiable et fréquence autour de 20–30/min. Chaque onde P est suivie d’un QRS avec un PR normal : la conduction AV est préservée, sans argument pour un BAV. L’ensemble correspond à une dysfonction sinusale symptomatique.",
+    "criteres_indispensables": [
+      {
+        "label": "Identifier une bradycardie marquée avec fréquence autour de 20–30/min",
+        "rang": "A"
+      },
+      {
+        "label": "Affirmer le caractère sinusal du rythme/activité atriale sinusale",
+        "rang": "A"
+      },
+      {
+        "label": "Conclure à une dysfonction sinusale",
+        "rang": "A"
+      },
+      {
+        "label": "Préciser l’absence de BAV : conduction AV 1/1 avec PR normal, pas d’ondes P bloquées",
+        "rang": "A"
+      },
+      {
+        "label": "Mentionner des QRS fins et axe normal",
+        "rang": "B"
+      },
+      {
+        "label": "Mentionner l’absence de troubles de la repolarisation et un QT normal",
+        "rang": "B"
+      }
+    ],
+    "diagnostic_principal": "Dysfonction sinusale avec bradycardie sinusale marquée",
+    "pieges": [
+      "Ne pas conclure à un BAV III : il existe une conduction AV 1/1 avec PR normal.",
+      "Ne pas parler d’activité atriale rétrograde : les ondes P sont sinusales.",
+      "Ne pas confondre avec un rythme d’échappement : les QRS sont précédés d’ondes P sinusales.",
+      "Ne pas oublier de qualifier la bradycardie et de donner l’ordre de grandeur de la fréquence.",
+      "Rechercher des ondes P bloquées cachées dans les T ou QRS avant d’évoquer un BAV."
+    ],
+    "references_item": "Référentiel EDN — Dysfonction sinusale : bradycardie sinusale inappropriée en éveil < 50 bpm, pauses sinusales, blocs sino-atriaux, insuffisance chronotrope, syndrome bradycardie-tachycardie ; EDN Item ECG — indications et interprétation systématique.",
+    "citation_source": "« Les ondes P sont très lentes (autour de 20 à 25 battements/minute ce qui conduit au diagnostic de dysfonction sinusale »"
+  },
+  "error": null
+}

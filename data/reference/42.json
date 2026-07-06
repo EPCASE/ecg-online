@@ -1,0 +1,85 @@
+{
+  "num": 42,
+  "titre": "flutter commun rapide",
+  "famille": "rythme",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence ventriculaire rapide, environ 170/min. Rythme non sinusal : tachycardie régulière à QRS fins, avec activité atriale difficile à individualiser sur le tracé initial du fait d’une conduction probablement 2/1. Le PR n’est pas interprétable en tachycardie ; après blocage transitoire de la conduction auriculoventriculaire par striadyne, l’activité atriale organisée est démasquée. Axe non précisé. QRS fins, ce qui rend le diagnostic de tachycardie ventriculaire très improbable. La repolarisation ST/T et le QT ne sont pas l’élément discriminant ici. L’analyse attentive évoque un flutter atrial commun : ondes F rapides organisées, à aspect en dents de scie surtout dans les dérivations inférieures, peu voltées en DI, positives en V1 et négatives en V6, démasquées lors du bloc AV transitoire. Conclusion : tachycardie régulière à QRS fins correspondant à un flutter commun rapide avec conduction auriculoventriculaire 2/1 ; les diagnostics différentiels initiaux sont une tachycardie jonctionnelle ou une autre arythmie atriale organisée, la FA étant très improbable car le rythme est parfaitement régulier et la TV écartée par les QRS fins.",
+  "points_cles": [
+    {
+      "label": "Tachycardie régulière à QRS fins à environ 170 bpm",
+      "rang": "A"
+    },
+    {
+      "label": "Rythme non sinusal ; PR non interprétable en tachycardie",
+      "rang": "B"
+    },
+    {
+      "label": "QRS fins rendant la TV très improbable",
+      "rang": "A"
+    },
+    {
+      "label": "Régularité rendant la fibrillation atriale très improbable",
+      "rang": "A"
+    },
+    {
+      "label": "Hypothèses initiales : flutter/arythmie atriale organisée ou tachycardie jonctionnelle",
+      "rang": "B"
+    },
+    {
+      "label": "Diagnostic retenu : flutter commun rapide, probablement à conduction 2/1",
+      "rang": "A"
+    },
+    {
+      "label": "Ondes F en dents de scie dans les dérivations inférieures, démasquées par bloc AV transitoire sous striadyne/manœuvre vagale",
+      "rang": "A"
+    },
+    {
+      "label": "Manœuvre vagale/striadyne ralentit ou interrompt transitoirement la conduction AV sans arrêter le circuit du flutter",
+      "rang": "B"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé montre une tachycardie régulière à QRS fins autour de 170/min. La régularité rend la FA très improbable et les QRS fins rendent la TV très improbable. L’analyse et surtout le blocage AV transitoire sous striadyne démasquent une activité atriale organisée en dents de scie, compatible avec un flutter commun rapide, typiquement en conduction 2/1.",
+    "criteres_indispensables": [
+      {
+        "label": "Identifier une tachycardie régulière à QRS fins autour de 150–170/min",
+        "rang": "A"
+      },
+      {
+        "label": "Retenir le diagnostic principal de flutter commun rapide",
+        "rang": "A"
+      },
+      {
+        "label": "Mentionner les ondes F/aspect en dents de scie, surtout dans les dérivations inférieures",
+        "rang": "A"
+      },
+      {
+        "label": "Comprendre que la striadyne/manœuvre vagale bloque transitoirement la conduction AV et démasque l’activité atriale sans interrompre le flutter",
+        "rang": "A"
+      },
+      {
+        "label": "Écarter ou rendre très improbable la FA du fait du caractère parfaitement régulier",
+        "rang": "B"
+      },
+      {
+        "label": "Écarter ou rendre très improbable la TV du fait des QRS fins",
+        "rang": "B"
+      },
+      {
+        "label": "Citer les diagnostics différentiels initiaux possibles : tachycardie jonctionnelle ou autre arythmie organisée des oreillettes",
+        "rang": "C"
+      }
+    ],
+    "diagnostic_principal": "Flutter commun rapide avec conduction auriculoventriculaire 2/1",
+    "pieges": [
+      "Diagnostiquer une fibrillation atriale malgré la régularité parfaite de la tachycardie.",
+      "Conclure à une tachycardie ventriculaire alors que les QRS sont fins.",
+      "Ne pas évoquer le flutter commun sous prétexte que les ondes F sont peu visibles sur le tracé initial.",
+      "Croire que la striadyne arrête le flutter : elle bloque transitoirement la conduction AV et démasque l’activité atriale, mais n’interrompt pas le circuit atrial.",
+      "Confondre l’effet d’une manœuvre vagale dans un flutter atrial avec son effet dans une tachycardie jonctionnelle, où elle peut arrêter la tachycardie."
+    ],
+    "references_item": "EDN Item 231 — ECG : indications et interprétation ; troubles du rythme supraventriculaires, flutter atrial et tachycardies régulières à QRS fins.",
+    "citation_source": "« la cadence ventriculaire se situe entre 150 et 170 bpm, correspondant à une division par 2 de la fréquence des ondes F »"
+  },
+  "error": null
+}

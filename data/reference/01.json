@@ -1,0 +1,73 @@
+{
+  "num": 1,
+  "titre": "inversion des électrodes",
+  "famille": "technique",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence normale. Rythme paraissant sinusal, avec une onde P avant chaque QRS et chaque onde P suivie d’un QRS ; intervalle PR normal. Axe faussement dévié à droite du fait de l’inversion complète de DI. QRS fins, avec progression normale de l’onde R dans les dérivations précordiales. Repolarisation et QT globalement normaux, mais aspect trompeur de trouble de repolarisation latérale lié à DI inversée : en DI, onde P, complexe QRS et onde T sont négatifs. Conclusion : tracé caractéristique d’une inversion des électrodes des deux bras, poignet droit et poignet gauche, à corriger avant toute interprétation diagnostique ; le tracé corrigé est normal.",
+  "points_cles": [
+    {
+      "label": "Identifier l’inversion des électrodes des deux bras, poignet droit et poignet gauche",
+      "rang": "A"
+    },
+    {
+      "label": "Décrire la dérivation DI inversée avec onde P, QRS et onde T négatifs",
+      "rang": "A"
+    },
+    {
+      "label": "Ne pas conclure à une vraie déviation axiale droite ou à un trouble de repolarisation latérale",
+      "rang": "A"
+    },
+    {
+      "label": "Rythme paraissant sinusal, fréquence normale, PR normal, QRS fins, QT normal",
+      "rang": "B"
+    },
+    {
+      "label": "Progression normale de l’onde R dans les dérivations précordiales",
+      "rang": "B"
+    },
+    {
+      "label": "Évoquer très secondairement la dextrocardie comme diagnostic différentiel rare devant DI négative",
+      "rang": "C"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé peut sembler normal à première lecture : fréquence normale, rythme paraissant sinusal, PR normal, QRS fins et QT normal. L’anomalie clé est une dérivation DI complètement inversée, avec ondes P, QRS et T négatifs, traduisant une inversion des électrodes des deux bras. La progression de R en précordiales est normale, ce qui oriente vers une erreur technique plutôt qu’une pathologie cardiaque.",
+    "criteres_indispensables": [
+      {
+        "label": "Diagnostic principal : inversion des électrodes des deux bras / poignets droit et gauche",
+        "rang": "A"
+      },
+      {
+        "label": "DI inversée avec onde P négative, QRS négatif et onde T négative",
+        "rang": "A"
+      },
+      {
+        "label": "Reconnaître le pseudo-aspect de déviation axiale droite et de trouble de repolarisation latérale",
+        "rang": "A"
+      },
+      {
+        "label": "Progression normale de l’onde R en précordiales",
+        "rang": "B"
+      },
+      {
+        "label": "ECG sinon d’allure normale : fréquence normale, rythme paraissant sinusal, PR normal, QRS fins, QT normal",
+        "rang": "B"
+      },
+      {
+        "label": "Savoir que la dextrocardie est un diagnostic différentiel rare mais beaucoup moins probable",
+        "rang": "C"
+      }
+    ],
+    "diagnostic_principal": "Inversion des électrodes des deux bras, poignet droit et poignet gauche",
+    "pieges": [
+      "Prendre la négativité de DI pour une vraie déviation axiale droite.",
+      "Diagnostiquer à tort un trouble de repolarisation latérale.",
+      "Oublier de vérifier systématiquement les inversions d’électrodes avant l’interprétation clinique.",
+      "Évoquer une dextrocardie en première intention alors qu’elle est très rare et que l’inversion des poignets est de loin la cause la plus probable.",
+      "Surinterpréter le tracé alors que la correction du positionnement des électrodes donne un ECG normal."
+    ],
+    "references_item": "Aucun item EDN spécifique ne décrit l’ECG caractéristique d’une inversion des électrodes ; compétence pratique indispensable d’interprétation technique de l’ECG.",
+    "citation_source": "« Ce tracé correspond à une inversion des électrodes des 2 bras ; l'aspect électrocardiographique est caractéristique »"
+  },
+  "error": null
+}

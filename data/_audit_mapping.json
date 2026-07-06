@@ -1,0 +1,181 @@
+{
+  "total_points": 578,
+  "methods": {
+    "aucun": 34,
+    "inclusion": 491,
+    "exact": 53
+  },
+  "couverture_facile_pct": 94.1,
+  "non_matches": [
+    {
+      "num": 1,
+      "rang": "A",
+      "label": "Identifier l’inversion des électrodes des deux bras, poignet droit et poignet gauche"
+    },
+    {
+      "num": 1,
+      "rang": "B",
+      "label": "Progression normale de l’onde R dans les dérivations précordiales"
+    },
+    {
+      "num": 1,
+      "rang": "C",
+      "label": "Évoquer très secondairement la dextrocardie comme diagnostic différentiel rare devant DI négative"
+    },
+    {
+      "num": 2,
+      "rang": "C",
+      "label": "Savoir qu’un repositionnement des électrodes près de la racine des membres peut améliorer l’enregistrement"
+    },
+    {
+      "num": 3,
+      "rang": "A",
+      "label": "PR fixe et normal entre 120 et 200 ms"
+    },
+    {
+      "num": 3,
+      "rang": "B",
+      "label": "Absence d’hypertrophie auriculaire ou ventriculaire, notamment pas d’HVG"
+    },
+    {
+      "num": 4,
+      "rang": "A",
+      "label": "Composante négative élargie en V1"
+    },
+    {
+      "num": 4,
+      "rang": "B",
+      "label": "Indice de Sokolow négatif (< 36 mm), pas d’HVG électrique selon ce critère"
+    },
+    {
+      "num": 5,
+      "rang": "B",
+      "label": "Amplitude de P plus importante en DII-DIII qu’en DI"
+    },
+    {
+      "num": 6,
+      "rang": "C",
+      "label": "Contexte étiologique mentionné : insuffisance aortique significative avec dilatation et HVG à l’échographie"
+    },
+    {
+      "num": 7,
+      "rang": "A",
+      "label": "Rapport R/S > 1 en V1 avec grandes ondes R en V1-V2"
+    },
+    {
+      "num": 8,
+      "rang": "A",
+      "label": "Aspect normal rS en V1"
+    },
+    {
+      "num": 8,
+      "rang": "A",
+      "label": "Aspect normal qR en V6"
+    },
+    {
+      "num": 10,
+      "rang": "B",
+      "label": "Ne pas affirmer un bloc trifasciculaire sur ce seul tracé"
+    },
+    {
+      "num": 22,
+      "rang": "C",
+      "label": "Préciser l’axe des QRS à -20° et l’absence d’hypertrophie"
+    },
+    {
+      "num": 25,
+      "rang": "A",
+      "label": "PR des complexes conduits constant, sans allongement progressif préalable"
+    },
+    {
+      "num": 37,
+      "rang": "A",
+      "label": "Trémulation ou ondulations continues de la ligne de base"
+    },
+    {
+      "num": 40,
+      "rang": "A",
+      "label": "Rapport oreillettes/ventricules 1/1 avec ondes P précédant et commandant les QRS"
+    },
+    {
+      "num": 41,
+      "rang": "A",
+      "label": "Origine oreillette droite, macro-réentrée passant par l’isthme cavo-tricuspide, sens antihoraire"
+    },
+    {
+      "num": 41,
+      "rang": "B",
+      "label": "Activité atriale peu voltée/plate en DI, positive en V1, négative en V6"
+    },
+    {
+      "num": 43,
+      "rang": "A",
+      "label": "FA très improbable du fait de la parfaite régularité"
+    },
+    {
+      "num": 46,
+      "rang": "B",
+      "label": "Activité atriale difficile à individualiser, possible rapport VA 1/1"
+    },
+    {
+      "num": 47,
+      "rang": "B",
+      "label": "Activité atriale difficile à identifier"
+    },
+    {
+      "num": 47,
+      "rang": "B",
+      "label": "Urgence potentiellement vitale avec surveillance rythmique et hémodynamique"
+    },
+    {
+      "num": 51,
+      "rang": "A",
+      "label": "QT extrêmement/majeurement allongé sur les complexes sinusaux avant et après l’épisode"
+    },
+    {
+      "num": 51,
+      "rang": "A",
+      "label": "Changement progressif/cyclique de l’axe des QRS avec aspect de torsion autour de la ligne isoélectrique"
+    },
+    {
+      "num": 54,
+      "rang": "C",
+      "label": "ECG d’EP non sensible ni spécifique, mais rarement normal dans l’EP massive"
+    },
+    {
+      "num": 55,
+      "rang": "A",
+      "label": "Variations d’amplitude des QRS évoquant un épanchement péricardique"
+    },
+    {
+      "num": 56,
+      "rang": "A",
+      "label": "Conclusion : aspect typique d’épanchement péricardique abondant"
+    },
+    {
+      "num": 57,
+      "rang": "A",
+      "label": "Diagnostic principal : myocardite dans un contexte viral/douleur thoracique/troponine élevée"
+    },
+    {
+      "num": 68,
+      "rang": "A",
+      "label": "Diagnostic évoqué : lésion du tronc commun gauche et/ou lésions tritronculaires sévères"
+    },
+    {
+      "num": 71,
+      "rang": "B",
+      "label": "Évoquer le Takotsubo comme diagnostic différentiel de SCA, diagnostic d’exclusion"
+    },
+    {
+      "num": 73,
+      "rang": "B",
+      "label": "Contexte d’insuffisance rénale sévère/anurie et urgence vitale"
+    },
+    {
+      "num": 74,
+      "rang": "B",
+      "label": "Contexte de syncope nocturne et antécédent familial de mort subite = gravité/avis spécialisé"
+    }
+  ]
+}

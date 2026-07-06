@@ -1,0 +1,97 @@
+{
+  "num": 9,
+  "titre": "bloc de branche droite complet",
+  "famille": "conduction",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence cardiaque régulière à environ 80/min. Rythme sinusal, avec conduction atrio-ventriculaire 1/1 et intervalle PR de durée normale. Axe électrique normal. Les QRS sont larges, mesurés à 130 ms, traduisant un bloc de branche complet ; leur morphologie est typique d’un bloc de branche droite avec aspect rSR’ en V1 et qRS en V6 comportant une onde S large et traînante terminale. Il n’y a pas d’argument pour une hypertrophie ventriculaire gauche ni d’ondes Q de nécrose. Pas de trouble de la repolarisation, intervalle QT de durée normale. Conclusion : ECG en rythme sinusal montrant un bloc de branche droite complet typique.",
+  "points_cles": [
+    {
+      "label": "Rythme sinusal à environ 80/min",
+      "rang": "B"
+    },
+    {
+      "label": "Conduction atrio-ventriculaire normale : conduction 1/1, PR normal",
+      "rang": "B"
+    },
+    {
+      "label": "QRS larges à 130 ms, donc bloc de branche complet",
+      "rang": "A"
+    },
+    {
+      "label": "Morphologie de bloc de branche droite en V1 : rSR’ avec onde R’ terminale",
+      "rang": "A"
+    },
+    {
+      "label": "Morphologie de bloc de branche droite en V6 : qRS avec onde S large et traînante terminale",
+      "rang": "A"
+    },
+    {
+      "label": "Axe normal",
+      "rang": "B"
+    },
+    {
+      "label": "Absence d’HVG et absence d’ondes Q de nécrose",
+      "rang": "C"
+    },
+    {
+      "label": "Absence de troubles de la repolarisation et QT normal",
+      "rang": "B"
+    },
+    {
+      "label": "Conclusion diagnostique : bloc de branche droite complet typique",
+      "rang": "A"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "ECG en rythme sinusal autour de 80/min avec conduction atrio-ventriculaire normale. Les QRS sont élargis à 130 ms, avec une morphologie typique de bloc de branche droite : rSR’ en V1 et qRS en V6 avec onde S terminale large et traînante. Axe normal, pas d’HVG, pas d’onde Q de nécrose, pas de trouble de repolarisation et QT normal.",
+    "criteres_indispensables": [
+      {
+        "label": "Diagnostic principal : bloc de branche droite complet",
+        "rang": "A"
+      },
+      {
+        "label": "Durée des QRS > 120 ms, ici 130 ms",
+        "rang": "A"
+      },
+      {
+        "label": "Aspect rSR’ en V1 / onde R’ terminale indispensable",
+        "rang": "A"
+      },
+      {
+        "label": "Aspect qRS en V6 avec onde S terminale large et traînante",
+        "rang": "A"
+      },
+      {
+        "label": "Rythme sinusal avec fréquence environ 80/min",
+        "rang": "B"
+      },
+      {
+        "label": "Conduction AV normale : PR normal, conduction 1/1",
+        "rang": "B"
+      },
+      {
+        "label": "Axe normal",
+        "rang": "B"
+      },
+      {
+        "label": "Absence de trouble de repolarisation et QT normal",
+        "rang": "B"
+      },
+      {
+        "label": "Absence d’HVG et d’ondes Q de nécrose",
+        "rang": "C"
+      }
+    ],
+    "diagnostic_principal": "Bloc de branche droite complet",
+    "pieges": [
+      "Ne pas conclure à un bloc de branche gauche : la morphologie caractéristique est celle d’un BBD, avec rSR’ en V1 et S terminale large en V6.",
+      "Ne pas parler de bloc incomplet : les QRS durent 130 ms, donc > 120 ms.",
+      "Ne pas confondre avec un hémibloc antérieur ou postérieur gauche : l’axe est normal et le diagnostic repose ici sur l’élargissement des QRS et la morphologie de BBD.",
+      "Ne pas oublier que la présence de l’onde R’ terminale en V1 et de l’onde S terminale en V6 est indispensable au diagnostic.",
+      "Ne pas surinterpréter un trouble de repolarisation, une nécrose ou une HVG : ils ne sont pas retrouvés sur ce tracé."
+    ],
+    "references_item": "EDN Item 231 — ECG : indications et interprétation ; référentiel : critères du bloc de branche droite complet (QRS > 120 ms, aspect RsR’ en V1, qRS en V6 avec onde S traînante).",
+    "citation_source": "« on parle de bloc de branche droite complet si la durée des complexes QRS est supérieure à 120 ms »"
+  },
+  "error": null
+}

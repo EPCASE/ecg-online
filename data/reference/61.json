@@ -1,0 +1,85 @@
+{
+  "num": 61,
+  "titre": "syndrome coronarien aigu inférieur avec extension au ventricule droit et à la paroi postérieure",
+  "famille": "ischemie",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence ventriculaire lente, avec bradycardie à QRS fins. Le rythme est difficile à préciser : activité atriale peu visible, possiblement régulière en V3 avec conduction 2/1, faisant suspecter un trouble de conduction atrio-ventriculaire ; PR non analysable de façon fiable. Axe non précisé. Les QRS sont fins ; on note des ondes q en territoire inférieur et de V4 à V6, ainsi qu’une grande onde R en V1-V2 compatible avec une atteinte postérieure. La repolarisation montre un large sus-décalage du ST en dérivations inférieures avec aspect d’onde de Pardee, un sus-décalage moins ample en V4-V6, et un sous-décalage en miroir en DI-aVL et en V1-V2. L’ensemble conclut à un SCA ST+ inféro-latéral aigu, avec suspicion/argument d’extension postérieure ; l’ECG 18 dérivations est obligatoire et confirme l’extension au ventricule droit par sus-décalage en V3R-V4R et à la paroi postérieure par sus-décalage en V7-V9 avec ondes q.",
+  "points_cles": [
+    {
+      "label": "Diagnostic de SCA ST+ inférieur aigu avec sus-décalage inférieur ample/onde de Pardee",
+      "rang": "A"
+    },
+    {
+      "label": "Extension postérieure suspectée par grande onde R et sous-décalage miroir en V1-V2, confirmable par V7-V9",
+      "rang": "A"
+    },
+    {
+      "label": "ECG 18 dérivations obligatoire devant infarctus inférieur pour rechercher extension droite et postérieure",
+      "rang": "A"
+    },
+    {
+      "label": "Extension au ventricule droit sur sus-décalage significatif en dérivations droites V3R-V4R",
+      "rang": "A"
+    },
+    {
+      "label": "Sous-décalage en miroir en DI-aVL et en V1-V2",
+      "rang": "B"
+    },
+    {
+      "label": "Bradycardie à QRS fins avec possible trouble de conduction atrio-ventriculaire 2/1",
+      "rang": "B"
+    },
+    {
+      "label": "Sus-décalage moins ample en V4-V6 et aspect inféro-latéral",
+      "rang": "B"
+    },
+    {
+      "label": "Ondes q inférieures et de V4 à V6",
+      "rang": "C"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé correspond à un SCA ST+ inférieur aigu, avec sous-décalage miroir en DI-aVL et V1-V2. Les éléments fournis imposent l’enregistrement d’un ECG 18 dérivations, qui met en évidence une extension au ventricule droit en V3R-V4R et à la paroi postérieure en V7-V9. Une bradycardie à QRS fins avec activité atriale difficile à analyser fait suspecter un trouble de conduction atrio-ventriculaire.",
+    "criteres_indispensables": [
+      {
+        "label": "SCA ST+ / infarctus inférieur aigu avec sus-décalage ST inférieur",
+        "rang": "A"
+      },
+      {
+        "label": "Extension à la paroi postérieure : sous-décalage antérieur miroir V1-V2 et/ou grande onde R V1-V2, sus-décalage V7-V9 attendu",
+        "rang": "A"
+      },
+      {
+        "label": "Nécessité d’enregistrer les dérivations droites et postérieures / ECG 18 dérivations",
+        "rang": "A"
+      },
+      {
+        "label": "Extension au ventricule droit : sus-décalage en V3R-V4R",
+        "rang": "A"
+      },
+      {
+        "label": "Sous-décalage en miroir en DI-aVL",
+        "rang": "B"
+      },
+      {
+        "label": "Bradycardie à QRS fins avec possible trouble de conduction atrio-ventriculaire",
+        "rang": "B"
+      },
+      {
+        "label": "Sus-décalage moins ample en V4-V6 / atteinte inféro-latérale",
+        "rang": "B"
+      }
+    ],
+    "diagnostic_principal": "SCA ST+ inférieur aigu avec extension au ventricule droit et à la paroi postérieure",
+    "pieges": [
+      "Ne pas conclure à un infarctus antéro-septal devant le sous-décalage en V1-V2 : il s’agit d’une image en miroir d’une atteinte postérieure.",
+      "Ne pas oublier l’ECG 18 dérivations devant un infarctus inférieur, avec V3R-V4R et V7-V9.",
+      "Ne pas méconnaître l’extension au ventricule droit, à fort enjeu pronostique et thérapeutique.",
+      "Ne pas réduire le tracé à un infarctus inférieur isolé : il existe des arguments d’extension postérieure et droite.",
+      "Ne pas interpréter le sus-décalage latéral V4-V6 comme un infarctus latéral haut isolé."
+    ],
+    "references_item": "EDN Item 231 — ECG : indications et interprétation ; référentiel SCA ST+ : sous-décalage antérieur V1-V3 justifiant l’enregistrement de V7-V9, sus-décalage ≥ 0,5 mm en V7-V9 confirmant l’atteinte postérieure.",
+    "citation_source": "« L'enregistrement des dérivations précordiales droites et postérieures est indispensable chez un patient présentant un infarctus inférieur »"
+  },
+  "error": null
+}

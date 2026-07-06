@@ -1,0 +1,81 @@
+{
+  "num": 68,
+  "titre": "lésion du tronc commun de la coronaire gauche",
+  "famille": "ischemie",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence ventriculaire régulière autour de 95/min. Rythme sinusal. La conduction auriculo-ventriculaire n’est pas signalée comme anormale. Axe non précisé. QRS sans anomalie de durée ou de morphologie rapportée. La repolarisation est très pathologique avec un sus-décalage du segment ST de 3 mm en aVR et de 2 mm en V1, associé à un sous-décalage diffus et important du ST, notamment dans les dérivations inférieures et de V3 à V6. QT non précisé. Conclusion : aspect d’ischémie myocardique diffuse sévère avec sus-décalage en aVR/V1, évocateur d’atteinte coronaire étendue tritronculaire et/ou de sténose/sub-occlusion du tronc commun de la coronaire gauche, urgence thérapeutique de très haut risque.",
+  "points_cles": [
+    {
+      "label": "Rythme sinusal à 95 bpm",
+      "rang": "B"
+    },
+    {
+      "label": "Sus-décalage du ST en aVR, important, mesuré à 3 mm",
+      "rang": "A"
+    },
+    {
+      "label": "Sus-décalage du ST également en V1, mesuré à 2 mm",
+      "rang": "B"
+    },
+    {
+      "label": "Sous-décalage diffus et important du ST, notamment inférieur et V3-V6",
+      "rang": "A"
+    },
+    {
+      "label": "Association sus-ST aVR/V1 + sous-ST diffus évocatrice d’ischémie étendue",
+      "rang": "A"
+    },
+    {
+      "label": "Diagnostic évoqué : lésion du tronc commun gauche et/ou lésions tritronculaires sévères",
+      "rang": "A"
+    },
+    {
+      "label": "Signe de gravité imposant une prise en charge urgente comme SCA avec sus-décalage ST",
+      "rang": "B"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "ECG en rythme sinusal à 95 bpm avec repolarisation très évocatrice d’ischémie diffuse sévère : sous-décalage ST diffus associé à un sus-décalage du ST en aVR et V1. Cet aspect oriente vers une atteinte coronaire étendue, en particulier sténose/sub-occlusion du tronc commun gauche et/ou lésions tritronculaires. Il s’agit d’un marqueur de très haut risque nécessitant une prise en charge urgente.",
+    "criteres_indispensables": [
+      {
+        "label": "Identifier le sus-décalage du segment ST en aVR",
+        "rang": "A"
+      },
+      {
+        "label": "Identifier le sous-décalage diffus et important du segment ST",
+        "rang": "A"
+      },
+      {
+        "label": "Relier l’association sus-ST aVR/V1 et sous-ST diffus à une ischémie myocardique étendue",
+        "rang": "A"
+      },
+      {
+        "label": "Conclure à une probable atteinte du tronc commun de la coronaire gauche et/ou lésions tritronculaires",
+        "rang": "A"
+      },
+      {
+        "label": "Mentionner le sus-décalage du ST en V1",
+        "rang": "B"
+      },
+      {
+        "label": "Reconnaître le rythme sinusal à 95 bpm",
+        "rang": "B"
+      },
+      {
+        "label": "Souligner le caractère de gravité/urgence et la coronarographie urgente en contexte de SCA",
+        "rang": "B"
+      }
+    ],
+    "diagnostic_principal": "Ischémie myocardique diffuse sévère évocatrice de lésion aiguë du tronc commun de la coronaire gauche et/ou de lésions tritronculaires sévères",
+    "pieges": [
+      "Attribuer le sous-décalage diffus à une hypertrophie ventriculaire gauche sans argument fourni.",
+      "Interpréter le sous-décalage diffus comme une péricardite : la péricardite donne classiquement un sus-décalage diffus, pas cet aspect avec sus-ST en aVR.",
+      "Négliger le sus-décalage en aVR, qui est ici le signe clé de gravité.",
+      "Conclure à un simple NSTEMI non localisé sans évoquer l’atteinte du tronc commun/tritronculaire.",
+      "Oublier que l’association sous-ST diffus + sus-ST aVR et/ou V1 est un marqueur de très haut risque."
+    ],
+    "references_item": "EDN — Syndrome coronarien aigu / ECG : sous-décalage > 1 mm dans plus de 5 dérivations associé à un sus-décalage isolé en aVR et/ou V1 en faveur de lésions tritronculaires, marqueur de très haut risque. EDN Item 231 — ECG : indications et interprétation.",
+    "citation_source": "« sous-décalage du segment ST diffus associé à un sus-décalage isolé en aVR »"
+  },
+  "error": null
+}

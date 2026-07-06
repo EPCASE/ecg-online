@@ -1,0 +1,283 @@
+/* curation.css — styles spécifiques à l'interface de curation du barème */
+
+/* Légende sidebar */
+.cur-legend {
+  display: flex; gap: 14px; margin-bottom: 14px;
+  font-size: 11.5px; color: var(--text-muted);
+}
+.cur-legend span { display: inline-flex; align-items: center; gap: 5px; }
+.dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+.dot.val { background: var(--accent-2); }
+.dot.done { background: var(--good); }
+
+/* Pastilles compteur sur les items de la liste */
+.case-item .cur-meta {
+  margin-left: auto; display: flex; align-items: center; gap: 6px;
+  font-size: 10.5px; color: var(--text-muted);
+}
+.case-item .cur-meta .valcount {
+  background: rgba(79, 209, 197, 0.16); color: var(--accent-2);
+  font-weight: 700; padding: 1px 7px; border-radius: 999px;
+}
+.case-item .cur-meta .rmcount {
+  background: rgba(248, 113, 113, 0.16); color: var(--bad);
+  font-weight: 700; padding: 1px 6px; border-radius: 999px; font-size: 10px;
+}
+.case-item .cur-meta .cfg {
+  width: 8px; height: 8px; border-radius: 50%; background: var(--good);
+}
+.case-item .cur-meta .cfg.off { background: var(--border); }
+
+/* Toolbar */
+.cur-toolbar {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; margin: 18px 0 12px; flex-wrap: wrap;
+}
+.cur-counts { display: flex; gap: 10px; }
+.cur-actions { display: flex; gap: 8px; align-items: center; }
+.btn-sm { padding: 8px 14px; font-size: 13px; }
+
+.role-tag {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.03em;
+  padding: 3px 9px; border-radius: 999px; text-transform: uppercase;
+  border: 1px solid transparent;
+}
+.role-tag.validant {
+  color: var(--accent-2); background: rgba(79, 209, 197, 0.12);
+  border-color: rgba(79, 209, 197, 0.35);
+}
+.role-tag.complementaire {
+  color: var(--text-muted); background: var(--panel-2);
+  border-color: var(--border);
+}
+
+/* Liste des concepts */
+.concept-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.concept-item {
+  display: flex; align-items: center; gap: 14px;
+  padding: 12px 14px; border-radius: 12px;
+  border: 1px solid var(--border); background: var(--panel);
+  transition: all 0.15s;
+}
+.concept-item.is-validant {
+  border-color: rgba(79, 209, 197, 0.5);
+  background: linear-gradient(180deg, rgba(79, 209, 197, 0.07), var(--panel));
+}
+.concept-item .rang-badge {
+  min-width: 24px; height: 24px; border-radius: 6px;
+  display: grid; place-items: center;
+  font-size: 12px; font-weight: 800;
+  background: var(--panel-2); color: var(--text-muted);
+}
+.concept-item .rang-badge.A { color: var(--bad); border: 1px solid rgba(248,113,113,.4); }
+.concept-item .rang-badge.B { color: var(--warn); border: 1px solid rgba(251,191,36,.4); }
+.concept-item .rang-badge.C { color: var(--text-muted); }
+.concept-item .c-label { flex: 1; font-size: 14px; line-height: 1.35; }
+.concept-item.custom .c-label::after {
+  content: "ajouté"; margin-left: 8px; font-size: 10px;
+  color: var(--accent); border: 1px solid rgba(255,90,110,.4);
+  padding: 1px 6px; border-radius: 999px;
+}
+
+/* Interrupteur validant / complémentaire (segmenté) */
+.role-switch { display: inline-flex; border: 1px solid var(--border); border-radius: 999px; overflow: hidden; }
+.role-switch button {
+  border: none; background: transparent; cursor: pointer;
+  font-family: inherit; font-size: 11.5px; font-weight: 700;
+  padding: 6px 12px; color: var(--text-muted); transition: all 0.15s;
+}
+.role-switch button.active.val {
+  background: linear-gradient(135deg, var(--accent-2), #6ee7db); color: #06231f;
+}
+.role-switch button.active.comp { background: var(--panel-2); color: var(--text); }
+.role-switch button:hover:not(.active) { color: var(--text); }
+
+.concept-item .del-btn {
+  background: transparent; border: none; color: var(--text-muted);
+  cursor: pointer; font-size: 16px; padding: 4px 8px; border-radius: 8px;
+}
+.concept-item .del-btn:hover { color: var(--bad); background: rgba(248,113,113,.1); }
+
+/* Concept supprimé (diagnostic attendu retiré, restaurable) */
+.concept-item.is-removed {
+  border-color: rgba(248, 113, 113, .35);
+  background: repeating-linear-gradient(
+    -45deg, rgba(248,113,113,.05), rgba(248,113,113,.05) 8px,
+    transparent 8px, transparent 16px);
+  opacity: 0.85;
+}
+.concept-item.is-removed .c-label {
+  text-decoration: line-through; color: var(--text-muted);
+}
+.concept-item.is-removed .rang-badge { opacity: 0.5; }
+.removed-tag {
+  font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .03em;
+  color: var(--bad); background: rgba(248,113,113,.12);
+  border: 1px solid rgba(248,113,113,.35); padding: 3px 9px; border-radius: 999px;
+}
+.concept-item .restore-btn {
+  background: transparent; border: 1px solid var(--border); color: var(--text-muted);
+  cursor: pointer; font-size: 12px; font-weight: 600; font-family: inherit;
+  padding: 6px 12px; border-radius: 8px; transition: all .15s; white-space: nowrap;
+}
+.concept-item .restore-btn:hover { color: var(--accent-2); border-color: var(--accent-2); }
+
+/* Ajout de concept */
+.add-concept { display: flex; gap: 8px; margin-top: 14px; }
+.add-concept input {
+  flex: 1; background: var(--bg-soft); border: 1px solid var(--border);
+  border-radius: 10px; padding: 10px 14px; color: var(--text);
+  font-family: inherit; font-size: 13.5px;
+}
+.add-concept input:focus { outline: none; border-color: var(--accent-2); }
+
+.cur-interp { margin: 4px 0 8px; }
+.cur-interp summary { cursor: pointer; color: var(--text-muted); font-size: 13px; font-weight: 600; }
+.cur-interp .ref-body { margin-top: 10px; font-size: 13.5px; line-height: 1.5; white-space: pre-wrap; color: var(--text-muted); }
+
+.cur-hint {
+  margin-top: 18px; font-size: 12.5px; color: var(--text-muted);
+  background: var(--bg-soft); border: 1px solid var(--border);
+  border-radius: 10px; padding: 12px 14px;
+}
+.welcome-card .muted { color: var(--text-muted); font-size: 13px; margin-top: 12px; }
+
+/* Badge de sauvegarde */
+.badge-saving { color: var(--warn); border-color: rgba(251,191,36,.4); background: rgba(251,191,36,.08); }
+.badge-saved { color: var(--good); border-color: rgba(52,211,153,.4); background: rgba(52,211,153,.08); }
+
+/* ─────────── Mapping ontologique (le « pont sémantique ») ─────────── */
+/* Le concept-item passe en wrap pour accueillir la ligne de mapping dessous. */
+.concept-item { flex-wrap: wrap; }
+
+/* Pastille de progression du mapping dans la sidebar */
+.case-item .cur-meta .mapcount {
+  font-weight: 700; padding: 1px 6px; border-radius: 999px; font-size: 9.5px;
+  letter-spacing: -.02em;
+}
+.case-item .cur-meta .mapcount.map-full { background: rgba(129,140,248,.18); color: #a5b4fc; }
+.case-item .cur-meta .mapcount.map-part { background: rgba(251,191,36,.14); color: var(--warn); }
+.case-item .cur-meta .mapcount.map-none { background: var(--panel-2); color: var(--text-muted); }
+
+/* Compteur mapping dans la toolbar */
+.map-tag {
+  font-size: 11px; font-weight: 700; letter-spacing: .03em;
+  padding: 3px 9px; border-radius: 999px;
+  color: #a5b4fc; background: rgba(129,140,248,.12);
+  border: 1px solid rgba(129,140,248,.3);
+}
+
+/* La ligne « → concept ontologique » sous chaque concept */
+.map-row {
+  flex-basis: 100%; margin: 8px 0 0 38px;
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  font-size: 12.5px;
+  padding-top: 8px; border-top: 1px dashed var(--border);
+}
+.map-row .map-arrow { color: #818cf8; font-size: 12px; }
+.map-row .map-arrow.warn { color: var(--warn); }
+.map-row.unmapped { opacity: .8; }
+.map-concept {
+  display: inline-flex; align-items: center; gap: 8px;
+  color: var(--text); font-weight: 600;
+}
+.map-concept code {
+  font-size: 10.5px; color: #a5b4fc; background: rgba(129,140,248,.1);
+  border: 1px solid rgba(129,140,248,.25); padding: 1px 6px; border-radius: 6px;
+}
+.map-concept.stale code { color: var(--warn); background: rgba(251,191,36,.1); border-color: rgba(251,191,36,.3); }
+.map-cat {
+  font-size: 9.5px; text-transform: uppercase; letter-spacing: .04em;
+  color: var(--text-muted); background: var(--panel-2);
+  border: 1px solid var(--border); padding: 1px 6px; border-radius: 999px;
+}
+.map-by {
+  font-size: 9.5px; font-weight: 800; padding: 1px 6px; border-radius: 999px;
+}
+.map-by.gpt { color: var(--warn); background: rgba(251,191,36,.14); border: 1px solid rgba(251,191,36,.35); }
+.map-by.human { color: var(--good); background: rgba(52,211,153,.14); border: 1px solid rgba(52,211,153,.35); }
+.map-row button {
+  background: transparent; border: 1px solid var(--border); color: var(--text-muted);
+  cursor: pointer; font-family: inherit; font-size: 11px; font-weight: 600;
+  padding: 3px 9px; border-radius: 7px; transition: all .15s;
+}
+.map-row button:hover { color: #a5b4fc; border-color: #818cf8; }
+.map-row .map-add { color: #a5b4fc; border-color: rgba(129,140,248,.35); border-style: dashed; }
+.map-row .map-add:hover { background: rgba(129,140,248,.08); }
+.map-row .map-clear:hover { color: var(--bad); border-color: var(--bad); }
+
+/* Bascule present / absent (polarité du concept) */
+.statut-switch { display: inline-flex; border: 1px solid var(--border); border-radius: 999px; overflow: hidden; }
+.statut-switch button {
+  border: none; background: transparent; cursor: pointer;
+  font-family: inherit; font-size: 10px; font-weight: 700; letter-spacing: .02em;
+  padding: 3px 9px; color: var(--text-muted); transition: all .15s; text-transform: uppercase;
+}
+.statut-switch button.active.pres { background: rgba(52,211,153,.18); color: var(--good); }
+.statut-switch button.active.abs { background: rgba(248,113,113,.2); color: var(--bad); }
+.statut-switch button:hover:not(.active) { color: var(--text); }
+
+/* Concept mappé en « absent » (négation / exclusion) */
+.map-row.is-absent .map-concept { text-decoration: line-through; text-decoration-color: rgba(248,113,113,.7); }
+.map-row.is-absent .map-concept code { text-decoration: none; }
+.map-row.is-absent { border-top-color: rgba(248,113,113,.3); }
+.map-row.is-absent .map-arrow { color: var(--bad); }
+
+.map-hint { border-color: rgba(129,140,248,.3); background: rgba(129,140,248,.06); }
+
+/* ─────────── Modal picker de concept ─────────── */
+.picker-modal {
+  position: fixed; inset: 0; z-index: 100;
+  background: rgba(6, 12, 20, 0.72); backdrop-filter: blur(3px);
+  display: grid; place-items: start center; padding: 8vh 16px;
+}
+.picker-modal.hidden { display: none; }
+.picker-box {
+  width: min(560px, 96vw); max-height: 80vh; display: flex; flex-direction: column;
+  background: var(--panel); border: 1px solid var(--border);
+  border-radius: 16px; box-shadow: 0 24px 64px rgba(0,0,0,.5); overflow: hidden;
+}
+.picker-head {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 12px; padding: 18px 20px 12px;
+}
+.picker-head h3 { margin: 0; font-size: 16px; }
+.picker-for { margin: 4px 0 0; font-size: 12.5px; color: var(--text-muted); }
+.picker-close {
+  background: transparent; border: none; color: var(--text-muted);
+  cursor: pointer; font-size: 18px; padding: 2px 8px; border-radius: 8px;
+}
+.picker-close:hover { color: var(--bad); background: rgba(248,113,113,.1); }
+.picker-input {
+  margin: 0 20px; background: var(--bg-soft); border: 1px solid var(--border);
+  border-radius: 10px; padding: 11px 14px; color: var(--text);
+  font-family: inherit; font-size: 14px;
+}
+.picker-input:focus { outline: none; border-color: #818cf8; }
+.picker-results {
+  list-style: none; margin: 12px 0 0; padding: 0 12px; overflow-y: auto;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.picker-hint { padding: 14px; text-align: center; color: var(--text-muted); font-size: 13px; }
+.picker-item {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 10px 12px; border-radius: 10px; cursor: pointer;
+  border: 1px solid transparent; transition: all .12s;
+}
+.picker-item:hover { background: var(--bg-soft); border-color: rgba(129,140,248,.4); }
+.pi-main { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.pi-name { font-weight: 600; font-size: 13.5px; }
+.pi-id {
+  font-size: 10px; color: #a5b4fc; background: rgba(129,140,248,.1);
+  border: 1px solid rgba(129,140,248,.25); padding: 1px 6px; border-radius: 6px;
+  white-space: nowrap;
+}
+.pi-meta { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.pi-cat { font-size: 9.5px; text-transform: uppercase; color: var(--text-muted); }
+.pi-score {
+  font-size: 10px; font-weight: 700; color: var(--text-muted);
+  background: var(--panel-2); padding: 1px 7px; border-radius: 999px;
+}
+.picker-foot { padding: 12px 20px; border-top: 1px solid var(--border); }
+.picker-foot .muted { font-size: 11.5px; color: var(--text-muted); }
+

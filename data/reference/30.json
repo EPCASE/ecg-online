@@ -1,0 +1,85 @@
+{
+  "num": 30,
+  "titre": "BAV du troisième degré et FA",
+  "famille": "conduction",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence ventriculaire lente à environ 45/min, avec bradycardie régulière. Le rythme atrial n’est pas sinusal : il existe une activité atriale rapide, polymorphe et anarchique, avec trémulation de la ligne de base, en faveur d’une fibrillation atriale. Les QRS sont fins, parfaitement réguliers, sans relation de conduction atrio-ventriculaire identifiable avec l’activité atriale ; cet aspect est incompatible avec une FA conduite, qui donnerait des QRS irréguliers, et correspond à un échappement jonctionnel sur bloc auriculo-ventriculaire complet. Axe non précisé. Pas de trouble de repolarisation ST-T rapporté, QT de durée normale. Conclusion : fibrillation atriale associée à un bloc auriculo-ventriculaire du troisième degré, responsable d’une bradyarythmie régulière par échappement jonctionnel.",
+  "points_cles": [
+    {
+      "label": "Bradycardie régulière à environ 45 bpm",
+      "rang": "A"
+    },
+    {
+      "label": "Activité atriale rapide, polymorphe, anarchique avec trémulation de la ligne de base : fibrillation atriale",
+      "rang": "A"
+    },
+    {
+      "label": "QRS fins et parfaitement réguliers malgré la FA, donc non conduits",
+      "rang": "A"
+    },
+    {
+      "label": "Diagnostic de bloc auriculo-ventriculaire complet / BAV du troisième degré",
+      "rang": "A"
+    },
+    {
+      "label": "Échappement jonctionnel",
+      "rang": "B"
+    },
+    {
+      "label": "Absence de troubles de la repolarisation",
+      "rang": "C"
+    },
+    {
+      "label": "Intervalle QT normal",
+      "rang": "C"
+    },
+    {
+      "label": "Éviter de conclure à un BAV 2 Mobitz 2, une dysfonction sinusale ou une tachycardie sinusale",
+      "rang": "B"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé montre une bradycardie ventriculaire régulière à 45 bpm alors que l’activité atriale est rapide, anarchique et polymorphe, compatible avec une fibrillation atriale. La régularité parfaite des QRS fins en contexte de FA signifie qu’ils ne sont pas conduits : il s’agit d’un échappement jonctionnel sur BAV complet. Conclusion attendue : FA avec bloc auriculo-ventriculaire complet, sans trouble de repolarisation et QT normal.",
+    "criteres_indispensables": [
+      {
+        "label": "Identifier la fibrillation atriale : activité atriale rapide, anarchique/polymorphe, trémulation de la ligne de base",
+        "rang": "A"
+      },
+      {
+        "label": "Identifier le bloc auriculo-ventriculaire complet / BAV III",
+        "rang": "A"
+      },
+      {
+        "label": "Mentionner la bradycardie ventriculaire régulière à environ 45 bpm",
+        "rang": "A"
+      },
+      {
+        "label": "Expliquer que des QRS fins parfaitement réguliers en FA ne sont pas conduits",
+        "rang": "A"
+      },
+      {
+        "label": "Mentionner l’échappement jonctionnel",
+        "rang": "B"
+      },
+      {
+        "label": "Ne pas diagnostiquer une FA conduite habituelle irrégulière ni une tachycardie sinusale",
+        "rang": "B"
+      },
+      {
+        "label": "Absence de troubles de repolarisation et QT normal",
+        "rang": "C"
+      }
+    ],
+    "diagnostic_principal": "Fibrillation atriale avec bloc auriculo-ventriculaire complet (BAV du troisième degré)",
+    "pieges": [
+      "Croire qu’une FA impose toujours un rythme ventriculaire irrégulier et rapide : en cas de BAV complet, le rythme ventriculaire peut être régulier et très lent.",
+      "Conclure à un BAV 2 Mobitz 2 au lieu d’un BAV complet.",
+      "Évoquer une dysfonction sinusale alors que l’activité atriale est fibrillatoire.",
+      "Diagnostiquer une tachycardie sinusale malgré la bradycardie et l’absence de rythme sinusal.",
+      "Ne pas voir que les QRS réguliers en contexte de FA traduisent une dissociation avec échappement."
+    ],
+    "references_item": "EDN Item 231 — ECG : indications et interprétation ; troubles de conduction auriculo-ventriculaire, fibrillation atriale et bradyarythmie sur BAV complet chez un patient en FA.",
+    "citation_source": "« la fréquence ventriculaire peut être régulière et très ralentie [...] quand la conduction atrio-ventriculaire est interrompue »"
+  },
+  "error": null
+}

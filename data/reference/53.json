@@ -1,0 +1,89 @@
+{
+  "num": 53,
+  "titre": "embolie pulmonaire",
+  "famille": "embolie",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence ventriculaire rapide à environ 110/min. Rythme sinusal, avec ondes P régulières précédant chaque QRS ; espace PR normal. Axe avec aspect compatible avec S1Q3 : grande onde S en DI et onde q en DIII. QRS de durée limite, environ 100 ms, avec aspect de retard droit. Repolarisation : onde T négative en DIII réalisant un aspect S1Q3T3 ; absence de sus-décalage ST ou de troubles majeurs de repolarisation en faveur d’un syndrome coronarien aigu ST+. QT non signalé comme anormal. Conclusion : ECG évocateur d’embolie pulmonaire, sans argument ECG pour SCA ST+, à interpréter dans le contexte clinique car les signes ECG d’EP sont inconstants et peu spécifiques.",
+  "points_cles": [
+    {
+      "label": "Tachycardie sinusale à 110 bpm",
+      "rang": "A"
+    },
+    {
+      "label": "PR normal",
+      "rang": "B"
+    },
+    {
+      "label": "QRS limite à 100 ms avec aspect de retard droit",
+      "rang": "B"
+    },
+    {
+      "label": "Aspect S1Q3 : onde S en DI et onde q en DIII",
+      "rang": "A"
+    },
+    {
+      "label": "Onde T négative en DIII réalisant un aspect S1Q3T3",
+      "rang": "A"
+    },
+    {
+      "label": "Absence de troubles majeurs de repolarisation / pas d’argument pour SCA ST+",
+      "rang": "A"
+    },
+    {
+      "label": "Conclusion : ECG évocateur d’embolie pulmonaire",
+      "rang": "A"
+    },
+    {
+      "label": "Rappeler que l’ECG est peu spécifique et qu’un ECG normal n’élimine pas l’EP",
+      "rang": "B"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé montre une tachycardie sinusale avec PR normal, QRS limite à 100 ms et aspect de retard droit. L’association S1Q3 avec onde T négative en DIII réalise un aspect S1Q3T3, évocateur d’embolie pulmonaire, sans signe ECG de SCA ST+. Le texte rappelle que l’ECG est peu performant pour diagnostiquer l’EP : les signes sont aspécifiques, inconstants et un ECG normal ne l’exclut jamais.",
+    "criteres_indispensables": [
+      {
+        "label": "Diagnostic principal : embolie pulmonaire évoquée par l’ECG",
+        "rang": "A"
+      },
+      {
+        "label": "Tachycardie sinusale autour de 110 bpm",
+        "rang": "A"
+      },
+      {
+        "label": "Aspect S1Q3 : onde S en DI et onde q en DIII",
+        "rang": "A"
+      },
+      {
+        "label": "Onde T négative en DIII / aspect S1Q3T3",
+        "rang": "A"
+      },
+      {
+        "label": "Absence de troubles majeurs de repolarisation éliminant un SCA ST+ sur l’ECG",
+        "rang": "A"
+      },
+      {
+        "label": "QRS limite 100 ms avec aspect de retard droit",
+        "rang": "B"
+      },
+      {
+        "label": "PR normal",
+        "rang": "B"
+      },
+      {
+        "label": "Mention du caractère aspécifique/inconstant des signes ECG d’EP et qu’un ECG normal ne l’exclut pas",
+        "rang": "B"
+      }
+    ],
+    "diagnostic_principal": "Embolie pulmonaire",
+    "pieges": [
+      "Conclure à un syndrome coronarien aigu ST+ malgré l’absence de troubles majeurs de repolarisation en faveur de ce diagnostic.",
+      "Croire que l’aspect S1Q3T3 est spécifique ou indispensable au diagnostic d’embolie pulmonaire.",
+      "Éliminer une embolie pulmonaire devant un ECG normal : le texte précise qu’un ECG normal ne doit jamais exclure ce diagnostic.",
+      "Surinterpréter les signes ECG : ils sont aspécifiques, inconstants, incomplets et fugaces.",
+      "Oublier de reconnaître l’aspect S1Q3 : onde S en DI et onde q en DIII."
+    ],
+    "references_item": "EDN — Embolie pulmonaire : ECG non performant pour le diagnostic ; peut retrouver des signes de souffrance ventriculaire droite (aspect S1Q3, bloc de branche droit complet ou incomplet, arythmie supraventriculaire) ou d’ischémie ventriculaire droite (inversion des ondes T de V1 à V4). EDN Item 231 — ECG : indications et interprétation.",
+    "citation_source": "« Un aspect normal ne doit donc jamais exclure le diagnostic d'embolie pulmonaire. »"
+  },
+  "error": null
+}

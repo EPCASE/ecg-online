@@ -1,0 +1,81 @@
+{
+  "num": 59,
+  "titre": "syndrome coronarien aigu ST+ inférieur",
+  "famille": "ischemie",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence non précisée sur les données fournies. Le tracé montre un rythme sinusal. La conduction auriculo-ventriculaire (PR), l’axe et la durée des QRS ne sont pas renseignés dans l’interprétation fournie ; on note en revanche des ondes q dans les dérivations inférieures. La repolarisation est marquée par un sus-décalage du segment ST systématisé au territoire inférieur, en DII, DIII et aVF, englobant l’onde T avec aspect d’onde de Pardee, associé à un sous-décalage en miroir en aVL et V2. L’ensemble est caractéristique d’un syndrome coronarien aigu avec sus-décalage du ST du territoire inférieur (SCA ST+ inférieur), possiblement en rapport avec une occlusion de la coronaire droite ou de la circonflexe, à confirmer par coronarographie en urgence.",
+  "points_cles": [
+    {
+      "label": "Rythme sinusal",
+      "rang": "B"
+    },
+    {
+      "label": "Sus-décalage ST systématisé en territoire inférieur (DII, DIII, aVF)",
+      "rang": "A"
+    },
+    {
+      "label": "Aspect d’onde de Pardee englobant l’onde T",
+      "rang": "A"
+    },
+    {
+      "label": "Sous-décalage en miroir en aVL et V2",
+      "rang": "B"
+    },
+    {
+      "label": "Ondes q dans les dérivations inférieures",
+      "rang": "B"
+    },
+    {
+      "label": "Conclusion : SCA ST+ inférieur",
+      "rang": "A"
+    },
+    {
+      "label": "Ne pas conclure à une reperfusion inutile du fait des ondes q",
+      "rang": "B"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "ECG en rythme sinusal montrant un sus-décalage ST systématisé dans le territoire inférieur, en DII, DIII et aVF, avec aspect d’onde de Pardee. Il existe des ondes q inférieures et un sous-décalage en miroir en aVL et V2. Le diagnostic attendu est un syndrome coronarien aigu ST+ inférieur, relevant d’une coronarographie urgente.",
+    "criteres_indispensables": [
+      {
+        "label": "Diagnostic principal : syndrome coronarien aigu avec sus-décalage du ST du territoire inférieur",
+        "rang": "A"
+      },
+      {
+        "label": "Sus-décalage ST systématisé en DII, DIII et aVF",
+        "rang": "A"
+      },
+      {
+        "label": "Onde de Pardee / sus-décalage englobant l’onde T",
+        "rang": "A"
+      },
+      {
+        "label": "Sous-décalage en miroir en aVL et V2",
+        "rang": "B"
+      },
+      {
+        "label": "Ondes q dans les dérivations inférieures",
+        "rang": "B"
+      },
+      {
+        "label": "Rythme sinusal",
+        "rang": "B"
+      },
+      {
+        "label": "Les ondes q n’impliquent pas une reperfusion inutile ou un infarctus trop ancien",
+        "rang": "B"
+      }
+    ],
+    "diagnostic_principal": "SCA ST+ inférieur",
+    "pieges": [
+      "Confondre avec un SCA ST+ antérieur : le sus-décalage est inférieur, en DII, DIII et aVF.",
+      "Confondre avec un SCA latéral isolé : aVL présente ici un miroir, pas le territoire principal.",
+      "Diagnostiquer une péricardite malgré le caractère systématisé territorial et les images en miroir.",
+      "Considérer que la présence d’ondes q rend la reperfusion inutile ou trop tardive.",
+      "Vouloir déterminer avec certitude coronaire droite versus circonflexe sur l’ECG seul : la certitude vient de la coronarographie urgente."
+    ],
+    "references_item": "EDN Item 231 — ECG : indications et interprétation ; référentiel SCA ST+ / infarctus du myocarde avec sus-décalage du ST, ondes q de nécrose.",
+    "citation_source": "« aspect caractéristique de sus-décalage systématisé en DII, DIII et aVF »"
+  },
+  "error": null
+}

@@ -119,11 +119,27 @@ quand la référence les attend : « pas d'ischémie », « pas de trouble de co
   (BAV, bloc de branche, microvoltage, pré-excitation, SCA, flutter, FA, ESV
   significatives, hypertrophie, anomalie de repolarisation pathologique).
 
+## ⭐ Concepts VALIDANTS vs COMPLÉMENTAIRES (barème choisi par l'enseignant)
+Quand une liste de **concepts validants** t'est fournie (généralement 1 ou 2 :
+le diagnostic principal et l'anomalie-clé), c'est EUX SEULS qui déterminent la
+note. Les **concepts complémentaires** enrichissent le feedback (description)
+mais NE DOIVENT PAS peser sur le score : ne pénalise JAMAIS leur absence.
+ - Tous les concepts validants présents (même formulés autrement / synonymes)
+   ⇒ score élevé (>= 85), quel que soit le nombre de complémentaires omis.
+ - Un concept validant manqué ⇒ le score chute fortement (la note vit et meurt
+   avec les validants).
+ - Les complémentaires trouvés se signalent dans `elements_trouves` (bonus
+   descriptif, +0 à +10 max) ; les complémentaires manqués vont dans
+   `elements_manques` À TITRE INDICATIF seulement (sans impact sur la note).
+Si AUCUNE liste de validants n'est fournie, applique le barème classique ci-dessous.
+
 ## Deux notes séparées
 Fournis, en plus du score global :
- - `score_diagnostic` (0-100) : l'étudiant a-t-il identifié le diagnostic attendu ?
+ - `score_diagnostic` (0-100) : l'étudiant a-t-il identifié le diagnostic attendu
+   (c.-à-d. les concepts VALIDANTS) ?
  - `score_descriptif` (0-100) : a-t-il correctement décrit les critères ECG ?
-Le `score` global reflète surtout le diagnostic (pondération ~70/30).
+Le `score` global reflète surtout les validants (pondération ~80/20 quand une
+liste de validants est fournie, sinon ~70/30).
 
 ## Type d'erreur (pour chaque cas)
 Classe la nature du principal écart via `type_erreur` :
@@ -216,7 +232,9 @@ class Correction:
         return asdict(self)
 
 
-def _build_user_prompt(case: dict, texte_etudiant: str) -> str:
+def _build_user_prompt(case: dict, texte_etudiant: str,
+                       reference: Optional[dict] = None,
+                       scoring: Optional[dict] = None) -> str:
     parts = [
         f"# CAS {case.get('num')} — {case.get('titre')}",
         "",
@@ -227,6 +245,50 @@ def _build_user_prompt(case: dict, texte_etudiant: str) -> str:
     ]
     if case.get("referentiel"):
         parts += ["", "## Ce que dit le référentiel EDN", case["referentiel"][:1500]]
+
+    # Barème « validant / complémentaire » choisi par l'enseignant. Priorité
+    # absolue : seuls les validants font la note ; les complémentaires sont
+    # descriptifs. Si absent, le prompt système applique le barème classique.
+    scoring = scoring or {}
+    validants = scoring.get("validants") or []
+    complementaires = scoring.get("complementaires") or []
+    if validants:
+        v_lines = "\n".join(
+            f"  - [{v.get('rang','?')}] {v.get('label','')}" for v in validants)
+        c_lines = "\n".join(
+            f"  - [{c.get('rang','?')}] {c.get('label','')}" for c in complementaires)
+        parts += [
+            "",
+            "## ⭐ BARÈME DE CE CAS (choisi par l'enseignant — À RESPECTER)",
+            f"### Concepts VALIDANTS (SEULS ces {len(validants)} comptent dans la note)",
+            v_lines,
+            "### Concepts COMPLÉMENTAIRES (description seulement — NE PAS pénaliser)",
+            c_lines or "  (aucun)",
+            "→ La note dépend UNIQUEMENT des concepts validants (synonymes et "
+            "reformulations acceptés). Les complémentaires omis n'enlèvent AUCUN "
+            "point ; trouvés, ils apportent un léger bonus descriptif.",
+        ]
+
+    # Filet de sécurité : fiche de secours pré-calculée (ancrée sur le texte de
+    # l'enseignant). Sert de garde-fou pour éviter que la correction ne dérape.
+    fs = (reference or {}).get("fiche_secours") if reference else None
+    if fs:
+        crit = "\n".join(
+            f"  - [{c.get('rang','?')}] {c.get('label','')}"
+            for c in fs.get("criteres_indispensables", []))
+        pieges = "\n".join(f"  - {p}" for p in fs.get("pieges", []))
+        parts += [
+            "",
+            "## 🧭 FICHE DE SECOURS (vérité de repli — à respecter absolument)",
+            f"Diagnostic principal attendu : **{fs.get('diagnostic_principal','')}**",
+            f"Résumé : {fs.get('resume','')}",
+            "Critères indispensables :", crit or "  (aucun)",
+            "Pièges classiques :", pieges or "  (aucun)",
+            f"Références item : {fs.get('references_item','')}",
+            "→ En cas de doute, aligne ta correction sur cette fiche : le "
+            "diagnostic principal attendu et les critères de rang A priment.",
+        ]
+
     parts += [
         "",
         "## Réponse LIBRE de l'étudiant à corriger",
@@ -238,8 +300,15 @@ def _build_user_prompt(case: dict, texte_etudiant: str) -> str:
 
 
 def grade(case: dict, texte_etudiant: str, model: str = DEFAULT_MODEL,
-          temperature: float = 0.0) -> Correction:
-    """Corrige une réponse d'étudiant pour un cas donné. Robuste aux erreurs."""
+          temperature: float = 0.0, reference: Optional[dict] = None,
+          scoring: Optional[dict] = None) -> Correction:
+    """Corrige une réponse d'étudiant pour un cas donné. Robuste aux erreurs.
+
+    `reference` (optionnel) : dict {reponse_attendue, points_cles, fiche_secours}
+    pré-calculé par build_reference_answers.py — sert de filet de sécurité.
+    `scoring` (optionnel) : dict {validants:[{label,rang}], complementaires:[...]}
+    issu de la curation enseignant — seuls les validants font la note.
+    """
     texte_etudiant = (texte_etudiant or "").strip()
     if not texte_etudiant:
         return Correction(score=0, verdict="Réponse vide.",
@@ -252,7 +321,8 @@ def grade(case: dict, texte_etudiant: str, model: str = DEFAULT_MODEL,
             temperature=temperature,
             messages=[
                 {"role": "system", "content": SYSTEM_PROMPT},
-                {"role": "user", "content": _build_user_prompt(case, texte_etudiant)},
+                {"role": "user",
+                 "content": _build_user_prompt(case, texte_etudiant, reference, scoring)},
             ],
             tools=[TOOL],  # type: ignore[arg-type]
             tool_choice={"type": "function", "function": {"name": "rendre_correction"}},

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ECG Lecture — Curation du barème</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/static/style.css" />
+<link rel="stylesheet" href="/static/curation.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="logo">〜♥</span>
+    <div>
+      <h1>Curation&nbsp;du&nbsp;barème</h1>
+      <p class="tagline">Choisis les concepts <b>validants</b> (notés) et <b>complémentaires</b> (descriptifs)</p>
+    </div>
+  </div>
+  <div class="header-actions">
+    <a href="/" class="badge badge-muted" style="text-decoration:none">← Retour à l'app</a>
+    <span id="save-badge" class="badge badge-muted">—</span>
+  </div>
+</header>
+
+<main class="layout">
+  <!-- ─────────── Sélecteur de cas ─────────── -->
+  <aside class="sidebar">
+    <div class="sidebar-head">
+      <h2>Les 75 cas</h2>
+      <span id="cases-count" class="pill"></span>
+    </div>
+    <div class="cur-legend">
+      <span><i class="dot val"></i> validants</span>
+      <span><i class="dot done"></i> configuré</span>
+    </div>
+    <ul id="case-list" class="case-list"></ul>
+  </aside>
+
+  <!-- ─────────── Zone principale ─────────── -->
+  <section class="content">
+    <div id="welcome" class="welcome">
+      <div class="welcome-card">
+        <h2>Régler la sévérité de la notation 🎯</h2>
+        <p>Pour chaque cas, marque les concepts de correction :</p>
+        <ul class="tips">
+          <li><span class="role-tag validant">VALIDANT</span> comptent <b>dans la note</b> — en général <b>1 à 2</b> (diagnostic principal + anomalie-clé).</li>
+          <li><span class="role-tag complementaire">COMPLÉMENTAIRE</span> enrichissent la <b>description</b> / le feedback mais <b>ne pénalisent pas</b> l'étudiant s'ils manquent.</li>
+          <li>� <b>Supprimer</b> un diagnostic attendu le retire totalement (ni noté, ni montré à l'étudiant). Restaurable à tout moment.</li>
+          <li>�💡 Défaut : rang <b>A</b> ⇒ validant, rang <b>B/C</b> ⇒ complémentaire. Ajuste au besoin.</li>
+        </ul>
+        <p class="muted">Choisis un cas à gauche pour commencer.</p>
+      </div>
+    </div>
+
+    <article id="case-view" class="case-view hidden">
+      <div class="case-header">
+        <div>
+          <span id="case-family" class="chip"></span>
+          <h2 id="case-title"></h2>
+        </div>
+        <span id="case-num" class="case-num"></span>
+      </div>
+
+      <p id="case-context" class="case-context"></p>
+
+      <details class="cur-interp">
+        <summary>📖 Interprétation de référence</summary>
+        <div id="case-interp" class="ref-body"></div>
+      </details>
+
+      <div class="cur-toolbar">
+        <div class="cur-counts">
+          <span class="role-tag validant"><b id="count-val">0</b> validants</span>
+          <span class="role-tag complementaire"><b id="count-comp">0</b> complémentaires</span>
+          <span class="map-tag"><b id="count-map">0/0</b> 🔗 mappés</span>
+        </div>
+        <div class="cur-actions">
+          <button id="all-comp-btn" class="btn-ghost btn-sm">Tout complémentaire</button>
+          <button id="reset-btn" class="btn-ghost btn-sm">Défauts</button>
+          <button id="save-map-btn" class="btn-ghost btn-sm" title="Enregistre les liens vers l'ontologie">🔗 Enregistrer mapping</button>
+          <button id="save-btn" class="btn-primary btn-sm">
+            <span class="btn-label">Enregistrer</span>
+            <span class="spinner hidden"></span>
+          </button>
+        </div>
+      </div>
+
+      <ul id="concept-list" class="concept-list"></ul>
+
+      <div class="add-concept">
+        <input id="add-input" type="text" placeholder="Ajouter un concept validant (ex. « BAV complet »)…" />
+        <button id="add-btn" class="btn-ghost btn-sm">+ Ajouter</button>
+      </div>
+
+      <p class="cur-hint">💬 Astuce : garde <b>1 à 2 validants</b> pour une notation juste. Les concepts non-validants restent affichés à l'étudiant comme « à compléter » sans lui coûter de points.</p>
+      <p class="cur-hint map-hint">🔗 <b>Mapping ontologique</b> : rattache chaque concept à un terme de l'ontologie pour le brancher sur le scorer déterministe. La phrase riche reste affichée ; le concept fait la note. <b>Enregistre le mapping séparément</b> (bouton 🔗).</p>
+    </article>
+  </section>
+</main>
+
+<!-- ─────────── Modal : picker de concept ontologique ─────────── -->
+<div id="picker-modal" class="picker-modal hidden">
+  <div class="picker-box">
+    <header class="picker-head">
+      <div>
+        <h3>Rattacher à un concept de l'ontologie</h3>
+        <p class="picker-for">« <span id="picker-label"></span> »</p>
+      </div>
+      <button id="picker-close" class="picker-close" title="Fermer (Échap)">✕</button>
+    </header>
+    <input id="picker-input" type="text" class="picker-input"
+           placeholder="Rechercher un concept (ex. « PR normal », « BAV 2 », « HVG »)…"
+           autocomplete="off" />
+    <ul id="picker-results" class="picker-results"></ul>
+    <footer class="picker-foot">
+      <span class="muted">Recherche dans les 346 concepts (noms + synonymes).</span>
+    </footer>
+  </div>
+</div>
+
+<script src="/static/curation.js"></script>
+</body>
+</html>

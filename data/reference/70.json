@@ -1,0 +1,89 @@
+{
+  "num": 70,
+  "titre": "angor spastique de Prinzmetal",
+  "famille": "ischemie",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence non précisée sur les données fournies. Le tracé est en rythme sinusal. La conduction auriculo-ventriculaire/intervalle PR n’est pas décrite comme anormale. Axe non précisé. Les QRS ne sont pas rapportés comme élargis ; on note en revanche des troubles du rythme ventriculaire avec une extrasystole ventriculaire puis un doublet d’extrasystoles ventriculaires. La repolarisation est très anormale avec un sus-décalage ST majeur, supérieur à 10 mm, dans les dérivations inférieures, débutant au sommet de l’onde R, englobant l’onde T et réalisant une onde en dôme monophasique, associé à un sous-décalage en miroir en DI, aVL et V3-V5. L’ensemble est en faveur d’un SCA ST+ de territoire inférieur, d’amplitude très importante, compatible dans ce contexte avec un angor spastique de Prinzmetal par spasme de la coronaire droite, d’autant que le sus-décalage est transitoire et cède spontanément ou sous trinitrine.",
+  "points_cles": [
+    {
+      "label": "Rythme sinusal",
+      "rang": "B"
+    },
+    {
+      "label": "Sus-décalage ST majeur > 10 mm en territoire inférieur",
+      "rang": "A"
+    },
+    {
+      "label": "Aspect en dôme monophasique englobant l’onde T",
+      "rang": "B"
+    },
+    {
+      "label": "Sous-décalage en miroir en DI, aVL, V3-V5",
+      "rang": "A"
+    },
+    {
+      "label": "Extrasystole ventriculaire puis doublet d’extrasystoles ventriculaires",
+      "rang": "B"
+    },
+    {
+      "label": "Conclusion : SCA ST+ inférieur",
+      "rang": "A"
+    },
+    {
+      "label": "Contexte compatible avec angor de Prinzmetal/spasme coronaire droit, sus-décalage transitoire régressif sous trinitrine",
+      "rang": "A"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "L’ECG montre un rythme sinusal avec un sus-décalage ST très important dans les dérivations inférieures, associé à des images en miroir en DI, aVL et V3-V5. Le tracé évoque un SCA ST+ inférieur ; dans ce cas clinique, il correspond à un angor spastique de Prinzmetal par spasme de la coronaire droite. Des extrasystoles ventriculaires, dont un doublet, sont également décrites.",
+    "criteres_indispensables": [
+      {
+        "label": "Diagnostic principal : angor de Prinzmetal / angor spastique avec spasme coronaire droit",
+        "rang": "A"
+      },
+      {
+        "label": "Reconnaître un SCA ST+ de territoire inférieur",
+        "rang": "A"
+      },
+      {
+        "label": "Sus-décalage ST majeur, > 10 mm, dans les dérivations inférieures",
+        "rang": "A"
+      },
+      {
+        "label": "Sous-décalage en miroir en DI, aVL, V3-V5",
+        "rang": "A"
+      },
+      {
+        "label": "Caractère transitoire/régressif du sus-décalage, spontanément ou sous trinitrine, en faveur du spasme",
+        "rang": "A"
+      },
+      {
+        "label": "Rythme sinusal",
+        "rang": "B"
+      },
+      {
+        "label": "Aspect d’onde en dôme monophasique englobant l’onde T",
+        "rang": "B"
+      },
+      {
+        "label": "Extrasystole ventriculaire puis doublet d’extrasystoles ventriculaires",
+        "rang": "B"
+      },
+      {
+        "label": "Traitement de référence de l’angor spastique : inhibiteurs calciques, trinitrine pour lever la crise",
+        "rang": "C"
+      }
+    ],
+    "diagnostic_principal": "Angor de Prinzmetal avec spasme de la coronaire droite, se présentant comme un SCA ST+ inférieur transitoire",
+    "pieges": [
+      "Ne pas conclure à une péricardite : le sus-décalage est territorial inférieur avec miroir, non diffus.",
+      "Ne pas attribuer l’aspect à une hyperkaliémie majeure : l’élément central est le sus-décalage ST inférieur massif avec miroir.",
+      "Ne pas oublier le diagnostic de SCA ST+ inférieur devant un sus-décalage ST territorial, même si le mécanisme est ici un spasme et non une thrombose.",
+      "Ne pas méconnaître les troubles du rythme ventriculaire associés, possibles dans l’ischémie brutale du spasme.",
+      "Ne pas omettre le caractère transitoire et la régression sous trinitrine, arguments majeurs pour l’angor de Prinzmetal."
+    ],
+    "references_item": "EDN — Syndrome coronarien aigu ST+ ; EDN — Angor de Prinzmetal / spasme coronarien ; Référentiel : spasme coronarien identifié en coronarographie, régression sous dérivés nitrés, test au Méthergin® (méthylergométrine).",
+    "citation_source": "« sus-décalage de grande amplitude transitoire cédant spontanément ou après administration de trinitrine sublinguale »"
+  },
+  "error": null
+}

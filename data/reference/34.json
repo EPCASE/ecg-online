@@ -1,0 +1,93 @@
+{
+  "num": 34,
+  "titre": "extrasystoles ventriculaires",
+  "famille": "rythme",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence non précisée, avec rythme de base sinusal. La conduction atrio-ventriculaire est normale, avec un intervalle PR de durée normale. L’axe des QRS est normal. Les complexes sinusaux sont fins, de durée 85 ms, sans signe d’hypertrophie ventriculaire gauche et sans onde Q de nécrose. Le tracé montre une extrasystolie ventriculaire organisée en trigéminisme : répétition de séquences de deux battements sinusaux normaux suivis d’une extrasystole ventriculaire prématurée, à QRS large, non précédée d’activité atriale, avec activité atriale rétrograde visible sous forme d’une petite encoche dans l’onde T et repos compensateur sur l’activité sinusale suivante. Il n’existe pas de trouble de la repolarisation et l’intervalle QT est normal. Conclusion : extrasystoles ventriculaires en trigéminisme sur rythme sinusal, sans autre anomalie ECG associée décrite.",
+  "points_cles": [
+    {
+      "label": "Rythme de base sinusal",
+      "rang": "A"
+    },
+    {
+      "label": "Extrasystoles ventriculaires identifiées : complexes prématurés à QRS larges non précédés d’activité atriale",
+      "rang": "A"
+    },
+    {
+      "label": "Organisation en trigéminisme ventriculaire : deux battements sinusaux normaux puis une ESV",
+      "rang": "A"
+    },
+    {
+      "label": "PR normal / conduction atrio-ventriculaire normale",
+      "rang": "B"
+    },
+    {
+      "label": "QRS sinusaux fins à 85 ms, axe normal",
+      "rang": "B"
+    },
+    {
+      "label": "Absence d’hypertrophie ventriculaire gauche et absence d’ondes Q de nécrose",
+      "rang": "B"
+    },
+    {
+      "label": "Absence de troubles de repolarisation et QT normal",
+      "rang": "B"
+    },
+    {
+      "label": "Repos compensateur et activité atriale rétrograde sous forme d’encoche dans l’onde T",
+      "rang": "C"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "ECG en rythme de base sinusal avec conduction atrio-ventriculaire normale. Il existe des extrasystoles ventriculaires organisées en trigéminisme : répétition de deux battements sinusaux normaux suivis d’un complexe prématuré large non précédé d’activité atriale. Les complexes sinusaux sont fins, axe normal, sans HVG, sans onde Q de nécrose, sans trouble de repolarisation et avec QT normal.",
+    "criteres_indispensables": [
+      {
+        "label": "Diagnostic principal : extrasystoles ventriculaires",
+        "rang": "A"
+      },
+      {
+        "label": "Trigéminisme ventriculaire : 2 battements sinusaux puis 1 extrasystole ventriculaire",
+        "rang": "A"
+      },
+      {
+        "label": "Rythme de base sinusal",
+        "rang": "A"
+      },
+      {
+        "label": "ESV caractérisées par QRS large prématuré non précédé d’activité atriale",
+        "rang": "A"
+      },
+      {
+        "label": "Conduction atrio-ventriculaire normale / PR normal",
+        "rang": "B"
+      },
+      {
+        "label": "QRS sinusaux fins, durée 85 ms, axe normal",
+        "rang": "B"
+      },
+      {
+        "label": "Absence d’hypertrophie ventriculaire gauche",
+        "rang": "B"
+      },
+      {
+        "label": "Absence d’ondes Q de nécrose, absence de troubles de repolarisation, QT normal",
+        "rang": "B"
+      },
+      {
+        "label": "Repos compensateur et activité atriale rétrograde possible avec encoche dans l’onde T",
+        "rang": "C"
+      }
+    ],
+    "diagnostic_principal": "Extrasystoles ventriculaires avec trigéminisme ventriculaire",
+    "pieges": [
+      "Confondre trigéminisme et bigéminisme : ici la séquence est 2 battements sinusaux puis 1 ESV, et non 1 battement sinusal puis 1 ESV.",
+      "Répondre doublets ou triplets ventriculaires : aucune forme répétitive en salves n’est décrite.",
+      "Diagnostiquer une hypertrophie ventriculaire gauche alors que l’interprétation précise son absence.",
+      "Oublier qu’une extrasystole ventriculaire doit être prématurée, à QRS large et non précédée d’une activité atriale.",
+      "Qualifier le tracé de trouble de repolarisation ou de QT anormal alors qu’ils sont décrits normaux."
+    ],
+    "references_item": "EDN — ECG : indications et interprétation ; référentiel incluant un tracé d’extrasystole ventriculaire / bigéminisme avec extrasystoles ventriculaires.",
+    "citation_source": "« Une extrasystole avec un complexe QRS fin ne peut pas être ventriculaire. »"
+  },
+  "error": null
+}

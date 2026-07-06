@@ -1,0 +1,80 @@
+{
+  "num": 75,
+  "titre": "amylose",
+  "famille": "infiltratif",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence non précisée sur les données fournies. Rythme sinusal, avec ondes P peu voltées ; espace PR normal, sans bloc auriculo-ventriculaire du 1er degré. Axe non précisé. Les QRS sont fins a priori et surtout nettement microvoltés dans les dérivations périphériques, avec une amplitude < 5 mm dans toutes les dérivations frontales ; le voltage est en revanche plus conservé en précordial, avec des QRS > 10 mm en V3-V4, ne permettant donc pas de retenir un microvoltage précordial. On note un aspect de pseudo-onde q de nécrose en V1-V2. La repolarisation montre des troubles inféro-latéraux, avec ondes T aplaties ou négatives ; QT non précisé. Conclusion : ECG anormal en faveur d’une atteinte cardiaque de l’amylose, associant microvoltage frontal des QRS, aspect de pseudo-nécrose antéro-septale V1-V2 et troubles de repolarisation inféro-latéraux.",
+  "points_cles": [
+    {
+      "label": "Rythme sinusal avec ondes P peu voltées",
+      "rang": "B"
+    },
+    {
+      "label": "PR normal, pas de BAV du premier degré",
+      "rang": "A"
+    },
+    {
+      "label": "Microvoltage des QRS dans les dérivations périphériques/frontales (< 5 mm)",
+      "rang": "A"
+    },
+    {
+      "label": "Absence de microvoltage précordial franc : QRS > 10 mm en V3-V4",
+      "rang": "A"
+    },
+    {
+      "label": "Pseudo-ondes q de nécrose en V1-V2",
+      "rang": "A"
+    },
+    {
+      "label": "Troubles de la repolarisation inféro-latéraux : ondes T aplaties ou négatives",
+      "rang": "A"
+    },
+    {
+      "label": "Conclusion : ECG en faveur d’une atteinte cardiaque de l’amylose",
+      "rang": "A"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Chez une patiente avec amylose AL, l’ECG montre un rythme sinusal avec PR normal. L’anomalie clé est un microvoltage des QRS limité aux dérivations périphériques/frontales, associé à des pseudo-ondes q de nécrose en V1-V2 et à des troubles de repolarisation inféro-latéraux. L’ensemble est en faveur d’une atteinte cardiaque de l’amylose.",
+    "criteres_indispensables": [
+      {
+        "label": "Diagnostic principal : atteinte cardiaque de l’amylose",
+        "rang": "A"
+      },
+      {
+        "label": "Microvoltage des QRS dans les dérivations périphériques/frontales (< 5 mm)",
+        "rang": "A"
+      },
+      {
+        "label": "Ne pas retenir un microvoltage précordial : voltage précordial plus important, QRS > 10 mm en V3-V4",
+        "rang": "A"
+      },
+      {
+        "label": "Pseudo-ondes q de nécrose en V1-V2 / pseudo-séquelle d’infarctus",
+        "rang": "A"
+      },
+      {
+        "label": "Troubles de la repolarisation inféro-latéraux avec ondes T aplaties ou négatives",
+        "rang": "A"
+      },
+      {
+        "label": "Rythme sinusal",
+        "rang": "B"
+      },
+      {
+        "label": "Espace PR normal, absence de BAV du 1er degré",
+        "rang": "A"
+      }
+    ],
+    "diagnostic_principal": "Atteinte cardiaque de l’amylose",
+    "pieges": [
+      "Cocher un microvoltage précordial alors que les QRS dépassent 10 mm en V3-V4.",
+      "Conclure à un infarctus antérieur ancien certain devant les ondes q : il s’agit ici d’un aspect de pseudo-nécrose lié au contexte d’amylose.",
+      "Diagnostiquer un BAV du premier degré alors que l’espace PR est normal.",
+      "Écarter l’amylose en l’absence de microvoltage dans toutes les dérivations : dans l’amylose, les bas voltages sont surtout observés dans les dérivations frontales."
+    ],
+    "references_item": "Amylose cardiaque évoquée dans le chapitre insuffisance cardiaque, paragraphe des cardiopathies restrictives.",
+    "citation_source": "« Les deux anomalies les plus fréquemment observées sont le microvoltage des complexes QRS et un aspect de pseudo-séquelle d’infarctus »"
+  },
+  "error": null
+}

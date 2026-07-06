@@ -1,0 +1,85 @@
+{
+  "num": 69,
+  "titre": "anévrisme du ventricule gauche",
+  "famille": "ischemie",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence non précisée sur les données fournies. Le tracé est en rythme sinusal, avec un intervalle PR normal. L’axe est droit. Les QRS sont larges, supérieurs à 120 ms, avec une morphologie de bloc de branche droite complet : aspect qR en V1 et onde S large en V6. On observe des anomalies séquellaires antéro-septo-apicales avec onde q et rabotage des ondes R de V1 à V4, en faveur d’une séquelle de nécrose antéro-septale/antéro-apicale. La repolarisation montre un sus-décalage modéré du segment ST en V3, associé à des troubles de la repolarisation de V1 à V4 ; le QT n’est pas précisé. Conclusion : ECG en rythme sinusal avec bloc de branche droite complet et large séquelle de nécrose antérieure antéro-septo-apicale, compliquée/suggérant un anévrisme du ventricule gauche devant le sus-décalage persistant à distance de l’infarctus.",
+  "points_cles": [
+    {
+      "label": "Rythme sinusal",
+      "rang": "B"
+    },
+    {
+      "label": "PR normal",
+      "rang": "B"
+    },
+    {
+      "label": "QRS larges > 120 ms avec aspect de bloc de branche droite complet",
+      "rang": "A"
+    },
+    {
+      "label": "Axe droit",
+      "rang": "B"
+    },
+    {
+      "label": "Séquelle de nécrose antéro-septo-apicale : onde q et rabotage des R de V1 à V4",
+      "rang": "A"
+    },
+    {
+      "label": "Sus-décalage modéré en V3 avec troubles de repolarisation de V1 à V4",
+      "rang": "A"
+    },
+    {
+      "label": "Conclusion : possible anévrisme du ventricule gauche sur large séquelle antérieure à distance de l’infarctus",
+      "rang": "A"
+    },
+    {
+      "label": "Ne pas conclure à un bloc de branche gauche ou hémibloc antérieur gauche",
+      "rang": "B"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé montre un rythme sinusal avec PR normal et QRS larges d’aspect bloc de branche droite complet. Il existe une séquelle de nécrose antéro-septo-apicale avec rabotage des R de V1 à V4, associée à un sus-décalage persistant/troubles de repolarisation antérieurs. À distance d’un infarctus antérieur transmural, ce sus-décalage dans la zone de nécrose fait évoquer un anévrisme du ventricule gauche.",
+    "criteres_indispensables": [
+      {
+        "label": "Diagnostic principal : large séquelle de nécrose antéro-septo-apicale avec possible anévrisme du ventricule gauche",
+        "rang": "A"
+      },
+      {
+        "label": "Onde q/ondes Q ou rabotage des ondes R de V1 à V4 en faveur d’une séquelle antéro-septale/antéro-apicale",
+        "rang": "A"
+      },
+      {
+        "label": "Sus-décalage modéré persistant en V3 et troubles de repolarisation de V1 à V4",
+        "rang": "A"
+      },
+      {
+        "label": "QRS larges > 120 ms avec aspect de bloc de branche droite complet, et non bloc de branche gauche",
+        "rang": "A"
+      },
+      {
+        "label": "Rythme sinusal et PR normal",
+        "rang": "B"
+      },
+      {
+        "label": "Axe droit",
+        "rang": "B"
+      },
+      {
+        "label": "Argument temporel : anomalies ST à distance de l’épisode aigu évocatrices d’anévrisme ventriculaire gauche",
+        "rang": "B"
+      }
+    ],
+    "diagnostic_principal": "Séquelle de nécrose antéro-septo-apicale avec possible anévrisme du ventricule gauche",
+    "pieges": [
+      "Confondre l’aspect de bloc de branche droite complet avec un bloc de branche gauche.",
+      "Répondre hémibloc antérieur gauche alors que l’axe décrit est droit.",
+      "Interpréter le sus-décalage antérieur comme un STEMI aigu sans tenir compte du contexte à distance et de la stabilité attendue.",
+      "Oublier que le sus-décalage persistant dans le territoire de nécrose après infarctus transmural évoque un anévrisme ventriculaire gauche.",
+      "Négliger les signes de séquelle antérieure : onde q et rabotage des R de V1 à V4."
+    ],
+    "references_item": "EDN — Syndrome coronarien aigu : complications tardives, dont évolution anévrismale du ventricule gauche ; dyskinésie à l’échographie et traitement parfois chirurgical. EDN Item ECG : indications et interprétation, pour l’analyse systématique du tracé et des ondes Q de nécrose.",
+    "citation_source": "« L'existence d'un sus-décalage persistant à distance d'un infarctus transmural doit faire évoquer l'existence d'un anévrisme ventriculaire gauche »"
+  },
+  "error": null
+}

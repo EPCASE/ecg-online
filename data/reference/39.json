@@ -1,0 +1,77 @@
+{
+  "num": 39,
+  "titre": "arythmie sinusale respiratoire",
+  "famille": "rythme",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence cardiaque variable avec alternance d’accélérations et de ralentissements. Rythme à commande sinusale : ondes P présentes avant chaque QRS, de morphologie normale, mais intervalles PP nettement irréguliers de façon périodique, compatible avec les cycles respiratoires. Conduction auriculo-ventriculaire normale avec intervalle PR normal. Axe et morphologie des QRS dans les limites de la normale, QRS fins. Repolarisation sans anomalie significative, le reste de l’ECG étant normal ; présence possible d’une petite onde U normale suivant l’onde T. Conclusion : arythmie sinusale respiratoire physiologique de l’adolescent, sans argument pour fibrillation atriale, dysfonction sinusale, bloc auriculo-ventriculaire du 2e degré ni bloc sinoatrial.",
+  "points_cles": [
+    {
+      "label": "Diagnostic d’arythmie sinusale respiratoire physiologique chez un adolescent asymptomatique",
+      "rang": "A"
+    },
+    {
+      "label": "Rythme sinusal avec ondes P de morphologie normale avant les QRS",
+      "rang": "A"
+    },
+    {
+      "label": "Irrégularité sinusale périodique des intervalles PP avec accélérations et ralentissements successifs suivant la respiration",
+      "rang": "A"
+    },
+    {
+      "label": "Intervalle PR normal, pas de BAV",
+      "rang": "B"
+    },
+    {
+      "label": "Reste de l’ECG dans les limites de la normale, avec éventuellement petite onde U normale",
+      "rang": "C"
+    },
+    {
+      "label": "Ne pas conclure à une dysfonction sinusale, fibrillation atriale ou bloc sinoatrial",
+      "rang": "A"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Chez cet adolescent asymptomatique, le tracé montre un rythme à commande sinusale mais nettement irrégulier, avec accélérations et ralentissements périodiques compatibles avec les cycles respiratoires. Les ondes P sont normales, le PR est normal et le reste de l’ECG est dans les limites de la normale. Il s’agit d’une arythmie sinusale respiratoire physiologique, non pathologique.",
+    "criteres_indispensables": [
+      {
+        "label": "Conclusion : arythmie sinusale respiratoire",
+        "rang": "A"
+      },
+      {
+        "label": "Terrain compatible : enfant/adolescent asymptomatique, caractère physiologique",
+        "rang": "A"
+      },
+      {
+        "label": "Rythme sinusal : ondes P de morphologie normale",
+        "rang": "A"
+      },
+      {
+        "label": "Irrégularité des intervalles PP / fréquence sinusale variable avec accélérations et ralentissements périodiques respiratoires",
+        "rang": "A"
+      },
+      {
+        "label": "Intervalle PR normal et absence d’argument pour BAV du second degré",
+        "rang": "B"
+      },
+      {
+        "label": "Reste de l’ECG normal ; petite onde U normale possible",
+        "rang": "C"
+      },
+      {
+        "label": "Écarter dysfonction sinusale, fibrillation atriale et bloc sinoatrial",
+        "rang": "B"
+      }
+    ],
+    "diagnostic_principal": "Arythmie sinusale respiratoire physiologique",
+    "pieges": [
+      "Diagnostiquer à tort une dysfonction sinusale chez un adolescent asymptomatique.",
+      "Confondre l’irrégularité sinusale avec une fibrillation auriculaire : ici les ondes P sont présentes et de morphologie normale.",
+      "Évoquer un bloc auriculo-ventriculaire du second degré alors que le PR est normal et qu’il n’y a pas de défaut de conduction décrit.",
+      "Évoquer un bloc sinoatrial devant l’irrégularité, alors que les variations sont progressives/périodiques et respiratoires.",
+      "Oublier d’interpréter l’ECG en fonction de l’âge et du contexte clinique."
+    ],
+    "references_item": "Spécificités de l’ECG normal de l’enfant — chapitre sur les souffles cardiaques de l’enfant ; EDN Item 231 — ECG : indications et interprétation (implicite).",
+    "citation_source": "« Ces variations de fréquence suivant les cycles respiratoires [...] peuvent être considérées comme physiologiques. »"
+  },
+  "error": null
+}

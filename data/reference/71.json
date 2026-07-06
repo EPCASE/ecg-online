@@ -1,0 +1,77 @@
+{
+  "num": 71,
+  "titre": "Takotsubo",
+  "famille": "ischemie",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence non précisée sur les données fournies. Le rythme est sinusal. La conduction atrio-ventriculaire n’est pas décrite comme anormale. L’axe des QRS est gauche ; les QRS sont fins, sans argument pour un bloc de branche gauche, et l’association QRS fins + axe gauche est en faveur d’un hémibloc antérieur gauche. La repolarisation est pathologique avec des ondes T négatives géantes dans le territoire inférieur et de V2 à V6, associées à un intervalle QT allongé. Conclusion : ECG pathologique associant hémibloc antérieur gauche, QT long et ondes T négatives diffuses pathologiques, compatible avec le contexte de Takotsubo mais à discuter comme diagnostic différentiel de syndrome coronarien aigu.",
+  "points_cles": [
+    {
+      "label": "Rythme sinusal",
+      "rang": "B"
+    },
+    {
+      "label": "QRS fins avec axe gauche en faveur d’un hémibloc antérieur gauche",
+      "rang": "A"
+    },
+    {
+      "label": "Absence d’argument pour un bloc de branche gauche",
+      "rang": "B"
+    },
+    {
+      "label": "Ondes T négatives géantes pathologiques dans le territoire inférieur et de V2 à V6",
+      "rang": "A"
+    },
+    {
+      "label": "Intervalle QT allongé",
+      "rang": "A"
+    },
+    {
+      "label": "Évoquer le Takotsubo comme diagnostic différentiel de SCA, diagnostic d’exclusion",
+      "rang": "B"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "L’ECG montre un rythme sinusal avec QRS fins et axe gauche, compatible avec un hémibloc antérieur gauche. La repolarisation est anormale avec des ondes T négatives géantes inférieures et de V2 à V6, ainsi qu’un QT allongé. Dans le contexte, ces anomalies peuvent s’intégrer à un syndrome de Takotsubo, qui reste un diagnostic d’exclusion très proche d’un SCA.",
+    "criteres_indispensables": [
+      {
+        "label": "Diagnostic d’hémibloc antérieur gauche devant QRS fins avec axe gauche",
+        "rang": "A"
+      },
+      {
+        "label": "Identification d’un intervalle QT allongé",
+        "rang": "A"
+      },
+      {
+        "label": "Ondes T négatives géantes pathologiques dans le territoire inférieur et de V2 à V6",
+        "rang": "A"
+      },
+      {
+        "label": "Rythme sinusal",
+        "rang": "B"
+      },
+      {
+        "label": "Ne pas conclure à des ondes T négatives physiologiques",
+        "rang": "A"
+      },
+      {
+        "label": "Ne pas retenir un bloc de branche gauche",
+        "rang": "B"
+      },
+      {
+        "label": "Takotsubo à considérer comme diagnostic différentiel de SCA et diagnostic d’exclusion",
+        "rang": "B"
+      }
+    ],
+    "diagnostic_principal": "ECG pathologique compatible avec Takotsubo : ondes T négatives géantes diffuses avec QT allongé, associées à un hémibloc antérieur gauche",
+    "pieges": [
+      "Confondre les ondes T négatives géantes diffuses avec des ondes T négatives physiologiques.",
+      "Diagnostiquer à tort un bloc de branche gauche alors que les QRS sont fins.",
+      "Oublier l’hémibloc antérieur gauche devant l’axe gauche avec QRS fins.",
+      "Affirmer un Takotsubo sur le seul ECG : il s’agit d’un diagnostic d’exclusion, très difficile à distinguer d’un SCA antérieur sur l’ECG seul.",
+      "Omettre l’allongement de l’intervalle QT."
+    ],
+    "references_item": "Takotsubo cité dans les diagnostics différentiels du syndrome coronarien aigu devant douleur thoracique avec modification de l’ECG et élévation de la troponine.",
+    "citation_source": "« anomalies électrocardiographiques : apparition récente d’une élévation du segment ST et/ou d’une inversion des ondes T »"
+  },
+  "error": null
+}

@@ -1,0 +1,85 @@
+{
+  "num": 55,
+  "titre": "péricardite",
+  "famille": "pericarde",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence non précisée sur les données fournies. Le rythme est sinusal. La conduction auriculo-ventriculaire ne montre pas d’anomalie de PR rapportée, mais il existe un sous-décalage diffus du segment PQ, surtout en DI et DII, avec sus-décalage en aVR. L’axe n’est pas précisé. Les QRS ne sont pas décrits comme élargis ; on note des variations d’amplitude des complexes QRS, bien visibles dans les dérivations périphériques, évocatrices d’un épanchement péricardique. La repolarisation montre un sus-décalage diffus du segment ST en DI, DII, aVL et V3-V6, concave vers le haut dans sa partie initiale, suivi d’ondes T positives, avec sous-décalage du ST en aVR et V1. L’ensemble — sous-décalage diffus du PQ, sus-décalage diffus concave du ST sans territoire coronaire systématisé, miroir limité à aVR/V1, avec alternance/variations d’amplitude des QRS — est très évocateur d’une péricardite aiguë, probablement virale, associée à un épanchement péricardique.",
+  "points_cles": [
+    {
+      "label": "Diagnostic principal : péricardite aiguë",
+      "rang": "A"
+    },
+    {
+      "label": "Rythme sinusal",
+      "rang": "B"
+    },
+    {
+      "label": "Sous-décalage diffus du segment PQ, surtout DI-DII, avec sus-décalage en aVR",
+      "rang": "A"
+    },
+    {
+      "label": "Sus-décalage diffus du segment ST, concave vers le haut, dans plusieurs dérivations hors aVR/V1",
+      "rang": "A"
+    },
+    {
+      "label": "Ondes T positives suivant le sus-décalage ST au stade initial",
+      "rang": "B"
+    },
+    {
+      "label": "Sous-décalage du ST en aVR et V1 seulement",
+      "rang": "B"
+    },
+    {
+      "label": "Variations d’amplitude des QRS évoquant un épanchement péricardique",
+      "rang": "A"
+    },
+    {
+      "label": "Différenciation avec SCA : pas de territoire coronaire systématisé, absence de miroir sauf aVR/V1, absence d’ondes Q de nécrose si mentionnée",
+      "rang": "B"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "ECG en rythme sinusal montrant un aspect typique de péricardite aiguë : sous-décalage diffus du PQ et sus-décalage diffus du ST concave vers le haut, avec ondes T positives. Le miroir est limité à aVR et V1. Les variations d’amplitude des QRS dans les dérivations périphériques évoquent un épanchement péricardique associé.",
+    "criteres_indispensables": [
+      {
+        "label": "Conclure à une péricardite aiguë comme diagnostic le plus probable",
+        "rang": "A"
+      },
+      {
+        "label": "Identifier le sus-décalage diffus du segment ST, concave vers le haut, non systématisé à un territoire coronaire",
+        "rang": "A"
+      },
+      {
+        "label": "Identifier le sous-décalage diffus du segment PQ avec sus-décalage du PQ en aVR",
+        "rang": "A"
+      },
+      {
+        "label": "Mentionner le sous-décalage du ST en aVR et V1 comme miroir attendu/limité",
+        "rang": "B"
+      },
+      {
+        "label": "Mentionner le rythme sinusal",
+        "rang": "B"
+      },
+      {
+        "label": "Mentionner les variations d’amplitude des QRS évocatrices d’épanchement péricardique",
+        "rang": "A"
+      },
+      {
+        "label": "Éviter le diagnostic de SCA en l’absence d’arguments ECG typiques : territoire coronaire, miroir étendu, ondes Q de nécrose",
+        "rang": "B"
+      }
+    ],
+    "diagnostic_principal": "Péricardite aiguë, très évocatrice d’une péricardite virale, avec épanchement péricardique suggéré par les variations d’amplitude des QRS",
+    "pieges": [
+      "Confondre le sus-décalage ST diffus concave de péricardite avec un syndrome coronarien aigu ST+.",
+      "Oublier de rechercher et de citer le sous-décalage du segment PQ, signe clé de péricardite.",
+      "Interpréter le sous-décalage ST en aVR et V1 comme un miroir coronaire étendu : dans la péricardite, l’absence de miroir est la règle sauf aVR et V1.",
+      "Négliger les variations d’amplitude des QRS, qui orientent vers un épanchement péricardique.",
+      "Attendre obligatoirement les 4 stades ECG : la séquence peut être incomplète et justifie de répéter les tracés."
+    ],
+    "references_item": "Items EDN impliqués : item spécifique sur la péricardite ; item sur les douleurs thoraciques aiguës ; interprétation de l’ECG avec sus-décalage diffus du ST et sous-décalage du PQ.",
+    "citation_source": "« Quelques éléments électrocardiographiques sont évocateurs d'une péricardite : sous-décalage du segment PQ associé »"
+  },
+  "error": null
+}

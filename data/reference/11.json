@@ -1,0 +1,81 @@
+{
+  "num": 11,
+  "titre": "syncopes chez un patient avec bloc de branche droite et hémibloc antérieur gauche",
+  "famille": "conduction",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence cardiaque régulière autour de 85/min, avec rythme sinusal. La conduction atrio-ventriculaire est conservée sur l’ECG 12 dérivations, en 1/1, avec intervalle PR de durée normale. L’axe électrique est dévié à gauche. Les QRS sont élargis à environ 130 ms, avec morphologie typique de bloc de branche droite complet : aspect rSR’ en V1 et aspect RS en V6 avec onde S large et traînante terminale. L’association à la déviation axiale gauche, avec onde q en DI et grande onde S en DII, signe un hémibloc antérieur gauche. Pas d’élément de repolarisation spécifique rapporté dans l’interprétation fournie. Conclusion : rythme sinusal avec PR normal, bloc de branche droite complet associé à un hémibloc antérieur gauche, soit un bloc bifasciculaire, contexte à haut risque de BAV complet paroxystique en cas de syncopes.",
+  "points_cles": [
+    {
+      "label": "Rythme sinusal à environ 85/min",
+      "rang": "A"
+    },
+    {
+      "label": "Conduction AV 1/1 avec PR normal sur l’ECG 12 dérivations",
+      "rang": "A"
+    },
+    {
+      "label": "QRS larges à 130 ms",
+      "rang": "A"
+    },
+    {
+      "label": "Bloc de branche droite complet : rSR’ en V1 et S large traînante en V6",
+      "rang": "A"
+    },
+    {
+      "label": "Déviation axiale gauche avec critères d’hémibloc antérieur gauche",
+      "rang": "A"
+    },
+    {
+      "label": "Conclusion : bloc bifasciculaire = BBD complet + hémibloc antérieur gauche",
+      "rang": "A"
+    },
+    {
+      "label": "Contexte de syncopes : risque de BAV complet infrahissien/paroxystique justifiant télémétrie",
+      "rang": "B"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "L’ECG 12 dérivations montre un rythme sinusal autour de 85/min avec conduction AV 1/1 et PR normal. Les QRS sont larges à 130 ms avec aspect typique de bloc de branche droite complet, associé à une déviation axiale gauche compatible avec un hémibloc antérieur gauche. L’ensemble correspond à un bloc bifasciculaire, élément d’orientation majeur devant des syncopes car il expose à un BAV complet paroxystique.",
+    "criteres_indispensables": [
+      {
+        "label": "Identifier le rythme sinusal",
+        "rang": "A"
+      },
+      {
+        "label": "Mentionner une conduction AV 1/1 avec PR normal sur le tracé 12 dérivations",
+        "rang": "A"
+      },
+      {
+        "label": "Décrire des QRS larges d’environ 130 ms",
+        "rang": "A"
+      },
+      {
+        "label": "Diagnostiquer un bloc de branche droite complet avec rSR’ en V1 et S large traînante en V6",
+        "rang": "A"
+      },
+      {
+        "label": "Diagnostiquer un hémibloc antérieur gauche avec déviation axiale gauche",
+        "rang": "A"
+      },
+      {
+        "label": "Conclure à un bloc bifasciculaire : BBD complet + hémibloc antérieur gauche",
+        "rang": "A"
+      },
+      {
+        "label": "Relier syncope + bloc bifasciculaire au risque de BAV complet infrahissien/paroxystique et à la surveillance télémétrique",
+        "rang": "B"
+      }
+    ],
+    "diagnostic_principal": "Bloc bifasciculaire : bloc de branche droite complet associé à un hémibloc antérieur gauche",
+    "pieges": [
+      "Confondre le bloc de branche droite complet avec un bloc de branche gauche.",
+      "Oublier l’hémibloc antérieur gauche devant la déviation axiale gauche.",
+      "Conclure à un bloc trifasciculaire sur l’ECG 12 dérivations de base : le tracé montre un bloc bifasciculaire ; le BAV complet est paroxystique observé en télémétrie lors de la syncope.",
+      "Négliger la gravité du contexte : syncope + bloc bifasciculaire doit faire craindre un BAV complet infrahissien.",
+      "Interpréter la vitesse de défilement modifiée de la télémétrie comme une anomalie ECG intrinsèque."
+    ],
+    "references_item": "EDN — Syncope : critères d’hospitalisation et anomalies ECG diagnostiques ou d’orientation ; EDN Item 231 — ECG : indications et interprétation ; Troubles de conduction intraventriculaire : bloc bifasciculaire et risque de BAV complet infrahissien.",
+    "citation_source": "« syncope + bloc bifasciculaire = hospitalisation en cardiologie avec télémétrie ! »"
+  },
+  "error": null
+}

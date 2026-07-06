@@ -1,0 +1,89 @@
+{
+  "num": 7,
+  "titre": "hypertrophie ventriculaire droite",
+  "famille": "hypertrophie",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence non précisée sur le tracé fourni. Le rythme est sinusal. La conduction auriculo-ventriculaire est ralentie avec un bloc auriculo-ventriculaire du 1er degré, PR mesuré à 230 ms. L’axe électrique est dévié à droite, environ +130°. Les QRS sont fins. Leur morphologie et leurs amplitudes sont en faveur d’une hypertrophie ventriculaire droite : rapport R/S > 1 en V1, grandes ondes R en précordiales droites avec R à 10 mm en V1 et 17 mm en V2. La repolarisation montre des troubles secondaires dans les dérivations précordiales droites, avec ondes T négatives de V1 à V4 ; QT non précisé. Conclusion : ECG en rythme sinusal avec BAV du 1er degré et hypertrophie ventriculaire droite, associant déviation axiale droite, prédominance de R en V1-V2 et troubles de repolarisation droits, compatible avec le contexte d’hypertension artérielle pulmonaire.",
+  "points_cles": [
+    {
+      "label": "Rythme sinusal",
+      "rang": "B"
+    },
+    {
+      "label": "Bloc auriculo-ventriculaire du 1er degré avec PR à 230 ms",
+      "rang": "B"
+    },
+    {
+      "label": "QRS fins",
+      "rang": "B"
+    },
+    {
+      "label": "Déviation axiale droite à environ 130°",
+      "rang": "A"
+    },
+    {
+      "label": "Hypertrophie ventriculaire droite",
+      "rang": "A"
+    },
+    {
+      "label": "Rapport R/S > 1 en V1 avec grandes ondes R en V1-V2",
+      "rang": "A"
+    },
+    {
+      "label": "Ondes T négatives/troubles de repolarisation en précordiales droites V1 à V4",
+      "rang": "A"
+    },
+    {
+      "label": "Ne pas conclure à une HVG, une hypertrophie biventriculaire, un microvoltage ou des amplitudes normales",
+      "rang": "A"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "L’ECG montre un rythme sinusal avec BAV du 1er degré et QRS fins. Le diagnostic attendu est une hypertrophie ventriculaire droite, fondée sur la combinaison d’une déviation axiale droite à 130°, d’une prédominance de R en V1-V2 avec R/S > 1, et de troubles de repolarisation droits avec ondes T négatives de V1 à V4. Le texte rappelle que l’ECG a une sensibilité médiocre pour l’HVD et que le diagnostic de certitude repose plutôt sur l’échographie ou l’IRM.",
+    "criteres_indispensables": [
+      {
+        "label": "Diagnostic principal : hypertrophie ventriculaire droite",
+        "rang": "A"
+      },
+      {
+        "label": "Déviation axiale droite, ici environ 130°",
+        "rang": "A"
+      },
+      {
+        "label": "Prédominance de l’onde R en V1-V2 avec rapport R/S > 1 en V1",
+        "rang": "A"
+      },
+      {
+        "label": "Grandes ondes R en précordiales droites : 10 mm en V1 et 17 mm en V2",
+        "rang": "B"
+      },
+      {
+        "label": "Troubles de la repolarisation précordiaux droits : ondes T négatives de V1 à V4",
+        "rang": "A"
+      },
+      {
+        "label": "QRS fins",
+        "rang": "B"
+      },
+      {
+        "label": "Rythme sinusal",
+        "rang": "B"
+      },
+      {
+        "label": "BAV du 1er degré avec PR à 230 ms",
+        "rang": "B"
+      }
+    ],
+    "diagnostic_principal": "Hypertrophie ventriculaire droite",
+    "pieges": [
+      "Confondre les ondes T négatives en V1-V4 avec une ischémie antéro-septale sans tenir compte du contexte et des critères d’HVD.",
+      "Conclure à une hypertrophie ventriculaire gauche ou biventriculaire alors que les critères décrits sont droits.",
+      "Répondre amplitudes normales ou microvoltage : les ondes R en V1-V2 sont augmentées.",
+      "S’appuyer sur un seul critère isolé de façon excessive : le diagnostic ECG d’HVD repose sur la combinaison de signes.",
+      "Oublier que la déviation axiale droite peut avoir d’autres causes, notamment hémibloc postérieur gauche ou variante chez le sujet longiligne."
+    ],
+    "references_item": "Référentiel EDN — Hypertrophie ventriculaire droite à l’ECG : faible rendement diagnostique de l’ECG ; déviation axiale droite pouvant être observée dans l’hémibloc postérieur gauche ou comme variante de la normale chez les sujets longilignes.",
+    "citation_source": "« Le diagnostic d’hypertrophie ventriculaire droite est basé sur la présence combinée de différents signes »"
+  },
+  "error": null
+}

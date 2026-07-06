@@ -1,0 +1,93 @@
+{
+  "num": 65,
+  "titre": "SCA ST+ inférieur et bloc auriculoventriculaire",
+  "famille": "conduction",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence ventriculaire lente, compatible avec un échappement probablement nodal. Activité atriale sinusale visible avec dissociation auriculo-ventriculaire/ondes P bloquées, réalisant un bloc auriculo-ventriculaire de haut degré, possiblement complet avec échappement nodal. L’axe n’est pas l’élément déterminant ici. Les QRS sont attendus plutôt fins dans ce contexte d’infarctus inférieur avec bloc nodal ; on note des ondes q dans le territoire inférieur, possiblement également en latéral V4-V6. La repolarisation montre un sus-décalage du ST systématisé au territoire inférieur, avec images en miroir en DI, aVL et V1. Conclusion : ECG en faveur d’un SCA ST+ inférieur avec ondes q inférieures, compliqué d’un bloc auriculo-ventriculaire de haut degré, possible BAV complet à échappement nodal.",
+  "points_cles": [
+    {
+      "label": "SCA ST+ inférieur",
+      "rang": "A"
+    },
+    {
+      "label": "Sus-décalage ST systématisé au territoire inférieur",
+      "rang": "A"
+    },
+    {
+      "label": "Miroir en DI, aVL et V1",
+      "rang": "B"
+    },
+    {
+      "label": "Bloc auriculo-ventriculaire de haut degré",
+      "rang": "A"
+    },
+    {
+      "label": "Activité atriale sinusale avec ondes P bloquées",
+      "rang": "A"
+    },
+    {
+      "label": "Possible BAV complet avec échappement nodal",
+      "rang": "B"
+    },
+    {
+      "label": "Ondes q dans le territoire inférieur",
+      "rang": "A"
+    },
+    {
+      "label": "Possibles ondes q latérales en V4-V6",
+      "rang": "C"
+    },
+    {
+      "label": "Ne pas conclure à un flutter atrial ni à un RIVA",
+      "rang": "B"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé associe une activité atriale sinusale avec ondes P bloquées, traduisant un BAV de haut degré possiblement complet avec échappement nodal, et un SCA ST+ inférieur. Il existe des ondes q inférieures, possiblement latérales, avec sus-décalage inférieur et miroir en DI, aVL et V1. L’ensemble correspond à un infarctus inférieur compliqué d’un trouble de conduction auriculo-ventriculaire de haut degré.",
+    "criteres_indispensables": [
+      {
+        "label": "Diagnostic de SCA ST+ inférieur",
+        "rang": "A"
+      },
+      {
+        "label": "Sus-décalage ST systématisé au territoire inférieur",
+        "rang": "A"
+      },
+      {
+        "label": "Bloc auriculo-ventriculaire de haut degré",
+        "rang": "A"
+      },
+      {
+        "label": "Activité atriale sinusale avec ondes P bloquées",
+        "rang": "A"
+      },
+      {
+        "label": "Ondes q dans le territoire inférieur",
+        "rang": "A"
+      },
+      {
+        "label": "Miroir en DI, aVL et V1",
+        "rang": "B"
+      },
+      {
+        "label": "Possible BAV complet avec échappement nodal",
+        "rang": "B"
+      },
+      {
+        "label": "Possibles ondes q dans le territoire latéral V4-V6",
+        "rang": "C"
+      }
+    ],
+    "diagnostic_principal": "SCA ST+ inférieur compliqué d’un bloc auriculo-ventriculaire de haut degré",
+    "pieges": [
+      "Confondre les ondes P bloquées avec un flutter atrial.",
+      "Diagnostiquer un rythme idioventriculaire accéléré alors que l’activité atriale sinusale et le BAV de haut degré sont décrits.",
+      "Oublier de rechercher et de mentionner le trouble de conduction devant un SCA ST+.",
+      "Ne pas identifier le territoire inférieur du sus-décalage ni les miroirs en DI, aVL et V1.",
+      "Omettre les ondes q inférieures."
+    ],
+    "references_item": "Troubles de la conduction ; EDN Item 231 — ECG : indications et interprétation ; infarctus du myocarde/SCA ST+ compliqué de BAV.",
+    "citation_source": "« Lorsqu’un tracé de SCA ST+ tombe aux EDN ou aux ECOS, il faut absolument rechercher l’existence d’un trouble de conduction associé »"
+  },
+  "error": null
+}

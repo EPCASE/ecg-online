@@ -1,0 +1,81 @@
+{
+  "num": 73,
+  "titre": "hyperkaliémie",
+  "famille": "metabolique",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence ventriculaire autour de 90/min. L’activité atriale est difficile à individualiser avec certitude, ne permettant pas d’affirmer clairement un rythme sinusal. La conduction atrioventriculaire (PR) n’est donc pas analysable. Axe non précisé. Les QRS sont extrêmement élargis, proches de 200 ms, traduisant un retard/bloc de conduction intraventriculaire diffus, sans morphologie typique de bloc de branche droit ni de bloc de branche gauche. La repolarisation montre des ondes T amples, pointues et symétriques, surtout de V3 à V5 ; QT non précisé. Au total : ECG évocateur d’hyperkaliémie menaçante chez un patient insuffisant rénal anurique, avec élargissement majeur des QRS et ondes T typiques, constituant une urgence vitale.",
+  "points_cles": [
+    {
+      "label": "Diagnostic d’hyperkaliémie menaçante avec signes ECG",
+      "rang": "A"
+    },
+    {
+      "label": "Ondes T amples, pointues et symétriques, notamment V3 à V5",
+      "rang": "A"
+    },
+    {
+      "label": "QRS extrêmement élargis proches de 200 ms",
+      "rang": "A"
+    },
+    {
+      "label": "Élargissement QRS sans aspect typique de bloc de branche droit ou gauche",
+      "rang": "A"
+    },
+    {
+      "label": "Activité atriale difficile à identifier ; rythme sinusal non affirmable",
+      "rang": "B"
+    },
+    {
+      "label": "Contexte d’insuffisance rénale sévère/anurie et urgence vitale",
+      "rang": "B"
+    },
+    {
+      "label": "Fréquence cardiaque environ 90 bpm",
+      "rang": "C"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé montre une hyperkaliémie menaçante chez un patient insuffisant rénal sévère/anurique. Les éléments attendus sont des QRS très élargis, sans aspect typique de bloc de branche, associés à des ondes T amples, pointues et symétriques, avec activité atriale difficile à identifier. Il s’agit d’une urgence vitale nécessitant traitement en urgence.",
+    "criteres_indispensables": [
+      {
+        "label": "Reconnaître des signes ECG d’hyperkaliémie / hyperkaliémie menaçante",
+        "rang": "A"
+      },
+      {
+        "label": "Décrire les ondes T amples, pointues et symétriques",
+        "rang": "A"
+      },
+      {
+        "label": "Décrire l’élargissement majeur des QRS / retard de conduction intraventriculaire",
+        "rang": "A"
+      },
+      {
+        "label": "Préciser l’absence d’aspect typique de bloc de branche gauche ou droit malgré les QRS larges",
+        "rang": "A"
+      },
+      {
+        "label": "Mentionner l’activité atriale difficile à identifier, rythme sinusal non certain",
+        "rang": "B"
+      },
+      {
+        "label": "Souligner le contexte d’insuffisance rénale sévère/anurie et l’urgence vitale",
+        "rang": "B"
+      },
+      {
+        "label": "Fréquence cardiaque autour de 90/min",
+        "rang": "C"
+      }
+    ],
+    "diagnostic_principal": "Hyperkaliémie menaçante avec élargissement majeur des QRS et ondes T amples",
+    "pieges": [
+      "Diagnostiquer à tort un bloc de branche gauche devant les QRS très larges.",
+      "Diagnostiquer à tort un bloc de branche droite devant les QRS très larges.",
+      "Conclure à une hypokaliémie alors que les ondes T amples, pointues et symétriques évoquent l’hyperkaliémie.",
+      "Exiger un signe ECG pathognomonique ou unique d’hyperkaliémie : aucun signe n’est requis isolément.",
+      "Affirmer un rythme sinusal alors que l’activité atriale est difficile à identifier."
+    ],
+    "references_item": "EDN — Troubles de la kaliémie / hyperkaliémie ; EDN Item 231 — ECG : indications et interprétation. Référentiel : tracé d’hyperkaliémie avec dysfonction sinusale, échappement jonctionnel et ondes T amples, pointues et symétriques.",
+    "citation_source": "« ondes T amples, pointues et symétriques ; élargissement des complexes QRS sans aspect de bloc de branche »"
+  },
+  "error": null
+}

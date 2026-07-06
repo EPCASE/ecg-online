@@ -1,0 +1,97 @@
+{
+  "num": 44,
+  "titre": "tachycardie jonctionnelle par réentrée intranodale",
+  "famille": "rythme",
+  "model": "gpt-5.5",
+  "reponse_attendue": "ECG 12 dérivations enregistré au décours d’un épisode de palpitations montrant une tachycardie régulière à environ 200/min. Le rythme est non sinusal pendant la crise, avec une activité atriale difficilement individualisable, probablement rétrograde, visible en fin de QRS, négative dans les dérivations inférieures et positive en V1/aVR. La conduction auriculo-ventriculaire paraît 1/1 ; le PR n’est pas analysable du fait de la tachycardie et de la superposition des ondes P’ aux QRS. Les QRS sont fins, sans argument pour une tachycardie ventriculaire ; l’axe n’est pas précisé comme anormal. La repolarisation n’apporte pas d’élément diagnostique spécifique dans les données fournies. Le caractère parfaitement régulier rend la fibrillation atriale très improbable ; les diagnostics discutés sont une tachycardie atriale organisée/flutter commun ou une tachycardie jonctionnelle. L’arrêt brutal sous isoptine avec reprise sinusale, l’absence de pré-excitation et la modification de la fin des QRS en rythme sinusal confirment une tachycardie jonctionnelle par réentrée intranodale avec conduction atriale rétrograde.",
+  "points_cles": [
+    {
+      "label": "Tachycardie régulière à QRS fins autour de 200/min",
+      "rang": "A"
+    },
+    {
+      "label": "Rythme non sinusal pendant la crise, activité atriale difficile à voir",
+      "rang": "A"
+    },
+    {
+      "label": "Ondes P’ rétrogrades en fin de QRS, négatives en inférieur et positives en V1/aVR",
+      "rang": "A"
+    },
+    {
+      "label": "QRS fins : diagnostic de TV écarté dans l’interprétation de référence",
+      "rang": "A"
+    },
+    {
+      "label": "Régularité parfaite rendant la fibrillation atriale très improbable",
+      "rang": "A"
+    },
+    {
+      "label": "Hypothèses initiales : flutter/arythmie atriale organisée ou tachycardie jonctionnelle",
+      "rang": "B"
+    },
+    {
+      "label": "Arrêt brutal sous isoptine avec reprise d’un rythme sinusal",
+      "rang": "A"
+    },
+    {
+      "label": "Absence d’aspect de pré-excitation sur le tracé sinusal",
+      "rang": "B"
+    },
+    {
+      "label": "Diagnostic final : tachycardie jonctionnelle par réentrée intranodale",
+      "rang": "A"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé montre une tachycardie régulière à QRS fins à environ 200/min, chez une patiente jeune ayant des crises paroxystiques à début et fin brutaux. L’activité atriale est difficile à individualiser, probablement rétrograde en fin de QRS, ce qui oriente vers une tachycardie jonctionnelle. L’arrêt brutal sous isoptine avec reprise sinusale, sans pré-excitation, confirme une tachycardie jonctionnelle par réentrée intranodale.",
+    "criteres_indispensables": [
+      {
+        "label": "Identifier une tachycardie régulière à QRS fins à 200 bpm",
+        "rang": "A"
+      },
+      {
+        "label": "Conclure à une tachycardie jonctionnelle par réentrée intranodale",
+        "rang": "A"
+      },
+      {
+        "label": "Mentionner l’activité atriale rétrograde difficile à visualiser, en fin de QRS",
+        "rang": "A"
+      },
+      {
+        "label": "Écarter une FA du fait du caractère parfaitement régulier",
+        "rang": "A"
+      },
+      {
+        "label": "Écarter une TV selon l’interprétation fournie du fait des QRS fins",
+        "rang": "A"
+      },
+      {
+        "label": "Discuter les diagnostics différentiels initiaux : flutter/arythmie atriale organisée ou tachycardie jonctionnelle",
+        "rang": "B"
+      },
+      {
+        "label": "Rapporter l’arrêt brutal sous isoptine avec reprise sinusale",
+        "rang": "B"
+      },
+      {
+        "label": "Mentionner l’absence de pré-excitation sur le tracé sinusal",
+        "rang": "B"
+      },
+      {
+        "label": "Préciser la conduction AV 1/1 et les ondes P’ rétrogrades pouvant se superposer au QRS",
+        "rang": "C"
+      }
+    ],
+    "diagnostic_principal": "Tachycardie jonctionnelle par réentrée intranodale",
+    "pieges": [
+      "Diagnostiquer une fibrillation atriale malgré la régularité parfaite de la tachycardie.",
+      "Conclure à une tachycardie ventriculaire alors que l’interprétation de référence insiste sur des QRS fins.",
+      "Confondre les ondes P’ rétrogrades terminales avec une anomalie de morphologie des QRS ou les ignorer complètement.",
+      "Affirmer un flutter commun comme diagnostic final sans tenir compte de l’arrêt brutal sous isoptine et de l’absence de pré-excitation.",
+      "Diagnostiquer une tachycardie jonctionnelle sur voie accessoire malgré l’absence d’aspect caractéristique de pré-excitation sur le tracé sinusal."
+    ],
+    "references_item": "EDN Item 231 — ECG : indications et interprétation ; EDN Item 230/232 — Palpitations, tachycardies supraventriculaires et troubles du rythme supraventriculaires ; EDN Item 234 — Fibrillation atriale.",
+    "citation_source": "« durant la crise, la tachycardie est le plus souvent régulière à QRS fins »"
+  },
+  "error": null
+}

@@ -1,0 +1,77 @@
+{
+  "num": 6,
+  "titre": "hypertrophie ventriculaire gauche",
+  "famille": "hypertrophie",
+  "model": "gpt-5.5",
+  "reponse_attendue": "Fréquence non précisée sur les données fournies. Le rythme est sinusal. La conduction auriculo-ventriculaire n’est pas rapportée comme anormale. L’axe n’est pas décrit comme pathologique. Les QRS présentent des critères électriques d’hypertrophie ventriculaire gauche, avec augmentation de l’amplitude des ondes R en V5-V6 et des ondes S en V1-V2 ; l’indice de Sokolow est positif, autour de 43 mm (> 35 mm). Les QRS peuvent être discrètement élargis dans l’HVG, mais il n’y a pas d’argument fourni pour un bloc de branche gauche incomplet ni pour un hémibloc. La repolarisation montre des ondes T positives dans les dérivations précordiales gauches, sans aspect de surcharge systolique latérale décrit. Conclusion : ECG en rythme sinusal avec hypertrophie ventriculaire gauche électrique de type « diastolique » ; dans le contexte, elle est rapportée à une surcharge volumique par insuffisance aortique significative avec dilatation et HVG échographiques.",
+  "points_cles": [
+    {
+      "label": "Rythme sinusal",
+      "rang": "B"
+    },
+    {
+      "label": "Hypertrophie ventriculaire gauche électrique par augmentation des voltages : R amples en V5-V6 et S profondes en V1-V2",
+      "rang": "A"
+    },
+    {
+      "label": "Indice de Sokolow positif, autour de 43 mm, supérieur à 35 mm",
+      "rang": "A"
+    },
+    {
+      "label": "Ondes T positives en précordiales gauches, orientant vers une HVG dite diastolique",
+      "rang": "A"
+    },
+    {
+      "label": "Absence d’argument à retenir pour bloc de branche gauche incomplet ou hémibloc antérieur/postérieur gauche d’après le texte fourni",
+      "rang": "B"
+    },
+    {
+      "label": "Contexte étiologique mentionné : insuffisance aortique significative avec dilatation et HVG à l’échographie",
+      "rang": "C"
+    }
+  ],
+  "fiche_secours": {
+    "resume": "Le tracé montre un rythme sinusal avec critères électriques d’hypertrophie ventriculaire gauche : grands voltages, R augmentées en V5-V6 et S augmentées en V1-V2, indice de Sokolow autour de 43 mm donc positif. Les ondes T restent positives dans les précordiales gauches, ce qui correspond à l’aspect d’HVG « diastolique » attendu. Les propositions de bloc de branche gauche incomplet ou d’hémibloc ne doivent pas être retenues sur les éléments fournis.",
+    "criteres_indispensables": [
+      {
+        "label": "Diagnostic principal : hypertrophie ventriculaire gauche électrique",
+        "rang": "A"
+      },
+      {
+        "label": "Indice de Sokolow positif (> 35 mm), ici autour de 43 mm",
+        "rang": "A"
+      },
+      {
+        "label": "Augmentation des voltages : R en V5-V6 et S en V1-V2",
+        "rang": "A"
+      },
+      {
+        "label": "Ondes T positives en V5-V6 / précordiales gauches : HVG diastolique",
+        "rang": "A"
+      },
+      {
+        "label": "Rythme sinusal",
+        "rang": "B"
+      },
+      {
+        "label": "Ne pas conclure à une HVG systolique si les ondes T latérales sont positives",
+        "rang": "B"
+      },
+      {
+        "label": "Ne pas retenir bloc de branche gauche incomplet ni hémibloc antérieur/postérieur gauche sur ce tracé",
+        "rang": "B"
+      }
+    ],
+    "diagnostic_principal": "Hypertrophie ventriculaire gauche diastolique",
+    "pieges": [
+      "Confondre HVG diastolique et HVG systolique : l’HVG systolique implique typiquement des ondes T négatives latérales avec possible sous-décalage du ST, alors qu’ici les T sont positives en précordiales gauches.",
+      "Diagnostiquer à tort un bloc de branche gauche incomplet devant des QRS possiblement un peu élargis : dans l’HVG, l’élargissement reste le plus souvent discret et ne dépasse pas 110 ms en l’absence de bloc.",
+      "Retenir un hémibloc antérieur ou postérieur gauche alors que l’axe pathologique n’est pas décrit.",
+      "Oublier de calculer ou citer l’indice de Sokolow, critère pratique majeur de l’HVG.",
+      "Sous-estimer l’HVG parce qu’elle n’inverse pas les potentiels : elle exagère les aspects normaux par augmentation des amplitudes QRS."
+    ],
+    "references_item": "EDN Item 231 — ECG : indications et interprétation ; référentiel de cardiologie : hypertrophie ventriculaire gauche, indice de Sokolow, anomalies secondaires de repolarisation.",
+    "citation_source": "« Quand les ondes T restent positivent en V5-V6, on parle d’hypertrophie ventriculaire gauche diastolique. »"
+  },
+  "error": null
+}
