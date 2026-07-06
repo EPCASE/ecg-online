@@ -62,8 +62,14 @@ from . import scoring_config
 
 GOLDEN_PATH = os.path.join(cases_repo.DATA_DIR, "cases_golden.json")
 
-# L'ontologie n'est pas dans ecg-online/data : on cherche la copie canonique.
+# L'ontologie est VENDORÉE dans rag_pipeline/data/ (déployée sur Scalingo).
+# On la cherche d'abord via un chemin PORTABLE (relatif à ce fichier) pour que
+# ça marche identiquement en local (Windows) et en production (Linux/Scalingo).
+# Les chemins Windows absolus ne sont conservés qu'en ultime repli (dev only).
+_APP_DIR = os.path.dirname(os.path.abspath(__file__))   # .../ecg-online/app
+_ROOT_DIR = os.path.dirname(_APP_DIR)                    # .../ecg-online
 ONTO_CANDIDATES = [
+    os.path.join(_ROOT_DIR, "rag_pipeline", "data", "ontology_v2.json"),  # vendorée (prod + local)
     os.path.join(cases_repo.DATA_DIR, "ontology_v2.json"),
     r"C:\Users\Administrateur\bmad\ECG lecture\data\ontology_v2.json",
     r"C:\Users\Administrateur\bmad\RAG ontologique\data\ontology_v2.json",
