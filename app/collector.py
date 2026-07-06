@@ -39,8 +39,12 @@ from datetime import datetime, timezone
 from typing import List, Optional
 
 # En-têtes des deux feuilles.
+# Colonnes de métriques d'usage (note UX §13) ajoutées en fin de journal pour
+# ne pas casser les feuilles existantes (append de colonnes, ordre stable).
 LOG_COLS = ["horodatage", "session", "cas", "titre", "reponse",
-            "score", "correspondance", "backend"]
+            "score", "correspondance", "backend",
+            "tentative", "refait", "t_reflexion_s", "t_total_s",
+            "editions", "longueur", "mode"]
 PARCAS_HEADER = ["cas", "titre", "réponses →"]
 
 _LOCK = threading.Lock()          # sérialise les écritures dans le process
@@ -168,11 +172,17 @@ def _now_iso() -> str:
 
 
 def _write(num: int, titre: str, answer: str, score, correspondance: str,
-           backend: str, session: str) -> None:
+           backend: str, session: str, meta: Optional[dict] = None) -> None:
     """Écrit dans les 2 feuilles. Exécuté dans un thread détaché (best-effort)."""
     ss = _get_spreadsheet()
     if not ss:
         return
+    meta = meta or {}
+
+    def _m(key, default=""):
+        v = meta.get(key)
+        return default if v is None else v
+
     with _LOCK:
         try:
             _ensure_worksheets(ss)
@@ -181,7 +191,10 @@ def _write(num: int, titre: str, answer: str, score, correspondance: str,
             ws_log = ss.worksheet("reponses")
             ws_log.append_row(
                 [_now_iso(), session, num, titre, answer,
-                 "" if score is None else score, correspondance, backend],
+                 "" if score is None else score, correspondance, backend,
+                 _m("tentative"), _m("refait"), _m("t_reflexion_s"),
+                 _m("t_total_s"), _m("editions"), _m("longueur"),
+                 _m("mode", "libre")],
                 value_input_option="RAW",  # type: ignore[arg-type]
             )
 
@@ -203,10 +216,11 @@ def _write(num: int, titre: str, answer: str, score, correspondance: str,
 
 def collect_answer(num: int, titre: str, answer: str, score=None,
                    correspondance: str = "", backend: str = "",
-                   session: str = "") -> None:
+                   session: str = "", meta: Optional[dict] = None) -> None:
     """Point d'entrée : archive une réponse (no-op si non configuré).
 
     Non bloquant : lance un thread détaché. N'échoue jamais côté appelant.
+    `meta` (optionnel) : métriques d'usage (§13) — tentative, temps, éditions…
     """
     if not is_available():
         return
@@ -215,7 +229,7 @@ def collect_answer(num: int, titre: str, answer: str, score=None,
     try:
         threading.Thread(
             target=_write,
-            args=(num, titre, answer, score, correspondance, backend, session),
+            args=(num, titre, answer, score, correspondance, backend, session, meta),
             daemon=True,
         ).start()
     except Exception:

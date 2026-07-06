@@ -8,6 +8,12 @@ let QCM_SELECTED = new Set();        // lettres cochées
 let QCM_UNLOCKED = false;            // le QCM se débloque APRÈS la réponse libre corrigée
 let CURRENT_PAGES2 = [];             // images secondaires (page 2+) révélées après correction
 
+/* Instrumentation d'usage (note UX §13) — mesurée côté client, envoyée au
+ * recueil pour analyse pédagogique. Réinitialisée à chaque ouverture de cas. */
+let CASE_OPEN_TS = 0;                // horodatage d'ouverture du cas (ms)
+let FIRST_KEY_TS = 0;                // horodatage de la 1ʳᵉ frappe dans la réponse
+let EDIT_COUNT = 0;                  // nombre d'événements de saisie (proxy d'édition)
+
 const $ = (sel) => document.querySelector(sel);
 const el = (tag, cls, html) => {
   const n = document.createElement(tag);
@@ -140,6 +146,10 @@ async function openCase(num) {
 
   // Réinitialise le mode + charge le QCM du cas (verrouillé au départ)
   QCM_UNLOCKED = false;
+  // Réinitialise l'instrumentation d'usage (note UX §13).
+  CASE_OPEN_TS = Date.now();
+  FIRST_KEY_TS = 0;
+  EDIT_COUNT = 0;
   setMode("free");
   await loadQcm(c.num);
 
@@ -312,6 +322,21 @@ async function gradeCurrent() {
   btn.querySelector(".spinner").classList.remove("hidden");
 
   try {
+    // Métriques d'usage (note UX §13) — conditions de production de la réponse.
+    const now = Date.now();
+    const stat = window.Progress ? Progress.caseStat(CURRENT.num) : null;
+    const meta = {
+      // Conditions (§6.3) : la réponse libre est produite AVANT tout QCM (verrouillé).
+      mode: "libre",
+      qcm_avant_reponse: false,      // garanti par le verrouillage du QCM
+      tentative: (stat ? stat.attempts : 0) + 1,
+      refait: !!stat,                // vrai si le cas a déjà été corrigé
+      // Temps (ms → s, arrondis).
+      t_reflexion_s: FIRST_KEY_TS ? Math.round((FIRST_KEY_TS - CASE_OPEN_TS) / 1000) : null,
+      t_total_s: Math.round((now - CASE_OPEN_TS) / 1000),
+      editions: EDIT_COUNT,
+      longueur: answer.length,
+    };
     const r = await fetch(`${API}/api/grade`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -320,6 +345,7 @@ async function gradeCurrent() {
         answer,
         // Session anonyme (localStorage) : améliore le recueil sans nominatif.
         session: window.Progress ? Progress.sessionId() : "",
+        meta,
       }),
     });
     const data = await r.json();
@@ -722,6 +748,12 @@ function wireGlobal() {
   // Bouton Accueil (sidebar) : retour à l'écran d'accueil.
   const home = $("#btn-home");
   if (home) home.onclick = goHome;
+  // Instrumentation d'usage : 1ʳᵉ frappe + nombre d'éditions (note UX §13).
+  const ta = $("#answer");
+  if (ta) ta.addEventListener("input", () => {
+    if (!FIRST_KEY_TS) FIRST_KEY_TS = Date.now();
+    EDIT_COUNT += 1;
+  });
   // Bascule de mode
   $("#mode-free").onclick = () => setMode("free");
   $("#mode-qcm").onclick = () => { if (!$("#mode-qcm").disabled) setMode("qcm"); };
