@@ -39,6 +39,29 @@ body {
   z-index: 20;
 }
 .brand { display: flex; align-items: center; gap: 14px; }
+.brand-logo-link {
+  display: inline-flex;
+  align-items: center;
+  line-height: 0;
+  border-radius: 10px;
+  /* Bouton uniforme aux couleurs du logo LIRYC (fond turquoise de marque),
+     pour un cartouche net sans bord blanc autour du JPG. */
+  background: #0d6b85;
+  padding: 6px 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+.brand-logo-link:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.06);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+}
+.brand-logo {
+  height: 50px;                  /* logo LIRYC (badge turquoise) — +25 % */
+  width: auto;
+  display: block;
+  border-radius: 4px;
+}
 .logo {
   font-size: 26px;
   background: linear-gradient(135deg, var(--accent), var(--accent-2));
@@ -130,6 +153,32 @@ body {
 .welcome-card p { color: var(--text-muted); line-height: 1.6; }
 .tips { list-style: none; padding: 0; margin: 18px 0 0; display: flex; flex-direction: column; gap: 10px; }
 .tips li { font-size: 13.5px; color: var(--text); }
+
+/* Crédit LIRYC en pied de la carte d'accueil */
+.welcome-credit {
+  margin-top: 26px;
+  padding-top: 22px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+}
+.welcome-credit a { display: inline-flex; transition: transform 0.15s ease, filter 0.15s ease; }
+.welcome-credit a:hover { transform: translateY(-1px); filter: brightness(1.06); }
+.welcome-logo {
+  height: 96px;                  /* grand logo LIRYC (PNG transparent) */
+  width: auto;
+  display: block;
+}
+.welcome-credit .credit-text { margin: 0; font-size: 13px; color: var(--text-muted); }
+.welcome-credit .credit-text a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+.welcome-credit .credit-text a:hover { text-decoration: underline; }
 
 /* Case view */
 .case-view { max-width: 960px; margin: 0 auto; animation: fade 0.3s ease; }
