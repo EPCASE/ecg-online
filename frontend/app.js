@@ -334,7 +334,7 @@ async function gradeCurrent() {
     // Débloque le QCM en remédiation (note UX §6).
     QCM_UNLOCKED = true;
     updateQcmButton();
-    showNextActions();
+    showNextActions(data.score);
   } catch (e) {
     $("#result").classList.remove("hidden");
     $("#result").innerHTML =
@@ -351,6 +351,43 @@ function scoreColor(s) {
   if (s >= 75) return "var(--good)";
   if (s >= 50) return "var(--warn)";
   return "var(--bad)";
+}
+
+/* Sécurité clinique : indicateur DÉRIVÉ (pas un score inventé) des signaux que
+ * le correcteur produit déjà — affirmations erronées + type d'erreur clinique.
+ * §7 de la note : « Sécurité clinique : OK / pas d'erreur critique ». */
+function deriveSafety(d) {
+  const nbWrong = (d.elements_errones || []).length;
+  const clinicalError = d.type_erreur === "etudiant";
+  if (nbWrong > 0) {
+    return { ok: false, label: "À vérifier",
+             detail: `${nbWrong} affirmation${nbWrong > 1 ? "s" : ""} à corriger` };
+  }
+  if (clinicalError) {
+    return { ok: false, label: "À vérifier", detail: "écart clinique repéré" };
+  }
+  return { ok: true, label: "Pas d'erreur critique", detail: "aucune affirmation dangereuse" };
+}
+
+/* Phrase pédagogique actionnable (§7) : oriente la prochaine action selon la
+ * dimension la plus faible. Dérivée des sous-scores réels + sécurité. */
+function buildPunchLine(d) {
+  const sd = d.score_diagnostic ?? d.score;
+  const sx = d.score_descriptif ?? d.score;
+  const safety = deriveSafety(d);
+  if (!safety.ok) {
+    return "⚠️ Sécurité d'abord : une affirmation est à corriger — reprends-la avant tout.";
+  }
+  if (sd < 50) {
+    return "🎯 Point faible ici : le diagnostic principal. Nomme-le explicitement dans ta conclusion.";
+  }
+  if (sd >= 50 && sx < 50) {
+    return "Diagnostic sur la bonne voie ✓ — soigne la description : rythme, fréquence, axe, conduction, repolarisation.";
+  }
+  if (sd >= 85 && sx >= 70) {
+    return "Excellent : diagnostic et description au rendez-vous. Enchaîne sur un cas plus difficile.";
+  }
+  return "Bonne base : complète les éléments « à compléter » ci-dessous pour viser l'exhaustivité.";
 }
 
 function renderResult(d) {
@@ -382,6 +419,12 @@ function renderResult(d) {
     incomplet: "réponse incomplète", formulation: "formulation",
   }[typeErr] || typeErr;
 
+  // Sprint 3 : sous-scores explicites + sécurité dérivée + phrase actionnable.
+  const sd = d.score_diagnostic ?? d.score;
+  const sx = d.score_descriptif ?? d.score;
+  const safety = deriveSafety(d);
+  const punch = buildPunchLine(d);
+
   box.innerHTML = `
     <div class="result-top">
       <div class="score-ring" style="--val:${d.score};--ring-color:${scoreColor(d.score)}">
@@ -390,14 +433,32 @@ function renderResult(d) {
       <div class="verdict">
         <h3>${escapeHtml(d.verdict || "")}</h3>
         <div class="dx-line">Diagnostic retenu : <b>${escapeHtml(d.diagnostic_retenu || "—")}</b></div>
-        <div class="subscores">
-          <span class="sub">Diagnostic <b>${d.score_diagnostic ?? "—"}</b></span>
-          <span class="sub">Description <b>${d.score_descriptif ?? "—"}</b></span>
+        <div class="result-tags">
           ${corresp ? `<span class="tag tag-${corresp}">${correspLabel}</span>` : ""}
           ${typeErr ? `<span class="tag tag-err-${typeErr}">${typeLabel}</span>` : ""}
         </div>
       </div>
     </div>
+
+    <div class="subscore-grid">
+      <div class="subscore" style="--sc:${scoreColor(sd)}">
+        <div class="ss-head"><span class="ss-ic">🎯</span> Diagnostic</div>
+        <div class="ss-val">${sd}<small>/100</small></div>
+        <div class="ss-bar"><i style="width:${sd}%"></i></div>
+      </div>
+      <div class="subscore" style="--sc:${scoreColor(sx)}">
+        <div class="ss-head"><span class="ss-ic">📝</span> Description</div>
+        <div class="ss-val">${sx}<small>/100</small></div>
+        <div class="ss-bar"><i style="width:${sx}%"></i></div>
+      </div>
+      <div class="subscore subscore--safety ${safety.ok ? "safe" : "unsafe"}">
+        <div class="ss-head"><span class="ss-ic">${safety.ok ? "🛡️" : "⚠️"}</span> Sécurité</div>
+        <div class="ss-val ss-val--text">${safety.label}</div>
+        <div class="ss-note">${escapeHtml(safety.detail)}</div>
+      </div>
+    </div>
+
+    <div class="punch-line">${escapeHtml(punch)}</div>
 
     <div class="cards">
       <div class="card found"><h4>✓ Éléments trouvés</h4><ul>${found}</ul></div>
@@ -579,7 +640,7 @@ function refreshProgressUI() {
 }
 
 // Affiche le bloc « Continuer » après une correction et câble ses boutons.
-function showNextActions() {
+function showNextActions(lastScore) {
   const box = $("#next-actions");
   if (!box || !CURRENT) return;
   const nums = allCaseNums();
@@ -590,17 +651,31 @@ function showNextActions() {
   const randBtn = $("#na-random");
   const retryBtn = $("#na-retry");
 
+  // §8 : la recommandation dépend de la performance. Score faible → on met en
+  // avant « refaire » (consolider) ; score solide → on met en avant « suivant ».
+  const weak = Number.isFinite(lastScore) && lastScore < 60;
+  const titleEl = $("#next-actions .na-title");
+  if (titleEl) {
+    titleEl.textContent = weak
+      ? "Continuer — consolide d'abord 🔁"
+      : "Continuer 🚀";
+  }
+
   if (nextBtn) {
     const d = nextBtn.querySelector(".na-d");
     if (nextN != null) {
       nextBtn.classList.remove("disabled");
-      if (d) d.textContent = `Cas #${nextN} · poursuivre le parcours`;
+      if (d) d.textContent = weak
+        ? `Cas #${nextN} · passer à la suite`
+        : `Cas #${nextN} · poursuivre le parcours`;
       nextBtn.onclick = () => openCase(nextN);
     } else {
       nextBtn.classList.add("disabled");
       if (d) d.textContent = "Tous les cas sont lus 🎉";
       nextBtn.onclick = null;
     }
+    // Le bouton primaire (mis en valeur) suit la reco : suivant si bon, refaire si faible.
+    nextBtn.classList.toggle("na-btn--primary", !weak);
   }
   if (randBtn) {
     if (randN != null) {
@@ -612,6 +687,11 @@ function showNextActions() {
     }
   }
   if (retryBtn) {
+    const d = retryBtn.querySelector(".na-d");
+    if (d) d.textContent = weak
+      ? "Retente ce cas pour ancrer le diagnostic"
+      : "Retenter pour améliorer ton score";
+    retryBtn.classList.toggle("na-btn--primary", weak);
     retryBtn.onclick = () => {
       $("#answer").value = "";
       $("#result").classList.add("hidden");

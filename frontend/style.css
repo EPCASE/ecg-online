@@ -289,6 +289,40 @@ textarea:focus { outline: none; border-color: var(--accent-2); box-shadow: 0 0 0
   background: var(--panel-2); padding: 4px 10px; border-radius: 8px;
 }
 .subscores .sub b { color: var(--text); margin-left: 4px; }
+.result-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; align-items: center; }
+
+/* ── Sprint 3 : sous-scores explicites (diagnostic / description / sécurité) ── */
+.subscore-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 16px;
+}
+.subscore {
+  background: var(--panel); border: 1px solid var(--border);
+  border-radius: 12px; padding: 14px 16px;
+}
+.subscore .ss-head {
+  font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--text-muted); display: flex; align-items: center; gap: 7px;
+}
+.subscore .ss-ic { font-size: 15px; }
+.subscore .ss-val { font-size: 26px; font-weight: 800; margin-top: 8px; color: var(--sc, var(--text)); line-height: 1; }
+.subscore .ss-val small { font-size: 12px; color: var(--text-muted); font-weight: 600; margin-left: 2px; }
+.subscore .ss-val--text { font-size: 17px; }
+.subscore .ss-bar { height: 6px; border-radius: 999px; background: var(--panel-2); overflow: hidden; margin-top: 10px; }
+.subscore .ss-bar i { display: block; height: 100%; background: var(--sc, var(--accent-2)); border-radius: 999px; transition: width 0.5s ease; }
+.subscore .ss-note { font-size: 11.5px; color: var(--text-muted); margin-top: 8px; }
+.subscore--safety.safe { border-color: rgba(52,211,153,0.4); background: rgba(52,211,153,0.06); }
+.subscore--safety.safe .ss-val--text { color: var(--good); }
+.subscore--safety.unsafe { border-color: rgba(248,113,113,0.45); background: rgba(248,113,113,0.06); }
+.subscore--safety.unsafe .ss-val--text { color: var(--bad); }
+
+/* Phrase pédagogique actionnable (une seule ligne, mise en avant) */
+.punch-line {
+  display: flex; align-items: center; gap: 10px;
+  padding: 14px 18px; margin-bottom: 18px;
+  background: linear-gradient(135deg, rgba(79,209,197,0.1), rgba(255,90,110,0.06));
+  border: 1px solid var(--border); border-left: 3px solid var(--accent-2);
+  border-radius: 10px; font-size: 14px; font-weight: 600; line-height: 1.45;
+}
 .tag {
   font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 999px;
   border: 1px solid var(--border);
@@ -564,4 +598,5 @@ textarea:focus { outline: none; border-color: var(--accent-2); box-shadow: 0 0 0
   .progress-mini { display: none; }
   .home-progress { grid-template-columns: repeat(3, 1fr); }
   .home-progress .hp-bar-wrap { grid-column: 1 / -1; }
+  .subscore-grid { grid-template-columns: 1fr; }
 }
