@@ -98,7 +98,12 @@ deux types de concepts de correction :
 | **Complémentaire** | **N'impacte pas la note** (descriptif) | critères secondaires, contexte, pièges |
 | **Supprimé** 🗑 | **Totalement exclu** (ni noté, ni montré) | diagnostic attendu à retirer (restaurable) |
 
-➡️ Interface enseignant : **http://localhost:5000/curation** (ou bouton *⚙ Barème*).
+➡️ Interface enseignant : **http://localhost:5000/curation**
+
+> 🔒 **Accès réservé.** Le lien n'est **pas** exposé dans l'interface étudiante :
+> on y accède directement par l'URL `/curation`. En production, protégez la page
+> avec un jeton (voir [Sécurité du barème](#-sécurité-du-barème-curation) plus bas) —
+> l'accès se fait alors via `https://…/curation?key=VOTRE_SECRET`.
 
 - Chaque cas liste ses `points_cles` (rang A/B/C) avec un interrupteur
   **Validant / Complémentaire**. On peut aussi **ajouter un concept validant** à la main.
@@ -129,7 +134,73 @@ Modules : **`app/scoring_config.py`** (persistance + fusion avec la référence)
 
 ---
 
-## 📁 Structure du dépôt
+## �️ Anonymisation des cas (intégrité de l'examen)
+
+Le **titre** d'un cas *est* son diagnostic (ex. « fibrillation atriale »).
+Affiché tel quel dans la barre latérale, il vendrait la mèche. Par défaut
+(**`ECG_ANONYMIZE=1`**), l'API publique remplace le titre par **« Cas 1 »,
+« Cas 2 »…** et **masque la famille** (ex. « ischémie » trahirait aussi le cas).
+
+- Le **vrai titre ne quitte jamais le serveur** avant correction : il sert au
+  scoring et n'est **révélé qu'après** soumission (bloc `reference.titre`).
+- La route enseignant **`/api/case/<num>/full`** conserve les vraies données.
+- Mettre **`ECG_ANONYMIZE=0`** pour réafficher les vrais titres (révision).
+
+Implémenté dans `app/cases_repo.py` (`anon_titre`, `public_case`, `public_index`,
+`families`).
+
+---
+
+## 📥 Recueil des réponses (Google Sheets, optionnel)
+
+Chaque réponse libre corrigée peut être archivée dans une **Google Sheet**, pour
+analyse pédagogique. **Entièrement optionnel** : sans identifiants, le module est
+un *no‑op* silencieux et l'app fonctionne normalement.
+
+Deux feuilles sont alimentées (créées automatiquement) :
+
+| Feuille | Contenu | Forme |
+|---------|---------|-------|
+| **`reponses`** | Journal à plat, source de vérité | 1 **ligne** par soumission : `horodatage, session, cas, titre, reponse, score, correspondance, backend` |
+| **`par_cas`** | Accumulation par cas (« un cas = une ligne ») | 1 **ligne** par cas, chaque réponse dans la **cellule** libre suivante |
+
+- **Non bloquant** : l'écriture part dans un **thread détaché** (latence réseau
+  invisible pour l'étudiant), sérialisée par un verrou.
+- **Configuration** (variables d'env, cf. `.env.example`) : `GOOGLE_SHEET_ID`,
+  `GOOGLE_SHEETS_CREDENTIALS` (JSON du compte de service *inline*) ou
+  `GOOGLE_SHEETS_CREDENTIALS_FILE`. Interrupteur : `ECG_COLLECT` (défaut `1`).
+- **Mise en place** du compte de service Google : voir
+  `ECG collector/SETUP_GOOGLE_SHEETS.md` (projet Google Cloud → activer les API
+  Sheets + Drive → clé JSON → **partager la feuille** avec l'e‑mail `client_email`).
+
+> 💡 On peut réutiliser la **même** Google Sheet qu'ECG Collector : les onglets
+> (`reponses` / `par_cas`) sont distincts de ses onglets (`sessions` / `responses`),
+> donc **aucune collision**.
+
+Implémenté dans `app/collector.py` (branché sur `/api/grade`, statut dans `/api/health`).
+
+---
+
+## 🔒 Sécurité du barème (curation)
+
+La page de réglage du barème est **réservée à l'enseignant** : son lien n'apparaît
+**pas** dans l'interface étudiante. Pour empêcher un accès direct par URL, on la
+protège par un **jeton** via **`CURATION_TOKEN`** :
+
+| `CURATION_TOKEN` | `/curation` et écritures du barème |
+|------------------|-------------------------------------|
+| **vide** (défaut) | **ouvert** — pratique en local |
+| **défini** (prod) | **protégé** — jeton requis, sinon **403** |
+
+- Accès enseignant : **`https://…/curation?key=VOTRE_SECRET`** (la clé est ensuite
+  jointe automatiquement en en‑tête `X-Curation-Token` par `curation.js`).
+- Sont protégés : la page `/curation`, les lectures `GET /api/curation[...]`
+  (qui exposent les **vrais titres**) et les écritures `POST /api/curation/...`.
+- La page **étudiante** (`/`, `/api/grade`, `/api/case/...`) reste **ouverte**.
+
+---
+
+## �📁 Structure du dépôt
 
 ```
 ecg-online/
@@ -137,9 +208,10 @@ ecg-online/
 │   ├── __init__.py
 │   ├── grader.py          # correction GPT‑4o directe (backend de repli)
 │   ├── neuro_grader.py    # ⭐ adaptateur pipeline neurosymbolique (backend défaut)
-│   ├── cases_repo.py      # accès banque de cas + expurgation réponse
+│   ├── cases_repo.py      # accès banque de cas + expurgation + anonymisation
 │   ├── scoring_config.py  # curation validant/complémentaire (barème)
 │   ├── golden_config.py   # pont sémantique : label → concept ontologique
+│   ├── collector.py       # recueil optionnel des réponses (Google Sheets)
 │   └── server.py          # API Flask + front + images
 ├── rag_pipeline/          # ⭐ pipeline neurosymbolique VENDORÉ (autonome)
 │   ├── candidate_report.py# orchestrateur (briques 2→6)
@@ -188,19 +260,19 @@ ecg-online/
 
 | Méthode | Route | Description |
 |--------|-------|-------------|
-| `GET`  | `/api/health` | Statut + clé OpenAI + modèle + **backend de correction** (`neuro`/`gpt`) et son diagnostic |
-| `GET`  | `/api/cases` | Index léger des 75 cas |
-| `GET`  | `/api/families` | Familles + compteurs |
-| `GET`  | `/api/case/<num>` | Énoncé public d'un cas (sans correction) |
-| `GET`  | `/api/case/<num>/full` | Cas complet (enseignant/debug) |
+| `GET`  | `/api/health` | Statut + clé OpenAI + modèle + **backend** (`neuro`/`gpt`), recueil et anonymisation |
+| `GET`  | `/api/cases` | Index léger des 75 cas (**anonymisé** si `ECG_ANONYMIZE=1`) |
+| `GET`  | `/api/families` | Familles + compteurs (**vide** si anonymisé) |
+| `GET`  | `/api/case/<num>` | Énoncé public d'un cas (sans correction, **anonymisé**) |
+| `GET`  | `/api/case/<num>/full` | Cas complet, **vrais titres** (enseignant/debug) |
 | `GET`  | `/api/case/<num>/qcm` | QCM public d'un cas (question + options, **sans solution**) |
 | `POST` | `/api/case/<num>/qcm` | `{selected:[...]}` → correction du QCM (score + par-option) |
-| `POST` | `/api/grade` | `{num, answer}` → correction GPT |
-| `GET`  | `/curation` | **Interface de curation du barème** (enseignant) |
-| `GET`  | `/api/curation` | Vue d'ensemble des 75 cas (nb validants/concepts) |
-| `GET`  | `/api/curation/<num>` | Concepts d'un cas + rôles (validant/complémentaire) |
-| `POST` | `/api/curation/<num>` | Enregistre les rôles choisis |
-| `POST` | `/api/curation/<num>/reset` | Réinitialise un cas (défauts rang A = validant) |
+| `POST` | `/api/grade` | `{num, answer}` → correction (+ recueil optionnel) |
+| `GET`  | `/curation` | **Interface de curation** (enseignant, 🔒 `CURATION_TOKEN`) |
+| `GET`  | `/api/curation` | Vue d'ensemble des 75 cas (🔒) |
+| `GET`  | `/api/curation/<num>` | Concepts d'un cas + rôles (🔒) |
+| `POST` | `/api/curation/<num>` | Enregistre les rôles choisis (🔒) |
+| `POST` | `/api/curation/<num>/reset` | Réinitialise un cas (🔒) |
 | `GET`  | `/images/<file>` | Tracé ECG (PNG) |
 
 Exemple :
@@ -241,6 +313,11 @@ inclus) sont versionnés dans le dépôt.
 | `OPENAI_API_KEY` | — | **Requis** (NER + embeddings + juge + feedback) |
 | `ECG_GRADER_BACKEND` | `neuro` | `neuro` (pipeline V3) ou `gpt` (GPT‑4o direct) |
 | `ECG_GRADER_MODEL` | `gpt-4o-2024-08-06` | Modèle du backend `gpt` |
+| `ECG_ANONYMIZE` | `1` | Cas anonymisés (« Cas N », familles masquées). `0` = vrais titres |
+| `CURATION_TOKEN` | *(vide)* | 🔒 Protège `/curation`. Accès via `?key=…`. **Recommandé en prod** |
+| `ECG_COLLECT` | `1` | Active le recueil des réponses (si identifiants Google fournis) |
+| `GOOGLE_SHEET_ID` | — | ID de la Google Sheet du recueil (optionnel) |
+| `GOOGLE_SHEETS_CREDENTIALS` | — | JSON du compte de service *inline* (optionnel) |
 | `PORT` | `5000` | Port d'écoute (fourni par Scalingo) |
 
 

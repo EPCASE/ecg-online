@@ -1,5 +1,18 @@
 /* curation.js — édition du barème « validant / complémentaire » + mapping ontologique */
 const API = "";
+
+// Jeton d'accès enseignant : lu depuis l'URL (/curation?key=…) et conservé pour
+// être renvoyé en en-tête X-Curation-Token sur les écritures. Sans jeton côté
+// serveur (CURATION_TOKEN vide), tout fonctionne comme avant.
+const CURATION_KEY = new URLSearchParams(location.search).get("key") || "";
+
+/** fetch() qui joint le jeton de curation (en-tête + query) automatiquement. */
+function apiFetch(url, opts = {}) {
+  const headers = Object.assign({}, opts.headers || {});
+  if (CURATION_KEY) headers["X-Curation-Token"] = CURATION_KEY;
+  return fetch(url, Object.assign({}, opts, { headers }));
+}
+
 let OVERVIEW = [];
 let ONTO_AVAILABLE = false;
 let CURRENT = null;        // { num, titre, concepts: [...] }
@@ -21,7 +34,7 @@ async function init() {
 }
 
 async function loadOverview() {
-  const data = await fetch(`${API}/api/curation`).then((r) => r.json());
+  const data = await apiFetch(`${API}/api/curation`).then((r) => r.json());
   // Nouveau contrat : { onto_available, cases:[...] }. Rétro-compat si tableau nu.
   OVERVIEW = Array.isArray(data) ? data : (data.cases || []);
   ONTO_AVAILABLE = Array.isArray(data) ? false : !!data.onto_available;
@@ -64,7 +77,7 @@ function mappingPill(c) {
 /* ─────────── Ouverture d'un cas ─────────── */
 async function openCase(num) {
   if ((DIRTY || MAP_DIRTY) && !confirm("Des changements ne sont pas enregistrés. Continuer ?")) return;
-  const data = await fetch(`${API}/api/curation/${num}`).then((r) => r.json());
+  const data = await apiFetch(`${API}/api/curation/${num}`).then((r) => r.json());
   CURRENT = data;
   DIRTY = false;
   MAP_DIRTY = false;
@@ -368,7 +381,7 @@ async function saveMapping() {
   if (btn) btn.disabled = true;
   setSaveBadge("saving");
   try {
-    const r = await fetch(`${API}/api/curation/${CURRENT.num}/mapping`, {
+    const r = await apiFetch(`${API}/api/curation/${CURRENT.num}/mapping`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ mapping, diagnostic_principal: CURRENT.diagnostic_principal || "" }),
@@ -416,7 +429,7 @@ async function saveCurrent() {
   btn.querySelector(".spinner").classList.remove("hidden");
   setSaveBadge("saving");
   try {
-    const r = await fetch(`${API}/api/curation/${CURRENT.num}`, {
+    const r = await apiFetch(`${API}/api/curation/${CURRENT.num}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ roles, extra_validants: extra, removed }),
@@ -439,7 +452,7 @@ async function saveCurrent() {
 async function resetCurrent() {
   if (!CURRENT) return;
   if (!confirm("Réinitialiser ce cas aux rôles par défaut (rang A = validant) ?")) return;
-  const data = await fetch(`${API}/api/curation/${CURRENT.num}/reset`, { method: "POST" })
+  const data = await apiFetch(`${API}/api/curation/${CURRENT.num}/reset`, { method: "POST" })
     .then((r) => r.json());
   CURRENT.concepts = data.concepts;
   DIRTY = false;
