@@ -47,6 +47,23 @@ FRONTEND_DIR = os.path.abspath(
 # indisponible (dépendance/index manquant, cas non mappé, pas de clé API).
 GRADER_BACKEND = os.environ.get("ECG_GRADER_BACKEND", "neuro").strip().lower()
 
+# Jeton de protection du barème (curation). Réservé à l'enseignant.
+#   • Vide (défaut)  -> /curation et l'édition du barème sont OUVERTS (dev local).
+#   • Défini         -> la page /curation et TOUTE écriture du barème exigent le
+#                       jeton, fourni via ?key=… (page) ou l'en-tête
+#                       X-Curation-Token (API). Un étudiant qui tape /curation
+#                       sans le jeton reçoit un 403.
+CURATION_TOKEN = os.environ.get("CURATION_TOKEN", "").strip()
+
+
+def _curation_authorized(req) -> bool:
+    """Le jeton fourni correspond-il ? Toujours vrai si aucun jeton n'est configuré."""
+    if not CURATION_TOKEN:
+        return True
+    supplied = (req.headers.get("X-Curation-Token")
+                or req.args.get("key") or "").strip()
+    return supplied == CURATION_TOKEN
+
 
 def create_app() -> Flask:
     app = Flask(__name__, static_folder=None)
@@ -70,6 +87,10 @@ def create_app() -> Flask:
 
     @app.get("/curation")
     def curation_page():
+        # Page enseignant : protégée si CURATION_TOKEN est défini (accès via
+        # /curation?key=…). Sinon un 403 « discret » (pas d'indice pour l'élève).
+        if not _curation_authorized(request):
+            abort(403, description="Accès réservé.")
         return send_from_directory(FRONTEND_DIR, "curation.html")
 
     # ---- Santé ----------------------------------------------------------
@@ -187,6 +208,8 @@ def create_app() -> Flask:
     # ---- Curation du barème (validant / complémentaire) ----------------
     @app.get("/api/curation")
     def curation_overview():
+        if not _curation_authorized(request):
+            abort(403, description="Accès réservé.")
         rows = scoring_config.overview()
         status = golden_config.overview_status()
         onto_ok = golden_config.onto_available()
@@ -198,6 +221,8 @@ def create_app() -> Flask:
 
     @app.get("/api/curation/<int:num>")
     def curation_case(num: int):
+        if not _curation_authorized(request):
+            abort(403, description="Accès réservé.")
         c = _require_case(num)
         concepts = scoring_config.curated_points(num, include_removed=True)
         golden_config.attach_mapping(num, concepts)
@@ -217,6 +242,8 @@ def create_app() -> Flask:
 
     @app.post("/api/curation/<int:num>")
     def curation_save(num: int):
+        if not _curation_authorized(request):
+            abort(403, description="Accès réservé.")
         _require_case(num)
         payload = request.get_json(silent=True) or {}
         roles = payload.get("roles", {})
@@ -231,6 +258,8 @@ def create_app() -> Flask:
 
     @app.post("/api/curation/<int:num>/reset")
     def curation_reset(num: int):
+        if not _curation_authorized(request):
+            abort(403, description="Accès réservé.")
         _require_case(num)
         scoring_config.reset_case_config(num)
         concepts = scoring_config.curated_points(num, include_removed=True)
@@ -259,6 +288,8 @@ def create_app() -> Flask:
 
     @app.post("/api/curation/<int:num>/mapping")
     def curation_save_mapping(num: int):
+        if not _curation_authorized(request):
+            abort(403, description="Accès réservé.")
         _require_case(num)
         payload = request.get_json(silent=True) or {}
         mapping = payload.get("mapping", {})
