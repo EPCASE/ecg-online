@@ -207,6 +207,25 @@ def create_app() -> Flask:
         status = 200 if not corr.error else 502
         return jsonify(result), status
 
+    # ---- Signalement d'un problème (version pré-alpha) ------------------
+    @app.post("/api/feedback")
+    def feedback():
+        payload = request.get_json(silent=True) or {}
+        message = str(payload.get("message", "")).strip()
+        if not message:
+            abort(400, description="Message vide.")
+        cas = payload.get("cas")
+        categorie = str(payload.get("categorie", "")).strip()[:60]
+        contexte = str(payload.get("contexte", "")).strip()[:500]
+        session = str(payload.get("session", "")).strip()[:80]
+        user_agent = str(request.headers.get("User-Agent", ""))[:300]
+        saved = collector.collect_feedback(
+            message[:2000], session=session, cas=cas,
+            categorie=categorie, contexte=contexte, user_agent=user_agent,
+        )
+        # `saved=False` => recueil non configuré : le front proposera un repli mail.
+        return jsonify({"ok": True, "saved": saved})
+
     # ---- Curation du barème (validant / complémentaire) ----------------
     @app.get("/api/curation")
     def curation_overview():

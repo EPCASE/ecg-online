@@ -23,6 +23,10 @@
     </div>
   </div>
   <div class="header-actions">
+    <!-- Version pré-alpha : l'outil est en cours d'évaluation. -->
+    <span class="prealpha-badge" title="Version expérimentale — les corrections peuvent comporter des erreurs">
+      🧪 Pré-alpha · en cours d'évaluation
+    </span>
     <!-- Mini-progression (remplie côté client depuis localStorage) -->
     <div id="progress-mini" class="progress-mini hidden" title="Ta progression (stockée sur cet appareil)">
       <span class="pm-item"><b id="pm-done">0</b>/<span id="pm-total">75</span> lus</span>
@@ -153,6 +157,14 @@
           </button>
           <button id="clear-btn" class="btn-ghost">Effacer</button>
         </div>
+        <!-- Note pré-alpha + signalement, au plus près de la zone de réponse -->
+        <p class="prealpha-note">
+          🧪 <strong>Version pré-alpha</strong> en cours d'évaluation : la
+          correction automatique peut se tromper.
+          <button type="button" id="report-btn" class="link-report">
+            Signaler un problème
+          </button>
+        </p>
       </div>
 
       <!-- Mode QCM -->
@@ -208,6 +220,38 @@
 <!-- Lightbox images -->
 <div id="lightbox" class="lightbox hidden">
   <img id="lightbox-img" src="" alt="Tracé ECG agrandi" />
+</div>
+
+<!-- Modale de signalement (version pré-alpha) -->
+<div id="report-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="report-title">
+  <div class="modal-card">
+    <button type="button" id="report-close" class="modal-close" aria-label="Fermer">✕</button>
+    <h3 id="report-title">🧪 Signaler un problème</h3>
+    <p class="modal-sub">
+      Merci d'aider à améliorer cet outil <strong>pré-alpha</strong>. Décris ce
+      qui te semble faux ou étrange (score, commentaire, tracé, bug…).
+    </p>
+    <label for="report-category">Type de problème</label>
+    <select id="report-category" class="modal-field">
+      <option value="correction">Correction / score incohérent</option>
+      <option value="negation">Négation mal prise en compte</option>
+      <option value="contenu">Erreur dans l'énoncé ou le tracé</option>
+      <option value="bug">Bug technique</option>
+      <option value="autre">Autre</option>
+    </select>
+    <label for="report-message">Ta description</label>
+    <textarea id="report-message" class="modal-field" rows="5"
+      placeholder="Ex. Cas 57 : j'ai écrit « SCA ST+ et miroir » et le miroir a été compté juste alors que la référence dit « sans miroir »."></textarea>
+    <p id="report-context" class="modal-context"></p>
+    <div class="modal-actions">
+      <button type="button" id="report-send" class="btn-primary">
+        <span class="btn-label">Envoyer</span>
+        <span class="spinner hidden"></span>
+      </button>
+      <button type="button" id="report-cancel" class="btn-ghost">Annuler</button>
+    </div>
+    <div id="report-status" class="modal-status hidden"></div>
+  </div>
 </div>
 
 <script src="/static/progress.js"></script>

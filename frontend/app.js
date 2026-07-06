@@ -1,5 +1,7 @@
 /* app.js — logique front de l'ECG Lecture */
 const API = "";                      // même origine
+// Email de repli si le recueil des signalements n'est pas configuré côté serveur.
+const REPORT_EMAIL = "contact@liryc-education.fr";
 let CASES = [];
 let ACTIVE_FAMILY = "all";
 let CURRENT = null;
@@ -748,6 +750,8 @@ function wireGlobal() {
   // Bouton Accueil (sidebar) : retour à l'écran d'accueil.
   const home = $("#btn-home");
   if (home) home.onclick = goHome;
+  // Signalement d'un problème (version pré-alpha).
+  wireReport();
   // Instrumentation d'usage : 1ʳᵉ frappe + nombre d'éditions (note UX §13).
   const ta = $("#answer");
   if (ta) ta.addEventListener("input", () => {
@@ -765,6 +769,115 @@ function wireGlobal() {
     if (e.key === "Escape") $("#lightbox").classList.add("hidden");
     if (e.key === "Enter" && e.ctrlKey) gradeCurrent();
   });
+}
+
+/* ─────────── Signalement d'un problème (version pré-alpha) ─────────── */
+// Câble le bouton d'ouverture + les actions de la modale.
+function wireReport() {
+  const openBtn = $("#report-btn");
+  const modal = $("#report-modal");
+  if (!openBtn || !modal) return;
+  openBtn.onclick = openReport;
+  const close = $("#report-close");
+  const cancel = $("#report-cancel");
+  if (close) close.onclick = closeReport;
+  if (cancel) cancel.onclick = closeReport;
+  // Clic sur le fond (hors carte) : ferme.
+  modal.addEventListener("click", (e) => { if (e.target === modal) closeReport(); });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !modal.classList.contains("hidden")) closeReport();
+  });
+  const send = $("#report-send");
+  if (send) send.onclick = sendReport;
+}
+
+// Ouvre la modale en pré-remplissant le contexte (cas courant si ouvert).
+function openReport() {
+  const modal = $("#report-modal");
+  if (!modal) return;
+  const ctx = $("#report-context");
+  if (ctx) {
+    ctx.textContent = CURRENT
+      ? `Contexte joint : cas #${CURRENT.num}.`
+      : "Contexte joint : aucun cas ouvert.";
+  }
+  const status = $("#report-status");
+  if (status) { status.classList.add("hidden"); status.innerHTML = ""; }
+  modal.classList.remove("hidden");
+  const ta = $("#report-message");
+  if (ta) setTimeout(() => ta.focus(), 50);
+}
+
+function closeReport() {
+  const modal = $("#report-modal");
+  if (modal) modal.classList.add("hidden");
+}
+
+// Envoie le signalement au serveur ; repli mailto si le recueil n'est pas configuré.
+async function sendReport() {
+  const msgEl = $("#report-message");
+  const catEl = $("#report-category");
+  const btn = $("#report-send");
+  const message = (msgEl ? msgEl.value : "").trim();
+  if (!message) { if (msgEl) msgEl.focus(); return; }
+  const categorie = catEl ? catEl.value : "autre";
+
+  if (btn) {
+    btn.disabled = true;
+    btn.querySelector(".btn-label").textContent = "Envoi…";
+    btn.querySelector(".spinner").classList.remove("hidden");
+  }
+  try {
+    const r = await fetch(`${API}/api/feedback`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        message,
+        categorie,
+        cas: CURRENT ? CURRENT.num : null,
+        contexte: CURRENT ? `Cas #${CURRENT.num} — ${CURRENT.titre || ""}` : "",
+        session: window.Progress ? Progress.sessionId() : "",
+      }),
+    });
+    const data = await r.json();
+    if (data && data.saved) {
+      showReportStatus(true, "Merci ! Ton signalement a bien été transmis à l'équipe. 🙏");
+      if (msgEl) msgEl.value = "";
+      setTimeout(closeReport, 1800);
+    } else {
+      // Recueil non configuré côté serveur → repli e-mail.
+      offerMailFallback(message, categorie);
+    }
+  } catch (e) {
+    offerMailFallback(message, categorie);
+  } finally {
+    if (btn) {
+      btn.disabled = false;
+      btn.querySelector(".btn-label").textContent = "Envoyer";
+      btn.querySelector(".spinner").classList.add("hidden");
+    }
+  }
+}
+
+function showReportStatus(ok, html) {
+  const status = $("#report-status");
+  if (!status) return;
+  status.className = "modal-status " + (ok ? "ok" : "warn");
+  status.innerHTML = html;
+  status.classList.remove("hidden");
+}
+
+// Construit un lien mailto pré-rempli quand l'envoi serveur n'est pas possible.
+function offerMailFallback(message, categorie) {
+  const cas = CURRENT ? `Cas #${CURRENT.num}` : "Aucun cas";
+  const subject = encodeURIComponent(`[ECG pré-alpha] Signalement — ${categorie}`);
+  const body = encodeURIComponent(
+    `${cas}\nCatégorie : ${categorie}\n\n${message}\n\n—\n(envoyé depuis l'app ECG pré-alpha)`
+  );
+  const href = `mailto:${REPORT_EMAIL}?subject=${subject}&body=${body}`;
+  showReportStatus(false,
+    `Envoi direct indisponible. <a href="${href}">Clique ici pour envoyer par e-mail</a> ` +
+    `à <b>${REPORT_EMAIL}</b>.`);
 }
 
 /* Retour à l'écran d'accueil (referme la vue cas, rafraîchit la progression). */
