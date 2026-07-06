@@ -23,6 +23,14 @@
     </div>
   </div>
   <div class="header-actions">
+    <!-- Mini-progression (remplie côté client depuis localStorage) -->
+    <div id="progress-mini" class="progress-mini hidden" title="Ta progression (stockée sur cet appareil)">
+      <span class="pm-item"><b id="pm-done">0</b>/<span id="pm-total">75</span> lus</span>
+      <span class="pm-sep">·</span>
+      <span class="pm-item">série <b id="pm-streak">0</b> j</span>
+      <span class="pm-sep">·</span>
+      <span class="pm-item">moy. <b id="pm-avg">—</b></span>
+    </div>
     <!-- Accès au barème (curation) volontairement SANS lien visible : réservé à
          l'enseignant. La page reste accessible en direct par URL : /curation -->
     <span id="health-badge" class="badge badge-muted">connexion…</span>
@@ -32,6 +40,7 @@
 <main class="layout">
   <!-- ─────────── Sélecteur de cas ─────────── -->
   <aside class="sidebar">
+    <button id="btn-home" class="sidebar-home" title="Revenir à l'accueil">🏠 Accueil</button>
     <div class="sidebar-head">
       <h2>Banque de cas</h2>
       <span id="cases-count" class="pill"></span>
@@ -44,16 +53,55 @@
   <section class="content">
     <div id="welcome" class="welcome">
       <div class="welcome-card">
-        <h2>Bienvenue 👋</h2>
-        <p>Choisis un cas dans la banque à gauche. Observe le tracé, rédige
-           ton interprétation <strong>en texte libre</strong>, puis lance la
-           correction. L'IA compare ta réponse à celle de l'enseignant et te
-           renvoie un <strong>score</strong> et un <strong>commentaire pédagogique</strong>.</p>
-        <ul class="tips">
-          <li>💡 Structure ta réponse : rythme, fréquence, axe, conduction, repolarisation, diagnostic.</li>
-          <li>🎯 Le diagnostic principal compte le plus.</li>
-          <li>🔍 Clique sur un tracé pour l'agrandir.</li>
-        </ul>
+        <h2 class="hero-title">Prépare tes ECG de l'EDN 🫀</h2>
+        <p class="hero-sub">Un entraînement court, corrigé par IA, avec un
+           <strong>feedback pédagogique</strong>. Tu lis un tracé, tu rédiges ton
+           interprétation <strong>en texte libre</strong>, l'IA te répond.</p>
+
+        <!-- Actions principales (accueil orienté action, cf. note UX §4) -->
+        <div class="home-actions">
+          <button id="action-daily" class="home-btn home-btn--primary">
+            <span class="hb-ic">📅</span>
+            <span class="hb-body">
+              <span class="hb-title">ECG du jour</span>
+              <span class="hb-desc">1 cas · correction immédiate · ~3 min</span>
+            </span>
+          </button>
+          <button id="action-resume" class="home-btn">
+            <span class="hb-ic">▶️</span>
+            <span class="hb-body">
+              <span class="hb-title" id="resume-title">Commencer l'entraînement</span>
+              <span class="hb-desc" id="resume-desc">Le prochain cas conseillé pour toi</span>
+            </span>
+          </button>
+          <button id="action-random" class="home-btn">
+            <span class="hb-ic">🎲</span>
+            <span class="hb-body">
+              <span class="hb-title">Cas au hasard</span>
+              <span class="hb-desc">Se tester sur un cas non lu</span>
+            </span>
+          </button>
+        </div>
+
+        <!-- Bandeau de progression (rempli côté client) -->
+        <div id="home-progress" class="home-progress hidden">
+          <div class="hp-stat"><b id="hp-done">0</b><span>ECG lus</span></div>
+          <div class="hp-stat"><b id="hp-streak">0</b><span>jours de série</span></div>
+          <div class="hp-stat"><b id="hp-avg">—</b><span>score moyen</span></div>
+          <div class="hp-bar-wrap">
+            <div class="hp-bar"><div id="hp-bar-fill" class="hp-bar-fill"></div></div>
+            <span id="hp-bar-label" class="hp-bar-label">0 / 75</span>
+          </div>
+        </div>
+
+        <details class="home-tips">
+          <summary>💡 Comment bien répondre ?</summary>
+          <ul class="tips">
+            <li>Structure ta réponse : rythme, fréquence, axe, conduction, repolarisation, diagnostic.</li>
+            <li>🎯 Le diagnostic principal compte le plus.</li>
+            <li>🔍 Clique sur un tracé pour l'agrandir.</li>
+          </ul>
+        </details>
 
         <div class="welcome-credit">
           <a href="https://www.liryc-education.fr/" target="_blank" rel="noopener noreferrer"
@@ -83,10 +131,14 @@
 
       <div id="case-images" class="ecg-gallery"></div>
 
-      <!-- Bascule de mode : réponse libre / QCM -->
+      <!-- Bascule de mode : réponse libre / QCM.
+           Le QCM reste VERROUILLÉ tant que l'étudiant n'a pas corrigé sa
+           réponse libre (note UX §6 : éviter que le QCM biaise la production
+           libre). Il devient une remédiation, pas une échappatoire. -->
       <div id="mode-switch" class="mode-switch">
         <button id="mode-free" class="mode-btn active" data-mode="free">✍️ Réponds librement</button>
-        <button id="mode-qcm" class="mode-btn" data-mode="qcm">☑️ Teste le QCM</button>
+        <button id="mode-qcm" class="mode-btn" data-mode="qcm" disabled
+                title="Disponible après ta réponse libre">🔒 QCM (après ta réponse)</button>
       </div>
 
       <!-- Mode réponse libre -->
@@ -119,6 +171,34 @@
       <!-- Résultat (réponse libre) -->
       <div id="result" class="result hidden"></div>
 
+      <!-- Boucle d'engagement : que faire après la correction (note UX §8) -->
+      <div id="next-actions" class="next-actions hidden">
+        <h4 class="na-title">Continuer 🚀</h4>
+        <div class="na-grid">
+          <button id="na-next" class="na-btn na-btn--primary">
+            <span class="na-ic">➡️</span>
+            <span class="na-body">
+              <span class="na-t">Cas suivant conseillé</span>
+              <span class="na-d">Poursuivre le parcours</span>
+            </span>
+          </button>
+          <button id="na-random" class="na-btn">
+            <span class="na-ic">🎲</span>
+            <span class="na-body">
+              <span class="na-t">Un autre cas</span>
+              <span class="na-d">Tirage parmi les cas non lus</span>
+            </span>
+          </button>
+          <button id="na-retry" class="na-btn">
+            <span class="na-ic">🔁</span>
+            <span class="na-body">
+              <span class="na-t">Refaire ce cas</span>
+              <span class="na-d">Retenter pour améliorer ton score</span>
+            </span>
+          </button>
+        </div>
+      </div>
+
       <!-- Page 2 du tracé (2ᵉ image) : révélée seulement après correction -->
       <div id="case-page2" class="case-page2 hidden"></div>
     </article>
@@ -130,6 +210,7 @@
   <img id="lightbox-img" src="" alt="Tracé ECG agrandi" />
 </div>
 
+<script src="/static/progress.js"></script>
 <script src="/static/app.js"></script>
 </body>
 </html>
