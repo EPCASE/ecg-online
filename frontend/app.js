@@ -5,6 +5,7 @@ let ACTIVE_FAMILY = "all";
 let CURRENT = null;
 let CURRENT_QCM = null;              // QCM du cas courant (question + options)
 let QCM_SELECTED = new Set();        // lettres cochées
+let QCM_UNLOCKED = false;            // le QCM se débloque APRÈS la réponse libre corrigée
 let CURRENT_PAGES2 = [];             // images secondaires (page 2+) révélées après correction
 
 const $ = (sel) => document.querySelector(sel);
@@ -20,6 +21,8 @@ async function init() {
   await checkHealth();
   await loadCases();
   wireGlobal();
+  wireHome();
+  refreshProgressUI();
 }
 
 async function checkHealth() {
@@ -71,14 +74,21 @@ function renderCaseList() {
   list.innerHTML = "";
   const filtered = CASES.filter((c) => ACTIVE_FAMILY === "all" || c.famille === ACTIVE_FAMILY);
   filtered.forEach((c) => {
-    const item = el("li", "case-item" + (CURRENT && CURRENT.num === c.num ? " active" : ""));
+    const stat = window.Progress ? Progress.caseStat(c.num) : null;
+    const item = el("li", "case-item"
+      + (CURRENT && CURRENT.num === c.num ? " active" : "")
+      + (stat ? " done" : ""));
     const fam = c.famille
       ? `<div class="fam">${escapeHtml(c.famille)}</div>`
       : "";
+    // Pastille d'état : ✓ vert si déjà corrigé, + meilleur score en info-bulle.
+    const badge = stat
+      ? `<span class="ci-badge" title="Déjà lu — meilleur score ${stat.best}/100">✓ ${stat.best}</span>`
+      : "";
     item.innerHTML =
       `<span class="n">${c.num}</span>` +
-      `<div><div class="t">${escapeHtml(c.titre || "Cas ECG")}</div>` +
-      fam + `</div>`;
+      `<div class="ci-main"><div class="t">${escapeHtml(c.titre || "Cas ECG")}</div>` +
+      fam + `</div>` + badge;
     item.onclick = () => openCase(c.num);
     list.appendChild(item);
   });
@@ -121,12 +131,15 @@ async function openCase(num) {
   $("#answer").value = "";
   $("#result").classList.add("hidden");
   $("#result").innerHTML = "";
+  // Masque le bloc « Continuer » tant que l'étudiant n'a pas corrigé.
+  $("#next-actions").classList.add("hidden");
   // Réinitialise la page 2 (masquée tant que l'étudiant n'a pas corrigé).
   const p2 = $("#case-page2");
   p2.classList.add("hidden");
   p2.innerHTML = "";
 
-  // Réinitialise le mode + charge le QCM du cas
+  // Réinitialise le mode + charge le QCM du cas (verrouillé au départ)
+  QCM_UNLOCKED = false;
   setMode("free");
   await loadQcm(c.num);
 
@@ -141,6 +154,9 @@ function setMode(mode) {
   $("#free-block").classList.toggle("hidden", isQcm);
   const hasResult = $("#result").innerHTML !== "";
   $("#result").classList.toggle("hidden", isQcm || !hasResult);
+  // Le bloc « Continuer » suit le résultat : caché en QCM ou avant correction.
+  const naBox = $("#next-actions");
+  if (naBox) naBox.classList.toggle("hidden", isQcm || !hasResult);
   // La page 2 suit le résultat : visible seulement en mode libre, après correction.
   const hasPage2 = $("#case-page2").innerHTML !== "";
   $("#case-page2").classList.toggle("hidden", isQcm || !hasResult || !hasPage2);
@@ -150,20 +166,39 @@ function setMode(mode) {
 async function loadQcm(num) {
   CURRENT_QCM = null;
   QCM_SELECTED = new Set();
-  const btn = $("#mode-qcm");
   try {
     const r = await fetch(`${API}/api/case/${num}/qcm`);
     if (!r.ok) throw new Error("no qcm");
     CURRENT_QCM = await r.json();
-    btn.disabled = false;
-    btn.title = "";
     renderQcm();
   } catch {
-    // Pas de QCM pour ce cas : on désactive le bouton
-    btn.disabled = true;
-    btn.title = "Pas de QCM pour ce cas";
+    // Pas de QCM pour ce cas.
+    CURRENT_QCM = null;
     $("#qcm-question").textContent = "";
     $("#qcm-options").innerHTML = "";
+  }
+  updateQcmButton();
+}
+
+/* État du bouton QCM : verrouillé tant que la réponse libre n'est pas corrigée
+ * (note UX §6). Trois cas : pas de QCM → désactivé « aucun » ; QCM verrouillé →
+ * désactivé « après ta réponse » ; QCM débloqué → actif « remédiation ». */
+function updateQcmButton() {
+  const btn = $("#mode-qcm");
+  if (!btn) return;
+  const hasQcm = !!(CURRENT_QCM && (CURRENT_QCM.options || []).length);
+  if (!hasQcm) {
+    btn.disabled = true;
+    btn.textContent = "☑️ QCM (aucun pour ce cas)";
+    btn.title = "Pas de QCM pour ce cas";
+  } else if (!QCM_UNLOCKED) {
+    btn.disabled = true;
+    btn.textContent = "🔒 QCM (après ta réponse)";
+    btn.title = "Disponible après ta réponse libre";
+  } else {
+    btn.disabled = false;
+    btn.textContent = "☑️ QCM (remédiation)";
+    btn.title = "Teste le QCM pour t'auto-évaluer";
   }
 }
 
@@ -280,11 +315,26 @@ async function gradeCurrent() {
     const r = await fetch(`${API}/api/grade`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ num: CURRENT.num, answer }),
+      body: JSON.stringify({
+        num: CURRENT.num,
+        answer,
+        // Session anonyme (localStorage) : améliore le recueil sans nominatif.
+        session: window.Progress ? Progress.sessionId() : "",
+      }),
     });
     const data = await r.json();
     if (data.error) throw new Error(data.error);
     renderResult(data);
+    // Progression locale + boucle d'engagement (note UX §8, §13).
+    if (window.Progress) {
+      Progress.recordResult(CURRENT.num, data.score, data.correspondance || "");
+      refreshProgressUI();
+      renderCaseList();          // met à jour la pastille ✓ du cas courant
+    }
+    // Débloque le QCM en remédiation (note UX §6).
+    QCM_UNLOCKED = true;
+    updateQcmButton();
+    showNextActions();
   } catch (e) {
     $("#result").classList.remove("hidden");
     $("#result").innerHTML =
@@ -457,6 +507,129 @@ function openLightbox(src) {
   $("#lightbox").classList.remove("hidden");
 }
 
+/* ─────────── Accueil orienté action + progression ─────────── */
+// Liste ordonnée des numéros de cas (ordre du parcours = ordre de la banque).
+function allCaseNums() {
+  return CASES.map((c) => c.num).sort((a, b) => a - b);
+}
+
+function wireHome() {
+  const daily = $("#action-daily");
+  const resume = $("#action-resume");
+  const random = $("#action-random");
+  if (daily) daily.onclick = () => {
+    const n = window.Progress ? Progress.dailyCase(allCaseNums()) : allCaseNums()[0];
+    if (n != null) openCase(n);
+  };
+  if (resume) resume.onclick = () => {
+    const nums = allCaseNums();
+    const n = window.Progress ? Progress.nextCase(nums, null) : nums[0];
+    if (n != null) openCase(n);
+  };
+  if (random) random.onclick = () => {
+    const nums = allCaseNums();
+    const n = window.Progress ? Progress.randomCase(nums, null) : nums[Math.floor(Math.random() * nums.length)];
+    if (n != null) openCase(n);
+  };
+}
+
+// Rafraîchit les indicateurs de progression (mini-barre header + bandeau accueil).
+function refreshProgressUI() {
+  if (!window.Progress) return;
+  const s = Progress.summary();
+  const total = CASES.length || 75;
+  const avg = s.average == null ? "—" : `${s.average}`;
+
+  // Mini-progression dans le header (visible dès qu'au moins 1 cas est fait).
+  const mini = $("#progress-mini");
+  if (mini) {
+    mini.classList.toggle("hidden", s.done === 0);
+    setText("#pm-done", s.done);
+    setText("#pm-total", total);
+    setText("#pm-streak", s.streak);
+    setText("#pm-avg", avg);
+  }
+
+  // Bandeau d'accueil.
+  const home = $("#home-progress");
+  if (home) {
+    home.classList.toggle("hidden", s.done === 0);
+    setText("#hp-done", s.done);
+    setText("#hp-streak", s.streak);
+    setText("#hp-avg", avg);
+    const pct = Math.round((s.done / total) * 100);
+    const fill = $("#hp-bar-fill");
+    if (fill) fill.style.width = `${pct}%`;
+    setText("#hp-bar-label", `${s.done} / ${total}`);
+  }
+
+  // Bouton « Reprendre » : adapte le libellé selon l'avancement.
+  const resumeT = $("#resume-title");
+  const resumeD = $("#resume-desc");
+  if (resumeT && resumeD) {
+    if (s.done === 0) {
+      resumeT.textContent = "Commencer l'entraînement";
+      resumeD.textContent = "Le 1ᵉʳ cas du parcours";
+    } else {
+      const nextN = Progress.nextCase(allCaseNums(), null);
+      resumeT.textContent = "Reprendre l'entraînement";
+      resumeD.textContent = nextN != null ? `Prochain cas conseillé : #${nextN}` : "Tous les cas sont lus 🎉";
+    }
+  }
+}
+
+// Affiche le bloc « Continuer » après une correction et câble ses boutons.
+function showNextActions() {
+  const box = $("#next-actions");
+  if (!box || !CURRENT) return;
+  const nums = allCaseNums();
+  const nextN = window.Progress ? Progress.nextCase(nums, CURRENT.num) : null;
+  const randN = window.Progress ? Progress.randomCase(nums, CURRENT.num) : null;
+
+  const nextBtn = $("#na-next");
+  const randBtn = $("#na-random");
+  const retryBtn = $("#na-retry");
+
+  if (nextBtn) {
+    const d = nextBtn.querySelector(".na-d");
+    if (nextN != null) {
+      nextBtn.classList.remove("disabled");
+      if (d) d.textContent = `Cas #${nextN} · poursuivre le parcours`;
+      nextBtn.onclick = () => openCase(nextN);
+    } else {
+      nextBtn.classList.add("disabled");
+      if (d) d.textContent = "Tous les cas sont lus 🎉";
+      nextBtn.onclick = null;
+    }
+  }
+  if (randBtn) {
+    if (randN != null) {
+      randBtn.classList.remove("disabled");
+      randBtn.onclick = () => openCase(randN);
+    } else {
+      randBtn.classList.add("disabled");
+      randBtn.onclick = null;
+    }
+  }
+  if (retryBtn) {
+    retryBtn.onclick = () => {
+      $("#answer").value = "";
+      $("#result").classList.add("hidden");
+      box.classList.add("hidden");
+      $("#case-page2").classList.add("hidden");
+      setMode("free");
+      $("#answer").focus();
+      $("#case-view").scrollIntoView({ behavior: "smooth", block: "start" });
+    };
+  }
+  box.classList.remove("hidden");
+}
+
+function setText(sel, val) {
+  const n = $(sel);
+  if (n) n.textContent = String(val);
+}
+
 /* ─────────── Divers ─────────── */
 function wireGlobal() {
   $("#grade-btn").onclick = gradeCurrent;
@@ -466,6 +639,9 @@ function wireGlobal() {
     $("#case-page2").classList.add("hidden");
     $("#answer").focus();
   };
+  // Bouton Accueil (sidebar) : retour à l'écran d'accueil.
+  const home = $("#btn-home");
+  if (home) home.onclick = goHome;
   // Bascule de mode
   $("#mode-free").onclick = () => setMode("free");
   $("#mode-qcm").onclick = () => { if (!$("#mode-qcm").disabled) setMode("qcm"); };
@@ -477,6 +653,16 @@ function wireGlobal() {
     if (e.key === "Escape") $("#lightbox").classList.add("hidden");
     if (e.key === "Enter" && e.ctrlKey) gradeCurrent();
   });
+}
+
+/* Retour à l'écran d'accueil (referme la vue cas, rafraîchit la progression). */
+function goHome() {
+  CURRENT = null;
+  $("#case-view").classList.add("hidden");
+  $("#welcome").classList.remove("hidden");
+  renderCaseList();          // enlève l'état « actif » du cas
+  refreshProgressUI();
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function escapeHtml(s) {
