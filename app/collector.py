@@ -47,6 +47,10 @@ LOG_COLS = ["horodatage", "session", "cas", "titre", "reponse",
             "editions", "longueur", "mode"]
 PARCAS_HEADER = ["cas", "titre", "réponses →"]
 
+# Journal des signalements (bouton « Signaler un problème », version pré-alpha).
+FEEDBACK_COLS = ["horodatage", "session", "cas", "categorie", "message",
+                 "contexte", "user_agent"]
+
 _LOCK = threading.Lock()          # sérialise les écritures dans le process
 _ENSURED = False                  # feuilles vérifiées/créées une seule fois
 _SS_CACHE = None                  # spreadsheet gspread mémorisé
@@ -234,3 +238,49 @@ def collect_answer(num: int, titre: str, answer: str, score=None,
         ).start()
     except Exception:
         pass  # ne jamais casser la correction pour un problème de recueil
+
+
+# ─────────────────────────── Signalements (feedback) ───────────────────────────
+def _write_feedback(session: str, cas, categorie: str, message: str,
+                    contexte: str, user_agent: str) -> None:
+    """Écrit une ligne dans la feuille « feedback » (best-effort, thread détaché)."""
+    ss = _get_spreadsheet()
+    if not ss:
+        return
+    with _LOCK:
+        try:
+            existing = [ws.title for ws in ss.worksheets()]
+            if "feedback" not in existing:
+                ws = ss.add_worksheet(title="feedback", rows=500, cols=len(FEEDBACK_COLS))
+                ws.append_row(FEEDBACK_COLS)
+            ws_fb = ss.worksheet("feedback")
+            ws_fb.append_row(
+                [_now_iso(), session, "" if cas is None else cas,
+                 categorie, message, contexte, user_agent],
+                value_input_option="RAW",  # type: ignore[arg-type]
+            )
+        except Exception as ex:
+            print(f"[collector] Feedback échoué: {type(ex).__name__}: {ex}")
+
+
+def collect_feedback(message: str, session: str = "", cas=None,
+                     categorie: str = "", contexte: str = "",
+                     user_agent: str = "") -> bool:
+    """Archive un signalement étudiant (bouton « Signaler un problème »).
+
+    Non bloquant (thread détaché). Renvoie True si le recueil est configuré et
+    la tâche lancée, False sinon (l'appelant peut alors proposer un repli mail).
+    """
+    if not (message or "").strip():
+        return False
+    if not is_available():
+        return False
+    try:
+        threading.Thread(
+            target=_write_feedback,
+            args=(session, cas, categorie, message.strip(), contexte, user_agent),
+            daemon=True,
+        ).start()
+        return True
+    except Exception:
+        return False
