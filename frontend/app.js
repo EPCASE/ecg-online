@@ -72,10 +72,13 @@ function renderCaseList() {
   const filtered = CASES.filter((c) => ACTIVE_FAMILY === "all" || c.famille === ACTIVE_FAMILY);
   filtered.forEach((c) => {
     const item = el("li", "case-item" + (CURRENT && CURRENT.num === c.num ? " active" : ""));
+    const fam = c.famille
+      ? `<div class="fam">${escapeHtml(c.famille)}</div>`
+      : "";
     item.innerHTML =
       `<span class="n">${c.num}</span>` +
       `<div><div class="t">${escapeHtml(c.titre || "Cas ECG")}</div>` +
-      `<div class="fam">${c.famille || ""}</div></div>`;
+      fam + `</div>`;
     item.onclick = () => openCase(c.num);
     list.appendChild(item);
   });
@@ -91,6 +94,7 @@ async function openCase(num) {
   view.classList.remove("hidden");
 
   $("#case-family").textContent = c.famille || "";
+  $("#case-family").classList.toggle("hidden", !c.famille);
   $("#case-title").textContent = c.titre || "Cas ECG";
   $("#case-num").textContent = "#" + c.num;
   const ctx = [c.patient, c.contexte].filter(Boolean).join("\n").trim();
