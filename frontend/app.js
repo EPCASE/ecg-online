@@ -1,7 +1,7 @@
 /* app.js — logique front de l'ECG Lecture */
 const API = "";                      // même origine
 // Email de repli si le recueil des signalements n'est pas configuré côté serveur.
-const REPORT_EMAIL = "contact@liryc-education.fr";
+const REPORT_EMAIL = "correction.ecg@gmail.com";
 let CASES = [];
 let ACTIVE_FAMILY = "all";
 let CURRENT = null;
