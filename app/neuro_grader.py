@@ -296,7 +296,46 @@ def _report_to_correction(report, num: int, exclusions: Optional[List[dict]] = N
         elements_errones=elements_errones,
         commentaire=commentaire,
         model="neuro-pipeline-v3",
+        concepts_detectes=_concepts_for_review(report),
     )
+
+
+def _concepts_for_review(report) -> List[dict]:
+    """Liste des concepts EXTRAITS du texte étudiant, prête pour la validation
+    « 👍/👎 » (P5). Chaque item explique ce que le pipeline a COMPRIS de ce que
+    l'étudiant a écrit, pour qu'il valide l'interprétation : c'est le signal de
+    curation golden/NER le plus précieux.
+
+        {
+          "terme":   "sus-décalage",       # ce que l'étudiant a écrit
+          "concept": "Sus-décalage ST",    # ce que le pipeline en a fait (canonique)
+          "statut":  "present",            # present / absent / hypothese
+          "id":      "ECG:0123",           # concept ontologique (curation), "" si non résolu
+          "resolu":  true                  # False → le NER n'a rien mappé (à signaler)
+        }
+
+    On dédoublonne par (terme_brut, ontology_id) et on ignore le bruit vide.
+    """
+    out: List[dict] = []
+    seen = set()
+    for c in getattr(report, "concepts_extraits", []):
+        terme = (getattr(c, "terme_brut", "") or "").strip()
+        if not terme:
+            continue
+        oid = getattr(c, "ontology_id", "NONE") or "NONE"
+        key = (terme.lower(), oid)
+        if key in seen:
+            continue
+        seen.add(key)
+        resolu = oid != "NONE"
+        out.append({
+            "terme": terme,
+            "concept": (getattr(c, "concept_name", "") or "").strip() if resolu else "",
+            "statut": getattr(c, "statut", "present") or "present",
+            "id": oid if resolu else "",
+            "resolu": resolu,
+        })
+    return out
 
 
 def _check_exclusions(report, exclusions: List[dict]) -> dict:

@@ -229,6 +229,41 @@ def create_app() -> Flask:
         # `saved=False` => recueil non configuré : le front proposera un repli mail.
         return jsonify({"ok": True, "saved": saved})
 
+    # ---- Validation de concepts par l'étudiant (curation P5) -----------
+    @app.post("/api/concept-review")
+    def concept_review():
+        """Vote 👍/👎 sur les concepts que le pipeline a extraits de la réponse.
+
+        Alimente l'inbox de curation golden/NER : chaque vote dit si le système
+        a bien COMPRIS ce que l'étudiant a écrit. Non bloquant, no-op si le
+        recueil n'est pas configuré (`saved=False`).
+        """
+        payload = request.get_json(silent=True) or {}
+        raw = payload.get("concepts")
+        if not isinstance(raw, list) or not raw:
+            abort(400, description="Champ 'concepts' (liste) requis.")
+            raise RuntimeError("unreachable")
+        rows = []
+        for item in raw[:50]:
+            if not isinstance(item, dict):
+                continue
+            vote = str(item.get("vote", "")).strip().lower()
+            if vote not in ("ok", "ko"):
+                continue
+            rows.append({
+                "terme": str(item.get("terme", ""))[:200],
+                "concept": str(item.get("concept", ""))[:200],
+                "id": str(item.get("id", ""))[:60],
+                "statut": str(item.get("statut", ""))[:20],
+                "vote": vote,
+            })
+        if not rows:
+            abort(400, description="Aucun vote valide ('ok'/'ko').")
+        cas = payload.get("cas")
+        session = str(payload.get("session", "")).strip()[:80]
+        saved = collector.collect_concept_review(rows, session=session, cas=cas)
+        return jsonify({"ok": True, "saved": saved, "count": len(rows)})
+
     # ---- Compteurs de lecture par cas (randomisation pondérée §5.4) -----
     @app.get("/api/case-stats")
     def case_stats():

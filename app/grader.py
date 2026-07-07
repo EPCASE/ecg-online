@@ -227,6 +227,10 @@ class Correction:
     commentaire: str = ""
     model: str = ""
     error: Optional[str] = None
+    # Concepts que le pipeline neuro a EXTRAITS du texte étudiant (P5 : validation
+    # de l'interprétation NER/ontologie par l'étudiant → curation golden). Vide
+    # pour le backend GPT (pas d'extraction ontologique explicite exposée).
+    concepts_detectes: List[dict] = field(default_factory=list)
 
     def to_dict(self):
         return asdict(self)

@@ -21,6 +21,12 @@ let EDIT_COUNT = 0;                  // nombre d'événements de saisie (proxy d
  * repli sur le hasard uniforme local. */
 let CASE_COUNTS = null;
 
+/* Validation de concepts (P5) : concepts que le pipeline a extraits de la
+ * dernière réponse corrigée + votes 👍/👎 de l'étudiant (index → 'ok'|'ko').
+ * Alimente la curation golden/NER. Réinitialisé à chaque correction. */
+let CURRENT_CONCEPTS = [];
+let CONCEPT_VOTES = {};
+
 const $ = (sel) => document.querySelector(sel);
 const el = (tag, cls, html) => {
   const n = document.createElement(tag);
@@ -484,6 +490,12 @@ function renderResult(d) {
       </div>
     </div>` : "";
 
+  // Validation de concepts (P5) : ce que le pipeline a COMPRIS de la réponse.
+  // L'étudiant confirme (👍) ou infirme (👎) chaque interprétation → curation.
+  CURRENT_CONCEPTS = Array.isArray(d.concepts_detectes) ? d.concepts_detectes : [];
+  CONCEPT_VOTES = {};
+  const conceptReview = buildConceptReview(CURRENT_CONCEPTS);
+
   box.innerHTML = `
     ${reveal}
     <div class="result-top">
@@ -531,6 +543,8 @@ function renderResult(d) {
       <div class="md">${mdToHtml(d.commentaire || "")}</div>
     </div>
 
+    ${conceptReview}
+
     <details class="reference">
       <summary><span class="ref-ic">📖</span> Voir l'interprétation de référence de l'enseignant</summary>
       <div class="ref-body">
@@ -538,8 +552,120 @@ function renderResult(d) {
       </div>
     </details>
   `;
+  wireConceptReview();
   revealPage2();
   box.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+/* ─────────── Validation de concepts (P5) ───────────
+ * Montre à l'étudiant ce que le pipeline a EXTRAIT de sa réponse et lui demande
+ * de confirmer/infirmer chaque interprétation (« le système m'a-t-il bien
+ * compris ? »). Chaque vote 👍/👎 nourrit la curation golden/NER. */
+const STATUT_BADGE = {
+  present: { t: "affirmé", c: "st-present" },
+  absent: { t: "nié / écarté", c: "st-absent" },
+  hypothese: { t: "hypothèse", c: "st-hyp" },
+};
+
+function buildConceptReview(concepts) {
+  if (!concepts || !concepts.length) return "";
+  const items = concepts.map((c, i) => {
+    const st = STATUT_BADGE[c.statut] || { t: c.statut || "", c: "st-hyp" };
+    // « resolu=false » : le NER n'a rien mappé → on le dit franchement.
+    const interp = c.resolu
+      ? `compris comme <b>${escapeHtml(c.concept || c.terme)}</b>`
+      : `<span class="cr-unmapped">non reconnu par le système</span>`;
+    return `
+      <li class="cr-item" data-idx="${i}">
+        <div class="cr-txt">
+          <span class="cr-terme">« ${escapeHtml(c.terme)} »</span>
+          <span class="cr-arrow">→</span> ${interp}
+          <span class="cr-statut ${st.c}">${escapeHtml(st.t)}</span>
+        </div>
+        <div class="cr-vote" role="group" aria-label="Cette interprétation est-elle correcte ?">
+          <button type="button" class="cr-btn cr-ok" data-vote="ok" title="Oui, bien compris">👍</button>
+          <button type="button" class="cr-btn cr-ko" data-vote="ko" title="Non, mal compris">👎</button>
+        </div>
+      </li>`;
+  }).join("");
+  return `
+    <div class="concept-review" id="concept-review">
+      <h4>🔎 Le système t'a-t-il bien compris ?</h4>
+      <p class="cr-help">Voici ce que l'IA a extrait de ta réponse. Un clic 👍/👎 nous aide à améliorer la correction (facultatif).</p>
+      <ul class="cr-list">${items}</ul>
+      <div class="cr-foot">
+        <button type="button" class="btn btn-ghost btn-sm" id="cr-send" disabled>
+          <span class="btn-label">Envoyer mon retour</span>
+          <span class="spinner hidden"></span>
+        </button>
+        <span class="cr-status" id="cr-status"></span>
+      </div>
+    </div>`;
+}
+
+function wireConceptReview() {
+  const box = $("#concept-review");
+  if (!box) return;
+  box.querySelectorAll(".cr-item").forEach((li) => {
+    const idx = li.getAttribute("data-idx");
+    li.querySelectorAll(".cr-btn").forEach((btn) => {
+      btn.onclick = () => {
+        const vote = btn.getAttribute("data-vote");
+        CONCEPT_VOTES[idx] = vote;
+        // Toggle visuel : un seul vote actif par ligne.
+        li.querySelectorAll(".cr-btn").forEach((b) => b.classList.remove("voted"));
+        btn.classList.add("voted");
+        li.classList.add("cr-done");
+        const sendBtn = $("#cr-send");
+        if (sendBtn) sendBtn.disabled = Object.keys(CONCEPT_VOTES).length === 0;
+      };
+    });
+  });
+  const sendBtn = $("#cr-send");
+  if (sendBtn) sendBtn.onclick = sendConceptReview;
+}
+
+async function sendConceptReview() {
+  const btn = $("#cr-send");
+  const rows = CURRENT_CONCEPTS
+    .map((c, i) => (CONCEPT_VOTES[i] ? { ...c, vote: CONCEPT_VOTES[i] } : null))
+    .filter(Boolean);
+  if (!rows.length) return;
+  if (btn) {
+    btn.disabled = true;
+    btn.querySelector(".btn-label").textContent = "Envoi…";
+    btn.querySelector(".spinner").classList.remove("hidden");
+  }
+  try {
+    const r = await fetch(`${API}/api/concept-review`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        concepts: rows,
+        cas: CURRENT ? CURRENT.num : null,
+        session: window.Progress ? Progress.sessionId() : "",
+      }),
+    });
+    const data = await r.json();
+    const status = $("#cr-status");
+    if (data && data.saved) {
+      if (status) { status.className = "cr-status ok"; status.textContent = "Merci, c'est noté ! 🙏"; }
+      const box = $("#concept-review");
+      if (box) box.querySelectorAll(".cr-btn").forEach((b) => (b.disabled = true));
+    } else {
+      // Recueil non configuré : on remercie quand même (pas de repli mail ici,
+      // le signal est facultatif et à faible enjeu).
+      if (status) { status.className = "cr-status warn"; status.textContent = "Merci ! (retour enregistré localement)"; }
+    }
+  } catch {
+    const status = $("#cr-status");
+    if (status) { status.className = "cr-status warn"; status.textContent = "Envoi impossible pour le moment."; }
+  } finally {
+    if (btn) {
+      btn.querySelector(".btn-label").textContent = "Envoyer mon retour";
+      btn.querySelector(".spinner").classList.add("hidden");
+    }
+  }
 }
 
 /* ─────────── Page 2 du tracé (révélée après correction) ─────────── */
