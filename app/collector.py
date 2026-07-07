@@ -51,6 +51,12 @@ PARCAS_HEADER = ["cas", "titre", "réponses →"]
 FEEDBACK_COLS = ["horodatage", "session", "cas", "categorie", "message",
                  "contexte", "user_agent"]
 
+# Validation de concepts par l'étudiant (P5) : pour chaque concept que le
+# pipeline a extrait de sa réponse, un vote 👍/👎 « le système m'a-t-il bien
+# compris ? ». C'est l'inbox de curation golden/NER (un concept = une ligne).
+CONCEPT_REVIEW_COLS = ["horodatage", "session", "cas", "terme_etudiant",
+                       "concept_pipeline", "concept_id", "statut", "vote"]
+
 _LOCK = threading.Lock()          # sérialise les écritures dans le process
 _ENSURED = False                  # feuilles vérifiées/créées une seule fois
 _SS_CACHE = None                  # spreadsheet gspread mémorisé
@@ -284,6 +290,61 @@ def collect_feedback(message: str, session: str = "", cas=None,
         threading.Thread(
             target=_write_feedback,
             args=(session, cas, categorie, message.strip(), contexte, user_agent),
+            daemon=True,
+        ).start()
+        return True
+    except Exception:
+        return False
+
+
+# ────────────────── Validation de concepts (curation P5) ──────────────────
+def _write_concept_reviews(session: str, cas, rows: List[dict]) -> None:
+    """Écrit un lot de votes de concepts dans la feuille « concept_review »
+    (best-effort, thread détaché). Une ligne par concept voté."""
+    ss = _get_spreadsheet()
+    if not ss:
+        return
+    with _LOCK:
+        try:
+            existing = [ws.title for ws in ss.worksheets()]
+            if "concept_review" not in existing:
+                ws = ss.add_worksheet(title="concept_review", rows=2000,
+                                      cols=len(CONCEPT_REVIEW_COLS))
+                ws.append_row(CONCEPT_REVIEW_COLS)
+            ws_cr = ss.worksheet("concept_review")
+            ts = _now_iso()
+            cas_val = "" if cas is None else cas
+            payload = [
+                [ts, session, cas_val,
+                 str(r.get("terme", ""))[:200],
+                 str(r.get("concept", ""))[:200],
+                 str(r.get("id", ""))[:60],
+                 str(r.get("statut", ""))[:20],
+                 "ok" if r.get("vote") == "ok" else "ko"]
+                for r in rows
+            ]
+            if payload:
+                ws_cr.append_rows(payload, value_input_option="RAW")  # type: ignore[arg-type]
+        except Exception as ex:
+            print(f"[collector] Concept review échoué: {type(ex).__name__}: {ex}")
+
+
+def collect_concept_review(rows: List[dict], session: str = "", cas=None) -> bool:
+    """Archive les votes 👍/👎 de l'étudiant sur les concepts extraits (P5).
+
+    `rows` : liste de {terme, concept, id, statut, vote in ('ok','ko')}.
+    Non bloquant (thread détaché). Renvoie True si le recueil est configuré et
+    la tâche lancée, False sinon.
+    """
+    rows = [r for r in (rows or []) if isinstance(r, dict) and r.get("vote") in ("ok", "ko")]
+    if not rows:
+        return False
+    if not is_available():
+        return False
+    try:
+        threading.Thread(
+            target=_write_concept_reviews,
+            args=(session, cas, rows[:50]),   # garde-fou : 50 concepts max / envoi
             daemon=True,
         ).start()
         return True
