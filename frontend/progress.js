@@ -149,13 +149,32 @@ const Progress = (() => {
     return worst;
   }
 
-  /* Un cas non-fait au hasard (hors `exceptNum`), sinon n'importe lequel. */
-  function randomCase(allNums, exceptNum) {
+  /* Un cas non-fait au hasard (hors `exceptNum`), sinon n'importe lequel.
+   * `globalCounts` (optionnel) : {num: nbSoumissionsPromo} → tirage PONDÉRÉ
+   * (note UX §5.4) qui suréchantillonne les cas peu lus pour équilibrer le
+   * corpus. Poids = 1/(1+count)² : un cas jamais lu pèse 9× plus qu'un cas
+   * lu 2 fois. Sans compteurs → hasard uniforme (comportement historique). */
+  function randomCase(allNums, exceptNum, globalCounts) {
     if (!allNums || !allNums.length) return null;
     const done = new Set(Object.keys(_load().cases).map(Number));
     const pool = allNums.filter((n) => n !== Number(exceptNum) && !done.has(n));
     const src = pool.length ? pool : allNums.filter((n) => n !== Number(exceptNum));
     if (!src.length) return null;
+    if (globalCounts && typeof globalCounts === "object") {
+      const weights = src.map((n) => {
+        const c = Number(globalCounts[String(n)] ?? globalCounts[n] ?? 0);
+        return 1 / Math.pow(1 + Math.max(0, c), 2);
+      });
+      const total = weights.reduce((a, w) => a + w, 0);
+      if (total > 0) {
+        let r = Math.random() * total;
+        for (let i = 0; i < src.length; i++) {
+          r -= weights[i];
+          if (r <= 0) return src[i];
+        }
+        return src[src.length - 1];   // garde-fou arrondi flottant
+      }
+    }
     return src[Math.floor(Math.random() * src.length)];
   }
 

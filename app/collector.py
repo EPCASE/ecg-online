@@ -55,6 +55,11 @@ _LOCK = threading.Lock()          # sérialise les écritures dans le process
 _ENSURED = False                  # feuilles vérifiées/créées une seule fois
 _SS_CACHE = None                  # spreadsheet gspread mémorisé
 
+# Cache des compteurs de soumissions par cas (randomisation pondérée §5.4).
+_COUNTS_CACHE: Optional[dict] = None
+_COUNTS_TS: float = 0.0
+_COUNTS_TTL_S = 600               # 10 min : équilibre fraîcheur / quota Sheets
+
 
 # ─────────────────────────── Configuration ───────────────────────────
 def _enabled() -> bool:
@@ -284,3 +289,44 @@ def collect_feedback(message: str, session: str = "", cas=None,
         return True
     except Exception:
         return False
+
+
+# ─────────────────── Compteurs par cas (randomisation §5.4) ───────────────────
+def case_counts() -> Optional[dict]:
+    """Nombre de soumissions par cas, depuis la feuille « reponses ».
+
+    Sert la randomisation PONDÉRÉE (note UX §5.4) : suréchantillonner les cas
+    peu lus pour équilibrer le corpus. Résultat mis en cache _COUNTS_TTL_S
+    secondes (10 min) pour ménager le quota Sheets — la fraîcheur exacte
+    n'importe pas pour un tirage au sort.
+
+    Renvoie {num(int): count(int)} ou None si le recueil n'est pas configuré /
+    la lecture échoue (l'appelant se rabat alors sur un hasard uniforme).
+    """
+    global _COUNTS_CACHE, _COUNTS_TS
+    import time
+    now = time.time()
+    if _COUNTS_CACHE is not None and (now - _COUNTS_TS) < _COUNTS_TTL_S:
+        return _COUNTS_CACHE
+    if not is_available():
+        return None
+    ss = _get_spreadsheet()
+    if not ss:
+        return None
+    try:
+        with _LOCK:
+            ws = ss.worksheet("reponses")
+            # Colonne 3 = « cas » (cf. LOG_COLS). col_values saute les vides.
+            col = ws.col_values(3)[1:]          # [1:] : saute l'en-tête
+        counts: dict = {}
+        for v in col:
+            try:
+                n = int(str(v).strip())
+            except (TypeError, ValueError):
+                continue
+            counts[n] = counts.get(n, 0) + 1
+        _COUNTS_CACHE, _COUNTS_TS = counts, now
+        return counts
+    except Exception as ex:
+        print(f"[collector] Lecture compteurs échouée: {type(ex).__name__}: {ex}")
+        return None

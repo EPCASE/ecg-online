@@ -323,6 +323,29 @@ textarea:focus { outline: none; border-color: var(--accent-2); box-shadow: 0 0 0
   border: 1px solid var(--border); border-left: 3px solid var(--accent-2);
   border-radius: 10px; font-size: 14px; font-weight: 600; line-height: 1.45;
 }
+
+/* ── P1 (note UX §12) : révélation du thème après correction ──
+   Le titre/famille sont anonymisés AVANT la soumission ; ce bandeau les
+   dévoile a posteriori comme récompense pédagogique. */
+.reveal-banner {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 14px 18px; margin-bottom: 14px;
+  background: linear-gradient(135deg, rgba(124,111,247,0.14), rgba(79,209,197,0.08));
+  border: 1px solid var(--border); border-left: 3px solid var(--accent);
+  border-radius: 10px;
+  animation: revealIn 0.45s ease;
+}
+.reveal-ic { font-size: 22px; line-height: 1.2; }
+.reveal-body { min-width: 0; }
+.reveal-t { font-size: 14.5px; line-height: 1.4; }
+.reveal-t b { color: var(--accent-2); }
+.reveal-fam { color: var(--text-muted); font-size: 12.5px; font-weight: 500; }
+.reveal-d { color: var(--text-muted); font-size: 12.5px; margin-top: 3px; }
+@keyframes revealIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 .tag {
   font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 999px;
   border: 1px solid var(--border);

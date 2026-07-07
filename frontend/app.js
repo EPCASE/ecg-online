@@ -16,6 +16,11 @@ let CASE_OPEN_TS = 0;                // horodatage d'ouverture du cas (ms)
 let FIRST_KEY_TS = 0;                // horodatage de la 1ʳᵉ frappe dans la réponse
 let EDIT_COUNT = 0;                  // nombre d'événements de saisie (proxy d'édition)
 
+/* Randomisation pondérée (note UX §5.4) : compteurs GLOBAUX de soumissions par
+ * cas (toute la promo, via la feuille « reponses »). null = indisponible →
+ * repli sur le hasard uniforme local. */
+let CASE_COUNTS = null;
+
 const $ = (sel) => document.querySelector(sel);
 const el = (tag, cls, html) => {
   const n = document.createElement(tag);
@@ -31,6 +36,18 @@ async function init() {
   wireGlobal();
   wireHome();
   refreshProgressUI();
+  loadCaseStats();             // non bloquant : compteurs pour le tirage pondéré
+}
+
+// Compteurs globaux de soumissions par cas (§5.4) — meilleur-effort.
+async function loadCaseStats() {
+  try {
+    const r = await fetch(`${API}/api/case-stats`);
+    const d = await r.json();
+    CASE_COUNTS = d && d.available ? (d.counts || {}) : null;
+  } catch {
+    CASE_COUNTS = null;        // hors ligne / non configuré → hasard uniforme
+  }
 }
 
 async function checkHealth() {
@@ -453,7 +470,22 @@ function renderResult(d) {
   const safety = deriveSafety(d);
   const punch = buildPunchLine(d);
 
+  // Révélation pédagogique (§12) : après correction, on nomme la leçon.
+  // Le titre réel (= diagnostic) et la famille arrivent dans `reference`
+  // UNIQUEMENT après soumission — jamais avant (anonymisation préservée).
+  const revealTitre = (ref.titre || "").trim();
+  const revealFam = (ref.famille || "").trim();
+  const reveal = revealTitre ? `
+    <div class="reveal-banner">
+      <span class="reveal-ic">🎓</span>
+      <div class="reveal-body">
+        <div class="reveal-t">Thème révélé : <b>${escapeHtml(capitalize(revealTitre))}</b>${revealFam ? ` <span class="reveal-fam">· famille ${escapeHtml(revealFam)}</span>` : ""}</div>
+        <div class="reveal-d">C'était l'objectif pédagogique de ce cas — retiens-le pour la prochaine fois.</div>
+      </div>
+    </div>` : "";
+
   box.innerHTML = `
+    ${reveal}
     <div class="result-top">
       <div class="score-ring" style="--val:${d.score};--ring-color:${scoreColor(d.score)}">
         <div><span>${d.score}</span><small>/ 100</small></div>
@@ -617,7 +649,9 @@ function wireHome() {
   };
   if (random) random.onclick = () => {
     const nums = allCaseNums();
-    const n = window.Progress ? Progress.randomCase(nums, null) : nums[Math.floor(Math.random() * nums.length)];
+    // §5.4 : tirage pondéré par les compteurs promo (suréchantillonne les cas
+    // peu lus). CASE_COUNTS=null (stats indisponibles) → hasard uniforme.
+    const n = window.Progress ? Progress.randomCase(nums, null, CASE_COUNTS) : nums[Math.floor(Math.random() * nums.length)];
     if (n != null) openCase(n);
   };
 }
@@ -673,7 +707,7 @@ function showNextActions(lastScore) {
   if (!box || !CURRENT) return;
   const nums = allCaseNums();
   const nextN = window.Progress ? Progress.nextCase(nums, CURRENT.num) : null;
-  const randN = window.Progress ? Progress.randomCase(nums, CURRENT.num) : null;
+  const randN = window.Progress ? Progress.randomCase(nums, CURRENT.num, CASE_COUNTS) : null;
 
   const nextBtn = $("#na-next");
   const randBtn = $("#na-random");
@@ -893,6 +927,12 @@ function goHome() {
 function escapeHtml(s) {
   return String(s == null ? "" : s)
     .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+// Majuscule initiale (les titres de cas sont stockés en minuscules).
+function capitalize(s) {
+  s = String(s || "");
+  return s ? s.charAt(0).toUpperCase() + s.slice(1) : s;
 }
 
 /* mini markdown : **gras**, *italique*, puces, retours ligne */
