@@ -61,7 +61,7 @@ const Progress = (() => {
   }
 
   /* ---- Enregistrer un résultat de correction ---- */
-  function recordResult(num, score, correspondance) {
+  function recordResult(num, score, correspondance, titre) {
     const s = _load();
     const key = String(num);
     const prev = s.cases[key] || { attempts: 0, best: 0, corr: "", firstDay: null, lastDay: null };
@@ -71,6 +71,10 @@ const Progress = (() => {
     prev.attempts += 1;
     prev.best = Math.max(prev.best || 0, sc);
     prev.corr = correspondance || prev.corr || "";
+    // Titre RÉEL révélé après correction (P1) : mémorisé pour lever
+    // l'anonymisation de la liste sur les cas DÉJÀ faits (révision).
+    // L'étudiant l'a déjà vu — aucune fuite. Repli sur l'ancien si absent.
+    if (titre && String(titre).trim()) prev.titre = String(titre).trim();
     prev.firstDay = prev.firstDay || today;
     prev.lastDay = today;
     s.cases[key] = prev;

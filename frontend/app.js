@@ -116,9 +116,13 @@ function renderCaseList() {
     const badge = stat
       ? `<span class="ci-badge" title="Déjà lu — meilleur score ${stat.best}/100">✓ ${stat.best}</span>`
       : "";
+    // Titre : par défaut anonymisé (« Cas N » venu du serveur). Pour un cas DÉJÀ
+    // fait, on affiche le vrai diagnostic mémorisé après correction (P1) — révélé
+    // légitimement à l'étudiant, utile à la révision. Repli : le titre serveur.
+    const label = (stat && stat.titre) ? capitalize(stat.titre) : (c.titre || "Cas ECG");
     item.innerHTML =
       `<span class="n">${c.num}</span>` +
-      `<div class="ci-main"><div class="t">${escapeHtml(c.titre || "Cas ECG")}</div>` +
+      `<div class="ci-main"><div class="t">${escapeHtml(label)}</div>` +
       fam + `</div>` + badge;
     item.onclick = () => openCase(c.num);
     list.appendChild(item);
@@ -378,7 +382,10 @@ async function gradeCurrent() {
     renderResult(data);
     // Progression locale + boucle d'engagement (note UX §8, §13).
     if (window.Progress) {
-      Progress.recordResult(CURRENT.num, data.score, data.correspondance || "");
+      // On mémorise aussi le titre RÉEL révélé (P1) → lève l'anonymisation de
+      // la liste sur les cas déjà faits (aide à la révision).
+      const revealed = (data.reference && data.reference.titre) || "";
+      Progress.recordResult(CURRENT.num, data.score, data.correspondance || "", revealed);
       refreshProgressUI();
       renderCaseList();          // met à jour la pastille ✓ du cas courant
     }
