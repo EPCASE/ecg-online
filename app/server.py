@@ -180,10 +180,13 @@ def create_app() -> Flask:
         result = corr.to_dict()
         result["backend"] = backend_used
         # On joint la référence APRÈS correction (l'étudiant a le droit de voir).
+        # `titre` = diagnostic réel + `famille` : révélés post-correction (note
+        # UX §12 : « révéler l'objectif pédagogique » une fois la réponse rendue).
         result["reference"] = {
             "interpretation_ref": case.get("interpretation_ref", ""),
             "commentaires": case.get("commentaires", ""),
             "titre": case.get("titre", ""),
+            "famille": case.get("famille", ""),
             "reponse_attendue": (ref or {}).get("reponse_attendue", ""),
             "points_cles": (ref or {}).get("points_cles", []),
             "fiche_secours": (ref or {}).get("fiche_secours", {}),
@@ -225,6 +228,22 @@ def create_app() -> Flask:
         )
         # `saved=False` => recueil non configuré : le front proposera un repli mail.
         return jsonify({"ok": True, "saved": saved})
+
+    # ---- Compteurs de lecture par cas (randomisation pondérée §5.4) -----
+    @app.get("/api/case-stats")
+    def case_stats():
+        """{counts: {num: n}, available: bool} — nb de soumissions par cas.
+
+        Sert au tirage pondéré côté client (suréchantillonner les cas peu lus,
+        pour équilibrer le corpus de réponses). Cache serveur 10 min.
+        `available=False` (recueil non configuré) → le front garde son hasard
+        uniforme. Ne divulgue RIEN du contenu des cas (juste des compteurs).
+        """
+        counts = collector.case_counts()
+        if counts is None:
+            return jsonify({"available": False, "counts": {}})
+        return jsonify({"available": True,
+                        "counts": {str(k): v for k, v in counts.items()}})
 
     # ---- Curation du barème (validant / complémentaire) ----------------
     @app.get("/api/curation")
