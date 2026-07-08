@@ -433,7 +433,15 @@
         "parasite de la ligne de base",
         "parasites",
         "artéfacts",
-        "tracé parasité"
+        "tracé parasité",
+        "artéfact de la ligne de base",
+        "artéfact de tremblement de la ligne de base",
+        "artéfact de tremblement sur la ligne de base",
+        "artéfact de tremblement",
+        "artéfact de mouvement",
+        "artéfact de mouvements des bras",
+        "artéfact musculaire",
+        "artéfact de ligne de base par tremblement"
       ]
     },
     "ARYTHMIE": {
