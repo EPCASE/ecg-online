@@ -216,6 +216,12 @@ def extract_clinical_terms(texte_etudiant: str) -> NERExtraction:
             {"role": "user", "content": f"Texte de l'étudiant : {texte_etudiant}"},
         ],
         response_format=NERExtraction,
+        # Déterminisme : l'extraction NER pilote la NOTE ; à température par
+        # défaut (1.0) une même réponse pouvait extraire « artéfact de
+        # tremblement » un run sur deux (cas 2 : score 50 vs 100). temperature=0
+        # + seed fixe → correction reproductible.
+        temperature=0,
+        seed=42,
     )
 
     result = response.choices[0].message.parsed

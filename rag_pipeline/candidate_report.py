@@ -29,11 +29,12 @@ import re
 import time
 import unicodedata
 from dataclasses import dataclass, field
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Set, Tuple
 
 from ner_extractor import extract_clinical_terms, ClinicalEntity
 from hybrid_search import HybridSearchEngine
 from neurosymbolic_judge import resolve_term_to_ontology
+from ontology_index import normalize_text
 from scoring_v3 import (
     score_student_response_v3,
     ScoringResultV3,
@@ -176,6 +177,115 @@ def _fix_negation(entite: ClinicalEntity) -> ClinicalEntity:
         entite.statut = "hypothese"
 
     return entite
+
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Filet de sécurité LEXICAL : rattrapage déterministe des concepts du golden
+# ──────────────────────────────────────────────────────────────────────────────
+#
+# Problème : l'extraction NER (GPT-4o) n'est PAS parfaitement déterministe, même
+# à temperature=0 + seed fixe (best-effort côté OpenAI). Sur une réponse donnée,
+# un long synonyme comme « artéfact de tremblement sur la ligne de base » pouvait
+# être extrait 7 fois sur 8, et OUBLIÉ la 8e → le concept validant du golden
+# (ex. cas 2 : INTERFERENCE_EXTRA_CARDIAQUE via son enfant ARTEFACTE) disparaît
+# et la note chute de 100 à 50 de façon aléatoire. Inacceptable pour une NOTE.
+#
+# Solution : APRÈS le NER, on rattrape de façon 100 % déterministe tout concept
+# du golden (ou un de ses descendants ontologiques) dont un synonyme DISTINCTIF
+# (multi-mots) apparaît LITTÉRALEMENT et NON NIÉ dans le texte de l'étudiant,
+# mais que le NER a raté. On ne « devine » jamais : on ne rattrape que ce que
+# l'étudiant a réellement écrit, et uniquement pour les concepts attendus.
+
+# Nombre minimal de mots d'un synonyme pour être considéré « distinctif » : on
+# évite de rattraper sur un mot isolé trop ambigu (« bloc », « onde ») qui
+# pourrait matcher par hasard. Les vrais oublis du NER sont des phrases longues.
+_BACKSTOP_MIN_WORDS = 3
+
+
+def _descendants_of(ontology_id: str, _seen: Optional[set] = None) -> Set[str]:
+    """Retourne {id} ∪ tous ses descendants (children récursifs) dans l'onto V2."""
+    if _seen is None:
+        _seen = set()
+    key = normalize_key(ontology_id)
+    if key in _seen:
+        return set()
+    _seen.add(key)
+    out = {ontology_id}
+    c = get_concept(key)
+    if c:
+        for child in c.get("children", []):
+            out |= _descendants_of(child, _seen)
+    return out
+
+
+def _lexical_backstop_ids(
+    texte_etudiant: str,
+    golden_ids: List[str],
+    already_found: Set[str],
+) -> List[Tuple[str, str]]:
+    """
+    Rattrapage lexical déterministe.
+
+    Pour chaque concept du golden (et ses descendants), on teste si un de ses
+    synonymes DISTINCTIFS (≥ _BACKSTOP_MIN_WORDS mots) apparaît tel quel — après
+    normalisation (accents/casse/ponctuation) — dans le texte de l'étudiant,
+    SANS marqueur de négation immédiatement devant. Si oui et que le NER ne l'a
+    pas déjà résolu, on renvoie (ontology_id, forme_trouvée) pour l'ajouter.
+
+    Returns:
+        Liste de (ontology_id, surface_form_matchée) à créditer en 'present'.
+    """
+    texte_norm = normalize_text(texte_etudiant)
+    if not texte_norm:
+        return []
+
+    already_norm = {normalize_key(x) for x in already_found}
+
+    # Cibles = golden + tous leurs descendants (un enfant plus spécifique crédite
+    # le parent golden via la règle 1b du scoring V3).
+    cibles: Set[str] = set()
+    for gid in golden_ids:
+        cibles |= _descendants_of(gid)
+
+    rescued: List[Tuple[str, str]] = []
+    seen_ids: Set[str] = set()
+
+    for cid in cibles:
+        cid_norm = normalize_key(cid)
+        if cid_norm in already_norm or cid_norm in seen_ids:
+            continue
+        c = get_concept(cid_norm)
+        if not c:
+            continue
+        # Formes candidates : nom canonique + synonymes.
+        formes = [c.get("concept_name", "")] + list(c.get("synonymes", []))
+        for forme in formes:
+            forme_norm = normalize_text(forme)
+            if len(forme_norm.split()) < _BACKSTOP_MIN_WORDS:
+                continue  # trop court → risque de faux positif
+            # Correspondance littérale sur une frontière de mot.
+            if not re.search(rf"(?<![\w]){re.escape(forme_norm)}(?![\w])", texte_norm):
+                continue
+            # Rejeter si un marqueur de négation précède immédiatement
+            # l'occurrence (mêmes marqueurs que _fix_negation, sur texte
+            # normalisé : accents retirés, apostrophe droite ou courbe).
+            neg_prefix = (
+                r"(?:pas\s+(?:de\s+|d['']?\s*)|sans\s+"
+                r"|absence\s+(?:de\s+|d['']?\s*)|aucun(?:e)?\s+|ni\s+"
+                r"|elimine\s+|n['']?\s*(?:est|a)\s+pas\s+(?:de\s+|d['']?\s*)?)"
+            )
+            if re.search(neg_prefix + re.escape(forme_norm), texte_norm):
+                continue
+            rescued.append((cid, forme))
+            seen_ids.add(cid_norm)
+            logger.info(
+                f"🛟 Backstop lexical : '{forme}' trouvé littéralement → "
+                f"rattrapage de {cid} (raté par le NER)"
+            )
+            break  # une forme suffit pour ce concept
+
+    return rescued
+
 
 @dataclass
 class ExtractedConcept:
@@ -465,6 +575,35 @@ def generate_candidate_report(
         report.n_juge_llm = methods.count("juge_llm")
         report.n_fallback = methods.count("fallback_subterm")
         report.n_no_candidates = methods.count("no_candidates")
+
+        # ═══════════════════════════════════════════════════════════════
+        # Filet de sécurité LEXICAL (déterministe) : rattrapage post-NER
+        # ═══════════════════════════════════════════════════════════════
+        # Le NER GPT-4o n'est pas 100 % déterministe (même à temperature=0) : un
+        # long synonyme du golden pouvait être oublié 1 run sur 8, faisant chuter
+        # la note aléatoirement. Ici on rattrape, de façon 100 % reproductible,
+        # tout concept du golden (ou descendant) écrit LITTÉRALEMENT par
+        # l'étudiant mais raté par le NER. On ne devine rien : uniquement des
+        # phrases distinctives réellement présentes et non niées.
+        for cid, forme in _lexical_backstop_ids(
+            texte_etudiant, golden_ids, set(student_matched_ids.keys())
+        ):
+            c = get_concept(normalize_key(cid))
+            report.concepts_extraits.append(ExtractedConcept(
+                terme_brut=forme,
+                statut="present",
+                ontology_id=cid,
+                concept_name=(c or {}).get("concept_name", cid),
+                method="lexical_backstop",
+                justification=(
+                    f"Rattrapage lexical déterministe : « {forme} » figure "
+                    f"littéralement dans la réponse mais n'a pas été extrait "
+                    f"par le NER (variabilité GPT-4o)."
+                ),
+                top_k_candidats=[],
+                llm_confiance=-1,
+            ))
+            student_matched_ids[cid] = "present"
 
         # ═══════════════════════════════════════════════════════════════
         # Brique 2.5 : Inférence d'EXTRACTION des concepts-verdict
