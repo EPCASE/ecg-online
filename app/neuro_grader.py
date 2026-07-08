@@ -193,7 +193,13 @@ def _report_to_correction(report, num: int, exclusions: Optional[List[dict]] = N
     elements_manques: List[dict] = []
     for vd in getattr(report, "validant_details", []):
         label = vd.golden_name or vd.golden_id
-        if vd.found:
+        # Un validant ne compte comme « trouvé » (rang A ✓) que si son score est
+        # réellement significatif. Le scoring V3 peut renvoyer found=True avec un
+        # score_pct partiel, voire nul (match_type="requires" 0/N) : l'afficher
+        # en ✓ donnait l'incohérence « tout trouvé mais 50/100 » (cas 2 sans
+        # « rythme sinusal »). Seuil : >= 60 % → identifié ; sinon → à compléter.
+        score_pct = float(getattr(vd, "score_pct", 0.0) or 0.0)
+        if vd.found and score_pct >= 60.0:
             elements_trouves.append({"label": label, "rang": "A"})
         else:
             elements_manques.append({
