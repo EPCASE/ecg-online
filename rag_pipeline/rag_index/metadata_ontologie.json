@@ -945,6 +945,70 @@
       "poids": 3
     },
     {
+      "ontology_id": "ARTEFACTE",
+      "surface_form": "artéfact de la ligne de base",
+      "source_type": "synonym",
+      "concept_name": "Artefacte",
+      "categorie": "DIAGNOSTIC_MOYEN",
+      "poids": 3
+    },
+    {
+      "ontology_id": "ARTEFACTE",
+      "surface_form": "artéfact de tremblement de la ligne de base",
+      "source_type": "synonym",
+      "concept_name": "Artefacte",
+      "categorie": "DIAGNOSTIC_MOYEN",
+      "poids": 3
+    },
+    {
+      "ontology_id": "ARTEFACTE",
+      "surface_form": "artéfact de tremblement sur la ligne de base",
+      "source_type": "synonym",
+      "concept_name": "Artefacte",
+      "categorie": "DIAGNOSTIC_MOYEN",
+      "poids": 3
+    },
+    {
+      "ontology_id": "ARTEFACTE",
+      "surface_form": "artéfact de tremblement",
+      "source_type": "synonym",
+      "concept_name": "Artefacte",
+      "categorie": "DIAGNOSTIC_MOYEN",
+      "poids": 3
+    },
+    {
+      "ontology_id": "ARTEFACTE",
+      "surface_form": "artéfact de mouvement",
+      "source_type": "synonym",
+      "concept_name": "Artefacte",
+      "categorie": "DIAGNOSTIC_MOYEN",
+      "poids": 3
+    },
+    {
+      "ontology_id": "ARTEFACTE",
+      "surface_form": "artéfact de mouvements des bras",
+      "source_type": "synonym",
+      "concept_name": "Artefacte",
+      "categorie": "DIAGNOSTIC_MOYEN",
+      "poids": 3
+    },
+    {
+      "ontology_id": "ARTEFACTE",
+      "surface_form": "artéfact musculaire",
+      "source_type": "synonym",
+      "concept_name": "Artefacte",
+      "categorie": "DIAGNOSTIC_MOYEN",
+      "poids": 3
+    },
+    {
+      "ontology_id": "ARTEFACTE",
+      "surface_form": "artéfact de ligne de base par tremblement",
+      "source_type": "synonym",
+      "concept_name": "Artefacte",
+      "categorie": "DIAGNOSTIC_MOYEN",
+      "poids": 3
+    },
+    {
       "ontology_id": "ARYTHMIE",
       "surface_form": "Arythmie",
       "source_type": "canonical",
@@ -13348,10 +13412,10 @@
   "embedding_model": "text-embedding-3-small",
   "embedding_dims": 1536,
   "total_concepts": 349,
-  "total_documents": 1668,
+  "total_documents": 1676,
   "stats": {
     "canonical": 349,
-    "synonym": 1319,
+    "synonym": 1327,
     "implication": 0,
     "skipped_empty": 0
   },
