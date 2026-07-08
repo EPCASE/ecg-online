@@ -602,8 +602,13 @@ def _score_one_concept(
         ratio = partial_credit / len(requires)
         req_score = round(ratio, 4)
 
-        # Prendre le max entre requires et parent hierarchy
-        if req_score >= parent_cs_score:
+        # Prendre le max entre requires et parent hierarchy.
+        # NB : on exige req_score > 0 (et pas seulement >= parent), sinon le cas
+        # « aucun require présent ET pas de parent » (0 >= 0) tombait ici et
+        # étiquetait le concept "requires" à score 0 → l'UI le montrait comme
+        # « trouvé » alors qu'il ne l'est pas (cas 2 sans « rythme sinusal » :
+        # affiché ✓ mais 50/100). Un score nul doit devenir "missed" (branche else).
+        if req_score > 0 and req_score >= parent_cs_score:
             cs.match_type = "requires"
             cs.score = req_score
             cs.requires_total = len(requires)
@@ -619,13 +624,18 @@ def _score_one_concept(
             else:
                 cs.match_type = "support"
         else:
-            cs.match_type = "requires"
-            cs.score = req_score
+            # req_score et parent_cs_score sont tous deux nuls : AUCUN critère
+            # requis (ni sous-critère, ni parent) n'est présent. Le concept
+            # n'est donc PAS reconnu → statut "missed" (et non "requires" à 0,
+            # qui faisait passer à tort le validant pour « trouvé » côté UI :
+            # cas 2 sans « rythme sinusal » affichait Rythme sinusal ✓ mais 50).
+            cs.match_type = "missed"
+            cs.score = 0.0
             cs.requires_total = len(requires)
             cs.requires_found = len(satisfied)
             cs.requires_satisfied = satisfied
             cs.requires_missing = missing
-            cs.detail = f"{partial_credit:.1f}/{len(requires)} requires"
+            cs.detail = f"0/{len(requires)} requires — non reconnu"
         return cs
 
     # ── 3. has_qualifiers trouvés ? ────────────────────────────────
