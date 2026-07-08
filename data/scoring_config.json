@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-07-06T04:01:32",
+  "updated": "2026-07-06T23:07:37",
   "cases": {
     "2": {
       "roles": {
@@ -34,13 +34,17 @@
       "roles": {
         "Rythme sinusal": "complementaire",
         "Hypertrophie auriculaire gauche comme diagnostic principal": "validant",
-        "Onde P élargie > 120 ms / > 110 ms seuil pathologique": "validant",
+        "Onde P élargie > 120 ms / > 110 ms seuil pathologique": "complementaire",
         "Onde P bifide/crochetée en dérivations inférieures et latérales, notamment DI-DII-DIII-aVF et V3-V6": "complementaire",
         "Composante négative élargie en V1": "complementaire",
         "Indice de Sokolow négatif (< 36 mm), pas d’HVG électrique selon ce critère": "complementaire",
         "Troubles de repolarisation latérale avec ondes T négatives, fréquents dans la myocardiopathie hypertrophique": "complementaire"
       },
-      "extra_validants": []
+      "extra_validants": [
+        "Hypertrophe ventriculaire gauche",
+        "Déviation axiale gauche"
+      ],
+      "removed": []
     },
     "5": {
       "roles": {
