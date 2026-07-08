@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-07-06T04:00:58",
+  "updated": "2026-07-06T23:07:13",
   "model": "gpt-5.5",
   "cases": {
     "3": {
@@ -94,50 +94,50 @@
         "Rythme sinusal": {
           "golden_id": "RYTHME_SINUSAL",
           "concept_name": "Rythme sinusal",
-          "statut": "present",
-          "confiance": 0.99,
           "valide_par": "gpt",
-          "justification": "Concept exact du rythme sinusal."
+          "statut": "present"
         },
         "Hypertrophie auriculaire gauche comme diagnostic principal": {
           "golden_id": "HYPERTROPHIE_ATRIALE_GAUCHE",
           "concept_name": "Hypertrophie atriale gauche",
-          "statut": "present",
-          "confiance": 0.99,
           "valide_par": "gpt",
-          "justification": "Diagnostic principal exactement représenté."
+          "statut": "present"
         },
         "Onde P élargie > 120 ms / > 110 ms seuil pathologique": {
           "golden_id": "ONDE_P_PROLONGEE",
           "concept_name": "Onde P prolongée",
-          "statut": "present",
-          "confiance": 0.98,
           "valide_par": "gpt",
-          "justification": "Onde P prolongée synonyme d'onde P >120 ms/élargie."
+          "statut": "present"
         },
         "Onde P bifide/crochetée en dérivations inférieures et latérales, notamment DI-DII-DIII-aVF et V3-V6": {
           "golden_id": "ONDE_P_ANORMALE",
           "concept_name": "Onde P anormale",
-          "statut": "present",
-          "confiance": 0.72,
           "valide_par": "gpt",
-          "justification": "Pas de concept bifide; onde P anormale est le meilleur proxy morphologique."
+          "statut": "present"
         },
         "Indice de Sokolow négatif (< 36 mm), pas d’HVG électrique selon ce critère": {
           "golden_id": "HYPERTROPHIE_VENTRICULAIRE_GAUCHE",
           "concept_name": "Hypertrophie ventriculaire gauche",
-          "statut": "absent",
-          "confiance": 0.86,
           "valide_par": "gpt",
-          "justification": "Point nie l'HVG électrique malgré Sokolow négatif; concept central HVG."
+          "statut": "absent"
         },
         "Troubles de repolarisation latérale avec ondes T négatives, fréquents dans la myocardiopathie hypertrophique": {
           "golden_id": "ONDE_T_NEGATIVE",
           "concept_name": "Onde T négative",
-          "statut": "present",
-          "confiance": 0.9,
           "valide_par": "gpt",
-          "justification": "Anomalie principale: ondes T négatives, topographie latérale secondaire."
+          "statut": "present"
+        },
+        "Hypertrophe ventriculaire gauche": {
+          "golden_id": "HYPERTROPHIE_VENTRICULAIRE_GAUCHE",
+          "concept_name": "Hypertrophie ventriculaire gauche",
+          "valide_par": "humain",
+          "statut": "present"
+        },
+        "Déviation axiale gauche": {
+          "golden_id": "DEVIATION_AXIALE_GAUCHE",
+          "concept_name": "Déviation axiale gauche",
+          "valide_par": "humain",
+          "statut": "present"
         }
       }
     },
@@ -3664,42 +3664,38 @@
         "Rythme sinusal": {
           "golden_id": "RYTHME_SINUSAL",
           "concept_name": "Rythme sinusal",
-          "statut": "present",
-          "confiance": 0.99,
           "valide_par": "gpt",
-          "justification": "Rythme sinusal explicitement décrit."
+          "statut": "present"
         },
         "QRS fins": {
           "golden_id": "QRS_FINS",
           "concept_name": "QRS fins",
-          "statut": "present",
-          "confiance": 0.99,
           "valide_par": "gpt",
-          "justification": "Complexes QRS fins explicitement décrits."
+          "statut": "present"
         },
         "Sus-décalage ST modéré dans les dérivations inférieures": {
           "golden_id": "COURANT_DE_LESION_SOUS_EPICARDIQUE",
           "concept_name": "Courant de lésion sous-épicardique",
-          "statut": "present",
-          "confiance": 0.95,
           "valide_par": "gpt",
-          "justification": "Le sus-décalage ST correspond à un courant de lésion sous-épicardique."
+          "statut": "present"
         },
         "Absence de miroir": {
           "golden_id": "MIROIR",
           "concept_name": "Miroir",
-          "statut": "absent",
-          "confiance": 0.99,
           "valide_par": "gpt",
-          "justification": "Le miroir est explicitement nié."
+          "statut": "absent"
+        },
+        "Diagnostic principal : myocardite dans un contexte viral/douleur thoracique/troponine élevée": {
+          "golden_id": "MYOCARDITE",
+          "concept_name": "Myocardite",
+          "valide_par": "humain",
+          "statut": "present"
         },
         "SCA ST+ = principal diagnostic différentiel à éliminer si doute": {
           "golden_id": "SYNDROME_CORONARIEN_A_LA_PHASE_AIGUE_AVEC_SUS_DECALAGE_DU_SEGMENT_ST",
           "concept_name": "Syndrome coronarien à la phase aigue avec sus-décalage du segment ST",
-          "statut": "absent",
-          "confiance": 0.97,
           "valide_par": "gpt",
-          "justification": "SCA ST+ mentionné comme diagnostic différentiel à éliminer."
+          "statut": "absent"
         }
       }
     },
