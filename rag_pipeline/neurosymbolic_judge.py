@@ -400,6 +400,10 @@ def _juge_llm(
             {"role": "user", "content": prompt_user},
         ],
         response_format=ConceptMatching,
+        # Déterminisme : cette résolution de concept pilote la note. On fige la
+        # température et le seed pour une correction reproductible (cf. NER).
+        temperature=0,
+        seed=42,
     )
 
     result = response.choices[0].message.parsed
