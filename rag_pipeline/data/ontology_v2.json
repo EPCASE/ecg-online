@@ -428,6 +428,9 @@
       "parents": [
         "INTERFERENCE_EXTRA_CARDIAQUE"
       ],
+      "children": [
+        "TREMULATION_DE_LA_LIGNE_DE_BASE"
+      ],
       "synonymes": [
         "parasitage de la ligne de base",
         "parasite de la ligne de base",
@@ -6278,7 +6281,8 @@
       "poids": 2,
       "type": "qualifier",
       "parents": [
-        "DESORGANISEE"
+        "DESORGANISEE",
+        "ARTEFACTE"
       ],
       "synonymes": [
         "ondulation de la ligne de base",
