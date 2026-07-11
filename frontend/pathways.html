@@ -18,35 +18,52 @@
     <section class="catalog-hero">
       <div>
         <div class="hero-kicker">Apprendre par compétences</div>
-        <h1>Choisis ce que tu veux maîtriser.</h1>
-        <p>Chaque parcours protège ta première interprétation, propose des indices progressifs, puis vérifie la compétence sur un nouvel ECG sans aide.</p>
+        <h1>Progresse, compétence par compétence.</h1>
+        <p>Chaque parcours protège ta première interprétation, propose des indices progressifs, puis te fait interpréter un nouvel ECG sans aide.</p>
       </div>
       <div class="hero-principle" aria-label="Séquence pédagogique">
         <span>1</span><strong>Observer seul</strong>
         <i></i>
         <span>2</span><strong>Raisonner avec des indices</strong>
         <i></i>
-        <span>3</span><strong>Valider sans aide</strong>
+        <span>3</span><strong>Tester sans aide</strong>
       </div>
     </section>
 
     <section id="catalog-summary" class="catalog-summary" aria-label="Progression globale">
-      <div><strong id="summary-mastered">0</strong><span>acquis</span></div>
+      <div><strong id="summary-mastered">0</strong><span>tests réussis</span></div>
       <div><strong id="summary-active">0</strong><span>en cours</span></div>
       <div><strong id="summary-consolidate">0</strong><span>à consolider</span></div>
       <div><strong id="summary-total">5</strong><span>parcours</span></div>
+    </section>
+
+    <section id="next-recommendation" class="next-recommendation" aria-live="polite">
+      <div class="catalog-loading">Calcul de la prochaine compétence…</div>
     </section>
 
     <section class="catalog-section">
       <div class="section-heading">
         <div>
           <span>Carte de compétences</span>
-          <h2>Cinq parcours courts, une progression lisible</h2>
+          <h2>Trois niveaux, cinq parcours courts</h2>
         </div>
         <p>4 à 5 ECG par parcours · environ 12 à 16 minutes</p>
       </div>
-      <div id="pathway-grid" class="pathway-grid" aria-live="polite">
+      <div id="pathway-grid" class="pathway-levels" aria-live="polite">
         <div class="catalog-loading">Chargement des parcours…</div>
+      </div>
+    </section>
+
+    <section class="competency-section" aria-labelledby="competency-profile-title">
+      <div class="section-heading">
+        <div>
+          <span>Profil global</span>
+          <h2 id="competency-profile-title">Cinq compétences travaillées</h2>
+        </div>
+        <p>Les performances accompagnées et autonomes restent distinguées dans chaque parcours.</p>
+      </div>
+      <div id="competency-profile" class="competency-profile" aria-live="polite">
+        <div class="catalog-loading">Construction du profil…</div>
       </div>
     </section>
 
