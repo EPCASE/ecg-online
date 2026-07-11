@@ -321,12 +321,26 @@ function loadConfig(entry) {
 (function testUxContracts() {
   const homeHtml = fs.readFileSync(path.join(__dirname, "..", "frontend", "index.html"), "utf8");
   const homeCss = fs.readFileSync(path.join(__dirname, "..", "frontend", "style.css"), "utf8");
+  const themeCss = fs.readFileSync(path.join(__dirname, "..", "frontend", "theme.css"), "utf8");
   const appScript = fs.readFileSync(path.join(__dirname, "..", "frontend", "app.js"), "utf8");
   const pathwayHtml = fs.readFileSync(path.join(__dirname, "..", "frontend", "pathway.html"), "utf8");
   const pathwaysHtml = fs.readFileSync(path.join(__dirname, "..", "frontend", "pathways.html"), "utf8");
+  const curationHtml = fs.readFileSync(path.join(__dirname, "..", "frontend", "curation.html"), "utf8");
   const pathwayScript = fs.readFileSync(path.join(__dirname, "..", "frontend", "pathway.js"), "utf8");
 
   assert.match(homeHtml, /<body class="home-mode">/);
+  assert.match(themeCss, /--ecg-canvas: #0f1720/);
+  assert.match(themeCss, /--ecg-coral: #ff5a6e/);
+  assert.match(homeCss, /--bg: var\(--ecg-canvas\)/);
+  for (const [html, pageStylesheet] of [
+    [homeHtml, "/static/style.css"],
+    [pathwaysHtml, "/static/pathways.css"],
+    [pathwayHtml, "/static/pathway.css"],
+    [curationHtml, "/static/style.css"],
+  ]) {
+    assert.ok(html.indexOf("/static/theme.css") >= 0);
+    assert.ok(html.indexOf("/static/theme.css") < html.indexOf(pageStylesheet));
+  }
   assert.match(homeHtml, /<a id="action-pathway"[^>]+href="\/static\/pathways\.html"/);
   assert.match(homeHtml, /id="action-explore"/);
   assert.match(homeHtml, /class="home-free-practice"/);

@@ -1,18 +1,18 @@
 :root {
-  --bg: #0f1720;
-  --bg-soft: #16212e;
-  --panel: #1b2836;
-  --panel-2: #22323f;
-  --border: #2b3d4d;
-  --text: #e8eef4;
-  --text-muted: #93a4b3;
-  --accent: #ff5a6e;
-  --accent-2: #4fd1c5;
-  --good: #34d399;
-  --warn: #fbbf24;
-  --bad: #f87171;
-  --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-  --radius: 14px;
+  --bg: var(--ecg-canvas);
+  --bg-soft: var(--ecg-canvas-soft);
+  --panel: var(--ecg-surface);
+  --panel-2: var(--ecg-surface-raised);
+  --border: var(--ecg-border);
+  --text: var(--ecg-text);
+  --text-muted: var(--ecg-muted);
+  --accent: var(--ecg-coral);
+  --accent-2: var(--ecg-teal);
+  --good: var(--ecg-green);
+  --warn: var(--ecg-amber);
+  --bad: var(--ecg-danger);
+  --shadow: var(--ecg-shadow);
+  --radius: var(--ecg-radius);
 }
 
 * { box-sizing: border-box; }
@@ -32,7 +32,7 @@ body {
   justify-content: space-between;
   padding: 16px 28px;
   border-bottom: 1px solid var(--border);
-  background: rgba(15, 23, 32, 0.7);
+  background: var(--ecg-header);
   backdrop-filter: blur(8px);
   position: sticky;
   top: 0;
