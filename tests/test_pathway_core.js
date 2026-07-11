@@ -89,6 +89,49 @@ const catalog = require("../frontend/pathways.json");
   assert.equal(low.passed, false);
 })();
 
+(function testMasteryCanRequireExplicitClinicalConcepts() {
+  const constrained = {
+    mastery: {
+      diagnostic_threshold: 75,
+      unsafe_error_types: ["etudiant"],
+      required_answer_concepts: [
+        [
+          "bloc de branche alternant",
+          ["altern*", "BBD", "BBG"],
+          ["altern*", "bloc*", "branche*", "droit*", "gauche*"],
+        ],
+      ],
+    },
+  };
+  const result = { score_diagnostic: 100, type_erreur: "aucune" };
+  assert.equal(Core.evaluateMastery(result, constrained, "Bloc de branche droit").passed, false);
+  assert.equal(Core.evaluateMastery(result, constrained, "Bloc de branche alternant").passed, true);
+  assert.equal(Core.evaluateMastery(result, constrained, "Alternance entre BBD et BBG").passed, true);
+  assert.equal(Core.evaluateMastery(result, constrained, "Alternance droite-gauche des blocs de branche").passed, true);
+  assert.equal(Core.evaluateMastery(result, constrained, "Il ne s’agit pas d’un bloc de branche alternant").passed, false);
+  assert.equal(Core.evaluateMastery(result, constrained, "Pas un BBD isolé, mais un bloc de branche alternant").passed, true);
+})();
+
+(function testMasteryCanRequireStructuredGraderConcepts() {
+  const constrained = {
+    mastery: {
+      diagnostic_threshold: 75,
+      unsafe_error_types: ["etudiant"],
+      required_result_concepts: [["dissociation atrio-ventriculaire", "capture supraventriculaire"]],
+    },
+  };
+  const diagnosticOnly = { score_diagnostic: 100, type_erreur: "aucune", elements_trouves: [{ label: "Tachycardie ventriculaire" }] };
+  assert.equal(Core.evaluateMastery(diagnosticOnly, constrained, "Tachycardie ventriculaire").passed, false);
+  const dissociation = { ...diagnosticOnly, elements_trouves: [{ label: "Dissociation atrio-ventriculaire" }] };
+  assert.equal(Core.evaluateMastery(dissociation, constrained, "Tachycardie probablement ventriculaire").passed, true);
+  const capture = { ...diagnosticOnly, concepts_detectes: [{ concept: "Capture supraventriculaire", id: "CAPTURE_SUPRAVENTRICULAIRE", statut: "present" }] };
+  assert.equal(Core.evaluateMastery(capture, constrained, "Tachycardie d’allure ventriculaire").passed, true);
+  const deniedCapture = { ...diagnosticOnly, concepts_detectes: [{ concept: "Capture supraventriculaire", id: "CAPTURE_SUPRAVENTRICULAIRE", statut: "absent" }] };
+  assert.equal(Core.evaluateMastery(deniedCapture, constrained, "Pas de capture visible").passed, false);
+  const negated = { ...diagnosticOnly, elements_trouves: [{ label: "Dissociation AV non visible" }] };
+  assert.equal(Core.evaluateMastery(negated, constrained, "TV").passed, false);
+})();
+
 (function testRemediationAddsOneCaseOnly() {
   const failed = Core.markMastery(Core.initialState(config.id), { passed: false, diagnosticScore: 40 });
   const state = Core.unlockRemediation(failed);

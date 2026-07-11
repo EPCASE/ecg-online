@@ -95,15 +95,114 @@
     return unsafeTypes.includes(String((result && result.type_erreur) || ""));
   }
 
-  function evaluateMastery(result, config) {
+  function normalizeAnswer(value) {
+    return String(value || "")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, " ")
+      .trim();
+  }
+
+  function patternTokens(value) {
+    return String(value || "")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+      .replace(/[^a-z0-9*]+/g, " ")
+      .trim()
+      .split(" ")
+      .filter(Boolean);
+  }
+
+  function tokenMatches(word, pattern) {
+    if (pattern.endsWith("*")) return word.startsWith(pattern.slice(0, -1));
+    return word === pattern;
+  }
+
+  function occurrenceIsNegated(words, start, end) {
+    const before = words.slice(Math.max(0, start - 3), start);
+    const after = words.slice(end, Math.min(words.length, end + 3));
+    const precedingNegations = new Set([
+      "aucun", "aucune", "absence", "exclu", "exclue", "exclure",
+      "elimine", "eliminee", "ni", "non", "pas", "sans",
+    ]);
+    if (before.some((word) => precedingNegations.has(word))) return true;
+    if (after.some((word) => /^(absen|dout|ecart|elimin|exclu|improbabl|rejet)/.test(word))) return true;
+    return after[0] === "non" && /^(certain|confirm|observ|present|retrouv|reten|visible)/.test(after[1] || "");
+  }
+
+  function answerTermMatches(answer, term) {
+    const words = normalizeAnswer(answer).split(" ").filter(Boolean);
+    const expected = patternTokens(term);
+    if (!words.length || !expected.length) return false;
+    for (let start = 0; start <= words.length - expected.length; start += 1) {
+      const matches = expected.every((pattern, offset) => tokenMatches(words[start + offset], pattern));
+      if (matches && !occurrenceIsNegated(words, start, start + expected.length)) return true;
+    }
+    return false;
+  }
+
+  function answerAlternativeMatches(answer, alternative) {
+    if (Array.isArray(alternative)) {
+      return alternative.length > 0 && alternative.every((term) => answerTermMatches(answer, term));
+    }
+    return answerTermMatches(answer, alternative);
+  }
+
+  function requiredAnswerConceptsMatched(answer, config) {
+    const concepts = config && config.mastery && config.mastery.required_answer_concepts;
+    if (!Array.isArray(concepts) || concepts.length === 0) return true;
+    return concepts.every((alternatives) => (
+      Array.isArray(alternatives)
+      && alternatives.length > 0
+      && alternatives.some((alternative) => answerAlternativeMatches(answer, alternative))
+    ));
+  }
+
+  function resultConceptTexts(result) {
+    const found = Array.isArray(result && result.elements_trouves) ? result.elements_trouves : [];
+    const detected = Array.isArray(result && result.concepts_detectes) ? result.concepts_detectes : [];
+    const affirmed = detected.filter((item) => String((item && item.statut) || "present") === "present");
+    return [
+      ...found.map((item) => item && item.label),
+      ...affirmed.flatMap((item) => [
+        item && item.label,
+        item && item.concept,
+        item && item.id,
+        item && item.terme,
+      ]),
+    ].filter((value) => typeof value === "string" && value.trim());
+  }
+
+  function requiredResultConceptsMatched(result, config) {
+    const concepts = config && config.mastery && config.mastery.required_result_concepts;
+    if (!Array.isArray(concepts) || concepts.length === 0) return true;
+    const texts = resultConceptTexts(result);
+    return concepts.every((alternatives) => (
+      Array.isArray(alternatives)
+      && alternatives.length > 0
+      && alternatives.some((alternative) => (
+        texts.some((value) => answerAlternativeMatches(value, alternative))
+      ))
+    ));
+  }
+
+  function evaluateMastery(result, config, answer) {
     const threshold = Number((config.mastery && config.mastery.diagnostic_threshold) || 75);
     const score = diagnosticScore(result);
     const unsafe = hasUnsafeError(result, config);
+    const requiredAnswerMatched = requiredAnswerConceptsMatched(answer, config);
+    const requiredResultMatched = requiredResultConceptsMatched(result, config);
+    const requiredCriteriaMatched = requiredAnswerMatched && requiredResultMatched;
     return {
-      passed: score >= threshold && !unsafe,
+      passed: score >= threshold && !unsafe && requiredCriteriaMatched,
       diagnosticScore: score,
       threshold,
       unsafe,
+      requiredAnswerMatched,
+      requiredResultMatched,
+      requiredCriteriaMatched,
     };
   }
 
@@ -218,6 +317,12 @@
     selectCatalogEntry,
     diagnosticScore,
     hasUnsafeError,
+    normalizeAnswer,
+    patternTokens,
+    answerTermMatches,
+    requiredAnswerConceptsMatched,
+    resultConceptTexts,
+    requiredResultConceptsMatched,
     evaluateMastery,
     canValidateMastery,
     lockPendingAttempt,
