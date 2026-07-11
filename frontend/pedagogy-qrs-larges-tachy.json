@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "id": "wide-complex-tachycardias",
+  "title": "Première orientation des tachycardies à QRS larges",
+  "subtitle": "Sécuriser le premier tri, construire le différentiel et reconnaître les signes qui permettent d’affirmer une tachycardie ventriculaire.",
+  "estimated_minutes": 16,
+  "learning_objectives": [
+    "Commencer par la régularité et le caractère monomorphe ou polymorphe des QRS.",
+    "Distinguer tachycardie ventriculaire, tachycardie supraventriculaire avec bloc de branche et préexcitation.",
+    "Utiliser l’activité atriale, le terrain clinique et les tracés complémentaires sans surinterpréter le premier ECG.",
+    "Reconnaître une dissociation atrioventriculaire et un complexe de capture comme signes certains de tachycardie ventriculaire."
+  ],
+  "mastery": {
+    "diagnostic_threshold": 75,
+    "unsafe_error_types": ["etudiant"],
+    "required_result_concepts": [
+      [
+        "dissociation atrioventriculaire",
+        "dissociation auriculo ventriculaire",
+        "dissociation AV",
+        "dissociation atrio-ventriculaire",
+        "capture supraventriculaire",
+        "complexe de capture",
+        "capture"
+      ]
+    ]
+  },
+  "status_labels": {
+    "mastered": "Orientation sécurisée acquise",
+    "consolidate": "Tachycardies larges à consolider"
+  },
+  "completion": {
+    "status_passed": "Orientation sécurisée acquise",
+    "status_not_passed": "Tachycardies larges à consolider",
+    "passed": "Tu as reconnu sans aide une tachycardie ventriculaire et l’as justifiée par au moins un signe électrocardiographique certain. Cette validation porte sur la première orientation sécurisée ; elle ne signifie pas que tous les mécanismes de tachycardie à QRS larges sont maîtrisés.",
+    "not_passed": "Repars du tri régulier ou irrégulier, puis monomorphe ou polymorphe. Dans une tachycardie régulière monomorphe, recherche systématiquement l’activité atriale, une dissociation, une capture ou une fusion et intègre le terrain sans retarder une prise en charge prudente."
+  },
+  "cases": [
+    {
+      "step_id": "tachy-qrs-larges-tri-irregularite",
+      "num": 49,
+      "phase": "foundation",
+      "step_title": "Le premier embranchement",
+      "objective": "Décrire la régularité, la morphologie des QRS et l’organisation atriale avant de construire le différentiel.",
+      "teaching_point": "Une tachycardie très irrégulière à QRS larges mais monomorphes, avec activité atriale anarchique, correspond ici à une fibrillation atriale associée à un bloc de branche droit.",
+      "allow_hints": true,
+      "hints": [
+        "Compare plusieurs intervalles RR éloignés, puis décide si les QRS larges gardent la même morphologie d’un battement à l’autre.",
+        "Cherche une activité atriale organisée et examine si la morphologie des QRS évoque un trouble de conduction fixe plutôt qu’une activation ventriculaire changeante.",
+        "Une irrégularité complète avec activité atriale anarchique et QRS monomorphes de type bloc de branche droit oriente vers une fibrillation atriale avec bloc de branche."
+      ]
+    },
+    {
+      "step_id": "tachy-qrs-larges-activite-atriale-revelee",
+      "num": 45,
+      "phase": "guided",
+      "step_title": "Interpréter un ralentissement ventriculaire",
+      "objective": "Construire le différentiel d’une tachycardie régulière monomorphe et analyser ce qui persiste lorsque la conduction nodale ralentit.",
+      "teaching_point": "Le ralentissement nodal révèle ici une activité atriale régulière de flutter tandis que la morphologie des QRS reste celle d’un bloc de branche droit associé à un hémibloc antérieur gauche.",
+      "formative_only": true,
+      "allow_hints": true,
+      "hints": [
+        "Décris séparément le début du tracé et la période qui suit la manœuvre : que devient la fréquence ventriculaire et que devient la largeur des QRS ?",
+        "Si les ventricules ralentissent alors qu’une activité atriale rapide et organisée continue, le circuit principal se situe-t-il dans les ventricules ou en amont du nœud AV ?",
+        "La manœuvre démasque une activité de flutter ; les QRS restent larges car un trouble conductif intraventriculaire préexiste. Le premier temps isolé autorisait encore le différentiel avec une TV."
+      ]
+    },
+    {
+      "step_id": "tachy-qrs-larges-probabilite-clinique",
+      "num": 47,
+      "phase": "contrast",
+      "step_title": "Hiérarchiser les hypothèses",
+      "objective": "Combiner morphologie de la tachycardie, activité atriale identifiable et terrain clinique pour retenir le diagnostic le plus probable.",
+      "teaching_point": "Chez un patient ayant un ancien infarctus et une mauvaise tolérance, une tachycardie régulière monomorphe à QRS larges est une tachycardie ventriculaire très probable et doit être prise en charge comme telle.",
+      "allow_hints": true,
+      "hints": [
+        "Précise régularité, largeur et stabilité de la morphologie des QRS, puis recherche une activité atriale indépendante ou un complexe différent des autres.",
+        "En l’absence de signe certain visible, quelle probabilité apporte une séquelle d’infarctus ancienne associée à une lipothymie ?",
+        "Une tachycardie régulière monomorphe à QRS larges sur cardiopathie ischémique avec mauvaise tolérance rend la tachycardie ventriculaire très probable ; elle doit être considérée comme telle jusqu’à preuve du contraire."
+      ]
+    },
+    {
+      "step_id": "tachy-qrs-larges-preexcitation",
+      "num": 46,
+      "phase": "contrast",
+      "step_title": "Identifier l’information manquante",
+      "objective": "Décrire sans surconclure une tachycardie régulière monomorphe et déterminer quelles informations post-réduction pourraient préciser le mécanisme.",
+      "teaching_point": "Une préexcitation en rythme sinusal et la concordance morphologique avec la tachycardie soutiennent ici une tachycardie antidromique utilisant une voie accessoire, diagnostic différentiel rare d’une TV.",
+      "formative_only": true,
+      "allow_hints": true,
+      "hints": [
+        "Sur le premier tracé, limite-toi d’abord à ce qui est certain : régularité, largeur, monomorphisme et relation atrioventriculaire éventuellement visible.",
+        "Après réduction, quels signes — durée du PR, début du QRS et onde delta — montreraient qu’une voie accessoire peut activer les ventricules ?",
+        "Le premier tracé reste compatible avec TV ou tachycardie antidromique ; la préexcitation visible après réduction et une morphologie proche soutiennent l’utilisation antérograde d’une voie accessoire."
+      ]
+    },
+    {
+      "step_id": "tachy-qrs-larges-test-signes-certains",
+      "num": 48,
+      "phase": "mastery",
+      "step_title": "Test autonome : rechercher les signes décisifs",
+      "objective": "Analyser la relation entre activités atriale et ventriculaire, examiner les complexes qui diffèrent de la morphologie dominante, puis conclure sans aide.",
+      "teaching_point": "Une activité atriale sinusale plus lente et indépendante des QRS démontre une dissociation atrioventriculaire ; le complexe fin prématuré suivant une onde P est une capture. Ensemble, ces signes certifient une tachycardie ventriculaire.",
+      "allow_hints": false,
+      "hints": []
+    }
+  ],
+  "remediation": {
+    "step_id": "tachy-qrs-larges-remediation-salve-courte",
+    "num": 35,
+    "phase": "remediation",
+    "step_title": "Consolidation : reconnaître une séquence ventriculaire courte",
+    "objective": "Décrire le rythme de base, la séquence de QRS larges et sa durée avant de nommer l’arythmie.",
+    "teaching_point": "Une salve monomorphe de QRS larges durant moins de 30 secondes et se réduisant spontanément correspond à une tachycardie ventriculaire non soutenue.",
+    "offer_title": "Revenir à une forme plus brève",
+    "offer_text": "Cette salve courte rend la séquence ventriculaire plus facile à isoler. Elle consolide la reconnaissance d’une TV sans remplacer le test autonome sur dissociation et capture.",
+    "allow_hints": true,
+    "hints": [
+      "Repère le rythme de base, puis isole la séquence de complexes prématurés et compare leur largeur et leur morphologie.",
+      "Compte les complexes de la salve, vérifie son monomorphisme et observe si elle s’interrompt spontanément avant 30 secondes.",
+      "Une salve monomorphe de QRS larges, spontanément résolutive et durant moins de 30 secondes, correspond à une tachycardie ventriculaire non soutenue."
+    ]
+  }
+}

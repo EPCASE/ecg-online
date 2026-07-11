@@ -60,6 +60,37 @@ The `regular-narrow-tachycardias` sequence is:
 
 The final status means “first autonomous orientation acquired”, not autonomous mastery of AVNRT versus AVRT. The primary tracings of cases 42–44 do not justify a unique mechanism, and their QCM intentionally accepts B/C/D.
 
+## Wide QRS in sinus rhythm pathway content
+
+The `wide-qrs-sinus` sequence is:
+
+- 8: normal ventricular activation — foundation;
+- 9: complete right bundle branch block — guided morphology;
+- 13: complete left bundle branch block — contrast;
+- 10: bifascicular block — morphology plus frontal axis, without overcalling trifascicular disease;
+- 14: autonomous mastery of alternating bundle branch block; the single primary tracing contains the alternating morphologies;
+- 15: optional guided remediation for nonspecific intraventricular conduction delay.
+
+The final status means recognition of the main intraventricular conduction morphologies, not mastery of every cause of a wide QRS.
+The header embedded in `cas_14.png` contains an unrelated copied context; keep the configured top crop active in the pathway so only the ECG portion is shown before and during enlargement.
+Because the ontology currently maps alternating bundle branch block to a generic bundle-branch concept, keep the explicit affirmative-answer guard for the case 14 mastery step.
+
+## Wide-complex tachycardia pathway content
+
+The `wide-complex-tachycardias` sequence is:
+
+- 49: irregular wide-complex tachycardia with AF and fixed right bundle branch block — foundation;
+- 45: organized atrial activity revealed by nodal slowing — formative only;
+- 47: ventricular tachycardia highly probable on ischemic substrate — probability and clinical context;
+- 46: antidromic tachycardia on an accessory pathway — formative only because the primary tracing is not unique;
+- 48: autonomous mastery through AV dissociation and a capture complex, which establish ventricular tachycardia;
+- 35: optional guided remediation with nonsustained monomorphic ventricular tachycardia.
+
+The final status means safe first-line orientation and recognition of definite VT signs, not autonomous mastery of every wide-complex tachycardia mechanism.
+Case 48 mastery requires the structured grader output to identify either AV dissociation or a capture complex in addition to the diagnostic score threshold.
+
+For future ventricular-risk work, case 50's primary tracing shows short-coupled PVCs falling on the T wave, at high risk of ventricular fibrillation. The secondary tracings show progression to polymorphic VT and then VF; do not label the primary tracing itself as VF.
+
 ## Client-side boundary
 
 The hint lock is a pedagogical UX guard, not a security boundary: static JSON remains inspectable in developer tools. Any future blinded research protocol requiring adversarial protection must serve hints from an authenticated server-side state machine.
@@ -79,6 +110,8 @@ node tests/test_pathway_dashboard.js
 python -m json.tool frontend/pedagogy-bav.json >/dev/null
 python -m json.tool frontend/pedagogy-fa-flutter.json >/dev/null
 python -m json.tool frontend/pedagogy-qrs-fins.json >/dev/null
+python -m json.tool frontend/pedagogy-qrs-larges-sinus.json >/dev/null
+python -m json.tool frontend/pedagogy-qrs-larges-tachy.json >/dev/null
 python -m json.tool frontend/pathways.json >/dev/null
 ```
 
