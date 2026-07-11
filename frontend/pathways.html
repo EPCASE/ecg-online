@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parcours de maîtrise ECG</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/pathways.css">
+</head>
+<body>
+  <header class="catalog-topbar">
+    <a class="catalog-brand" href="/">ECG Lecture<span>Parcours de maîtrise</span></a>
+    <a class="bank-link" href="/">Explorer les 75 cas</a>
+  </header>
+
+  <main class="catalog-main">
+    <section class="catalog-hero">
+      <div>
+        <div class="hero-kicker">Apprendre par compétences</div>
+        <h1>Choisis ce que tu veux maîtriser.</h1>
+        <p>Chaque parcours protège ta première interprétation, propose des indices progressifs, puis vérifie la compétence sur un nouvel ECG sans aide.</p>
+      </div>
+      <div class="hero-principle" aria-label="Séquence pédagogique">
+        <span>1</span><strong>Observer seul</strong>
+        <i></i>
+        <span>2</span><strong>Raisonner avec des indices</strong>
+        <i></i>
+        <span>3</span><strong>Valider sans aide</strong>
+      </div>
+    </section>
+
+    <section id="catalog-summary" class="catalog-summary" aria-label="Progression globale">
+      <div><strong id="summary-mastered">0</strong><span>acquis</span></div>
+      <div><strong id="summary-active">0</strong><span>en cours</span></div>
+      <div><strong id="summary-consolidate">0</strong><span>à consolider</span></div>
+      <div><strong id="summary-total">3</strong><span>parcours</span></div>
+    </section>
+
+    <section class="catalog-section">
+      <div class="section-heading">
+        <div>
+          <span>Carte de compétences</span>
+          <h2>Trois parcours courts, une progression lisible</h2>
+        </div>
+        <p>4 à 5 ECG par parcours · environ 12 à 15 minutes</p>
+      </div>
+      <div id="pathway-grid" class="pathway-grid" aria-live="polite">
+        <div class="catalog-loading">Chargement des parcours…</div>
+      </div>
+    </section>
+
+    <section class="catalog-note">
+      <div class="note-icon">↻</div>
+      <div>
+        <strong>La répétition entre parcours est intentionnelle.</strong>
+        <p>Un même ECG peut réapparaître dans un autre raisonnement : reconnaître une FA, puis l’écarter devant une tachycardie régulière, ne mobilise pas exactement la même compétence.</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="/static/pathway-dashboard-core.js"></script>
+  <script src="/static/pathways.js"></script>
+</body>
+</html>

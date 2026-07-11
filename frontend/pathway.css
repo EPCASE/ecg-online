@@ -137,7 +137,14 @@ textarea:disabled { background: #f2f4f7; color: #475467; }
 .mastery-result { display: flex; justify-content: space-between; gap: 20px; padding: 15px 18px; border-radius: 12px; margin-bottom: 18px; }
 .mastery-result.passed { background: #eaf7ef; color: var(--success); }
 .mastery-result.not-passed { background: #fff1ed; color: var(--danger); }
+.mastery-result.remediation-complete { background: #eef3fb; color: #405577; }
 .mastery-result span { font-size: 0.82rem; }
+.teaching-point { margin: 16px 0; padding: 16px 18px; border-radius: 14px; background: #edf3ff; border: 1px solid #d5e2fa; }
+.teaching-point strong { display: block; color: #2f5da9; font-size: 13px; margin-bottom: 5px; }
+.teaching-point p { margin: 0; color: #43536d; font-size: 14px; line-height: 1.55; }
+.formative-notice { margin: 16px 0; padding: 16px 18px; border-radius: 14px; background: #fff6e8; border: 1px solid #f0dfc1; }
+.formative-notice strong { display: block; color: #8a5a13; font-size: 13px; margin-bottom: 5px; }
+.formative-notice p { margin: 0; color: #6f5b3c; font-size: 13px; line-height: 1.55; }
 .feedback-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
 .feedback-grid section { padding: 16px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface-soft); }
 .feedback-grid h3, .teacher-comment h3, .secondary-traces h3 { margin: 0 0 10px; font-size: 0.92rem; }

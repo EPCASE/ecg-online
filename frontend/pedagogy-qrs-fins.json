@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "id": "regular-narrow-tachycardias",
+  "title": "Première orientation des tachycardies à QRS fins",
+  "subtitle": "Sécuriser la première orientation : régularité, activité atriale, caractère sinusal et hypothèses de réentrée.",
+  "estimated_minutes": 15,
+  "learning_objectives": [
+    "Trier une tachycardie selon la régularité et la largeur des QRS.",
+    "Reconnaître une commande sinusale 1/1 et rechercher une cause réactionnelle.",
+    "Construire sans surinterpréter le différentiel flutter, AVNRT et AVRT.",
+    "Comprendre comment une manœuvre vagale, un bloqueur nodal ou le tracé sinusal aident à préciser le mécanisme."
+  ],
+  "mastery": {
+    "diagnostic_threshold": 75,
+    "unsafe_error_types": ["etudiant"]
+  },
+  "status_labels": {
+    "mastered": "Première orientation acquise",
+    "consolidate": "Orientation à consolider"
+  },
+  "completion": {
+    "status_passed": "Première orientation acquise",
+    "status_not_passed": "Orientation à consolider",
+    "passed": "Tu maîtrises la première orientation d’une tachycardie à QRS fins et sais reconnaître une tachycardie sinusale sans la confondre avec une réentrée. La distinction AVNRT–AVRT nécessite encore des cas dédiés et des informations complémentaires.",
+    "not_passed": "Repars de l’algorithme : régulier ou irrégulier, QRS fins ou larges, puis activité atriale avant, dans ou après le QRS. Une tachycardie sinusale conserve une onde P sinusale avant chaque QRS et doit faire rechercher sa cause."
+  },
+  "cases": [
+    {
+      "step_id": "qrs-fins-tri-irregularite",
+      "num": 37,
+      "phase": "foundation",
+      "step_title": "Le premier embranchement",
+      "objective": "Utiliser la régularité et la largeur des QRS pour orienter rapidement le champ diagnostique.",
+      "teaching_point": "Une tachycardie irrégulièrement irrégulière à QRS fins avec activité atriale anarchique est une FA et sort de l’algorithme des tachycardies régulières.",
+      "allow_hints": true,
+      "hints": [
+        "Avant de chercher le mécanisme, compare plusieurs intervalles RR et mesure visuellement la largeur des QRS.",
+        "Des QRS fins rendent une origine ventriculaire beaucoup moins probable ; la régularité détermine ensuite la branche principale du raisonnement.",
+        "Ici, l’irrégularité complète et l’absence d’activité atriale organisée orientent vers une fibrillation atriale, pas vers une tachycardie régulière par réentrée."
+      ]
+    },
+    {
+      "step_id": "qrs-fins-flutter-masque",
+      "num": 42,
+      "phase": "guided",
+      "step_title": "Tachycardie régulière : ne pas forcer un mécanisme",
+      "objective": "Établir les hypothèses compatibles avec le premier tracé et identifier l’information qui permettrait de les départager.",
+      "teaching_point": "Devant une tachycardie régulière à QRS fins, flutter et tachycardies jonctionnelles restent possibles ; ici, le bloc AV transitoire démasque un flutter commun 2/1.",
+      "formative_only": true,
+      "allow_hints": true,
+      "hints": [
+        "Quels diagnostics sont rendus très improbables par des QRS fins et une régularité parfaite ?",
+        "Recherche une activité atriale organisée entre les QRS, surtout dans les dérivations inférieures ; si elle reste masquée, quelle manœuvre pourrait ralentir la conduction AV ?",
+        "Le premier tracé autorise flutter ou réentrée jonctionnelle ; un bloc AV transitoire qui révèle des ondes F sans arrêter l’activité atriale tranche pour un flutter."
+      ]
+    },
+    {
+      "step_id": "qrs-fins-voie-accessoire",
+      "num": 43,
+      "phase": "contrast",
+      "step_title": "Ce qui manque au premier tracé",
+      "objective": "Décrire la tachycardie sans surconclure, puis comprendre la valeur d’un arrêt brutal et du tracé sinusal.",
+      "teaching_point": "L’arrêt brutal par manœuvre vagale puis la préexcitation en rythme sinusal orientent vers une AVRT orthodromique sur voie accessoire dans un syndrome de Wolff-Parkinson-White.",
+      "formative_only": true,
+      "allow_hints": true,
+      "hints": [
+        "Sur le tracé initial, précise fréquence, régularité et largeur des QRS avant de chercher une onde atriale discrète.",
+        "Une activité atriale possiblement rétrograde et une fin brutale sous manœuvre vagale suggèrent une tachycardie dépendante du nœud AV, sans encore distinguer toutes les réentrées.",
+        "Après l’arrêt, un PR court avec onde delta et QRS élargi démontre une préexcitation et oriente vers une réentrée orthodromique utilisant une voie accessoire."
+      ]
+    },
+    {
+      "step_id": "qrs-fins-reentree-intranodale",
+      "num": 44,
+      "phase": "contrast",
+      "step_title": "Analyser la relation atrioventriculaire",
+      "objective": "Situer l’activité atriale par rapport aux QRS et interpréter prudemment les données obtenues après l’arrêt.",
+      "teaching_point": "Une activité atriale rétrograde très proche du QRS, négative en inférieur et positive en V1/aVR, avec arrêt sous bloqueur nodal, favorise une AVNRT dans ce cas pédagogique.",
+      "formative_only": true,
+      "allow_hints": true,
+      "hints": [
+        "Cherche une petite déformation reproductible à la fin des QRS, notamment dans les dérivations inférieures et en V1.",
+        "Une onde atriale rétrograde très proche du QRS et un arrêt sous bloqueur nodal orientent vers une réentrée dépendante du nœud AV.",
+        "Dans ce cas, l’activité rétrograde à intervalle VA court et l’absence de préexcitation manifeste après l’arrêt favorisent une réentrée intranodale ; le tracé initial seul ne suffit pas toujours à certifier le mécanisme."
+      ]
+    },
+    {
+      "step_id": "qrs-fins-test-commande-sinusale",
+      "num": 40,
+      "phase": "mastery",
+      "step_title": "Test de maîtrise : première orientation",
+      "objective": "Décrire la régularité, les QRS et la relation entre activité atriale et ventriculaire, puis conclure sans aide.",
+      "teaching_point": "Une onde P sinusale avant chaque QRS avec conduction 1/1 dans un contexte fébrile et anémique indique une tachycardie sinusale réactionnelle.",
+      "allow_hints": false,
+      "hints": []
+    }
+  ],
+  "remediation": {
+    "step_id": "qrs-fins-remediation-commande-sinusale",
+    "num": 39,
+    "phase": "remediation",
+    "step_title": "Consolidation : retrouver le signal atrial",
+    "objective": "Comparer la morphologie des ondes atriales et leur relation avec les QRS malgré une variation de fréquence.",
+    "teaching_point": "Des ondes P sinusales de même morphologie avant chaque QRS confirment la commande sinusale ; ici, la variation respiratoire est physiologique.",
+    "offer_title": "Revenir à l’activité atriale",
+    "offer_text": "Ce cas ralentit le rythme et fait varier la fréquence pour t’aider à reconnaître une onde P sinusale constante avant de revenir aux tachycardies.",
+    "allow_hints": true,
+    "hints": [
+      "Cherche une onde P avant chaque QRS et compare sa morphologie d’un cycle à l’autre.",
+      "Observe si la variation de fréquence est progressive et périodique plutôt que brutale.",
+      "Des ondes P sinusales constantes avec accélérations et ralentissements respiratoires indiquent une arythmie sinusale physiologique."
+    ]
+  }
+}

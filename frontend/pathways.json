@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "default_id": "bav-foundations",
+  "pathways": [
+    {
+      "id": "bav-foundations",
+      "config_url": "/static/pedagogy-bav.json",
+      "icon": "AV",
+      "eyebrow": "Conduction",
+      "level": "Fondamental",
+      "accent": "blue"
+    },
+    {
+      "id": "fa-flutter",
+      "config_url": "/static/pedagogy-fa-flutter.json",
+      "icon": "RR",
+      "eyebrow": "Rythmes atriaux",
+      "level": "Fondamental",
+      "accent": "violet"
+    },
+    {
+      "id": "regular-narrow-tachycardias",
+      "config_url": "/static/pedagogy-qrs-fins.json",
+      "icon": "150",
+      "eyebrow": "Tachycardies",
+      "level": "Intermédiaire",
+      "accent": "coral"
+    }
+  ]
+}
