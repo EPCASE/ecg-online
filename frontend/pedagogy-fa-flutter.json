@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "id": "fa-flutter",
+  "title": "FA et flutter typique : lire l’activité atriale",
+  "subtitle": "Distinguer une activité atriale anarchique d’une activité organisée, même lorsque la fréquence ventriculaire brouille les pistes.",
+  "estimated_minutes": 12,
+  "learning_objectives": [
+    "Commencer par la régularité des intervalles RR sans conclure sur ce seul critère.",
+    "Rechercher une activité atriale organisée dans les dérivations inférieures et en V1.",
+    "Distinguer trémulation anarchique de FA et ondes F régulières de flutter.",
+    "Comprendre que le degré de conduction atrioventriculaire modifie la fréquence ventriculaire du flutter."
+  ],
+  "mastery": {
+    "diagnostic_threshold": 75,
+    "unsafe_error_types": ["etudiant"]
+  },
+  "status_labels": {
+    "mastered": "Flutter typique acquis",
+    "consolidate": "Lecture atriale à consolider"
+  },
+  "completion": {
+    "status_passed": "Flutter typique acquis",
+    "status_not_passed": "Lecture atriale à consolider",
+    "passed": "Tu sais distinguer une activité atriale anarchique d’une activité organisée et reconnaître un flutter typique sans aide. Il faudra réactiver cette discrimination sur des tracés rapides et atypiques.",
+    "not_passed": "Reprends d’abord la régularité des RR, puis demande-toi si l’activité atriale est répétitive et monomorphe ou réellement anarchique. Ne laisse pas la seule fréquence ventriculaire décider du diagnostic."
+  },
+  "cases": [
+    {
+      "step_id": "fa-flutter-irregularite-complete",
+      "num": 37,
+      "phase": "foundation",
+      "step_title": "Rythme, régularité et ligne de base",
+      "objective": "Caractériser les intervalles RR et rechercher une activité atriale reproductible avant de conclure.",
+      "teaching_point": "Des RR irrégulièrement irréguliers, sans onde P individualisable et avec une ligne de base anarchique, indiquent une fibrillation atriale.",
+      "allow_hints": true,
+      "hints": [
+        "Compare plusieurs intervalles RR éloignés : retrouves-tu une périodicité ou une irrégularité sans motif répétitif ?",
+        "Cherche une onde atriale de morphologie constante avant chaque QRS, puis observe si la ligne de base est organisée ou chaotique.",
+        "L’association d’une irrégularité complète, de l’absence d’ondes P individualisables et d’une activité atriale anarchique est caractéristique d’une fibrillation atriale."
+      ]
+    },
+    {
+      "step_id": "fa-flutter-irregularite-sinusale",
+      "num": 39,
+      "phase": "contrast",
+      "step_title": "Caractériser une irrégularité progressive",
+      "objective": "Identifier le signal atrial avant les QRS et décrire la manière dont la fréquence varie au cours du tracé.",
+      "teaching_point": "Des ondes P sinusales constantes avec accélérations et ralentissements progressifs chez un adolescent indiquent une arythmie sinusale respiratoire, pas une FA.",
+      "allow_hints": true,
+      "hints": [
+        "Avant de qualifier l’irrégularité, vérifie si chaque QRS est précédé d’une onde P de même morphologie.",
+        "Les intervalles PP varient-ils brutalement et sans ordre, ou progressivement selon un cycle d’accélération puis de ralentissement ?",
+        "Des ondes P sinusales normales avec une variation cyclique progressive chez un adolescent orientent vers une arythmie sinusale respiratoire physiologique."
+      ]
+    },
+    {
+      "step_id": "fa-flutter-tachycardie-reguliere",
+      "num": 42,
+      "phase": "guided",
+      "step_title": "Tachycardie régulière à QRS fins",
+      "objective": "Construire le différentiel d’une tachycardie régulière à QRS fins et rechercher une activité atriale organisée.",
+      "teaching_point": "Une tachycardie régulière à QRS fins vers 150–170/min doit faire rechercher un flutter 2/1 ; un bloc AV transitoire peut démasquer les ondes F sans interrompre le circuit atrial.",
+      "formative_only": true,
+      "allow_hints": true,
+      "hints": [
+        "Commence par deux variables robustes : la régularité des RR et la largeur des QRS. Quels diagnostics deviennent très improbables ?",
+        "Inspecte DII, DIII, aVF et V1 entre les QRS. La fréquence atriale pourrait-elle être environ deux fois la fréquence ventriculaire ?",
+        "À 150–170/min, une activité atriale régulière en dents de scie peut être masquée par une conduction 2/1 ; ralentir transitoirement le nœud AV la démasque sans arrêter le flutter."
+      ]
+    },
+    {
+      "step_id": "fa-flutter-test-activite-organisee",
+      "num": 41,
+      "phase": "mastery",
+      "step_title": "Test de maîtrise",
+      "objective": "Décrire l’activité atriale, sa morphologie, sa fréquence et son rapport avec les QRS, puis conclure sans aide.",
+      "teaching_point": "Une activité atriale régulière autour de 270/min, en dents de scie dans les dérivations inférieures et conduite principalement 4/1, correspond à un flutter atrial commun antihoraire.",
+      "hide_secondary_images": true,
+      "allow_hints": false,
+      "hints": []
+    }
+  ],
+  "remediation": {
+    "step_id": "fa-flutter-remediation-reponse-lente",
+    "num": 38,
+    "phase": "remediation",
+    "step_title": "Consolidation : dissocier rythme atrial et fréquence ventriculaire",
+    "objective": "Réexaminer l’organisation atriale lorsque la réponse ventriculaire est lente et très irrégulière.",
+    "teaching_point": "Une activité atriale anarchique sans onde P avec réponse ventriculaire lente et irrégulière correspond à une fibrillation atriale lente.",
+    "offer_title": "Revenir au critère vraiment discriminant",
+    "offer_text": "Ce cas change fortement la fréquence ventriculaire pour vérifier que ton diagnostic repose sur l’organisation atriale, pas sur la vitesse du cœur.",
+    "allow_hints": true,
+    "hints": [
+      "Ne laisse pas la bradycardie imposer le diagnostic : commence par décrire la régularité ventriculaire.",
+      "Peux-tu mesurer des intervalles PR ou identifier des ondes P organisées et répétitives ?",
+      "Une activité atriale rapide et anarchique avec des RR lents mais très irréguliers indique une fibrillation atriale à réponse ventriculaire lente."
+    ]
+  }
+}
