@@ -19,8 +19,28 @@ function loadConfig(entry) {
   assert.equal(catalog.pathways.length, 5);
   assert.equal(catalog.default_id, "bav-foundations");
   assert.equal(new Set(catalog.pathways.map((item) => item.id)).size, catalog.pathways.length);
+  assert.deepEqual(catalog.curriculum_levels.map((item) => item.id), [1, 2, 3]);
+  assert.equal(new Set(catalog.curriculum_levels.map((item) => item.id)).size, 3);
+
+  const pathwayIds = new Set(catalog.pathways.map((item) => item.id));
+  const catalogById = new Map(catalog.pathways.map((item) => [item.id, item]));
+  const levelIds = new Set(catalog.curriculum_levels.map((item) => item.id));
+  const groupedCounts = catalog.pathways.reduce((counts, entry) => {
+    counts.set(entry.curriculum_level, (counts.get(entry.curriculum_level) || 0) + 1);
+    return counts;
+  }, new Map());
+  assert.deepEqual([1, 2, 3].map((level) => groupedCounts.get(level) || 0), [2, 2, 1]);
 
   for (const entry of catalog.pathways) {
+    assert.ok(levelIds.has(entry.curriculum_level));
+    assert.ok(Array.isArray(entry.recommended_after));
+    assert.equal(new Set(entry.recommended_after).size, entry.recommended_after.length);
+    assert.ok(typeof entry.competency_label === "string" && entry.competency_label.trim());
+    for (const prerequisiteId of entry.recommended_after) {
+      assert.ok(pathwayIds.has(prerequisiteId));
+      assert.notEqual(prerequisiteId, entry.id);
+      assert.ok(catalogById.get(prerequisiteId).curriculum_level < entry.curriculum_level);
+    }
     const config = loadConfig(entry);
     assert.equal(config.id, entry.id);
     assert.equal(config.schema_version, 1);
@@ -63,6 +83,18 @@ function loadConfig(entry) {
       assert.ok(!config.cases.some((item) => item.step_id === config.remediation.step_id));
     }
   }
+
+  const visiting = new Set();
+  const visited = new Set();
+  function visit(pathwayId) {
+    if (visiting.has(pathwayId)) assert.fail(`Cycle de recommandation détecté : ${pathwayId}`);
+    if (visited.has(pathwayId)) return;
+    visiting.add(pathwayId);
+    catalogById.get(pathwayId).recommended_after.forEach(visit);
+    visiting.delete(pathwayId);
+    visited.add(pathwayId);
+  }
+  catalog.pathways.forEach((entry) => visit(entry.id));
 })();
 
 (function testStatuses() {
@@ -75,6 +107,7 @@ function loadConfig(entry) {
   const failed = { ...started, mastery: { passed: false } };
   assert.equal(Dashboard.pathwayStatus(failed, config).code, "consolidate");
   assert.equal(Dashboard.pathwayStatus(failed, config).cta, "Faire la consolidation");
+  assert.equal(Dashboard.consolidationNeedsAction(failed, config), true);
 
   const remediationPending = { ...failed, remediationActive: true };
   assert.equal(Dashboard.pathwayStatus(remediationPending, config).cta, "Reprendre la consolidation");
@@ -84,6 +117,8 @@ function loadConfig(entry) {
     attempts: { [config.remediation.step_id]: [{}] },
   };
   assert.equal(Dashboard.pathwayStatus(remediationDone, config).cta, "Voir le bilan");
+  assert.equal(Dashboard.remediationCompleted(remediationDone, config), true);
+  assert.equal(Dashboard.consolidationNeedsAction(remediationDone, config), false);
 
   const mastered = { ...started, completedAt: "2026-01-02", mastery: { passed: true } };
   assert.equal(Dashboard.pathwayStatus(mastered, config).code, "mastered");
@@ -159,21 +194,126 @@ function loadConfig(entry) {
   assert.equal(Core.evaluateMastery(withCapture, wideTachy, "Tachycardie d’allure ventriculaire avec un complexe atypique").passed, true);
 })();
 
-(function testProgressAndRecommendation() {
-  const configs = catalog.pathways.map(loadConfig);
-  const state = {
-    pathwayId: configs[0].id,
-    startedAt: "2026-01-01",
-    attempts: { [String(configs[0].cases[0].num)]: [{}] },
-  };
-  assert.equal(Dashboard.pathwayProgress(state, configs[0]).done, 1);
+(function testProgressRecommendationAndProfile() {
+  const configs = new Map(catalog.pathways.map((entry) => [entry.id, loadConfig(entry)]));
+  const ids = catalog.pathways.map((entry) => entry.id);
+  const started = (id) => ({ pathwayId: id, startedAt: "2026-01-01", attempts: {} });
+  const consolidate = (id) => ({ ...started(id), mastery: { passed: false } });
+  const mastered = (id) => ({ ...started(id), mastery: { passed: true } });
+  const makeItems = (states = {}) => catalog.pathways.map((entry) => ({
+    catalog: entry,
+    config: configs.get(entry.id),
+    state: Object.prototype.hasOwnProperty.call(states, entry.id) ? states[entry.id] : null,
+  }));
 
-  const items = configs.map((config, index) => ({ config, state: index === 0 ? state : null }));
+  assert.equal(Dashboard.STORAGE_PREFIX, "ecg_pathway_v1_");
+  const historicalBav = {
+    ...started(ids[0]),
+    attempts: { [String(configs.get(ids[0]).cases[0].num)]: [{}] },
+  };
+  assert.equal(Dashboard.pathwayProgress(historicalBav, configs.get(ids[0])).done, 1);
+
+  let items = makeItems();
+  assert.deepEqual(Dashboard.recommendation(items), { index: 0, reason: "fundamental" });
   assert.equal(Dashboard.recommendedIndex(items), 0);
-  const summary = Dashboard.summarize(items);
+
+  items = makeItems({
+    [ids[0]]: consolidate(ids[0]),
+    [ids[3]]: started(ids[3]),
+  });
+  assert.deepEqual(Dashboard.recommendation(items), { index: 3, reason: "resume" });
+
+  items = makeItems({ [ids[4]]: consolidate(ids[4]) });
+  assert.deepEqual(Dashboard.recommendation(items), { index: 4, reason: "consolidate" });
+
+  const completedRemediation = {
+    ...consolidate(ids[0]),
+    remediationActive: true,
+    attempts: { [configs.get(ids[0]).remediation.step_id]: [{}] },
+  };
+  items = makeItems({ [ids[0]]: completedRemediation });
+  assert.deepEqual(Dashboard.recommendation(items), { index: 1, reason: "fundamental" });
+
+  items = makeItems({
+    [ids[0]]: mastered(ids[0]),
+    [ids[1]]: mastered(ids[1]),
+  });
+  assert.deepEqual(Dashboard.recommendation(items), { index: 2, reason: "recommendations-met" });
+
+  items = makeItems({
+    [ids[0]]: mastered(ids[0]),
+    [ids[1]]: mastered(ids[1]),
+    [ids[2]]: mastered(ids[2]),
+  });
+  assert.deepEqual(Dashboard.recommendation(items), { index: 3, reason: "recommendations-met" });
+  const wideTachyReadiness = Dashboard.recommendedAfterState(items[4], items);
+  assert.equal(wideTachyReadiness.met, false);
+  assert.deepEqual(wideTachyReadiness.missing, [ids[3]]);
+
+  items = makeItems({
+    [ids[0]]: mastered(ids[0]),
+    [ids[1]]: mastered(ids[1]),
+    [ids[2]]: mastered(ids[2]),
+    [ids[3]]: mastered(ids[3]),
+  });
+  assert.deepEqual(Dashboard.recommendation(items), { index: 4, reason: "recommendations-met" });
+
+  const openChoiceItem = makeItems()[4];
+  assert.deepEqual(Dashboard.recommendation([openChoiceItem]), { index: 0, reason: "open-choice" });
+
+  const allMasteredStates = Object.fromEntries(ids.map((id) => [id, mastered(id)]));
+  items = makeItems(allMasteredStates);
+  assert.deepEqual(Dashboard.recommendation(items), { index: 4, reason: "review" });
+  assert.deepEqual(Dashboard.recommendation([]), { index: -1, reason: "none" });
+
+  const emptyProfile = Dashboard.competencyProfile(makeItems());
+  assert.equal(emptyProfile.mastered, 0);
+  assert.equal(emptyProfile.total, 5);
+  assert.equal(emptyProfile.percent, 0);
+  assert.ok(emptyProfile.competencies.every((item) => item.statusLabel === "Non évaluée"));
+
+  const mixedItems = makeItems({
+    [ids[0]]: mastered(ids[0]),
+    [ids[1]]: started(ids[1]),
+    [ids[2]]: consolidate(ids[2]),
+  });
+  const mixedProfile = Dashboard.competencyProfile(mixedItems);
+  assert.equal(mixedProfile.mastered, 1);
+  assert.equal(mixedProfile.percent, 20);
+  assert.deepEqual(mixedProfile.competencies.map((item) => item.code), [
+    "mastered",
+    "in-progress",
+    "consolidate",
+    "not-started",
+    "not-started",
+  ]);
+  assert.equal(mixedProfile.competencies[0].statusLabel, "Validée sans aide");
+
+  const completedProfile = Dashboard.competencyProfile(items);
+  assert.equal(completedProfile.mastered, 5);
+  assert.equal(completedProfile.percent, 100);
+
+  const summary = Dashboard.summarize(mixedItems);
   assert.equal(summary.total, 5);
+  assert.equal(summary.mastered, 1);
   assert.equal(summary.inProgress, 1);
-  assert.equal(summary.notStarted, 4);
+  assert.equal(summary.consolidate, 1);
+  assert.equal(summary.notStarted, 2);
+})();
+
+(function testCurriculumDashboardMarkup() {
+  const html = fs.readFileSync(path.join(__dirname, "..", "frontend", "pathways.html"), "utf8");
+  const script = fs.readFileSync(path.join(__dirname, "..", "frontend", "pathways.js"), "utf8");
+  assert.match(html, /id="next-recommendation"/);
+  assert.match(html, /id="pathway-grid"/);
+  assert.match(html, /id="competency-profile"/);
+  assert.equal((script.match(/Dashboard\.recommendation\(items\)/g) || []).length, 1);
+  assert.match(script, /renderLevels\(catalog, items, recommendation\)/);
+  assert.match(script, /renderProfile\(items\)/);
+  assert.match(script, /window\.addEventListener\("pageshow"/);
+  assert.match(script, /window\.addEventListener\("storage"/);
+  assert.match(script, /generation !== renderGeneration/);
+  assert.doesNotMatch(`${html}\n${JSON.stringify(catalog)}`, /défi mixte/i);
 })();
 
 console.log("pathway-dashboard: all tests passed");

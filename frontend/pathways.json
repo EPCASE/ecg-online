@@ -1,6 +1,23 @@
 {
   "schema_version": 1,
   "default_id": "bav-foundations",
+  "curriculum_levels": [
+    {
+      "id": 1,
+      "title": "Fondamentaux",
+      "description": "Lire l’activité atriale et la relation entre les ondes P et les QRS."
+    },
+    {
+      "id": 2,
+      "title": "Orientation",
+      "description": "Réutiliser les fondamentaux pour orienter les tachycardies et les QRS larges."
+    },
+    {
+      "id": 3,
+      "title": "Intégration",
+      "description": "Croiser rythme, morphologie et signes de certitude dans une situation complexe."
+    }
+  ],
   "pathways": [
     {
       "id": "bav-foundations",
@@ -8,6 +25,9 @@
       "icon": "AV",
       "eyebrow": "Conduction",
       "level": "Fondamental",
+      "curriculum_level": 1,
+      "recommended_after": [],
+      "competency_label": "Relation P–QRS",
       "accent": "blue"
     },
     {
@@ -16,6 +36,9 @@
       "icon": "RR",
       "eyebrow": "Rythmes atriaux",
       "level": "Fondamental",
+      "curriculum_level": 1,
+      "recommended_after": [],
+      "competency_label": "Organisation atriale",
       "accent": "violet"
     },
     {
@@ -24,6 +47,9 @@
       "icon": "150",
       "eyebrow": "Tachycardies",
       "level": "Intermédiaire",
+      "curriculum_level": 2,
+      "recommended_after": ["fa-flutter"],
+      "competency_label": "Orientation des tachycardies à QRS fins",
       "accent": "coral"
     },
     {
@@ -32,6 +58,9 @@
       "icon": "QRS",
       "eyebrow": "Conduction intraventriculaire",
       "level": "Intermédiaire",
+      "curriculum_level": 2,
+      "recommended_after": ["bav-foundations"],
+      "competency_label": "Morphologies des QRS larges",
       "accent": "green"
     },
     {
@@ -40,6 +69,12 @@
       "icon": "TV",
       "eyebrow": "Tachycardies",
       "level": "Avancé",
+      "curriculum_level": 3,
+      "recommended_after": [
+        "regular-narrow-tachycardias",
+        "wide-qrs-sinus"
+      ],
+      "competency_label": "Orientation des tachycardies à QRS larges",
       "accent": "amber"
     }
   ]
