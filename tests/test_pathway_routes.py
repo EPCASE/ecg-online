@@ -35,6 +35,10 @@ class PathwayRoutesTest(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn("Tous les parcours", response.get_data(as_text=True))
 
+        response = self.get_response("/static/theme.css")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("--ecg-coral", response.get_data(as_text=True))
+
         response = self.get_response("/")
         self.assertEqual(response.status_code, 200)
         self.assertIn("/static/pathways.html", response.get_data(as_text=True))
