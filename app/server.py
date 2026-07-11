@@ -123,6 +123,8 @@ def create_app() -> Flask:
 
     @app.get("/api/case/<int:num>/full")
     def one_case_full(num: int):
+        if not CURATION_TOKEN or not _curation_authorized(request):
+            abort(403, description="Accès réservé.")
         c = _require_case(num)
         return jsonify(c)
 
