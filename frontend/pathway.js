@@ -16,6 +16,7 @@
   let openedAt = 0;
   let initialLockedAt = 0;
   let hintsUsed = 0;
+  let confidenceTouched = false;
 
   const $ = (selector) => document.querySelector(selector);
 
@@ -188,6 +189,7 @@
     openedAt = pending ? Number(pending.openedAt || Date.now()) : Date.now();
     initialLockedAt = pending ? Number(pending.lockedAt || 0) : 0;
     hintsUsed = pending ? Number(pending.hintsUsed || 0) : 0;
+    confidenceTouched = Boolean(pending);
 
     const root = $("#pathway-root");
     root.innerHTML = `<div class="loading-card">Chargement du tracé…</div>`;
@@ -259,18 +261,21 @@
         </figure>
 
         <section id="response-stage" class="response-stage">
-          <div class="stage-marker"><span>1</span><div><strong>Première lecture</strong><small>Sans aide et avant toute correction</small></div></div>
+          <div class="stage-marker"><span>1</span><div><strong>Première lecture autonome</strong><small>Sans aide et avant toute correction</small></div></div>
           <label for="initial-answer">Ton interprétation structurée</label>
           <textarea id="initial-answer" rows="6" placeholder="Rythme, fréquence, activité atriale, relation P–QRS, PR, largeur des QRS, diagnostic et gravité éventuelle."></textarea>
 
           <div class="confidence-block">
-            <div class="confidence-heading"><label for="confidence">Niveau de confiance</label><output id="confidence-output">50 %</output></div>
-            <input id="confidence" type="range" min="0" max="100" step="10" value="50">
+            <div class="confidence-heading"><label for="confidence">Niveau de confiance</label><output id="confidence-output" for="confidence">À indiquer</output></div>
+            <input id="confidence" type="range" min="0" max="100" step="10" value="50" aria-describedby="confidence-instruction">
             <div class="confidence-scale"><span>Très incertain</span><span>Très certain</span></div>
+            <p id="confidence-instruction" class="confidence-instruction">Déplace le curseur pour enregistrer ton estimation.</p>
           </div>
 
-          <button id="lock-initial" class="primary-action">${isMastery ? "Valider et corriger" : "Valider ma première lecture"}</button>
-          <p class="stage-note">Après validation, cette réponse initiale est conservée pour mesurer le raisonnement autonome.</p>
+          <p class="stage-note">${isMastery
+            ? "Cette réponse sera corrigée telle quelle. Aucun indice ne sera disponible avant le résultat."
+            : "En continuant, tu enregistres cette première lecture. Elle ne pourra plus être modifiée ; tu pourras ensuite rédiger une réponse finale séparée."}</p>
+          <button id="lock-initial" class="primary-action">${isMastery ? "Soumettre pour correction" : "Enregistrer ma première lecture"}</button>
         </section>
 
         <section id="guided-stage" class="guided-stage hidden"></section>
@@ -278,6 +283,8 @@
       </article>`;
 
     $("#confidence").addEventListener("input", (event) => {
+      confidenceTouched = true;
+      $(".confidence-block").classList.remove("needs-input");
       $("#confidence-output").textContent = `${event.target.value} %`;
     });
     $("#lock-initial").addEventListener("click", lockInitialAnswer);
@@ -288,6 +295,11 @@
     const answer = $("#initial-answer").value.trim();
     if (!answer) {
       $("#initial-answer").focus();
+      return;
+    }
+    if (!confidenceTouched) {
+      $(".confidence-block").classList.add("needs-input");
+      $("#confidence").focus();
       return;
     }
     const confidence = Number($("#confidence").value);
@@ -330,7 +342,7 @@
     const stage = $("#guided-stage");
     stage.classList.remove("hidden");
     stage.innerHTML = `
-      <div class="stage-marker"><span>2</span><div><strong>Réponse autonome verrouillée</strong><small>La correction peut être relancée sans modifier la réponse ni accéder à une aide.</small></div></div>
+      <div class="stage-marker"><span>2</span><div><strong>Première lecture enregistrée</strong><small>La correction peut être relancée sans modifier la réponse ni accéder à une aide.</small></div></div>
       <div class="locked-answer"><strong>Ta première lecture</strong><p>${escapeHtml(pending.initialAnswer).replace(/\n/g, "<br>")}</p><span>Confiance initiale : ${pending.confidence} %</span></div>
       <button id="retry-mastery-grade" class="primary-action">Relancer la correction</button>`;
     $("#retry-mastery-grade").addEventListener("click", () => {
@@ -343,16 +355,18 @@
     stage.classList.remove("hidden");
     const hintsAvailable = currentDefinition.allow_hints && currentDefinition.hints.length > 0;
     stage.innerHTML = `
-      <div class="stage-marker"><span>2</span><div><strong>Révision guidée</strong><small>Les indices orientent l’attention sans donner d’emblée la réponse.</small></div></div>
+      <div class="stage-marker"><span>2</span><div><strong>Première lecture enregistrée</strong><small>Révise maintenant ta réponse, avec ou sans aide.</small></div></div>
       <div class="locked-answer"><strong>Ta première lecture</strong><p>${escapeHtml(initialAnswer).replace(/\n/g, "<br>")}</p><span>Confiance initiale : ${confidence} %</span></div>
       ${hintsAvailable ? `
         <div class="hints-panel">
           <div class="hints-heading"><strong>Indices progressifs</strong><span id="hint-counter">0 / ${currentDefinition.hints.length}</span></div>
           <div id="hints-list" class="hints-list"></div>
-          <button id="next-hint" class="secondary-action">Afficher l’indice 1</button>
+          <p id="hint-help" class="hint-help">Le premier indice attire seulement ton attention vers une zone ou un critère.</p>
+          <button id="next-hint" class="secondary-action">Afficher 1 · Observer</button>
         </div>` : ""}
       <label for="final-answer">Réponse finale</label>
       <textarea id="final-answer" rows="6">${escapeHtml(initialAnswer)}</textarea>
+      <p id="answer-support-status" class="answer-support-status">Réponse finale sans indice</p>
       <button id="grade-final" class="primary-action">Corriger ma réponse finale</button>`;
 
     if (hintsAvailable) $("#next-hint").addEventListener("click", revealNextHint);
@@ -378,11 +392,27 @@
   function updateHintControls() {
     $("#hint-counter").textContent = `${hintsUsed} / ${currentDefinition.hints.length}`;
     const button = $("#next-hint");
+    const helper = $("#hint-help");
+    const status = $("#answer-support-status");
+    const levels = ["Observer", "Comparer", "Orienter"];
+    const helperCopy = [
+      "Le premier indice attire seulement ton attention vers une zone ou un critère.",
+      "Réexamine le tracé avant de demander l’aide suivante, qui propose une comparaison discriminante.",
+      "La dernière aide donne une orientation diagnostique explicite.",
+    ];
+    if (status) status.textContent = hintsUsed === 0
+      ? "Réponse finale sans indice"
+      : `Réponse accompagnée · ${hintsUsed} indice${hintsUsed > 1 ? "s" : ""}`;
     if (hintsUsed >= currentDefinition.hints.length) {
       button.disabled = true;
       button.textContent = "Tous les indices ont été utilisés";
+      if (helper) helper.textContent = "Tu as utilisé toute la progression d’aide disponible pour ce cas.";
     } else {
-      button.textContent = `Afficher l’indice ${hintsUsed + 1}`;
+      const level = levels[Math.min(hintsUsed, levels.length - 1)];
+      button.textContent = hintsUsed === 0
+        ? `Afficher ${hintsUsed + 1} · ${level}`
+        : `J’ai réexaminé le tracé — voir ${hintsUsed + 1} · ${level}`;
+      if (helper) helper.textContent = helperCopy[Math.min(hintsUsed, helperCopy.length - 1)];
     }
   }
 
@@ -458,7 +488,7 @@
       }
       saveState();
       renderHeaderProgress();
-      renderResult(result, masteryEvaluation);
+      renderResult(result, masteryEvaluation, initialAnswer, finalAnswer);
     } catch (error) {
       if (button) {
         button.disabled = false;
@@ -468,19 +498,27 @@
     }
   }
 
-  function renderResult(result, masteryEvaluation) {
+  function feedbackItems(value, emptyText) {
+    if (!Array.isArray(value)) return "<li>Détail non fourni par le correcteur.</li>";
+    if (value.length === 0) return `<li>${escapeHtml(emptyText)}</li>`;
+    return value.map((item) => `<li>${escapeHtml(item.label)}</li>`).join("");
+  }
+
+  function renderResult(result, masteryEvaluation, initialAnswer, finalAnswer) {
     const stage = $("#result-stage");
     stage.classList.remove("hidden");
     const diagnostic = Core.diagnosticScore(result);
-    const found = (result.elements_trouves || []).map((item) => `<li>${escapeHtml(item.label)}</li>`).join("") || "<li>Aucun élément validant identifié.</li>";
-    const missed = (result.elements_manques || []).map((item) => `<li>${escapeHtml(item.label)}</li>`).join("") || "<li>Aucun élément majeur manquant.</li>";
-    const wrong = (result.elements_errones || []).map((item) => `<li><strong>${escapeHtml(item.label)}</strong>${item.correction ? ` — ${escapeHtml(item.correction)}` : ""}</li>`).join("") || "<li>Aucune affirmation factuelle erronée.</li>";
+    const found = feedbackItems(result.elements_trouves, "Aucun élément validant identifié.");
+    const missed = feedbackItems(result.elements_manques, "Aucun élément majeur manquant.");
+    const wrong = Array.isArray(result.elements_errones)
+      ? (result.elements_errones.map((item) => `<li><strong>${escapeHtml(item.label)}</strong>${item.correction ? ` — ${escapeHtml(item.correction)}` : ""}</li>`).join("") || "<li>Aucune affirmation factuelle erronée.</li>")
+      : "<li>Détail non fourni par le correcteur.</li>";
     const secondary = currentDefinition.hide_secondary_images ? [] : secondaryImages(currentCase.images);
     const isMastery = currentDefinition.phase === "mastery";
     const isRemediation = currentDefinition.phase === "remediation";
     const evaluation = isMastery ? masteryEvaluation : null;
     const teachingPoint = currentDefinition.teaching_point
-      ? `<div class="teaching-point"><strong>Point clé du cas</strong><p>${escapeHtml(currentDefinition.teaching_point)}</p></div>`
+      ? `<div class="teaching-point"><strong>Point clé expert</strong><p>${escapeHtml(currentDefinition.teaching_point)}</p></div>`
       : "";
     const formativeText = secondary.length
       ? "Le premier tracé n’autorise pas toujours un mécanisme unique. Le score du diagnostic exact est indicatif et ne participe pas à la validation de la maîtrise ; le tracé complémentaire apporte des éléments supplémentaires pour orienter le mécanisme."
@@ -491,24 +529,46 @@
     const diagnosticLabel = currentDefinition.formative_only
       ? "/100 diagnostic exact · indicatif"
       : "/100 diagnostic";
+    const supportLabel = hintsUsed === 0
+      ? "Réponse finale sans indice"
+      : `Réponse finale après ${hintsUsed} indice${hintsUsed > 1 ? "s" : ""}`;
+    const changed = initialAnswer.trim() !== finalAnswer.trim();
+    const comparison = isMastery ? "" : `
+      <section class="answer-comparison">
+        <div class="answer-comparison-heading"><strong>Évolution de ta réponse</strong><span>${changed ? "Réponse révisée" : "Réponse inchangée après révision"}</span></div>
+        <div class="answer-comparison-grid">
+          <article><small>Première lecture · sans aide</small><p>${escapeHtml(initialAnswer).replace(/\n/g, "<br>")}</p></article>
+          <article><small>${escapeHtml(supportLabel)}</small><p>${escapeHtml(finalAnswer).replace(/\n/g, "<br>")}</p></article>
+        </div>
+      </section>`;
+    const masterySummary = evaluation
+      ? `<div class="mastery-result ${evaluation.passed ? "passed" : "not-passed"}"><strong>${evaluation.passed ? "Test autonome réussi" : "À consolider sur ce test"}</strong><span>${evaluation.requiredCriteriaMatched ? `Seuil diagnostique : ${evaluation.threshold}/100, sans erreur clinique repérée.` : "Le diagnostic et les critères indispensables du test doivent être identifiés explicitement."}</span></div>`
+      : "";
 
     stage.innerHTML = `
-      <div class="stage-marker"><span>3</span><div><strong>Correction</strong><small>Compare ton raisonnement initial, ta réponse finale et la référence.</small></div></div>
-      <div class="score-panel">
-        <div class="score-main"><span>${Math.round(result.score || 0)}</span><small>/100 global</small></div>
-        <div class="score-secondary"><strong>${Math.round(diagnostic)}</strong><span>${diagnosticLabel}</span></div>
-        <div class="verdict"><strong>${escapeHtml(result.verdict || "Correction terminée")}</strong><span>Diagnostic retenu : ${escapeHtml(result.diagnostic_retenu || "—")}</span></div>
-      </div>
-      ${evaluation ? `<div class="mastery-result ${evaluation.passed ? "passed" : "not-passed"}"><strong>${evaluation.passed ? "Compétence acquise sur ce test" : "Compétence à consolider"}</strong><span>${evaluation.requiredCriteriaMatched ? `Seuil diagnostique : ${evaluation.threshold}/100, sans erreur clinique repérée.` : "Le diagnostic et les critères indispensables du test doivent être identifiés explicitement."}</span></div>` : ""}
+      <div class="stage-marker"><span>3</span><div><strong>Synthèse de la correction</strong><small>Le verdict et le point clé expert apparaissent avant les scores détaillés.</small></div></div>
+      <section class="correction-summary">
+        <strong>${escapeHtml(result.verdict || "Correction terminée")}</strong>
+        <span>Diagnostic compris dans ta réponse : ${escapeHtml(result.diagnostic_retenu || "—")}</span>
+      </section>
+      ${masterySummary}
       ${isRemediation ? `<div class="mastery-result remediation-complete"><strong>Consolidation réalisée</strong><span>Cette réponse aidée n’efface pas le résultat du test autonome et ne valide pas à elle seule la maîtrise.</span></div>` : ""}
       ${formativeNotice}
       ${teachingPoint}
-      <div class="feedback-grid">
-        <section><h3>Éléments trouvés</h3><ul>${found}</ul></section>
-        <section><h3>À compléter</h3><ul>${missed}</ul></section>
-        <section><h3>À corriger</h3><ul>${wrong}</ul></section>
-      </div>
-      <section class="teacher-comment"><h3>Commentaire pédagogique</h3><div>${simpleMarkdown(result.commentaire || "")}</div></section>
+      ${comparison}
+      <details class="feedback-details">
+        <summary>Voir les détails de la correction</summary>
+        <div class="feedback-grid">
+          <section><h3>À corriger</h3><ul>${wrong}</ul></section>
+          <section><h3>À compléter</h3><ul>${missed}</ul></section>
+          <section><h3>Bien repéré</h3><ul>${found}</ul></section>
+        </div>
+        <div class="score-panel">
+          <div class="score-main"><span>${Math.round(result.score || 0)}</span><small>/100 global</small></div>
+          <div class="score-secondary"><strong>${Math.round(diagnostic)}</strong><span>${diagnosticLabel}</span></div>
+        </div>
+      </details>
+      <details class="teacher-comment"><summary>Commentaire du correcteur</summary><div>${simpleMarkdown(result.commentaire || "Commentaire non disponible.")}</div></details>
       <details class="reference-panel"><summary>Voir l’interprétation de référence</summary><div>${simpleMarkdown((result.reference && result.reference.interpretation_ref) || "")}</div></details>
       ${secondary.length ? `<section class="secondary-traces"><h3>Tracé complémentaire révélé après correction</h3>${secondary.map((name) => `<img src="${API}/images/${encodeURIComponent(name)}" alt="Tracé complémentaire du cas ${currentDefinition.num}">`).join("")}</section>` : ""}
       <div id="continuation-actions" class="continuation-actions"></div>`;
@@ -566,7 +626,6 @@
 
   function renderCompletion(passed) {
     const root = $("#pathway-root");
-    const p = Core.progress(state, config);
     const attempts = Object.values(state.attempts).flat();
     const guidedAttempts = attempts.filter((item) => item.phase !== "mastery" && !item.formativeOnly);
     const guidedAverage = guidedAttempts.length
@@ -581,23 +640,27 @@
     const notPassedMessage = completion.not_passed || "Reprends les critères discriminants, puis retente un cas différé plutôt que de mémoriser ce tracé.";
 
     const canRemediate = !passed && !state.remediationActive && Boolean(config.remediation);
+    const completionActions = canRemediate
+      ? `<button id="completion-remediation" class="primary-action">Faire l’ECG de consolidation</button>
+         <a class="secondary-action link-button" href="/static/pathways.html">Retour aux parcours</a>`
+      : passed
+        ? `<a class="primary-action link-button" href="/static/pathways.html">Voir la suite conseillée</a>
+           <button id="restart-completion" class="secondary-action">Revoir ce parcours</button>`
+        : `<a class="primary-action link-button" href="/static/pathways.html">Retour aux parcours</a>`;
     root.innerHTML = `
       <section class="completion-card ${passed ? "passed" : "not-passed"}">
-        <div class="completion-status">${escapeHtml(passed ? (completion.status_passed || "Acquis") : (completion.status_not_passed || "À consolider"))}</div>
+        <div class="completion-status">${passed ? "Test autonome réussi" : "À consolider"}</div>
         <h1>${escapeHtml(config.title)}</h1>
-        <p>${passed ? "Le test final a été réussi sans aide." : "Le parcours est terminé, mais le seuil de maîtrise autonome n’a pas encore été atteint."}</p>
+        <p>${passed
+          ? "Tu as réussi le test autonome de ce parcours. Ce résultat porte sur ce cas et ne constitue pas une validation clinique globale."
+          : "Le critère du test autonome n’est pas encore atteint. La consolidation n’effacera pas ta première performance."}</p>
         <div class="summary-grid">
-          <div><strong>${p.done}</strong><span>ECG réalisés</span></div>
-          <div><strong>${guidedAverage}</strong><span>score accompagné moyen</span></div>
-          <div><strong>${autonomousScore}</strong><span>test autonome</span></div>
+          <div><strong>${guidedAverage}</strong><span>performance accompagnée /100</span></div>
+          <div><strong>${autonomousScore}</strong><span>test autonome /100</span></div>
           <div><strong>${totalHints}</strong><span>indices utilisés</span></div>
         </div>
-        <div class="next-learning"><strong>Message pédagogique</strong><p>${escapeHtml(passed ? passedMessage : notPassedMessage)}</p></div>
-        <div class="completion-actions">
-          ${canRemediate ? `<button id="completion-remediation" class="primary-action">Faire l’ECG de consolidation</button>` : `<a class="primary-action link-button" href="/static/pathways.html">Retour aux parcours</a>`}
-          <button id="restart-completion" class="secondary-action">Recommencer ce parcours</button>
-          ${canRemediate ? `<a class="secondary-action link-button" href="/static/pathways.html">Retour aux parcours</a>` : `<a class="secondary-action link-button" href="/">Banque libre</a>`}
-        </div>
+        <div class="next-learning"><strong>${passed ? "Point validé" : "À travailler"}</strong><p>${escapeHtml(passed ? passedMessage : notPassedMessage)}</p></div>
+        <div class="completion-actions">${completionActions}</div>
       </section>`;
     if (canRemediate) {
       $("#completion-remediation").addEventListener("click", () => {
@@ -607,7 +670,10 @@
         renderShell();
       });
     }
-    $("#restart-completion").addEventListener("click", () => {
+    const restart = $("#restart-completion");
+    if (restart) restart.addEventListener("click", () => {
+      const confirmed = window.confirm("Revoir ce parcours depuis le début ? La progression locale de ce parcours sera réinitialisée.");
+      if (!confirmed) return;
       state = Core.initialState(config.id);
       state.startedAt = new Date().toISOString();
       saveState();

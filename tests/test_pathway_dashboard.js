@@ -313,7 +313,51 @@ function loadConfig(entry) {
   assert.match(script, /window\.addEventListener\("pageshow"/);
   assert.match(script, /window\.addEventListener\("storage"/);
   assert.match(script, /generation !== renderGeneration/);
+  assert.doesNotMatch(script, /item\.config\.subtitle/);
+  assert.doesNotMatch(script, /Accessible directement/);
   assert.doesNotMatch(`${html}\n${JSON.stringify(catalog)}`, /défi mixte/i);
+})();
+
+(function testUxContracts() {
+  const homeHtml = fs.readFileSync(path.join(__dirname, "..", "frontend", "index.html"), "utf8");
+  const homeCss = fs.readFileSync(path.join(__dirname, "..", "frontend", "style.css"), "utf8");
+  const appScript = fs.readFileSync(path.join(__dirname, "..", "frontend", "app.js"), "utf8");
+  const pathwayHtml = fs.readFileSync(path.join(__dirname, "..", "frontend", "pathway.html"), "utf8");
+  const pathwaysHtml = fs.readFileSync(path.join(__dirname, "..", "frontend", "pathways.html"), "utf8");
+  const pathwayScript = fs.readFileSync(path.join(__dirname, "..", "frontend", "pathway.js"), "utf8");
+
+  assert.match(homeHtml, /<body class="home-mode">/);
+  assert.match(homeHtml, /<a id="action-pathway"[^>]+href="\/static\/pathways\.html"/);
+  assert.match(homeHtml, /id="action-explore"/);
+  assert.match(homeHtml, /class="home-free-practice"/);
+  for (const id of ["action-daily", "action-resume", "action-random"]) {
+    assert.match(homeHtml, new RegExp(`id="${id}"`));
+  }
+  assert.ok(homeHtml.indexOf("/static/pathway-dashboard-core.js") < homeHtml.indexOf("/static/app.js"));
+  assert.match(homeCss, /body\.home-mode \.sidebar \{ display: none; \}/);
+  assert.doesNotMatch(homeCss, /body\.case-mode \.sidebar \{ display: none; \}/);
+  assert.match(appScript, /function setAppMode\(mode\)/);
+  assert.match(appScript, /Dashboard\.recommendation\(items\)/);
+  assert.match(appScript, /function openBank\(/);
+  assert.match(appScript, /pushState\(\{ view: "bank" \}, "", "\/\?view=bank"\)/);
+  assert.match(appScript, /\?view=case&case=/);
+  assert.match(appScript, /openCase\(requested\.caseNum, \{ updateHistory: false \}\)/);
+  assert.match(appScript, /window\.addEventListener\("popstate"/);
+  assert.match(appScript, /const item = el\("button", "case-item"/);
+  assert.match(appScript, /caseTitle\.focus\(\{ preventScroll: true \}\)/);
+  assert.match(pathwayHtml, /href="\/\?view=bank">Banque libre/);
+  assert.match(pathwaysHtml, /href="\/\?view=bank">Explorer les 75 cas/);
+  assert.doesNotMatch(appScript, /localStorage\.setItem\(Dashboard\.STORAGE_PREFIX/);
+
+  const lockNote = pathwayScript.indexOf("En continuant, tu enregistres cette première lecture");
+  const lockButton = pathwayScript.indexOf("Enregistrer ma première lecture");
+  assert.ok(lockNote >= 0 && lockNote < lockButton);
+  assert.match(pathwayScript, /Soumettre pour correction/);
+  assert.match(pathwayScript, /Afficher 1 · Observer/);
+  assert.match(pathwayScript, /Évolution de ta réponse/);
+  assert.match(pathwayScript, /Commentaire du correcteur/);
+  assert.match(pathwayScript, /Voir la suite conseillée/);
+  assert.match(pathwayScript, /La consolidation n’effacera pas ta première performance/);
 })();
 
 console.log("pathway-dashboard: all tests passed");
