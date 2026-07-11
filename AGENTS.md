@@ -91,6 +91,18 @@ Case 48 mastery requires the structured grader output to identify either AV diss
 
 For future ventricular-risk work, case 50's primary tracing shows short-coupled PVCs falling on the T wave, at high risk of ventricular fibrillation. The secondary tracings show progression to polymorphic VT and then VF; do not label the primary tracing itself as VF.
 
+## Curriculum dashboard
+
+The five pathways form a three-level curriculum:
+
+- level 1, foundations: `bav-foundations`, `fa-flutter`;
+- level 2, orientation: `regular-narrow-tachycardias`, `wide-qrs-sinus`;
+- level 3, integration: `wide-complex-tachycardias`.
+
+`recommended_after` is guidance for the next-pathway suggestion, never an access-control rule. Every pathway card must remain directly accessible even when the recommended earlier pathways have not been completed.
+The global profile describes the status of the pathway-specific autonomous test. Use bounded wording such as “validated without assistance”; do not imply comprehensive clinical mastery from a single mastery tracing.
+Do not add a mixed transfer challenge yet. Reserve sufficiently independent ECGs only after pilot usage data and explicit clinical/pedagogical review.
+
 ## Client-side boundary
 
 The hint lock is a pedagogical UX guard, not a security boundary: static JSON remains inspectable in developer tools. Any future blinded research protocol requiring adversarial protection must serve hints from an authenticated server-side state machine.
