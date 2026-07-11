@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "id": "wide-qrs-sinus",
+  "title": "Lire un QRS large en rythme sinusal",
+  "subtitle": "Partir de l’activation normale, reconnaître les principales morphologies de bloc de branche et savoir ne pas forcer une classification.",
+  "estimated_minutes": 15,
+  "learning_objectives": [
+    "Comparer la durée et la morphologie des QRS en V1, DI et V6.",
+    "Distinguer les profils typiques de bloc de branche droit et gauche.",
+    "Associer morphologie de branche et axe frontal pour reconnaître un bloc bifasciculaire.",
+    "Repérer l’alternance de plusieurs morphologies conductives et son caractère urgent."
+  ],
+  "mastery": {
+    "diagnostic_threshold": 75,
+    "unsafe_error_types": ["etudiant"],
+    "required_answer_concepts": [
+      [
+        "bloc de branche alternant",
+        "bloc alternant",
+        ["altern*", "BBD", "BBG"],
+        ["altern*", "bloc*", "branche*", "droit*", "gauche*"]
+      ]
+    ]
+  },
+  "status_labels": {
+    "mastered": "Morphologies conductives acquises",
+    "consolidate": "Lecture des QRS à consolider"
+  },
+  "completion": {
+    "status_passed": "Morphologies conductives acquises",
+    "status_not_passed": "Lecture des QRS à consolider",
+    "passed": "Tu as reconnu sans aide l’alternance de deux morphologies de bloc de branche et identifié un trouble conductif à haut risque. Cette validation porte sur les principales morphologies intraventriculaires, pas sur toutes les causes de QRS larges.",
+    "not_passed": "Repars de trois repères : durée des QRS, aspect terminal en V1, puis aspect en DI et V6. Si aucun profil typique ne s’impose, décris le QRS large sans forcer un bloc de branche précis."
+  },
+  "cases": [
+    {
+      "step_id": "qrs-larges-activation-reference",
+      "num": 8,
+      "phase": "foundation",
+      "step_title": "Construire le tracé de référence",
+      "objective": "Décrire la durée des QRS et la séquence d’activation visible en V1 et V6 avant d’étudier les troubles conductifs.",
+      "teaching_point": "Une activation ventriculaire normale produit un QRS fin, habituellement rS en V1 et qR en V6 ; la petite onde q latérale traduit l’activation septale physiologique.",
+      "allow_hints": true,
+      "hints": [
+        "Commence par estimer la durée des QRS, puis compare leur polarité globale en V1 et V6.",
+        "Repère la petite activation septale initiale : elle se dirige normalement vers V1 et s’éloigne de V6 avant l’activation dominante du ventricule gauche.",
+        "Un QRS fin avec un aspect rS en V1 et qR en V6 correspond à une activation ventriculaire normale."
+      ]
+    },
+    {
+      "step_id": "qrs-larges-retard-terminal-droit",
+      "num": 9,
+      "phase": "guided",
+      "step_title": "Localiser un retard terminal",
+      "objective": "Mesurer les QRS et décrire précisément leur partie terminale en V1, DI et V6.",
+      "teaching_point": "Des QRS supérieurs à 120 ms avec une onde R’ terminale en V1 et une onde S large et traînante en DI–V6 définissent un bloc de branche droit complet.",
+      "allow_hints": true,
+      "hints": [
+        "Après avoir confirmé que les QRS dépassent 120 ms, sépare mentalement leur partie initiale de leur partie terminale.",
+        "Cherche une positivité terminale en V1, puis la déflexion terminale de sens opposé en DI et V6.",
+        "Une onde R’ terminale en V1 associée à une onde S large et traînante en DI–V6 caractérise un bloc de branche droit complet."
+      ]
+    },
+    {
+      "step_id": "qrs-larges-activation-gauche-retardee",
+      "num": 13,
+      "phase": "contrast",
+      "step_title": "Comparer une autre direction d’activation",
+      "objective": "Comparer la polarité des QRS en V1–V2 et en DI–V6, puis distinguer activation et repolarisation secondaires.",
+      "teaching_point": "Des QRS supérieurs à 120 ms, globalement négatifs en V1–V2 et positifs avec une onde R large en DI–V6, correspondent à un bloc de branche gauche complet.",
+      "allow_hints": true,
+      "hints": [
+        "Compare d’abord la polarité globale du QRS dans les précordiales droites et dans les dérivations latérales.",
+        "Recherche un QRS principalement négatif en V1–V2 et une onde R large, parfois encochée, en DI et V6 ; les anomalies ST–T peuvent être secondaires à cette activation anormale.",
+        "Cette opposition entre V1–V2 négatifs et DI–V6 largement positifs sur des QRS > 120 ms définit un bloc de branche gauche complet."
+      ]
+    },
+    {
+      "step_id": "qrs-larges-morphologie-et-axe",
+      "num": 10,
+      "phase": "contrast",
+      "step_title": "Associer morphologie et axe frontal",
+      "objective": "Identifier le trouble de branche, analyser l’axe et décrire séparément la conduction atrioventriculaire.",
+      "teaching_point": "L’association d’un bloc de branche droit complet et d’un hémibloc antérieur gauche constitue un bloc bifasciculaire ; un PR long associé ne prouve pas un bloc trifasciculaire.",
+      "allow_hints": true,
+      "hints": [
+        "Classe d’abord la morphologie du QRS en V1 et V6, puis analyse l’axe frontal indépendamment.",
+        "Une morphologie de bloc droit associée à une déviation axiale gauche avec q en DI et S marquée en DII suggère l’atteinte d’un second fascicule.",
+        "Il s’agit d’un bloc bifasciculaire associant bloc de branche droit et hémibloc antérieur gauche ; le BAV du premier degré ne permet pas, à lui seul, d’affirmer une atteinte trifasciculaire."
+      ]
+    },
+    {
+      "step_id": "qrs-larges-test-morphologies-successives",
+      "num": 14,
+      "phase": "mastery",
+      "step_title": "Test autonome : comparer plusieurs cycles",
+      "objective": "Décrire les morphologies successives des QRS, leur relation avec les ondes P et la gravité du trouble conductif, puis conclure sans aide.",
+      "teaching_point": "L’alternance, sur un même tracé, de morphologies de bloc de branche droit et gauche avec des ondes P bloquées correspond à un bloc de branche alternant, marqueur d’atteinte conductrice sévère.",
+      "image_crop": {
+        "top_percent": 29,
+        "aspect_ratio": 1.67
+      },
+      "allow_hints": false,
+      "hints": []
+    }
+  ],
+  "remediation": {
+    "step_id": "qrs-larges-remediation-sans-profil-typique",
+    "num": 15,
+    "phase": "remediation",
+    "step_title": "Consolidation : savoir ne pas surclasser",
+    "objective": "Vérifier si un QRS large remplit réellement les critères morphologiques d’un bloc de branche droit ou gauche.",
+    "teaching_point": "Un QRS supérieur à 120 ms sans morphologie typique de bloc droit ou gauche correspond à un trouble de conduction intraventriculaire indifférencié, diagnostic d’élimination.",
+    "offer_title": "Revenir aux critères morphologiques",
+    "offer_text": "Ce cas vérifie que tu sais aussi décrire un QRS large lorsque ni le profil droit ni le profil gauche n’est complet. Il consolide le raisonnement sans modifier le résultat du test autonome.",
+    "allow_hints": true,
+    "hints": [
+      "Confirme d’abord l’élargissement des QRS, puis teste séparément les critères du profil droit et du profil gauche.",
+      "En V1, retrouve-t-on réellement une onde R’ terminale ? En DI–V6, existe-t-il soit une S terminale large, soit une onde R large exclusive compatible avec l’un des deux profils ?",
+      "Des QRS larges sans critères complets de bloc de branche droit ou gauche conduisent à décrire un bloc indifférencié, sans forcer une étiquette plus précise."
+    ]
+  }
+}

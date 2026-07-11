@@ -143,7 +143,8 @@ Affiché tel quel dans la barre latérale, il vendrait la mèche. Par défaut
 
 - Le **vrai titre ne quitte jamais le serveur** avant correction : il sert au
   scoring et n'est **révélé qu'après** soumission (bloc `reference.titre`).
-- La route enseignant **`/api/case/<num>/full`** conserve les vraies données.
+- La route enseignant **`/api/case/<num>/full`** conserve les vraies données et
+  reste fermée tant qu’un `CURATION_TOKEN` non vide n’est pas configuré et fourni.
 - Mettre **`ECG_ANONYMIZE=0`** pour réafficher les vrais titres (révision).
 
 Implémenté dans `app/cases_repo.py` (`anon_titre`, `public_case`, `public_index`,

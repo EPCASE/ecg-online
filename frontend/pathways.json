@@ -25,6 +25,22 @@
       "eyebrow": "Tachycardies",
       "level": "Intermédiaire",
       "accent": "coral"
+    },
+    {
+      "id": "wide-qrs-sinus",
+      "config_url": "/static/pedagogy-qrs-larges-sinus.json",
+      "icon": "QRS",
+      "eyebrow": "Conduction intraventriculaire",
+      "level": "Intermédiaire",
+      "accent": "green"
+    },
+    {
+      "id": "wide-complex-tachycardias",
+      "config_url": "/static/pedagogy-qrs-larges-tachy.json",
+      "icon": "TV",
+      "eyebrow": "Tachycardies",
+      "level": "Avancé",
+      "accent": "amber"
     }
   ]
 }

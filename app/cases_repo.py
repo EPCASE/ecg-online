@@ -19,7 +19,20 @@ REFERENCE_PATH = os.path.join(DATA_DIR, "cases_reference.json")
 IMAGES_DIR = os.path.join(DATA_DIR, "ecg_images")
 
 # Champs jamais renvoyés par l'API tant que l'étudiant n'a pas répondu.
-_HIDDEN_FIELDS = {"interpretation_ref", "commentaires", "qcm"}
+_HIDDEN_FIELDS = {
+    "interpretation_ref",
+    "commentaires",
+    "qcm",
+    "referentiel",
+    "second_trace",
+}
+
+# Certains contextes sources contiennent des informations acquises après le
+# tracé initial. Ils restent disponibles côté serveur pour la correction, mais
+# l'énoncé public doit s'arrêter aux données connues au moment de la lecture.
+_PUBLIC_CONTEXT_OVERRIDES = {
+    49: "Consultation pour palpitations depuis quelques jours.",
+}
 
 # Anonymisation : le `titre` d'un cas EST le diagnostic (ex. « fibrillation
 # atriale »). Affiché tel quel dans la barre latérale, il vend la mèche. Quand
@@ -93,6 +106,9 @@ def public_case(case: dict) -> dict:
     Si l'anonymisation est active, le `titre` (= diagnostic) est masqué et la
     `famille` (ex. « ischémie ») est retirée — elle trahirait aussi le cas."""
     pub = {k: v for k, v in case.items() if k not in _HIDDEN_FIELDS}
+    public_context = _PUBLIC_CONTEXT_OVERRIDES.get(int(case.get("num", 0)))
+    if public_context is not None:
+        pub["contexte"] = public_context
     if _ANONYMIZE:
         pub["titre"] = anon_titre(case.get("num"))
         pub["famille"] = None

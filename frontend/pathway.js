@@ -227,6 +227,13 @@
     const isMastery = currentDefinition.phase === "mastery";
     const image = primaryImage(currentCase.images);
     const context = [currentCase.patient, currentCase.contexte].filter(Boolean).join("\n");
+    const crop = currentDefinition.image_crop;
+    const cropTop = crop && Number.isFinite(Number(crop.top_percent)) ? Number(crop.top_percent) : null;
+    const cropRatio = crop && Number.isFinite(Number(crop.aspect_ratio)) ? Number(crop.aspect_ratio) : null;
+    const cropEnabled = cropTop !== null && cropRatio !== null && cropTop > 0 && cropRatio > 0;
+    const cropStyle = cropEnabled
+      ? ` style="--crop-offset:-${cropTop}%;--crop-ratio:${cropRatio}"`
+      : "";
 
     root.innerHTML = `
       <article class="case-card">
@@ -247,7 +254,7 @@
         </section>
 
         <figure class="ecg-frame">
-          ${image ? `<img id="ecg-image" src="${API}/images/${encodeURIComponent(image)}" alt="Tracé ECG du cas ${currentDefinition.num}">` : `<div class="missing-image">Tracé indisponible</div>`}
+          ${image ? `<div class="ecg-viewport${cropEnabled ? " cropped" : ""}"${cropStyle}><img id="ecg-image" src="${API}/images/${encodeURIComponent(image)}" alt="Tracé ECG du cas ${currentDefinition.num}"${cropEnabled ? ` data-crop-top="${cropTop}" data-crop-ratio="${cropRatio}"` : ""}></div>` : `<div class="missing-image">Tracé indisponible</div>`}
           <figcaption>Clique sur le tracé pour l’agrandir.</figcaption>
         </figure>
 
@@ -444,13 +451,14 @@
         formativeOnly: currentDefinition.formative_only,
       });
 
+      let masteryEvaluation = null;
       if (Core.canValidateMastery(currentDefinition, hintsUsed)) {
-        const evaluation = Core.evaluateMastery(result, config);
-        state = Core.markMastery(state, evaluation);
+        masteryEvaluation = Core.evaluateMastery(result, config, finalAnswer);
+        state = Core.markMastery(state, masteryEvaluation);
       }
       saveState();
       renderHeaderProgress();
-      renderResult(result);
+      renderResult(result, masteryEvaluation);
     } catch (error) {
       if (button) {
         button.disabled = false;
@@ -460,7 +468,7 @@
     }
   }
 
-  function renderResult(result) {
+  function renderResult(result, masteryEvaluation) {
     const stage = $("#result-stage");
     stage.classList.remove("hidden");
     const diagnostic = Core.diagnosticScore(result);
@@ -470,12 +478,15 @@
     const secondary = currentDefinition.hide_secondary_images ? [] : secondaryImages(currentCase.images);
     const isMastery = currentDefinition.phase === "mastery";
     const isRemediation = currentDefinition.phase === "remediation";
-    const evaluation = isMastery ? Core.evaluateMastery(result, config) : null;
+    const evaluation = isMastery ? masteryEvaluation : null;
     const teachingPoint = currentDefinition.teaching_point
       ? `<div class="teaching-point"><strong>Point clé du cas</strong><p>${escapeHtml(currentDefinition.teaching_point)}</p></div>`
       : "";
+    const formativeText = secondary.length
+      ? "Le premier tracé n’autorise pas toujours un mécanisme unique. Le score du diagnostic exact est indicatif et ne participe pas à la validation de la maîtrise ; le tracé complémentaire apporte des éléments supplémentaires pour orienter le mécanisme."
+      : "Le début du tracé n’autorise pas toujours un mécanisme unique. Le score du diagnostic exact est indicatif et ne participe pas à la validation de la maîtrise ; les modifications observées pendant la manœuvre apportent les éléments d’orientation.";
     const formativeNotice = currentDefinition.formative_only
-      ? `<div class="formative-notice"><strong>Cas de raisonnement différentiel</strong><p>Le premier tracé n’autorise pas toujours un mécanisme unique. Le score du diagnostic exact est indicatif et ne participe pas à la validation de la maîtrise ; le tracé complémentaire apporte des éléments supplémentaires pour orienter le mécanisme.</p></div>`
+      ? `<div class="formative-notice"><strong>Cas de raisonnement différentiel</strong><p>${formativeText}</p></div>`
       : "";
     const diagnosticLabel = currentDefinition.formative_only
       ? "/100 diagnostic exact · indicatif"
@@ -488,7 +499,7 @@
         <div class="score-secondary"><strong>${Math.round(diagnostic)}</strong><span>${diagnosticLabel}</span></div>
         <div class="verdict"><strong>${escapeHtml(result.verdict || "Correction terminée")}</strong><span>Diagnostic retenu : ${escapeHtml(result.diagnostic_retenu || "—")}</span></div>
       </div>
-      ${evaluation ? `<div class="mastery-result ${evaluation.passed ? "passed" : "not-passed"}"><strong>${evaluation.passed ? "Compétence acquise sur ce test" : "Compétence à consolider"}</strong><span>Seuil diagnostique : ${evaluation.threshold}/100, sans erreur clinique repérée.</span></div>` : ""}
+      ${evaluation ? `<div class="mastery-result ${evaluation.passed ? "passed" : "not-passed"}"><strong>${evaluation.passed ? "Compétence acquise sur ce test" : "Compétence à consolider"}</strong><span>${evaluation.requiredCriteriaMatched ? `Seuil diagnostique : ${evaluation.threshold}/100, sans erreur clinique repérée.` : "Le diagnostic et les critères indispensables du test doivent être identifiés explicitement."}</span></div>` : ""}
       ${isRemediation ? `<div class="mastery-result remediation-complete"><strong>Consolidation réalisée</strong><span>Cette réponse aidée n’efface pas le résultat du test autonome et ne valide pas à elle seule la maîtrise.</span></div>` : ""}
       ${formativeNotice}
       ${teachingPoint}
@@ -607,6 +618,20 @@
 
   function openLightbox(event) {
     const src = event.currentTarget.src;
+    const stage = $("#lightbox-stage");
+    const cropTop = Number(event.currentTarget.dataset.cropTop || 0);
+    const cropRatio = Number(event.currentTarget.dataset.cropRatio || 0);
+    const cropped = cropTop > 0 && cropRatio > 0;
+    stage.classList.toggle("cropped", cropped);
+    if (cropped) {
+      stage.style.setProperty("--crop-offset", `-${cropTop}%`);
+      stage.style.setProperty("--crop-ratio", String(cropRatio));
+      stage.style.width = `${Math.min(window.innerWidth * 0.96, window.innerHeight * 0.94 * cropRatio)}px`;
+    } else {
+      stage.style.removeProperty("--crop-offset");
+      stage.style.removeProperty("--crop-ratio");
+      stage.style.removeProperty("width");
+    }
     $("#lightbox-image").src = src;
     $("#pathway-lightbox").classList.remove("hidden");
   }
