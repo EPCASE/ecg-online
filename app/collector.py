@@ -44,7 +44,9 @@ from typing import List, Optional
 LOG_COLS = ["horodatage", "session", "cas", "titre", "reponse",
             "score", "correspondance", "backend",
             "tentative", "refait", "t_reflexion_s", "t_total_s",
-            "editions", "longueur", "mode"]
+            "editions", "longueur", "mode",
+            "parcours", "phase", "position", "confiance_initiale",
+            "indices_utilises", "reponse_initiale", "reponse_modifiee"]
 PARCAS_HEADER = ["cas", "titre", "réponses →"]
 
 # Journal des signalements (bouton « Signaler un problème », version pré-alpha).
@@ -154,6 +156,16 @@ def _get_spreadsheet():
         return None
 
 
+def _column_label(number: int) -> str:
+    """Convertit un numéro de colonne 1-based en notation Google Sheets."""
+    label = ""
+    n = int(number)
+    while n > 0:
+        n, remainder = divmod(n - 1, 26)
+        label = chr(65 + remainder) + label
+    return label
+
+
 def _ensure_worksheets(ss) -> None:
     """Crée « reponses » et « par_cas » (avec 1 ligne par cas) si absentes."""
     global _ENSURED
@@ -164,6 +176,13 @@ def _ensure_worksheets(ss) -> None:
     if "reponses" not in existing:
         ws = ss.add_worksheet(title="reponses", rows=1000, cols=len(LOG_COLS))
         ws.append_row(LOG_COLS)
+    else:
+        # Migration non destructive : les anciennes lignes restent valides et
+        # l'en-tête est étendu pour les métriques propres aux parcours.
+        ws = ss.worksheet("reponses")
+        current_header = ws.row_values(1)
+        if current_header != LOG_COLS:
+            ws.update(values=[LOG_COLS], range_name=f"A1:{_column_label(len(LOG_COLS))}1")
 
     if "par_cas" not in existing:
         ws = ss.add_worksheet(title="par_cas", rows=200, cols=30)
@@ -209,7 +228,10 @@ def _write(num: int, titre: str, answer: str, score, correspondance: str,
                  "" if score is None else score, correspondance, backend,
                  _m("tentative"), _m("refait"), _m("t_reflexion_s"),
                  _m("t_total_s"), _m("editions"), _m("longueur"),
-                 _m("mode", "libre")],
+                 _m("mode", "libre"), _m("parcours"), _m("phase"),
+                 _m("position"), _m("confiance_initiale"),
+                 _m("indices_utilises"), _m("reponse_initiale"),
+                 _m("reponse_modifiee")],
                 value_input_option="RAW",  # type: ignore[arg-type]
             )
 

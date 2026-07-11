@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parcours ECG — Blocs auriculoventriculaires</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/pathway.css">
+</head>
+<body>
+  <header class="pathway-topbar">
+    <a class="brand-link" href="/">ECG Lecture<span>Parcours de maîtrise</span></a>
+    <div class="progress-wrap" aria-label="Progression du parcours">
+      <div class="progress-meta">
+        <span id="pathway-title">Chargement…</span>
+        <span id="progress-label">0 / 0 ECG</span>
+      </div>
+      <div class="progress-track"><div id="progress-fill" class="progress-fill"></div></div>
+    </div>
+    <div class="topbar-actions">
+      <a href="/">Banque libre</a>
+      <button id="reset-pathway" type="button">Réinitialiser</button>
+    </div>
+  </header>
+
+  <main class="pathway-main">
+    <div id="pathway-root" aria-live="polite">
+      <div class="loading-card">Chargement du parcours…</div>
+    </div>
+  </main>
+
+  <div id="pathway-lightbox" class="pathway-lightbox hidden" role="dialog" aria-modal="true" aria-label="Tracé ECG agrandi">
+    <img id="lightbox-image" src="" alt="Tracé ECG agrandi">
+  </div>
+
+  <script src="/static/pathway-core.js"></script>
+  <script src="/static/pathway.js"></script>
+</body>
+</html>

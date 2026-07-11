@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "id": "bav-foundations",
+  "title": "Blocs auriculoventriculaires",
+  "subtitle": "Reconnaître un ralentissement, un blocage intermittent et une dissociation auriculoventriculaire.",
+  "estimated_minutes": 15,
+  "learning_objectives": [
+    "Vérifier systématiquement la relation entre les ondes P et les complexes QRS.",
+    "Distinguer BAV du premier degré, Mobitz I, Mobitz II et BAV 2/1.",
+    "Reconnaître un BAV complet et caractériser son rythme d’échappement.",
+    "Identifier les formes à risque nécessitant une prise en charge urgente."
+  ],
+  "mastery": {
+    "diagnostic_threshold": 75,
+    "unsafe_error_types": ["etudiant"],
+    "remediation_case": 29
+  },
+  "cases": [
+    {
+      "num": 23,
+      "phase": "foundation",
+      "step_title": "Le délai PR",
+      "objective": "Identifier un BAV du premier degré sans confondre ralentissement et interruption de conduction.",
+      "allow_hints": true,
+      "hints": [
+        "Compte séparément les ondes P et les complexes QRS : chaque onde P est-elle conduite ?",
+        "Mesure ou estime l’intervalle PR sur plusieurs cycles : est-il fixe ?",
+        "Toutes les ondes P sont conduites, mais le PR est fixe et supérieur à 200 ms."
+      ]
+    },
+    {
+      "num": 24,
+      "phase": "guided",
+      "step_title": "Le phénomène de Wenckebach",
+      "objective": "Reconnaître l’allongement progressif du PR avant une onde P bloquée.",
+      "allow_hints": true,
+      "hints": [
+        "Repère d’abord une onde P qui n’est pas suivie d’un QRS.",
+        "Compare les intervalles PR des battements conduits avant la pause.",
+        "Le PR s’allonge progressivement, puis une onde P est bloquée avant que la séquence recommence."
+      ]
+    },
+    {
+      "num": 25,
+      "phase": "contrast",
+      "step_title": "Mobitz II : le contraste",
+      "objective": "Distinguer un Mobitz II d’un Wenckebach et repérer son caractère préoccupant.",
+      "allow_hints": true,
+      "hints": [
+        "Cherche l’onde P responsable de la pause ventriculaire.",
+        "Compare le PR avant et après l’onde P bloquée : existe-t-il un allongement progressif ?",
+        "Une onde P est bloquée de façon inopinée alors que les PR conduits restent constants ; regarde aussi la largeur des QRS."
+      ]
+    },
+    {
+      "num": 26,
+      "phase": "contrast",
+      "step_title": "Le BAV 2/1",
+      "objective": "Identifier une conduction 2/1 et comprendre qu’elle ne permet pas toujours de trancher Mobitz I versus Mobitz II sur l’ECG de surface.",
+      "allow_hints": true,
+      "hints": [
+        "Recherche une activité atriale cachée dans la fin des ondes T.",
+        "Compare la fréquence atriale à la fréquence ventriculaire.",
+        "Une onde P sur deux est conduite : le diagnostic descriptif est BAV 2/1, sans imposer un type I ou II sur ce seul tracé."
+      ]
+    },
+    {
+      "num": 28,
+      "phase": "mastery",
+      "step_title": "Test de maîtrise",
+      "objective": "Reconnaître de façon autonome un BAV complet et décrire l’échappement.",
+      "allow_hints": false,
+      "hints": []
+    }
+  ],
+  "remediation": {
+    "num": 29,
+    "phase": "remediation",
+    "step_title": "Consolidation : échappement distal",
+    "objective": "Reprendre le diagnostic de BAV complet et différencier un échappement distal d’un échappement jonctionnel.",
+    "allow_hints": true,
+    "hints": [
+      "Vérifie si l’activité atriale et l’activité ventriculaire évoluent indépendamment.",
+      "Observe la fréquence et la largeur des complexes QRS de l’échappement.",
+      "Un échappement lent à QRS larges suggère un foyer distal et une situation plus instable."
+    ]
+  }
+}
