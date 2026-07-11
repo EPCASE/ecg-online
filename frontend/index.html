@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/static/style.css" />
 </head>
-<body>
+<body class="home-mode">
 <header class="topbar">
   <div class="brand">
     <a href="https://www.liryc-education.fr/" target="_blank" rel="noopener noreferrer"
@@ -55,44 +55,48 @@
 
   <!-- ─────────── Zone principale ─────────── -->
   <section class="content">
+    <div id="bank-welcome" class="bank-welcome hidden">
+      <span class="bank-welcome-kicker">Banque libre</span>
+      <h2>Explorer les 75 cas</h2>
+      <p>Choisis un ECG dans la liste. La banque sert à réviser librement ; les parcours servent à acquérir une compétence pas à pas.</p>
+    </div>
+
     <div id="welcome" class="welcome">
       <div class="welcome-card">
-        <h2 class="hero-title">Prépare tes ECG de l'EDN 🫀</h2>
-        <p class="hero-sub">Un entraînement court, corrigé par IA, avec un
-           <strong>feedback pédagogique</strong>. Tu lis un tracé, tu rédiges ton
-           interprétation <strong>en texte libre</strong>, l'IA te répond.</p>
+        <span class="home-kicker">Apprentissage ECG</span>
+        <h2 class="hero-title">Que veux-tu travailler maintenant&nbsp;?</h2>
+        <p class="hero-sub">Progresse avec cinq parcours courts, ou explore librement la banque des 75 ECG.</p>
 
-        <!-- Actions principales (accueil orienté action, cf. note UX §4) -->
+        <!-- Deux portes d’entrée principales : apprendre ou explorer. -->
         <div class="home-actions">
-          <button id="action-daily" class="home-btn home-btn--primary">
-            <span class="hb-ic">📅</span>
-            <span class="hb-body">
-              <span class="hb-title">ECG du jour</span>
-              <span class="hb-desc">1 cas · correction immédiate · ~3 min</span>
-            </span>
-          </button>
-          <button id="action-resume" class="home-btn">
-            <span class="hb-ic">▶️</span>
-            <span class="hb-body">
-              <span class="hb-title" id="resume-title">Commencer l'entraînement</span>
-              <span class="hb-desc" id="resume-desc">Le prochain cas conseillé pour toi</span>
-            </span>
-          </button>
-          <button id="action-random" class="home-btn">
-            <span class="hb-ic">🎲</span>
-            <span class="hb-body">
-              <span class="hb-title">Cas au hasard</span>
-              <span class="hb-desc">Se tester sur un cas non lu</span>
-            </span>
-          </button>
-          <button id="action-pathway" class="home-btn"
-                  onclick="window.location.href='/static/pathways.html'">
+          <a id="action-pathway" class="home-btn home-btn--primary home-btn--learning"
+             href="/static/pathways.html">
             <span class="hb-ic">🧭</span>
             <span class="hb-body">
-              <span class="hb-title">Parcours guidés</span>
-              <span class="hb-desc">5 compétences · progression · tests sans aide</span>
+              <span class="hb-kicker">Apprendre par parcours</span>
+              <span class="hb-title">Continuer mon apprentissage</span>
+              <span class="hb-desc" id="pathway-recommendation">5 compétences · première réponse sans aide · ~15 min</span>
             </span>
+            <span class="hb-arrow">→</span>
+          </a>
+          <button id="action-explore" class="home-btn home-btn--explore">
+            <span class="hb-ic">▦</span>
+            <span class="hb-body">
+              <span class="hb-kicker">Banque libre</span>
+              <span class="hb-title">Explorer les 75 cas</span>
+              <span class="hb-desc">Choisir librement un cas ou un thème</span>
+            </span>
+            <span class="hb-arrow">→</span>
           </button>
+        </div>
+
+        <div class="home-free-practice">
+          <span>Révision libre</span>
+          <div>
+            <button id="action-daily" class="home-quick-action">ECG du jour <small>~3 min</small></button>
+            <button id="action-resume" class="home-quick-action"><span id="resume-title">Prochain cas</span> <small id="resume-desc">dans la banque</small></button>
+            <button id="action-random" class="home-quick-action">Cas au hasard <small>non lu</small></button>
+          </div>
         </div>
 
         <!-- Bandeau de progression (rempli côté client) -->
@@ -262,6 +266,7 @@
   </div>
 </div>
 
+<script src="/static/pathway-dashboard-core.js"></script>
 <script src="/static/progress.js"></script>
 <script src="/static/app.js"></script>
 </body>

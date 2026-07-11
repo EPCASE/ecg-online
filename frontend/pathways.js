@@ -71,9 +71,7 @@
 
   function renderRecommendedAfter(item, items) {
     const guidance = Dashboard.recommendedAfterState(item, items);
-    if (guidance.ids.length === 0) {
-      return `<div class="card-guidance guidance-open"><span>✓</span>Accessible directement</div>`;
-    }
+    if (guidance.ids.length === 0) return "";
     if (guidance.met) {
       return `<div class="card-guidance guidance-ready"><span>✓</span>Repères conseillés validés</div>`;
     }
@@ -84,7 +82,6 @@
   function renderCard(item, recommended, items) {
     const status = Dashboard.pathwayStatus(item.state, item.config);
     const progress = Dashboard.pathwayProgress(item.state, item.config);
-    const masteryCase = item.config.cases.find((caseDef) => caseDef.phase === "mastery");
     const href = `/static/pathway.html?id=${encodeURIComponent(item.config.id)}`;
     const recommendedBadge = recommended ? `<span class="recommended-badge">Recommandé</span>` : "";
 
@@ -100,12 +97,10 @@
         <div class="card-copy">
           <span class="card-eyebrow">${escapeHtml(item.catalog.eyebrow)} · ${escapeHtml(item.catalog.level)}</span>
           <h3>${escapeHtml(item.config.title)}</h3>
-          <p>${escapeHtml(item.config.subtitle)}</p>
         </div>
         <div class="card-meta">
           <span>${item.config.cases.length} ECG</span>
           <span>~${item.config.estimated_minutes} min</span>
-          <span>${masteryCase ? "Test autonome" : "Pratique guidée"}</span>
         </div>
         ${renderRecommendedAfter(item, items)}
         <div class="card-progress">
