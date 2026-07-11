@@ -1,9 +1,10 @@
-/* pathway.js — interface autonome du micro-parcours BAV. */
+/* pathway.js — interface générique des micro-parcours ECG. */
 (() => {
   "use strict";
 
   const API = "";
-  const CONFIG_URL = "/static/pedagogy-bav.json";
+  const CATALOG_URL = "/static/pathways.json";
+  const DEFAULT_PATHWAY_ID = "bav-foundations";
   const STORAGE_PREFIX = "ecg_pathway_v1_";
   const SESSION_KEY = "ecg_pathway_session";
   const Core = window.ECGPathwayCore;
@@ -86,7 +87,17 @@
       return;
     }
     try {
-      config = await fetchJson(CONFIG_URL);
+      const catalog = await fetchJson(CATALOG_URL);
+      if (catalog.schema_version !== 1) throw new Error("Version de catalogue non prise en charge.");
+      const requestedId = new URLSearchParams(window.location.search).get("id")
+        || catalog.default_id
+        || DEFAULT_PATHWAY_ID;
+      const catalogEntry = Core.selectCatalogEntry(catalog, requestedId, DEFAULT_PATHWAY_ID);
+      if (!catalogEntry) throw new Error("Ce parcours n’existe pas ou n’est plus disponible.");
+      config = await fetchJson(catalogEntry.config_url);
+      if (config.id !== catalogEntry.id) throw new Error("La configuration de ce parcours est incohérente.");
+      if (config.schema_version !== 1) throw new Error("Version de parcours non prise en charge.");
+      document.title = `Parcours ECG — ${config.title}`;
       loadState();
       wireGlobalActions();
       renderShell();
@@ -97,7 +108,7 @@
 
   function showFatal(message) {
     const root = $("#pathway-root");
-    root.innerHTML = `<div class="fatal"><h2>Parcours indisponible</h2><p>${escapeHtml(message)}</p></div>`;
+    root.innerHTML = `<div class="fatal"><h2>Parcours indisponible</h2><p>${escapeHtml(message)}</p><a class="secondary-action link-button" href="/static/pathways.html">Voir les parcours disponibles</a></div>`;
   }
 
   function wireGlobalActions() {
@@ -151,7 +162,7 @@
         </div>
         <div class="principle">
           <strong>Principe pédagogique</strong>
-          <p>Tu produis d’abord une interprétation sans aide. Les indices ne deviennent accessibles qu’après cet engagement initial. Le dernier ECG est réalisé sans indice.</p>
+          <p>Tu produis d’abord une interprétation sans aide. Les indices ne deviennent accessibles qu’après cet engagement initial. Le test de maîtrise est réalisé sans indice.</p>
         </div>
         <h2>Objectifs</h2>
         <ul class="objectives">${config.learning_objectives.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
@@ -169,11 +180,14 @@
   async function openStep(index) {
     const seq = Core.sequence(config, state);
     currentDefinition = seq[index];
+    const pending = state.pendingAttempt && state.pendingAttempt.caseKey === Core.caseKey(currentDefinition)
+      ? state.pendingAttempt
+      : null;
     state.currentIndex = index;
     saveState();
-    openedAt = Date.now();
-    initialLockedAt = 0;
-    hintsUsed = 0;
+    openedAt = pending ? Number(pending.openedAt || Date.now()) : Date.now();
+    initialLockedAt = pending ? Number(pending.lockedAt || 0) : 0;
+    hintsUsed = pending ? Number(pending.hintsUsed || 0) : 0;
 
     const root = $("#pathway-root");
     root.innerHTML = `<div class="loading-card">Chargement du tracé…</div>`;
@@ -181,6 +195,7 @@
     try {
       currentCase = await fetchJson(`${API}/api/case/${currentDefinition.num}`);
       renderCase(index, seq.length);
+      if (pending) restorePendingAttempt(pending);
     } catch (error) {
       root.innerHTML = `<div class="fatal"><h2>Impossible de charger ce cas</h2><p>${escapeHtml(error.message)}</p><button id="retry-load" class="secondary-action">Réessayer</button></div>`;
       $("#retry-load").addEventListener("click", () => openStep(index));
@@ -270,6 +285,13 @@
     }
     const confidence = Number($("#confidence").value);
     initialLockedAt = Date.now();
+    state = Core.lockPendingAttempt(state, currentDefinition, {
+      initialAnswer: answer,
+      confidence,
+      openedAt,
+      lockedAt: initialLockedAt,
+    });
+    saveState();
     $("#initial-answer").disabled = true;
     $("#confidence").disabled = true;
     $("#lock-initial").disabled = true;
@@ -281,7 +303,35 @@
     renderGuidedStage(answer, confidence);
   }
 
-  function renderGuidedStage(initialAnswer, confidence) {
+  function restorePendingAttempt(pending) {
+    const initial = $("#initial-answer");
+    initial.value = pending.initialAnswer;
+    initial.disabled = true;
+    $("#confidence").value = String(pending.confidence);
+    $("#confidence").disabled = true;
+    $("#confidence-output").textContent = `${pending.confidence} %`;
+    $("#lock-initial").disabled = true;
+
+    if (currentDefinition.phase === "mastery") {
+      renderMasteryPending(pending);
+    } else {
+      renderGuidedStage(pending.initialAnswer, pending.confidence, true);
+    }
+  }
+
+  function renderMasteryPending(pending) {
+    const stage = $("#guided-stage");
+    stage.classList.remove("hidden");
+    stage.innerHTML = `
+      <div class="stage-marker"><span>2</span><div><strong>Réponse autonome verrouillée</strong><small>La correction peut être relancée sans modifier la réponse ni accéder à une aide.</small></div></div>
+      <div class="locked-answer"><strong>Ta première lecture</strong><p>${escapeHtml(pending.initialAnswer).replace(/\n/g, "<br>")}</p><span>Confiance initiale : ${pending.confidence} %</span></div>
+      <button id="retry-mastery-grade" class="primary-action">Relancer la correction</button>`;
+    $("#retry-mastery-grade").addEventListener("click", () => {
+      gradeAnswer(pending.initialAnswer, pending.initialAnswer, pending.confidence);
+    });
+  }
+
+  function renderGuidedStage(initialAnswer, confidence, restoring = false) {
     const stage = $("#guided-stage");
     stage.classList.remove("hidden");
     const hintsAvailable = currentDefinition.allow_hints && currentDefinition.hints.length > 0;
@@ -299,6 +349,7 @@
       <button id="grade-final" class="primary-action">Corriger ma réponse finale</button>`;
 
     if (hintsAvailable) $("#next-hint").addEventListener("click", revealNextHint);
+    if (hintsAvailable && restoring) restoreRevealedHints();
     $("#grade-final").addEventListener("click", async () => {
       const finalAnswer = $("#final-answer").value.trim();
       if (!finalAnswer) {
@@ -307,17 +358,17 @@
       }
       await gradeAnswer(initialAnswer, finalAnswer, confidence);
     });
-    stage.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (!restoring) stage.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-  function revealNextHint() {
-    if (hintsUsed >= currentDefinition.hints.length) return;
-    const hint = currentDefinition.hints[hintsUsed];
-    hintsUsed += 1;
+  function appendHint(hint, number) {
     const item = document.createElement("div");
     item.className = "hint-item";
-    item.innerHTML = `<span>${hintsUsed}</span><p>${escapeHtml(hint)}</p>`;
+    item.innerHTML = `<span>${number}</span><p>${escapeHtml(hint)}</p>`;
     $("#hints-list").appendChild(item);
+  }
+
+  function updateHintControls() {
     $("#hint-counter").textContent = `${hintsUsed} / ${currentDefinition.hints.length}`;
     const button = $("#next-hint");
     if (hintsUsed >= currentDefinition.hints.length) {
@@ -328,8 +379,25 @@
     }
   }
 
+  function restoreRevealedHints() {
+    currentDefinition.hints.slice(0, hintsUsed).forEach((hint, index) => appendHint(hint, index + 1));
+    updateHintControls();
+  }
+
+  function revealNextHint() {
+    if (hintsUsed >= currentDefinition.hints.length) return;
+    const hint = currentDefinition.hints[hintsUsed];
+    hintsUsed += 1;
+    state = Core.recordPendingHint(state);
+    saveState();
+    appendHint(hint, hintsUsed);
+    updateHintControls();
+  }
+
   async function gradeAnswer(initialAnswer, finalAnswer, confidence) {
-    const button = currentDefinition.phase === "mastery" ? $("#lock-initial") : $("#grade-final");
+    const button = currentDefinition.phase === "mastery"
+      ? ($("#retry-mastery-grade") || $("#lock-initial"))
+      : $("#grade-final");
     if (button) {
       button.disabled = true;
       button.dataset.original = button.textContent;
@@ -358,8 +426,8 @@
             t_reflexion_s: autonomousSeconds,
             t_total_s: totalSeconds,
             longueur: finalAnswer.length,
-            tentative: ((state.attempts[String(currentDefinition.num)] || []).length + 1),
-            refait: Boolean(state.attempts[String(currentDefinition.num)]),
+            tentative: Core.attemptHistory(state, currentDefinition).length + 1,
+            refait: Core.attemptHistory(state, currentDefinition).length > 0,
           },
         }),
       });
@@ -373,9 +441,10 @@
         diagnosticScore: Core.diagnosticScore(result),
         correspondence: result.correspondance,
         errorType: result.type_erreur,
+        formativeOnly: currentDefinition.formative_only,
       });
 
-      if (currentDefinition.phase === "mastery" || currentDefinition.phase === "remediation") {
+      if (Core.canValidateMastery(currentDefinition, hintsUsed)) {
         const evaluation = Core.evaluateMastery(result, config);
         state = Core.markMastery(state, evaluation);
       }
@@ -398,18 +467,31 @@
     const found = (result.elements_trouves || []).map((item) => `<li>${escapeHtml(item.label)}</li>`).join("") || "<li>Aucun élément validant identifié.</li>";
     const missed = (result.elements_manques || []).map((item) => `<li>${escapeHtml(item.label)}</li>`).join("") || "<li>Aucun élément majeur manquant.</li>";
     const wrong = (result.elements_errones || []).map((item) => `<li><strong>${escapeHtml(item.label)}</strong>${item.correction ? ` — ${escapeHtml(item.correction)}` : ""}</li>`).join("") || "<li>Aucune affirmation factuelle erronée.</li>";
-    const secondary = secondaryImages(currentCase.images);
-    const isAssessment = currentDefinition.phase === "mastery" || currentDefinition.phase === "remediation";
-    const evaluation = isAssessment ? Core.evaluateMastery(result, config) : null;
+    const secondary = currentDefinition.hide_secondary_images ? [] : secondaryImages(currentCase.images);
+    const isMastery = currentDefinition.phase === "mastery";
+    const isRemediation = currentDefinition.phase === "remediation";
+    const evaluation = isMastery ? Core.evaluateMastery(result, config) : null;
+    const teachingPoint = currentDefinition.teaching_point
+      ? `<div class="teaching-point"><strong>Point clé du cas</strong><p>${escapeHtml(currentDefinition.teaching_point)}</p></div>`
+      : "";
+    const formativeNotice = currentDefinition.formative_only
+      ? `<div class="formative-notice"><strong>Cas de raisonnement différentiel</strong><p>Le premier tracé n’autorise pas toujours un mécanisme unique. Le score du diagnostic exact est indicatif et ne participe pas à la validation de la maîtrise ; le tracé complémentaire apporte des éléments supplémentaires pour orienter le mécanisme.</p></div>`
+      : "";
+    const diagnosticLabel = currentDefinition.formative_only
+      ? "/100 diagnostic exact · indicatif"
+      : "/100 diagnostic";
 
     stage.innerHTML = `
       <div class="stage-marker"><span>3</span><div><strong>Correction</strong><small>Compare ton raisonnement initial, ta réponse finale et la référence.</small></div></div>
       <div class="score-panel">
         <div class="score-main"><span>${Math.round(result.score || 0)}</span><small>/100 global</small></div>
-        <div class="score-secondary"><strong>${Math.round(diagnostic)}</strong><span>/100 diagnostic</span></div>
+        <div class="score-secondary"><strong>${Math.round(diagnostic)}</strong><span>${diagnosticLabel}</span></div>
         <div class="verdict"><strong>${escapeHtml(result.verdict || "Correction terminée")}</strong><span>Diagnostic retenu : ${escapeHtml(result.diagnostic_retenu || "—")}</span></div>
       </div>
       ${evaluation ? `<div class="mastery-result ${evaluation.passed ? "passed" : "not-passed"}"><strong>${evaluation.passed ? "Compétence acquise sur ce test" : "Compétence à consolider"}</strong><span>Seuil diagnostique : ${evaluation.threshold}/100, sans erreur clinique repérée.</span></div>` : ""}
+      ${isRemediation ? `<div class="mastery-result remediation-complete"><strong>Consolidation réalisée</strong><span>Cette réponse aidée n’efface pas le résultat du test autonome et ne valide pas à elle seule la maîtrise.</span></div>` : ""}
+      ${formativeNotice}
+      ${teachingPoint}
       <div class="feedback-grid">
         <section><h3>Éléments trouvés</h3><ul>${found}</ul></section>
         <section><h3>À compléter</h3><ul>${missed}</ul></section>
@@ -427,9 +509,14 @@
 
   function renderContinuation(evaluation) {
     const box = $("#continuation-actions");
-    const isAssessment = currentDefinition.phase === "mastery" || currentDefinition.phase === "remediation";
 
-    if (isAssessment) {
+    if (currentDefinition.phase === "remediation") {
+      box.innerHTML = `<button id="see-balance" class="primary-action">Voir mon bilan</button>`;
+      $("#see-balance").addEventListener("click", () => renderCompletion(false));
+      return;
+    }
+
+    if (currentDefinition.phase === "mastery") {
       if (evaluation && evaluation.passed) {
         box.innerHTML = `<button id="finish-pathway" class="primary-action">Voir mon bilan</button>`;
         $("#finish-pathway").addEventListener("click", () => {
@@ -438,8 +525,10 @@
           renderCompletion(true);
         });
       } else if (!state.remediationActive && config.remediation) {
+        const offerTitle = config.remediation.offer_title || "Un ECG supplémentaire est proposé";
+        const offerText = config.remediation.offer_text || "Il cible la compétence qui reste fragile. Le parcours reste limité à six ECG au maximum.";
         box.innerHTML = `
-          <div class="remediation-offer"><strong>Un ECG supplémentaire est proposé</strong><p>Il cible le même diagnostic avec un échappement plus distal. Le parcours reste limité à six ECG au maximum.</p></div>
+          <div class="remediation-offer"><strong>${escapeHtml(offerTitle)}</strong><p>${escapeHtml(offerText)}</p></div>
           <button id="start-remediation" class="primary-action">Faire l’ECG de consolidation</button>
           <button id="see-balance" class="secondary-action">Voir le bilan sans refaire de cas</button>`;
         $("#start-remediation").addEventListener("click", () => {
@@ -468,31 +557,35 @@
     const root = $("#pathway-root");
     const p = Core.progress(state, config);
     const attempts = Object.values(state.attempts).flat();
-    const averageDiagnostic = attempts.length
-      ? Math.round(attempts.reduce((sum, item) => sum + Number(item.diagnosticScore || 0), 0) / attempts.length)
-      : 0;
-    const averageConfidence = attempts.length
-      ? Math.round(attempts.reduce((sum, item) => sum + Number(item.confidence || 0), 0) / attempts.length)
-      : 0;
+    const guidedAttempts = attempts.filter((item) => item.phase !== "mastery" && !item.formativeOnly);
+    const guidedAverage = guidedAttempts.length
+      ? Math.round(guidedAttempts.reduce((sum, item) => sum + Number(item.diagnosticScore || 0), 0) / guidedAttempts.length)
+      : "—";
+    const autonomousScore = state.mastery && Number.isFinite(state.mastery.diagnosticScore)
+      ? Math.round(state.mastery.diagnosticScore)
+      : "—";
     const totalHints = attempts.reduce((sum, item) => sum + Number(item.hintsUsed || 0), 0);
+    const completion = config.completion || {};
+    const passedMessage = completion.passed || "La compétence a été validée sur un ECG inédit, sans aide.";
+    const notPassedMessage = completion.not_passed || "Reprends les critères discriminants, puis retente un cas différé plutôt que de mémoriser ce tracé.";
 
     const canRemediate = !passed && !state.remediationActive && Boolean(config.remediation);
     root.innerHTML = `
       <section class="completion-card ${passed ? "passed" : "not-passed"}">
-        <div class="completion-status">${passed ? "Acquis" : "À consolider"}</div>
+        <div class="completion-status">${escapeHtml(passed ? (completion.status_passed || "Acquis") : (completion.status_not_passed || "À consolider"))}</div>
         <h1>${escapeHtml(config.title)}</h1>
         <p>${passed ? "Le test final a été réussi sans aide." : "Le parcours est terminé, mais le seuil de maîtrise autonome n’a pas encore été atteint."}</p>
         <div class="summary-grid">
           <div><strong>${p.done}</strong><span>ECG réalisés</span></div>
-          <div><strong>${averageDiagnostic}</strong><span>score diagnostique moyen</span></div>
-          <div><strong>${averageConfidence} %</strong><span>confiance moyenne</span></div>
+          <div><strong>${guidedAverage}</strong><span>score accompagné moyen</span></div>
+          <div><strong>${autonomousScore}</strong><span>test autonome</span></div>
           <div><strong>${totalHints}</strong><span>indices utilisés</span></div>
         </div>
-        <div class="next-learning"><strong>Message pédagogique</strong><p>${passed ? "Tu sais distinguer les principaux degrés de BAV et reconnaître une dissociation auriculoventriculaire. La réactivation différée reste nécessaire pour confirmer la rétention." : "Reprends surtout la relation entre les ondes P et les QRS, puis la dynamique de l’intervalle PR. Une nouvelle tentative différée sera plus informative qu’une répétition immédiate en boucle."}</p></div>
+        <div class="next-learning"><strong>Message pédagogique</strong><p>${escapeHtml(passed ? passedMessage : notPassedMessage)}</p></div>
         <div class="completion-actions">
-          ${canRemediate ? `<button id="completion-remediation" class="primary-action">Faire l’ECG de consolidation</button>` : `<a class="primary-action link-button" href="/">Retour à la banque des 75 ECG</a>`}
+          ${canRemediate ? `<button id="completion-remediation" class="primary-action">Faire l’ECG de consolidation</button>` : `<a class="primary-action link-button" href="/static/pathways.html">Retour aux parcours</a>`}
           <button id="restart-completion" class="secondary-action">Recommencer ce parcours</button>
-          ${canRemediate ? `<a class="secondary-action link-button" href="/">Retour à la banque libre</a>` : ""}
+          ${canRemediate ? `<a class="secondary-action link-button" href="/static/pathways.html">Retour aux parcours</a>` : `<a class="secondary-action link-button" href="/">Banque libre</a>`}
         </div>
       </section>`;
     if (canRemediate) {
