@@ -12,15 +12,20 @@
   ],
   "mastery": {
     "diagnostic_threshold": 75,
-    "unsafe_error_types": ["etudiant"],
-    "remediation_case": 29
+    "unsafe_error_types": ["etudiant"]
+  },
+  "completion": {
+    "passed": "Tu sais distinguer les principaux degrés de BAV et reconnaître une dissociation auriculoventriculaire. Une réactivation différée reste nécessaire pour confirmer la rétention.",
+    "not_passed": "Reprends surtout la relation entre les ondes P et les QRS, puis la dynamique de l’intervalle PR. Une nouvelle tentative différée sera plus informative qu’une répétition immédiate en boucle."
   },
   "cases": [
     {
+      "step_id": "bav-pr-prolonge",
       "num": 23,
       "phase": "foundation",
-      "step_title": "Le délai PR",
-      "objective": "Identifier un BAV du premier degré sans confondre ralentissement et interruption de conduction.",
+      "step_title": "Relation entre les ondes P et les QRS",
+      "objective": "Décrire la conduction de chaque onde P et mesurer la stabilité de l’intervalle PR.",
+      "teaching_point": "Toutes les ondes P sont conduites avec un PR fixe supérieur à 200 ms : BAV du premier degré.",
       "allow_hints": true,
       "hints": [
         "Compte séparément les ondes P et les complexes QRS : chaque onde P est-elle conduite ?",
@@ -29,10 +34,12 @@
       ]
     },
     {
+      "step_id": "bav-pr-progressif",
       "num": 24,
       "phase": "guided",
-      "step_title": "Le phénomène de Wenckebach",
-      "objective": "Reconnaître l’allongement progressif du PR avant une onde P bloquée.",
+      "step_title": "Comprendre une pause ventriculaire",
+      "objective": "Repérer une onde P non suivie d’un QRS et comparer les intervalles PR qui la précèdent.",
+      "teaching_point": "L’allongement progressif du PR avant une onde P bloquée définit un BAV du deuxième degré Mobitz I (Wenckebach).",
       "allow_hints": true,
       "hints": [
         "Repère d’abord une onde P qui n’est pas suivie d’un QRS.",
@@ -41,10 +48,12 @@
       ]
     },
     {
+      "step_id": "bav-pr-fixe",
       "num": 25,
       "phase": "contrast",
-      "step_title": "Mobitz II : le contraste",
-      "objective": "Distinguer un Mobitz II d’un Wenckebach et repérer son caractère préoccupant.",
+      "step_title": "Comparer les cycles conduits",
+      "objective": "Analyser le PR autour d’une onde P non conduite et intégrer la largeur des QRS au niveau de risque.",
+      "teaching_point": "Une onde P bloquée de façon inopinée avec des PR conduits constants définit un BAV Mobitz II, souvent infranodal.",
       "allow_hints": true,
       "hints": [
         "Cherche l’onde P responsable de la pause ventriculaire.",
@@ -53,10 +62,12 @@
       ]
     },
     {
+      "step_id": "bav-conduction-alternee",
       "num": 26,
       "phase": "contrast",
-      "step_title": "Le BAV 2/1",
-      "objective": "Identifier une conduction 2/1 et comprendre qu’elle ne permet pas toujours de trancher Mobitz I versus Mobitz II sur l’ECG de surface.",
+      "step_title": "Comparer les fréquences atriale et ventriculaire",
+      "objective": "Déterminer le rapport de conduction sans attribuer un mécanisme que le tracé de surface ne démontre pas.",
+      "teaching_point": "Une onde P sur deux est conduite : BAV 2/1, sans pouvoir imposer Mobitz I ou II sur ce seul tracé.",
       "allow_hints": true,
       "hints": [
         "Recherche une activité atriale cachée dans la fin des ondes T.",
@@ -65,19 +76,25 @@
       ]
     },
     {
+      "step_id": "bav-test-dissociation",
       "num": 28,
       "phase": "mastery",
       "step_title": "Test de maîtrise",
-      "objective": "Reconnaître de façon autonome un BAV complet et décrire l’échappement.",
+      "objective": "Décrire séparément l’activité atriale, l’activité ventriculaire et leur relation, puis conclure.",
+      "teaching_point": "La dissociation atrioventriculaire complète avec échappement jonctionnel correspond à un BAV complet.",
       "allow_hints": false,
       "hints": []
     }
   ],
   "remediation": {
+    "step_id": "bav-remediation-echappement",
     "num": 29,
     "phase": "remediation",
-    "step_title": "Consolidation : échappement distal",
-    "objective": "Reprendre le diagnostic de BAV complet et différencier un échappement distal d’un échappement jonctionnel.",
+    "step_title": "Consolidation : analyser deux activités indépendantes",
+    "objective": "Réexaminer la relation atrioventriculaire, puis caractériser le rythme qui commande les ventricules.",
+    "teaching_point": "La dissociation atrioventriculaire avec échappement lent à QRS larges indique un BAV complet à échappement distal.",
+    "offer_title": "Un ECG supplémentaire est proposé",
+    "offer_text": "Il reprend le BAV complet avec un échappement plus distal. Le parcours reste limité à six ECG au maximum.",
     "allow_hints": true,
     "hints": [
       "Vérifie si l’activité atriale et l’activité ventriculaire évoluent indépendamment.",
