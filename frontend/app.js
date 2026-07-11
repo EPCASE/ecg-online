@@ -1,5 +1,6 @@
 /* app.js — logique front de l'ECG Lecture */
 const API = "";                      // même origine
+const CURRICULUM_CATALOG_URL = "/static/pathways.json";
 // Email de repli si le recueil des signalements n'est pas configuré côté serveur.
 const REPORT_EMAIL = "correction.ecg@gmail.com";
 let CASES = [];
@@ -26,6 +27,7 @@ let CASE_COUNTS = null;
  * Alimente la curation golden/NER. Réinitialisé à chaque correction. */
 let CURRENT_CONCEPTS = [];
 let CONCEPT_VOTES = {};
+let HOME_PATHWAY_HREF = "/static/pathways.html";
 
 const $ = (sel) => document.querySelector(sel);
 const el = (tag, cls, html) => {
@@ -37,11 +39,24 @@ const el = (tag, cls, html) => {
 
 /* ─────────── Bootstrap ─────────── */
 async function init() {
+  const requested = requestedAppView();
+  setAppMode(requested.mode === "bank" ? "bank" : "home");
   await checkHealth();
   await loadCases();
   wireGlobal();
   wireHome();
+  if (requested.mode === "case" && CASES.some((item) => item.num === requested.caseNum)) {
+    await openCase(requested.caseNum, { updateHistory: false });
+  } else if (requested.mode === "case") {
+    window.history.replaceState({ view: "home" }, "", "/");
+    setAppMode("home");
+  } else if (requested.mode === "bank") {
+    openBank({ updateHistory: false, focus: false });
+  } else {
+    setAppMode("home");
+  }
   refreshProgressUI();
+  refreshHomePathwayRecommendation();
   loadCaseStats();             // non bloquant : compteurs pour le tirage pondéré
 }
 
@@ -106,11 +121,13 @@ function renderCaseList() {
   const filtered = CASES.filter((c) => ACTIVE_FAMILY === "all" || c.famille === ACTIVE_FAMILY);
   filtered.forEach((c) => {
     const stat = window.Progress ? Progress.caseStat(c.num) : null;
-    const item = el("li", "case-item"
+    const row = el("li");
+    const item = el("button", "case-item"
       + (CURRENT && CURRENT.num === c.num ? " active" : "")
       + (stat ? " done" : ""));
+    item.type = "button";
     const fam = c.famille
-      ? `<div class="fam">${escapeHtml(c.famille)}</div>`
+      ? `<span class="fam">${escapeHtml(c.famille)}</span>`
       : "";
     // Pastille d'état : ✓ vert si déjà corrigé, + meilleur score en info-bulle.
     const badge = stat
@@ -122,21 +139,30 @@ function renderCaseList() {
     const label = (stat && stat.titre) ? capitalize(stat.titre) : (c.titre || "Cas ECG");
     item.innerHTML =
       `<span class="n">${c.num}</span>` +
-      `<div class="ci-main"><div class="t">${escapeHtml(label)}</div>` +
-      fam + `</div>` + badge;
+      `<span class="ci-main"><span class="t">${escapeHtml(label)}</span>` +
+      fam + `</span>` + badge;
     item.onclick = () => openCase(c.num);
-    list.appendChild(item);
+    row.appendChild(item);
+    list.appendChild(row);
   });
 }
 
 /* ─────────── Ouverture d'un cas ─────────── */
-async function openCase(num) {
+async function openCase(num, { updateHistory = true } = {}) {
   const c = await fetch(`${API}/api/case/${num}`).then((r) => r.json());
   CURRENT = c;
+  if (updateHistory) {
+    const target = `/?view=case&case=${encodeURIComponent(c.num)}`;
+    const requested = requestedAppView();
+    if (requested.mode === "case" && requested.caseNum === c.num) {
+      window.history.replaceState({ view: "case", case: c.num }, "", target);
+    } else {
+      window.history.pushState({ view: "case", case: c.num }, "", target);
+    }
+  }
+  setAppMode("case");
   renderCaseList();
-  $("#welcome").classList.add("hidden");
   const view = $("#case-view");
-  view.classList.remove("hidden");
 
   $("#case-family").textContent = c.famille || "";
   $("#case-family").classList.toggle("hidden", !c.famille);
@@ -182,6 +208,11 @@ async function openCase(num) {
   setMode("free");
   await loadQcm(c.num);
 
+  const caseTitle = $("#case-title");
+  if (caseTitle) {
+    caseTitle.setAttribute("tabindex", "-1");
+    caseTitle.focus({ preventScroll: true });
+  }
   view.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
@@ -771,6 +802,8 @@ function wireHome() {
   const daily = $("#action-daily");
   const resume = $("#action-resume");
   const random = $("#action-random");
+  const explore = $("#action-explore");
+  if (explore) explore.onclick = () => openBank();
   if (daily) daily.onclick = () => {
     const n = window.Progress ? Progress.dailyCase(allCaseNums()) : allCaseNums()[0];
     if (n != null) openCase(n);
@@ -787,6 +820,90 @@ function wireHome() {
     const n = window.Progress ? Progress.randomCase(nums, null, CASE_COUNTS) : nums[Math.floor(Math.random() * nums.length)];
     if (n != null) openCase(n);
   };
+}
+
+function setAppMode(mode) {
+  document.body.classList.remove("home-mode", "bank-mode", "case-mode");
+  document.body.classList.add(`${mode}-mode`);
+  const welcome = $("#welcome");
+  const bankWelcome = $("#bank-welcome");
+  const caseView = $("#case-view");
+  if (welcome) welcome.classList.toggle("hidden", mode !== "home");
+  if (bankWelcome) bankWelcome.classList.toggle("hidden", mode !== "bank");
+  if (caseView) caseView.classList.toggle("hidden", mode !== "case");
+}
+
+function requestedAppView() {
+  const params = new URLSearchParams(window.location.search);
+  const mode = params.get("view");
+  const caseNum = Number(params.get("case"));
+  if (mode === "case" && Number.isInteger(caseNum) && caseNum > 0) return { mode, caseNum };
+  if (mode === "bank") return { mode, caseNum: null };
+  return { mode: "home", caseNum: null };
+}
+
+function openBank({ updateHistory = true, focus = true } = {}) {
+  CURRENT = null;
+  if (updateHistory && new URLSearchParams(window.location.search).get("view") !== "bank") {
+    window.history.pushState({ view: "bank" }, "", "/?view=bank");
+  }
+  setAppMode("bank");
+  renderCaseList();
+  const bankWelcome = $("#bank-welcome");
+  if (bankWelcome && focus) {
+    bankWelcome.setAttribute("tabindex", "-1");
+    bankWelcome.focus({ preventScroll: true });
+  }
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+let homeRecommendationGeneration = 0;
+async function refreshHomePathwayRecommendation() {
+  const generation = ++homeRecommendationGeneration;
+  const link = $("#action-pathway");
+  const copy = $("#pathway-recommendation");
+  const Dashboard = window.ECGPathwayDashboard;
+  if (!link || !copy || !Dashboard || typeof Dashboard.recommendation !== "function") return;
+  link.href = HOME_PATHWAY_HREF;
+  try {
+    const catalogResponse = await fetch(CURRICULUM_CATALOG_URL);
+    if (!catalogResponse.ok) throw new Error(`Erreur HTTP ${catalogResponse.status}`);
+    const catalog = await catalogResponse.json();
+    if (catalog.schema_version !== 1) throw new Error("Version de catalogue non prise en charge.");
+    const items = await Promise.all((catalog.pathways || []).map(async (entry) => {
+      const configResponse = await fetch(entry.config_url);
+      if (!configResponse.ok) throw new Error(`Erreur HTTP ${configResponse.status}`);
+      const config = await configResponse.json();
+      if (config.id !== entry.id || config.schema_version !== 1) throw new Error(`Configuration incohérente : ${entry.id}`);
+      let state = null;
+      try {
+        state = JSON.parse(localStorage.getItem(Dashboard.STORAGE_PREFIX + entry.id) || "null");
+      } catch {
+        state = null;
+      }
+      return { catalog: entry, config, state };
+    }));
+    if (generation !== homeRecommendationGeneration) return;
+    const recommendation = Dashboard.recommendation(items);
+    const item = items[recommendation.index];
+    if (!item) return;
+    const lead = {
+      resume: "Reprendre",
+      consolidate: "Consolider",
+      fundamental: "Commencer",
+      "recommendations-met": "Étape suivante",
+      "open-choice": "Parcours accessible",
+      review: "Réviser",
+    }[recommendation.reason] || "Continuer";
+    HOME_PATHWAY_HREF = `/static/pathway.html?id=${encodeURIComponent(item.config.id)}`;
+    link.href = HOME_PATHWAY_HREF;
+    copy.textContent = `${lead} · ${item.config.title} · ~${item.config.estimated_minutes} min`;
+  } catch {
+    if (generation !== homeRecommendationGeneration) return;
+    HOME_PATHWAY_HREF = "/static/pathways.html";
+    link.href = HOME_PATHWAY_HREF;
+    copy.textContent = "5 compétences · première réponse sans aide · ~15 min";
+  }
 }
 
 // Rafraîchit les indicateurs de progression (mini-barre header + bandeau accueil).
@@ -824,12 +941,12 @@ function refreshProgressUI() {
   const resumeD = $("#resume-desc");
   if (resumeT && resumeD) {
     if (s.done === 0) {
-      resumeT.textContent = "Commencer l'entraînement";
-      resumeD.textContent = "Le 1ᵉʳ cas du parcours";
+      resumeT.textContent = "Commencer la banque libre";
+      resumeD.textContent = "cas #1";
     } else {
       const nextN = Progress.nextCase(allCaseNums(), null);
-      resumeT.textContent = "Reprendre l'entraînement";
-      resumeD.textContent = nextN != null ? `Prochain cas conseillé : #${nextN}` : "Tous les cas sont lus 🎉";
+      resumeT.textContent = "Reprendre la banque libre";
+      resumeD.textContent = nextN != null ? `cas #${nextN}` : "75 cas lus";
     }
   }
 }
@@ -1048,12 +1165,15 @@ function offerMailFallback(message, categorie) {
 }
 
 /* Retour à l'écran d'accueil (referme la vue cas, rafraîchit la progression). */
-function goHome() {
+function goHome({ updateHistory = true } = {}) {
   CURRENT = null;
-  $("#case-view").classList.add("hidden");
-  $("#welcome").classList.remove("hidden");
+  if (updateHistory && window.location.search) {
+    window.history.pushState({ view: "home" }, "", "/");
+  }
+  setAppMode("home");
   renderCaseList();          // enlève l'état « actif » du cas
   refreshProgressUI();
+  refreshHomePathwayRecommendation();
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
@@ -1087,5 +1207,25 @@ function mdToHtml(s) {
   if (inList) out += "</ul>";
   return out;
 }
+
+window.addEventListener("pageshow", (event) => {
+  if (event.persisted) refreshHomePathwayRecommendation();
+});
+window.addEventListener("storage", (event) => {
+  const Dashboard = window.ECGPathwayDashboard;
+  if (event.key === null || (Dashboard && event.key && event.key.startsWith(Dashboard.STORAGE_PREFIX))) {
+    refreshHomePathwayRecommendation();
+  }
+});
+window.addEventListener("popstate", () => {
+  const requested = requestedAppView();
+  if (requested.mode === "case" && CASES.some((item) => item.num === requested.caseNum)) {
+    openCase(requested.caseNum, { updateHistory: false });
+  } else if (requested.mode === "bank") {
+    openBank({ updateHistory: false });
+  } else {
+    goHome({ updateHistory: false });
+  }
+});
 
 init();

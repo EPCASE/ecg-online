@@ -39,6 +39,14 @@ class PathwayRoutesTest(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn("/static/pathways.html", response.get_data(as_text=True))
 
+        response = self.get_response("/?view=bank")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("Explorer les 75 cas", response.get_data(as_text=True))
+
+        response = self.get_response("/?view=case&case=23")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn('id="case-view"', response.get_data(as_text=True))
+
     def test_all_catalog_configs_are_available(self) -> None:
         catalog_response = self.get_response("/static/pathways.json")
         self.assertEqual(catalog_response.status_code, 200)
