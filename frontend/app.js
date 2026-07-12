@@ -5,6 +5,7 @@ const CURRICULUM_CATALOG_URL = "/static/pathways.json";
 const REPORT_EMAIL = "correction.ecg@gmail.com";
 let CASES = [];
 let ACTIVE_FAMILY = "all";
+let CASE_SEARCH = "";
 let CURRENT = null;
 let CURRENT_QCM = null;              // QCM du cas courant (question + options)
 let QCM_SELECTED = new Set();        // lettres cochées
@@ -16,6 +17,11 @@ let CURRENT_PAGES2 = [];             // images secondaires (page 2+) révélées
 let CASE_OPEN_TS = 0;                // horodatage d'ouverture du cas (ms)
 let FIRST_KEY_TS = 0;                // horodatage de la 1ʳᵉ frappe dans la réponse
 let EDIT_COUNT = 0;                  // nombre d'événements de saisie (proxy d'édition)
+let CASE_TIMER = null;               // temps mural/actif, avec exclusion de l'arrière-plan
+let DRAFT_RESTORED = false;
+let VIEWER_OPEN_COUNT = 0;
+let VIEWER_ZOOM_COUNT = 0;
+let LIGHTBOX_SCALE = 1;
 
 /* Randomisation pondérée (note UX §5.4) : compteurs GLOBAUX de soumissions par
  * cas (toute la promo, via la feuille « reponses »). null = indisponible →
@@ -118,7 +124,16 @@ function renderFilters(fams) {
 function renderCaseList() {
   const list = $("#case-list");
   list.innerHTML = "";
-  const filtered = CASES.filter((c) => ACTIVE_FAMILY === "all" || c.famille === ACTIVE_FAMILY);
+  const query = CASE_SEARCH.trim().toLocaleLowerCase("fr");
+  const filtered = CASES.filter((c) => {
+    if (ACTIVE_FAMILY !== "all" && c.famille !== ACTIVE_FAMILY) return false;
+    if (!query) return true;
+    const stat = window.Progress ? Progress.caseStat(c.num) : null;
+    const revealedTitle = stat && stat.titre ? stat.titre : c.titre;
+    return [c.num, c.famille, revealedTitle]
+      .filter((value) => value != null)
+      .some((value) => String(value).toLocaleLowerCase("fr").includes(query));
+  });
   filtered.forEach((c) => {
     const stat = window.Progress ? Progress.caseStat(c.num) : null;
     const row = el("li");
@@ -189,7 +204,9 @@ async function openCase(num, { updateHistory = true } = {}) {
     gal.appendChild(im);
   }
 
-  $("#answer").value = "";
+  const draft = loadDraft(c.num);
+  $("#answer").value = draft;
+  DRAFT_RESTORED = Boolean(draft);
   $("#result").classList.add("hidden");
   $("#result").innerHTML = "";
   // Masque le bloc « Continuer » tant que l'étudiant n'a pas corrigé.
@@ -205,6 +222,11 @@ async function openCase(num, { updateHistory = true } = {}) {
   CASE_OPEN_TS = Date.now();
   FIRST_KEY_TS = 0;
   EDIT_COUNT = 0;
+  CASE_TIMER = window.ECGTiming
+    ? ECGTiming.createTracker({ startedAt: CASE_OPEN_TS, visible: !document.hidden })
+    : null;
+  VIEWER_OPEN_COUNT = 0;
+  VIEWER_ZOOM_COUNT = 0;
   setMode("free");
   await loadQcm(c.num);
 
@@ -384,6 +406,7 @@ async function gradeCurrent() {
   try {
     // Métriques d'usage (note UX §13) — conditions de production de la réponse.
     const now = Date.now();
+    const totalTiming = CASE_TIMER ? CASE_TIMER.snapshot(now) : null;
     const stat = window.Progress ? Progress.caseStat(CURRENT.num) : null;
     const meta = {
       // Conditions (§6.3) : la réponse libre est produite AVANT tout QCM (verrouillé).
@@ -396,6 +419,11 @@ async function gradeCurrent() {
       t_total_s: Math.round((now - CASE_OPEN_TS) / 1000),
       editions: EDIT_COUNT,
       longueur: answer.length,
+      ...(window.ECGTiming && totalTiming ? ECGTiming.metrics(totalTiming, totalTiming, {
+        brouillon_restaure: DRAFT_RESTORED,
+        ouvertures_visionneuse: VIEWER_OPEN_COUNT,
+        zooms_visionneuse: VIEWER_ZOOM_COUNT,
+      }) : {}),
     };
     const r = await fetch(`${API}/api/grade`, {
       method: "POST",
@@ -410,6 +438,7 @@ async function gradeCurrent() {
     });
     const data = await r.json();
     if (data.error) throw new Error(data.error);
+    clearDraft(CURRENT.num);
     renderResult(data);
     // Progression locale + boucle d'engagement (note UX §8, §13).
     if (window.Progress) {
@@ -788,8 +817,53 @@ function renderReferenceBody(ref) {
 
 /* ─────────── Lightbox ─────────── */
 function openLightbox(src) {
+  VIEWER_OPEN_COUNT += 1;
+  LIGHTBOX_SCALE = 1;
   $("#lightbox-img").src = src;
+  updateLightboxScale();
   $("#lightbox").classList.remove("hidden");
+  document.body.classList.add("viewer-open");
+}
+
+function updateLightboxScale() {
+  const image = $("#lightbox-img");
+  if (!image) return;
+  image.style.width = `${Math.round(LIGHTBOX_SCALE * 100)}%`;
+  const reset = $("#lightbox-reset");
+  if (reset) reset.textContent = `${Math.round(LIGHTBOX_SCALE * 100)} %`;
+}
+
+function zoomLightbox(delta) {
+  const next = Math.min(3, Math.max(0.75, LIGHTBOX_SCALE + delta));
+  if (next === LIGHTBOX_SCALE) return;
+  LIGHTBOX_SCALE = next;
+  VIEWER_ZOOM_COUNT += 1;
+  updateLightboxScale();
+}
+
+function closeLightbox() {
+  $("#lightbox").classList.add("hidden");
+  document.body.classList.remove("viewer-open");
+}
+
+function draftKey(num) {
+  return `ecg_draft_v1_case_${num}`;
+}
+
+function loadDraft(num) {
+  try { return localStorage.getItem(draftKey(num)) || ""; } catch { return ""; }
+}
+
+function saveDraft(num, value) {
+  if (!num) return;
+  try {
+    if (value) localStorage.setItem(draftKey(num), value);
+    else localStorage.removeItem(draftKey(num));
+  } catch { /* stockage local indisponible : l'exercice reste utilisable */ }
+}
+
+function clearDraft(num) {
+  saveDraft(num, "");
 }
 
 /* ─────────── Accueil orienté action + progression ─────────── */
@@ -1006,6 +1080,16 @@ function showNextActions(lastScore) {
     retryBtn.classList.toggle("na-btn--primary", weak);
     retryBtn.onclick = () => {
       $("#answer").value = "";
+      clearDraft(CURRENT.num);
+      CASE_OPEN_TS = Date.now();
+      FIRST_KEY_TS = 0;
+      EDIT_COUNT = 0;
+      DRAFT_RESTORED = false;
+      VIEWER_OPEN_COUNT = 0;
+      VIEWER_ZOOM_COUNT = 0;
+      CASE_TIMER = window.ECGTiming
+        ? ECGTiming.createTracker({ startedAt: CASE_OPEN_TS, visible: !document.hidden })
+        : null;
       $("#result").classList.add("hidden");
       box.classList.add("hidden");
       $("#case-page2").classList.add("hidden");
@@ -1027,6 +1111,7 @@ function wireGlobal() {
   $("#grade-btn").onclick = gradeCurrent;
   $("#clear-btn").onclick = () => {
     $("#answer").value = "";
+    if (CURRENT) clearDraft(CURRENT.num);
     $("#result").classList.add("hidden");
     $("#case-page2").classList.add("hidden");
     $("#answer").focus();
@@ -1040,7 +1125,14 @@ function wireGlobal() {
   const ta = $("#answer");
   if (ta) ta.addEventListener("input", () => {
     if (!FIRST_KEY_TS) FIRST_KEY_TS = Date.now();
+    if (CASE_TIMER) CASE_TIMER.markFirstInput();
     EDIT_COUNT += 1;
+    if (CURRENT) saveDraft(CURRENT.num, ta.value);
+  });
+  const search = $("#case-search");
+  if (search) search.addEventListener("input", () => {
+    CASE_SEARCH = search.value;
+    renderCaseList();
   });
   // Bascule de mode
   $("#mode-free").onclick = () => setMode("free");
@@ -1048,9 +1140,22 @@ function wireGlobal() {
   // QCM
   $("#qcm-submit").onclick = submitQcm;
   $("#qcm-reset").onclick = resetQcm;
-  $("#lightbox").onclick = () => $("#lightbox").classList.add("hidden");
+  $("#lightbox").addEventListener("click", (event) => {
+    if (event.target === $("#lightbox")) closeLightbox();
+  });
+  $("#lightbox-close").onclick = closeLightbox;
+  $("#lightbox-zoom-out").onclick = () => zoomLightbox(-0.25);
+  $("#lightbox-zoom-in").onclick = () => zoomLightbox(0.25);
+  $("#lightbox-reset").onclick = () => {
+    if (LIGHTBOX_SCALE !== 1) VIEWER_ZOOM_COUNT += 1;
+    LIGHTBOX_SCALE = 1;
+    updateLightboxScale();
+  };
+  document.addEventListener("visibilitychange", () => {
+    if (CASE_TIMER) CASE_TIMER.setVisibility(!document.hidden);
+  });
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") $("#lightbox").classList.add("hidden");
+    if (e.key === "Escape") closeLightbox();
     if (e.key === "Enter" && e.ctrlKey) gradeCurrent();
   });
 }

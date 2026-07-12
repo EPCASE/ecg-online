@@ -343,6 +343,10 @@ function loadConfig(entry) {
   }
   assert.match(homeHtml, /<a id="action-pathway"[^>]+href="\/static\/pathways\.html"/);
   assert.match(homeHtml, /id="action-explore"/);
+  assert.match(homeHtml, /id="case-search"/);
+  assert.match(homeHtml, /id="lightbox-zoom-in"/);
+  assert.ok(homeHtml.indexOf("/static/timing.js") < homeHtml.indexOf("/static/app.js"));
+  assert.ok(pathwayHtml.indexOf("/static/timing.js") < pathwayHtml.indexOf("/static/pathway.js"));
   assert.match(homeHtml, /class="home-free-practice"/);
   for (const id of ["action-daily", "action-resume", "action-random"]) {
     assert.match(homeHtml, new RegExp(`id="${id}"`));
@@ -359,6 +363,9 @@ function loadConfig(entry) {
   assert.match(appScript, /window\.addEventListener\("popstate"/);
   assert.match(appScript, /const item = el\("button", "case-item"/);
   assert.match(appScript, /caseTitle\.focus\(\{ preventScroll: true \}\)/);
+  assert.match(appScript, /ECGTiming\.metrics/);
+  assert.match(pathwayScript, /ECGTiming\.metrics/);
+  assert.match(homeCss, /min-height: 100dvh/);
   assert.match(pathwayHtml, /href="\/\?view=bank">Banque libre/);
   assert.match(pathwaysHtml, /href="\/\?view=bank">Explorer les 75 cas/);
   assert.doesNotMatch(appScript, /localStorage\.setItem\(Dashboard\.STORAGE_PREFIX/);
