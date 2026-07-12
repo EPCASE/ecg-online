@@ -39,6 +39,10 @@ class PathwayRoutesTest(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn("--ecg-coral", response.get_data(as_text=True))
 
+        response = self.get_response("/static/timing.js")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("t_autonome_actif_s", response.get_data(as_text=True))
+
         response = self.get_response("/")
         self.assertEqual(response.status_code, 200)
         self.assertIn("/static/pathways.html", response.get_data(as_text=True))

@@ -46,7 +46,15 @@ LOG_COLS = ["horodatage", "session", "cas", "titre", "reponse",
             "tentative", "refait", "t_reflexion_s", "t_total_s",
             "editions", "longueur", "mode",
             "parcours", "phase", "position", "confiance_initiale",
-            "indices_utilises", "reponse_initiale", "reponse_modifiee"]
+            "indices_utilises", "reponse_initiale", "reponse_modifiee",
+            # Chronométrage v2 : temps mural et temps réellement visible sont
+            # séparés pour ne pas interpréter une mise en arrière-plan comme
+            # du temps de raisonnement. Les anciennes colonnes sont conservées.
+            "t_premiere_saisie_active_s", "t_autonome_s",
+            "t_autonome_actif_s", "t_total_actif_s", "t_hors_app_s",
+            "mises_arriere_plan", "appareil", "largeur_vue", "hauteur_vue",
+            "orientation", "brouillon_restaure", "ouvertures_visionneuse",
+            "zooms_visionneuse"]
 PARCAS_HEADER = ["cas", "titre", "réponses →"]
 
 # Journal des signalements (bouton « Signaler un problème », version pré-alpha).
@@ -182,6 +190,10 @@ def _ensure_worksheets(ss) -> None:
         ws = ss.worksheet("reponses")
         current_header = ws.row_values(1)
         if current_header != LOG_COLS:
+            # Une feuille créée avec l'ancien schéma peut ne pas posséder assez
+            # de colonnes pour la nouvelle plage d'en-tête.
+            if getattr(ws, "col_count", 0) < len(LOG_COLS):
+                ws.resize(cols=len(LOG_COLS))
             ws.update(values=[LOG_COLS], range_name=f"A1:{_column_label(len(LOG_COLS))}1")
 
     if "par_cas" not in existing:
@@ -231,7 +243,13 @@ def _write(num: int, titre: str, answer: str, score, correspondance: str,
                  _m("mode", "libre"), _m("parcours"), _m("phase"),
                  _m("position"), _m("confiance_initiale"),
                  _m("indices_utilises"), _m("reponse_initiale"),
-                 _m("reponse_modifiee")],
+                 _m("reponse_modifiee"),
+                 _m("t_premiere_saisie_active_s"), _m("t_autonome_s"),
+                 _m("t_autonome_actif_s"), _m("t_total_actif_s"),
+                 _m("t_hors_app_s"), _m("mises_arriere_plan"),
+                 _m("appareil"), _m("largeur_vue"), _m("hauteur_vue"),
+                 _m("orientation"), _m("brouillon_restaure"),
+                 _m("ouvertures_visionneuse"), _m("zooms_visionneuse")],
                 value_input_option="RAW",  # type: ignore[arg-type]
             )
 

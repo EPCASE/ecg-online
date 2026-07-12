@@ -176,4 +176,14 @@ a { color: inherit; }
   .competency-row { grid-template-columns: auto minmax(0, 1fr) auto; }
   .competency-status { grid-column: 2; justify-self: start; }
   .competency-row b { grid-column: 3; grid-row: 1 / span 2; }
+  .catalog-hero h1 { font-size: 38px; }
+  .catalog-hero > div > p { font-size: 15px; }
+  .hero-principle { padding: 19px 16px; }
+  .next-recommendation { grid-template-columns: 1fr; gap: 12px; margin-bottom: 36px; }
+  .next-recommendation-icon { width: 46px; height: 46px; }
+  .next-recommendation-action { grid-column: 1; min-height: 48px; }
+  .pathway-levels { gap: 30px; }
+  .pathway-card { padding: 18px 16px; border-radius: 17px; }
+  .card-copy { padding-block: 18px 14px; }
+  .card-copy h3 { font-size: 21px; }
 }
