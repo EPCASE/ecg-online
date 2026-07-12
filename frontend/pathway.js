@@ -17,6 +17,13 @@
   let initialLockedAt = 0;
   let hintsUsed = 0;
   let confidenceTouched = false;
+  let stepTimer = null;
+  let autonomousTiming = null;
+  let draftRestored = false;
+  let viewerOpenCount = 0;
+  let viewerZoomCount = 0;
+  let lightboxScale = 1;
+  let lightboxBaseWidth = 0;
 
   const $ = (selector) => document.querySelector(selector);
 
@@ -40,6 +47,41 @@
 
   function storageKey() {
     return STORAGE_PREFIX + config.id;
+  }
+
+  function draftKey(kind) {
+    if (!config || !currentDefinition) return "";
+    return `ecg_pathway_draft_v1_${config.id}_${Core.caseKey(currentDefinition)}_${kind}`;
+  }
+
+  function loadDraft(kind) {
+    try { return localStorage.getItem(draftKey(kind)) || ""; } catch { return ""; }
+  }
+
+  function saveDraft(kind, value) {
+    const key = draftKey(kind);
+    if (!key) return;
+    try {
+      if (value) localStorage.setItem(key, value);
+      else localStorage.removeItem(key);
+    } catch { /* le parcours reste utilisable si le stockage est saturé */ }
+  }
+
+  function clearStepDrafts() {
+    saveDraft("initial", "");
+    saveDraft("final", "");
+  }
+
+  function clearPathwayDrafts() {
+    const prefix = `ecg_pathway_draft_v1_${config.id}_`;
+    try {
+      const keys = [];
+      for (let index = 0; index < localStorage.length; index += 1) {
+        const key = localStorage.key(index);
+        if (key && key.startsWith(prefix)) keys.push(key);
+      }
+      keys.forEach((key) => localStorage.removeItem(key));
+    } catch { /* la réinitialisation de progression reste prioritaire */ }
   }
 
   function saveState() {
@@ -116,6 +158,7 @@
     $("#reset-pathway").addEventListener("click", () => {
       const confirmed = window.confirm("Réinitialiser la progression de ce parcours sur cet appareil ?");
       if (!confirmed) return;
+      clearPathwayDrafts();
       state = Core.initialState(config.id);
       saveState();
       renderShell();
@@ -190,6 +233,24 @@
     initialLockedAt = pending ? Number(pending.lockedAt || 0) : 0;
     hintsUsed = pending ? Number(pending.hintsUsed || 0) : 0;
     confidenceTouched = Boolean(pending);
+    draftRestored = false;
+    viewerOpenCount = 0;
+    viewerZoomCount = 0;
+    autonomousTiming = pending && pending.timing ? pending.timing.autonomous : null;
+    if (window.ECGTiming) {
+      const savedTiming = pending && pending.timing ? pending.timing : {};
+      const resumeGap = pending ? Math.max(0, Date.now() - initialLockedAt) : 0;
+      stepTimer = ECGTiming.createTracker({
+        startedAt: openedAt,
+        visible: !document.hidden,
+        backgroundMs: Number(savedTiming.backgroundMs || 0) + resumeGap,
+        backgroundCount: Number(savedTiming.backgroundCount || 0) + (resumeGap > 0 ? 1 : 0),
+        firstInputAt: Number(savedTiming.firstInputAt || 0),
+        firstInputActiveMs: Number(savedTiming.firstInputActiveMs || 0),
+      });
+    } else {
+      stepTimer = null;
+    }
 
     const root = $("#pathway-root");
     root.innerHTML = `<div class="loading-card">Chargement du tracé…</div>`;
@@ -287,6 +348,16 @@
       $(".confidence-block").classList.remove("needs-input");
       $("#confidence-output").textContent = `${event.target.value} %`;
     });
+    const initialAnswer = $("#initial-answer");
+    const savedInitial = loadDraft("initial");
+    if (savedInitial) {
+      initialAnswer.value = savedInitial;
+      draftRestored = true;
+    }
+    initialAnswer.addEventListener("input", () => {
+      if (stepTimer) stepTimer.markFirstInput();
+      saveDraft("initial", initialAnswer.value);
+    });
     $("#lock-initial").addEventListener("click", lockInitialAnswer);
     if ($("#ecg-image")) $("#ecg-image").addEventListener("click", openLightbox);
   }
@@ -304,12 +375,21 @@
     }
     const confidence = Number($("#confidence").value);
     initialLockedAt = Date.now();
+    autonomousTiming = stepTimer ? stepTimer.snapshot(initialLockedAt) : null;
     state = Core.lockPendingAttempt(state, currentDefinition, {
       initialAnswer: answer,
       confidence,
       openedAt,
       lockedAt: initialLockedAt,
+      timing: autonomousTiming ? {
+        autonomous: autonomousTiming,
+        backgroundMs: autonomousTiming.backgroundMs,
+        backgroundCount: autonomousTiming.backgroundCount,
+        firstInputAt: autonomousTiming.firstInputAt,
+        firstInputActiveMs: autonomousTiming.firstInputActiveMs,
+      } : null,
     });
+    saveDraft("initial", "");
     saveState();
     $("#initial-answer").disabled = true;
     $("#confidence").disabled = true;
@@ -330,6 +410,9 @@
     $("#confidence").disabled = true;
     $("#confidence-output").textContent = `${pending.confidence} %`;
     $("#lock-initial").disabled = true;
+    if (pending.timing && pending.timing.firstInputAt && stepTimer) {
+      stepTimer.markFirstInput(pending.timing.firstInputAt);
+    }
 
     if (currentDefinition.phase === "mastery") {
       renderMasteryPending(pending);
@@ -365,12 +448,15 @@
           <button id="next-hint" class="secondary-action">Afficher 1 · Observer</button>
         </div>` : ""}
       <label for="final-answer">Réponse finale</label>
-      <textarea id="final-answer" rows="6">${escapeHtml(initialAnswer)}</textarea>
+      <textarea id="final-answer" rows="6">${escapeHtml(loadDraft("final") || initialAnswer)}</textarea>
       <p id="answer-support-status" class="answer-support-status">Réponse finale sans indice</p>
       <button id="grade-final" class="primary-action">Corriger ma réponse finale</button>`;
 
     if (hintsAvailable) $("#next-hint").addEventListener("click", revealNextHint);
     if (hintsAvailable && restoring) restoreRevealedHints();
+    const finalAnswerInput = $("#final-answer");
+    if (loadDraft("final")) draftRestored = true;
+    finalAnswerInput.addEventListener("input", () => saveDraft("final", finalAnswerInput.value));
     $("#grade-final").addEventListener("click", async () => {
       const finalAnswer = $("#final-answer").value.trim();
       if (!finalAnswer) {
@@ -440,8 +526,11 @@
       button.dataset.original = button.textContent;
       button.textContent = "Correction en cours…";
     }
-    const totalSeconds = Math.round((Date.now() - openedAt) / 1000);
+    const now = Date.now();
+    const totalSeconds = Math.round((now - openedAt) / 1000);
     const autonomousSeconds = Math.round(((initialLockedAt || Date.now()) - openedAt) / 1000);
+    const totalTiming = stepTimer ? stepTimer.snapshot(now) : null;
+    const initialTiming = autonomousTiming || totalTiming;
 
     try {
       const result = await fetchJson(`${API}/api/grade`, {
@@ -460,6 +549,13 @@
             indices_utilises: hintsUsed,
             reponse_initiale: initialAnswer,
             reponse_modifiee: initialAnswer.trim() !== finalAnswer.trim(),
+            ...(window.ECGTiming && totalTiming ? ECGTiming.metrics(initialTiming, totalTiming, {
+              brouillon_restaure: draftRestored,
+              ouvertures_visionneuse: viewerOpenCount,
+              zooms_visionneuse: viewerZoomCount,
+            }) : {}),
+            // Compatibilité : cette colonne historique désigne dans un parcours
+            // le temps mural jusqu'au verrouillage de la première lecture.
             t_reflexion_s: autonomousSeconds,
             t_total_s: totalSeconds,
             longueur: finalAnswer.length,
@@ -480,6 +576,7 @@
         errorType: result.type_erreur,
         formativeOnly: currentDefinition.formative_only,
       });
+      clearStepDrafts();
 
       let masteryEvaluation = null;
       if (Core.canValidateMastery(currentDefinition, hintsUsed)) {
@@ -674,6 +771,7 @@
     if (restart) restart.addEventListener("click", () => {
       const confirmed = window.confirm("Revoir ce parcours depuis le début ? La progression locale de ce parcours sera réinitialisée.");
       if (!confirmed) return;
+      clearPathwayDrafts();
       state = Core.initialState(config.id);
       state.startedAt = new Date().toISOString();
       saveState();
@@ -688,24 +786,67 @@
     const cropTop = Number(event.currentTarget.dataset.cropTop || 0);
     const cropRatio = Number(event.currentTarget.dataset.cropRatio || 0);
     const cropped = cropTop > 0 && cropRatio > 0;
+    viewerOpenCount += 1;
+    lightboxScale = 1;
     stage.classList.toggle("cropped", cropped);
     if (cropped) {
+      $("#lightbox-image").style.removeProperty("width");
       stage.style.setProperty("--crop-offset", `-${cropTop}%`);
       stage.style.setProperty("--crop-ratio", String(cropRatio));
       stage.style.width = `${Math.min(window.innerWidth * 0.96, window.innerHeight * 0.94 * cropRatio)}px`;
+      lightboxBaseWidth = parseFloat(stage.style.width);
     } else {
       stage.style.removeProperty("--crop-offset");
       stage.style.removeProperty("--crop-ratio");
       stage.style.removeProperty("width");
+      lightboxBaseWidth = Math.min(event.currentTarget.naturalWidth || window.innerWidth, window.innerWidth * 0.96);
     }
     $("#lightbox-image").src = src;
+    updateLightboxScale();
     $("#pathway-lightbox").classList.remove("hidden");
+    document.body.classList.add("viewer-open");
+  }
+
+  function updateLightboxScale() {
+    const stage = $("#lightbox-stage");
+    const image = $("#lightbox-image");
+    if (!stage || !image) return;
+    const width = Math.max(280, lightboxBaseWidth || window.innerWidth * 0.96) * lightboxScale;
+    if (stage.classList.contains("cropped")) stage.style.width = `${width}px`;
+    else image.style.width = `${width}px`;
+    $("#lightbox-reset").textContent = `${Math.round(lightboxScale * 100)} %`;
+  }
+
+  function zoomLightbox(delta) {
+    const next = Math.min(3, Math.max(0.75, lightboxScale + delta));
+    if (next === lightboxScale) return;
+    lightboxScale = next;
+    viewerZoomCount += 1;
+    updateLightboxScale();
+  }
+
+  function closeLightbox() {
+    $("#pathway-lightbox").classList.add("hidden");
+    document.body.classList.remove("viewer-open");
   }
 
   document.addEventListener("DOMContentLoaded", () => {
-    $("#pathway-lightbox").addEventListener("click", () => $("#pathway-lightbox").classList.add("hidden"));
+    $("#pathway-lightbox").addEventListener("click", (event) => {
+      if (event.target === $("#pathway-lightbox")) closeLightbox();
+    });
+    $("#lightbox-close").addEventListener("click", closeLightbox);
+    $("#lightbox-zoom-out").addEventListener("click", () => zoomLightbox(-0.25));
+    $("#lightbox-zoom-in").addEventListener("click", () => zoomLightbox(0.25));
+    $("#lightbox-reset").addEventListener("click", () => {
+      if (lightboxScale !== 1) viewerZoomCount += 1;
+      lightboxScale = 1;
+      updateLightboxScale();
+    });
+    document.addEventListener("visibilitychange", () => {
+      if (stepTimer) stepTimer.setVisibility(!document.hidden);
+    });
     document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") $("#pathway-lightbox").classList.add("hidden");
+      if (event.key === "Escape") closeLightbox();
     });
     init();
   });

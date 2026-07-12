@@ -149,6 +149,19 @@ const catalog = require("../frontend/pathways.json");
   assert.equal(state.currentIndex, 0);
 })();
 
+(function testPendingAttemptKeepsTimingSnapshot() {
+  const caseDef = config.cases[0];
+  const state = Core.lockPendingAttempt(Core.initialState(config.id), caseDef, {
+    initialAnswer: "Lecture autonome",
+    confidence: 60,
+    openedAt: 1000,
+    lockedAt: 5000,
+    timing: { autonomous: { elapsedMs: 4000, activeMs: 3000 }, backgroundMs: 1000 },
+  });
+  assert.equal(state.pendingAttempt.timing.autonomous.activeMs, 3000);
+  assert.equal(state.pendingAttempt.timing.backgroundMs, 1000);
+})();
+
 (function testLegacyAssistedRemediationCannotRemainMastered() {
   const migrated = Core.sanitizeState({
     pathwayId: config.id,
