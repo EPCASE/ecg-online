@@ -16,7 +16,7 @@
 }
 
 * { box-sizing: border-box; }
-body { margin: 0; background: radial-gradient(1200px 600px at 80% -10%, #1c2b3a 0%, var(--bg) 55%); color: var(--text); }
+body { margin: 0; min-height: 100dvh; overflow-x: hidden; background: radial-gradient(1200px 600px at 80% -10%, #1c2b3a 0%, var(--bg) 55%); color: var(--text); }
 button, textarea, input { font: inherit; }
 button, a { -webkit-tap-highlight-color: transparent; }
 
@@ -191,11 +191,15 @@ textarea:disabled { background: var(--surface-soft); color: var(--muted); }
 .fatal h2 { margin-top: 0; }
 .hidden { display: none !important; }
 
-.pathway-lightbox { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 24px; background: rgba(8, 15, 28, 0.88); cursor: zoom-out; }
-.lightbox-stage { display: grid; place-items: center; max-width: 96vw; max-height: 94vh; }
-.lightbox-stage img { max-width: 96vw; max-height: 94vh; object-fit: contain; background: white; box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45); }
-.lightbox-stage.cropped { position: relative; aspect-ratio: var(--crop-ratio); overflow: hidden; background: white; }
+.pathway-lightbox { position: fixed; inset: 0; z-index: 100; display: flex; flex-direction: column; padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left)); background: rgba(8, 15, 28, 0.92); }
+.lightbox-toolbar { display: flex; justify-content: center; gap: 8px; padding-bottom: 10px; flex: 0 0 auto; }
+.lightbox-toolbar button { min-width: 48px; min-height: 44px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); color: var(--text); font: inherit; font-weight: 750; }
+.lightbox-scroll { flex: 1 1 auto; min-height: 0; overflow: auto; display: block; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
+.lightbox-stage { display: grid; place-items: center; width: fit-content; min-width: 100%; min-height: 100%; max-width: none; max-height: none; }
+.lightbox-stage img { max-width: none; max-height: none; height: auto; object-fit: contain; background: white; box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45); touch-action: pan-x pan-y pinch-zoom; }
+.lightbox-stage.cropped { position: relative; min-height: 0; aspect-ratio: var(--crop-ratio); overflow: hidden; background: white; }
 .lightbox-stage.cropped img { position: absolute; inset: 0 auto auto 0; width: 100%; max-width: none; max-height: none; transform: translateY(var(--crop-offset)); }
+body.viewer-open { overflow: hidden; }
 
 @media (max-width: 820px) {
   .pathway-topbar { grid-template-columns: 1fr auto; gap: 12px; padding: 12px 16px; }
@@ -215,4 +219,32 @@ textarea:disabled { background: var(--surface-soft); color: var(--muted); }
   .answer-comparison-grid article + article { border-left: 0; border-top: 1px solid var(--line); }
   .mastery-result { flex-direction: column; gap: 4px; }
   .continuation-actions > *, .completion-actions > * { width: 100%; justify-content: center; text-align: center; }
+}
+
+@media (max-width: 600px) {
+  .pathway-topbar { grid-template-columns: minmax(0, 1fr) auto; gap: 8px 12px; padding: 9px 12px; }
+  .brand-link span { display: none; }
+  .progress-meta { margin-bottom: 5px; font-size: .74rem; }
+  .topbar-actions button { min-height: 40px; padding: 0 4px; font-size: .75rem; }
+  .pathway-main { width: calc(100% - 12px); margin: 10px auto calc(36px + env(safe-area-inset-bottom)); }
+  .case-card, .intro-card, .completion-card { border-radius: 15px; }
+  .intro-card, .completion-card { padding: 22px 16px; }
+  .intro-grid, .summary-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .intro-grid div, .summary-grid div { padding: 13px; }
+  .step-header { padding: 18px 15px; gap: 10px; }
+  .step-header h1 { font-size: 1.45rem; }
+  .step-number { font-size: 1.35rem; }
+  .mastery-banner { align-items: flex-start; flex-direction: column; gap: 4px; padding: 12px 15px; }
+  .clinical-context { padding: 15px 15px 2px; }
+  .ecg-frame { margin: 14px 4px 6px; padding: 4px; border-radius: 10px; }
+  .response-stage, .guided-stage, .result-stage { margin: 14px 6px 18px; padding: 15px; border-radius: 13px; }
+  .stage-marker { align-items: flex-start; margin-bottom: 16px; }
+  textarea { min-height: 155px; font-size: 16px; }
+  .confidence-block { margin: 16px 0; padding: 14px 11px; }
+  .primary-action, .secondary-action { width: 100%; min-height: 48px; padding-inline: 14px; text-align: center; }
+  .hints-panel { padding: 14px 11px; }
+  .score-panel { grid-template-columns: 1fr; }
+  .verdict { grid-column: auto; }
+  .lightbox-toolbar { justify-content: stretch; }
+  .lightbox-toolbar button { flex: 1 1 auto; min-width: 0; padding-inline: 8px; }
 }

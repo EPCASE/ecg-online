@@ -50,6 +50,11 @@
       <h2>Banque de cas</h2>
       <span id="cases-count" class="pill"></span>
     </div>
+    <label class="case-search" for="case-search">
+      <span>Rechercher un cas</span>
+      <input id="case-search" type="search" inputmode="search" autocomplete="off"
+             placeholder="Numéro ou thème" />
+    </label>
     <div id="family-filters" class="filters"></div>
     <ul id="case-list" class="case-list"></ul>
   </aside>
@@ -231,8 +236,16 @@
 </main>
 
 <!-- Lightbox images -->
-<div id="lightbox" class="lightbox hidden">
-  <img id="lightbox-img" src="" alt="Tracé ECG agrandi" />
+<div id="lightbox" class="lightbox hidden" role="dialog" aria-modal="true" aria-label="Tracé ECG agrandi">
+  <div class="lightbox-toolbar" aria-label="Contrôles de la visionneuse">
+    <button id="lightbox-zoom-out" type="button" aria-label="Dézoomer">−</button>
+    <button id="lightbox-reset" type="button">100 %</button>
+    <button id="lightbox-zoom-in" type="button" aria-label="Zoomer">+</button>
+    <button id="lightbox-close" type="button">Fermer</button>
+  </div>
+  <div id="lightbox-stage" class="lightbox-stage">
+    <img id="lightbox-img" src="" alt="Tracé ECG agrandi" />
+  </div>
 </div>
 
 <!-- Modale de signalement (version pré-alpha) -->
@@ -269,6 +282,7 @@
 
 <script src="/static/pathway-dashboard-core.js"></script>
 <script src="/static/progress.js"></script>
+<script src="/static/timing.js"></script>
 <script src="/static/app.js"></script>
 </body>
 </html>

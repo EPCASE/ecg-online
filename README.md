@@ -162,7 +162,7 @@ Deux feuilles sont alimentées (créées automatiquement) :
 
 | Feuille | Contenu | Forme |
 |---------|---------|-------|
-| **`reponses`** | Journal à plat, source de vérité | 1 **ligne** par soumission : `horodatage, session, cas, titre, reponse, score, correspondance, backend` |
+| **`reponses`** | Journal à plat, source de vérité | 1 **ligne** par soumission : réponse, score, contexte pédagogique et métriques temporelles |
 | **`par_cas`** | Accumulation par cas (« un cas = une ligne ») | 1 **ligne** par cas, chaque réponse dans la **cellule** libre suivante |
 
 - **Non bloquant** : l'écriture part dans un **thread détaché** (latence réseau
@@ -173,6 +173,14 @@ Deux feuilles sont alimentées (créées automatiquement) :
 - **Mise en place** du compte de service Google : voir
   `ECG collector/SETUP_GOOGLE_SHEETS.md` (projet Google Cloud → activer les API
   Sheets + Drive → clé JSON → **partager la feuille** avec l'e‑mail `client_email`).
+
+Le journal sépare les durées utiles à l'analyse : temps avant première saisie,
+temps autonome avant verrouillage, temps total, temps réellement actif et temps
+passé hors de l'application. Il enregistre aussi les interruptions, le type
+d'appareil, la restauration éventuelle d'un brouillon et l'usage de la
+visionneuse. Les anciennes colonnes `t_reflexion_s` et `t_total_s` sont
+conservées ; l'en-tête de la feuille existante est étendu automatiquement sans
+supprimer les lignes déjà recueillies.
 
 > 💡 On peut réutiliser la **même** Google Sheet qu'ECG Collector : les onglets
 > (`reponses` / `par_cas`) sont distincts de ses onglets (`sessions` / `responses`),

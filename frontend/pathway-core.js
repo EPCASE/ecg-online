@@ -226,6 +226,9 @@
       hintsUsed: 0,
       openedAt: Number(payload.openedAt || Date.now()),
       lockedAt: Number(payload.lockedAt || Date.now()),
+      timing: payload.timing && typeof payload.timing === "object"
+        ? { ...payload.timing }
+        : null,
     };
     return copy;
   }

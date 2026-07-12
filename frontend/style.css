@@ -23,6 +23,8 @@ body {
   background: radial-gradient(1200px 600px at 80% -10%, #1c2b3a 0%, var(--bg) 55%);
   color: var(--text);
   min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: hidden;
 }
 
 /* ─────────── Topbar ─────────── */
@@ -108,6 +110,14 @@ body.home-mode .content { padding-inline: clamp(18px, 6vw, 72px); }
 }
 .sidebar-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
 .sidebar-head h2 { font-size: 15px; margin: 0; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); }
+.case-search { display: grid; gap: 6px; margin-bottom: 12px; }
+.case-search span { color: var(--text-muted); font-size: 11px; font-weight: 700; }
+.case-search input {
+  width: 100%; min-height: 42px; padding: 9px 11px; color: var(--text);
+  background: var(--panel); border: 1px solid var(--border); border-radius: 10px;
+  font: inherit; font-size: 14px;
+}
+.case-search input:focus { outline: 3px solid rgba(79,209,197,.18); border-color: var(--accent-2); }
 
 /* Bouton Accueil (haut de la sidebar) */
 .sidebar-home {
@@ -573,9 +583,13 @@ textarea:focus { outline: none; border-color: var(--accent-2); box-shadow: 0 0 0
 /* ─────────── Lightbox ─────────── */
 .lightbox {
   position: fixed; inset: 0; background: rgba(0, 0, 0, 0.9);
-  display: grid; place-items: center; z-index: 100; cursor: zoom-out; padding: 30px;
+  display: flex; flex-direction: column; z-index: 100; padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
 }
-.lightbox img { max-width: 96vw; max-height: 92vh; border-radius: 8px; background: #fff; }
+.lightbox-toolbar { display: flex; justify-content: center; gap: 8px; padding-bottom: 10px; flex: 0 0 auto; }
+.lightbox-toolbar button { min-width: 48px; min-height: 44px; padding: 8px 12px; border: 1px solid var(--border); border-radius: 10px; background: var(--panel); color: var(--text); font: inherit; font-weight: 750; }
+.lightbox-stage { flex: 1 1 auto; min-height: 0; overflow: auto; display: block; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
+.lightbox img { display: block; max-width: none; height: auto; margin: auto; border-radius: 8px; background: #fff; touch-action: pan-x pan-y pinch-zoom; }
+body.viewer-open { overflow: hidden; }
 
 .badge-error { color: var(--bad); font-weight: 600; }
 
@@ -717,6 +731,45 @@ textarea:focus { outline: none; border-color: var(--accent-2); box-shadow: 0 0 0
   .welcome-card { padding: 24px 18px; }
   .home-free-practice > div { flex-direction: column; align-items: stretch; }
   .home-quick-action { border-radius: 10px; text-align: left; }
+}
+
+@media (max-width: 640px) {
+  .topbar {
+    min-height: 58px; padding: 7px max(12px, env(safe-area-inset-right)) 7px max(12px, env(safe-area-inset-left));
+  }
+  .brand { min-width: 0; gap: 9px; }
+  .brand-logo-link { padding: 4px 8px; border-radius: 8px; }
+  .brand-logo { height: 36px; }
+  .brand .logo, .brand > div { display: none; }
+  .brand::after { content: "ECG Lecture"; font-size: 15px; font-weight: 800; white-space: nowrap; }
+  .header-actions, #health-badge { display: none; }
+  .layout { min-height: calc(100dvh - 58px); }
+  .content { padding: 16px 12px calc(28px + env(safe-area-inset-bottom)); }
+  body.home-mode .content { padding: 14px 12px calc(28px + env(safe-area-inset-bottom)); }
+  .sidebar { padding: 14px 12px calc(24px + env(safe-area-inset-bottom)); }
+  body.case-mode .sidebar { padding: 8px 12px; }
+  .sidebar-home, .case-item, .filter-chip { min-height: 44px; }
+  .filters { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
+  .filters::-webkit-scrollbar { display: none; }
+  .filter-chip { flex: 0 0 auto; padding-inline: 13px; }
+  .bank-welcome { margin: 8px 0 16px; padding: 20px 18px; }
+  .case-header h2 { font-size: 21px; }
+  .case-num { font-size: 24px; }
+  .case-context { margin-bottom: 14px; }
+  .ecg-gallery { margin-inline: -6px; margin-bottom: 18px; }
+  .ecg-gallery img { border-radius: 8px; }
+  textarea { min-height: 150px; font-size: 16px; }
+  .mode-switch { overflow-x: auto; }
+  .mode-btn { min-height: 44px; white-space: nowrap; }
+  .answer-actions { align-items: stretch; }
+  .answer-actions .btn-primary { flex: 1 1 auto; justify-content: center; min-height: 48px; }
+  .answer-actions .btn-ghost { min-height: 48px; }
+  .next-actions { padding: 17px 14px; }
+  .na-grid { grid-template-columns: 1fr; }
+  .na-btn { min-height: 58px; }
+  .lightbox { padding-top: max(8px, env(safe-area-inset-top)); }
+  .lightbox-toolbar { justify-content: stretch; }
+  .lightbox-toolbar button { flex: 1 1 auto; min-width: 0; padding-inline: 8px; }
 }
 
 /* ─────────── Version pré-alpha : badge, note & signalement ─────────── */
