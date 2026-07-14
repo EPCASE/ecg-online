@@ -5,6 +5,8 @@ const Core = require("../frontend/edu-ecg-core.js");
 const Store = require("../frontend/edu-ecg-store.js");
 
 const module0 = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "edu_ecg", "modules", "module_00.json"), "utf8"));
+const module1 = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "edu_ecg", "modules", "module_01.json"), "utf8"));
+const module2 = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "edu_ecg", "modules", "module_02.json"), "utf8"));
 
 (function testCompleteModuleZeroContract() {
   assert.equal(module0.id, "M0");
@@ -15,6 +17,58 @@ const module0 = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "e
   assert.equal(test.attempt_policy.allow_revision_after_hint, false);
   assert.equal(test.attempt_policy.max_submissions_before_explanation, 1);
   assert.equal(test.asset_policy.reserved_for_test, true);
+})();
+
+function completeDraftAnswer(item) {
+  const response = item.response || {};
+  switch (item.activity_type) {
+    case "single_choice": case "image_comparison": {
+      const option = (response.options || [])[0];
+      if (Number(response.cases) > 1) {
+        return { choices: Array.from({ length: Number(response.cases) }, () => Core.optionValue(option, 0)) };
+      }
+      return { choice: Core.optionValue(option, 0) };
+    }
+    case "short_answer": return { text: "Réponse qualitative de test" };
+    case "card_sorting": return {
+      assignments: Object.fromEntries((response.cards || []).map((card) => [card.id, card.category || response.categories[0]])),
+    };
+    case "ordering_cards": return response.cards?.length
+      ? { order: response.cards.map((card) => card.id) }
+      : { text: "Ordre proposé dans le prototype" };
+    case "matching_pairs": return {
+      pairs: Object.fromEntries((response.left_items || []).map((left) => [left, response.right_items[0]])),
+    };
+    case "image_hotspot_labeling": return {
+      labels: Object.fromEntries((response.targets || []).map((target, index) => {
+        const id = typeof target === "object" ? target.id : String(target || index);
+        return [id, "annotation"];
+      })),
+    };
+    case "integrated_assessment": {
+      if (!Array.isArray(response.tasks) || response.tasks.some((task) => typeof task !== "object")) {
+        return { text: "Réponse globale au test réservé" };
+      }
+      return {
+        tasks: Object.fromEntries(response.tasks.map((task) => [task.id, { text: "Réponse qualitative" }])),
+      };
+    }
+    case "micro_lesson": return { continued: true };
+    default: return {};
+  }
+}
+
+(function testM1AndM2DraftModulesCanBeCompletedWithoutFabricatedAssets() {
+  for (const module of [module1, module2]) {
+    for (const item of module.activities) {
+      const answer = completeDraftAnswer(item);
+      assert.equal(Core.isComplete(item, answer), true, `${item.id} must not block progression`);
+      if (item.phase === "test") {
+        assert.deepEqual(item.hints, []);
+        assert.equal(item.asset_policy.reserved_for_test, true);
+      }
+    }
+  }
 })();
 
 (function simulateACompleteResumableModuleZeroRun() {

@@ -149,6 +149,27 @@
     };
   }
 
+  function hasStructuredResponse(activity) {
+    const response = activity.response || {};
+    switch (activity.activity_type) {
+      case "single_choice": case "multiple_choice": case "image_comparison":
+        return Array.isArray(response.options) && response.options.length > 0;
+      case "short_answer": return true;
+      case "card_sorting":
+        return Array.isArray(response.cards) && response.cards.length > 0
+          && Array.isArray(response.categories) && response.categories.length > 0;
+      case "ordering_cards": return Array.isArray(response.cards) && response.cards.length > 0;
+      case "matching_pairs":
+        return Array.isArray(response.left_items) && response.left_items.length > 0
+          && Array.isArray(response.right_items) && response.right_items.length > 0;
+      case "image_hotspot_labeling":
+        return (Array.isArray(response.targets) && response.targets.length > 0) || Boolean(response.target);
+      case "sequence_checklist":
+        return response.free_checklist || (Array.isArray(response.checklist) && response.checklist.length > 0);
+      default: return false;
+    }
+  }
+
   function evaluateIntegrated(activity, answer) {
     const tasks = (activity.response || {}).tasks;
     if (!Array.isArray(tasks) || !tasks.length || tasks.some((task) => typeof task !== "object")) return result(activity, false);
@@ -182,14 +203,29 @@
 
   function isComplete(activity, answer) {
     const response = activity.response || {};
+    if (!hasStructuredResponse(activity)
+      && activity.activity_type !== "integrated_assessment"
+      && activity.activity_type !== "micro_lesson") {
+      return Boolean(answer && String(answer.text || "").trim());
+    }
     switch (activity.activity_type) {
-      case "single_choice": case "image_comparison": return Boolean(answer && (answer.choice || (answer.choices || []).length || answer.text));
+      case "single_choice": case "image_comparison": {
+        const cases = Number(response.cases || 1);
+        if (cases > 1) return Array.isArray(answer?.choices) && answer.choices.length === cases && answer.choices.every(Boolean);
+        return Boolean(answer && (answer.choice || (answer.choices || []).length || answer.text));
+      }
       case "multiple_choice": return Boolean(answer && answer.choices && answer.choices.length);
       case "short_answer": return Boolean(answer && String(answer.text || "").trim());
       case "card_sorting": return response.cards && response.cards.every((card) => answer && answer.assignments && answer.assignments[card.id]);
       case "ordering_cards": return Boolean(answer && answer.order && answer.order.length);
       case "matching_pairs": return response.left_items && response.left_items.every((item) => answer && answer.pairs && answer.pairs[item]);
-      case "image_hotspot_labeling": return Boolean(answer && answer.labels && Object.keys(answer.labels).length);
+      case "image_hotspot_labeling": {
+        const targets = Array.isArray(response.targets) ? response.targets : [response.target].filter(Boolean);
+        return targets.length > 0 && targets.every((target, index) => {
+          const id = typeof target === "object" && target !== null ? target.id : String(target || index);
+          return Boolean(answer?.labels?.[id]);
+        });
+      }
       case "sequence_checklist": return Boolean(answer && answer.checked && answer.checked.length);
       case "integrated_assessment": {
         const tasks = response.tasks;
@@ -203,5 +239,35 @@
     }
   }
 
-  return { SUPPORTED_TYPES, normalized, equalSets, optionValue, evaluate, isComplete };
+  function domainResults(module, records) {
+    const threshold = Number(module.mastery_threshold_percent ?? 80);
+    const domainMap = module.domain_competency_ids || {};
+    const activities = Array.isArray(module.activities) ? module.activities : [];
+    return (module.results_domains || []).map((domain) => {
+      const competencies = new Set(domainMap[domain.id] || []);
+      const assessments = activities.filter((activity) =>
+        activity.phase === "test"
+        && (activity.competency_ids || []).some((id) => competencies.has(id))
+      );
+      const results = assessments
+        .map((activity) => records?.[activity.id]?.result)
+        .filter((item) => item && item.evaluated);
+      if (!competencies.size || !assessments.length || results.length !== assessments.length) {
+        return { ...domain, status: "non évalué", percent: null };
+      }
+      const earned = results.reduce((sum, item) => sum + Number(item.earned || 0), 0);
+      const possible = results.reduce((sum, item) => sum + Number(item.possible || 0), 0);
+      const percent = possible > 0 ? Math.round((earned / possible) * 100) : null;
+      const criticalErrors = results.flatMap((item) => item.criticalErrors || []);
+      const acquired = percent !== null && percent >= threshold && criticalErrors.length === 0;
+      return {
+        ...domain,
+        status: acquired ? "acquis" : "à consolider",
+        percent,
+        criticalErrors,
+      };
+    });
+  }
+
+  return { SUPPORTED_TYPES, normalized, equalSets, optionValue, evaluate, isComplete, domainResults };
 });

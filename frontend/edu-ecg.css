@@ -174,7 +174,10 @@ textarea { min-height: 120px; padding: 13px; resize: vertical; line-height: 1.55
 .result-stat span { color: var(--ecg-muted); font-size: 10px; text-transform: uppercase; letter-spacing: .06em; }
 .domain-list { display: grid; gap: 8px; margin: 20px 0 28px; }
 .domain-row { display: flex; justify-content: space-between; gap: 15px; padding: 12px 0; border-bottom: 1px solid var(--ecg-border); font-size: 13px; }
-.domain-row span:last-child { color: var(--ecg-amber); font-size: 11px; }
+.domain-status { font-size: 11px; font-weight: 780; text-align: right; }
+.domain-status--pending { color: var(--ecg-amber); }
+.domain-status--acquired { color: var(--ecg-green); }
+.domain-status--review { color: var(--ecg-danger); }
 
 .edu-footer { padding: 22px 18px 35px; color: var(--ecg-muted); text-align: center; font-size: 10px; }
 .fatal { max-width: 650px; margin: 80px auto; padding: 28px; border: 1px solid rgba(251,113,133,.4); border-radius: 16px; background: var(--ecg-surface); }
@@ -205,6 +208,7 @@ textarea { min-height: 120px; padding: 13px; resize: vertical; line-height: 1.55
   .activity-body h1 { font-size: 29px; }
   .confidence-options { grid-template-columns: repeat(2, 1fr); }
   .critical-summary { flex-direction: column; }
+  .domain-row { align-items: flex-start; }
   .result-stats { grid-template-columns: 1fr; }
   .primary-button, .secondary-button { width: 100%; }
 }

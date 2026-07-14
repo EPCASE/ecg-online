@@ -56,6 +56,29 @@ class EduEcgScoringTest(unittest.TestCase):
         self.assertTrue(is_complete(item, answer))
         self.assertTrue(evaluate(item, answer)["correct"])
 
+    def test_reserved_or_underspecified_activity_accepts_qualitative_response(self) -> None:
+        reserved_order = activity("ordering_cards", {"mode": "order_images"})
+        self.assertFalse(is_complete(reserved_order, {"text": ""}))
+        self.assertTrue(is_complete(reserved_order, {"text": "V1 puis V2"}))
+        self.assertFalse(evaluate(reserved_order, {"text": "V1 puis V2"})["evaluated"])
+
+        reserved_test = activity("integrated_assessment", {
+            "tasks": [
+                {"id": "pairs", "type": "matching_pairs"},
+                {"id": "waves", "type": "image_hotspot_labeling"},
+            ],
+        })
+        answer = {"tasks": {"pairs": {"text": "association"}, "waves": {"text": "P QRS T"}}}
+        self.assertTrue(is_complete(reserved_test, answer))
+        self.assertFalse(evaluate(reserved_test, answer)["evaluated"])
+
+    def test_repeated_choice_requires_one_answer_per_case(self) -> None:
+        item = activity("single_choice", {"cases": 3, "options": ["positive", "négative", "équiphasique"]})
+        self.assertFalse(is_complete(item, {"choices": ["positive", "négative"]}))
+        answer = {"choices": ["positive", "négative", "équiphasique"]}
+        self.assertTrue(is_complete(item, answer))
+        self.assertFalse(evaluate(item, answer)["evaluated"])
+
 
 if __name__ == "__main__":
     unittest.main()

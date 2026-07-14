@@ -50,6 +50,52 @@ function activity(type, response, scoring = {}) {
   assert.deepEqual(unsafeMapped.criticalErrors, ["unsafe"]);
 })();
 
+(function testReservedActivitiesStayUsableWithoutInventedContent() {
+  const reservedOrder = activity("ordering_cards", { mode: "order_images" });
+  assert.equal(Core.isComplete(reservedOrder, { text: "V1 puis V2" }), true);
+  assert.equal(Core.evaluate(reservedOrder, { text: "V1 puis V2" }).evaluated, false);
+
+  const reservedTest = activity("integrated_assessment", {
+    tasks: [
+      { id: "pairs", type: "matching_pairs" },
+      { id: "waves", type: "image_hotspot_labeling" },
+    ],
+  });
+  const answer = { tasks: { pairs: { text: "association" }, waves: { text: "P QRS T" } } };
+  assert.equal(Core.isComplete(reservedTest, answer), true);
+  assert.equal(Core.evaluate(reservedTest, answer).evaluated, false);
+})();
+
+(function testRepeatedSingleChoiceCasesRequireOneAnswerPerCase() {
+  const repeated = activity("single_choice", { cases: 3, options: ["positive", "négative", "équiphasique"] });
+  assert.equal(Core.isComplete(repeated, { choices: ["positive", "négative"] }), false);
+  assert.equal(Core.isComplete(repeated, { choices: ["positive", "négative", "équiphasique"] }), true);
+  assert.equal(Core.evaluate(repeated, { choices: ["positive", "négative", "équiphasique"] }).evaluated, false);
+})();
+
+(function testMasteryIsCalculatedFromCompletedAutonomousAssessment() {
+  const module = {
+    mastery_threshold_percent: 80,
+    domain_competency_ids: { waves: ["M1.2"], conduction: ["M1.4"] },
+    results_domains: [
+      { id: "waves", label: "Ondes" },
+      { id: "conduction", label: "Conduction" },
+    ],
+    activities: [
+      { id: "TEST", phase: "test", competency_ids: ["M1.2", "M1.4"] },
+    ],
+  };
+  assert.deepEqual(Core.domainResults(module, {}), [
+    { id: "waves", label: "Ondes", status: "non évalué", percent: null },
+    { id: "conduction", label: "Conduction", status: "non évalué", percent: null },
+  ]);
+  const acquired = Core.domainResults(module, { TEST: { result: { evaluated: true, earned: 9, possible: 10, criticalErrors: [] } } });
+  assert.equal(acquired[0].status, "acquis");
+  assert.equal(acquired[0].percent, 90);
+  const blocked = Core.domainResults(module, { TEST: { result: { evaluated: true, earned: 9, possible: 10, criticalErrors: ["critical"] } } });
+  assert.equal(blocked[1].status, "à consolider");
+})();
+
 (function testFirstAnswerIsImmutableAndRevisionsRemainAvailable() {
   const state = Store.fresh();
   Store.lockInitial(state, "M0", "M0_PRIME_01", { choice: "same" }, "faible");

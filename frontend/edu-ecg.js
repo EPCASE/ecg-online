@@ -69,7 +69,7 @@
           const progress = moduleProgress(item);
           const isPartial = item.implementation_status === "partial";
           return `<article class="module-card">
-            <div class="module-meta"><span class="module-number">${escapeHtml(item.id)}</span><span class="module-status">${isPartial ? "Extrait M2.2–M2.3" : "Module complet"}</span></div>
+            <div class="module-meta"><span class="module-number">${escapeHtml(item.id)}</span><span class="module-status">${isPartial ? "Extrait" : "Prototype complet"}</span></div>
             <h3>${escapeHtml(item.title)}</h3>
             <p>${escapeHtml(item.terminal_objective)}</p>
             <div class="module-footer">
@@ -111,6 +111,9 @@
     const effectiveType = activity.activity_type === "image_comparison" ? (response.type || "single_choice") : activity.activity_type;
     if (effectiveType === "multiple_choice") return choiceOptions(response.options, name, answer.choices || [], true);
     if (effectiveType === "short_answer") return `<label class="field-label">Votre réponse<textarea name="${escapeHtml(name)}" placeholder="Formulez votre raisonnement…">${escapeHtml(answer.text || "")}</textarea></label>`;
+    if (effectiveType === "single_choice" && Number(response.cases) > 1) {
+      return Array.from({ length: Number(response.cases) }, (_, index) => `<fieldset><legend>Cas ${index + 1}</legend>${choiceOptions(response.options, `${name}-case-${index}`, answer.choices?.[index] || "", false)}</fieldset>`).join("");
+    }
     return choiceOptions(response.options, name, answer.choice || "", false) + (response.secondary_prompt ? `
       <label class="field-label">${escapeHtml(response.secondary_prompt)}
         <select name="${escapeHtml(name)}-secondary"><option value="">Choisir…</option>${(response.secondary_options || []).map((item) => `<option ${answer.secondary === item ? "selected" : ""}>${escapeHtml(item)}</option>`).join("")}</select>
@@ -118,11 +121,11 @@
   }
 
   function renderTask(task, answer, prefix) {
-    if (task.type === "single_choice") {
+    if (task.type === "single_choice" && Array.isArray(task.options) && task.options.length) {
       return `<fieldset><legend>${escapeHtml(task.label || task.prompt || task.id)}</legend>${choiceOptions(task.options, prefix, answer.choice || "", false)}</fieldset>`;
     }
     if (task.type === "short_answer") return `<label class="field-label">${escapeHtml(task.label || task.prompt || task.id)}<textarea name="${escapeHtml(prefix)}">${escapeHtml(answer.text || "")}</textarea></label>`;
-    return `<div class="draft-notice">Sous-tâche « ${escapeHtml(task.type)} » : structure présente, contenu interactif à valider.</div>`;
+    return `<section class="fallback-response"><div class="draft-notice"><span>◈</span><span>Sous-tâche « ${escapeHtml(task.type)} » : le contenu interactif ou son corrigé reste à valider. Votre réponse est conservée sans notation automatique.</span></div><label class="field-label">${escapeHtml(task.label || task.prompt || task.id)}<textarea name="${escapeHtml(prefix)}" placeholder="Décrivez votre réponse…">${escapeHtml(answer.text || "")}</textarea></label></section>`;
   }
 
   function responseMarkup(activity, answer) {
@@ -134,9 +137,10 @@
         return `<div class="card-grid">${(response.cards || []).map((card) => `<label class="sort-card"><b>${escapeHtml(card.label)}</b><select name="card-${escapeHtml(card.id)}"><option value="">À classer…</option>${(response.categories || []).map((category) => `<option value="${escapeHtml(category)}" ${answer.assignments?.[card.id] === category ? "selected" : ""}>${escapeHtml(category)}</option>`).join("")}</select></label>`).join("")}</div>`;
       case "ordering_cards": {
         const cards = response.cards || [];
+        if (!cards.length) return `<div class="draft-notice"><span>◈</span><span>Les cartes ou images de cette activité sont encore réservées. Votre réponse est conservée sans notation automatique.</span></div><label class="field-label">Votre proposition<textarea name="ordering-note" placeholder="Décrivez l’ordre que vous proposeriez…">${escapeHtml(answer.text || "")}</textarea></label>`;
         const order = answer.order?.length ? answer.order : cards.map((card) => card.id);
         const byId = Object.fromEntries(cards.map((card) => [card.id, card]));
-        return `<div class="order-list">${order.map((id, index) => `<div class="order-item"><span class="order-number">${index + 1}</span><span>${escapeHtml(byId[id]?.label || id)}</span><span class="order-buttons"><button type="button" data-move="${index}" data-direction="-1" aria-label="Monter" ${index === 0 ? "disabled" : ""}>↑</button><button type="button" data-move="${index}" data-direction="1" aria-label="Descendre" ${index === order.length - 1 ? "disabled" : ""}>↓</button></span></div>`).join("")}</div>`;
+        return `<div class="order-list">${order.map((id, index) => { const label = byId[id]?.label || id; return `<div class="order-item"><span class="order-number">${index + 1}</span><span>${escapeHtml(label)}</span><span class="order-buttons"><button type="button" data-move="${index}" data-direction="-1" aria-label="Monter ${escapeHtml(label)}" ${index === 0 ? "disabled" : ""}>↑</button><button type="button" data-move="${index}" data-direction="1" aria-label="Descendre ${escapeHtml(label)}" ${index === order.length - 1 ? "disabled" : ""}>↓</button></span></div>`; }).join("")}</div>`;
       }
       case "matching_pairs":
         return `<div class="answer-form">${(response.left_items || []).map((left) => `<label class="field-label">${escapeHtml(left)}<select name="pair-${escapeHtml(left)}"><option value="">Associer à…</option>${(response.right_items || []).map((right) => `<option ${answer.pairs?.[left] === right ? "selected" : ""}>${escapeHtml(right)}</option>`).join("")}</select></label>`).join("")}</div>`;
@@ -228,7 +232,9 @@
 
   function collectTask(form, task) {
     const prefix = `task-${task.id}`;
-    if (task.type === "short_answer") return { text: form.elements[prefix]?.value || "" };
+    if (task.type === "short_answer" || task.type !== "single_choice" || !task.options?.length) {
+      return { text: form.elements[prefix]?.value || "" };
+    }
     return { choice: form.querySelector(`[name="${CSS.escape(prefix)}"]:checked`)?.value || "" };
   }
 
@@ -237,10 +243,15 @@
     const effectiveType = activity.activity_type === "image_comparison" ? (response.type || "single_choice") : activity.activity_type;
     if (effectiveType === "multiple_choice") return { choices: [...form.querySelectorAll('[name="answer"]:checked')].map((input) => input.value) };
     if (effectiveType === "short_answer") return { text: form.elements.answer?.value || "" };
+    if (effectiveType === "single_choice" && Number(response.cases) > 1) {
+      return { choices: Array.from({ length: Number(response.cases) }, (_, index) => form.querySelector(`[name="answer-case-${index}"]:checked`)?.value || "") };
+    }
     switch (activity.activity_type) {
       case "single_choice": case "image_comparison": return { choice: form.querySelector('[name="answer"]:checked')?.value || "", secondary: form.elements["answer-secondary"]?.value || "" };
       case "card_sorting": return { assignments: Object.fromEntries((response.cards || []).map((card) => [card.id, form.elements[`card-${card.id}`]?.value || ""])) };
-      case "ordering_cards": return { order: clone(currentAnswer.order || []) };
+      case "ordering_cards": return (response.cards || []).length
+        ? { order: clone(currentAnswer.order || []) }
+        : { text: form.elements["ordering-note"]?.value || "" };
       case "matching_pairs": return { pairs: Object.fromEntries((response.left_items || []).map((left) => [left, form.elements[`pair-${left}`]?.value || ""])) };
       case "image_hotspot_labeling": { const targets = Array.isArray(response.targets) ? response.targets : [response.target].filter(Boolean); return { labels: Object.fromEntries(targets.map((target, index) => { const id = typeof target === "object" ? target.id : String(target || index); return [id, form.elements[`hotspot-${id}`]?.value || ""]; })) }; }
       case "sequence_checklist": return response.free_checklist ? { text: form.elements["free-sequence"]?.value || "" } : { checked: [...form.querySelectorAll('[name="checklist"]:checked')].map((input) => input.value) };
@@ -269,7 +280,9 @@
     app.querySelectorAll("[data-move]").forEach((button) => button.addEventListener("click", () => {
       Store.recordFirstAction(state, moduleData.id, activity.id, activity.competency_ids);
       const index = Number(button.dataset.move); const target = index + Number(button.dataset.direction);
-      const order = currentAnswer.order; [order[index], order[target]] = [order[target], order[index]];
+      const order = currentAnswer.order;
+      if (!Array.isArray(order) || target < 0 || target >= order.length) return;
+      [order[index], order[target]] = [order[target], order[index]];
       persist();
       renderActivity(currentAnswer);
     }));
@@ -340,11 +353,13 @@
 
   function renderResults() {
     const records = moduleRecord(moduleData.id).activities || {};
-    const completed = moduleData.activities.map((activity) => records[activity.id]).filter(Boolean);
+    const completed = moduleData.activities.map((activity) => records[activity.id]).filter((record) => record?.completedAt);
     const evaluated = completed.filter((record) => record.result?.evaluated);
     const average = evaluated.length ? Math.round(evaluated.reduce((sum, record) => sum + record.result.percent, 0) / evaluated.length) : null;
     const hints = completed.reduce((sum, record) => sum + (record.hintsUsed || []).length, 0);
     const criticalErrors = completed.flatMap((record) => record.result?.criticalErrors || []);
+    const domains = Core.domainResults(moduleData, records);
+    const hasDomainMap = Object.keys(moduleData.domain_competency_ids || {}).length > 0;
     const wasCompleted = state.modules[moduleData.id].completed;
     state.modules[moduleData.id].completed = completed.length === moduleData.activities.length;
     if (!wasCompleted && state.modules[moduleData.id].completed) {
@@ -359,7 +374,7 @@
       Store.event(state, "course_completed", {}, { available_modules: course.available_modules.length });
     }
     persist();
-    app.innerHTML = `<section class="result-panel"><span class="eyebrow">Bilan du module ${escapeHtml(moduleData.id)}</span><h1>Première étape enregistrée.</h1><p>Le bilan distingue les réponses évaluables des contenus encore en validation. Une activité sans corrigé explicite ne contribue jamais au score.</p><div class="result-stats"><div class="result-stat"><b>${completed.length}/${moduleData.activities.length}</b><span>activités terminées</span></div><div class="result-stat"><b>${average == null ? "—" : `${average}%`}</b><span>moyenne évaluée</span></div><div class="result-stat"><b>${hints}</b><span>indices consultés</span></div></div>${criticalErrors.length ? `<div class="critical-summary"><strong>${criticalErrors.length} erreur${criticalErrors.length > 1 ? "s" : ""} critique${criticalErrors.length > 1 ? "s" : ""}</strong><span>Le statut « acquis » est bloqué pour le domaine concerné.</span></div>` : ""}<span class="eyebrow">Résultats par domaine</span><div class="domain-list">${(moduleData.results_domains || []).map((domain) => `<div class="domain-row"><span>${escapeHtml(domain.label)}</span><span>non évalué · correspondance à valider</span></div>`).join("")}</div><div class="draft-notice"><span>◈</span><span>Les données actuelles ne relient pas explicitement chaque activité à un domaine de résultat. Aucun rattachement médical n’est déduit automatiquement.</span></div><div class="activity-actions"><button id="back-home" class="primary-button">Retour aux modules</button><button id="retry-module" class="secondary-button">Revoir le module</button></div></section>`;
+    app.innerHTML = `<section class="result-panel"><span class="eyebrow">Bilan du module ${escapeHtml(moduleData.id)}</span><h1>Première étape enregistrée.</h1><p>Le bilan distingue les réponses évaluables des contenus encore en validation. Une activité sans corrigé explicite ne contribue jamais au score.</p><div class="result-stats"><div class="result-stat"><b>${completed.length}/${moduleData.activities.length}</b><span>activités terminées</span></div><div class="result-stat"><b>${average == null ? "—" : `${average}%`}</b><span>moyenne évaluée</span></div><div class="result-stat"><b>${hints}</b><span>indices consultés</span></div></div>${criticalErrors.length ? `<div class="critical-summary"><strong>${criticalErrors.length} erreur${criticalErrors.length > 1 ? "s" : ""} critique${criticalErrors.length > 1 ? "s" : ""}</strong><span>Le statut « acquis » est bloqué par cette erreur.</span></div>` : ""}<span class="eyebrow">Résultats par domaine</span><div class="domain-list">${domains.map((domain) => `<div class="domain-row"><span>${escapeHtml(domain.label)}</span><span class="domain-status domain-status--${domain.status === "acquis" ? "acquired" : domain.status === "à consolider" ? "review" : "pending"}">${escapeHtml(domain.status)}${domain.percent == null ? "" : ` · ${domain.percent}%`}</span></div>`).join("")}</div><div class="draft-notice"><span>◈</span><span>${hasDomainMap ? "La maîtrise par domaine repose sur le test autonome. Tant que son corrigé explicite n’est pas validé, le statut reste « non évalué »." : "Aucune correspondance entre domaines et compétences n’est encore fournie pour ce module. Aucun rattachement médical n’est déduit automatiquement."}</span></div><div class="activity-actions"><button id="back-home" class="primary-button">Retour aux modules</button><button id="retry-module" class="secondary-button">Revoir le module</button></div></section>`;
     app.querySelector("#back-home").addEventListener("click", renderHome);
     app.querySelector("#retry-module").addEventListener("click", () => { state.activeIndex = 0; persist(); renderActivity(); });
   }

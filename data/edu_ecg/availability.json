@@ -5,12 +5,27 @@
       "status": "prototype",
       "activity_ids": "all"
     },
+    "M1": {
+      "status": "prototype",
+      "activity_ids": "all",
+      "mastery_threshold_percent": 80,
+      "domain_competency_ids": {
+        "axes": ["M1.1"],
+        "waves": ["M1.2"],
+        "meaning": ["M1.3"],
+        "conduction": ["M1.4"]
+      }
+    },
     "M2": {
-      "status": "partial",
-      "activity_ids": [
-        "M2_PROBE_03",
-        "M2_PROBE_04"
-      ]
+      "status": "prototype",
+      "activity_ids": "all",
+      "mastery_threshold_percent": 80,
+      "domain_competency_ids": {
+        "vocabulary": ["M2.1"],
+        "planes": ["M2.2"],
+        "axes": ["M2.3", "M2.4"],
+        "polarity": ["M2.5"]
+      }
     }
   }
 }

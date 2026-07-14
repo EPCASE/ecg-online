@@ -161,11 +161,25 @@ def validate_content() -> dict[str, Any]:
         if module_id not in modules or not isinstance(entry, dict):
             raise EduEcgContentError(f"Disponibilité inconnue: {module_id}")
         allowed = entry.get("activity_ids")
-        module_activity_ids = {item["id"] for item in modules[module_id]["activities"]}
+        module = modules[module_id]
+        module_activity_ids = {item["id"] for item in module["activities"]}
         if allowed != "all" and (
             not isinstance(allowed, list) or not set(allowed).issubset(module_activity_ids)
         ):
             raise EduEcgContentError(f"{module_id}: activity_ids de disponibilité invalides")
+        domain_map = entry.get("domain_competency_ids", {})
+        domains = {str(item.get("id")) for item in module.get("results_domains", [])}
+        competencies = {str(item.get("id")) for item in module.get("competencies", [])}
+        if not isinstance(domain_map, dict) or not set(domain_map).issubset(domains):
+            raise EduEcgContentError(f"{module_id}: domaines de disponibilité invalides")
+        if any(
+            not isinstance(ids, list) or not ids or not set(map(str, ids)).issubset(competencies)
+            for ids in domain_map.values()
+        ):
+            raise EduEcgContentError(f"{module_id}: compétences de domaine invalides")
+        threshold = entry.get("mastery_threshold_percent", 80)
+        if not isinstance(threshold, (int, float)) or not 0 <= threshold <= 100:
+            raise EduEcgContentError(f"{module_id}: seuil de maîtrise invalide")
 
     return {"course": course, "modules": modules, "availability": availability}
 
@@ -267,6 +281,8 @@ def module_payload(module_id: str) -> dict[str, Any]:
         ]
     module["activities"] = [_public_activity(item) for item in module["activities"]]
     module["implementation_status"] = availability.get("status", "prototype")
+    module["mastery_threshold_percent"] = availability.get("mastery_threshold_percent", 80)
+    module["domain_competency_ids"] = deepcopy(availability.get("domain_competency_ids", {}))
     return module
 
 

@@ -176,6 +176,26 @@ def _task_activity(parent: dict[str, Any], task: dict[str, Any]) -> dict[str, An
     }
 
 
+def _has_structured_response(activity: dict[str, Any]) -> bool:
+    response = activity.get("response") or {}
+    kind = activity.get("activity_type")
+    if kind in {"single_choice", "multiple_choice", "image_comparison"}:
+        return isinstance(response.get("options"), list) and bool(response["options"])
+    if kind == "short_answer":
+        return True
+    if kind == "card_sorting":
+        return bool(response.get("cards")) and bool(response.get("categories"))
+    if kind == "ordering_cards":
+        return bool(response.get("cards"))
+    if kind == "matching_pairs":
+        return bool(response.get("left_items")) and bool(response.get("right_items"))
+    if kind == "image_hotspot_labeling":
+        return bool(response.get("targets")) or bool(response.get("target"))
+    if kind == "sequence_checklist":
+        return bool(response.get("free_checklist")) or bool(response.get("checklist"))
+    return False
+
+
 def _integrated(activity: dict[str, Any], answer: dict[str, Any]) -> dict[str, Any]:
     tasks = (activity.get("response") or {}).get("tasks")
     if not isinstance(tasks, list) or not tasks or any(not isinstance(task, dict) for task in tasks):
@@ -227,8 +247,15 @@ def is_complete(activity: dict[str, Any], answer: dict[str, Any]) -> bool:
     """Return whether the submitted shape constitutes a complete UI response."""
     response = activity.get("response") or {}
     kind = activity.get("activity_type")
+    if kind not in {"integrated_assessment", "micro_lesson"} and not _has_structured_response(activity):
+        return bool(str(answer.get("text", "")).strip())
     effective_kind = response.get("type", "single_choice") if kind == "image_comparison" else kind
     if effective_kind == "single_choice":
+        cases_value = response.get("cases", 1)
+        cases = cases_value if isinstance(cases_value, int) and cases_value > 0 else 1
+        if cases > 1:
+            choices = answer.get("choices")
+            return isinstance(choices, list) and len(choices) == cases and all(choices)
         return bool(answer.get("choice"))
     if effective_kind == "multiple_choice":
         return bool(answer.get("choices"))
@@ -243,7 +270,14 @@ def is_complete(activity: dict[str, Any], answer: dict[str, Any]) -> bool:
         pairs = answer.get("pairs") or {}
         return bool(response.get("left_items")) and all(pairs.get(item) for item in response["left_items"])
     if kind == "image_hotspot_labeling":
-        return bool(answer.get("labels"))
+        targets = response.get("targets") or [response.get("target")]
+        targets = [target for target in targets if target]
+        labels = answer.get("labels") or {}
+        return bool(targets) and all(
+            labels.get(str(target.get("id"))) if isinstance(target, dict)
+            else labels.get(str(target))
+            for target in targets
+        )
     if kind == "sequence_checklist":
         if response.get("free_checklist"):
             return bool(str(answer.get("text", "")).strip())

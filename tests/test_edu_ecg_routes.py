@@ -42,24 +42,24 @@ class EduEcgRoutesTest(unittest.TestCase):
         self.assertEqual(self.get_response("/edu-ecg").status_code, 404)
         self.assertEqual(self.get_response("/api/edu-ecg/course").status_code, 404)
 
-    def test_enabled_course_serves_module_zero_and_only_m2_2_m2_3(self) -> None:
+    def test_enabled_course_serves_complete_m0_m1_and_m2_prototypes(self) -> None:
         os.environ["EDU_ECG_INTRO_COURSE"] = "1"
         page = self.get_response("/edu-ecg")
         self.assertEqual(page.status_code, 200)
         self.assertIn("Edu-ECG", page.get_data(as_text=True))
 
         course = self.get_response("/api/edu-ecg/course").get_json()
-        self.assertEqual([item["id"] for item in course["available_modules"]], ["M0", "M2"])
+        self.assertEqual([item["id"] for item in course["available_modules"]], ["M0", "M1", "M2"])
         self.assertEqual(course["available_modules"][0]["activity_count"], 5)
+        self.assertEqual(course["available_modules"][1]["activity_count"], 7)
+        self.assertEqual(course["available_modules"][2]["activity_count"], 8)
 
         module2 = self.get_response("/api/edu-ecg/modules/M2").get_json()
-        self.assertEqual(
-            [item["id"] for item in module2["activities"]],
-            ["M2_PROBE_03", "M2_PROBE_04"],
-        )
-        cards = module2["activities"][0]["response"]["cards"]
+        self.assertEqual(len(module2["activities"]), 8)
+        self.assertEqual(module2["domain_competency_ids"]["planes"], ["M2.2"])
+        cards = next(item for item in module2["activities"] if item["id"] == "M2_PROBE_03")["response"]["cards"]
         self.assertTrue(all("category" not in card for card in cards))
-        comparison = module2["activities"][1]
+        comparison = next(item for item in module2["activities"] if item["id"] == "M2_PROBE_04")
         self.assertNotIn("correct_option_id", comparison["response"])
         self.assertNotIn("explanation", comparison)
 
@@ -79,6 +79,27 @@ class EduEcgRoutesTest(unittest.TestCase):
             {"answer": {}},
         )
         self.assertEqual(incomplete.status_code, 400)
+
+    def test_reserved_m1_and_m2_screens_do_not_block_progression_or_create_scores(self) -> None:
+        os.environ["EDU_ECG_INTRO_COURSE"] = "1"
+        module1_test = self.post_json(
+            "/api/edu-ecg/modules/M1/activities/M1_TEST_06/evaluate",
+            {"answer": {"tasks": {
+                "axes": {"text": "réponse axes"},
+                "waves": {"text": "réponse ondes"},
+                "meaning": {"text": "réponse signification"},
+                "sequence": {"text": "réponse séquence"},
+            }}},
+        )
+        self.assertEqual(module1_test.status_code, 200)
+        self.assertFalse(module1_test.get_json()["result"]["evaluated"])
+
+        module2_optional = self.post_json(
+            "/api/edu-ecg/modules/M2/activities/M2_OPTIONAL_07/evaluate",
+            {"answer": {"text": "ordre V1 à V6 proposé"}},
+        )
+        self.assertEqual(module2_optional.status_code, 200)
+        self.assertFalse(module2_optional.get_json()["result"]["evaluated"])
 
     def test_only_approved_packaged_assets_are_served(self) -> None:
         os.environ["EDU_ECG_INTRO_COURSE"] = "true"
