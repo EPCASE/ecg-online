@@ -1,0 +1,31 @@
+{
+  "id": "edu_ecg_introduction",
+  "version": "1.0-draft",
+  "title": "Edu ECG — Parcours d’introduction",
+  "subtitle": "Enregistrement, points de vue et contrôle qualité",
+  "status": "draft",
+  "feature_flag": "EDU_ECG_INTRO_COURSE",
+  "modules": [
+    "data/modules/module_00.json",
+    "data/modules/module_01.json",
+    "data/modules/module_02.json",
+    "data/modules/module_03.json",
+    "data/modules/module_04.json",
+    "data/modules/module_05.json",
+    "data/modules/module_06.json",
+    "data/modules/module_07.json"
+  ],
+  "navigation": {
+    "mode": "sequential_with_module_resume",
+    "allow_module_skip": true,
+    "require_final_test": true
+  },
+  "results": {
+    "show_global_score": false,
+    "statuses": [
+      "acquis",
+      "à consolider",
+      "non évalué"
+    ]
+  }
+}

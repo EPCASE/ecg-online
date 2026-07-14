@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://edu-ecg.local/schemas/course.schema.json",
+  "type": "object",
+  "required": [
+    "id",
+    "version",
+    "title",
+    "modules"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "modules": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "feature_flag": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "pilot",
+        "published",
+        "retired"
+      ]
+    }
+  }
+}

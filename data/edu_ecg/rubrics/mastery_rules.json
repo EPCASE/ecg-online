@@ -1,0 +1,17 @@
+{
+  "version": "1.0-draft",
+  "default_threshold_percent": 80,
+  "status_rules": {
+    "acquis": "score >= threshold AND no critical error",
+    "à consolider": "score < threshold OR critical error",
+    "non évalué": "no completed test activity"
+  },
+  "hint_policy": {
+    "learning_activities": "allowed when configured",
+    "test_activities": "forbidden"
+  },
+  "recommended_retest": {
+    "after_remediation": true,
+    "use_new_asset": true
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://edu-ecg.local/schemas/module.schema.json",
+  "type": "object",
+  "required": [
+    "id",
+    "version",
+    "title",
+    "terminal_objective",
+    "competencies",
+    "activities"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^M[0-7]$"
+    },
+    "version": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "terminal_objective": {
+      "type": "string"
+    },
+    "estimated_duration_minutes": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "competencies": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "critical_errors": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "activities": {
+      "type": "array",
+      "items": {
+        "$ref": "activity.schema.json"
+      }
+    },
+    "results_domains": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  },
+  "additionalProperties": true
+}

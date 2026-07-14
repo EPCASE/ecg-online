@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Edu-ECG · Comprendre avant d’interpréter</title>
+  <link rel="stylesheet" href="/static/theme.css" />
+  <link rel="stylesheet" href="/static/edu-ecg.css" />
+</head>
+<body>
+  <header class="edu-topbar">
+    <a class="edu-brand" href="/edu-ecg" aria-label="Accueil Edu-ECG">
+      <span class="edu-mark" aria-hidden="true">⌁</span>
+      <span><strong>Edu-ECG</strong><small>Comprendre avant d’interpréter</small></span>
+    </a>
+    <div class="edu-top-actions">
+      <span class="prototype-badge">Prototype pédagogique</span>
+      <button id="reset-progress" class="text-button" type="button">Réinitialiser</button>
+      <a class="text-button" href="/">Les 75 cas</a>
+    </div>
+  </header>
+
+  <main id="app" class="edu-shell" aria-live="polite">
+    <section class="loading-card">
+      <span class="loader" aria-hidden="true"></span>
+      <p>Chargement du parcours…</p>
+    </section>
+  </main>
+
+  <footer class="edu-footer">
+    <p>Support d’apprentissage en cours de validation médicale et pédagogique — ne remplace pas un avis clinique.</p>
+  </footer>
+
+  <script src="/static/edu-ecg-core.js"></script>
+  <script src="/static/edu-ecg-store.js"></script>
+  <script src="/static/edu-ecg.js"></script>
+</body>
+</html>

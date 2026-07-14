@@ -37,6 +37,7 @@ from . import scoring_config
 from . import golden_config
 from . import neuro_grader
 from . import collector
+from . import edu_ecg
 from .grader import grade, DEFAULT_MODEL
 
 FRONTEND_DIR = os.path.abspath(
@@ -68,6 +69,7 @@ def _curation_authorized(req) -> bool:
 def create_app() -> Flask:
     app = Flask(__name__, static_folder=None)
     CORS(app)
+    edu_ecg.register_routes(app, FRONTEND_DIR)
 
     def _require_case(num) -> dict:
         c = cases_repo.get_case(int(num))

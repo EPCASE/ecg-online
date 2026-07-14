@@ -1,0 +1,467 @@
+{
+  "id": "M6",
+  "version": "1.0-draft",
+  "title": "Laboratoire des artéfacts et inversions",
+  "terminal_objective": "Reconnaître les principaux artéfacts, proposer leur cause probable et choisir l’action corrective prioritaire.",
+  "estimated_duration_minutes": 15,
+  "prerequisites": [
+    "M0",
+    "M4",
+    "M5"
+  ],
+  "competencies": [
+    {
+      "id": "M6.1",
+      "label": "Reconnaître une dérive de ligne de base",
+      "required": true
+    },
+    {
+      "id": "M6.2",
+      "label": "Reconnaître un tremblement musculaire",
+      "required": true
+    },
+    {
+      "id": "M6.3",
+      "label": "Reconnaître une interférence secteur",
+      "required": true
+    },
+    {
+      "id": "M6.4",
+      "label": "Reconnaître un mauvais contact",
+      "required": true
+    },
+    {
+      "id": "M6.5",
+      "label": "Reconnaître une inversion des bras",
+      "required": true
+    },
+    {
+      "id": "M6.6",
+      "label": "Relier mauvais placement précordial et fausse anomalie",
+      "required": true
+    },
+    {
+      "id": "M6.7",
+      "label": "Choisir l’action corrective",
+      "required": true
+    }
+  ],
+  "critical_errors": [
+    {
+      "id": "artifact_as_arrhythmia",
+      "label": "Traiter un artéfact évident comme une arythmie sans contrôle"
+    },
+    {
+      "id": "no_corrective_action",
+      "label": "Identifier l’artéfact sans proposer d’action"
+    },
+    {
+      "id": "filter_only_solution",
+      "label": "Réduire systématiquement la solution à l’activation d’un filtre"
+    }
+  ],
+  "activities": [
+    {
+      "id": "M6_PROBE_01",
+      "module_id": "M6",
+      "competency_ids": [
+        "M6.1"
+      ],
+      "phase": "probe",
+      "activity_type": "single_choice",
+      "title": "Dérive de la ligne de base",
+      "prompt": "Quel problème technique est le plus probable et que faut-il vérifier ?",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "placeholders/m6_baseline_wander.png"
+      ],
+      "response": {
+        "cause_options": [
+          "respiration/mouvement/contact",
+          "tachycardie ventriculaire",
+          "gain trop faible"
+        ],
+        "action_options": [
+          "vérifier patient et électrodes",
+          "augmenter le filtre uniquement",
+          "interpréter sans réserve"
+        ]
+      },
+      "hints": [],
+      "explanation": {
+        "text": "La ligne isoélectrique et sa cohérence entre dérivations orientent le diagnostic technique."
+      },
+      "scoring": {},
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    },
+    {
+      "id": "M6_PROBE_02",
+      "module_id": "M6",
+      "competency_ids": [
+        "M6.2"
+      ],
+      "phase": "probe",
+      "activity_type": "image_comparison",
+      "title": "Tremblement ou arythmie ?",
+      "prompt": "Comparez un tremblement musculaire et une véritable arythmie.",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "placeholders/m6_tremor.png",
+        "placeholders/m6_true_arrhythmia.png"
+      ],
+      "response": {
+        "options": [
+          "gauche = tremblement",
+          "droite = tremblement"
+        ]
+      },
+      "hints": [
+        "Recherchez si les QRS restent organisés sous le bruit."
+      ],
+      "explanation": {
+        "text": "Le contexte de froid, tremor ou Parkinson peut aider, mais le tracé doit d’abord être analysé."
+      },
+      "scoring": {
+        "critical_error": "artifact_as_arrhythmia"
+      },
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    },
+    {
+      "id": "M6_PROBE_03",
+      "module_id": "M6",
+      "competency_ids": [
+        "M6.3"
+      ],
+      "phase": "probe",
+      "activity_type": "single_choice",
+      "title": "Interférence secteur",
+      "prompt": "Ce bruit régulier rapide évoque-t-il une activité cardiaque ou une interférence électrique ?",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "placeholders/m6_50hz.png"
+      ],
+      "response": {
+        "options": [
+          "interférence électrique",
+          "flutter auriculaire",
+          "tachycardie ventriculaire"
+        ]
+      },
+      "hints": [],
+      "explanation": {
+        "text": "Vérifier environnement, branchements et matériel ; ne pas réduire la solution au filtre."
+      },
+      "scoring": {
+        "critical_error": "filter_only_solution"
+      },
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    },
+    {
+      "id": "M6_PROBE_04",
+      "module_id": "M6",
+      "competency_ids": [
+        "M6.4"
+      ],
+      "phase": "probe",
+      "activity_type": "single_choice",
+      "title": "Électrode décollée ou mauvais contact",
+      "prompt": "Quelle électrode ou quel câble faut-il vérifier en priorité ?",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "placeholders/m6_electrode_off.png"
+      ],
+      "response": {
+        "mode": "lead_to_electrode_troubleshooting"
+      },
+      "hints": [],
+      "explanation": {
+        "text": "Une dérivation intermittente ou incohérente doit conduire à vérifier le contact et le câble correspondant."
+      },
+      "scoring": {},
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    },
+    {
+      "id": "M6_PROBE_05",
+      "module_id": "M6",
+      "competency_ids": [
+        "M6.5"
+      ],
+      "phase": "probe",
+      "activity_type": "single_choice",
+      "title": "Inversion des électrodes des bras",
+      "prompt": "Devant DI globalement négative et aVR atypique, quelle hypothèse technique faut-il vérifier ?",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "placeholders/m6_arm_reversal.png"
+      ],
+      "response": {
+        "options": [
+          "inversion des bras",
+          "dextrocardie certaine",
+          "ischémie latérale"
+        ]
+      },
+      "hints": [
+        "Examinez simultanément P, QRS et T en DI et la cohérence d’aVR."
+      ],
+      "explanation": {
+        "text": "La correction doit comparer inversion, dextrocardie et anomalie réelle sans simplification excessive."
+      },
+      "scoring": {},
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    },
+    {
+      "id": "M6_PROBE_06",
+      "module_id": "M6",
+      "competency_ids": [
+        "M6.6"
+      ],
+      "phase": "probe",
+      "activity_type": "image_comparison",
+      "title": "Placement précordial et fausse anomalie",
+      "prompt": "Comparez l’ECG avant et après repositionnement V1–V2.",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "placeholders/m6_v1_v2_before.png",
+        "placeholders/m6_v1_v2_after.png"
+      ],
+      "response": {
+        "type": "short_answer",
+        "expected_concepts": [
+          "placement modifie morphologie",
+          "refaire avant conclure"
+        ]
+      },
+      "hints": [],
+      "explanation": {
+        "text": "Utiliser seulement des exemples validés et rester prudent sur les diagnostics spécifiques."
+      },
+      "scoring": {},
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    },
+    {
+      "id": "M6_STRENGTHEN_07",
+      "module_id": "M6",
+      "competency_ids": [
+        "M6.1",
+        "M6.2",
+        "M6.3",
+        "M6.4",
+        "M6.5",
+        "M6.6",
+        "M6.7"
+      ],
+      "phase": "strengthen",
+      "activity_type": "integrated_assessment",
+      "title": "Série mélangée",
+      "prompt": "Pour chaque tracé : identifier, proposer la cause et choisir l’action.",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "placeholders/m6_mixed_case_1.png",
+        "placeholders/m6_mixed_case_2.png",
+        "placeholders/m6_mixed_case_3.png"
+      ],
+      "response": {
+        "tasks_per_case": [
+          "identification",
+          "cause",
+          "action"
+        ]
+      },
+      "hints": [],
+      "explanation": {
+        "text": "Feedback après la série entière pour éviter le repérage par thème."
+      },
+      "scoring": {
+        "minimum_percent": 80,
+        "critical_error": "no_corrective_action"
+      },
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    },
+    {
+      "id": "M6_TEST_08",
+      "module_id": "M6",
+      "competency_ids": [
+        "M6.1",
+        "M6.2",
+        "M6.3",
+        "M6.4",
+        "M6.5",
+        "M6.6",
+        "M6.7"
+      ],
+      "phase": "test",
+      "activity_type": "integrated_assessment",
+      "title": "Test autonome des artéfacts",
+      "prompt": "Analysez un cas inédit sans intitulé thématique.",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "placeholders/reserved_m6_test_ecg.png"
+      ],
+      "response": {
+        "tasks": [
+          "interpretability",
+          "problem",
+          "cause",
+          "action"
+        ]
+      },
+      "hints": [],
+      "explanation": {},
+      "scoring": {
+        "minimum_percent": 80,
+        "non_compensable_errors": [
+          "artifact_as_arrhythmia",
+          "no_corrective_action"
+        ]
+      },
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    }
+  ],
+  "results_domains": [
+    {
+      "id": "recognition",
+      "label": "Reconnaissance"
+    },
+    {
+      "id": "cause",
+      "label": "Cause probable"
+    },
+    {
+      "id": "action",
+      "label": "Action corrective"
+    },
+    {
+      "id": "differential",
+      "label": "Artéfact versus anomalie réelle"
+    }
+  ]
+}

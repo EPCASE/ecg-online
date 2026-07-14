@@ -1,0 +1,17 @@
+{
+  "events": [
+    "course_started",
+    "module_started",
+    "activity_viewed",
+    "first_action",
+    "initial_answer_submitted",
+    "confidence_submitted",
+    "hint_opened",
+    "revised_answer_submitted",
+    "activity_completed",
+    "critical_error_detected",
+    "module_completed",
+    "course_completed",
+    "course_abandoned"
+  ]
+}

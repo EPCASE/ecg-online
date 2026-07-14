@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://edu-ecg.local/schemas/event.schema.json",
+  "type": "object",
+  "required": [
+    "event_name",
+    "timestamp",
+    "session_id",
+    "course_version"
+  ],
+  "properties": {
+    "event_name": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "session_id": {
+      "type": "string"
+    },
+    "attempt_id": {
+      "type": "string"
+    },
+    "course_version": {
+      "type": "string"
+    },
+    "module_id": {
+      "type": "string"
+    },
+    "activity_id": {
+      "type": "string"
+    },
+    "competency_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "elapsed_ms": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "payload": {
+      "type": "object"
+    }
+  }
+}

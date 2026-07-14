@@ -1,0 +1,269 @@
+{
+  "id": "M7",
+  "version": "1.0-draft",
+  "title": "Mission finale et réactivation",
+  "terminal_objective": "Appliquer une checklist complète de contrôle qualité et décider de façon autonome si l’ECG peut être transmis pour interprétation.",
+  "estimated_duration_minutes": 10,
+  "prerequisites": [
+    "M0",
+    "M1",
+    "M2",
+    "M3",
+    "M4",
+    "M5",
+    "M6"
+  ],
+  "competencies": [
+    {
+      "id": "M7.1",
+      "label": "Appliquer la checklist complète",
+      "required": true
+    },
+    {
+      "id": "M7.2",
+      "label": "Décider si l’ECG peut être transmis",
+      "required": true
+    }
+  ],
+  "critical_errors": [
+    {
+      "id": "miss_critical_quality_issue",
+      "label": "Ne pas identifier une anomalie technique critique"
+    },
+    {
+      "id": "transmit_unreliable_ecg",
+      "label": "Transmettre un ECG non fiable sans correction"
+    }
+  ],
+  "activities": [
+    {
+      "id": "M7_PRIME_01",
+      "module_id": "M7",
+      "competency_ids": [
+        "M7.1"
+      ],
+      "phase": "prime",
+      "activity_type": "sequence_checklist",
+      "title": "Contrôle qualité complet",
+      "prompt": "Appliquez votre propre contrôle à cet ECG avant de voir la checklist.",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "placeholders/m7_full_case_learning.png"
+      ],
+      "response": {
+        "free_checklist": true
+      },
+      "hints": [],
+      "explanation": {
+        "text": "Après la première tentative, afficher : identité/contexte, placement, vitesse, gain, qualité, cohérence et décision."
+      },
+      "scoring": {},
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    },
+    {
+      "id": "M7_TEST_02",
+      "module_id": "M7",
+      "competency_ids": [
+        "M7.1",
+        "M7.2"
+      ],
+      "phase": "test",
+      "activity_type": "integrated_assessment",
+      "title": "Mission finale autonome",
+      "prompt": "Un patient, un schéma de placement, des réglages et un tracé sont présentés. Décidez si l’ECG peut être transmis.",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "placeholders/reserved_m7_patient_context.png",
+        "placeholders/reserved_m7_placement.png",
+        "placeholders/reserved_m7_ecg.png"
+      ],
+      "response": {
+        "tasks": [
+          {
+            "id": "identity_context",
+            "type": "sequence_checklist"
+          },
+          {
+            "id": "placement",
+            "type": "single_choice"
+          },
+          {
+            "id": "speed_gain",
+            "type": "single_choice"
+          },
+          {
+            "id": "artifact",
+            "type": "single_choice"
+          },
+          {
+            "id": "decision",
+            "type": "single_choice"
+          },
+          {
+            "id": "justification",
+            "type": "short_answer"
+          }
+        ]
+      },
+      "hints": [],
+      "explanation": {},
+      "scoring": {
+        "domains": [
+          "placement",
+          "settings",
+          "artifacts",
+          "procedure",
+          "decision"
+        ],
+        "minimum_percent": 80,
+        "non_compensable_errors": [
+          "miss_critical_quality_issue",
+          "transmit_unreliable_ecg"
+        ]
+      },
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    },
+    {
+      "id": "M7_REVIEW_03",
+      "module_id": "M7",
+      "competency_ids": [
+        "M7.1",
+        "M7.2"
+      ],
+      "phase": "review",
+      "activity_type": "micro_lesson",
+      "title": "Bilan par domaine",
+      "prompt": "Consultez vos acquis et les domaines à consolider.",
+      "content_status": "draft",
+      "lock_initial_response": false,
+      "collect_confidence": false,
+      "assets": [],
+      "response": {
+        "statuses": [
+          "acquis",
+          "à consolider",
+          "non évalué"
+        ]
+      },
+      "hints": [],
+      "explanation": {
+        "text": "Ne pas réduire le résultat à un score unique. Proposer un lien vers les exercices ciblés."
+      },
+      "scoring": {},
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    },
+    {
+      "id": "M7_REVIEW_04",
+      "module_id": "M7",
+      "competency_ids": [
+        "M7.1",
+        "M7.2"
+      ],
+      "phase": "review",
+      "activity_type": "integrated_assessment",
+      "title": "Réactivation différée",
+      "prompt": "À J7 ou J30, analysez un cas court mélangé sans rappel préalable.",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "placeholders/reserved_m7_delayed_test.png"
+      ],
+      "response": {
+        "tasks": [
+          "quality",
+          "cause",
+          "action"
+        ]
+      },
+      "hints": [],
+      "explanation": {
+        "text": "La planification effective dépendra du système de comptes et de notifications."
+      },
+      "scoring": {},
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    }
+  ],
+  "results_domains": [
+    {
+      "id": "placement",
+      "label": "Placement"
+    },
+    {
+      "id": "settings",
+      "label": "Réglages"
+    },
+    {
+      "id": "artifacts",
+      "label": "Artéfacts"
+    },
+    {
+      "id": "procedure",
+      "label": "Procédure"
+    },
+    {
+      "id": "decision",
+      "label": "Décision finale"
+    }
+  ]
+}

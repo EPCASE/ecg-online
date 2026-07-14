@@ -1,0 +1,352 @@
+{
+  "id": "M0",
+  "version": "1.0-draft",
+  "title": "Avant d’interpréter : l’ECG est-il fiable ?",
+  "terminal_objective": "Décider si un tracé peut être interprété, doit être vérifié ou doit être refait, puis choisir l’action corrective prioritaire.",
+  "estimated_duration_minutes": 8,
+  "prerequisites": [],
+  "competencies": [
+    {
+      "id": "M0.1",
+      "label": "Décider si un tracé est techniquement interprétable",
+      "required": true
+    },
+    {
+      "id": "M0.2",
+      "label": "Choisir entre interpréter, vérifier l’acquisition ou refaire l’ECG",
+      "required": true
+    }
+  ],
+  "critical_errors": [
+    {
+      "id": "diagnose_unreliable_trace",
+      "label": "Poser une conclusion diagnostique sur un tracé manifestement non fiable"
+    },
+    {
+      "id": "fail_to_repeat_when_required",
+      "label": "Ne pas proposer de réenregistrement quand il est nécessaire"
+    }
+  ],
+  "activities": [
+    {
+      "id": "M0_PRIME_01",
+      "module_id": "M0",
+      "competency_ids": [
+        "M0.1"
+      ],
+      "phase": "prime",
+      "activity_type": "image_comparison",
+      "title": "Deux tracés, une même confiance ?",
+      "prompt": "Ces deux ECG peuvent-ils être interprétés de la même manière ?",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "placeholders/m0_clean_ecg.png",
+        "placeholders/m0_artifact_ecg.png"
+      ],
+      "response": {
+        "type": "single_choice",
+        "options": [
+          {
+            "id": "same",
+            "label": "Oui, de la même manière"
+          },
+          {
+            "id": "different",
+            "label": "Non, il faut d’abord évaluer leur qualité"
+          }
+        ],
+        "correct_option_id": "different"
+      },
+      "hints": [],
+      "explanation": {
+        "text": "La qualité technique doit être évaluée avant toute conclusion diagnostique."
+      },
+      "scoring": {
+        "points": 1
+      },
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": "Sélectionner deux ECG contrastifs sans rendre la réponse triviale."
+      }
+    },
+    {
+      "id": "M0_PROBE_02",
+      "module_id": "M0",
+      "competency_ids": [
+        "M0.1",
+        "M0.2"
+      ],
+      "phase": "probe",
+      "activity_type": "single_choice",
+      "title": "Interpréter, vérifier ou refaire",
+      "prompt": "Pour ce tracé, quelle décision est la plus adaptée ?",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "placeholders/m0_probe_ecg.png"
+      ],
+      "response": {
+        "options": [
+          {
+            "id": "interpret",
+            "label": "Interpréter"
+          },
+          {
+            "id": "check",
+            "label": "Vérifier l’acquisition"
+          },
+          {
+            "id": "repeat",
+            "label": "Refaire l’ECG"
+          }
+        ],
+        "secondary_prompt": "Quel élément motive principalement votre décision ?",
+        "secondary_options": [
+          "ligne de base",
+          "cohérence entre dérivations",
+          "réglage",
+          "placement",
+          "rythme"
+        ]
+      },
+      "hints": [
+        "Observez plusieurs battements : l’anomalie se répète-t-elle de façon cohérente et reste-t-elle liée au cycle cardiaque ?",
+        "Sous le bruit, les complexes QRS gardent-ils une organisation reconnaissable ?"
+      ],
+      "explanation": {
+        "text": "Un phénomène cardiaque est généralement cohérent avec le cycle cardiaque. Un artéfact peut masquer un rythme organisé. Il faut vérifier le patient, les électrodes et les câbles, puis réenregistrer si nécessaire."
+      },
+      "scoring": {
+        "decision_points": 2,
+        "reason_points": 1,
+        "critical_errors": [
+          "diagnose_unreliable_trace"
+        ]
+      },
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": "La bonne décision dépendra de l’ECG final choisi."
+      }
+    },
+    {
+      "id": "M0_ATTACH_03",
+      "module_id": "M0",
+      "competency_ids": [
+        "M0.1",
+        "M0.2"
+      ],
+      "phase": "attach",
+      "activity_type": "micro_lesson",
+      "title": "Reconnaître le signal utile sous le bruit",
+      "prompt": "Examinez l’annotation, la cause probable et l’action corrective.",
+      "content_status": "draft",
+      "lock_initial_response": false,
+      "collect_confidence": false,
+      "assets": [
+        "placeholders/m0_probe_ecg_annotated.png"
+      ],
+      "response": {
+        "type": "continue"
+      },
+      "hints": [],
+      "explanation": {
+        "sections": [
+          {
+            "title": "Ce qu’il faut voir",
+            "text": "La régularité ou la cohérence des complexes sous le bruit."
+          },
+          {
+            "title": "Ce qu’il faut vérifier",
+            "text": "Patient, mouvement, contact des électrodes, câbles et environnement."
+          },
+          {
+            "title": "Ce qu’il faut décider",
+            "text": "Interpréter seulement si la qualité reste suffisante ; sinon corriger et réenregistrer."
+          }
+        ]
+      },
+      "scoring": {},
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    },
+    {
+      "id": "M0_STRENGTHEN_04",
+      "module_id": "M0",
+      "competency_ids": [
+        "M0.1"
+      ],
+      "phase": "strengthen",
+      "activity_type": "image_comparison",
+      "title": "Artéfact ou véritable arythmie ?",
+      "prompt": "Comparez les deux tracés et identifiez celui qui correspond à une activité cardiaque réellement irrégulière.",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "placeholders/m0_tremor_ecg.png",
+        "placeholders/m0_true_arrhythmia_ecg.png"
+      ],
+      "response": {
+        "type": "single_choice",
+        "options": [
+          {
+            "id": "left",
+            "label": "Tracé de gauche"
+          },
+          {
+            "id": "right",
+            "label": "Tracé de droite"
+          }
+        ]
+      },
+      "hints": [],
+      "explanation": {
+        "text": "La correction doit montrer les critères discriminants sur les deux tracés."
+      },
+      "scoring": {
+        "points": 2
+      },
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    },
+    {
+      "id": "M0_TEST_05",
+      "module_id": "M0",
+      "competency_ids": [
+        "M0.1",
+        "M0.2"
+      ],
+      "phase": "test",
+      "activity_type": "integrated_assessment",
+      "title": "Test autonome de qualité",
+      "prompt": "Sans indice, décidez si ce tracé est interprétable, nommez le problème probable et choisissez l’action immédiate.",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "placeholders/reserved_m0_test_ecg.png"
+      ],
+      "response": {
+        "tasks": [
+          {
+            "id": "quality",
+            "type": "single_choice",
+            "options": [
+              "interprétable",
+              "à vérifier",
+              "à refaire"
+            ]
+          },
+          {
+            "id": "cause",
+            "type": "single_choice",
+            "options": [
+              "mouvement/tremblement",
+              "interférence électrique",
+              "mauvais contact",
+              "aucun problème technique évident"
+            ]
+          },
+          {
+            "id": "action",
+            "type": "single_choice",
+            "options": [
+              "interpréter",
+              "corriger puis réenregistrer",
+              "modifier le diagnostic automatique seulement"
+            ]
+          }
+        ]
+      },
+      "hints": [],
+      "explanation": {},
+      "scoring": {
+        "minimum_percent": 80,
+        "non_compensable_errors": [
+          "diagnose_unreliable_trace",
+          "fail_to_repeat_when_required"
+        ]
+      },
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    }
+  ],
+  "results_domains": [
+    {
+      "id": "quality",
+      "label": "Évaluation de la qualité"
+    },
+    {
+      "id": "artifact_recognition",
+      "label": "Reconnaissance du problème"
+    },
+    {
+      "id": "corrective_action",
+      "label": "Décision corrective"
+    }
+  ]
+}

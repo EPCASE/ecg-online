@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "modules": {
+    "M0": {
+      "status": "prototype",
+      "activity_ids": "all"
+    },
+    "M2": {
+      "status": "partial",
+      "activity_ids": [
+        "M2_PROBE_03",
+        "M2_PROBE_04"
+      ]
+    }
+  }
+}

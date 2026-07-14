@@ -1,0 +1,578 @@
+{
+  "id": "M2",
+  "version": "1.0-draft",
+  "title": "Dix électrodes, douze dérivations",
+  "terminal_objective": "Distinguer électrode et dérivation, classer les dérivations par plan, comprendre leurs axes de regard et prédire une polarité simple.",
+  "estimated_duration_minutes": 12,
+  "prerequisites": [
+    "M1"
+  ],
+  "competencies": [
+    {
+      "id": "M2.1",
+      "label": "Distinguer électrode et dérivation",
+      "required": true
+    },
+    {
+      "id": "M2.2",
+      "label": "Classer les dérivations selon leur plan",
+      "required": true
+    },
+    {
+      "id": "M2.3",
+      "label": "Comprendre l’axe de regard propre à chaque dérivation",
+      "required": true
+    },
+    {
+      "id": "M2.4",
+      "label": "Orienter le système hexaxial",
+      "required": true
+    },
+    {
+      "id": "M2.5",
+      "label": "Prédire une polarité simple",
+      "required": true
+    },
+    {
+      "id": "M2.6",
+      "label": "Comprendre la progression V1–V6",
+      "required": false
+    }
+  ],
+  "critical_errors": [
+    {
+      "id": "one_plane_per_lead",
+      "label": "Dire que chaque dérivation explore un plan différent"
+    },
+    {
+      "id": "lead_is_anatomical_picture",
+      "label": "Présenter une dérivation comme une photographie anatomique directe"
+    }
+  ],
+  "activities": [
+    {
+      "id": "M2_PRIME_01",
+      "module_id": "M2",
+      "competency_ids": [
+        "M2.1"
+      ],
+      "phase": "prime",
+      "activity_type": "short_answer",
+      "title": "Comment dix capteurs produisent-ils douze vues ?",
+      "prompt": "Observez le schéma : comment dix électrodes permettent-elles d’obtenir douze dérivations ?",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "approved/10_electrodes_12_derivations.png"
+      ],
+      "response": {
+        "expected_concepts": [
+          "électrodes recueillent des potentiels",
+          "combinaison",
+          "dérivations comme mesures orientées"
+        ]
+      },
+      "hints": [],
+      "explanation": {
+        "text": "Les électrodes sont des capteurs. Les dérivations sont des mesures construites à partir de leurs potentiels."
+      },
+      "scoring": {},
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    },
+    {
+      "id": "M2_PROBE_02",
+      "module_id": "M2",
+      "competency_ids": [
+        "M2.1"
+      ],
+      "phase": "probe",
+      "activity_type": "card_sorting",
+      "title": "Électrode ou dérivation ?",
+      "prompt": "Classez chaque carte dans la catégorie Électrode ou Dérivation.",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "approved/10_electrodes_12_derivations.png"
+      ],
+      "response": {
+        "categories": [
+          "Électrode",
+          "Dérivation"
+        ],
+        "cards": [
+          {
+            "id": "ra_e",
+            "label": "Électrode du bras droit",
+            "category": "Électrode"
+          },
+          {
+            "id": "la_e",
+            "label": "Électrode du bras gauche",
+            "category": "Électrode"
+          },
+          {
+            "id": "v1_e",
+            "label": "Électrode placée en position V1",
+            "category": "Électrode"
+          },
+          {
+            "id": "di_l",
+            "label": "Dérivation DI",
+            "category": "Dérivation"
+          },
+          {
+            "id": "avr_l",
+            "label": "Dérivation aVR",
+            "category": "Dérivation"
+          },
+          {
+            "id": "v1_l",
+            "label": "Dérivation V1",
+            "category": "Dérivation"
+          }
+        ]
+      },
+      "hints": [
+        "Ce qui est physiquement posé sur la peau est une électrode.",
+        "Une dérivation est une mesure orientée obtenue à partir des potentiels recueillis."
+      ],
+      "explanation": {
+        "text": "Le terme V1 peut désigner par raccourci une position précordiale ou la dérivation. Le cours doit préciser le sens."
+      },
+      "scoring": {
+        "all_cards_required": true,
+        "critical_cards": [
+          "v1_e",
+          "v1_l"
+        ]
+      },
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    },
+    {
+      "id": "M2_PROBE_03",
+      "module_id": "M2",
+      "competency_ids": [
+        "M2.2"
+      ],
+      "phase": "probe",
+      "activity_type": "card_sorting",
+      "title": "Plan frontal ou plan horizontal ?",
+      "prompt": "Répartissez les douze dérivations entre le plan frontal et le plan horizontal.",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "approved/plans_frontal_horizontal.png"
+      ],
+      "response": {
+        "categories": [
+          "Plan frontal",
+          "Plan horizontal"
+        ],
+        "cards": [
+          {
+            "id": "di",
+            "label": "DI",
+            "category": "Plan frontal"
+          },
+          {
+            "id": "dii",
+            "label": "DII",
+            "category": "Plan frontal"
+          },
+          {
+            "id": "diii",
+            "label": "DIII",
+            "category": "Plan frontal"
+          },
+          {
+            "id": "avr",
+            "label": "aVR",
+            "category": "Plan frontal"
+          },
+          {
+            "id": "avl",
+            "label": "aVL",
+            "category": "Plan frontal"
+          },
+          {
+            "id": "avf",
+            "label": "aVF",
+            "category": "Plan frontal"
+          },
+          {
+            "id": "v1",
+            "label": "V1",
+            "category": "Plan horizontal"
+          },
+          {
+            "id": "v2",
+            "label": "V2",
+            "category": "Plan horizontal"
+          },
+          {
+            "id": "v3",
+            "label": "V3",
+            "category": "Plan horizontal"
+          },
+          {
+            "id": "v4",
+            "label": "V4",
+            "category": "Plan horizontal"
+          },
+          {
+            "id": "v5",
+            "label": "V5",
+            "category": "Plan horizontal"
+          },
+          {
+            "id": "v6",
+            "label": "V6",
+            "category": "Plan horizontal"
+          }
+        ]
+      },
+      "hints": [
+        "Les dérivations obtenues à partir des électrodes des membres explorent le plan frontal.",
+        "V1 à V6 sont enregistrées sur le thorax et explorent le plan horizontal."
+      ],
+      "explanation": {
+        "text": "Il existe deux plans ici, chacun comportant plusieurs axes ou points de vue."
+      },
+      "scoring": {
+        "all_cards_required": true
+      },
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    },
+    {
+      "id": "M2_PROBE_04",
+      "module_id": "M2",
+      "competency_ids": [
+        "M2.3"
+      ],
+      "phase": "probe",
+      "activity_type": "image_comparison",
+      "title": "Le même battement, deux aspects",
+      "prompt": "Comment expliquer qu’un même QRS puisse être positif en DII et négatif en aVR ?",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "placeholders/m2_dii_avr_same_beat.png"
+      ],
+      "response": {
+        "type": "single_choice",
+        "options": [
+          {
+            "id": "different_beats",
+            "label": "Ce sont deux battements différents"
+          },
+          {
+            "id": "different_axes",
+            "label": "La même activité est projetée sur deux axes presque opposés"
+          },
+          {
+            "id": "machine_error",
+            "label": "L’appareil a inversé le signal"
+          }
+        ],
+        "correct_option_id": "different_axes"
+      },
+      "hints": [
+        "Comparez l’orientation du pôle positif de DII et d’aVR."
+      ],
+      "explanation": {
+        "text": "Chaque dérivation mesure la projection de la même activité électrique selon un axe propre. L’analogie de plusieurs observateurs est utile, mais une dérivation n’est pas une image anatomique."
+      },
+      "scoring": {
+        "points": 2
+      },
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    },
+    {
+      "id": "M2_ATTACH_05",
+      "module_id": "M2",
+      "competency_ids": [
+        "M2.4"
+      ],
+      "phase": "attach",
+      "activity_type": "ordering_cards",
+      "title": "Construire le système hexaxial",
+      "prompt": "Placez progressivement les six axes frontaux.",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "approved/systeme_hexaxial.png"
+      ],
+      "response": {
+        "cards": [
+          {
+            "id": "di",
+            "label": "DI 0°"
+          },
+          {
+            "id": "avl",
+            "label": "aVL −30°"
+          },
+          {
+            "id": "dii",
+            "label": "DII +60°"
+          },
+          {
+            "id": "avf",
+            "label": "aVF +90°"
+          },
+          {
+            "id": "diii",
+            "label": "DIII +120°"
+          },
+          {
+            "id": "avr",
+            "label": "aVR −150°"
+          }
+        ],
+        "mode": "place_on_axis"
+      },
+      "hints": [],
+      "explanation": {
+        "text": "Comprendre l’orientation générale précède la mémorisation exacte des degrés."
+      },
+      "scoring": {
+        "all_axes_required": true
+      },
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    },
+    {
+      "id": "M2_STRENGTHEN_06",
+      "module_id": "M2",
+      "competency_ids": [
+        "M2.5"
+      ],
+      "phase": "strengthen",
+      "activity_type": "single_choice",
+      "title": "Prédire la polarité",
+      "prompt": "Pour le vecteur présenté, la déflexion sera-t-elle positive, négative ou approximativement équiphasique dans la dérivation indiquée ?",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "source_reference/source_vector_positive_negative.png"
+      ],
+      "response": {
+        "cases": 3,
+        "options": [
+          "positive",
+          "négative",
+          "équiphasique"
+        ]
+      },
+      "hints": [],
+      "explanation": {
+        "text": "Vers le pôle positif : positif ; à l’opposé : négatif ; perpendiculaire : faible ou équiphasique."
+      },
+      "scoring": {
+        "minimum_percent": 80
+      },
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    },
+    {
+      "id": "M2_OPTIONAL_07",
+      "module_id": "M2",
+      "competency_ids": [
+        "M2.6"
+      ],
+      "phase": "optional_extension",
+      "activity_type": "ordering_cards",
+      "title": "Progression précordiale V1–V6",
+      "prompt": "Remettez dans l’ordre des morphologies précordiales et repérez la zone de transition.",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "placeholders/m2_v1_v6_progression.png",
+        "approved/plans_frontal_horizontal.png"
+      ],
+      "response": {
+        "mode": "order_images"
+      },
+      "hints": [],
+      "explanation": {
+        "text": "Les différences reflètent des points de vue successifs dans le plan horizontal, et non des battements différents."
+      },
+      "scoring": {},
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    },
+    {
+      "id": "M2_TEST_08",
+      "module_id": "M2",
+      "competency_ids": [
+        "M2.1",
+        "M2.2",
+        "M2.3",
+        "M2.4",
+        "M2.5"
+      ],
+      "phase": "test",
+      "activity_type": "integrated_assessment",
+      "title": "Test autonome des dérivations",
+      "prompt": "Réalisez le classement, identifiez les plans et prédisez la polarité sur un nouveau vecteur.",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "placeholders/reserved_m2_test_vector.png"
+      ],
+      "response": {
+        "tasks": [
+          "electrode_vs_lead",
+          "planes",
+          "axis",
+          "polarity"
+        ]
+      },
+      "hints": [],
+      "explanation": {},
+      "scoring": {
+        "minimum_percent": 80,
+        "non_compensable_errors": [
+          "one_plane_per_lead",
+          "lead_is_anatomical_picture"
+        ]
+      },
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    }
+  ],
+  "results_domains": [
+    {
+      "id": "vocabulary",
+      "label": "Électrode et dérivation"
+    },
+    {
+      "id": "planes",
+      "label": "Plans de l’espace"
+    },
+    {
+      "id": "axes",
+      "label": "Axes de regard"
+    },
+    {
+      "id": "polarity",
+      "label": "Prédiction de polarité"
+    }
+  ]
+}

@@ -63,7 +63,21 @@ async function init() {
   }
   refreshProgressUI();
   refreshHomePathwayRecommendation();
+  revealEduEcgEntry();
   loadCaseStats();             // non bloquant : compteurs pour le tirage pondéré
+}
+
+// L'entrée expérimentale n'est visible que si le backend confirme que le
+// feature flag EDU_ECG_INTRO_COURSE est actif.
+async function revealEduEcgEntry() {
+  const entry = $("#action-edu-ecg");
+  if (!entry) return;
+  try {
+    const response = await fetch(`${API}/api/edu-ecg/course`);
+    if (response.ok) entry.classList.remove("hidden");
+  } catch {
+    // Flag désactivé ou hors ligne : l'accueil historique reste inchangé.
+  }
 }
 
 // Compteurs globaux de soumissions par cas (§5.4) — meilleur-effort.

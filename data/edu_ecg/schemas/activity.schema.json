@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://edu-ecg.local/schemas/activity.schema.json",
+  "title": "Edu ECG Activity",
+  "type": "object",
+  "required": [
+    "id",
+    "module_id",
+    "competency_ids",
+    "phase",
+    "activity_type",
+    "title",
+    "prompt",
+    "content_status"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^M[0-7](\\.[0-9]+)?_[A-Z_]+_[0-9]+$"
+    },
+    "module_id": {
+      "type": "string",
+      "pattern": "^M[0-7]$"
+    },
+    "competency_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "phase": {
+      "enum": [
+        "prime",
+        "probe",
+        "point",
+        "attach",
+        "strengthen",
+        "test",
+        "review",
+        "optional_extension"
+      ]
+    },
+    "activity_type": {
+      "enum": [
+        "single_choice",
+        "multiple_choice",
+        "short_answer",
+        "card_sorting",
+        "ordering_cards",
+        "matching_pairs",
+        "image_comparison",
+        "image_hotspot_labeling",
+        "sequence_checklist",
+        "integrated_assessment",
+        "micro_lesson"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "prompt": {
+      "type": "string"
+    },
+    "content_status": {
+      "enum": [
+        "draft",
+        "medical_review",
+        "pedagogical_review",
+        "approved",
+        "retired"
+      ]
+    },
+    "lock_initial_response": {
+      "type": "boolean"
+    },
+    "collect_confidence": {
+      "type": "boolean"
+    },
+    "assets": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "hints": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 3
+    },
+    "explanation": {
+      "type": "object"
+    },
+    "response": {
+      "type": "object"
+    },
+    "scoring": {
+      "type": "object"
+    },
+    "metrics": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "review": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": true
+}

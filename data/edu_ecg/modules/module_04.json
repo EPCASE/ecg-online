@@ -1,0 +1,389 @@
+{
+  "id": "M4",
+  "version": "1.0-draft",
+  "title": "Préparer le patient et enregistrer",
+  "terminal_objective": "Préparer le matériel et le patient, assurer un contact de qualité, conduire l’enregistrement et vérifier le tracé avant de débrancher.",
+  "estimated_duration_minutes": 10,
+  "prerequisites": [
+    "M3"
+  ],
+  "competencies": [
+    {
+      "id": "M4.1",
+      "label": "Préparer salle, matériel et électrodes",
+      "required": true
+    },
+    {
+      "id": "M4.2",
+      "label": "Informer, installer et préserver la dignité",
+      "required": true
+    },
+    {
+      "id": "M4.3",
+      "label": "Préparer la peau",
+      "required": true
+    },
+    {
+      "id": "M4.4",
+      "label": "Connecter les câbles et saisir le contexte",
+      "required": true
+    },
+    {
+      "id": "M4.5",
+      "label": "Conduire et contrôler l’enregistrement",
+      "required": true
+    }
+  ],
+  "critical_errors": [
+    {
+      "id": "wrong_identity",
+      "label": "Enregistrer sous une identité erronée ou absente"
+    },
+    {
+      "id": "no_final_quality_check",
+      "label": "Débrancher avant d’avoir contrôlé le tracé"
+    },
+    {
+      "id": "dignity_failure",
+      "label": "Ne pas préserver l’intimité et le consentement"
+    }
+  ],
+  "activities": [
+    {
+      "id": "M4_PRIME_01",
+      "module_id": "M4",
+      "competency_ids": [
+        "M4.1"
+      ],
+      "phase": "prime",
+      "activity_type": "image_comparison",
+      "title": "Une salle prête pour l’ECG ?",
+      "prompt": "Repérez les éléments qui risquent de compromettre l’enregistrement.",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "placeholders/m4_room_scene.png"
+      ],
+      "response": {
+        "type": "multiple_choice",
+        "options": [
+          "froid",
+          "électrodes sèches",
+          "batterie faible",
+          "matériel absent",
+          "câbles en tension"
+        ]
+      },
+      "hints": [],
+      "explanation": {
+        "text": "La préparation réduit les artéfacts et évite d’interrompre la procédure."
+      },
+      "scoring": {},
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    },
+    {
+      "id": "M4_PROBE_02",
+      "module_id": "M4",
+      "competency_ids": [
+        "M4.2"
+      ],
+      "phase": "probe",
+      "activity_type": "single_choice",
+      "title": "Informer et installer",
+      "prompt": "Quelle formulation et quelle installation sont les plus adaptées ?",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "source_reference/restricted_patient_installation_photo.jpg"
+      ],
+      "response": {
+        "options": [
+          "Expliquer brièvement l’examen, obtenir l’accord, installer au repos et préserver l’intimité",
+          "Découvrir immédiatement le thorax sans explication",
+          "Demander au patient de parler pendant l’acquisition"
+        ]
+      },
+      "hints": [],
+      "explanation": {
+        "text": "L’installation doit associer information, accord, repos, détente musculaire et respect de l’intimité."
+      },
+      "scoring": {},
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": "Photographie restreinte ; remplacer ou valider les droits."
+      }
+    },
+    {
+      "id": "M4_PROBE_03",
+      "module_id": "M4",
+      "competency_ids": [
+        "M4.3"
+      ],
+      "phase": "probe",
+      "activity_type": "single_choice",
+      "title": "Préparer la peau",
+      "prompt": "Quelle action choisir devant une peau grasse, humide ou une pilosité empêchant l’adhérence ?",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [],
+      "response": {
+        "cases": [
+          {
+            "case": "peau grasse",
+            "options": [
+              "nettoyer et sécher",
+              "ajouter du gel sans nettoyer"
+            ]
+          },
+          {
+            "case": "pilosité importante",
+            "options": [
+              "tondre localement si nécessaire",
+              "placer l’électrode ailleurs sans le documenter"
+            ]
+          },
+          {
+            "case": "peau humide",
+            "options": [
+              "sécher",
+              "augmenter le gain"
+            ]
+          }
+        ]
+      },
+      "hints": [],
+      "explanation": {
+        "text": "Les règles d’hygiène et de préparation doivent être alignées sur le protocole local."
+      },
+      "scoring": {},
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": "Relire la place de l’alcool et du rasage."
+      }
+    },
+    {
+      "id": "M4_STRENGTHEN_04",
+      "module_id": "M4",
+      "competency_ids": [
+        "M4.4"
+      ],
+      "phase": "strengthen",
+      "activity_type": "image_comparison",
+      "title": "Trouver les erreurs de branchement",
+      "prompt": "Identifiez les erreurs visibles : câble tendu, identité absente ou contexte non renseigné.",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "source_reference/source_connected_patient.png",
+        "source_reference/source_ecg_machine.png"
+      ],
+      "response": {
+        "type": "multiple_choice"
+      },
+      "hints": [],
+      "explanation": {
+        "text": "Sécurité, traçabilité et stabilité du signal doivent être vérifiées avant l’acquisition."
+      },
+      "scoring": {},
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    },
+    {
+      "id": "M4_PROBE_05",
+      "module_id": "M4",
+      "competency_ids": [
+        "M4.5"
+      ],
+      "phase": "probe",
+      "activity_type": "ordering_cards",
+      "title": "Ordonner les dernières étapes",
+      "prompt": "Replacez les étapes de la fin d’un enregistrement ECG.",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [],
+      "response": {
+        "cards": [
+          {
+            "id": "still",
+            "label": "Demander l’immobilité et une respiration normale"
+          },
+          {
+            "id": "record",
+            "label": "Lancer l’acquisition"
+          },
+          {
+            "id": "check",
+            "label": "Contrôler identité, vitesse, gain et qualité"
+          },
+          {
+            "id": "repeat",
+            "label": "Corriger et refaire si nécessaire"
+          },
+          {
+            "id": "disconnect",
+            "label": "Retirer les électrodes et réinstaller le patient"
+          }
+        ],
+        "correct_order": [
+          "still",
+          "record",
+          "check",
+          "repeat",
+          "disconnect"
+        ]
+      },
+      "hints": [],
+      "explanation": {
+        "text": "Le contrôle doit précéder le débranchement."
+      },
+      "scoring": {
+        "critical_rule": "check_before_disconnect"
+      },
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    },
+    {
+      "id": "M4_TEST_06",
+      "module_id": "M4",
+      "competency_ids": [
+        "M4.1",
+        "M4.2",
+        "M4.3",
+        "M4.4",
+        "M4.5"
+      ],
+      "phase": "test",
+      "activity_type": "sequence_checklist",
+      "title": "Mission procédurale",
+      "prompt": "Remettez une scène clinique complète en conformité avant de valider l’ECG.",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "placeholders/reserved_m4_clinical_scene.png"
+      ],
+      "response": {
+        "checklist": [
+          "matériel prêt",
+          "patient informé",
+          "intimité préservée",
+          "peau préparée",
+          "câbles sans traction",
+          "identité vérifiée",
+          "acquisition",
+          "contrôle final"
+        ]
+      },
+      "hints": [],
+      "explanation": {},
+      "scoring": {
+        "all_critical_items_required": true,
+        "non_compensable_errors": [
+          "wrong_identity",
+          "no_final_quality_check",
+          "dignity_failure"
+        ]
+      },
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    }
+  ],
+  "results_domains": [
+    {
+      "id": "preparation",
+      "label": "Préparation"
+    },
+    {
+      "id": "patient_care",
+      "label": "Information et dignité"
+    },
+    {
+      "id": "contact",
+      "label": "Qualité du contact"
+    },
+    {
+      "id": "procedure",
+      "label": "Procédure et contrôle final"
+    }
+  ]
+}

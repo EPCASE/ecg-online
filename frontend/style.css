@@ -633,6 +633,12 @@ body.viewer-open { overflow: hidden; }
 .home-btn .hb-arrow { flex: 0 0 auto; color: var(--accent-2); font-size: 22px; font-weight: 800; }
 .home-btn--learning { padding-block: 20px; }
 .home-btn--learning .hb-title { font-size: 18px; }
+.home-btn--edu {
+  background: linear-gradient(135deg, rgba(255,90,110,.18), rgba(79,209,197,.08));
+  border-color: rgba(255,90,110,.48);
+}
+.home-btn--edu .hb-kicker { color: var(--accent); }
+.home-btn--edu .hb-title { font-size: 18px; }
 .home-btn--explore { background: transparent; }
 
 .home-free-practice { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--border); }

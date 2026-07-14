@@ -1,0 +1,114 @@
+{
+  "approved": [
+    {
+      "path": "assets/approved/schema_p_qrs_t.png",
+      "usage": [
+        "M1"
+      ],
+      "status": "prototype_approved"
+    },
+    {
+      "path": "assets/approved/10_electrodes_12_derivations.png",
+      "usage": [
+        "M2"
+      ],
+      "status": "prototype_approved",
+      "note": "Vérifier une dernière fois le placement précordial."
+    },
+    {
+      "path": "assets/approved/plans_frontal_horizontal.png",
+      "usage": [
+        "M2"
+      ],
+      "status": "prototype_approved",
+      "note": "Schéma conceptuel, pas un guide anatomique de placement."
+    },
+    {
+      "path": "assets/approved/systeme_hexaxial.png",
+      "usage": [
+        "M2"
+      ],
+      "status": "prototype_approved"
+    },
+    {
+      "path": "assets/approved/placement_v1_v6.png",
+      "usage": [
+        "M3"
+      ],
+      "status": "prototype_approved",
+      "note": "Vérifier V6 et l’alignement final avant publication."
+    },
+    {
+      "path": "assets/approved/systeme_conduction_cardiaque.png",
+      "usage": [
+        "M1"
+      ],
+      "status": "prototype_approved",
+      "note": "Relire les formulations de la zone “À retenir”."
+    }
+  ],
+  "source_reference": [
+    {
+      "path": "assets/source_reference/source_potential_action_nodal.png",
+      "status": "rights_and_quality_review"
+    },
+    {
+      "path": "assets/source_reference/source_potential_action_myocardial.png",
+      "status": "rights_and_quality_review"
+    },
+    {
+      "path": "assets/source_reference/source_vector_positive_negative.png",
+      "status": "rights_and_quality_review"
+    },
+    {
+      "path": "assets/source_reference/source_limb_electrodes_body.png",
+      "status": "rights_and_quality_review"
+    },
+    {
+      "path": "assets/source_reference/restricted_patient_installation_photo.jpg",
+      "status": "rights_and_quality_review"
+    },
+    {
+      "path": "assets/source_reference/source_connected_patient.png",
+      "status": "rights_and_quality_review"
+    },
+    {
+      "path": "assets/source_reference/source_ecg_machine_screen.png",
+      "status": "rights_and_quality_review"
+    },
+    {
+      "path": "assets/source_reference/source_ecg_machine.png",
+      "status": "rights_and_quality_review"
+    },
+    {
+      "path": "assets/source_reference/source_speed_5_25_50.png",
+      "status": "rights_and_quality_review"
+    },
+    {
+      "path": "assets/source_reference/source_gain_5_10_20.png",
+      "status": "rights_and_quality_review"
+    }
+  ],
+  "missing_priority": [
+    "m0_clean_ecg.png",
+    "m0_artifact_ecg.png",
+    "m0_tremor_ecg.png",
+    "m0_true_arrhythmia_ecg.png",
+    "m1_normal_variant.png",
+    "m2_dii_avr_same_beat.png",
+    "m3_before_reposition.png",
+    "m3_after_reposition.png",
+    "m5_raw_filtered_overfiltered.png",
+    "m6_50hz.png",
+    "m6_arm_reversal.png",
+    "m6_v1_v2_before.png",
+    "m6_v1_v2_after.png",
+    "reserved test assets for M0–M7"
+  ],
+  "restricted": [
+    {
+      "path": "assets/source_reference/restricted_patient_installation_photo.jpg",
+      "reason": "Photographie d’une personne ; validation du consentement et des droits indispensable."
+    }
+  ]
+}

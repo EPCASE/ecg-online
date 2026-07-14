@@ -1,0 +1,480 @@
+{
+  "id": "M1",
+  "version": "1.0-draft",
+  "title": "Que représente un ECG ?",
+  "terminal_objective": "Lire les axes, identifier P–QRS–T, relier les ondes aux phénomènes électriques et ordonner la conduction cardiaque.",
+  "estimated_duration_minutes": 9,
+  "prerequisites": [
+    "M0"
+  ],
+  "competencies": [
+    {
+      "id": "M1.1",
+      "label": "Lire les axes temps et amplitude",
+      "required": true
+    },
+    {
+      "id": "M1.2",
+      "label": "Identifier P, QRS et T",
+      "required": true
+    },
+    {
+      "id": "M1.3",
+      "label": "Relier P, QRS et T aux phénomènes électriques",
+      "required": true
+    },
+    {
+      "id": "M1.4",
+      "label": "Ordonner la séquence normale de conduction",
+      "required": true
+    },
+    {
+      "id": "M1.5",
+      "label": "Comprendre les bases cellulaires de l’automatisme",
+      "required": false
+    }
+  ],
+  "critical_errors": [
+    {
+      "id": "electrical_mechanical_confusion",
+      "label": "Confondre activité électrique et contraction mécanique"
+    },
+    {
+      "id": "t_wave_depolarization",
+      "label": "Attribuer l’onde T à une dépolarisation ventriculaire"
+    },
+    {
+      "id": "ventricles_before_his",
+      "label": "Placer l’activation ventriculaire avant le système His–Purkinje"
+    }
+  ],
+  "activities": [
+    {
+      "id": "M1_PRIME_01",
+      "module_id": "M1",
+      "competency_ids": [
+        "M1.1"
+      ],
+      "phase": "prime",
+      "activity_type": "short_answer",
+      "title": "Que montrent les axes ?",
+      "prompt": "Sur ce tracé, qu’est-ce qui varie horizontalement ? Qu’est-ce qui varie verticalement ?",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "approved/schema_p_qrs_t.png"
+      ],
+      "response": {
+        "expected_concepts": [
+          "temps horizontal",
+          "tension ou amplitude verticale"
+        ]
+      },
+      "hints": [],
+      "explanation": {
+        "text": "L’axe horizontal représente le temps. L’axe vertical représente la tension, exprimée en millivolts."
+      },
+      "scoring": {
+        "concepts_required": 2
+      },
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    },
+    {
+      "id": "M1_PROBE_02",
+      "module_id": "M1",
+      "competency_ids": [
+        "M1.2"
+      ],
+      "phase": "probe",
+      "activity_type": "image_hotspot_labeling",
+      "title": "Identifier P, QRS et T",
+      "prompt": "Placez les étiquettes Onde P, Complexe QRS et Onde T sur le tracé.",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "approved/schema_p_qrs_t.png"
+      ],
+      "response": {
+        "targets": [
+          {
+            "id": "p",
+            "label": "Onde P"
+          },
+          {
+            "id": "qrs",
+            "label": "Complexe QRS"
+          },
+          {
+            "id": "t",
+            "label": "Onde T"
+          }
+        ]
+      },
+      "hints": [
+        "Recherchez d’abord le complexe le plus rapide et le plus ample.",
+        "L’onde P précède normalement le QRS ; l’onde T le suit."
+      ],
+      "explanation": {
+        "text": "P précède le QRS, puis vient l’onde T. La correction doit utiliser une version annotée."
+      },
+      "scoring": {
+        "all_targets_required": true
+      },
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    },
+    {
+      "id": "M1_ATTACH_03",
+      "module_id": "M1",
+      "competency_ids": [
+        "M1.2",
+        "M1.3"
+      ],
+      "phase": "attach",
+      "activity_type": "matching_pairs",
+      "title": "Relier les ondes à leur signification",
+      "prompt": "Associez chaque élément au phénomène électrique correspondant.",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "approved/schema_p_qrs_t.png"
+      ],
+      "response": {
+        "left_items": [
+          "Onde P",
+          "Complexe QRS",
+          "Onde T"
+        ],
+        "right_items": [
+          "Dépolarisation auriculaire",
+          "Dépolarisation ventriculaire",
+          "Repolarisation ventriculaire"
+        ],
+        "correct_pairs": [
+          [
+            "Onde P",
+            "Dépolarisation auriculaire"
+          ],
+          [
+            "Complexe QRS",
+            "Dépolarisation ventriculaire"
+          ],
+          [
+            "Onde T",
+            "Repolarisation ventriculaire"
+          ]
+        ]
+      },
+      "hints": [],
+      "explanation": {
+        "text": "L’ECG enregistre une activité électrique, pas directement la contraction mécanique."
+      },
+      "scoring": {
+        "all_pairs_required": true,
+        "critical_pair": [
+          "Onde T",
+          "Repolarisation ventriculaire"
+        ]
+      },
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    },
+    {
+      "id": "M1_PROBE_04",
+      "module_id": "M1",
+      "competency_ids": [
+        "M1.4"
+      ],
+      "phase": "probe",
+      "activity_type": "ordering_cards",
+      "title": "Ordonner la séquence d’activation",
+      "prompt": "Replacez les étapes dans l’ordre normal de l’activation électrique cardiaque.",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "approved/systeme_conduction_cardiaque.png"
+      ],
+      "response": {
+        "cards": [
+          {
+            "id": "sa",
+            "label": "Nœud sinusal"
+          },
+          {
+            "id": "atria",
+            "label": "Dépolarisation des oreillettes"
+          },
+          {
+            "id": "av",
+            "label": "Nœud auriculo-ventriculaire"
+          },
+          {
+            "id": "his",
+            "label": "Faisceau de His"
+          },
+          {
+            "id": "branches",
+            "label": "Branches droite et gauche / réseau de Purkinje"
+          },
+          {
+            "id": "ventricles",
+            "label": "Dépolarisation des ventricules"
+          }
+        ],
+        "correct_order": [
+          "sa",
+          "atria",
+          "av",
+          "his",
+          "branches",
+          "ventricles"
+        ]
+      },
+      "hints": [
+        "Repérez le point de départ normal de l’influx, puis la zone où la conduction ralentit.",
+        "Le nœud AV reçoit l’influx des oreillettes avant de le transmettre au système His–Purkinje."
+      ],
+      "explanation": {
+        "text": "L’influx débute dans le nœud sinusal, gagne les oreillettes, ralentit au nœud AV, puis emprunte His, les branches et Purkinje avant d’activer les ventricules.",
+        "asset": "approved/systeme_conduction_cardiaque.png"
+      },
+      "scoring": {
+        "exact_order_required": true,
+        "critical_rules": [
+          "sa_first",
+          "av_after_atria",
+          "ventricles_after_his_purkinje"
+        ]
+      },
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    },
+    {
+      "id": "M1_STRENGTHEN_05",
+      "module_id": "M1",
+      "competency_ids": [
+        "M1.2",
+        "M1.3"
+      ],
+      "phase": "strengthen",
+      "activity_type": "image_hotspot_labeling",
+      "title": "Reconnaître la séquence sur un autre tracé",
+      "prompt": "Identifiez P, QRS et T sur un ECG normal d’une morphologie différente.",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "placeholders/m1_normal_variant.png"
+      ],
+      "response": {
+        "targets": [
+          "P",
+          "QRS",
+          "T"
+        ]
+      },
+      "hints": [],
+      "explanation": {
+        "text": "La forme varie, mais l’organisation P–QRS–T reste reconnaissable."
+      },
+      "scoring": {
+        "all_targets_required": true
+      },
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    },
+    {
+      "id": "M1_TEST_06",
+      "module_id": "M1",
+      "competency_ids": [
+        "M1.1",
+        "M1.2",
+        "M1.3",
+        "M1.4"
+      ],
+      "phase": "test",
+      "activity_type": "integrated_assessment",
+      "title": "Test autonome — comprendre un ECG normal",
+      "prompt": "Analysez ce tracé sans aide.",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "placeholders/reserved_m1_test_ecg.png"
+      ],
+      "response": {
+        "tasks": [
+          {
+            "id": "axes",
+            "type": "matching_pairs"
+          },
+          {
+            "id": "waves",
+            "type": "image_hotspot_labeling"
+          },
+          {
+            "id": "meaning",
+            "type": "matching_pairs"
+          },
+          {
+            "id": "sequence",
+            "type": "short_answer"
+          }
+        ]
+      },
+      "hints": [],
+      "explanation": {},
+      "scoring": {
+        "minimum_percent": 80,
+        "non_compensable_errors": [
+          "t_wave_depolarization",
+          "electrical_mechanical_confusion"
+        ]
+      },
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    },
+    {
+      "id": "M1_OPTIONAL_07",
+      "module_id": "M1",
+      "competency_ids": [
+        "M1.5"
+      ],
+      "phase": "optional_extension",
+      "activity_type": "micro_lesson",
+      "title": "Pour aller plus loin : automatisme et potentiel d’action",
+      "prompt": "Découvrez la différence simplifiée entre cellules nodales et myocardiques.",
+      "content_status": "draft",
+      "lock_initial_response": false,
+      "collect_confidence": false,
+      "assets": [
+        "source_reference/source_potential_action_nodal.png",
+        "source_reference/source_potential_action_myocardial.png"
+      ],
+      "response": {
+        "type": "optional_quiz"
+      },
+      "hints": [],
+      "explanation": {
+        "text": "Cette capsule ne bloque pas la progression principale."
+      },
+      "scoring": {},
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": "Relecture électrophysiologique indispensable avant publication."
+      }
+    }
+  ],
+  "results_domains": [
+    {
+      "id": "axes",
+      "label": "Temps et amplitude"
+    },
+    {
+      "id": "waves",
+      "label": "Identification P–QRS–T"
+    },
+    {
+      "id": "meaning",
+      "label": "Signification électrique"
+    },
+    {
+      "id": "conduction",
+      "label": "Séquence d’activation"
+    }
+  ]
+}

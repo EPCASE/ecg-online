@@ -1,0 +1,113 @@
+{
+  "version": "1.0-draft",
+  "severity": [
+    "minor",
+    "major",
+    "critical"
+  ],
+  "categories": [
+    "vocabulary",
+    "conceptual",
+    "placement",
+    "procedure",
+    "settings",
+    "artifact_recognition",
+    "corrective_action",
+    "safety"
+  ],
+  "rules": {
+    "critical_errors_are_non_compensable": true,
+    "store_first_occurrence": true,
+    "allow_recovery_after_remediation": true
+  },
+  "errors": [
+    {
+      "id": "diagnose_unreliable_trace",
+      "label": "Poser une conclusion diagnostique sur un tracé manifestement non fiable"
+    },
+    {
+      "id": "fail_to_repeat_when_required",
+      "label": "Ne pas proposer de réenregistrement quand il est nécessaire"
+    },
+    {
+      "id": "electrical_mechanical_confusion",
+      "label": "Confondre activité électrique et contraction mécanique"
+    },
+    {
+      "id": "t_wave_depolarization",
+      "label": "Attribuer l’onde T à une dépolarisation ventriculaire"
+    },
+    {
+      "id": "ventricles_before_his",
+      "label": "Placer l’activation ventriculaire avant le système His–Purkinje"
+    },
+    {
+      "id": "one_plane_per_lead",
+      "label": "Dire que chaque dérivation explore un plan différent"
+    },
+    {
+      "id": "lead_is_anatomical_picture",
+      "label": "Présenter une dérivation comme une photographie anatomique directe"
+    },
+    {
+      "id": "v1_v2_too_high",
+      "label": "Placer V1–V2 trop hautes"
+    },
+    {
+      "id": "v4_wrong_landmark",
+      "label": "Placer V4 sur un mauvais repère"
+    },
+    {
+      "id": "v4_v6_not_horizontal",
+      "label": "Ne pas aligner V4–V6 horizontalement"
+    },
+    {
+      "id": "breast_tissue_instead_anatomical_landmark",
+      "label": "Placer selon le tissu mammaire et non les repères anatomiques"
+    },
+    {
+      "id": "wrong_identity",
+      "label": "Enregistrer sous une identité erronée ou absente"
+    },
+    {
+      "id": "no_final_quality_check",
+      "label": "Débrancher avant d’avoir contrôlé le tracé"
+    },
+    {
+      "id": "dignity_failure",
+      "label": "Ne pas préserver l’intimité et le consentement"
+    },
+    {
+      "id": "ignore_speed_gain",
+      "label": "Interpréter sans vérifier vitesse et gain"
+    },
+    {
+      "id": "trust_machine_diagnosis",
+      "label": "Accepter un diagnostic machine manifestement incohérent"
+    },
+    {
+      "id": "overfilter_without_awareness",
+      "label": "Utiliser un filtrage déformant sans le reconnaître"
+    },
+    {
+      "id": "artifact_as_arrhythmia",
+      "label": "Traiter un artéfact évident comme une arythmie sans contrôle"
+    },
+    {
+      "id": "no_corrective_action",
+      "label": "Identifier l’artéfact sans proposer d’action"
+    },
+    {
+      "id": "filter_only_solution",
+      "label": "Réduire systématiquement la solution à l’activation d’un filtre"
+    },
+    {
+      "id": "miss_critical_quality_issue",
+      "label": "Ne pas identifier une anomalie technique critique"
+    },
+    {
+      "id": "transmit_unreliable_ecg",
+      "label": "Transmettre un ECG non fiable sans correction"
+    }
+  ]
+}

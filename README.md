@@ -37,6 +37,18 @@ python run.py
 
 ---
 
+## 🫀 Parcours expérimental Edu-ECG
+
+Le parcours d’introduction **Edu-ECG** est livré derrière un feature flag désactivé par défaut. Il propose le module 0 complet et un extrait M2.2–M2.3, avec correction déterministe sans LLM.
+
+```bash
+EDU_ECG_INTRO_COURSE=1 python -m app.server
+```
+
+Ouvrir ensuite **http://localhost:5000/edu-ecg**. L’architecture, les règles de validation et les limites du contenu sont détaillées dans [`docs/EDU_ECG_INTRODUCTION.md`](docs/EDU_ECG_INTRODUCTION.md).
+
+---
+
 ## 🧠 Comment ça marche
 
 ```

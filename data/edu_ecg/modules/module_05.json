@@ -1,0 +1,433 @@
+{
+  "id": "M5",
+  "version": "1.0-draft",
+  "title": "Vitesse, gain, filtres et automatisation",
+  "terminal_objective": "Vérifier les réglages standards, comprendre leur effet visuel, utiliser les filtres avec prudence et ne pas accepter automatiquement les mesures de la machine.",
+  "estimated_duration_minutes": 10,
+  "prerequisites": [
+    "M1"
+  ],
+  "competencies": [
+    {
+      "id": "M5.1",
+      "label": "Vérifier 25 mm/s",
+      "required": true
+    },
+    {
+      "id": "M5.2",
+      "label": "Vérifier 10 mm/mV",
+      "required": true
+    },
+    {
+      "id": "M5.3",
+      "label": "Choisir un enregistrement prolongé",
+      "required": true
+    },
+    {
+      "id": "M5.4",
+      "label": "Comprendre les effets des filtres",
+      "required": true
+    },
+    {
+      "id": "M5.5",
+      "label": "Vérifier les mesures automatiques",
+      "required": true
+    }
+  ],
+  "critical_errors": [
+    {
+      "id": "ignore_speed_gain",
+      "label": "Interpréter sans vérifier vitesse et gain"
+    },
+    {
+      "id": "trust_machine_diagnosis",
+      "label": "Accepter un diagnostic machine manifestement incohérent"
+    },
+    {
+      "id": "overfilter_without_awareness",
+      "label": "Utiliser un filtrage déformant sans le reconnaître"
+    }
+  ],
+  "activities": [
+    {
+      "id": "M5_PRIME_01",
+      "module_id": "M5",
+      "competency_ids": [
+        "M5.1"
+      ],
+      "phase": "prime",
+      "activity_type": "image_comparison",
+      "title": "Le rythme a-t-il changé ?",
+      "prompt": "Comparez le même signal affiché à 25 et 50 mm/s. Qu’est-ce qui a réellement changé ?",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "source_reference/source_speed_5_25_50.png"
+      ],
+      "response": {
+        "options": [
+          "le cœur",
+          "l’échelle temporelle",
+          "l’amplitude électrique"
+        ]
+      },
+      "hints": [],
+      "explanation": {
+        "text": "La vitesse modifie l’étalement horizontal, pas le phénomène cardiaque enregistré."
+      },
+      "scoring": {
+        "correct": "l’échelle temporelle"
+      },
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    },
+    {
+      "id": "M5_PROBE_02",
+      "module_id": "M5",
+      "competency_ids": [
+        "M5.1"
+      ],
+      "phase": "probe",
+      "activity_type": "single_choice",
+      "title": "Identifier la vitesse",
+      "prompt": "Identifiez le réglage de vitesse et décidez s’il est standard.",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "source_reference/source_speed_5_25_50.png"
+      ],
+      "response": {
+        "options": [
+          "5 mm/s",
+          "25 mm/s",
+          "50 mm/s"
+        ]
+      },
+      "hints": [
+        "Recherchez l’indication imprimée et la largeur temporelle du tracé."
+      ],
+      "explanation": {
+        "text": "Le réglage standard attendu dans ce parcours est 25 mm/s."
+      },
+      "scoring": {},
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    },
+    {
+      "id": "M5_PRIME_03",
+      "module_id": "M5",
+      "competency_ids": [
+        "M5.2"
+      ],
+      "phase": "prime",
+      "activity_type": "image_comparison",
+      "title": "L’amplitude cardiaque a-t-elle changé ?",
+      "prompt": "Comparez le même ECG à 5, 10 et 20 mm/mV.",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "source_reference/source_gain_5_10_20.png"
+      ],
+      "response": {
+        "options": [
+          "changement biologique",
+          "changement d’échelle verticale"
+        ]
+      },
+      "hints": [],
+      "explanation": {
+        "text": "Le gain modifie la hauteur affichée du signal."
+      },
+      "scoring": {},
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    },
+    {
+      "id": "M5_PROBE_04",
+      "module_id": "M5",
+      "competency_ids": [
+        "M5.2"
+      ],
+      "phase": "probe",
+      "activity_type": "single_choice",
+      "title": "Repérer la calibration",
+      "prompt": "Quel réglage de gain est utilisé et quelle fausse impression peut-il créer ?",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "source_reference/source_gain_5_10_20.png"
+      ],
+      "response": {
+        "options": [
+          "pseudo-microvoltage",
+          "pseudo-hypertrophie",
+          "aucun effet visuel"
+        ]
+      },
+      "hints": [],
+      "explanation": {
+        "text": "Toujours vérifier le signal de calibration avant d’interpréter les amplitudes."
+      },
+      "scoring": {
+        "critical_error": "ignore_speed_gain"
+      },
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    },
+    {
+      "id": "M5_STRENGTHEN_05",
+      "module_id": "M5",
+      "competency_ids": [
+        "M5.3"
+      ],
+      "phase": "strengthen",
+      "activity_type": "single_choice",
+      "title": "Quand prolonger l’enregistrement ?",
+      "prompt": "Un rythme lent ou intermittent est mal caractérisé sur dix secondes. Quelle action est la plus utile ?",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [],
+      "response": {
+        "options": [
+          "bande de rythme prolongée",
+          "augmenter le gain",
+          "activer tous les filtres"
+        ]
+      },
+      "hints": [],
+      "explanation": {
+        "text": "Une bande prolongée peut mieux caractériser un rythme intermittent ou lent."
+      },
+      "scoring": {},
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": "Adapter aux capacités des appareils locaux."
+      }
+    },
+    {
+      "id": "M5_PROBE_06",
+      "module_id": "M5",
+      "competency_ids": [
+        "M5.4"
+      ],
+      "phase": "probe",
+      "activity_type": "image_comparison",
+      "title": "Filtré ou sur-filtré ?",
+      "prompt": "Comparez signal brut, filtré et potentiellement sur-filtré.",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "placeholders/m5_raw_filtered_overfiltered.png"
+      ],
+      "response": {
+        "type": "single_choice"
+      },
+      "hints": [],
+      "explanation": {
+        "text": "Un filtre peut réduire le bruit mais aussi déformer ST, QRS ou d’autres composantes. Les réglages doivent être documentés."
+      },
+      "scoring": {},
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": "Contenu à aligner sur recommandations et appareils locaux."
+      }
+    },
+    {
+      "id": "M5_STRENGTHEN_07",
+      "module_id": "M5",
+      "competency_ids": [
+        "M5.5"
+      ],
+      "phase": "strengthen",
+      "activity_type": "image_comparison",
+      "title": "Machine correcte, machine trompeuse",
+      "prompt": "Comparez une mesure automatique plausible et une interprétation machine incohérente.",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "source_reference/source_ecg_machine_screen.png",
+        "placeholders/m5_wrong_machine_interpretation.png"
+      ],
+      "response": {
+        "options": [
+          "accepter",
+          "vérifier manuellement",
+          "effacer le tracé"
+        ]
+      },
+      "hints": [],
+      "explanation": {
+        "text": "Les mesures peuvent aider, mais toute conclusion doit être confrontée au tracé et au contexte."
+      },
+      "scoring": {
+        "critical_error": "trust_machine_diagnosis"
+      },
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    },
+    {
+      "id": "M5_TEST_08",
+      "module_id": "M5",
+      "competency_ids": [
+        "M5.1",
+        "M5.2",
+        "M5.4",
+        "M5.5"
+      ],
+      "phase": "test",
+      "activity_type": "integrated_assessment",
+      "title": "Test autonome des réglages",
+      "prompt": "Sur un tracé inédit, identifiez vitesse, gain, éventuelle déformation et conduite à tenir.",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "placeholders/reserved_m5_test_ecg.png"
+      ],
+      "response": {
+        "tasks": [
+          "speed",
+          "gain",
+          "filter",
+          "automation"
+        ]
+      },
+      "hints": [],
+      "explanation": {},
+      "scoring": {
+        "minimum_percent": 80,
+        "non_compensable_errors": [
+          "ignore_speed_gain",
+          "trust_machine_diagnosis"
+        ]
+      },
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    }
+  ],
+  "results_domains": [
+    {
+      "id": "speed",
+      "label": "Vitesse"
+    },
+    {
+      "id": "gain",
+      "label": "Gain"
+    },
+    {
+      "id": "filtering",
+      "label": "Filtres"
+    },
+    {
+      "id": "automation",
+      "label": "Automatisation"
+    }
+  ]
+}

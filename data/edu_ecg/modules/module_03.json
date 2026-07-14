@@ -1,0 +1,479 @@
+{
+  "id": "M3",
+  "version": "1.0-draft",
+  "title": "Positionner les électrodes",
+  "terminal_objective": "Positionner les électrodes périphériques et V1–V6, reconnaître les erreurs fréquentes et connaître les dérivations supplémentaires.",
+  "estimated_duration_minutes": 12,
+  "prerequisites": [
+    "M2"
+  ],
+  "competencies": [
+    {
+      "id": "M3.1",
+      "label": "Positionner les électrodes périphériques",
+      "required": true
+    },
+    {
+      "id": "M3.2",
+      "label": "Positionner V1 et V2",
+      "required": true
+    },
+    {
+      "id": "M3.3",
+      "label": "Positionner V4",
+      "required": true
+    },
+    {
+      "id": "M3.4",
+      "label": "Positionner V3, V5 et V6",
+      "required": true
+    },
+    {
+      "id": "M3.5",
+      "label": "Reconnaître les erreurs fréquentes",
+      "required": true
+    },
+    {
+      "id": "M3.6",
+      "label": "Dérivations droites et postérieures",
+      "required": false
+    }
+  ],
+  "critical_errors": [
+    {
+      "id": "v1_v2_too_high",
+      "label": "Placer V1–V2 trop hautes"
+    },
+    {
+      "id": "v4_wrong_landmark",
+      "label": "Placer V4 sur un mauvais repère"
+    },
+    {
+      "id": "v4_v6_not_horizontal",
+      "label": "Ne pas aligner V4–V6 horizontalement"
+    },
+    {
+      "id": "breast_tissue_instead_anatomical_landmark",
+      "label": "Placer selon le tissu mammaire et non les repères anatomiques"
+    }
+  ],
+  "activities": [
+    {
+      "id": "M3_PRIME_01",
+      "module_id": "M3",
+      "competency_ids": [
+        "M3.5"
+      ],
+      "phase": "prime",
+      "activity_type": "image_comparison",
+      "title": "Le cœur a-t-il changé ?",
+      "prompt": "Comparez deux ECG avant et après correction d’un mauvais placement d’électrodes.",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "placeholders/m3_before_reposition.png",
+        "placeholders/m3_after_reposition.png"
+      ],
+      "response": {
+        "type": "single_choice",
+        "options": [
+          "modification cardiaque réelle",
+          "effet probable du placement"
+        ]
+      },
+      "hints": [],
+      "explanation": {
+        "text": "Le placement peut modifier la morphologie et produire de fausses anomalies."
+      },
+      "scoring": {},
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": "N’utiliser qu’un couple validé avec causalité suffisamment démontrée."
+      }
+    },
+    {
+      "id": "M3_PROBE_02",
+      "module_id": "M3",
+      "competency_ids": [
+        "M3.1"
+      ],
+      "phase": "probe",
+      "activity_type": "image_hotspot_labeling",
+      "title": "Électrodes périphériques",
+      "prompt": "Sélectionnez les sites standard des quatre électrodes périphériques sans vous aider des couleurs.",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "source_reference/source_limb_electrodes_body.png"
+      ],
+      "response": {
+        "targets": [
+          "bras droit",
+          "bras gauche",
+          "jambe droite/neutre",
+          "jambe gauche"
+        ]
+      },
+      "hints": [
+        "Commencez par identifier les membres et la symétrie."
+      ],
+      "explanation": {
+        "text": "Enseigner d’abord les labels anatomiques ; les couleurs IEC/AHA viennent ensuite."
+      },
+      "scoring": {
+        "all_targets_required": true
+      },
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    },
+    {
+      "id": "M3_PROBE_03",
+      "module_id": "M3",
+      "competency_ids": [
+        "M3.2"
+      ],
+      "phase": "probe",
+      "activity_type": "image_hotspot_labeling",
+      "title": "Placer V1 et V2",
+      "prompt": "Choisissez les positions correctes de V1 et V2 parmi plusieurs repères.",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "approved/placement_v1_v6.png"
+      ],
+      "response": {
+        "targets": [
+          "V1",
+          "V2"
+        ],
+        "distractors": [
+          "2e espace intercostal",
+          "foyers auscultatoires",
+          "positions trop latérales"
+        ]
+      },
+      "hints": [
+        "Repérez l’angle sternal.",
+        "Repérez le 2e espace intercostal, puis descendez jusqu’au 4e."
+      ],
+      "explanation": {
+        "text": "V1 : 4e espace intercostal droit parasternal ; V2 : 4e espace intercostal gauche parasternal."
+      },
+      "scoring": {
+        "all_targets_required": true,
+        "critical_error": "v1_v2_too_high"
+      },
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    },
+    {
+      "id": "M3_PROBE_04",
+      "module_id": "M3",
+      "competency_ids": [
+        "M3.3"
+      ],
+      "phase": "probe",
+      "activity_type": "image_hotspot_labeling",
+      "title": "Placer V4",
+      "prompt": "Sélectionnez l’intersection anatomique correspondant à V4.",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "approved/placement_v1_v6.png"
+      ],
+      "response": {
+        "target": "5e espace intercostal, ligne médio-claviculaire gauche"
+      },
+      "hints": [
+        "Identifiez d’abord la ligne médio-claviculaire gauche."
+      ],
+      "explanation": {
+        "text": "V4 est placée au 5e espace intercostal sur la ligne médio-claviculaire gauche."
+      },
+      "scoring": {
+        "critical_error": "v4_wrong_landmark"
+      },
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    },
+    {
+      "id": "M3_STRENGTHEN_05",
+      "module_id": "M3",
+      "competency_ids": [
+        "M3.4"
+      ],
+      "phase": "strengthen",
+      "activity_type": "ordering_cards",
+      "title": "Compléter V3, V5 et V6",
+      "prompt": "Replacez les étapes : V4, V3, V5, V6.",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "approved/placement_v1_v6.png"
+      ],
+      "response": {
+        "cards": [
+          {
+            "id": "v4",
+            "label": "Placer V4"
+          },
+          {
+            "id": "v3",
+            "label": "Placer V3 entre V2 et V4"
+          },
+          {
+            "id": "v5",
+            "label": "Placer V5 sur la ligne axillaire antérieure, horizontale de V4"
+          },
+          {
+            "id": "v6",
+            "label": "Placer V6 sur la ligne axillaire moyenne, horizontale de V4"
+          }
+        ],
+        "correct_order": [
+          "v4",
+          "v3",
+          "v5",
+          "v6"
+        ]
+      },
+      "hints": [],
+      "explanation": {
+        "text": "V4 sert de repère horizontal pour V5 et V6 ; V3 est située entre V2 et V4."
+      },
+      "scoring": {
+        "critical_error": "v4_v6_not_horizontal"
+      },
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    },
+    {
+      "id": "M3_STRENGTHEN_06",
+      "module_id": "M3",
+      "competency_ids": [
+        "M3.5"
+      ],
+      "phase": "strengthen",
+      "activity_type": "image_comparison",
+      "title": "Identifier le mauvais placement",
+      "prompt": "Pour chaque schéma, identifiez l’erreur principale.",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "placeholders/m3_v1_v2_high.png",
+        "placeholders/m3_v4_high.png",
+        "placeholders/m3_v5_v6_not_horizontal.png"
+      ],
+      "response": {
+        "options": [
+          "V1–V2 trop hautes",
+          "V4 trop haute",
+          "V5–V6 non horizontales",
+          "placement correct"
+        ]
+      },
+      "hints": [],
+      "explanation": {
+        "text": "Le feedback doit être spécifique à la nature de l’erreur."
+      },
+      "scoring": {
+        "minimum_percent": 100
+      },
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    },
+    {
+      "id": "M3_TEST_07",
+      "module_id": "M3",
+      "competency_ids": [
+        "M3.1",
+        "M3.2",
+        "M3.3",
+        "M3.4",
+        "M3.5"
+      ],
+      "phase": "test",
+      "activity_type": "integrated_assessment",
+      "title": "Test autonome de placement",
+      "prompt": "Sur un nouveau schéma, placez les électrodes puis identifiez une erreur volontaire.",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "placeholders/reserved_m3_test_thorax.png"
+      ],
+      "response": {
+        "tasks": [
+          "limb_sites",
+          "v1_v6_sites",
+          "identify_error"
+        ]
+      },
+      "hints": [],
+      "explanation": {},
+      "scoring": {
+        "minimum_percent": 90,
+        "non_compensable_errors": [
+          "v1_v2_too_high",
+          "v4_wrong_landmark",
+          "v4_v6_not_horizontal"
+        ]
+      },
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    },
+    {
+      "id": "M3_OPTIONAL_08",
+      "module_id": "M3",
+      "competency_ids": [
+        "M3.6"
+      ],
+      "phase": "optional_extension",
+      "activity_type": "micro_lesson",
+      "title": "Dérivations droites et postérieures",
+      "prompt": "Découvrez les positions V3R–V4R et V7–V9 selon le protocole institutionnel.",
+      "content_status": "draft",
+      "lock_initial_response": false,
+      "collect_confidence": false,
+      "assets": [
+        "placeholders/m3_right_posterior_leads.png"
+      ],
+      "response": {
+        "type": "optional_quiz"
+      },
+      "hints": [],
+      "explanation": {
+        "text": "Le protocole local doit être validé avant publication."
+      },
+      "scoring": {},
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "final_answer",
+        "confidence",
+        "hints_used"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "review_required",
+        "review_notes": ""
+      }
+    }
+  ],
+  "results_domains": [
+    {
+      "id": "limb_electrodes",
+      "label": "Électrodes périphériques"
+    },
+    {
+      "id": "v1_v2",
+      "label": "Placement V1–V2"
+    },
+    {
+      "id": "v3_v6",
+      "label": "Placement V3–V6"
+    },
+    {
+      "id": "placement_errors",
+      "label": "Reconnaissance des erreurs"
+    }
+  ]
+}
