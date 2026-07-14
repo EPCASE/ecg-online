@@ -7,6 +7,8 @@ const Store = require("../frontend/edu-ecg-store.js");
 const module0 = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "edu_ecg", "modules", "module_00.json"), "utf8"));
 const module1 = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "edu_ecg", "modules", "module_01.json"), "utf8"));
 const module2 = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "edu_ecg", "modules", "module_02.json"), "utf8"));
+const module3 = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "edu_ecg", "modules", "module_03.json"), "utf8"));
+const module4 = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "edu_ecg", "modules", "module_04.json"), "utf8"));
 
 (function testCompleteModuleZeroContract() {
   assert.equal(module0.id, "M0");
@@ -24,6 +26,11 @@ function completeDraftAnswer(item) {
   switch (item.activity_type) {
     case "single_choice": case "image_comparison": {
       const option = (response.options || [])[0];
+      if (Array.isArray(response.cases)) {
+        return { cases: response.cases.map((item) => Core.optionValue(item.options[0], 0)) };
+      }
+      if (!(response.options || []).length) return { text: "Analyse qualitative" };
+      if (response.type === "multiple_choice") return { choices: [Core.optionValue(option, 0)] };
       if (Number(response.cases) > 1) {
         return { choices: Array.from({ length: Number(response.cases) }, () => Core.optionValue(option, 0)) };
       }
@@ -40,11 +47,14 @@ function completeDraftAnswer(item) {
       pairs: Object.fromEntries((response.left_items || []).map((left) => [left, response.right_items[0]])),
     };
     case "image_hotspot_labeling": return {
-      labels: Object.fromEntries((response.targets || []).map((target, index) => {
+      labels: Object.fromEntries((response.targets || [response.target].filter(Boolean)).map((target, index) => {
         const id = typeof target === "object" ? target.id : String(target || index);
         return [id, "annotation"];
       })),
     };
+    case "sequence_checklist": return response.free_checklist
+      ? { text: "Séquence proposée" }
+      : { checked: [...(response.checklist || [])] };
     case "integrated_assessment": {
       if (!Array.isArray(response.tasks) || response.tasks.some((task) => typeof task !== "object")) {
         return { text: "Réponse globale au test réservé" };
@@ -58,8 +68,8 @@ function completeDraftAnswer(item) {
   }
 }
 
-(function testM1AndM2DraftModulesCanBeCompletedWithoutFabricatedAssets() {
-  for (const module of [module1, module2]) {
+(function testExposedDraftModulesCanBeCompletedWithoutFabricatedAssets() {
+  for (const module of [module1, module2, module3, module4]) {
     for (const item of module.activities) {
       const answer = completeDraftAnswer(item);
       assert.equal(Core.isComplete(item, answer), true, `${item.id} must not block progression`);

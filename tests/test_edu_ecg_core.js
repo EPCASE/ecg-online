@@ -73,6 +73,20 @@ function activity(type, response, scoring = {}) {
   assert.equal(Core.evaluate(repeated, { choices: ["positive", "négative", "équiphasique"] }).evaluated, false);
 })();
 
+(function testNestedCasesAndMissingOptionsHaveExplicitCompletionRules() {
+  const nested = activity("single_choice", {
+    cases: [
+      { case: "peau grasse", options: ["nettoyer", "ignorer"] },
+      { case: "peau humide", options: ["sécher", "augmenter"] },
+    ],
+  });
+  assert.equal(Core.isComplete(nested, { cases: ["nettoyer"] }), false);
+  assert.equal(Core.isComplete(nested, { cases: ["nettoyer", "sécher"] }), true);
+  const unspecified = activity("image_comparison", { type: "multiple_choice" });
+  assert.equal(Core.isComplete(unspecified, { text: "erreurs repérées" }), true);
+  assert.equal(Core.evaluate(unspecified, { text: "erreurs repérées" }).evaluated, false);
+})();
+
 (function testMasteryIsCalculatedFromCompletedAutonomousAssessment() {
   const module = {
     mastery_threshold_percent: 80,

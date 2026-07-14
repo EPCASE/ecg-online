@@ -42,17 +42,15 @@ class EduEcgRoutesTest(unittest.TestCase):
         self.assertEqual(self.get_response("/edu-ecg").status_code, 404)
         self.assertEqual(self.get_response("/api/edu-ecg/course").status_code, 404)
 
-    def test_enabled_course_serves_complete_m0_m1_and_m2_prototypes(self) -> None:
+    def test_enabled_course_serves_complete_m0_to_m4_prototypes(self) -> None:
         os.environ["EDU_ECG_INTRO_COURSE"] = "1"
         page = self.get_response("/edu-ecg")
         self.assertEqual(page.status_code, 200)
         self.assertIn("Edu-ECG", page.get_data(as_text=True))
 
         course = self.get_response("/api/edu-ecg/course").get_json()
-        self.assertEqual([item["id"] for item in course["available_modules"]], ["M0", "M1", "M2"])
-        self.assertEqual(course["available_modules"][0]["activity_count"], 5)
-        self.assertEqual(course["available_modules"][1]["activity_count"], 7)
-        self.assertEqual(course["available_modules"][2]["activity_count"], 8)
+        self.assertEqual([item["id"] for item in course["available_modules"]], ["M0", "M1", "M2", "M3", "M4"])
+        self.assertEqual([item["activity_count"] for item in course["available_modules"]], [5, 7, 8, 8, 6])
 
         module2 = self.get_response("/api/edu-ecg/modules/M2").get_json()
         self.assertEqual(len(module2["activities"]), 8)
@@ -100,6 +98,21 @@ class EduEcgRoutesTest(unittest.TestCase):
         )
         self.assertEqual(module2_optional.status_code, 200)
         self.assertFalse(module2_optional.get_json()["result"]["evaluated"])
+
+    def test_m4_nested_cases_and_unspecified_choices_are_accepted_without_scoring(self) -> None:
+        os.environ["EDU_ECG_INTRO_COURSE"] = "1"
+        nested = self.post_json(
+            "/api/edu-ecg/modules/M4/activities/M4_PROBE_03/evaluate",
+            {"answer": {"cases": ["nettoyer et sécher", "tondre localement si nécessaire", "sécher"]}},
+        )
+        self.assertEqual(nested.status_code, 200)
+        self.assertFalse(nested.get_json()["result"]["evaluated"])
+        unspecified = self.post_json(
+            "/api/edu-ecg/modules/M4/activities/M4_STRENGTHEN_04/evaluate",
+            {"answer": {"text": "erreurs de branchement repérées"}},
+        )
+        self.assertEqual(unspecified.status_code, 200)
+        self.assertFalse(unspecified.get_json()["result"]["evaluated"])
 
     def test_only_approved_packaged_assets_are_served(self) -> None:
         os.environ["EDU_ECG_INTRO_COURSE"] = "true"

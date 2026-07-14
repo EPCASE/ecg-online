@@ -180,6 +180,10 @@ def _has_structured_response(activity: dict[str, Any]) -> bool:
     response = activity.get("response") or {}
     kind = activity.get("activity_type")
     if kind in {"single_choice", "multiple_choice", "image_comparison"}:
+        if isinstance(response.get("cases"), list):
+            return bool(response["cases"]) and all(
+                isinstance(item, dict) and bool(item.get("options")) for item in response["cases"]
+            )
         return isinstance(response.get("options"), list) and bool(response["options"])
     if kind == "short_answer":
         return True
@@ -251,6 +255,13 @@ def is_complete(activity: dict[str, Any], answer: dict[str, Any]) -> bool:
         return bool(str(answer.get("text", "")).strip())
     effective_kind = response.get("type", "single_choice") if kind == "image_comparison" else kind
     if effective_kind == "single_choice":
+        if isinstance(response.get("cases"), list):
+            answers = answer.get("cases")
+            return (
+                isinstance(answers, list)
+                and len(answers) == len(response["cases"])
+                and all(answers)
+            )
         cases_value = response.get("cases", 1)
         cases = cases_value if isinstance(cases_value, int) and cases_value > 0 else 1
         if cases > 1:

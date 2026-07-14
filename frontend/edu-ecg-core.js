@@ -153,6 +153,9 @@
     const response = activity.response || {};
     switch (activity.activity_type) {
       case "single_choice": case "multiple_choice": case "image_comparison":
+        if (Array.isArray(response.cases)) {
+          return response.cases.length > 0 && response.cases.every((item) => Array.isArray(item.options) && item.options.length > 0);
+        }
         return Array.isArray(response.options) && response.options.length > 0;
       case "short_answer": return true;
       case "card_sorting":
@@ -210,6 +213,9 @@
     }
     switch (activity.activity_type) {
       case "single_choice": case "image_comparison": {
+        if (Array.isArray(response.cases)) {
+          return Array.isArray(answer?.cases) && answer.cases.length === response.cases.length && answer.cases.every(Boolean);
+        }
         const cases = Number(response.cases || 1);
         if (cases > 1) return Array.isArray(answer?.choices) && answer.choices.length === cases && answer.choices.every(Boolean);
         return Boolean(answer && (answer.choice || (answer.choices || []).length || answer.text));

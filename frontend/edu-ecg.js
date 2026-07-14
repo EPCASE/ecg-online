@@ -109,6 +109,12 @@
     const response = activity.response || {};
     const name = prefix || "answer";
     const effectiveType = activity.activity_type === "image_comparison" ? (response.type || "single_choice") : activity.activity_type;
+    if (Array.isArray(response.cases)) {
+      return response.cases.map((item, index) => `<fieldset><legend>${escapeHtml(item.case || `Cas ${index + 1}`)}</legend>${choiceOptions(item.options, `${name}-case-${index}`, answer.cases?.[index] || "", false)}</fieldset>`).join("");
+    }
+    if (["single_choice", "multiple_choice"].includes(effectiveType) && !(response.options || []).length) {
+      return `<div class="draft-notice"><span>◈</span><span>Les choix de cet écran ne sont pas encore spécifiés. Votre réponse est conservée sans notation automatique.</span></div><label class="field-label">Votre analyse<textarea name="${escapeHtml(name)}-note" placeholder="Décrivez les éléments que vous avez repérés…">${escapeHtml(answer.text || "")}</textarea></label>`;
+    }
     if (effectiveType === "multiple_choice") return choiceOptions(response.options, name, answer.choices || [], true);
     if (effectiveType === "short_answer") return `<label class="field-label">Votre réponse<textarea name="${escapeHtml(name)}" placeholder="Formulez votre raisonnement…">${escapeHtml(answer.text || "")}</textarea></label>`;
     if (effectiveType === "single_choice" && Number(response.cases) > 1) {
@@ -241,6 +247,12 @@
   function collectAnswer(activity, form) {
     const response = activity.response || {};
     const effectiveType = activity.activity_type === "image_comparison" ? (response.type || "single_choice") : activity.activity_type;
+    if (Array.isArray(response.cases)) {
+      return { cases: response.cases.map((_item, index) => form.querySelector(`[name="answer-case-${index}"]:checked`)?.value || "") };
+    }
+    if (["single_choice", "multiple_choice"].includes(effectiveType) && !(response.options || []).length) {
+      return { text: form.elements["answer-note"]?.value || "" };
+    }
     if (effectiveType === "multiple_choice") return { choices: [...form.querySelectorAll('[name="answer"]:checked')].map((input) => input.value) };
     if (effectiveType === "short_answer") return { text: form.elements.answer?.value || "" };
     if (effectiveType === "single_choice" && Number(response.cases) > 1) {

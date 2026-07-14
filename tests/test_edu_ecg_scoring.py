@@ -79,6 +79,17 @@ class EduEcgScoringTest(unittest.TestCase):
         self.assertTrue(is_complete(item, answer))
         self.assertFalse(evaluate(item, answer)["evaluated"])
 
+    def test_nested_cases_and_missing_options_stay_usable(self) -> None:
+        nested = activity("single_choice", {"cases": [
+            {"case": "peau grasse", "options": ["nettoyer", "ignorer"]},
+            {"case": "peau humide", "options": ["sécher", "augmenter"]},
+        ]})
+        self.assertFalse(is_complete(nested, {"cases": ["nettoyer"]}))
+        self.assertTrue(is_complete(nested, {"cases": ["nettoyer", "sécher"]}))
+        unspecified = activity("image_comparison", {"type": "multiple_choice"})
+        self.assertTrue(is_complete(unspecified, {"text": "erreurs repérées"}))
+        self.assertFalse(evaluate(unspecified, {"text": "erreurs repérées"})["evaluated"])
+
 
 if __name__ == "__main__":
     unittest.main()
