@@ -157,7 +157,7 @@ def _hotspots(activity: dict[str, Any], answer: dict[str, Any]) -> dict[str, Any
 
 def _checklist(activity: dict[str, Any], answer: dict[str, Any]) -> dict[str, Any]:
     response = activity.get("response") or {}
-    if response.get("free_checklist"):
+    if response.get("free_checklist") or response.get("mode") == "free_checklist":
         return _result(activity, False)
     expected = response.get("correct_order") or response.get("checklist")
     if not isinstance(expected, list) or not expected:
@@ -198,7 +198,7 @@ def _has_structured_response(activity: dict[str, Any]) -> bool:
     if kind == "image_hotspot_labeling":
         return bool(response.get("targets")) or bool(response.get("target"))
     if kind == "sequence_checklist":
-        return bool(response.get("free_checklist")) or bool(response.get("checklist"))
+        return bool(response.get("free_checklist")) or response.get("mode") == "free_checklist" or bool(response.get("checklist"))
     return False
 
 
@@ -298,7 +298,7 @@ def is_complete(activity: dict[str, Any], answer: dict[str, Any]) -> bool:
             for target in targets
         )
     if kind == "sequence_checklist":
-        if response.get("free_checklist"):
+        if response.get("free_checklist") or response.get("mode") == "free_checklist":
             return bool(str(answer.get("text", "")).strip())
         return bool(answer.get("checked"))
     if kind == "integrated_assessment":

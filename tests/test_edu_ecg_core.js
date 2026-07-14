@@ -106,6 +106,13 @@ function activity(type, response, scoring = {}) {
   assert.equal(Core.evaluate(mixed, { cases }).evaluated, false);
 })();
 
+(function testFreeChecklistModeIsRecognized() {
+  const checklist = activity("sequence_checklist", { mode: "free_checklist", maximum_items: 10 });
+  assert.equal(Core.isComplete(checklist, { text: "" }), false);
+  assert.equal(Core.isComplete(checklist, { text: "identité\nplacement\nqualité" }), true);
+  assert.equal(Core.evaluate(checklist, { text: "identité\nplacement\nqualité" }).evaluated, false);
+})();
+
 (function testMasteryIsCalculatedFromCompletedAutonomousAssessment() {
   const module = {
     mastery_threshold_percent: 80,

@@ -42,15 +42,15 @@ class EduEcgRoutesTest(unittest.TestCase):
         self.assertEqual(self.get_response("/edu-ecg").status_code, 404)
         self.assertEqual(self.get_response("/api/edu-ecg/course").status_code, 404)
 
-    def test_enabled_course_serves_complete_m0_to_m6_prototypes(self) -> None:
+    def test_enabled_course_serves_all_eight_prototype_modules(self) -> None:
         os.environ["EDU_ECG_INTRO_COURSE"] = "1"
         page = self.get_response("/edu-ecg")
         self.assertEqual(page.status_code, 200)
         self.assertIn("Edu-ECG", page.get_data(as_text=True))
 
         course = self.get_response("/api/edu-ecg/course").get_json()
-        self.assertEqual([item["id"] for item in course["available_modules"]], ["M0", "M1", "M2", "M3", "M4", "M5", "M6"])
-        self.assertEqual([item["activity_count"] for item in course["available_modules"]], [5, 7, 8, 8, 6, 8, 9])
+        self.assertEqual([item["id"] for item in course["available_modules"]], ["M0", "M1", "M2", "M3", "M4", "M5", "M6", "M7"])
+        self.assertEqual([item["activity_count"] for item in course["available_modules"]], [5, 7, 8, 8, 6, 8, 9, 6])
 
         module2 = self.get_response("/api/edu-ecg/modules/M2").get_json()
         self.assertEqual(len(module2["activities"]), 8)
@@ -138,6 +138,29 @@ class EduEcgRoutesTest(unittest.TestCase):
         )
         self.assertEqual(mixed.status_code, 200)
         self.assertFalse(mixed.get_json()["result"]["evaluated"])
+
+    def test_m7_free_checklist_and_reserved_test_are_usable(self) -> None:
+        os.environ["EDU_ECG_INTRO_COURSE"] = "1"
+        checklist = self.post_json(
+            "/api/edu-ecg/modules/M7/activities/M7_PRIME_01/evaluate",
+            {"answer": {"text": "identité\nplacement\nréglages\nqualité"}},
+        )
+        self.assertEqual(checklist.status_code, 200)
+        self.assertFalse(checklist.get_json()["result"]["evaluated"])
+        test = self.post_json(
+            "/api/edu-ecg/modules/M7/activities/M7_TEST_04/evaluate",
+            {"answer": {"tasks": {
+                "identity_context": {"text": "contrôle réalisé"},
+                "placement": {"text": "placement analysé"},
+                "speed": {"text": "vitesse analysée"},
+                "gain": {"text": "gain analysé"},
+                "artifact": {"text": "artéfact analysé"},
+                "decision": {"choice": "vérifier"},
+                "justification": {"text": "justification qualitative"},
+            }}},
+        )
+        self.assertEqual(test.status_code, 200)
+        self.assertFalse(test.get_json()["result"]["evaluated"])
 
     def test_only_approved_packaged_assets_are_served(self) -> None:
         os.environ["EDU_ECG_INTRO_COURSE"] = "true"

@@ -170,7 +170,8 @@
       case "image_hotspot_labeling":
         return (Array.isArray(response.targets) && response.targets.length > 0) || Boolean(response.target);
       case "sequence_checklist":
-        return response.free_checklist || (Array.isArray(response.checklist) && response.checklist.length > 0);
+        return response.free_checklist || response.mode === "free_checklist"
+          || (Array.isArray(response.checklist) && response.checklist.length > 0);
       default: return false;
     }
   }
@@ -241,7 +242,9 @@
           return Boolean(answer?.labels?.[id]);
         });
       }
-      case "sequence_checklist": return Boolean(answer && answer.checked && answer.checked.length);
+      case "sequence_checklist":
+        if (response.free_checklist || response.mode === "free_checklist") return Boolean(String(answer?.text || "").trim());
+        return Boolean(answer && answer.checked && answer.checked.length);
       case "integrated_assessment": {
         if (Array.isArray(response.tasks_per_case) && (activity.assets || []).length) {
           const cases = answer?.cases;

@@ -162,7 +162,7 @@
       }
       case "sequence_checklist": {
         const items = response.checklist || [];
-        if (response.free_checklist) return `<label class="field-label">Votre séquence<textarea name="free-sequence">${escapeHtml(answer.text || "")}</textarea></label>`;
+        if (response.free_checklist || response.mode === "free_checklist") return `<label class="field-label">Votre checklist<textarea name="free-sequence" placeholder="Un contrôle par ligne…">${escapeHtml(answer.text || "")}</textarea></label>`;
         return items.map((item) => `<label class="check-label"><input type="checkbox" name="checklist" value="${escapeHtml(item)}" ${(answer.checked || []).includes(item) ? "checked" : ""}><span>${escapeHtml(item)}</span></label>`).join("");
       }
       case "integrated_assessment":
@@ -284,7 +284,7 @@
         : { text: form.elements["ordering-note"]?.value || "" };
       case "matching_pairs": return { pairs: Object.fromEntries((response.left_items || []).map((left) => [left, form.elements[`pair-${left}`]?.value || ""])) };
       case "image_hotspot_labeling": { const targets = Array.isArray(response.targets) ? response.targets : [response.target].filter(Boolean); return { labels: Object.fromEntries(targets.map((target, index) => { const id = typeof target === "object" ? target.id : String(target || index); return [id, form.elements[`hotspot-${id}`]?.value || ""]; })) }; }
-      case "sequence_checklist": return response.free_checklist ? { text: form.elements["free-sequence"]?.value || "" } : { checked: [...form.querySelectorAll('[name="checklist"]:checked')].map((input) => input.value) };
+      case "sequence_checklist": return response.free_checklist || response.mode === "free_checklist" ? { text: form.elements["free-sequence"]?.value || "" } : { checked: [...form.querySelectorAll('[name="checklist"]:checked')].map((input) => input.value) };
       case "integrated_assessment": {
         if (Array.isArray(response.tasks_per_case) && (activity.assets || []).length) {
           return { cases: (activity.assets || []).map((_asset, caseIndex) => Object.fromEntries(response.tasks_per_case.map((task) => [task, form.elements[`integrated-case-${caseIndex}-${task}`]?.value || ""]))) };

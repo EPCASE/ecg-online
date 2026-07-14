@@ -11,6 +11,7 @@ const module3 = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "e
 const module4 = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "edu_ecg", "modules", "module_04.json"), "utf8"));
 const module5 = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "edu_ecg", "modules", "module_05.json"), "utf8"));
 const module6 = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "edu_ecg", "modules", "module_06.json"), "utf8"));
+const module7 = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "edu_ecg", "modules", "module_07.json"), "utf8"));
 
 (function testCompleteModuleZeroContract() {
   assert.equal(module0.id, "M0");
@@ -60,7 +61,7 @@ function completeDraftAnswer(item) {
         return [id, "annotation"];
       })),
     };
-    case "sequence_checklist": return response.free_checklist
+    case "sequence_checklist": return response.free_checklist || response.mode === "free_checklist"
       ? { text: "Séquence proposée" }
       : { checked: [...(response.checklist || [])] };
     case "integrated_assessment": {
@@ -80,7 +81,7 @@ function completeDraftAnswer(item) {
 }
 
 (function testExposedDraftModulesCanBeCompletedWithoutFabricatedAssets() {
-  for (const module of [module1, module2, module3, module4, module5, module6]) {
+  for (const module of [module1, module2, module3, module4, module5, module6, module7]) {
     for (const item of module.activities) {
       const answer = completeDraftAnswer(item);
       assert.equal(Core.isComplete(item, answer), true, `${item.id} must not block progression`);

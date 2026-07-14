@@ -70,6 +70,18 @@
         "action": ["M6.7"],
         "differential": ["M6.2", "M6.6"]
       }
+    },
+    "M7": {
+      "status": "prototype",
+      "activity_ids": "all",
+      "mastery_threshold_percent": 80,
+      "domain_competency_ids": {
+        "placement": ["M7.1"],
+        "settings": ["M7.1"],
+        "artifacts": ["M7.1"],
+        "procedure": ["M7.1"],
+        "decision": ["M7.2"]
+      }
     }
   }
 }

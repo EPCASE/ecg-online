@@ -110,6 +110,13 @@ class EduEcgScoringTest(unittest.TestCase):
         self.assertTrue(is_complete(mixed, {"cases": cases}))
         self.assertFalse(evaluate(mixed, {"cases": cases})["evaluated"])
 
+    def test_free_checklist_mode_is_recognized(self) -> None:
+        checklist = activity("sequence_checklist", {"mode": "free_checklist", "maximum_items": 10})
+        self.assertFalse(is_complete(checklist, {"text": ""}))
+        answer = {"text": "identité\nplacement\nqualité"}
+        self.assertTrue(is_complete(checklist, answer))
+        self.assertFalse(evaluate(checklist, answer)["evaluated"])
+
 
 if __name__ == "__main__":
     unittest.main()
