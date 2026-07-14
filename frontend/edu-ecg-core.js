@@ -153,6 +153,8 @@
     const response = activity.response || {};
     switch (activity.activity_type) {
       case "single_choice": case "multiple_choice": case "image_comparison":
+        if (Array.isArray(response.cause_options) && response.cause_options.length
+          && Array.isArray(response.action_options) && response.action_options.length) return true;
         if (Array.isArray(response.cases)) {
           return response.cases.length > 0 && response.cases.every((item) => Array.isArray(item.options) && item.options.length > 0);
         }
@@ -213,6 +215,13 @@
     }
     switch (activity.activity_type) {
       case "single_choice": case "image_comparison": {
+        if (response.type === "single_choice_per_image") {
+          const count = (activity.assets || []).length;
+          return count > 0 && Array.isArray(answer?.choices) && answer.choices.length === count && answer.choices.every(Boolean);
+        }
+        if ((response.cause_options || []).length && (response.action_options || []).length) {
+          return Boolean(answer?.cause && answer?.action);
+        }
         if (Array.isArray(response.cases)) {
           return Array.isArray(answer?.cases) && answer.cases.length === response.cases.length && answer.cases.every(Boolean);
         }
@@ -234,6 +243,11 @@
       }
       case "sequence_checklist": return Boolean(answer && answer.checked && answer.checked.length);
       case "integrated_assessment": {
+        if (Array.isArray(response.tasks_per_case) && (activity.assets || []).length) {
+          const cases = answer?.cases;
+          return Array.isArray(cases) && cases.length === activity.assets.length
+            && cases.every((item) => response.tasks_per_case.every((task) => String(item?.[task] || "").trim()));
+        }
         const tasks = response.tasks;
         if (!Array.isArray(tasks) || !tasks.length || tasks.some((task) => typeof task !== "object")) {
           return Boolean(answer && String(answer.text || "").trim());

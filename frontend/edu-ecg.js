@@ -109,6 +109,12 @@
     const response = activity.response || {};
     const name = prefix || "answer";
     const effectiveType = activity.activity_type === "image_comparison" ? (response.type || "single_choice") : activity.activity_type;
+    if (effectiveType === "single_choice_per_image") {
+      return (activity.assets || []).map((_asset, index) => `<fieldset><legend>Image ${index + 1}</legend>${choiceOptions(response.options, `${name}-image-${index}`, answer.choices?.[index] || "", false)}</fieldset>`).join("");
+    }
+    if ((response.cause_options || []).length && (response.action_options || []).length) {
+      return `<fieldset><legend>Cause probable</legend>${choiceOptions(response.cause_options, `${name}-cause`, answer.cause || "", false)}</fieldset><fieldset><legend>Action corrective</legend>${choiceOptions(response.action_options, `${name}-action`, answer.action || "", false)}</fieldset>`;
+    }
     if (Array.isArray(response.cases)) {
       return response.cases.map((item, index) => `<fieldset><legend>${escapeHtml(item.case || `Cas ${index + 1}`)}</legend>${choiceOptions(item.options, `${name}-case-${index}`, answer.cases?.[index] || "", false)}</fieldset>`).join("");
     }
@@ -160,6 +166,9 @@
         return items.map((item) => `<label class="check-label"><input type="checkbox" name="checklist" value="${escapeHtml(item)}" ${(answer.checked || []).includes(item) ? "checked" : ""}><span>${escapeHtml(item)}</span></label>`).join("");
       }
       case "integrated_assessment":
+        if (Array.isArray(response.tasks_per_case) && (activity.assets || []).length) {
+          return (activity.assets || []).map((_asset, caseIndex) => `<fieldset class="case-response"><legend>Cas ${caseIndex + 1}</legend>${response.tasks_per_case.map((task) => `<label class="field-label">${escapeHtml(task)}<textarea name="integrated-case-${caseIndex}-${escapeHtml(task)}">${escapeHtml(answer.cases?.[caseIndex]?.[task] || "")}</textarea></label>`).join("")}</fieldset>`).join("");
+        }
         if (!Array.isArray(response.tasks) || response.tasks.some((task) => typeof task !== "object")) return `<div class="draft-notice">La structure du test est réservée, mais ses sous-tâches ne sont pas encore spécifiées. Le test restera non évalué.</div><label class="field-label">Votre réponse<textarea name="integrated-note">${escapeHtml(answer.text || "")}</textarea></label>`;
         return response.tasks.map((task) => renderTask(task, answer.tasks?.[task.id] || {}, `task-${task.id}`)).join("");
       case "micro_lesson": {
@@ -247,6 +256,15 @@
   function collectAnswer(activity, form) {
     const response = activity.response || {};
     const effectiveType = activity.activity_type === "image_comparison" ? (response.type || "single_choice") : activity.activity_type;
+    if (effectiveType === "single_choice_per_image") {
+      return { choices: (activity.assets || []).map((_asset, index) => form.querySelector(`[name="answer-image-${index}"]:checked`)?.value || "") };
+    }
+    if ((response.cause_options || []).length && (response.action_options || []).length) {
+      return {
+        cause: form.querySelector('[name="answer-cause"]:checked')?.value || "",
+        action: form.querySelector('[name="answer-action"]:checked')?.value || "",
+      };
+    }
     if (Array.isArray(response.cases)) {
       return { cases: response.cases.map((_item, index) => form.querySelector(`[name="answer-case-${index}"]:checked`)?.value || "") };
     }
@@ -267,7 +285,12 @@
       case "matching_pairs": return { pairs: Object.fromEntries((response.left_items || []).map((left) => [left, form.elements[`pair-${left}`]?.value || ""])) };
       case "image_hotspot_labeling": { const targets = Array.isArray(response.targets) ? response.targets : [response.target].filter(Boolean); return { labels: Object.fromEntries(targets.map((target, index) => { const id = typeof target === "object" ? target.id : String(target || index); return [id, form.elements[`hotspot-${id}`]?.value || ""]; })) }; }
       case "sequence_checklist": return response.free_checklist ? { text: form.elements["free-sequence"]?.value || "" } : { checked: [...form.querySelectorAll('[name="checklist"]:checked')].map((input) => input.value) };
-      case "integrated_assessment": return Array.isArray(response.tasks) && response.tasks.every((task) => typeof task === "object") ? { tasks: Object.fromEntries(response.tasks.map((task) => [task.id, collectTask(form, task)])) } : { text: form.elements["integrated-note"]?.value || "" };
+      case "integrated_assessment": {
+        if (Array.isArray(response.tasks_per_case) && (activity.assets || []).length) {
+          return { cases: (activity.assets || []).map((_asset, caseIndex) => Object.fromEntries(response.tasks_per_case.map((task) => [task, form.elements[`integrated-case-${caseIndex}-${task}`]?.value || ""]))) };
+        }
+        return Array.isArray(response.tasks) && response.tasks.every((task) => typeof task === "object") ? { tasks: Object.fromEntries(response.tasks.map((task) => [task.id, collectTask(form, task)])) } : { text: form.elements["integrated-note"]?.value || "" };
+      }
       case "micro_lesson": return { continued: true };
       default: return {};
     }

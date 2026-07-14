@@ -87,6 +87,25 @@ function activity(type, response, scoring = {}) {
   assert.equal(Core.evaluate(unspecified, { text: "erreurs repérées" }).evaluated, false);
 })();
 
+(function testPerImageCauseActionAndMixedCasesAreCompleteOnlyAsASet() {
+  const perImage = { ...activity("image_comparison", { type: "single_choice_per_image", options: ["artéfact", "activité"] }), assets: ["a.png", "b.png"] };
+  assert.equal(Core.isComplete(perImage, { choices: ["artéfact"] }), false);
+  assert.equal(Core.isComplete(perImage, { choices: ["artéfact", "activité"] }), true);
+
+  const causeAction = activity("single_choice", { cause_options: ["contact"], action_options: ["vérifier"] });
+  assert.equal(Core.isComplete(causeAction, { cause: "contact" }), false);
+  assert.equal(Core.isComplete(causeAction, { cause: "contact", action: "vérifier" }), true);
+
+  const mixed = { ...activity("integrated_assessment", { tasks_per_case: ["identification", "cause", "action"] }), assets: ["a.png", "b.png"] };
+  const cases = [
+    { identification: "x", cause: "y", action: "z" },
+    { identification: "x", cause: "y", action: "z" },
+  ];
+  assert.equal(Core.isComplete(mixed, { cases: cases.slice(0, 1) }), false);
+  assert.equal(Core.isComplete(mixed, { cases }), true);
+  assert.equal(Core.evaluate(mixed, { cases }).evaluated, false);
+})();
+
 (function testMasteryIsCalculatedFromCompletedAutonomousAssessment() {
   const module = {
     mastery_threshold_percent: 80,

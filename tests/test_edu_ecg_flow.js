@@ -9,6 +9,8 @@ const module1 = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "e
 const module2 = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "edu_ecg", "modules", "module_02.json"), "utf8"));
 const module3 = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "edu_ecg", "modules", "module_03.json"), "utf8"));
 const module4 = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "edu_ecg", "modules", "module_04.json"), "utf8"));
+const module5 = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "edu_ecg", "modules", "module_05.json"), "utf8"));
+const module6 = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "edu_ecg", "modules", "module_06.json"), "utf8"));
 
 (function testCompleteModuleZeroContract() {
   assert.equal(module0.id, "M0");
@@ -26,6 +28,12 @@ function completeDraftAnswer(item) {
   switch (item.activity_type) {
     case "single_choice": case "image_comparison": {
       const option = (response.options || [])[0];
+      if (response.type === "single_choice_per_image") {
+        return { choices: (item.assets || []).map(() => Core.optionValue(option, 0)) };
+      }
+      if ((response.cause_options || []).length && (response.action_options || []).length) {
+        return { cause: response.cause_options[0], action: response.action_options[0] };
+      }
       if (Array.isArray(response.cases)) {
         return { cases: response.cases.map((item) => Core.optionValue(item.options[0], 0)) };
       }
@@ -56,6 +64,9 @@ function completeDraftAnswer(item) {
       ? { text: "Séquence proposée" }
       : { checked: [...(response.checklist || [])] };
     case "integrated_assessment": {
+      if (Array.isArray(response.tasks_per_case) && (item.assets || []).length) {
+        return { cases: item.assets.map(() => Object.fromEntries(response.tasks_per_case.map((task) => [task, "Réponse qualitative"]))) };
+      }
       if (!Array.isArray(response.tasks) || response.tasks.some((task) => typeof task !== "object")) {
         return { text: "Réponse globale au test réservé" };
       }
@@ -69,7 +80,7 @@ function completeDraftAnswer(item) {
 }
 
 (function testExposedDraftModulesCanBeCompletedWithoutFabricatedAssets() {
-  for (const module of [module1, module2, module3, module4]) {
+  for (const module of [module1, module2, module3, module4, module5, module6]) {
     for (const item of module.activities) {
       const answer = completeDraftAnswer(item);
       assert.equal(Core.isComplete(item, answer), true, `${item.id} must not block progression`);

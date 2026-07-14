@@ -42,15 +42,15 @@ class EduEcgRoutesTest(unittest.TestCase):
         self.assertEqual(self.get_response("/edu-ecg").status_code, 404)
         self.assertEqual(self.get_response("/api/edu-ecg/course").status_code, 404)
 
-    def test_enabled_course_serves_complete_m0_to_m4_prototypes(self) -> None:
+    def test_enabled_course_serves_complete_m0_to_m6_prototypes(self) -> None:
         os.environ["EDU_ECG_INTRO_COURSE"] = "1"
         page = self.get_response("/edu-ecg")
         self.assertEqual(page.status_code, 200)
         self.assertIn("Edu-ECG", page.get_data(as_text=True))
 
         course = self.get_response("/api/edu-ecg/course").get_json()
-        self.assertEqual([item["id"] for item in course["available_modules"]], ["M0", "M1", "M2", "M3", "M4"])
-        self.assertEqual([item["activity_count"] for item in course["available_modules"]], [5, 7, 8, 8, 6])
+        self.assertEqual([item["id"] for item in course["available_modules"]], ["M0", "M1", "M2", "M3", "M4", "M5", "M6"])
+        self.assertEqual([item["activity_count"] for item in course["available_modules"]], [5, 7, 8, 8, 6, 8, 9])
 
         module2 = self.get_response("/api/edu-ecg/modules/M2").get_json()
         self.assertEqual(len(module2["activities"]), 8)
@@ -113,6 +113,31 @@ class EduEcgRoutesTest(unittest.TestCase):
         )
         self.assertEqual(unspecified.status_code, 200)
         self.assertFalse(unspecified.get_json()["result"]["evaluated"])
+
+    def test_m6_structured_draft_interactions_are_accepted_without_scoring(self) -> None:
+        os.environ["EDU_ECG_INTRO_COURSE"] = "1"
+        per_image = self.post_json(
+            "/api/edu-ecg/modules/M6/activities/M6_PRIME_00/evaluate",
+            {"answer": {"choices": ["artéfact probable", "activité cardiaque probable"]}},
+        )
+        self.assertEqual(per_image.status_code, 200)
+        self.assertFalse(per_image.get_json()["result"]["evaluated"])
+        cause_action = self.post_json(
+            "/api/edu-ecg/modules/M6/activities/M6_PROBE_01/evaluate",
+            {"answer": {"cause": "respiration/mouvement/contact", "action": "vérifier patient et électrodes"}},
+        )
+        self.assertEqual(cause_action.status_code, 200)
+        self.assertFalse(cause_action.get_json()["result"]["evaluated"])
+        mixed = self.post_json(
+            "/api/edu-ecg/modules/M6/activities/M6_STRENGTHEN_07/evaluate",
+            {"answer": {"cases": [
+                {"identification": "x", "cause": "y", "action": "z"},
+                {"identification": "x", "cause": "y", "action": "z"},
+                {"identification": "x", "cause": "y", "action": "z"},
+            ]}},
+        )
+        self.assertEqual(mixed.status_code, 200)
+        self.assertFalse(mixed.get_json()["result"]["evaluated"])
 
     def test_only_approved_packaged_assets_are_served(self) -> None:
         os.environ["EDU_ECG_INTRO_COURSE"] = "true"

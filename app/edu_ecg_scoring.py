@@ -180,6 +180,8 @@ def _has_structured_response(activity: dict[str, Any]) -> bool:
     response = activity.get("response") or {}
     kind = activity.get("activity_type")
     if kind in {"single_choice", "multiple_choice", "image_comparison"}:
+        if response.get("cause_options") and response.get("action_options"):
+            return True
         if isinstance(response.get("cases"), list):
             return bool(response["cases"]) and all(
                 isinstance(item, dict) and bool(item.get("options")) for item in response["cases"]
@@ -254,7 +256,13 @@ def is_complete(activity: dict[str, Any], answer: dict[str, Any]) -> bool:
     if kind not in {"integrated_assessment", "micro_lesson"} and not _has_structured_response(activity):
         return bool(str(answer.get("text", "")).strip())
     effective_kind = response.get("type", "single_choice") if kind == "image_comparison" else kind
+    if effective_kind == "single_choice_per_image":
+        choices = answer.get("choices")
+        count = len(activity.get("assets") or [])
+        return isinstance(choices, list) and count > 0 and len(choices) == count and all(choices)
     if effective_kind == "single_choice":
+        if response.get("cause_options") and response.get("action_options"):
+            return bool(answer.get("cause")) and bool(answer.get("action"))
         if isinstance(response.get("cases"), list):
             answers = answer.get("cases")
             return (
@@ -294,6 +302,19 @@ def is_complete(activity: dict[str, Any], answer: dict[str, Any]) -> bool:
             return bool(str(answer.get("text", "")).strip())
         return bool(answer.get("checked"))
     if kind == "integrated_assessment":
+        tasks_per_case = response.get("tasks_per_case")
+        assets = activity.get("assets") or []
+        if isinstance(tasks_per_case, list) and tasks_per_case and assets:
+            cases = answer.get("cases")
+            return (
+                isinstance(cases, list)
+                and len(cases) == len(assets)
+                and all(
+                    isinstance(item, dict)
+                    and all(str(item.get(task, "")).strip() for task in tasks_per_case)
+                    for item in cases
+                )
+            )
         tasks = response.get("tasks")
         if not isinstance(tasks, list) or not tasks or any(not isinstance(task, dict) for task in tasks):
             return bool(str(answer.get("text", "")).strip())

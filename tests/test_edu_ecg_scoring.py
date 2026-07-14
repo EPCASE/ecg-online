@@ -90,6 +90,26 @@ class EduEcgScoringTest(unittest.TestCase):
         self.assertTrue(is_complete(unspecified, {"text": "erreurs repérées"}))
         self.assertFalse(evaluate(unspecified, {"text": "erreurs repérées"})["evaluated"])
 
+    def test_per_image_cause_action_and_mixed_cases(self) -> None:
+        per_image = activity("image_comparison", {"type": "single_choice_per_image", "options": ["artéfact", "activité"]})
+        per_image["assets"] = ["a.png", "b.png"]
+        self.assertFalse(is_complete(per_image, {"choices": ["artéfact"]}))
+        self.assertTrue(is_complete(per_image, {"choices": ["artéfact", "activité"]}))
+
+        cause_action = activity("single_choice", {"cause_options": ["contact"], "action_options": ["vérifier"]})
+        self.assertFalse(is_complete(cause_action, {"cause": "contact"}))
+        self.assertTrue(is_complete(cause_action, {"cause": "contact", "action": "vérifier"}))
+
+        mixed = activity("integrated_assessment", {"tasks_per_case": ["identification", "cause", "action"]})
+        mixed["assets"] = ["a.png", "b.png"]
+        cases = [
+            {"identification": "x", "cause": "y", "action": "z"},
+            {"identification": "x", "cause": "y", "action": "z"},
+        ]
+        self.assertFalse(is_complete(mixed, {"cases": cases[:1]}))
+        self.assertTrue(is_complete(mixed, {"cases": cases}))
+        self.assertFalse(evaluate(mixed, {"cases": cases})["evaluated"])
+
 
 if __name__ == "__main__":
     unittest.main()

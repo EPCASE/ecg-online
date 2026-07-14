@@ -48,6 +48,28 @@
         "contact": ["M4.3"],
         "procedure": ["M4.4", "M4.5"]
       }
+    },
+    "M5": {
+      "status": "prototype",
+      "activity_ids": "all",
+      "mastery_threshold_percent": 80,
+      "domain_competency_ids": {
+        "speed": ["M5.1"],
+        "gain": ["M5.2"],
+        "filtering": ["M5.4"],
+        "automation": ["M5.5"]
+      }
+    },
+    "M6": {
+      "status": "prototype",
+      "activity_ids": "all",
+      "mastery_threshold_percent": 80,
+      "domain_competency_ids": {
+        "recognition": ["M6.1", "M6.2", "M6.3", "M6.4", "M6.5", "M6.6"],
+        "cause": ["M6.1", "M6.2", "M6.3", "M6.4", "M6.5", "M6.6"],
+        "action": ["M6.7"],
+        "differential": ["M6.2", "M6.6"]
+      }
     }
   }
 }
