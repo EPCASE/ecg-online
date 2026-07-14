@@ -4,11 +4,14 @@ from __future__ import annotations
 import json
 import os
 import re
+from copy import deepcopy
 from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
-from flask import abort, jsonify, send_from_directory
+from flask import abort, jsonify, request, send_from_directory
+
+from . import edu_ecg_scoring
 
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
@@ -98,6 +101,13 @@ def _validate_activity(activity: dict[str, Any], module_id: str, seen: set[str])
         raise EduEcgContentError(f"{activity_id}: hints invalide")
     if activity.get("phase") == "test" and hints:
         raise EduEcgContentError(f"{activity_id}: un test autonome ne peut pas contenir d'indice")
+    asset_policy = activity.get("asset_policy") or {}
+    if asset_policy.get("reserved_for_test") and activity.get("phase") not in {"test", "review"}:
+        raise EduEcgContentError(f"{activity_id}: un asset réservé doit appartenir à une phase test ou review")
+    if activity.get("phase") == "test":
+        attempt_policy = activity.get("attempt_policy") or {}
+        if attempt_policy.get("allow_revision_after_hint"):
+            raise EduEcgContentError(f"{activity_id}: un test autonome ne permet pas de révision après indice")
     for asset in activity.get("assets", []):
         asset_path = Path(str(asset))
         if asset_path.is_absolute() or ".." in asset_path.parts:
@@ -184,18 +194,78 @@ def course_payload() -> dict[str, Any]:
     return {**validated["course"], "available_modules": summaries}
 
 
+_PRIVATE_RESPONSE_FIELDS = {
+    "accepted_answers", "answer", "category", "correct", "correct_labels",
+    "correct_option_id", "correct_option_ids", "correct_options", "correct_order",
+    "correct_pairs", "expected_concepts",
+}
+_PUBLIC_SCORING_FIELDS = {
+    "all_axes_required", "all_cards_required", "all_critical_items_required",
+    "all_pairs_required", "all_targets_required", "concepts_required",
+    "decision_points", "domains", "exact_order_required", "minimum_percent",
+    "points", "reason_points",
+}
+
+
+def _public_response(value: Any) -> Any:
+    """Recursively remove answer keys from content sent before submission."""
+    if isinstance(value, list):
+        return [_public_response(item) for item in value]
+    if not isinstance(value, dict):
+        return value
+    return {
+        key: _public_response(item)
+        for key, item in value.items()
+        if key not in _PRIVATE_RESPONSE_FIELDS
+    }
+
+
+def _public_activity(activity: dict[str, Any]) -> dict[str, Any]:
+    public = deepcopy(activity)
+    public["response"] = _public_response(public.get("response") or {})
+    public["scoring"] = {
+        key: value
+        for key, value in (public.get("scoring") or {}).items()
+        if key in _PUBLIC_SCORING_FIELDS
+    }
+    # Feedback is returned only after a submission. For a micro-lesson the
+    # explanation is the lesson itself and therefore remains public.
+    if public.get("activity_type") != "micro_lesson":
+        public.pop("explanation", None)
+    public.pop("review", None)
+    return public
+
+
+def _available_activity(module_id: str, activity_id: str) -> dict[str, Any]:
+    validated = validate_content()
+    availability = validated["availability"]["modules"].get(module_id)
+    if not availability:
+        abort(404)
+    allowed = availability.get("activity_ids")
+    if allowed != "all" and activity_id not in allowed:
+        abort(404)
+    activity = next(
+        (item for item in validated["modules"][module_id]["activities"] if item["id"] == activity_id),
+        None,
+    )
+    if activity is None:
+        abort(404)
+    return activity
+
+
 def module_payload(module_id: str) -> dict[str, Any]:
     validated = validate_content()
     availability = validated["availability"]["modules"].get(module_id)
     if not availability:
         abort(404)
-    module = dict(validated["modules"][module_id])
+    module = deepcopy(validated["modules"][module_id])
     allowed = availability.get("activity_ids")
     if allowed != "all":
         allowed_ids = set(allowed)
         module["activities"] = [
             item for item in module["activities"] if item["id"] in allowed_ids
         ]
+    module["activities"] = [_public_activity(item) for item in module["activities"]]
     module["implementation_status"] = availability.get("status", "prototype")
     return module
 
@@ -222,6 +292,22 @@ def register_routes(app, frontend_dir: str) -> None:
         if not MODULE_ID.fullmatch(module_id):
             abort(404)
         return jsonify(module_payload(module_id))
+
+    @app.post("/api/edu-ecg/modules/<module_id>/activities/<activity_id>/evaluate")
+    def edu_ecg_evaluate(module_id: str, activity_id: str):
+        _guard()
+        if not MODULE_ID.fullmatch(module_id) or not ACTIVITY_ID.fullmatch(activity_id):
+            abort(404)
+        activity = _available_activity(module_id, activity_id)
+        payload = request.get_json(silent=True) or {}
+        answer = payload.get("answer")
+        if not isinstance(answer, dict) or not edu_ecg_scoring.is_complete(activity, answer):
+            abort(400, description="Réponse incomplète ou invalide.")
+        result = edu_ecg_scoring.evaluate(activity, answer)
+        return jsonify({
+            "result": result,
+            "explanation": deepcopy(activity.get("explanation") or {}),
+        })
 
     @app.get("/api/edu-ecg/assets/<path:filename>")
     def edu_ecg_asset(filename: str):

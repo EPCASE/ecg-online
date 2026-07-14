@@ -1,0 +1,24 @@
+{
+  "session_id": "demo-session-001",
+  "course_id": "edu_ecg_introduction",
+  "course_version": "1.0-draft",
+  "module_id": "M0",
+  "activity_id": "M0_PROBE_02",
+  "initial_answer": {
+    "decision": "check",
+    "reason": "ligne de base"
+  },
+  "confidence": "moyenne",
+  "hints_used": [
+    0
+  ],
+  "final_answer": {
+    "decision": "repeat",
+    "reason": "mouvement/tremblement"
+  },
+  "timestamps": {
+    "started_at": "2026-07-14T08:00:00+02:00",
+    "initial_submitted_at": "2026-07-14T08:00:32+02:00",
+    "completed_at": "2026-07-14T08:01:20+02:00"
+  }
+}

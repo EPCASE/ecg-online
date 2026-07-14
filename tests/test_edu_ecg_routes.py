@@ -32,6 +32,11 @@ class EduEcgRoutesTest(unittest.TestCase):
         self.addCleanup(response.close)
         return response
 
+    def post_json(self, path: str, payload: dict):
+        response = self.client.post(path, json=payload)
+        self.addCleanup(response.close)
+        return response
+
     def test_feature_is_disabled_by_default(self) -> None:
         os.environ.pop("EDU_ECG_INTRO_COURSE", None)
         self.assertEqual(self.get_response("/edu-ecg").status_code, 404)
@@ -52,6 +57,28 @@ class EduEcgRoutesTest(unittest.TestCase):
             [item["id"] for item in module2["activities"]],
             ["M2_PROBE_03", "M2_PROBE_04"],
         )
+        cards = module2["activities"][0]["response"]["cards"]
+        self.assertTrue(all("category" not in card for card in cards))
+        comparison = module2["activities"][1]
+        self.assertNotIn("correct_option_id", comparison["response"])
+        self.assertNotIn("explanation", comparison)
+
+    def test_scoring_stays_server_side_and_returns_feedback_after_submission(self) -> None:
+        os.environ["EDU_ECG_INTRO_COURSE"] = "1"
+        response = self.post_json(
+            "/api/edu-ecg/modules/M2/activities/M2_PROBE_04/evaluate",
+            {"answer": {"choice": "different_axes"}},
+        )
+        self.assertEqual(response.status_code, 200)
+        payload = response.get_json()
+        self.assertTrue(payload["result"]["correct"])
+        self.assertIn("Chaque dérivation", payload["explanation"]["text"])
+
+        incomplete = self.post_json(
+            "/api/edu-ecg/modules/M2/activities/M2_PROBE_04/evaluate",
+            {"answer": {}},
+        )
+        self.assertEqual(incomplete.status_code, 400)
 
     def test_only_approved_packaged_assets_are_served(self) -> None:
         os.environ["EDU_ECG_INTRO_COURSE"] = "true"
@@ -69,6 +96,15 @@ class EduEcgRoutesTest(unittest.TestCase):
         }
         self.assertTrue(seen_types.issubset(SUPPORTED_ACTIVITY_TYPES))
         self.assertEqual(len(content["modules"]), 8)
+        self.assertEqual(len(content["modules"]["M6"]["activities"]), 9)
+        self.assertEqual(len(content["modules"]["M7"]["activities"]), 6)
+        for module in content["modules"].values():
+            self.assertEqual(module["content_status"], "draft")
+            for index, activity in enumerate(module["activities"], start=1):
+                self.assertEqual(activity["screen_order"], index)
+                if activity["phase"] == "test":
+                    self.assertEqual(activity["hints"], [])
+                    self.assertTrue(activity["asset_policy"]["reserved_for_test"])
 
 
 if __name__ == "__main__":

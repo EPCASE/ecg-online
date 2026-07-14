@@ -18,7 +18,7 @@ function activity(type, response, scoring = {}) {
 (function testDeterministicEvaluators() {
   assert.equal(Core.evaluate(activity("single_choice", { correct_option_id: "b" }), { choice: "b" }).percent, 100);
   assert.equal(Core.evaluate(activity("multiple_choice", { correct_option_ids: ["a", "c"] }), { choices: ["c", "a"] }).correct, true);
-  assert.equal(Core.evaluate(activity("short_answer", { expected_concepts: ["temps horizontal", "amplitude verticale"] }), { text: "Temps horizontal et amplitude verticale" }).percent, 100);
+  assert.equal(Core.evaluate(activity("short_answer", { expected_concepts: ["temps horizontal", "amplitude verticale"] }), { text: "Temps horizontal et amplitude verticale" }).evaluated, false);
   assert.equal(Core.evaluate(activity("card_sorting", { cards: [{ id: "v1", category: "horizontal" }] }), { assignments: { v1: "horizontal" } }).correct, true);
   assert.equal(Core.evaluate(activity("ordering_cards", { correct_order: ["a", "b"] }), { order: ["a", "b"] }).correct, true);
   assert.equal(Core.evaluate(activity("matching_pairs", { correct_pairs: [["P", "oreillettes"]] }), { pairs: { P: "oreillettes" } }).correct, true);
@@ -52,12 +52,28 @@ function activity(type, response, scoring = {}) {
 
 (function testFirstAnswerIsImmutableAndRevisionsRemainAvailable() {
   const state = Store.fresh();
-  Store.lockInitial(state, "M0", "M0_PRIME_01", { choice: "same" }, 2);
-  Store.lockInitial(state, "M0", "M0_PRIME_01", { choice: "different" }, 4);
+  Store.lockInitial(state, "M0", "M0_PRIME_01", { choice: "same" }, "faible");
+  Store.useHint(state, "M0", "M0_PRIME_01", 0);
+  Store.setResult(state, "M0", "M0_PRIME_01", { choice: "different" }, { evaluated: true, criticalErrors: [] });
   const record = state.modules.M0.activities.M0_PRIME_01;
   assert.deepEqual(record.initialAnswer, { choice: "same" });
   assert.deepEqual(record.revisions.at(-1).answer, { choice: "different" });
-  assert.equal(record.confidence, 2);
+  assert.equal(record.confidence, "faible");
+})();
+
+(function testAnalyticsFollowTheV2EventContract() {
+  const state = Store.fresh("2.0-draft");
+  Store.startCourse(state);
+  Store.recordFirstAction(state, "M0", "M0_PROBE_02", ["M0.1"]);
+  Store.lockInitial(state, "M0", "M0_PROBE_02", { choice: "check" }, "moyenne", ["M0.1"]);
+  const event = state.events.find((item) => item.event_name === "initial_answer_submitted");
+  assert.equal(event.session_id, state.sessionId);
+  assert.equal(event.course_version, "2.0-draft");
+  assert.equal(event.module_id, "M0");
+  assert.equal(event.activity_id, "M0_PROBE_02");
+  assert.ok(event.attempt_id);
+  assert.ok(Number.isInteger(event.elapsed_ms));
+  assert.equal(JSON.stringify(state.events).includes("check"), false);
 })();
 
 console.log("edu-ecg-core: all tests passed");

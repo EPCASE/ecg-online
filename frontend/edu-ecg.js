@@ -25,6 +25,7 @@
   function moduleRecord(id) { return state.modules[id] || { activities: {} }; }
 
   function latestAnswer(record) {
+    if (record?.finalAnswer) return clone(record.finalAnswer);
     if (record && record.revisions && record.revisions.length) return clone(record.revisions[record.revisions.length - 1].answer);
     return record && record.initialAnswer ? clone(record.initialAnswer) : null;
   }
@@ -90,7 +91,7 @@
     const records = moduleRecord(moduleId).activities || {};
     const firstPending = moduleData.activities.findIndex((activity) => !records[activity.id]?.completedAt);
     state.activeIndex = firstPending < 0 ? 0 : firstPending;
-    Store.event(state, "module_opened", { moduleId });
+    Store.event(state, "module_started", { moduleId });
     persist();
     renderActivity();
   }
@@ -162,17 +163,17 @@
 
   function assetMarkup(activity) {
     if (!activity.assets || !activity.assets.length) return "";
-    return `<div class="asset-grid">${activity.assets.map((asset) => `<figure class="asset-frame"><img data-src="/api/edu-ecg/assets/${escapeHtml(asset)}" alt="Support visuel pour ${escapeHtml(activity.title)}"><div class="asset-placeholder hidden"><b>Visuel en attente de validation</b><small>Emplacement de développement : ${escapeHtml(asset)}. Aucun ECG médical n’a été généré pour le remplacer.</small></div></figure>`).join("")}</div>`;
+    return `<div class="asset-grid">${activity.assets.map((asset) => `<figure class="asset-frame"><button type="button" class="asset-zoom" data-zoom-src="/api/edu-ecg/assets/${escapeHtml(asset)}" data-zoom-alt="${escapeHtml(`${activity.title} — ${activity.prompt}`)}" aria-label="Agrandir le support visuel : ${escapeHtml(activity.title)}"><img data-src="/api/edu-ecg/assets/${escapeHtml(asset)}" alt="${escapeHtml(`${activity.title}. ${activity.prompt}`)}"></button><div class="asset-placeholder hidden"><b>Visuel en attente de validation</b><small>Emplacement de développement : ${escapeHtml(asset)}. Aucun ECG médical n’a été généré pour le remplacer.</small></div></figure>`).join("")}</div>`;
   }
 
   function confidenceMarkup(activity, record) {
     if (!activity.collect_confidence) return "";
-    const labels = ["Incertain", "Plutôt incertain", "Plutôt sûr", "Très sûr"];
-    return `<fieldset class="confidence"><legend>${record.locked ? "Confiance déclarée avec la première réponse" : "Avant la correction, quel est votre niveau de confiance ?"}</legend><div class="confidence-options">${labels.map((label, index) => `<label><input type="radio" name="confidence" value="${index + 1}" ${record.confidence === index + 1 ? "checked" : ""} ${record.locked ? "disabled" : ""}>${index + 1} · ${label}</label>`).join("")}</div></fieldset>`;
+    const levels = [["faible", "Faible"], ["moyenne", "Moyenne"], ["forte", "Forte"]];
+    return `<fieldset class="confidence"><legend>${record.locked ? "Confiance déclarée avec la première réponse" : "Avant la correction, quel est votre niveau de confiance ?"}</legend><div class="confidence-options">${levels.map(([value, label]) => `<label><input type="radio" name="confidence" value="${value}" ${record.confidence === value ? "checked" : ""} ${record.locked ? "disabled" : ""}>${label}</label>`).join("")}</div></fieldset>`;
   }
 
-  function explanationText(activity) {
-    const explanation = activity.explanation || {};
+  function explanationText(explanation) {
+    explanation ||= {};
     if (explanation.text) return explanation.text;
     return (explanation.sections || []).map((section) => `${section.title} — ${section.text}`).join(" ");
   }
@@ -183,9 +184,14 @@
     const kind = !result.evaluated ? "pending" : result.correct ? "correct" : "wrong";
     const title = !result.evaluated ? "Réponse enregistrée — validation en attente" : result.correct ? "Réponse correcte" : "À consolider";
     const score = result.evaluated ? `<span class="score">${result.earned}/${result.possible} · ${result.percent}%</span> — ` : "";
-    const explanation = explanationText(activity);
-    const hints = (activity.hints || []).slice(0, record.hintsUsed);
-    return `<section class="feedback feedback--${kind}" aria-live="polite"><h3>${title}</h3><p>${score}${escapeHtml(result.detail)}</p>${explanation ? `<p class="explanation">${escapeHtml(explanation)}</p>` : ""}${hints.length ? `<div class="hint-stack">${hints.map((hint, index) => `<div class="hint-box"><b>Indice ${index + 1}</b><br>${escapeHtml(hint)}</div>`).join("")}</div>` : ""}</section>`;
+    const explanation = explanationText(result.explanation);
+    return `<section class="feedback feedback--${kind}" aria-live="polite"><h3>${title}</h3><p>${score}${escapeHtml(result.detail)}</p>${explanation ? `<p class="explanation">${escapeHtml(explanation)}</p>` : ""}${result.criticalErrors?.length ? `<p class="critical-note"><strong>Erreur critique détectée :</strong> ${escapeHtml(result.criticalErrors.join(", "))}. Le domaine concerné ne peut pas être validé.</p>` : ""}</section>`;
+  }
+
+  function hintMarkup(activity, record) {
+    const hints = (record.hintsUsed || []).map((index) => activity.hints?.[index]).filter(Boolean);
+    if (!hints.length) return "";
+    return `<div class="hint-stack" aria-live="polite">${hints.map((hint, index) => `<div class="hint-box"><b>Indice ${index + 1}</b><br>${escapeHtml(hint)}</div>`).join("")}</div>`;
   }
 
   function renderRail(activity, index) {
@@ -196,12 +202,27 @@
     const index = state.activeIndex || 0;
     const activity = moduleData.activities[index];
     const record = Store.activityRecord(state, moduleData.id, activity.id);
+    if (!record.viewedAt) {
+      record.viewedAt = new Date().toISOString();
+      Store.event(state, "activity_viewed", Store.context(record, moduleData.id, activity.id, activity.competency_ids));
+    }
     currentAnswer = answerOverride || latestAnswer(record) || {};
     if (activity.activity_type === "ordering_cards" && !currentAnswer.order) currentAnswer.order = (activity.response.cards || []).map((card) => card.id);
     persist();
     const isTest = activity.phase === "test";
-    const hintAvailable = record.locked && !isTest && record.hintsUsed < (activity.hints || []).length;
-    app.innerHTML = `<div class="course-layout">${renderRail(activity, index)}<article class="activity-panel"><header class="activity-top"><div class="activity-topline"><span class="phase-pill">${escapeHtml(phaseLabels[activity.phase] || activity.phase)}</span><span>Activité ${index + 1} / ${moduleData.activities.length}</span></div><div class="activity-progress"><i style="width:${((index + 1) / moduleData.activities.length) * 100}%"></i></div></header><div class="activity-body"><span class="eyebrow">${escapeHtml(activity.competency_ids.join(" · "))}</span><h1>${escapeHtml(activity.title)}</h1><p class="prompt">${escapeHtml(activity.prompt)}</p>${activity.content_status !== "approved" ? `<div class="draft-notice"><span>◈</span><span>Contenu « ${escapeHtml(activity.content_status)} » : à relire avant un usage pédagogique validé.</span></div>` : ""}${assetMarkup(activity)}<form id="answer-form" class="answer-form">${responseMarkup(activity, currentAnswer)}${confidenceMarkup(activity, record)}<div class="activity-actions"><button type="submit" class="primary-button">${activity.activity_type === "micro_lesson" ? "J’ai compris" : record.locked ? "Réévaluer ma réponse" : "Verrouiller ma première réponse"}</button>${hintAvailable ? `<button id="show-hint" type="button" class="hint-button">Afficher l’indice ${record.hintsUsed + 1}</button>` : ""}${record.completedAt ? `<button id="next-activity" type="button" class="secondary-button">${index === moduleData.activities.length - 1 ? "Voir mon bilan" : "Activité suivante"}</button>` : ""}<span id="activity-error" class="activity-error" role="alert"></span></div></form>${feedbackMarkup(activity, record)}</div></article></div>`;
+    const hintsUsed = record.hintsUsed || [];
+    const hintAvailable = record.locked && !record.result && !isTest && hintsUsed.length < (activity.hints || []).length;
+    const maxSubmissions = Number(activity.attempt_policy?.max_submissions_before_explanation || 1);
+    const submissions = record.initialAnswer === null ? 0 : 1 + (record.revisions || []).length;
+    const canSubmitRevision = record.locked && !record.result && !isTest
+      && activity.attempt_policy?.allow_revision_after_hint !== false
+      && hintsUsed.length > 0 && submissions < maxSubmissions;
+    const showSubmit = !record.locked || canSubmitRevision;
+    const submitLabel = activity.activity_type === "micro_lesson"
+      ? "J’ai compris"
+      : record.locked ? "Valider ma révision" : "Valider ma réponse";
+    const previousAllowed = index > 0 && activity.display?.allow_back_navigation !== false;
+    app.innerHTML = `<div class="course-layout">${renderRail(activity, index)}<article class="activity-panel"><header class="activity-top"><div class="activity-topline"><span class="phase-pill">${escapeHtml(phaseLabels[activity.phase] || activity.phase)}</span><span>Activité ${index + 1} / ${moduleData.activities.length}</span></div><div class="activity-progress"><i style="width:${((index + 1) / moduleData.activities.length) * 100}%"></i></div></header><div class="activity-body"><span class="eyebrow">${escapeHtml(activity.competency_ids.join(" · "))}</span><h1>${escapeHtml(activity.title)}</h1><p class="prompt">${escapeHtml(activity.prompt)}</p>${activity.content_status !== "approved" ? `<div class="draft-notice"><span>◈</span><span>Contenu « ${escapeHtml(activity.content_status)} » : à relire avant un usage pédagogique validé.</span></div>` : ""}${assetMarkup(activity)}<form id="answer-form" class="answer-form">${responseMarkup(activity, currentAnswer)}${confidenceMarkup(activity, record)}${hintMarkup(activity, record)}<div class="activity-actions">${previousAllowed ? `<button id="previous-activity" type="button" class="secondary-button">Précédent</button>` : ""}${showSubmit ? `<button type="submit" class="primary-button">${submitLabel}</button>` : ""}${hintAvailable ? `<button id="show-hint" type="button" class="hint-button">Voir l’indice ${hintsUsed.length + 1}</button>` : ""}${record.completedAt ? `<button id="next-activity" type="button" class="secondary-button">${index === moduleData.activities.length - 1 ? "Voir mon bilan" : "Continuer"}</button>` : ""}<span id="activity-error" class="activity-error" role="alert"></span></div></form>${feedbackMarkup(activity, record)}</div></article></div>`;
     wireActivity(activity, record);
   }
 
@@ -229,36 +250,91 @@
     }
   }
 
+  async function evaluateAnswer(activity, answer) {
+    const response = await fetch(
+      `/api/edu-ecg/modules/${encodeURIComponent(moduleData.id)}/activities/${encodeURIComponent(activity.id)}/evaluate`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ answer }),
+      },
+    );
+    const payload = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(payload.error || "La correction n’est pas disponible.");
+    return { ...payload.result, explanation: payload.explanation || {} };
+  }
+
   function wireActivity(activity, record) {
     app.querySelector(".rail-back").addEventListener("click", (event) => { event.preventDefault(); renderHome(); });
     app.querySelectorAll("[data-move]").forEach((button) => button.addEventListener("click", () => {
+      Store.recordFirstAction(state, moduleData.id, activity.id, activity.competency_ids);
       const index = Number(button.dataset.move); const target = index + Number(button.dataset.direction);
       const order = currentAnswer.order; [order[index], order[target]] = [order[target], order[index]];
+      persist();
       renderActivity(currentAnswer);
     }));
     app.querySelectorAll(".asset-frame img").forEach((image) => {
       image.addEventListener("error", () => {
-        image.classList.add("hidden"); image.nextElementSibling.classList.remove("hidden");
+        image.parentElement.classList.add("hidden"); image.parentElement.nextElementSibling.classList.remove("hidden");
       });
       image.src = image.dataset.src;
     });
-    app.querySelector("#show-hint")?.addEventListener("click", () => { Store.useHint(state, moduleData.id, activity.id); persist(); renderActivity(currentAnswer); });
+    app.querySelectorAll(".asset-zoom").forEach((button) => button.addEventListener("click", () => {
+      const dialog = document.querySelector("#edu-image-dialog");
+      const image = dialog.querySelector("img");
+      image.src = button.dataset.zoomSrc;
+      image.alt = button.dataset.zoomAlt;
+      dialog.querySelector("p").textContent = button.dataset.zoomAlt;
+      dialog.showModal();
+    }));
+    app.querySelector("#previous-activity")?.addEventListener("click", () => {
+      state.activeIndex -= 1; persist(); renderActivity(); window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+    app.querySelector("#show-hint")?.addEventListener("click", () => {
+      Store.useHint(state, moduleData.id, activity.id, record.hintsUsed.length, activity.competency_ids);
+      persist(); renderActivity(currentAnswer);
+    });
     app.querySelector("#next-activity")?.addEventListener("click", () => {
       if (state.activeIndex >= moduleData.activities.length - 1) renderResults();
       else { state.activeIndex += 1; persist(); renderActivity(); window.scrollTo({ top: 0, behavior: "smooth" }); }
     });
-    app.querySelector("#answer-form").addEventListener("submit", (event) => {
+    const form = app.querySelector("#answer-form");
+    const firstAction = () => {
+      Store.recordFirstAction(state, moduleData.id, activity.id, activity.competency_ids);
+      persist();
+    };
+    form.addEventListener("input", firstAction, { once: true });
+    form.addEventListener("change", firstAction, { once: true });
+    form.addEventListener("submit", async (event) => {
       event.preventDefault();
       const answer = collectAnswer(activity, event.currentTarget);
       const error = app.querySelector("#activity-error");
       if (!Core.isComplete(activity, answer)) { error.textContent = "Complétez votre réponse avant de continuer."; return; }
       const confidenceInput = event.currentTarget.querySelector('[name="confidence"]:checked');
       if (activity.collect_confidence && !confidenceInput && record.confidence == null) { error.textContent = "Indiquez votre niveau de confiance."; return; }
-      const confidence = confidenceInput ? Number(confidenceInput.value) : record.confidence;
-      if (!record.locked) Store.lockInitial(state, moduleData.id, activity.id, answer, confidence);
-      const evaluation = Core.evaluate(activity, answer);
-      Store.setResult(state, moduleData.id, activity.id, answer, evaluation);
-      currentAnswer = answer; persist(); renderActivity(answer);
+      const confidence = confidenceInput ? confidenceInput.value : record.confidence;
+      const initialSubmission = !record.locked;
+      Store.recordFirstAction(state, moduleData.id, activity.id, activity.competency_ids);
+      if (initialSubmission) {
+        Store.lockInitial(state, moduleData.id, activity.id, answer, confidence, activity.competency_ids);
+        currentAnswer = answer;
+        persist();
+        const stagedRevision = activity.phase !== "test"
+          && activity.attempt_policy?.allow_revision_after_hint !== false
+          && (activity.hints || []).length > 0;
+        if (stagedRevision) { renderActivity(answer); return; }
+      }
+      const submit = event.currentTarget.querySelector('[type="submit"]');
+      if (submit) submit.disabled = true;
+      error.textContent = "";
+      try {
+        const evaluation = await evaluateAnswer(activity, answer);
+        Store.setResult(state, moduleData.id, activity.id, answer, evaluation, activity.competency_ids);
+        currentAnswer = answer; persist(); renderActivity(answer);
+      } catch (evaluationError) {
+        if (submit) submit.disabled = false;
+        error.textContent = evaluationError.message;
+      }
     });
   }
 
@@ -267,11 +343,23 @@
     const completed = moduleData.activities.map((activity) => records[activity.id]).filter(Boolean);
     const evaluated = completed.filter((record) => record.result?.evaluated);
     const average = evaluated.length ? Math.round(evaluated.reduce((sum, record) => sum + record.result.percent, 0) / evaluated.length) : null;
-    const hints = completed.reduce((sum, record) => sum + (record.hintsUsed || 0), 0);
+    const hints = completed.reduce((sum, record) => sum + (record.hintsUsed || []).length, 0);
+    const criticalErrors = completed.flatMap((record) => record.result?.criticalErrors || []);
+    const wasCompleted = state.modules[moduleData.id].completed;
     state.modules[moduleData.id].completed = completed.length === moduleData.activities.length;
-    Store.event(state, "module_completed", { moduleId: moduleData.id, evaluatedActivities: evaluated.length, average });
+    if (!wasCompleted && state.modules[moduleData.id].completed) {
+      Store.event(state, "module_completed", { moduleId: moduleData.id }, {
+        evaluated_activities: evaluated.length,
+        average_percent: average,
+        critical_error_count: criticalErrors.length,
+      });
+    }
+    if (!state.completedAt && course.available_modules.every((item) => state.modules[item.id]?.completed)) {
+      state.completedAt = new Date().toISOString();
+      Store.event(state, "course_completed", {}, { available_modules: course.available_modules.length });
+    }
     persist();
-    app.innerHTML = `<section class="result-panel"><span class="eyebrow">Bilan du module ${escapeHtml(moduleData.id)}</span><h1>Première étape enregistrée.</h1><p>Le bilan distingue les réponses évaluables des contenus encore en validation. Une activité sans corrigé explicite ne contribue jamais au score.</p><div class="result-stats"><div class="result-stat"><b>${completed.length}/${moduleData.activities.length}</b><span>activités terminées</span></div><div class="result-stat"><b>${average == null ? "—" : `${average}%`}</b><span>moyenne évaluée</span></div><div class="result-stat"><b>${hints}</b><span>indices consultés</span></div></div><span class="eyebrow">Résultats par domaine</span><div class="domain-list">${(moduleData.results_domains || []).map((domain) => `<div class="domain-row"><span>${escapeHtml(domain.label)}</span><span>Non évalué · correspondance à valider</span></div>`).join("")}</div><div class="draft-notice"><span>◈</span><span>Les données actuelles ne relient pas explicitement chaque activité à un domaine de résultat. Aucun rattachement médical n’est déduit automatiquement.</span></div><div class="activity-actions"><button id="back-home" class="primary-button">Retour aux modules</button><button id="retry-module" class="secondary-button">Revoir le module</button></div></section>`;
+    app.innerHTML = `<section class="result-panel"><span class="eyebrow">Bilan du module ${escapeHtml(moduleData.id)}</span><h1>Première étape enregistrée.</h1><p>Le bilan distingue les réponses évaluables des contenus encore en validation. Une activité sans corrigé explicite ne contribue jamais au score.</p><div class="result-stats"><div class="result-stat"><b>${completed.length}/${moduleData.activities.length}</b><span>activités terminées</span></div><div class="result-stat"><b>${average == null ? "—" : `${average}%`}</b><span>moyenne évaluée</span></div><div class="result-stat"><b>${hints}</b><span>indices consultés</span></div></div>${criticalErrors.length ? `<div class="critical-summary"><strong>${criticalErrors.length} erreur${criticalErrors.length > 1 ? "s" : ""} critique${criticalErrors.length > 1 ? "s" : ""}</strong><span>Le statut « acquis » est bloqué pour le domaine concerné.</span></div>` : ""}<span class="eyebrow">Résultats par domaine</span><div class="domain-list">${(moduleData.results_domains || []).map((domain) => `<div class="domain-row"><span>${escapeHtml(domain.label)}</span><span>non évalué · correspondance à valider</span></div>`).join("")}</div><div class="draft-notice"><span>◈</span><span>Les données actuelles ne relient pas explicitement chaque activité à un domaine de résultat. Aucun rattachement médical n’est déduit automatiquement.</span></div><div class="activity-actions"><button id="back-home" class="primary-button">Retour aux modules</button><button id="retry-module" class="secondary-button">Revoir le module</button></div></section>`;
     app.querySelector("#back-home").addEventListener("click", renderHome);
     app.querySelector("#retry-module").addEventListener("click", () => { state.activeIndex = 0; persist(); renderActivity(); });
   }
@@ -282,11 +370,28 @@
 
   document.querySelector("#reset-progress").addEventListener("click", () => {
     if (!window.confirm("Effacer la progression Edu-ECG enregistrée sur cet appareil ?")) return;
-    window.localStorage.removeItem(Store.KEY); state = Store.fresh(); renderHome();
+    window.localStorage.removeItem(Store.KEY);
+    window.localStorage.removeItem(Store.LEGACY_KEY);
+    state = Store.fresh(course?.version); Store.startCourse(state); persist(); renderHome();
+  });
+
+  window.addEventListener("pagehide", () => {
+    if (!state.startedAt || !course) return;
+    const completed = course.available_modules.every((item) => state.modules[item.id]?.completed);
+    if (!completed) {
+      Store.event(state, "course_abandoned", {}, { active_module_id: state.activeModuleId });
+      persist();
+    }
   });
 
   fetch("/api/edu-ecg/course").then((response) => {
     if (!response.ok) throw new Error("Le parcours est désactivé.");
     return response.json();
-  }).then((payload) => { course = payload; renderHome(); }).catch(fatal);
+  }).then((payload) => {
+    course = payload;
+    Store.configure(state, course.version);
+    Store.startCourse(state);
+    persist();
+    renderHome();
+  }).catch(fatal);
 })();

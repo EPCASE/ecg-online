@@ -56,7 +56,11 @@
     const selected = String((answer || {}).choice ?? "");
     const possible = Number((activity.scoring || {}).points || (activity.scoring || {}).decision_points || 1);
     const criticalMap = (activity.scoring || {}).critical_error_options || {};
-    const critical = criticalMap[selected] ? [criticalMap[selected]] : [];
+    const critical = criticalMap[selected]
+      ? [criticalMap[selected]]
+      : selected !== key && (activity.scoring || {}).critical_error
+        ? [(activity.scoring || {}).critical_error]
+        : [];
     return result(activity, true, selected === key ? possible : 0, possible, undefined, critical);
   }
 
@@ -70,13 +74,7 @@
   }
 
   function evaluateShort(activity, answer) {
-    const response = activity.response || {};
-    const expected = response.expected_concepts || response.accepted_answers;
-    if (!Array.isArray(expected) || !expected.length) return result(activity, false);
-    const value = normalized((answer || {}).text);
-    const hits = expected.filter((concept) => value.includes(normalized(concept))).length;
-    return result(activity, true, hits, expected.length,
-      `${hits}/${expected.length} concept${expected.length > 1 ? "s" : ""} explicite${expected.length > 1 ? "s" : ""} retrouvé${hits > 1 ? "s" : ""}.`);
+    return result(activity, false, 0, 0, "Réponse enregistrée sans notation automatique.");
   }
 
   function evaluateCards(activity, answer) {
@@ -84,7 +82,11 @@
     if (!cards.length || cards.some((card) => card.category == null)) return result(activity, false);
     const assignments = (answer || {}).assignments || {};
     const earned = cards.filter((card) => assignments[card.id] === card.category).length;
-    return result(activity, true, earned, cards.length);
+    const criticalCards = new Set((activity.scoring || {}).critical_cards || []);
+    const critical = cards
+      .filter((card) => criticalCards.has(card.id) && assignments[card.id] !== card.category)
+      .map((card) => `critical_card:${card.id}`);
+    return result(activity, true, earned, cards.length, undefined, critical);
   }
 
   function evaluateOrder(activity, answer) {
@@ -93,7 +95,9 @@
     if (!Array.isArray(key) || !key.length) return result(activity, false);
     const order = (answer || {}).order || [];
     const earned = key.filter((item, index) => String(order[index]) === String(item)).length;
-    return result(activity, true, earned, key.length);
+    const critical = earned !== key.length && (activity.scoring || {}).critical_error
+      ? [(activity.scoring || {}).critical_error] : [];
+    return result(activity, true, earned, key.length, undefined, critical);
   }
 
   function evaluatePairs(activity, answer) {
@@ -101,7 +105,10 @@
     if (!Array.isArray(correct) || !correct.length) return result(activity, false);
     const pairs = (answer || {}).pairs || {};
     const earned = correct.filter(([left, right]) => pairs[left] === right).length;
-    return result(activity, true, earned, correct.length);
+    const criticalPair = (activity.scoring || {}).critical_pair;
+    const critical = Array.isArray(criticalPair) && pairs[criticalPair[0]] !== criticalPair[1]
+      ? [`critical_pair:${criticalPair[0]}`] : [];
+    return result(activity, true, earned, correct.length, undefined, critical);
   }
 
   function hotspotKey(activity) {
@@ -120,7 +127,9 @@
     const labels = (answer || {}).labels || {};
     const entries = Object.entries(key);
     const earned = entries.filter(([id, label]) => labels[id] === label).length;
-    return result(activity, true, earned, entries.length);
+    const critical = earned !== entries.length && (activity.scoring || {}).critical_error
+      ? [(activity.scoring || {}).critical_error] : [];
+    return result(activity, true, earned, entries.length, undefined, critical);
   }
 
   function evaluateChecklist(activity, answer) {

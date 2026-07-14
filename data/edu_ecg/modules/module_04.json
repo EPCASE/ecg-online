@@ -94,6 +94,27 @@
         "pedagogical_reviewer": null,
         "asset_status": "review_required",
         "review_notes": ""
+      },
+      "screen_order": 1,
+      "estimated_time_seconds": 60,
+      "display": {
+        "show_progress": true,
+        "allow_back_navigation": true,
+        "show_feedback_before_submit": false,
+        "show_timer": false
+      },
+      "attempt_policy": {
+        "preserve_initial_answer": true,
+        "allow_revision_after_hint": true,
+        "max_submissions_before_explanation": 2
+      },
+      "asset_policy": {
+        "reserved_for_test": false,
+        "fallback": "development_placeholder"
+      },
+      "accessibility": {
+        "keyboard_required": true,
+        "non_drag_alternative_required": false
       }
     },
     {
@@ -138,6 +159,27 @@
         "pedagogical_reviewer": null,
         "asset_status": "review_required",
         "review_notes": "Photographie restreinte ; remplacer ou valider les droits."
+      },
+      "screen_order": 2,
+      "estimated_time_seconds": 60,
+      "display": {
+        "show_progress": true,
+        "allow_back_navigation": true,
+        "show_feedback_before_submit": false,
+        "show_timer": false
+      },
+      "attempt_policy": {
+        "preserve_initial_answer": true,
+        "allow_revision_after_hint": true,
+        "max_submissions_before_explanation": 2
+      },
+      "asset_policy": {
+        "reserved_for_test": false,
+        "fallback": "development_placeholder"
+      },
+      "accessibility": {
+        "keyboard_required": true,
+        "non_drag_alternative_required": false
       }
     },
     {
@@ -198,6 +240,27 @@
         "pedagogical_reviewer": null,
         "asset_status": "review_required",
         "review_notes": "Relire la place de l’alcool et du rasage."
+      },
+      "screen_order": 3,
+      "estimated_time_seconds": 60,
+      "display": {
+        "show_progress": true,
+        "allow_back_navigation": true,
+        "show_feedback_before_submit": false,
+        "show_timer": false
+      },
+      "attempt_policy": {
+        "preserve_initial_answer": true,
+        "allow_revision_after_hint": true,
+        "max_submissions_before_explanation": 2
+      },
+      "asset_policy": {
+        "reserved_for_test": false,
+        "fallback": "development_placeholder"
+      },
+      "accessibility": {
+        "keyboard_required": true,
+        "non_drag_alternative_required": false
       }
     },
     {
@@ -239,6 +302,27 @@
         "pedagogical_reviewer": null,
         "asset_status": "review_required",
         "review_notes": ""
+      },
+      "screen_order": 4,
+      "estimated_time_seconds": 60,
+      "display": {
+        "show_progress": true,
+        "allow_back_navigation": true,
+        "show_feedback_before_submit": false,
+        "show_timer": false
+      },
+      "attempt_policy": {
+        "preserve_initial_answer": true,
+        "allow_revision_after_hint": true,
+        "max_submissions_before_explanation": 2
+      },
+      "asset_policy": {
+        "reserved_for_test": false,
+        "fallback": "development_placeholder"
+      },
+      "accessibility": {
+        "keyboard_required": true,
+        "non_drag_alternative_required": false
       }
     },
     {
@@ -307,6 +391,27 @@
         "pedagogical_reviewer": null,
         "asset_status": "review_required",
         "review_notes": ""
+      },
+      "screen_order": 5,
+      "estimated_time_seconds": 60,
+      "display": {
+        "show_progress": true,
+        "allow_back_navigation": true,
+        "show_feedback_before_submit": false,
+        "show_timer": false
+      },
+      "attempt_policy": {
+        "preserve_initial_answer": true,
+        "allow_revision_after_hint": true,
+        "max_submissions_before_explanation": 2
+      },
+      "asset_policy": {
+        "reserved_for_test": false,
+        "fallback": "development_placeholder"
+      },
+      "accessibility": {
+        "keyboard_required": true,
+        "non_drag_alternative_required": true
       }
     },
     {
@@ -365,6 +470,27 @@
         "pedagogical_reviewer": null,
         "asset_status": "review_required",
         "review_notes": ""
+      },
+      "screen_order": 6,
+      "estimated_time_seconds": 60,
+      "display": {
+        "show_progress": true,
+        "allow_back_navigation": false,
+        "show_feedback_before_submit": false,
+        "show_timer": false
+      },
+      "attempt_policy": {
+        "preserve_initial_answer": true,
+        "allow_revision_after_hint": false,
+        "max_submissions_before_explanation": 1
+      },
+      "asset_policy": {
+        "reserved_for_test": true,
+        "fallback": "development_placeholder"
+      },
+      "accessibility": {
+        "keyboard_required": true,
+        "non_drag_alternative_required": false
       }
     }
   ],
@@ -385,5 +511,13 @@
       "id": "procedure",
       "label": "Procédure et contrôle final"
     }
-  ]
+  ],
+  "module_number": 4,
+  "content_status": "draft",
+  "module_type": "core",
+  "implementation_notes": {
+    "feature_flag_required": true,
+    "medical_validation_required": true,
+    "pilot_only_until_approved": true
+  }
 }

@@ -62,6 +62,74 @@
   ],
   "activities": [
     {
+      "id": "M6_PRIME_00",
+      "module_id": "M6",
+      "competency_ids": [
+        "M6.2",
+        "M6.7"
+      ],
+      "phase": "prime",
+      "activity_type": "image_comparison",
+      "title": "Le patient a-t-il une arythmie ?",
+      "prompt": "Deux tracés très irréguliers sont présentés. L’un correspond à un artéfact musculaire, l’autre à une arythmie réelle. Pouvez-vous les distinguer avant toute explication ?",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "placeholders/m6_prime_artifact.png",
+        "placeholders/m6_prime_arrhythmia.png"
+      ],
+      "response": {
+        "type": "single_choice_per_image",
+        "options": [
+          "activité cardiaque probable",
+          "artéfact probable",
+          "incertain"
+        ]
+      },
+      "hints": [],
+      "explanation": {
+        "text": "Cette ouverture doit créer le besoin de rechercher des critères discriminants sans donner immédiatement le nom des anomalies."
+      },
+      "scoring": {
+        "diagnostic_score_used_for_learning_only": true
+      },
+      "metrics": [
+        "time_to_first_action_ms",
+        "total_time_ms",
+        "initial_answer",
+        "confidence"
+      ],
+      "review": {
+        "content_status": "draft",
+        "medical_reviewer": null,
+        "pedagogical_reviewer": null,
+        "asset_status": "missing",
+        "review_notes": "Sélectionner deux ECG difficiles mais pédagogiquement distinguables."
+      },
+      "screen_order": 1,
+      "estimated_time_seconds": 60,
+      "display": {
+        "show_progress": true,
+        "allow_back_navigation": true,
+        "show_feedback_before_submit": false,
+        "show_timer": false
+      },
+      "attempt_policy": {
+        "preserve_initial_answer": true,
+        "allow_revision_after_hint": false,
+        "max_submissions_before_explanation": 1
+      },
+      "asset_policy": {
+        "reserved_for_test": false,
+        "fallback": "development_placeholder"
+      },
+      "accessibility": {
+        "keyboard_required": true,
+        "non_drag_alternative_required": false
+      }
+    },
+    {
       "id": "M6_PROBE_01",
       "module_id": "M6",
       "competency_ids": [
@@ -108,6 +176,27 @@
         "pedagogical_reviewer": null,
         "asset_status": "review_required",
         "review_notes": ""
+      },
+      "screen_order": 2,
+      "estimated_time_seconds": 60,
+      "display": {
+        "show_progress": true,
+        "allow_back_navigation": true,
+        "show_feedback_before_submit": false,
+        "show_timer": false
+      },
+      "attempt_policy": {
+        "preserve_initial_answer": true,
+        "allow_revision_after_hint": true,
+        "max_submissions_before_explanation": 2
+      },
+      "asset_policy": {
+        "reserved_for_test": false,
+        "fallback": "development_placeholder"
+      },
+      "accessibility": {
+        "keyboard_required": true,
+        "non_drag_alternative_required": false
       }
     },
     {
@@ -156,6 +245,27 @@
         "pedagogical_reviewer": null,
         "asset_status": "review_required",
         "review_notes": ""
+      },
+      "screen_order": 3,
+      "estimated_time_seconds": 60,
+      "display": {
+        "show_progress": true,
+        "allow_back_navigation": true,
+        "show_feedback_before_submit": false,
+        "show_timer": false
+      },
+      "attempt_policy": {
+        "preserve_initial_answer": true,
+        "allow_revision_after_hint": true,
+        "max_submissions_before_explanation": 2
+      },
+      "asset_policy": {
+        "reserved_for_test": false,
+        "fallback": "development_placeholder"
+      },
+      "accessibility": {
+        "keyboard_required": true,
+        "non_drag_alternative_required": false
       }
     },
     {
@@ -202,6 +312,27 @@
         "pedagogical_reviewer": null,
         "asset_status": "review_required",
         "review_notes": ""
+      },
+      "screen_order": 4,
+      "estimated_time_seconds": 60,
+      "display": {
+        "show_progress": true,
+        "allow_back_navigation": true,
+        "show_feedback_before_submit": false,
+        "show_timer": false
+      },
+      "attempt_policy": {
+        "preserve_initial_answer": true,
+        "allow_revision_after_hint": true,
+        "max_submissions_before_explanation": 2
+      },
+      "asset_policy": {
+        "reserved_for_test": false,
+        "fallback": "development_placeholder"
+      },
+      "accessibility": {
+        "keyboard_required": true,
+        "non_drag_alternative_required": false
       }
     },
     {
@@ -242,6 +373,27 @@
         "pedagogical_reviewer": null,
         "asset_status": "review_required",
         "review_notes": ""
+      },
+      "screen_order": 5,
+      "estimated_time_seconds": 60,
+      "display": {
+        "show_progress": true,
+        "allow_back_navigation": true,
+        "show_feedback_before_submit": false,
+        "show_timer": false
+      },
+      "attempt_policy": {
+        "preserve_initial_answer": true,
+        "allow_revision_after_hint": true,
+        "max_submissions_before_explanation": 2
+      },
+      "asset_policy": {
+        "reserved_for_test": false,
+        "fallback": "development_placeholder"
+      },
+      "accessibility": {
+        "keyboard_required": true,
+        "non_drag_alternative_required": false
       }
     },
     {
@@ -288,6 +440,27 @@
         "pedagogical_reviewer": null,
         "asset_status": "review_required",
         "review_notes": ""
+      },
+      "screen_order": 6,
+      "estimated_time_seconds": 60,
+      "display": {
+        "show_progress": true,
+        "allow_back_navigation": true,
+        "show_feedback_before_submit": false,
+        "show_timer": false
+      },
+      "attempt_policy": {
+        "preserve_initial_answer": true,
+        "allow_revision_after_hint": true,
+        "max_submissions_before_explanation": 2
+      },
+      "asset_policy": {
+        "reserved_for_test": false,
+        "fallback": "development_placeholder"
+      },
+      "accessibility": {
+        "keyboard_required": true,
+        "non_drag_alternative_required": false
       }
     },
     {
@@ -333,6 +506,27 @@
         "pedagogical_reviewer": null,
         "asset_status": "review_required",
         "review_notes": ""
+      },
+      "screen_order": 7,
+      "estimated_time_seconds": 60,
+      "display": {
+        "show_progress": true,
+        "allow_back_navigation": true,
+        "show_feedback_before_submit": false,
+        "show_timer": false
+      },
+      "attempt_policy": {
+        "preserve_initial_answer": true,
+        "allow_revision_after_hint": true,
+        "max_submissions_before_explanation": 2
+      },
+      "asset_policy": {
+        "reserved_for_test": false,
+        "fallback": "development_placeholder"
+      },
+      "accessibility": {
+        "keyboard_required": true,
+        "non_drag_alternative_required": false
       }
     },
     {
@@ -388,6 +582,27 @@
         "pedagogical_reviewer": null,
         "asset_status": "review_required",
         "review_notes": ""
+      },
+      "screen_order": 8,
+      "estimated_time_seconds": 60,
+      "display": {
+        "show_progress": true,
+        "allow_back_navigation": true,
+        "show_feedback_before_submit": false,
+        "show_timer": false
+      },
+      "attempt_policy": {
+        "preserve_initial_answer": true,
+        "allow_revision_after_hint": true,
+        "max_submissions_before_explanation": 2
+      },
+      "asset_policy": {
+        "reserved_for_test": false,
+        "fallback": "development_placeholder"
+      },
+      "accessibility": {
+        "keyboard_required": true,
+        "non_drag_alternative_required": false
       }
     },
     {
@@ -443,6 +658,27 @@
         "pedagogical_reviewer": null,
         "asset_status": "review_required",
         "review_notes": ""
+      },
+      "screen_order": 9,
+      "estimated_time_seconds": 60,
+      "display": {
+        "show_progress": true,
+        "allow_back_navigation": false,
+        "show_feedback_before_submit": false,
+        "show_timer": false
+      },
+      "attempt_policy": {
+        "preserve_initial_answer": true,
+        "allow_revision_after_hint": false,
+        "max_submissions_before_explanation": 1
+      },
+      "asset_policy": {
+        "reserved_for_test": true,
+        "fallback": "development_placeholder"
+      },
+      "accessibility": {
+        "keyboard_required": true,
+        "non_drag_alternative_required": false
       }
     }
   ],
@@ -463,5 +699,13 @@
       "id": "differential",
       "label": "Artéfact versus anomalie réelle"
     }
-  ]
+  ],
+  "module_number": 6,
+  "content_status": "draft",
+  "module_type": "core",
+  "implementation_notes": {
+    "feature_flag_required": true,
+    "medical_validation_required": true,
+    "pilot_only_until_approved": true
+  }
 }

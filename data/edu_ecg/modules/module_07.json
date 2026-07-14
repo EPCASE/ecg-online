@@ -44,40 +44,231 @@
       ],
       "phase": "prime",
       "activity_type": "sequence_checklist",
-      "title": "Contrôle qualité complet",
-      "prompt": "Appliquez votre propre contrôle à cet ECG avant de voir la checklist.",
+      "title": "Votre contrôle avant interprétation",
+      "prompt": "Avant de voir une checklist, indiquez librement ce que vous vérifieriez sur cet ECG.",
       "content_status": "draft",
       "lock_initial_response": true,
       "collect_confidence": true,
       "assets": [
-        "placeholders/m7_full_case_learning.png"
+        "placeholders/m7_learning_case_ecg.png"
       ],
       "response": {
-        "free_checklist": true
+        "mode": "free_checklist",
+        "maximum_items": 10
       },
       "hints": [],
       "explanation": {
-        "text": "Après la première tentative, afficher : identité/contexte, placement, vitesse, gain, qualité, cohérence et décision."
+        "text": "Comparer ensuite la liste de l’étudiant à la checklist : identité et contexte, placement, vitesse, gain, qualité du signal, cohérence entre dérivations et décision finale."
       },
-      "scoring": {},
+      "scoring": {
+        "learning_only": true
+      },
       "metrics": [
-        "time_to_first_action_ms",
-        "total_time_ms",
         "initial_answer",
-        "final_answer",
         "confidence",
-        "hints_used"
+        "total_time_ms"
       ],
       "review": {
         "content_status": "draft",
-        "medical_reviewer": null,
-        "pedagogical_reviewer": null,
-        "asset_status": "review_required",
-        "review_notes": ""
+        "asset_status": "missing"
+      },
+      "screen_order": 1,
+      "estimated_time_seconds": 75,
+      "display": {
+        "show_progress": true,
+        "allow_back_navigation": true,
+        "show_feedback_before_submit": false,
+        "show_timer": false
+      },
+      "attempt_policy": {
+        "preserve_initial_answer": true,
+        "allow_revision_after_hint": false,
+        "max_submissions_before_explanation": 1
+      },
+      "asset_policy": {
+        "reserved_for_test": false,
+        "fallback": "development_placeholder"
+      },
+      "accessibility": {
+        "keyboard_required": true,
+        "non_drag_alternative_required": false
       }
     },
     {
-      "id": "M7_TEST_02",
+      "id": "M7_ATTACH_02",
+      "module_id": "M7",
+      "competency_ids": [
+        "M7.1"
+      ],
+      "phase": "attach",
+      "activity_type": "micro_lesson",
+      "title": "La checklist en six questions",
+      "prompt": "Utilisez cette grille avant toute transmission du tracé.",
+      "content_status": "draft",
+      "lock_initial_response": false,
+      "collect_confidence": false,
+      "assets": [],
+      "response": {
+        "type": "continue"
+      },
+      "hints": [],
+      "explanation": {
+        "sections": [
+          {
+            "number": 1,
+            "title": "Bon patient ?",
+            "text": "Identité, date, contexte clinique."
+          },
+          {
+            "number": 2,
+            "title": "Bon placement ?",
+            "text": "Membres, V1–V6, cohérence anatomique."
+          },
+          {
+            "number": 3,
+            "title": "Bons réglages ?",
+            "text": "Vitesse, gain, filtres documentés."
+          },
+          {
+            "number": 4,
+            "title": "Signal exploitable ?",
+            "text": "Ligne de base, bruit, contacts, câbles."
+          },
+          {
+            "number": 5,
+            "title": "Cohérence globale ?",
+            "text": "Même rythme, logique entre dérivations, absence d’inversion évidente."
+          },
+          {
+            "number": 6,
+            "title": "Quelle décision ?",
+            "text": "Transmettre, vérifier ou corriger puis refaire."
+          }
+        ]
+      },
+      "scoring": {},
+      "metrics": [
+        "total_time_ms"
+      ],
+      "review": {
+        "content_status": "draft",
+        "asset_status": "not_required"
+      },
+      "screen_order": 2,
+      "estimated_time_seconds": 90,
+      "display": {
+        "show_progress": true,
+        "allow_back_navigation": true,
+        "show_feedback_before_submit": false,
+        "show_timer": false
+      },
+      "attempt_policy": {
+        "preserve_initial_answer": false,
+        "allow_revision_after_hint": false,
+        "max_submissions_before_explanation": 1
+      },
+      "asset_policy": {
+        "reserved_for_test": false,
+        "fallback": "development_placeholder"
+      },
+      "accessibility": {
+        "keyboard_required": true,
+        "non_drag_alternative_required": false
+      }
+    },
+    {
+      "id": "M7_STRENGTHEN_03",
+      "module_id": "M7",
+      "competency_ids": [
+        "M7.1",
+        "M7.2"
+      ],
+      "phase": "strengthen",
+      "activity_type": "integrated_assessment",
+      "title": "Mission guidée",
+      "prompt": "Appliquez la checklist à une première situation complète.",
+      "content_status": "draft",
+      "lock_initial_response": true,
+      "collect_confidence": true,
+      "assets": [
+        "placeholders/m7_guided_context.png",
+        "placeholders/m7_guided_placement.png",
+        "placeholders/m7_guided_ecg.png"
+      ],
+      "response": {
+        "tasks": [
+          {
+            "id": "identity",
+            "type": "single_choice",
+            "prompt": "L’identité et le contexte sont-ils suffisants ?"
+          },
+          {
+            "id": "placement",
+            "type": "image_hotspot_labeling",
+            "prompt": "Repérez une erreur de placement éventuelle."
+          },
+          {
+            "id": "settings",
+            "type": "single_choice",
+            "prompt": "Les réglages sont-ils standards ?"
+          },
+          {
+            "id": "quality",
+            "type": "single_choice",
+            "prompt": "Le signal est-il exploitable ?"
+          },
+          {
+            "id": "decision",
+            "type": "single_choice",
+            "prompt": "Transmettre, vérifier ou refaire ?"
+          }
+        ]
+      },
+      "hints": [
+        "Suivez les six questions dans l’ordre.",
+        "Ne commencez pas par le diagnostic : commencez par la fiabilité."
+      ],
+      "explanation": {
+        "text": "Correction détaillée par étape, avec retour à la compétence correspondante."
+      },
+      "scoring": {
+        "minimum_percent": 80,
+        "learning_activity": true
+      },
+      "metrics": [
+        "answers_by_task",
+        "confidence",
+        "hints_used",
+        "total_time_ms"
+      ],
+      "review": {
+        "content_status": "draft",
+        "asset_status": "missing"
+      },
+      "screen_order": 3,
+      "estimated_time_seconds": 180,
+      "display": {
+        "show_progress": true,
+        "allow_back_navigation": true,
+        "show_feedback_before_submit": false,
+        "show_timer": false
+      },
+      "attempt_policy": {
+        "preserve_initial_answer": true,
+        "allow_revision_after_hint": true,
+        "max_submissions_before_explanation": 2
+      },
+      "asset_policy": {
+        "reserved_for_test": false,
+        "fallback": "development_placeholder"
+      },
+      "accessibility": {
+        "keyboard_required": true,
+        "non_drag_alternative_required": false
+      }
+    },
+    {
+      "id": "M7_TEST_04",
       "module_id": "M7",
       "competency_ids": [
         "M7.1",
@@ -86,12 +277,12 @@
       "phase": "test",
       "activity_type": "integrated_assessment",
       "title": "Mission finale autonome",
-      "prompt": "Un patient, un schéma de placement, des réglages et un tracé sont présentés. Décidez si l’ECG peut être transmis.",
+      "prompt": "Analysez cette nouvelle situation sans aide et décidez si l’ECG peut être transmis.",
       "content_status": "draft",
       "lock_initial_response": true,
       "collect_confidence": true,
       "assets": [
-        "placeholders/reserved_m7_patient_context.png",
+        "placeholders/reserved_m7_context.png",
         "placeholders/reserved_m7_placement.png",
         "placeholders/reserved_m7_ecg.png"
       ],
@@ -106,7 +297,11 @@
             "type": "single_choice"
           },
           {
-            "id": "speed_gain",
+            "id": "speed",
+            "type": "single_choice"
+          },
+          {
+            "id": "gain",
             "type": "single_choice"
           },
           {
@@ -115,7 +310,12 @@
           },
           {
             "id": "decision",
-            "type": "single_choice"
+            "type": "single_choice",
+            "options": [
+              "transmettre",
+              "vérifier",
+              "corriger puis refaire"
+            ]
           },
           {
             "id": "justification",
@@ -124,39 +324,57 @@
         ]
       },
       "hints": [],
-      "explanation": {},
+      "explanation": {
+        "text": "Feedback après soumission complète uniquement."
+      },
       "scoring": {
-        "domains": [
-          "placement",
-          "settings",
-          "artifacts",
-          "procedure",
-          "decision"
-        ],
         "minimum_percent": 80,
         "non_compensable_errors": [
           "miss_critical_quality_issue",
           "transmit_unreliable_ecg"
-        ]
+        ],
+        "domain_weights": {
+          "identity_context": 10,
+          "placement": 20,
+          "settings": 20,
+          "artifact": 20,
+          "decision": 30
+        }
       },
       "metrics": [
-        "time_to_first_action_ms",
-        "total_time_ms",
-        "initial_answer",
-        "final_answer",
+        "answers_by_task",
         "confidence",
-        "hints_used"
+        "total_time_ms",
+        "critical_errors"
       ],
       "review": {
         "content_status": "draft",
-        "medical_reviewer": null,
-        "pedagogical_reviewer": null,
-        "asset_status": "review_required",
-        "review_notes": ""
+        "asset_status": "reserved_asset_missing"
+      },
+      "screen_order": 4,
+      "estimated_time_seconds": 240,
+      "display": {
+        "show_progress": true,
+        "allow_back_navigation": false,
+        "show_feedback_before_submit": false,
+        "show_timer": false
+      },
+      "attempt_policy": {
+        "preserve_initial_answer": true,
+        "allow_revision_after_hint": false,
+        "max_submissions_before_explanation": 1
+      },
+      "asset_policy": {
+        "reserved_for_test": true,
+        "fallback": "development_placeholder"
+      },
+      "accessibility": {
+        "keyboard_required": true,
+        "non_drag_alternative_required": false
       }
     },
     {
-      "id": "M7_REVIEW_03",
+      "id": "M7_REVIEW_05",
       "module_id": "M7",
       "competency_ids": [
         "M7.1",
@@ -165,12 +383,19 @@
       "phase": "review",
       "activity_type": "micro_lesson",
       "title": "Bilan par domaine",
-      "prompt": "Consultez vos acquis et les domaines à consolider.",
+      "prompt": "Consultez les domaines acquis et ceux à consolider.",
       "content_status": "draft",
       "lock_initial_response": false,
       "collect_confidence": false,
       "assets": [],
       "response": {
+        "domains": [
+          "placement",
+          "réglages",
+          "artéfacts",
+          "procédure",
+          "décision"
+        ],
         "statuses": [
           "acquis",
           "à consolider",
@@ -179,27 +404,40 @@
       },
       "hints": [],
       "explanation": {
-        "text": "Ne pas réduire le résultat à un score unique. Proposer un lien vers les exercices ciblés."
+        "text": "Chaque domaine en difficulté renvoie vers une activité ciblée."
       },
       "scoring": {},
       "metrics": [
-        "time_to_first_action_ms",
-        "total_time_ms",
-        "initial_answer",
-        "final_answer",
-        "confidence",
-        "hints_used"
+        "remediation_links_opened"
       ],
       "review": {
         "content_status": "draft",
-        "medical_reviewer": null,
-        "pedagogical_reviewer": null,
-        "asset_status": "review_required",
-        "review_notes": ""
+        "asset_status": "not_required"
+      },
+      "screen_order": 5,
+      "estimated_time_seconds": 60,
+      "display": {
+        "show_progress": true,
+        "allow_back_navigation": false,
+        "show_feedback_before_submit": false,
+        "show_timer": false
+      },
+      "attempt_policy": {
+        "preserve_initial_answer": false,
+        "allow_revision_after_hint": false,
+        "max_submissions_before_explanation": 1
+      },
+      "asset_policy": {
+        "reserved_for_test": false,
+        "fallback": "development_placeholder"
+      },
+      "accessibility": {
+        "keyboard_required": true,
+        "non_drag_alternative_required": false
       }
     },
     {
-      "id": "M7_REVIEW_04",
+      "id": "M7_REVIEW_06",
       "module_id": "M7",
       "competency_ids": [
         "M7.1",
@@ -208,7 +446,7 @@
       "phase": "review",
       "activity_type": "integrated_assessment",
       "title": "Réactivation différée",
-      "prompt": "À J7 ou J30, analysez un cas court mélangé sans rappel préalable.",
+      "prompt": "À distance, analysez un cas court sans rappel préalable.",
       "content_status": "draft",
       "lock_initial_response": true,
       "collect_confidence": true,
@@ -224,23 +462,41 @@
       },
       "hints": [],
       "explanation": {
-        "text": "La planification effective dépendra du système de comptes et de notifications."
+        "text": "Le cas doit mélanger les thèmes et ne pas annoncer la compétence testée."
       },
-      "scoring": {},
+      "scoring": {
+        "minimum_percent": 80
+      },
       "metrics": [
-        "time_to_first_action_ms",
-        "total_time_ms",
-        "initial_answer",
-        "final_answer",
+        "answers_by_task",
         "confidence",
-        "hints_used"
+        "total_time_ms",
+        "days_since_initial_course"
       ],
       "review": {
         "content_status": "draft",
-        "medical_reviewer": null,
-        "pedagogical_reviewer": null,
-        "asset_status": "review_required",
-        "review_notes": ""
+        "asset_status": "reserved_asset_missing"
+      },
+      "screen_order": 6,
+      "estimated_time_seconds": 120,
+      "display": {
+        "show_progress": true,
+        "allow_back_navigation": false,
+        "show_feedback_before_submit": false,
+        "show_timer": false
+      },
+      "attempt_policy": {
+        "preserve_initial_answer": true,
+        "allow_revision_after_hint": false,
+        "max_submissions_before_explanation": 1
+      },
+      "asset_policy": {
+        "reserved_for_test": true,
+        "fallback": "development_placeholder"
+      },
+      "accessibility": {
+        "keyboard_required": true,
+        "non_drag_alternative_required": false
       }
     }
   ],
@@ -265,5 +521,13 @@
       "id": "decision",
       "label": "Décision finale"
     }
-  ]
+  ],
+  "module_number": 7,
+  "content_status": "draft",
+  "module_type": "integrative",
+  "implementation_notes": {
+    "feature_flag_required": true,
+    "medical_validation_required": true,
+    "pilot_only_until_approved": true
+  }
 }
