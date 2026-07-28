@@ -43,6 +43,7 @@ from scoring_v3 import (
 )
 from semantic_layer import get_concept, normalize_key, _get_ontology_v2
 from pattern_inference import PatternInferencer
+import scoring_thresholds
 from pedagogical_feedback import (
     generate_pedagogical_feedback,
     format_feedback_html,
@@ -199,7 +200,8 @@ def _fix_negation(entite: ClinicalEntity) -> ClinicalEntity:
 # Nombre minimal de mots d'un synonyme pour être considéré « distinctif » : on
 # évite de rattraper sur un mot isolé trop ambigu (« bloc », « onde ») qui
 # pourrait matcher par hasard. Les vrais oublis du NER sont des phrases longues.
-_BACKSTOP_MIN_WORDS = 3
+# Valeur : cf. `scoring_thresholds.BACKSTOP_MIN_DISTINCTIVE_WORDS` (Phase 0.3).
+_BACKSTOP_MIN_WORDS = scoring_thresholds.BACKSTOP_MIN_DISTINCTIVE_WORDS
 
 
 def _descendants_of(ontology_id: str, _seen: Optional[set] = None) -> Set[str]:
@@ -884,15 +886,15 @@ def format_report_html(report: CandidateReport) -> str:
 
     # Couleur du score
     score = report.score_final_pct
-    if score >= 90:
+    if score >= scoring_thresholds.SCORE_BAND_EXCELLENT:
         score_color = "#4CAF50"
         score_emoji = "🎉"
         score_label = "Excellent"
-    elif score >= 70:
+    elif score >= scoring_thresholds.SCORE_BAND_GOOD:
         score_color = "#FF9800"
         score_emoji = "👍"
         score_label = "Bien"
-    elif score >= 50:
+    elif score >= scoring_thresholds.SCORE_BAND_PARTIAL:
         score_color = "#FF5722"
         score_emoji = "📚"
         score_label = "À améliorer"

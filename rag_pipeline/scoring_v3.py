@@ -51,6 +51,7 @@ from semantic_layer import (
     normalize_key,
     _get_ontology_v2,
 )
+import scoring_thresholds
 
 logger = logging.getLogger(__name__)
 
@@ -341,7 +342,8 @@ def _find_child_in_found(concept_id: str, found_set: Set[str]) -> Optional[str]:
 # (2e cycle → rythmologue) n'est pas une décision produit tranchée. À >= 1.0 le
 # bloc 1d de `_score_one_concept` court-circuite (comme un enfant) ; à 0.0 il est
 # ignoré proprement (aucun match_type "implies" émis). Kill-switch réversible.
-IMPLIES_CREDIT = 0.0
+# Valeur : cf. `scoring_thresholds.IMPLIES_CREDIT` (registre central, Phase 0.3).
+IMPLIES_CREDIT = scoring_thresholds.IMPLIES_CREDIT
 
 
 def _find_antecedent_in_found(concept_id: str, found_set: Set[str]) -> Optional[str]:
@@ -376,7 +378,8 @@ def _find_antecedent_in_found(concept_id: str, found_set: Set[str]) -> Optional[
 # LIVE est neutralisé. NB : la lecture sémantique de la négation par le LLM (NER →
 # statut `absent`) reste 100 % active en AMONT — seul le crédit barème est gelé.
 # À >= 1.0 le bloc 1e court-circuite ; à 0.0 il est ignoré proprement. Réversible.
-NEGATION_CREDIT = 0.0
+# Valeur : cf. `scoring_thresholds.NEGATION_CREDIT` (registre central, Phase 0.3).
+NEGATION_CREDIT = scoring_thresholds.NEGATION_CREDIT
 
 
 def _find_negated_pole_in_absent(concept_id: str, absent_set: Set[str]) -> Optional[str]:
@@ -471,13 +474,13 @@ def _score_sub_require(
                 qualifiers.append(child)
     qual_found = [q for q in qualifiers if normalize_key(q) in found_set]
     if qual_found:
-        return 2.0 / 3.0
+        return scoring_thresholds.SUB_REQUIRE_QUALIFIER_CREDIT
 
     # Check supports
     supports = c.get("supports", [])
     sup_found = [s for s in supports if normalize_key(s) in found_set]
     if sup_found:
-        return 1.0 / 3.0
+        return scoring_thresholds.SUB_REQUIRE_SUPPORT_CREDIT
 
     return 0.0
 
@@ -564,11 +567,11 @@ def _score_one_concept(
     parent_hit, parent_dist = _find_parent_in_found(neid, found_set)
     if parent_hit:
         if parent_dist <= 1:
-            parent_score = 2.0 / 3.0
+            parent_score = scoring_thresholds.SUB_REQUIRE_QUALIFIER_CREDIT
             cs.match_type = "qualifier"
             cs.detail = f"Parent direct trouvé: {parent_hit} (dist={parent_dist})"
         else:
-            parent_score = 1.0 / 3.0
+            parent_score = scoring_thresholds.SUB_REQUIRE_SUPPORT_CREDIT
             cs.match_type = "support"
             cs.detail = f"Parent éloigné trouvé: {parent_hit} (dist={parent_dist})"
         # On garde ce score comme plancher, mais on continue à vérifier

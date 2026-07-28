@@ -40,6 +40,13 @@ _PIPELINE_DIR = Path(__file__).resolve().parent.parent / "rag_pipeline"
 if _PIPELINE_DIR.exists() and str(_PIPELINE_DIR) not in sys.path:
     sys.path.insert(0, str(_PIPELINE_DIR))
 
+# Seuils de notation : registre central (Phase 0.3, cf. rag_pipeline/
+# scoring_thresholds.py). Import tardif car le module vit dans le dossier
+# vendoré ajouté à sys.path ci-dessus (même contrainte que candidate_report).
+def _thresholds():
+    import scoring_thresholds  # type: ignore
+    return scoring_thresholds
+
 _lock = threading.Lock()
 _import_error: Optional[str] = None
 _generate = None  # type: ignore
@@ -187,6 +194,7 @@ def _report_to_correction(report, num: int, exclusions: Optional[List[dict]] = N
     from .grader import Correction
 
     score = int(round(getattr(report, "score_final_pct", 0.0)))
+    th = _thresholds()
 
     # ── Éléments trouvés / manqués (validants → note ; descripteurs → indicatif)
     elements_trouves: List[dict] = []
@@ -198,9 +206,9 @@ def _report_to_correction(report, num: int, exclusions: Optional[List[dict]] = N
         # réellement significatif. Le scoring V3 peut renvoyer found=True avec un
         # score_pct partiel, voire nul (match_type="requires" 0/N) : l'afficher
         # en ✓ donnait l'incohérence « tout trouvé mais 50/100 » (cas 2 sans
-        # « rythme sinusal »). Seuil : >= 60 % → identifié ; sinon → à compléter.
+        # « rythme sinusal »). Seuil (cf. scoring_thresholds.VALIDANT_FOUND_THRESHOLD_PCT).
         score_pct = float(getattr(vd, "score_pct", 0.0) or 0.0)
-        if vd.found and score_pct >= 60.0:
+        if vd.found and score_pct >= th.VALIDANT_FOUND_THRESHOLD_PCT:
             elements_trouves.append({"label": label, "rang": "A"})
         else:
             elements_manques.append({
@@ -274,13 +282,13 @@ def _report_to_correction(report, num: int, exclusions: Optional[List[dict]] = N
     #    Rang A (grave, ex. « miroir » affirmé = confond myocardite et SCA ST+) :
     #    plafond très bas + correspondance « incorrecte ». Rang B : plafond doux.
     if excl_report["violated_A"]:
-        score = min(score, 25)
-        score_diagnostic = min(score_diagnostic, 25)
+        score = min(score, th.EXCLUSION_RANG_A_SCORE_CAP)
+        score_diagnostic = min(score_diagnostic, th.EXCLUSION_RANG_A_SCORE_CAP)
         correspondance = "incorrecte"
         type_erreur = "etudiant"
     elif excl_report["violated_B"]:
-        score = min(score, 70)          # exclusion mineure affirmée = plafond doux
-        score_diagnostic = min(score_diagnostic, 70)
+        score = min(score, th.EXCLUSION_RANG_B_SCORE_CAP)          # exclusion mineure affirmée = plafond doux
+        score_diagnostic = min(score_diagnostic, th.EXCLUSION_RANG_B_SCORE_CAP)
         if correspondance in ("exacte", "acceptable"):
             correspondance = "partielle"
         if type_erreur == "aucune":
