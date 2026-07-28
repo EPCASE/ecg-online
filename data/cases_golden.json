@@ -116,10 +116,11 @@
           "statut": "present"
         },
         "Indice de Sokolow négatif (< 36 mm), pas d’HVG électrique selon ce critère": {
-          "golden_id": "HYPERTROPHIE_VENTRICULAIRE_GAUCHE",
-          "concept_name": "Hypertrophie ventriculaire gauche",
-          "valide_par": "gpt",
-          "statut": "absent"
+          "golden_id": "INDICE_DE_SOKOLOW__35_MM",
+          "concept_name": "Indice de sokolow > 35 mm",
+          "valide_par": "humain",
+          "statut": "absent",
+          "justification": "Recentré sur le critère de Sokolow lui-même (négatif), plutôt que sur le concept HVG global qui est par ailleurs affirmé (present) dans ce même cas via un autre critère diagnostique — évite la contradiction present/absent sur un même concept_id."
         },
         "Troubles de repolarisation latérale avec ondes T négatives, fréquents dans la myocardiopathie hypertrophique": {
           "golden_id": "ONDE_T_NEGATIVE",
