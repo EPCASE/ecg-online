@@ -110,14 +110,19 @@ def _fetch_reponses(secrets: dict) -> List[dict]:
 
 def _duplicated_concepts_by_case() -> Dict[int, List[str]]:
     """Réutilise le check statique de audit_golden.py pour savoir quels
-    concepts sont dupliqués (validant/descripteur) dans chaque cas."""
-    from scripts.audit_golden import _load_golden, check_duplicate_concept_role  # type: ignore
+    concepts sont dupliqués (validant/descripteur) dans chaque cas.
+
+    Ne retient que les CONFLIT RÉEL (rôle et/ou statut divergents) : les
+    doublons inoffensifs (redondance cosmétique du barème, même rôle/statut)
+    sont exclus de la priorisation Phase 1, cf. audit_golden.py."""
+    from scripts.audit_golden import _load_golden, _load_scoring, check_duplicate_concept_role  # type: ignore
     golden = _load_golden()
-    findings = check_duplicate_concept_role(golden)
+    scoring = _load_scoring()
+    findings = check_duplicate_concept_role(golden, scoring)
     out: Dict[int, List[str]] = {}
     for f in findings:
-        if f.case is None:
-            continue
+        if f.case is None or f.check != "duplicate_concept_role":
+            continue  # ignore duplicate_concept_role_harmless (WARNING)
         out.setdefault(int(f.case), []).append(f.detail["concept_id"])
     return out
 

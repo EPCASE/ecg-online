@@ -53,6 +53,7 @@ ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT_DIR)
 
 GOLDEN_PATH = os.path.join(ROOT_DIR, "data", "cases_golden.json")
+SCORING_PATH = os.path.join(ROOT_DIR, "data", "scoring_config.json")
 ONTO_CANDIDATES = [
     os.path.join(ROOT_DIR, "rag_pipeline", "data", "ontology_v2.json"),
     os.path.join(ROOT_DIR, "data", "ontology_v2.json"),
@@ -92,16 +93,57 @@ def _load_golden() -> dict:
     return _load_json(GOLDEN_PATH)
 
 
+def _load_scoring() -> dict:
+    return _load_json(SCORING_PATH)
+
+
+def _norm_statut(m: dict) -> str:
+    s = str((m or {}).get("statut") or "").strip().lower()
+    return "absent" if s == "absent" else "present"
+
+
+def _label_role(scoring_case: Optional[dict], label: str, rang: str = "A") -> str:
+    """Rôle effectif d'un label pour un cas donné, en répliquant la logique de
+    `app/scoring_config.py::curated_points` (sans importer le package `app`,
+    pour garder ce script autonome/portable) :
+      - un rôle explicitement configuré (`roles[label]`) prime ;
+      - un label listé dans `extra_validants` est toujours validant ;
+      - sinon défaut = validant si rang A, complémentaire sinon (ici on ne
+        connaît pas le rang réel côté golden ; on ne s'en sert que pour les
+        labels absents de `roles`/`extra_validants`, considérés complémentaires
+        par prudence — seul le croisement avec `roles` est fiable)."""
+    roles = (scoring_case or {}).get("roles", {}) or {}
+    extra_validants = set((scoring_case or {}).get("extra_validants", []) or [])
+    if label in extra_validants:
+        return "validant"
+    if label in roles:
+        return roles[label]
+    return "complementaire"
+
+
 # ─────────────────────────── Checks ───────────────────────────
 
-def check_duplicate_concept_role(golden: dict) -> List[Finding]:
+def check_duplicate_concept_role(golden: dict, scoring: Optional[dict] = None) -> List[Finding]:
     """Un concept_id présent à la fois côté validant (rang A implicite via
     scoring_config, ici on ne connaît que le mapping golden — donc on détecte
     la duplication au niveau du mapping lui-même : le même golden_id apparaît
     pour 2 labels différents dans le même cas). C'est le signal amont du bug
-    validant/descripteur (le rôle exact est tranché par scoring_config.json,
-    non lu ici pour garder ce script autonome/portable)."""
+    validant/descripteur (le rôle exact est tranché par scoring_config.json).
+
+    Si `scoring` (scoring_config.json chargé) est fourni, chaque duplication
+    est triée en 2 sévérités distinctes en comparant les tuples (role, statut)
+    de chaque occurrence :
+      • BLOCKING (« CONFLIT RÉEL ») — les occurrences divergent en rôle
+        (validant vs complémentaire) et/ou en statut (present vs absent).
+        C'est exactement le pattern derrière le bug cas 39/40 (redondance
+        anodine) et le bug cas 4 (contradiction present/absent — plus grave).
+      • WARNING (« doublon inoffensif ») — toutes les occurrences ont le
+        même (role, statut) : redondance cosmétique du barème, sans risque
+        fonctionnel, ne nécessite pas de correction prioritaire.
+    Sans `scoring` fourni (rétrocompatibilité), tout duplicat reste BLOCKING
+    comme avant (comportement historique du script)."""
     findings = []
+    scoring_cases = (scoring or {}).get("cases", {}) if scoring else None
     for num, case in (golden.get("cases") or {}).items():
         mapping = case.get("mapping") or {}
         by_concept: Dict[str, List[str]] = {}
@@ -110,8 +152,12 @@ def check_duplicate_concept_role(golden: dict) -> List[Finding]:
             if not cid:
                 continue
             by_concept.setdefault(cid, []).append(label)
+        scoring_case = scoring_cases.get(num) if scoring_cases is not None else None
         for cid, labels in by_concept.items():
-            if len(labels) > 1:
+            if len(labels) <= 1:
+                continue
+            if scoring_cases is None:
+                # Pas de scoring_config disponible : comportement historique.
                 findings.append(Finding(
                     check="duplicate_concept_role",
                     severity=SEVERITY_BLOCKING,
@@ -120,6 +166,43 @@ def check_duplicate_concept_role(golden: dict) -> List[Finding]:
                              f"dans le cas {num} — risque de contradiction "
                              f"trouvé/manqué (cf. bug cas 39/40)."),
                     detail={"concept_id": cid, "labels": labels},
+                ))
+                continue
+
+            tuples = []
+            for lbl in labels:
+                m = mapping.get(lbl) or {}
+                role = _label_role(scoring_case, lbl)
+                statut = _norm_statut(m)
+                tuples.append((role, statut))
+            is_conflict = len(set(tuples)) > 1
+            detail = {
+                "concept_id": cid,
+                "labels": labels,
+                "roles_statuts": [{"label": lbl, "role": r, "statut": s}
+                                  for lbl, (r, s) in zip(labels, tuples)],
+            }
+            if is_conflict:
+                findings.append(Finding(
+                    check="duplicate_concept_role",
+                    severity=SEVERITY_BLOCKING,
+                    case=num,
+                    message=(f"*** CONFLIT RÉEL *** concept {cid} mappé à {len(labels)} "
+                             f"labels dans le cas {num} avec des (rôle, statut) "
+                             f"différents {tuples} — risque de contradiction "
+                             f"trouvé/manqué (cf. bug cas 39/40 et cas 4)."),
+                    detail=detail,
+                ))
+            else:
+                findings.append(Finding(
+                    check="duplicate_concept_role_harmless",
+                    severity=SEVERITY_WARNING,
+                    case=num,
+                    message=(f"doublon inoffensif : concept {cid} mappé à {len(labels)} "
+                             f"labels dans le cas {num}, tous en ({tuples[0][0]}, "
+                             f"{tuples[0][1]}) — redondance cosmétique du barème, "
+                             f"aucun risque fonctionnel."),
+                    detail=detail,
                 ))
     return findings
 
@@ -217,17 +300,18 @@ def check_duplicate_label_mapping(golden: dict) -> List[Finding]:
 
 
 CHECKS = [
-    ("duplicate_concept_role", lambda g, o: check_duplicate_concept_role(g)),
-    ("unknown_concept_id", lambda g, o: check_unknown_concept_id(g, o)),
-    ("case_without_validant", lambda g, o: check_case_without_validant(g)),
-    ("dangling_relations", lambda g, o: check_dangling_relations(o)),
-    ("duplicate_label_mapping", lambda g, o: check_duplicate_label_mapping(g)),
+    ("duplicate_concept_role", lambda g, o, s: check_duplicate_concept_role(g, s)),
+    ("unknown_concept_id", lambda g, o, s: check_unknown_concept_id(g, o)),
+    ("case_without_validant", lambda g, o, s: check_case_without_validant(g)),
+    ("dangling_relations", lambda g, o, s: check_dangling_relations(o)),
+    ("duplicate_label_mapping", lambda g, o, s: check_duplicate_label_mapping(g)),
 ]
 
 
 def run_audit(case_filter: Optional[str] = None) -> List[Finding]:
     golden = _load_golden()
     onto = _load_ontology()
+    scoring = _load_scoring()
 
     if case_filter:
         cases = golden.get("cases", {})
@@ -238,7 +322,7 @@ def run_audit(case_filter: Optional[str] = None) -> List[Finding]:
 
     findings: List[Finding] = []
     for _, fn in CHECKS:
-        findings.extend(fn(golden, onto))
+        findings.extend(fn(golden, onto, scoring))
     return findings
 
 
