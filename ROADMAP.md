@@ -1,5 +1,110 @@
 # 🗺️ ROADMAP — ECG Lecture
 
+> ⚠️ **Ce fichier contient 2 sections** :
+> 1. **Suivi d'exécution ACTUEL** (ci-dessous) — reflète l'état réel du projet aujourd'hui,
+>    fait le pont avec `../AUDIT.md` (§8, plan P0/P1/P2 du 2026-07-03).
+> 2. **Roadmap historique d'origine** (à partir de "Phase 0 — Fondations") — décrit la
+>    genèse du projet (extraction des 75 cas, grader GPT seul). **Obsolète sur le scoring**
+>    (le scoring ontologique V3 décrit comme "futur" en Phase 2 y est en réalité déjà en
+>    prod depuis longtemps) mais gardée pour l'historique et le contrat de données.
+
+---
+
+## 🔄 SUIVI D'EXÉCUTION — plan d'audit (cf. `../AUDIT.md` §8)
+
+> **But du projet** : une plateforme en ligne où l'étudiant lit un ECG, écrit son
+> interprétation en **texte libre**, et reçoit une correction **IA neurosymbolique**
+> (score + commentaire pédagogique) fondée sur une banque de 75 cas et une ontologie.
+> Objectif 10 mois : **prototype robuste → facultés → open source multi-langue**.
+
+### 🔴 P0 — Bloquant (avant toute conclusion/publication)
+
+| # | Action | Statut |
+|---|--------|:------:|
+| P0.1 | Créer le **golden d'extraction** (~50 réponses annotées par un expert, tous les concepts réellement présents, pas seulement ceux qui comptent pour la note ; double annotation sur ~15 → Kappa de Cohen) | ❌ pas commencé |
+| P0.2 | Recalculer précision/rappel/F1 réels de l'extraction contre ce golden | ❌ dépend de P0.1 |
+| P0.3 | Unifier les chiffres publiés (README ~92 %, RAG-onto 62,4 %, ARCHITECTURE 42 %, CSV réel 85,1 %/60,2 % → incohérents) en une source de vérité versionnée | ❌ pas commencé |
+| P0.4 | Tests de non-régression du scoring | ✅ fait (`rag_pipeline/tests/test_scoring_v3.py`, 18 tests) |
+
+### 🟡 P1 — Important (validité scientifique)
+
+| # | Action | Statut |
+|---|--------|:------:|
+| P1.5 | Étendre le golden de **scoring** (40-50 cas, ≥2 experts, plusieurs validants/cas — actuellement 75 cas mais mono-expert) | ❌ pas commencé (voir *Phase E* ci-dessous : le nettoyage de cohérence interne du golden actuel est un prérequis pratique) |
+| P1.6 | Refondre la métrique : note exactitude (existante) + note fiabilité (pénalité concepts faux pondérée par gravité clinique) | ❌ dépend de P0.1 |
+| P1.7 | Corriger la négation trop généreuse (`absent("trouble de repolarisation")` → `ECG_NORMAL` complet = 100 % avec une seule négation isolée) | ❌ pas commencé |
+| P1.8 | Ablation par brique (NER/Search/Juge) + validation humaine d'un échantillon du juge | ❌ pas commencé |
+| P1.9 | Étendre les tests à `semantic_layer` et à la conversion des négations | ❌ pas commencé |
+
+### 🟢 P2 — Consolidation
+
+| # | Action | Statut |
+|---|--------|:------:|
+| P2.10 | Monorepo (fusionner `RAG ontologique` ↔ `ECG lecture/rag_pipeline`, nettoyer les scripts `_*.py` jetables) | ❌ pas commencé |
+| P2.11 | Fallback local (embeddings sentence-transformers + juge Mistral/Llama, reproductibilité) | ❌ pas commencé |
+| P2.12 | Panel multi-juges + exploitation du score de confiance | ❌ pas commencé |
+| P2.13 | (Optionnel/bonus) Mapping SNOMED + raisonneur OWL | ❌ déclassé par l'audit lui-même |
+
+---
+
+### 🧹 Travaux réalisés HORS plan initial (dette annexe, rattachable à P1.5)
+
+En creusant le golden de scoring existant (préalable pratique à son extension), des
+incohérences internes ont été détectées et corrigées :
+
+- **Phase A — Centralisation des seuils de scoring** ✅ *(commit `bc77081`)*
+  `rag_pipeline/scoring_thresholds.py` : élimination des magic numbers dans
+  `neuro_grader.py`, `scoring_v3.py`, `candidate_report.py`.
+- **Phase B — Audit automatisé golden × ontologie** ✅ *(commit `bc77081`)*
+  `scripts/audit_golden.py` (statique) + `scripts/audit_golden_impact.py`
+  (cross-référence avec 322 réponses réelles Google Sheets) : détecte duplications
+  concept_id, ID inconnus, cas sans validant, relations `requires`/`excludes` cassées.
+- **Phase C — Correction golden : cas 4 (contradiction present/absent)** ✅ *(commit `cc16a81`)*
+  `HYPERTROPHIE_VENTRICULAIRE_GAUCHE` était mappé à la fois `present` (validant) et
+  `absent` (descripteur, critère de Sokolow) dans le même cas → remappé vers le
+  concept qualifier dédié `INDICE_DE_SOKOLOW__35_MM`.
+- **Phase D — Triage CONFLIT RÉEL vs doublon inoffensif** ✅ *(commit `412c8d2`)*
+  `check_duplicate_concept_role` croise désormais avec `scoring_config.json` pour
+  distinguer les vraies contradictions (rôle/statut divergents) des redondances
+  cosmétiques du barème. Résultat sur les 40 duplications restantes : **19 CONFLIT
+  RÉEL / 21 doublons inoffensifs**.
+
+### 🔜 Phase E — PROCHAINE ÉTAPE : corriger les 19 CONFLIT RÉEL restants
+
+**Statut : ❌ pas commencé — c'est la suite immédiate.**
+
+Liste des 19 cas (obtenue via `python scripts/audit_golden.py`), à traiter par lot
+puis valider en UNE SEULE fois avec `scripts/audit_golden_impact.py` (replay coûteux
+en API/Google Sheets, à ne pas relancer à chaque petite modif) :
+
+| Cas | Concept | Gravité |
+|---|---|---|
+| 43 | `FAISCEAU_ACCESSOIRE_A_CONDUCTION_ANTEROGRADE` | 🔴 present/absent — même pattern que cas 4 |
+| 44 | `RYTHME_SINUSAL` | 🔴 present/absent — même pattern que cas 4 |
+| 6, 8, 12, 17, 16, 14, 22, 27, 31, 33, 39, 40, 46, 56 (×2), 68, 70 | divers | 🟠 rôle validant/descripteur divergent, statut identique (present/present) — pattern cas 39/40, déjà neutralisé côté scorer par le garde-fou `_validant_manque_ids` mais données à nettoyer |
+
+**Procédure** :
+1. Corriger les cas 43 et 44 en priorité (vraies contradictions cliniques comme cas 4).
+2. Traiter le reste du lot (17 cas restants) par groupes de 5-6.
+3. Une fois tout le lot terminé : `scripts/audit_golden.py` (doit tomber à 0 CONFLIT RÉEL)
+   **puis** `scripts/audit_golden_impact.py` (322 réponses, doit rester 0 contradiction)
+   pour valider l'ensemble en une seule passe.
+4. Commit + push.
+
+### Repères de contexte technique
+
+- **Golden** : `data/cases_golden.json` (75 cas, label → concept_id + statut).
+- **Rôles** : `data/scoring_config.json` (label → validant/complémentaire).
+- **Jointure** : `app/golden_config.py::golden_for_scorer(num)`.
+- **Audit statique** : `python scripts/audit_golden.py` (`--case NUM` pour un seul cas).
+- **Audit impact réel** : `python scripts/audit_golden_impact.py` (nécessite
+  `.streamlit/secrets.toml` + accès Google Sheets — **coûteux, à ne lancer qu'en fin de lot**).
+- Env : `.venv\Scripts\python.exe`, encodage forcé `PYTHONIOENCODING=utf-8` sous PowerShell.
+
+---
+
+## 📜 Roadmap historique d'origine (genèse du projet — scoring GPT seul, aujourd'hui dépassé)
+
 > **But du projet** : une plateforme en ligne où l'étudiant lit un ECG, écrit son
 > interprétation en **texte libre**, et reçoit une correction **IA** (score +
 > commentaire pédagogique) fondée sur une banque de **75 cas** de référence.
