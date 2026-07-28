@@ -191,6 +191,7 @@ def _report_to_correction(report, num: int, exclusions: Optional[List[dict]] = N
     # ── Éléments trouvés / manqués (validants → note ; descripteurs → indicatif)
     elements_trouves: List[dict] = []
     elements_manques: List[dict] = []
+    _validant_manque_ids: set = set()
     for vd in getattr(report, "validant_details", []):
         label = vd.golden_name or vd.golden_id
         # Un validant ne compte comme « trouvé » (rang A ✓) que si son score est
@@ -206,9 +207,18 @@ def _report_to_correction(report, num: int, exclusions: Optional[List[dict]] = N
                 "label": label, "rang": "A",
                 "importance": _explain_validant(vd),
             })
+            _validant_manque_ids.add(vd.golden_id)
     for dd in getattr(report, "descripteur_details", []):
         label = dd.golden_name or dd.golden_id
-        if dd.found:
+        # Cohérence cross-rôle (cas 39/40) : un même concept_id peut être à la
+        # fois validant (rang A) et descripteur (rang B) dans le golden, avec
+        # des libellés différents. Si le validant homonyme vient d'être classé
+        # « manqué » (score < 60 %), afficher le descripteur comme « trouvé »
+        # produirait le même libellé simultanément des deux côtés — exactement
+        # la contradiction rapportée par les étudiants. On aligne : un
+        # descripteur ne peut pas être « trouvé » si son concept jumeau validant
+        # est manqué.
+        if dd.found and dd.golden_id not in _validant_manque_ids:
             elements_trouves.append({"label": label, "rang": "B"})
         else:
             elements_manques.append({"label": label, "rang": "B",

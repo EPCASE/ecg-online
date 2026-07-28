@@ -696,26 +696,27 @@ def generate_candidate_report(
 
         report.nb_descripteurs_attendus = len(descripteur_ids)
         n_desc_found = 0
+        from scoring_v3 import _score_one_concept
         for gname, gid, role in zip(golden_names, golden_ids, golden_roles):
             if role != "descripteur":
                 continue
             nid = normalize_key(gid)
-            # Exact match
-            found = nid in found_set
-            match_type = "exact" if found else "missed"
-            # Child match (enfant plus spécifique trouvé → compte comme trouvé)
-            if not found:
-                from scoring_v3 import _find_child_in_found, _find_parent_in_found
-                child_hit = _find_child_in_found(nid, found_set)
-                if child_hit:
-                    found = True
-                    match_type = "exact"  # enfant = credit complet
-                else:
-                    # Parent match (parent trouvé → partiel)
-                    parent_hit, parent_dist = _find_parent_in_found(nid, found_set)
-                    if parent_hit:
-                        found = True
-                        match_type = "qualifier" if parent_dist <= 1 else "support"
+            # Cohérence avec les validants (cf. cas 8/39/40/14) : un même
+            # concept_id peut apparaître comme validant ET comme descripteur
+            # (rédaction golden avec plusieurs libellés). Utiliser exactement
+            # la même logique de scoring (_score_one_concept : exact / enfant /
+            # parent / requires / exclusions) évite deux incohérences vues en
+            # production :
+            #   1) le descripteur ignorait les exclusions → un concept "exclu"
+            #      côté validant (ex. ECG_NORMAL contredit par une arythmie)
+            #      restait pourtant affiché "trouvé" côté descripteur (cas 8) ;
+            #   2) le descripteur ne testait qu'un match littéral simple, sans
+            #      la logique `requires` → un concept déduit avec succès côté
+            #      validant (ex. TACHYCARDIE_SINUSALE via requires satisfaits)
+            #      restait affiché "manqué" côté descripteur (cas 39/40).
+            cs = _score_one_concept(nid, found_set, None)
+            found = cs.match_type not in ("missed", "excluded")
+            match_type = cs.match_type
             if found:
                 n_desc_found += 1
             report.descripteur_details.append(DescripteurDetail(
