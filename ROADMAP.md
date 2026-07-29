@@ -105,10 +105,16 @@ Liste des 19 cas traités (obtenue via `python scripts/audit_golden.py`) :
    historique du Google Sheet, pas une régression introduite par les corrections.
 5. ❌ Reste à faire : commit + push.
 
-### 🔜 Prochaine étape : P1.5 (étendre le golden de scoring)
+### 🔜 Prochaine étape : voir `audit_doc/roadmap_scientifique_2026.md`
 
-Le prérequis pratique (Phase E) étant levé, P1.5 (40-50 cas, ≥2 experts,
-plusieurs validants/cas) peut démarrer.
+Le prérequis pratique (Phase E) étant levé, et le Palier 1/2 de traçabilité
+(`FEUILLE_DE_ROUTE_ALIGNEE.md`, désormais figé) étant mergé sur `main`
+(commit `e6a7180`), la suite du travail est pilotée par
+`audit_doc/roadmap_scientifique_2026.md` (document de référence actif,
+30/07/2026) plutôt que par les lignes P1.5-P2.13 ci-dessus (conservées pour
+historique, mais absorbées et affinées dans ce nouveau document : P1.5 devient
+"P1 — Golden conceptuel de scoring V2", chantier prioritaire de l'été, suivi
+de P3 — splits/benchmark verrouillé, puis P4 — refonte du scoring).
 
 ### Repères de contexte technique
 
