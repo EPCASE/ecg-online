@@ -35,6 +35,7 @@ Prod (Scalingo)  :  gunicorn "app.server:create_app()"
 from __future__ import annotations
 
 import os
+import uuid
 
 from flask import Flask, jsonify, request, send_from_directory, abort
 from flask_cors import CORS
@@ -45,6 +46,7 @@ from . import golden_config
 from . import neuro_grader
 from . import collector
 from . import extraction_golden
+from . import abstention
 from .grader import grade, DEFAULT_MODEL
 
 FRONTEND_DIR = os.path.abspath(
@@ -185,12 +187,7 @@ def create_app() -> Flask:
         # Choix du backend : neurosymbolique (défaut) avec repli GPT-4o.
         backend_used = "gpt"
         corr = None
-        resolution = {
-            "status": "OK",
-            "reason": None,
-            "primary_backend": GRADER_BACKEND,
-            "used_backend": None,
-        }
+        skip_reason = None
         if GRADER_BACKEND == "neuro":
             corr = neuro_grader.grade_neuro(num_i, answer)
             if corr is not None and not corr.error:
@@ -199,21 +196,38 @@ def create_app() -> Flask:
                 # Repli GPT-4o (cas non mappé ou erreur pipeline). On trace le
                 # motif exact (Palier 1 — FEUILLE_DE_ROUTE_ALIGNEE.md) : un
                 # repli silencieux masquait des lacunes de couverture golden.
-                reason = neuro_grader.last_skip_reason() or (
+                skip_reason = neuro_grader.last_skip_reason() or (
                     corr.error if corr is not None else "raison_inconnue"
                 )
-                resolution["status"] = "FALLBACK_GPT"
-                resolution["reason"] = reason
                 corr = None
         if corr is None:
             corr = grade(case, answer, reference=ref, scoring=scoring)
             backend_used = "gpt"
-        resolution["used_backend"] = backend_used
+
+        # État de résolution explicite (Palier 2 — abstention.py) : au lieu
+        # d'un simple OK/FALLBACK_GPT, on qualifie aussi TECHNICAL_ERROR et
+        # LOW_CONFIDENCE à partir de signaux déjà calculés (aucun changement
+        # de comportement utilisateur, uniquement de la traçabilité).
+        resolution = abstention.classify(
+            backend_used=backend_used,
+            primary_backend=GRADER_BACKEND,
+            corr=corr,
+            skip_reason=skip_reason,
+        )
 
         result = corr.to_dict()
         result["backend"] = backend_used
         result["pipeline_version"] = neuro_grader.PIPELINE_VERSION
         result["resolution"] = resolution
+        # Identifiants stables (Palier 2) : permettent de relier une réponse
+        # HTTP à sa trace de collecte (Google Sheets aujourd'hui, base de
+        # données demain) sans dépendre de l'horodatage. `response_id` = cette
+        # correction précise ; `prediction_id` = alias explicite pour la
+        # littérature ML (même valeur pour l'instant, un cas pourra être noté
+        # plusieurs fois → plusieurs response_id/prediction_id distincts).
+        response_id = str(uuid.uuid4())
+        result["response_id"] = response_id
+        result["prediction_id"] = response_id
         # On joint la référence APRÈS correction (l'étudiant a le droit de voir).
         # `titre` = diagnostic réel + `famille` : révélés post-correction (note
         # UX §12 : « révéler l'objectif pédagogique » une fois la réponse rendue).
@@ -230,7 +244,12 @@ def create_app() -> Flask:
 
         # Recueil optionnel (Google Sheets) — non bloquant, no-op si non configuré.
         # On archive le titre RÉEL (côté serveur), jamais la version anonymisée.
-        meta = payload.get("meta") if isinstance(payload.get("meta"), dict) else {}
+        meta_in = payload.get("meta")
+        meta: dict = dict(meta_in) if isinstance(meta_in, dict) else {}
+        meta["response_id"] = response_id
+        meta["resolution_status"] = resolution["status"]
+        meta["resolution_reason"] = resolution.get("reason") or ""
+        meta["pipeline_version"] = neuro_grader.PIPELINE_VERSION
         collector.collect_answer(
             num_i,
             case.get("titre", ""),
