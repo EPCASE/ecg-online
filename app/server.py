@@ -110,6 +110,7 @@ def create_app() -> Flask:
             "model": DEFAULT_MODEL,
             "openai_key": bool(os.environ.get("OPENAI_API_KEY")),
             "grader_backend": GRADER_BACKEND,
+            "pipeline_version": neuro_grader.PIPELINE_VERSION,
             "neuro": neuro_grader.status(),
             "collector": collector.status(),
             "anonymize": cases_repo.anonymize_enabled(),
@@ -184,18 +185,35 @@ def create_app() -> Flask:
         # Choix du backend : neurosymbolique (défaut) avec repli GPT-4o.
         backend_used = "gpt"
         corr = None
+        resolution = {
+            "status": "OK",
+            "reason": None,
+            "primary_backend": GRADER_BACKEND,
+            "used_backend": None,
+        }
         if GRADER_BACKEND == "neuro":
             corr = neuro_grader.grade_neuro(num_i, answer)
             if corr is not None and not corr.error:
                 backend_used = "neuro"
             else:
-                corr = None  # repli GPT-4o (cas non mappé ou erreur pipeline)
+                # Repli GPT-4o (cas non mappé ou erreur pipeline). On trace le
+                # motif exact (Palier 1 — FEUILLE_DE_ROUTE_ALIGNEE.md) : un
+                # repli silencieux masquait des lacunes de couverture golden.
+                reason = neuro_grader.last_skip_reason() or (
+                    corr.error if corr is not None else "raison_inconnue"
+                )
+                resolution["status"] = "FALLBACK_GPT"
+                resolution["reason"] = reason
+                corr = None
         if corr is None:
             corr = grade(case, answer, reference=ref, scoring=scoring)
             backend_used = "gpt"
+        resolution["used_backend"] = backend_used
 
         result = corr.to_dict()
         result["backend"] = backend_used
+        result["pipeline_version"] = neuro_grader.PIPELINE_VERSION
+        result["resolution"] = resolution
         # On joint la référence APRÈS correction (l'étudiant a le droit de voir).
         # `titre` = diagnostic réel + `famille` : révélés post-correction (note
         # UX §12 : « révéler l'objectif pédagogique » une fois la réponse rendue).

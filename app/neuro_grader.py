@@ -32,6 +32,13 @@ from . import golden_config
 if TYPE_CHECKING:
     from .grader import Correction
 
+# ── Version du pipeline (traçabilité, Palier 1 — FEUILLE_DE_ROUTE_ALIGNEE.md) ─
+# À incrémenter à chaque changement de comportement du scoring V3 / de
+# l'ontologie golden. Exposé dans /api/grade (champ "pipeline_version") pour
+# que chaque réponse historisée (Google Sheets) soit rattachable à une version
+# précise du pipeline — indispensable dès que 2+ experts golden coexistent.
+PIPELINE_VERSION = "neuro-v1.1"
+
 # ── Localisation du pipeline vendoré ────────────────────────────────────────
 _PIPELINE_DIR = Path(__file__).resolve().parent.parent / "rag_pipeline"
 
@@ -51,6 +58,22 @@ _lock = threading.Lock()
 _import_error: Optional[str] = None
 _generate = None  # type: ignore
 _engine = None    # HybridSearchEngine préchargé (singleton)
+
+# Dernière raison de repli GPT-4o pour l'appel `grade_neuro()` courant (Palier 1
+# — traçabilité). Thread-safe via `threading.local` : chaque requête HTTP a son
+# propre contexte, on évite qu'une requête concurrente n'écrase la raison d'une
+# autre (Flask peut servir plusieurs requêtes en parallèle selon le déploiement).
+_last_skip_reason = threading.local()
+
+
+def last_skip_reason() -> Optional[str]:
+    """Raison du dernier repli GPT-4o pour l'appel `grade_neuro()` du thread
+    courant (None si le dernier appel a réussi ou n'a pas eu lieu)."""
+    return getattr(_last_skip_reason, "value", None)
+
+
+def _set_skip_reason(reason: Optional[str]) -> None:
+    _last_skip_reason.value = reason
 
 
 def _try_import() -> bool:
@@ -121,13 +144,23 @@ def grade_neuro(num: int, texte_etudiant: str) -> Optional["Correction"]:
     """
     from .grader import Correction  # import local (évite cycle au chargement)
 
+    _set_skip_reason(None)  # reset : on ne veut pas hériter d'un appel précédent
+
     if not available():
+        _try_import()  # peuple _import_error si c'est la cause
+        reason = _import_error or (
+            "onto_indisponible" if not golden_config.onto_available()
+            else "openai_api_key_absente" if not os.environ.get("OPENAI_API_KEY")
+            else "pipeline_indisponible"
+        )
+        _set_skip_reason(f"neuro_indisponible: {reason}")
         return None
     g = golden_config.golden_for_scorer(num)
     validants = g.get("validants") or []
     descripteurs = g.get("descripteurs") or []
     if not validants:
         # Sans concept validant mappé, le scorer onto n'a rien à mesurer.
+        _set_skip_reason(f"cas_{num}_sans_validant_golden_mappe")
         return None
 
     # ── Négation / exclusions (correctif bug « miroir ») ─────────────────
@@ -143,6 +176,7 @@ def grade_neuro(num: int, texte_etudiant: str) -> Optional["Correction"]:
     exclusions = g.get("exclusions") or []      # statut == absent (validant/descr.)
     if not present_validants:
         # Aucune cible positive à mesurer (rare) → repli GPT-4o.
+        _set_skip_reason(f"cas_{num}_aucun_validant_positif_apres_filtre_negation")
         return None
 
     # Contrat pour le pipeline : ids + names + roles alignés (concepts à AFFIRMER).
@@ -170,12 +204,14 @@ def grade_neuro(num: int, texte_etudiant: str) -> Optional["Correction"]:
                 with_feedback=True,
             )
     except Exception as ex:
+        _set_skip_reason(f"exception_pipeline: {type(ex).__name__}: {ex}")
         return Correction(
             score=0, verdict="Erreur du pipeline neurosymbolique.",
             diagnostic_retenu="", commentaire="", model="neuro-pipeline",
             error=f"{type(ex).__name__}: {ex}")
 
     if getattr(report, "erreur", None):
+        _set_skip_reason(f"erreur_pipeline: {report.erreur}")
         return Correction(
             score=0, verdict="Erreur du pipeline neurosymbolique.",
             diagnostic_retenu="", commentaire="", model="neuro-pipeline",
