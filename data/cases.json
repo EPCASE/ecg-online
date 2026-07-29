@@ -1091,8 +1091,12 @@
       "referentiel": "Le référentiel inclut une figure et un tracé de voie accessoire\nAspect caractéristique de voie accessoire : PR court, onde delta, QRS large",
       "images": [
         "cas_43.png",
+        "cas_43bis.png",
         "cas_43_p2.png"
-      ]
+      ],
+      "image_captions": {
+        "cas_43bis.png": "ECG après manoeuvres vagales"
+      }
     },
     {
       "num": 44,
@@ -1903,8 +1907,7 @@
       "commentaires": "L’électrocardiogramme est anormal chez 90 % des patients présentant une amylose avec atteinte cardiaque. Les deux anomalies les plus fréquemment observées sont le microvoltage des complexes QRS et un aspect de pseudo-séquelle d’infarctus dans les dérivations précordiales avec ondes Q et rabotage des ondes R.\nIl est également fréquent d’observer des troubles de la repolarisation, des troubles conductifs ou des troubles du rythme.\nIl existe différentes définitions du microvoltage, la plus commune étant une amplitude du QRS ne dépassant pas 5 mm dans aucune des dérivations périphériques et ne dépassant pas 10mm dans aucune des dérivations précordiales. Dans l’amylose, les bas voltages sont surtout observés dans les dérivations frontales avec une possible déviation axiale droite ou gauche. L’absence de microvoltage n’élimine pas le diagnostic d’atteinte cardiaque.\nPour faire le diagnostic d‘amylose, il est indispensable de s’aider du contexte : pathologie inflammatoire chronique, myélome multiple, contexte familial d’amylose... Le profil échographique aide aussi beaucoup : il s ‘agit en général d'une insuffisance cardiaque à fraction d’éjection conservée (au moins au début de la maladie), avec un aspect brillant des parois myocardiques caractéristique.",
       "referentiel": "L’amylose cardiaque est évoquée dans le chapitre insuffisance cardiaque dans le paragraphe décrivant les cardiopathies restrictives.",
       "images": [
-        "cas_75.png",
-        "cas_75_p2.png"
+        "cas_75.png"
       ]
     }
   ]

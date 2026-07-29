@@ -290,21 +290,33 @@ async function openCase(num, { updateHistory = true } = {}) {
 
   const gal = $("#case-images");
   gal.innerHTML = "";
-  // Page 1 = image de présentation (cas_XX.png), toujours visible.
+  // Page 1 = image(s) de présentation (cas_XX.png, cas_XXbis.png…), toujours
+  // visibles (un cas peut nécessiter plusieurs tracés pour l'interprétation,
+  // ex. cas 43 : ECG initial + ECG après manœuvres vagales).
   // Page 2+ (cas_XX_p2.png…) = réservée, révélée après correction sous le commentaire IA.
   const allImages = c.images || [];
-  // Robustesse : la « page 1 » est l'image SANS suffixe _p2/_p3… (repli : la 1ʳᵉ).
+  const captions = c.image_captions || {};
+  // Robustesse : seule une image suffixée _p<N> (ex. _p2) est différée après
+  // correction. Toute autre image (dont les variantes « bis ») est affichée
+  // dès l'énoncé.
   const isSecondary = (name) => /_p\d+\.\w+$/i.test(String(name));
-  const page1Img = allImages.find((img) => !isSecondary(img)) || allImages[0];
-  CURRENT_PAGES2 = allImages.filter((img) => img !== page1Img);
-  if (page1Img) {
+  const page1Imgs = allImages.filter((img) => !isSecondary(img));
+  CURRENT_PAGES2 = allImages.filter((img) => isSecondary(img));
+  page1Imgs.forEach((img) => {
+    const cap = captions[img];
+    const fig = el("figure", "case-figure");
     const im = el("img");
-    im.src = `${API}/images/${page1Img}`;
-    im.alt = `Tracé ECG cas ${c.num}`;
+    im.src = `${API}/images/${img}`;
+    im.alt = cap || `Tracé ECG cas ${c.num}`;
     im.loading = "lazy";
     im.onclick = () => openLightbox(im.src);
-    gal.appendChild(im);
-  }
+    fig.appendChild(im);
+    if (cap) {
+      const capEl = el("figcaption", "case-image-caption", escapeHtml(cap));
+      fig.appendChild(capEl);
+    }
+    gal.appendChild(fig);
+  });
 
   const draft = loadDraft(c.num);
   $("#answer").value = draft;
@@ -846,9 +858,19 @@ function revealPage2() {
     p2.innerHTML = "";
     return;
   }
-  const imgs = CURRENT_PAGES2.map((img) =>
-    `<img src="${API}/images/${img}" alt="Tracé ECG (suite) cas ${CURRENT ? CURRENT.num : ""}" loading="lazy" />`
-  ).join("");
+  const captions = (CURRENT && CURRENT.image_captions) || {};
+  const imgs = CURRENT_PAGES2.map((img) => {
+    const cap = captions[img];
+    const capHtml = cap
+      ? `<p class="page2-caption">${escapeHtml(cap)}</p>`
+      : "";
+    return (
+      `<figure class="page2-figure">` +
+      `<img src="${API}/images/${img}" alt="${cap ? escapeHtml(cap) : `Tracé ECG (suite) cas ${CURRENT ? CURRENT.num : ""}`}" loading="lazy" />` +
+      capHtml +
+      `</figure>`
+    );
+  }).join("");
   p2.innerHTML =
     `<h4 class="page2-title">🔬 Tracé complémentaire</h4>` +
     `<div class="ecg-gallery">${imgs}</div>`;

@@ -233,6 +233,11 @@ body.home-mode .content { padding-inline: clamp(18px, 6vw, 72px); }
   transition: transform 0.15s;
 }
 .ecg-gallery img:hover { transform: scale(1.005); }
+.ecg-gallery .case-figure { margin: 0; }
+.ecg-gallery .case-image-caption {
+  margin: 6px 0 0; font-size: 13px; font-style: italic;
+  color: var(--text-secondary, #666); text-align: center;
+}
 
 /* Page 2 du tracé — révélée après correction, sous le commentaire IA */
 .case-page2 { margin-top: 22px; animation: fade 0.35s ease; }
@@ -241,6 +246,11 @@ body.home-mode .content { padding-inline: clamp(18px, 6vw, 72px); }
   letter-spacing: 0.06em; color: var(--accent-2);
 }
 .case-page2 .ecg-gallery { margin-bottom: 0; }
+.case-page2 .page2-figure { margin: 0; }
+.case-page2 .page2-caption {
+  margin: 6px 0 0; font-size: 13px; font-style: italic;
+  color: var(--text-secondary, #666); text-align: center;
+}
 
 /* Answer block */
 .answer-block { margin-bottom: 20px; }
