@@ -54,7 +54,11 @@ LOG_COLS = ["horodatage", "session", "cas", "titre", "reponse",
             "t_autonome_actif_s", "t_total_actif_s", "t_hors_app_s",
             "mises_arriere_plan", "appareil", "largeur_vue", "hauteur_vue",
             "orientation", "brouillon_restaure", "ouvertures_visionneuse",
-            "zooms_visionneuse"]
+            "zooms_visionneuse",
+            # Traçabilité (Palier 2 — FEUILLE_DE_ROUTE_ALIGNEE.md) :
+            # identifiants stables + état de résolution explicite du backend.
+            "response_id", "resolution_status", "resolution_reason",
+            "pipeline_version", "ontology_version"]
 PARCAS_HEADER = ["cas", "titre", "réponses →"]
 
 # Journal des signalements (bouton « Signaler un problème », version pré-alpha).
@@ -249,7 +253,10 @@ def _write(num: int, titre: str, answer: str, score, correspondance: str,
                  _m("t_hors_app_s"), _m("mises_arriere_plan"),
                  _m("appareil"), _m("largeur_vue"), _m("hauteur_vue"),
                  _m("orientation"), _m("brouillon_restaure"),
-                 _m("ouvertures_visionneuse"), _m("zooms_visionneuse")],
+                 _m("ouvertures_visionneuse"), _m("zooms_visionneuse"),
+                 _m("response_id"), _m("resolution_status"),
+                 _m("resolution_reason"), _m("pipeline_version"),
+                 _m("ontology_version")],
                 value_input_option="RAW",  # type: ignore[arg-type]
             )
 

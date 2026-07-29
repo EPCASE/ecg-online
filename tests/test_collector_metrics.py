@@ -23,7 +23,12 @@ class CollectorMetricsSchemaTest(unittest.TestCase):
             self.assertIn(column, collector.LOG_COLS)
 
     def test_last_column_range_supports_more_than_z(self):
-        self.assertEqual(collector._column_label(len(collector.LOG_COLS)), "AI")
+        # NB: la lettre exacte dépend du nombre de colonnes dans LOG_COLS, qui
+        # grandit au fil des Paliers (traçabilité). On vérifie le COMPORTEMENT
+        # (2 lettres, au-delà de Z) plutôt qu'une lettre figée en dur.
+        label = collector._column_label(len(collector.LOG_COLS))
+        self.assertEqual(len(label), 2, f"attendu 2 lettres au-delà de Z, reçu {label!r}")
+        self.assertTrue(label.isalpha() and label.isupper())
 
     def test_write_row_matches_header_order(self):
         class LogSheet:
