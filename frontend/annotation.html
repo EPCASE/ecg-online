@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ECG Lecture — Annotation du golden d'extraction</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/static/theme.css" />
+<link rel="stylesheet" href="/static/style.css" />
+<link rel="stylesheet" href="/static/curation.css" />
+<style>
+  .layout { grid-template-columns: 300px 1fr; }
+  .item-list { list-style: none; margin: 0; padding: 0; }
+  .item-list li { padding: 8px 10px; border-radius: 8px; cursor: pointer; margin-bottom: 4px; font-size: 0.85rem; }
+  .item-list li:hover { background: var(--surface-hover, #eef2ff); }
+  .item-list li.active { background: var(--accent, #4f46e5); color: #fff; }
+  .item-list .status-done { color: #16a34a; }
+  .item-list li.active .status-done { color: #bbf7d0; }
+  .item-list .status-partial { color: #d97706; }
+  .item-list .status-pending { color: #94a3b8; }
+  .item-list .alert-badge { color: #dc2626; font-weight: 700; font-size: 0.75rem; }
+  .item-list li.active .alert-badge { color: #fecaca; }
+  .review-box { background: #fef2f2; border: 1px solid #fca5a5; color: #7f1d1d; border-radius: 10px; padding: 10px 14px; margin: 8px 0 12px; font-size: 0.85rem; }
+  .review-title { font-weight: 700; margin-bottom: 6px; }
+  .review-alert { padding: 3px 0; }
+  .review-hint { font-style: italic; opacity: 0.8; font-size: 0.78rem; margin-bottom: 6px; }
+  .reponse-box { background: #f8fafc; color: #0f172a; border: 1px solid #e2e8f0; border-radius: 10px; padding: 14px 16px; margin: 12px 0; white-space: pre-wrap; font-size: 0.95rem; line-height: 1.5; }
+  .concept-row { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 8px; background: #fff; color: #0f172a; border: 1px solid #e2e8f0; margin-bottom: 6px; }
+  .concept-row.from-pipeline { border-left: 4px solid #6366f1; }
+  .concept-row.added { border-left: 4px solid #16a34a; }
+  .concept-row.from-gpt56 { border-left: 4px solid #ea580c; }
+  .concept-row select { font-size: 0.8rem; color: #0f172a; background: #fff; }
+  .concept-row .name { flex: 1; font-weight: 600; color: #0f172a; }
+  .concept-row .del { color: #dc2626; cursor: pointer; font-weight: 700; }
+  .gpt56-box { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .gpt56-chip { background: #fff7ed; border: 1px solid #ea580c; color: #9a3412; border-radius: 999px; padding: 3px 10px; font-size: 0.8rem; cursor: pointer; }
+  .gpt56-chip:hover { background: #ffedd5; }
+  .add-concept-box { display: flex; gap: 8px; margin-top: 10px; position: relative; }
+  .add-concept-box input { flex: 1; color: #0f172a; background: #fff; }
+  .search-results { position: absolute; top: 38px; left: 0; right: 0; background: #fff; color: #0f172a; border: 1px solid #e2e8f0; border-radius: 8px; max-height: 220px; overflow-y: auto; z-index: 5; box-shadow: 0 6px 20px rgba(0,0,0,.08); }
+  .search-results div { padding: 6px 10px; cursor: pointer; font-size: 0.85rem; color: #0f172a; }
+  .search-results div:hover { background: #eef2ff; }
+  .slot-toggle { display: flex; gap: 6px; margin-bottom: 10px; }
+  .slot-toggle button { flex: 1; }
+  .slot-toggle button.active { background: var(--accent, #4f46e5); color: #fff; }
+  #annotateur-name { color: #0f172a; background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 6px 10px; }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="logo">〜♥</span>
+    <div>
+      <h1>Golden d'extraction — Annotation</h1>
+      <p class="tagline">Corrige les concepts extraits par le pipeline pour construire le golden d'extraction (cf. GOLDEN_EXTRACTION.md)</p>
+    </div>
+  </div>
+  <div class="header-actions">
+    <a href="/" class="badge badge-muted" style="text-decoration:none">← Retour à l'app</a>
+    <span id="save-badge" class="badge badge-muted">—</span>
+  </div>
+</header>
+
+<main class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-head">
+      <h2>Items à annoter</h2>
+      <span id="items-count" class="pill"></span>
+    </div>
+    <ul id="item-list" class="item-list"></ul>
+  </aside>
+
+  <section class="content">
+    <div id="welcome" class="welcome">
+      <div class="welcome-card">
+        <h2>Annoter le golden d'extraction 🔬</h2>
+        <p>Choisis une réponse à gauche. Pour chaque item :</p>
+        <ul class="tips">
+          <li>Les concepts <b>violets</b> viennent du pipeline actuel — <b>confirme</b> ceux qui sont corrects, <b>supprime</b> les hallucinations.</li>
+          <li>Les concepts <b>verts</b> sont ceux que tu <b>ajoutes</b> toi-même (omis par le pipeline).</li>
+          <li>Les puces <b>oranges</b> 🤖 sont des suggestions d'un second avis indépendant (GPT-5.6, cf. GOLDEN_EXTRACTION.md §5bis) — clique pour les ajouter si pertinentes, ignore-les sinon.</li>
+          <li>Choisis le <b>statut</b> (présent / absent) pour chaque concept retenu.</li>
+          <li>Les items marqués 👥 sont en <b>double annotation</b> (2 relecteurs, pour le Kappa) — utilise le bascule "Relecteur 1 / 2".</li>
+        </ul>
+        <p class="muted">Sélectionne un item à gauche pour commencer.</p>
+      </div>
+    </div>
+
+    <article id="item-view" class="case-view hidden">
+      <div class="case-header">
+        <div>
+          <span id="item-double" class="chip"></span>
+          <h2 id="item-title"></h2>
+        </div>
+        <span id="item-status" class="case-num"></span>
+      </div>
+
+      <div id="slot-toggle" class="slot-toggle hidden">
+        <button id="slot-1" data-slot="annotation_expert">Relecteur 1</button>
+        <button id="slot-2" data-slot="annotation_expert_2">Relecteur 2</button>
+      </div>
+
+      <div class="reponse-box" id="item-texte"></div>
+
+      <h3>Concepts</h3>
+      <div id="concept-list"></div>
+
+      <div class="add-concept-box">
+        <input id="add-concept-input" type="text" placeholder="Ajouter un concept (recherche ontologique)…" autocomplete="off" />
+        <div id="add-concept-results" class="search-results hidden"></div>
+      </div>
+
+      <div style="margin-top:16px; display:flex; gap:10px; align-items:center;">
+        <input id="annotateur-name" type="text" placeholder="Ton nom (annotateur)" style="max-width:220px" />
+        <button id="save-btn" class="btn-primary">💾 Enregistrer l'annotation</button>
+        <span id="save-status" class="muted"></span>
+      </div>
+    </article>
+  </section>
+</main>
+
+<script src="/static/annotation.js"></script>
+</body>
+</html>

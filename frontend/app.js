@@ -5,6 +5,8 @@ const CURRICULUM_CATALOG_URL = "/static/pathways.json";
 const REPORT_EMAIL = "correction.ecg@gmail.com";
 let CASES = [];
 let ACTIVE_FAMILY = "all";
+let ACTIVE_THEME = null;             // thème choisi depuis l'accueil (filtre banque)
+let THEMES = [];                     // catalogue de thèmes (id, label, count) — /api/themes
 let CASE_SEARCH = "";
 let CURRENT = null;
 let CURRENT_QCM = null;              // QCM du cas courant (question + options)
@@ -96,14 +98,98 @@ async function checkHealth() {
 }
 
 async function loadCases() {
-  const [cases, fams] = await Promise.all([
+  const [cases, fams, thms] = await Promise.all([
     fetch(`${API}/api/cases`).then((r) => r.json()),
     fetch(`${API}/api/families`).then((r) => r.json()),
+    fetch(`${API}/api/themes`).then((r) => r.json()).catch(() => []),
   ]);
   CASES = cases;
+  THEMES = Array.isArray(thms) ? thms : [];
   $("#cases-count").textContent = `${cases.length} cas`;
   renderFilters(fams);
   renderCaseList();
+  renderThemesPreview();
+}
+
+/* ─────────── Thèmes (accueil) ─────────── */
+// Numéros de cas appartenant à un thème donné (théme calculé côté serveur,
+// exposé même en mode anonymisé — cf. cases_repo.themes()/theme_for_family()).
+function caseNumsForTheme(themeId) {
+  return CASES.filter((c) => c.theme === themeId).map((c) => c.num);
+}
+
+function renderThemesPreview() {
+  const preview = $("#themes-preview");
+  if (!preview || !THEMES.length) return;
+  const labels = THEMES.filter((t) => t.id !== "divers").slice(0, 4).map((t) => t.label);
+  preview.textContent = labels.length ? `${labels.join(" · ")} …` : "Choisis un thème";
+}
+
+function renderThemesGrid() {
+  const grid = $("#themes-grid");
+  if (!grid) return;
+  grid.innerHTML = "";
+  THEMES.forEach((t) => {
+    const nums = caseNumsForTheme(t.id);
+    const stat = window.Progress ? Progress.summaryForCases(nums) : { done: 0, total: nums.length, average: null };
+    const card = el("button", "theme-card");
+    card.type = "button";
+    card.innerHTML =
+      `<span class="tc-label">${escapeHtml(t.label)}</span>` +
+      `<span class="tc-count">${t.count} cas</span>` +
+      `<span class="tc-stat">${stat.average != null ? `moy. ${stat.average}%` : (stat.done ? `${stat.done}/${stat.total} lus` : "non testé")}</span>`;
+    card.onclick = () => openThemeInBank(t.id);
+    grid.appendChild(card);
+  });
+}
+
+function openThemeInBank(themeId) {
+  ACTIVE_THEME = themeId;
+  ACTIVE_FAMILY = "all";   // le thème remplace le filtre famille classique
+  openBank();
+}
+
+function openThemesView() {
+  renderThemesGrid();
+  setAppMode("themes");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+/* Menu déroulant de thèmes sous la recherche (sidebar) : ouvert au focus,
+ * évite de repasser par l'accueil pour changer de thème. */
+function renderSearchThemesDropdown() {
+  const box = $("#search-themes-dropdown");
+  if (!box || !THEMES.length) return;
+  box.innerHTML = "";
+  const allBtn = el("button", "std-item" + (ACTIVE_THEME == null ? " active" : ""), "Tous les thèmes");
+  allBtn.type = "button";
+  allBtn.onclick = () => { ACTIVE_THEME = null; renderCaseList(); closeSearchThemesDropdown(); };
+  box.appendChild(allBtn);
+  THEMES.forEach((t) => {
+    const item = el("button", "std-item" + (t.id === ACTIVE_THEME ? " active" : ""),
+      `${escapeHtml(t.label)} <b>${t.count}</b>`);
+    item.type = "button";
+    item.onclick = () => {
+      ACTIVE_FAMILY = "all";
+      ACTIVE_THEME = t.id;
+      if (document.body.classList.contains("home-mode")) openBank({ focus: false });
+      else renderCaseList();
+      closeSearchThemesDropdown();
+    };
+    box.appendChild(item);
+  });
+}
+
+function openSearchThemesDropdown() {
+  const box = $("#search-themes-dropdown");
+  if (!box || !THEMES.length) return;
+  renderSearchThemesDropdown();
+  box.classList.remove("hidden");
+}
+
+function closeSearchThemesDropdown() {
+  const box = $("#search-themes-dropdown");
+  if (box) box.classList.add("hidden");
 }
 
 /* ─────────── Filtres familles ─────────── */
@@ -113,19 +199,35 @@ function renderFilters(fams) {
   const mkChip = (label, value, count) => {
     const c = el("button", "filter-chip" + (value === ACTIVE_FAMILY ? " active" : ""),
       `${label}${count != null ? ` <b>${count}</b>` : ""}`);
-    c.onclick = () => { ACTIVE_FAMILY = value; renderFilters(fams); renderCaseList(); };
+    c.onclick = () => { ACTIVE_FAMILY = value; ACTIVE_THEME = null; renderFilters(fams); renderCaseList(); };
     return c;
   };
   box.appendChild(mkChip("Tous", "all", CASES.length));
   fams.forEach((f) => box.appendChild(mkChip(f.famille, f.famille, f.count)));
 }
 
+/* Bandeau discret rappelant le thème actif dans la sidebar, avec un moyen
+ * simple de revenir à la banque complète (§7 backlog NOTE_UX_THEMES_ACCUEIL). */
+function renderThemeBanner() {
+  const head = $("#sidebar-theme-banner");
+  if (!head) return;
+  if (!ACTIVE_THEME) { head.classList.add("hidden"); head.innerHTML = ""; return; }
+  const t = THEMES.find((x) => x.id === ACTIVE_THEME);
+  head.classList.remove("hidden");
+  head.innerHTML = `<span>Thème : <b>${escapeHtml(t ? t.label : ACTIVE_THEME)}</b></span>` +
+    `<button type="button" id="theme-clear" class="theme-clear-btn">✕ Voir tout</button>`;
+  const btn = $("#theme-clear");
+  if (btn) btn.onclick = () => { ACTIVE_THEME = null; renderCaseList(); };
+}
+
 /* ─────────── Liste des cas ─────────── */
 function renderCaseList() {
   const list = $("#case-list");
   list.innerHTML = "";
+  renderThemeBanner();
   const query = CASE_SEARCH.trim().toLocaleLowerCase("fr");
   const filtered = CASES.filter((c) => {
+    if (ACTIVE_THEME && c.theme !== ACTIVE_THEME) return false;
     if (ACTIVE_FAMILY !== "all" && c.famille !== ACTIVE_FAMILY) return false;
     if (!query) return true;
     const stat = window.Progress ? Progress.caseStat(c.num) : null;
@@ -878,6 +980,8 @@ function wireHome() {
   const random = $("#action-random");
   const explore = $("#action-explore");
   if (explore) explore.onclick = () => openBank();
+  const themesBtn = $("#action-themes");
+  if (themesBtn) themesBtn.onclick = () => openThemesView();
   if (daily) daily.onclick = () => {
     const n = window.Progress ? Progress.dailyCase(allCaseNums()) : allCaseNums()[0];
     if (n != null) openCase(n);
@@ -897,14 +1001,16 @@ function wireHome() {
 }
 
 function setAppMode(mode) {
-  document.body.classList.remove("home-mode", "bank-mode", "case-mode");
+  document.body.classList.remove("home-mode", "bank-mode", "case-mode", "themes-mode");
   document.body.classList.add(`${mode}-mode`);
   const welcome = $("#welcome");
   const bankWelcome = $("#bank-welcome");
   const caseView = $("#case-view");
+  const themesView = $("#themes-view");
   if (welcome) welcome.classList.toggle("hidden", mode !== "home");
   if (bankWelcome) bankWelcome.classList.toggle("hidden", mode !== "bank");
   if (caseView) caseView.classList.toggle("hidden", mode !== "case");
+  if (themesView) themesView.classList.toggle("hidden", mode !== "themes");
 }
 
 function requestedAppView() {
@@ -1119,6 +1225,9 @@ function wireGlobal() {
   // Bouton Accueil (sidebar) : retour à l'écran d'accueil.
   const home = $("#btn-home");
   if (home) home.onclick = goHome;
+  // Grille de thèmes : retour à l'accueil.
+  const themesBack = $("#themes-back");
+  if (themesBack) themesBack.onclick = goHome;
   // Signalement d'un problème (version pré-alpha).
   wireReport();
   // Instrumentation d'usage : 1ʳᵉ frappe + nombre d'éditions (note UX §13).
@@ -1130,10 +1239,22 @@ function wireGlobal() {
     if (CURRENT) saveDraft(CURRENT.num, ta.value);
   });
   const search = $("#case-search");
-  if (search) search.addEventListener("input", () => {
-    CASE_SEARCH = search.value;
-    renderCaseList();
-  });
+  if (search) {
+    search.addEventListener("input", () => {
+      CASE_SEARCH = search.value;
+      renderCaseList();
+    });
+    search.addEventListener("focus", openSearchThemesDropdown);
+    document.addEventListener("click", (event) => {
+      const box = $("#search-themes-dropdown");
+      if (!box || box.classList.contains("hidden")) return;
+      if (event.target === search || box.contains(event.target)) return;
+      closeSearchThemesDropdown();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeSearchThemesDropdown();
+    });
+  }
   // Bascule de mode
   $("#mode-free").onclick = () => setMode("free");
   $("#mode-qcm").onclick = () => { if (!$("#mode-qcm").disabled) setMode("qcm"); };

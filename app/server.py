@@ -7,6 +7,7 @@ Endpoints :
   GET  /api/health            -> statut + présence clé OpenAI
   GET  /api/cases             -> index léger des 75 cas
   GET  /api/families          -> familles + compteurs
+  GET  /api/themes            -> thèmes larges (≥5 cas) pour l'accueil, non-spoiler
   GET  /api/case/<num>        -> énoncé public d'un cas (sans correction)
   GET  /api/case/<num>/full   -> cas complet (correction incluse) [debug/enseignant]
   GET  /api/case/<num>/qcm    -> QCM public d'un cas (question + options, sans solution)
@@ -21,6 +22,12 @@ Endpoints :
   POST /api/curation/<num>/mapping -> enregistre le mapping label->concept_id
   GET  /api/curation/<num>/golden  -> contrat golden (validants/descripteurs) pour le scorer
   GET  /images/<file>         -> tracés ECG (PNG)
+
+  -- Golden d'extraction (annotation, cf. GOLDEN_EXTRACTION.md) --
+  GET  /annotation                     -> page d'annotation (protégée, enseignant/expert)
+  GET  /api/annotation/overview        -> liste des items à annoter + statut
+  GET  /api/annotation/<item_id>       -> texte + extraction pipeline + concepts déjà annotés
+  POST /api/annotation/<item_id>       -> enregistre l'annotation experte {concepts, annotateur, slot}
 
 Lancement local :  python -m app.server   (ou via run.py)
 Prod (Scalingo)  :  gunicorn "app.server:create_app()"
@@ -37,6 +44,7 @@ from . import scoring_config
 from . import golden_config
 from . import neuro_grader
 from . import collector
+from . import extraction_golden
 from .grader import grade, DEFAULT_MODEL
 
 FRONTEND_DIR = os.path.abspath(
@@ -115,6 +123,13 @@ def create_app() -> Flask:
     @app.get("/api/families")
     def list_families():
         return jsonify(cases_repo.families())
+
+    @app.get("/api/themes")
+    def list_themes():
+        # Thèmes larges (≥5 cas), TOUJOURS exposés — même en mode anonymisé —
+        # car ils ne trahissent qu'une famille de diagnostics possibles, jamais
+        # le diagnostic d'un cas précis (cf. NOTE_UX_THEMES_ACCUEIL.md §4).
+        return jsonify(cases_repo.themes())
 
     @app.get("/api/case/<int:num>")
     def one_case(num: int):
@@ -387,6 +402,52 @@ def create_app() -> Flask:
     def curation_golden(num: int):
         _require_case(num)
         return jsonify(golden_config.golden_for_scorer(num))
+
+    # ---- Golden d'extraction (annotation) — cf. GOLDEN_EXTRACTION.md ----
+    @app.get("/annotation")
+    def annotation_page():
+        # Même protection que /curation : réservée à l'enseignant/expert.
+        if not _curation_authorized(request):
+            abort(403, description="Accès réservé.")
+        return send_from_directory(FRONTEND_DIR, "annotation.html")
+
+    @app.get("/api/annotation/overview")
+    def annotation_overview():
+        if not _curation_authorized(request):
+            abort(403, description="Accès réservé.")
+        return jsonify({"items": extraction_golden.overview()})
+
+    @app.get("/api/annotation/<item_id>")
+    def annotation_item(item_id: str):
+        if not _curation_authorized(request):
+            abort(403, description="Accès réservé.")
+        item = extraction_golden.get_item(item_id)
+        if item is None:
+            abort(404, description=f"Item '{item_id}' introuvable.")
+            raise RuntimeError("unreachable")
+        return jsonify({"item_id": item_id, **item})
+
+    @app.post("/api/annotation/<item_id>")
+    def annotation_save(item_id: str):
+        if not _curation_authorized(request):
+            abort(403, description="Accès réservé.")
+        payload = request.get_json(silent=True) or {}
+        concepts = payload.get("concepts")
+        if not isinstance(concepts, list):
+            abort(400, description="Champ 'concepts' (liste) requis.")
+            raise RuntimeError("unreachable")
+        annotateur = str(payload.get("annotateur", "")).strip()[:80]
+        slot = str(payload.get("slot", "annotation_expert")).strip()
+        try:
+            item = extraction_golden.save_annotation(
+                item_id, concepts, annotateur=annotateur, slot=slot)
+        except KeyError:
+            abort(404, description=f"Item '{item_id}' introuvable.")
+            raise RuntimeError("unreachable")
+        except ValueError as exc:
+            abort(400, description=str(exc))
+            raise RuntimeError("unreachable")
+        return jsonify({"item_id": item_id, "saved": True, **item})
 
     # ---- Images ECG -----------------------------------------------------
     @app.get("/images/<path:filename>")

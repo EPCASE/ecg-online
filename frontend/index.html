@@ -55,6 +55,10 @@
       <input id="case-search" type="search" inputmode="search" autocomplete="off"
              placeholder="Numéro ou thème" />
     </label>
+    <!-- Menu déroulant de thèmes : ouvert au focus de la recherche, évite
+         de repasser par l'accueil pour changer de thème (NOTE_UX_THEMES_ACCUEIL.md). -->
+    <div id="search-themes-dropdown" class="search-themes-dropdown hidden"></div>
+    <div id="sidebar-theme-banner" class="sidebar-theme-banner hidden"></div>
     <div id="family-filters" class="filters"></div>
     <ul id="case-list" class="case-list"></ul>
   </aside>
@@ -95,6 +99,18 @@
             <span class="hb-arrow">→</span>
           </button>
         </div>
+
+        <!-- S'entraîner par thème (NOTE_UX_THEMES_ACCUEIL.md, Option B) :
+             filtre d'entrée léger vers la banque existante, PAS un 3ᵉ système
+             de progression concurrent des parcours structurés. -->
+        <button id="action-themes" class="home-theme-entry" type="button">
+          <span class="hte-ic">🗂️</span>
+          <span class="hte-body">
+            <span class="hte-title">S'entraîner par thème</span>
+            <span class="hte-desc" id="themes-preview">Rythme · Conduction · Ischémie · …</span>
+          </span>
+          <span class="hb-arrow">→</span>
+        </button>
 
         <div class="home-free-practice">
           <span>Révision libre</span>
@@ -138,6 +154,16 @@
           </p>
         </div>
       </div>
+    </div>
+
+    <!-- Grille de thèmes (NOTE_UX_THEMES_ACCUEIL.md, Option B) : ouverte
+         depuis la carte « S'entraîner par thème ». Simple filtre d'entrée
+         vers la banque libre existante (ACTIVE_FAMILY / renderCaseList). -->
+    <div id="themes-view" class="themes-view hidden">
+      <button id="themes-back" class="sidebar-home" title="Retour à l'accueil">← Accueil</button>
+      <h2 class="hero-title">Choisis un thème à travailler</h2>
+      <p class="hero-sub">Chaque thème regroupe plusieurs cas cliniques proches — le diagnostic précis reste masqué jusqu'à ta réponse.</p>
+      <div id="themes-grid" class="themes-grid"></div>
     </div>
 
     <article id="case-view" class="case-view hidden">

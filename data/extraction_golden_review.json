@@ -1,0 +1,988 @@
+{
+  "1-01": {
+    "annotation_expert": {
+      "alertes": [],
+      "synthese": "L’annotation est correcte et complète, avec une correspondance directe entre chaque élément du texte et les concepts annotés."
+    }
+  },
+  "1-02": {
+    "annotation_expert": {
+      "alertes": [],
+      "synthese": "L’annotation est cohérente et complète par rapport au texte source ; aucun point douteux n’est identifié."
+    }
+  },
+  "10-01": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "Rythme régulier",
+          "type_probleme": "omission",
+          "commentaire": "Le texte indique explicitement « rythme sinusal, régulier », mais la régularité du rythme n’est pas annotée."
+        },
+        {
+          "concept": "Intervalle PR constant",
+          "type_probleme": "omission",
+          "commentaire": "Le texte précise « PR constant ». L’annotation « Intervalle PR [present] » ne restitue pas clairement cette constance."
+        }
+      ],
+      "synthese": "Annotation globalement fidèle, avec deux caractéristiques explicitement mentionnées qui semblent omises."
+    }
+  },
+  "11-01": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "Rythme régulier",
+          "type_probleme": "omission",
+          "commentaire": "Le texte mentionne explicitement « rythme sinusal, régulier », mais la régularité du rythme n’est pas reprise dans l’annotation."
+        },
+        {
+          "concept": "PR normal",
+          "type_probleme": "ok_mais_limite",
+          "commentaire": "« PR inférieur à 200 ms » exclut un PR prolongé, mais ne suffit pas strictement à affirmer un PR normal sans borne basse (un PR court reste possible). L’interprétation est néanmoins probablement celle voulue par l’étudiant."
+        }
+      ],
+      "synthese": "Annotation globalement fidèle et complète, avec omission de la régularité du rythme et une interprétation légèrement extensive du PR."
+    }
+  },
+  "12-01": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "Rythme régulier",
+          "type_probleme": "omission",
+          "commentaire": "Le texte indique explicitement « rythme sinusal, régulier », mais la régularité du rythme n’est pas annotée."
+        }
+      ],
+      "synthese": "Annotation globalement fidèle et complète, hormis l’omission de la régularité du rythme."
+    }
+  },
+  "13-01": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "Pas d'anomalie de la repolarisation",
+          "type_probleme": "douteux",
+          "commentaire": "La formulation « repolarisation appropriée » dans un contexte de bloc de branche gauche complet signifie plutôt que les troubles secondaires de repolarisation sont concordants avec le bloc, et non nécessairement qu’il n’existe aucune anomalie de repolarisation."
+        }
+      ],
+      "synthese": "Annotation globalement fidèle et complète, avec une réserve sur l’interprétation de la repolarisation appropriée en présence d’un bloc de branche gauche complet."
+    }
+  },
+  "13-02": {
+    "annotation_expert": {
+      "alertes": [],
+      "synthese": "Annotation correcte et complète : « bbg », « rs » et « bav 1 » correspondent respectivement aux trois concepts annotés comme présents."
+    }
+  },
+  "13-03": {
+    "annotation_expert": {
+      "alertes": [],
+      "synthese": "L’annotation est complète et fidèle au texte de l’étudiant ; aucun point douteux identifié."
+    },
+    "annotation_expert_2": {
+      "alertes": [
+        {
+          "concept": "BAV de type 1",
+          "type_probleme": "douteux",
+          "commentaire": "Le texte « PR supérieur à 200 ms, BAV 1 » désigne vraisemblablement un bloc atrioventriculaire du premier degré. L’intitulé « BAV de type 1 » peut être confondu avec un BAV du deuxième degré Mobitz I et devrait être vérifié ou remplacé par « BAV du premier degré »."
+        }
+      ],
+      "synthese": "Annotation globalement complète et fidèle, avec une ambiguïté terminologique concernant le degré/type du BAV."
+    }
+  },
+  "13-04": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "PR normal",
+          "type_probleme": "statut_a_verifier",
+          "commentaire": "Le texte indique seulement « PR inférieur à 200ms ». Cela exclut un PR prolongé, mais ne suffit pas à affirmer un PR normal sans borne basse (un PR court reste possible)."
+        },
+        {
+          "concept": "Onde T négative",
+          "type_probleme": "ok_mais_limite",
+          "commentaire": "Le concept apparaît deux fois alors que le texte comporte une seule assertion : « onde T négative en D1 et AVL ». Le doublon n’est justifié que si chaque annotation correspond séparément à une dérivation, ce qui n’est pas explicité."
+        }
+      ],
+      "synthese": "Annotation globalement fidèle et complète, avec un statut « PR normal » à vérifier et un possible doublon pour l’onde T négative."
+    }
+  },
+  "14-01": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "PR irrégulier",
+          "type_probleme": "omission",
+          "commentaire": "Le texte mentionne explicitement « PR irrégulier », mais ce concept n’apparaît pas dans l’annotation. Cette formulation est en outre atypique pour un Mobitz II, sans que cela justifie de l’omettre."
+        },
+        {
+          "concept": "Onde P bloquée/non conduite",
+          "type_probleme": "ok_mais_limite",
+          "commentaire": "La formulation « blocage de l’onde P » décrit explicitement une onde P bloquée/non conduite. Elle peut être portée par le diagnostic de BAV 2, mais n’est pas annotée comme constat distinct."
+        }
+      ],
+      "synthese": "Les diagnostics principaux sont correctement repris, mais « PR irrégulier » est omis et la notion d’onde P bloquée pourrait mériter une annotation distincte."
+    }
+  },
+  "14-02": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "Arythmie atriale",
+          "type_probleme": "douteux",
+          "commentaire": "Le texte indique seulement « rythme non sinusal », ce qui ne permet pas d’affirmer spécifiquement une arythmie atriale ; un rythme jonctionnel ou ventriculaire est également possible."
+        }
+      ],
+      "synthese": "L’annotation est globalement fidèle, mais l’interprétation de « rythme non sinusal » comme arythmie atriale est trop spécifique."
+    }
+  },
+  "14-03": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "Arythmie atriale",
+          "type_probleme": "douteux",
+          "commentaire": "La mention « non sinusal » indique seulement que le rythme n'est pas sinusal, sans identifier nécessairement une arythmie d'origine atriale ; un rythme jonctionnel ou ventriculaire reste possible."
+        },
+        {
+          "concept": "Rythme sinusal",
+          "type_probleme": "omission",
+          "commentaire": "Le texte affirme explicitement « non sinusal », mais l'absence de rythme sinusal n'apparaît pas dans l'annotation."
+        }
+      ],
+      "synthese": "Le bloc de branche gauche et l'irrégularité sont correctement annotés, mais l'origine atriale est surinterprétée et le caractère non sinusal paraît omis."
+    }
+  },
+  "14-04": {
+    "annotation_expert": {
+      "alertes": [],
+      "synthese": "Annotation cohérente et complète au niveau conceptuel ; le BBD incomplet justifie également le concept générique de bloc de branche droit."
+    }
+  },
+  "15-01": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "Rythme régulier",
+          "type_probleme": "omission",
+          "commentaire": "Le texte indique explicitement « rythme sinusal, régulier », mais le caractère régulier du rythme n’est pas annoté."
+        },
+        {
+          "concept": "Topographie antéro-latérale des ondes Q pathologiques",
+          "type_probleme": "omission",
+          "commentaire": "La formulation « onde Q de nécrose antéro-latéral[e] » précise une topographie antéro-latérale, alors que seule la présence générique d’une onde Q pathologique est annotée."
+        }
+      ],
+      "synthese": "Annotation globalement fidèle, avec omission du caractère régulier du rythme et de la topographie antéro-latérale des ondes Q."
+    },
+    "annotation_expert_2": {
+      "alertes": [
+        {
+          "concept": "Rythme régulier",
+          "type_probleme": "omission",
+          "commentaire": "Le texte précise explicitement « rythme sinusal, régulier », mais le caractère régulier du rythme n’est pas annoté."
+        },
+        {
+          "concept": "Localisation antéro-latérale de l’onde Q pathologique",
+          "type_probleme": "omission",
+          "commentaire": "Le texte localise l’onde Q de nécrose au territoire « antéro-latéral » ; l’annotation retient l’onde Q pathologique sans sa localisation."
+        }
+      ],
+      "synthese": "Annotation globalement fidèle, avec deux précisions explicites du texte non reprises : la régularité du rythme et la localisation antéro-latérale des ondes Q."
+    }
+  },
+  "15-02": {
+    "annotation_expert": {
+      "alertes": [],
+      "synthese": "Annotation correcte et complète : « sinusal regulier » correspond à un rythme sinusal présent, « bloc de branche gauche » est bien annoté présent, et « axe anormal » est correctement représenté par l’absence d’un axe normal du QRS."
+    },
+    "annotation_expert_2": {
+      "alertes": [],
+      "synthese": "Annotation cohérente et complète : « axe anormal » est correctement représenté par l'absence d'un axe normal du QRS."
+    }
+  },
+  "16-01": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "PR normal",
+          "type_probleme": "douteux",
+          "commentaire": "Le texte indique « interval PR limite », ce qui ne permet pas d’affirmer un PR normal. La valeur est décrite comme borderline, sans précision sur son caractère normal, court ou prolongé."
+        }
+      ],
+      "synthese": "Annotation globalement fidèle, avec une interprétation trop affirmative du caractère normal de l’intervalle PR."
+    }
+  },
+  "16-02": {
+    "annotation_expert": {
+      "alertes": [],
+      "synthese": "Annotation correcte et complète, fidèle au texte source."
+    },
+    "annotation_expert_2": {
+      "alertes": [],
+      "synthese": "Annotation correcte et complète, fidèle au texte de l’étudiant."
+    }
+  },
+  "17-01": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "Rythme régulier",
+          "type_probleme": "omission",
+          "commentaire": "Le texte indique explicitement « rythme sinusal, régulier », mais le caractère régulier du rythme n’est pas annoté."
+        },
+        {
+          "concept": "PR normal",
+          "type_probleme": "ok_mais_limite",
+          "commentaire": "« PR inférieur à 200 ms » exclut un PR prolongé, mais ne suffit pas strictement à affirmer un PR normal sans borne inférieure (un PR court reste possible)."
+        }
+      ],
+      "synthese": "Annotation globalement fidèle, avec omission du rythme régulier et une interprétation légèrement extensive du PR comme normal."
+    },
+    "annotation_expert_2": {
+      "alertes": [
+        {
+          "concept": "Rythme régulier",
+          "type_probleme": "omission",
+          "commentaire": "Le texte mentionne explicitement « rythme sinusal, régulier », mais la régularité du rythme n’apparaît pas dans l’annotation."
+        }
+      ],
+      "synthese": "Annotation globalement fidèle, avec une omission probable de la régularité du rythme."
+    }
+  },
+  "18-01": {
+    "annotation_expert": {
+      "alertes": [],
+      "synthese": "L’annotation est cohérente et complète par rapport au texte source."
+    }
+  },
+  "18-02": {
+    "annotation_expert": {
+      "alertes": [],
+      "synthese": "L’annotation est cohérente et complète par rapport au texte source ; « bloc sino atrial 1 » est correctement couvert par le concept « Bloc sino-atrial » [present]."
+    },
+    "annotation_expert_2": {
+      "alertes": [],
+      "synthese": "L’annotation est cohérente et complète par rapport au texte source ; « bloc sino atrial 1 » est correctement couvert par le concept générique « Bloc sino-atrial »."
+    }
+  },
+  "19-01": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "Bloc sino-atrial du 2e degré type II",
+          "type_probleme": "omission",
+          "commentaire": "Le texte précise « Bloc sino atrial 2eme degrès 2 », alors que l’annotation ne retient que le concept générique de bloc sino-atrial, sans le 2e degré type II."
+        },
+        {
+          "concept": "Conduction auriculo-ventriculaire 1:1",
+          "type_probleme": "omission",
+          "commentaire": "La mention explicite « conduction 1/1 » n’est pas reprise dans l’annotation."
+        }
+      ],
+      "synthese": "Annotation globalement fidèle, mais deux précisions explicitement formulées dans le texte ne sont pas représentées."
+    }
+  },
+  "2-01": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "BAV de type 1",
+          "type_probleme": "douteux",
+          "commentaire": "Le texte évoque « limite BAV du 1er degré ? », et non un BAV de type I (Mobitz I). Si le libellé « BAV de type 1 » désigne un Mobitz I, il s'agit d'une mauvaise interprétation ; le concept attendu serait BAV du premier degré, en hypothèse."
+        },
+        {
+          "concept": "PR normal",
+          "type_probleme": "ok_mais_limite",
+          "commentaire": "« PR 200 ms - limite BAV du 1er degré ? » décrit un PR à la limite supérieure, avec doute sur son allongement. L'annotation catégorique « PR normal [present] » est donc discutable, même si 200 ms peut encore être considéré comme normal selon la convention retenue."
+        }
+      ],
+      "synthese": "Annotation globalement fidèle, avec une ambiguïté importante entre BAV du premier degré et BAV de type I, ainsi qu'un caractère limite du statut du PR."
+    }
+  },
+  "2-02": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "Rythme électro-entraîné ventriculaire / stimulation ventriculaire",
+          "type_probleme": "omission",
+          "commentaire": "Le texte mentionne explicitement un « rythme électro-entrainé au niveau ventriculaire », mais aucun concept spécifique de stimulation/entraînement ventriculaire n’apparaît dans l’annotation. Le concept générique « Rythme » ne restitue pas cette information."
+        }
+      ],
+      "synthese": "Annotation globalement cohérente, avec une omission probable de la stimulation ventriculaire explicitement décrite."
+    }
+  },
+  "2-03": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "PR allongé",
+          "type_probleme": "statut_a_verifier",
+          "commentaire": "Le texte indique « PR 200ms - limite », soit une valeur à la limite supérieure de la normale, sans affirmer clairement un allongement. Le statut present est discutable ; hypothese serait plus fidèle."
+        },
+        {
+          "concept": "BAV de type 1",
+          "type_probleme": "statut_a_verifier",
+          "commentaire": "L'étudiant écrit « limite BAV di 1er degre? » avec un point d'interrogation : le diagnostic est envisagé, non affirmé. Le statut devrait plutôt être hypothese. Par ailleurs, « BAV de type 1 » ne doit pas être interprété comme un Mobitz I, qui n'est pas décrit."
+        }
+      ],
+      "synthese": "Annotation globalement fidèle, avec une suraffirmation probable de l'allongement du PR et du BAV du premier degré, tous deux formulés comme limites ou incertains."
+    }
+  },
+  "2-04": {
+    "annotation_expert": {
+      "alertes": [],
+      "synthese": "L’annotation est cohérente et complète : chaque concept exprimé dans le texte est repris avec un statut adapté, notamment le BAV du premier degré en hypothèse (« Possible »)."
+    },
+    "annotation_expert_2": {
+      "alertes": [],
+      "synthese": "L’annotation est cohérente et complète : les quatre concepts exprimés sont repris avec des statuts adaptés, notamment le BAV du premier degré en hypothèse (« Possible »)."
+    }
+  },
+  "2-05": {
+    "annotation_expert": {
+      "alertes": [],
+      "synthese": "L’annotation est correcte et complète : « FA » correspond à une fibrillation atriale et « bloc de branche » est explicitement mentionné."
+    },
+    "annotation_expert_2": {
+      "alertes": [],
+      "synthese": "L’annotation est correcte et complète : « FA » correspond à une fibrillation atriale et « bloc de branche » est explicitement mentionné, tous deux comme présents."
+    }
+  },
+  "20-01": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "Pause sinusale supérieure à 3 secondes",
+          "type_probleme": "omission",
+          "commentaire": "Le texte précise « pause sinusale supérieure à 3 secondes », alors que l’annotation ne retient que le concept générique « Pause ». La nature sinusale, et éventuellement le seuil > 3 s si ces concepts sont disponibles, sont omis."
+        },
+        {
+          "concept": "BAV de type 1",
+          "type_probleme": "statut_a_verifier",
+          "commentaire": "« PR supérieur à 200 ms, BAV1 » désigne très probablement un BAV du premier degré. « BAV de type 1 » peut au contraire être compris comme un BAV du deuxième degré Mobitz I ; le libellé est donc à vérifier."
+        },
+        {
+          "concept": "Bloc de branche droit complet",
+          "type_probleme": "ok_mais_limite",
+          "commentaire": "Le texte mentionne « bloc de branche droite » sans employer explicitement le terme « complet ». La présence associée de « QRS large » rend cette interprétation plausible, mais le caractère complet reste une précision déduite."
+        }
+      ],
+      "synthese": "Annotation globalement fidèle, avec une perte de précision sur la pause sinusale et une ambiguïté importante entre BAV du premier degré et BAV de type I."
+    }
+  },
+  "21-01": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "Arythmie atriale",
+          "type_probleme": "douteux",
+          "commentaire": "Le texte dit « rythme non sinusal » et précise un « échappement jonctionel » ; cela ne permet pas de conclure à une arythmie atriale. Le rythme décrit est plutôt d'origine jonctionnelle."
+        },
+        {
+          "concept": "Rythme non sinusal",
+          "type_probleme": "omission",
+          "commentaire": "La mention explicite « rythme non sinusal » n'est pas reprise comme telle dans l'annotation ; elle ne devrait pas être remplacée par « Arythmie atriale »."
+        }
+      ],
+      "synthese": "Annotation globalement fidèle, sauf l'assimilation injustifiée du rythme non sinusal jonctionnel à une arythmie atriale."
+    }
+  },
+  "23-01": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "Rythme régulier",
+          "type_probleme": "omission",
+          "commentaire": "Le texte indique explicitement « ECG sinusal et régulier », mais le caractère régulier du rythme n’apparaît pas dans l’annotation."
+        }
+      ],
+      "synthese": "Annotation globalement fidèle, avec pour seule omission apparente la régularité du rythme."
+    }
+  },
+  "23-02": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "Rythme régulier",
+          "type_probleme": "omission",
+          "commentaire": "Le texte mentionne explicitement « Rythme sinusale régulier à 72 bpm », mais la régularité du rythme n’est pas reprise dans l’annotation."
+        }
+      ],
+      "synthese": "Annotation globalement fidèle ; seule la régularité explicitement décrite semble omise."
+    }
+  },
+  "23-03": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "Rythme régulier",
+          "type_probleme": "omission",
+          "commentaire": "Le texte décrit explicitement un rythme « régulier », mais cette caractéristique n’apparaît pas dans l’annotation finale."
+        }
+      ],
+      "synthese": "Annotation globalement fidèle, avec une omission probable de la régularité du rythme."
+    }
+  },
+  "23-04": {
+    "annotation_expert": {
+      "alertes": [],
+      "synthese": "L’annotation est correcte et complète ; les deux formulations relatives à la repolarisation sont redondantes mais cohérentes avec « pas de trouble de la repolarisation »."
+    },
+    "annotation_expert_2": {
+      "alertes": [],
+      "synthese": "Annotation correcte et complète, fidèle au texte source."
+    }
+  },
+  "23-05": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "Rythme régulier",
+          "type_probleme": "omission",
+          "commentaire": "Le texte indique explicitement « rythme régulier », mais cette caractéristique n’apparaît pas dans l’annotation."
+        },
+        {
+          "concept": "Bradycardie",
+          "type_probleme": "statut_a_verifier",
+          "commentaire": "La seule fréquence indiquée est « FC 60 bpm ». Une bradycardie est habituellement définie par une FC strictement inférieure à 60 bpm ; le statut present est donc discutable."
+        }
+      ],
+      "synthese": "Annotation globalement fidèle, avec une omission de la régularité du rythme et une bradycardie discutable à 60 bpm."
+    }
+  },
+  "24-01": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "Rythme régulier",
+          "type_probleme": "omission",
+          "commentaire": "Le texte décrit explicitement un « rythme sinusal régulier à 66 bpm », mais la régularité du rythme n’est pas annotée. Cette affirmation textuelle devrait être capturée, même si elle paraît physiologiquement discutable avec un BAV du 2e degré Mobitz I."
+        }
+      ],
+      "synthese": "Annotation globalement fidèle et complète, hormis l’omission de la régularité explicitement mentionnée."
+    },
+    "annotation_expert_2": {
+      "alertes": [
+        {
+          "concept": "Rythme régulier",
+          "type_probleme": "omission",
+          "commentaire": "Le texte affirme explicitement « Rythme sinusal régulier à 66 bpm », mais le caractère régulier du rythme n’est pas annoté. Cette assertion est par ailleurs physiologiquement discutable avec un BAV 2 Mobitz 1, mais elle reste présente dans le texte source."
+        }
+      ],
+      "synthese": "Annotation globalement fidèle, avec une omission possible du caractère régulier explicitement mentionné."
+    }
+  },
+  "24-02": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "Localisation en territoire inférieur",
+          "type_probleme": "ok_mais_limite",
+          "commentaire": "La mention « DIM inférieur » semble possiblement préciser une localisation en territoire/dérivations inférieures, qui n’est pas reprise dans l’annotation. Toutefois, cette formulation est ambiguë ou possiblement fautive."
+        }
+      ],
+      "synthese": "Le trouble de repolarisation est correctement annoté ; seule une éventuelle localisation inférieure, formulée de manière ambiguë, pourrait manquer."
+    }
+  },
+  "24-03": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "Trouble de repolarisation",
+          "type_probleme": "douteux",
+          "commentaire": "Le texte dit « pas de troubles de la dépolarisation », et non de la repolarisation. L’annotation « Trouble de repolarisation [absent] » repose donc sur une substitution de concept non explicitée."
+        },
+        {
+          "concept": "Trouble de dépolarisation",
+          "type_probleme": "omission",
+          "commentaire": "La négation explicite « pas de troubles de la dépolarisation » n’est pas reprise dans l’annotation."
+        },
+        {
+          "concept": "Arythmie atriale",
+          "type_probleme": "statut_a_verifier",
+          "commentaire": "« rythme irrégulier non sinusal » ne suffit pas à caractériser formellement une arythmie atriale ; l’irrégularité peut notamment être liée au BAV de Mobitz 1 décrit. Le caractère non sinusal est affirmé, mais son mécanisme atrial n’est pas précisé."
+        }
+      ],
+      "synthese": "Annotation globalement fidèle, avec une confusion probable entre dépolarisation et repolarisation et une interprétation possiblement excessive du rythme non sinusal comme arythmie atriale."
+    }
+  },
+  "24-04": {
+    "annotation_expert": {
+      "alertes": [],
+      "synthese": "L’annotation est cohérente et complète par rapport au texte ; aucun point douteux significatif n’est identifié."
+    }
+  },
+  "24-05": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "Rythme sinusal irrégulier / arythmie sinusale",
+          "type_probleme": "omission",
+          "commentaire": "Le texte mentionne explicitement « rythme sinusal irrégulier », mais le caractère irrégulier/une possible arythmie sinusale n’est pas annoté."
+        },
+        {
+          "concept": "Hypertrophie atriale",
+          "type_probleme": "omission",
+          "commentaire": "Le texte affirme « hypertrophie atriale », concept absent de l’annotation, même si le côté n’est pas précisé."
+        },
+        {
+          "concept": "Absence d'onde Q pathologique",
+          "type_probleme": "ok_mais_limite",
+          "commentaire": "Le texte dit seulement « pas de signe de nécrose » et ne mentionne pas spécifiquement les ondes Q. L’assimilation à une absence d’onde Q pathologique est plausible mais plus précise que la formulation source."
+        }
+      ],
+      "synthese": "Annotation globalement fidèle, mais deux éléments explicitement décrits sont omis et la normalisation de l’absence de signe de nécrose en absence d’onde Q pathologique est à confirmer."
+    }
+  },
+  "25-01": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "Bradycardie",
+          "type_probleme": "statut_a_verifier",
+          "commentaire": "Le texte indique « FC 60 ». Une fréquence exactement à 60/min n’est généralement pas une bradycardie (habituellement < 60/min) ; le statut present est donc discutable."
+        },
+        {
+          "concept": "Arythmie atriale",
+          "type_probleme": "douteux",
+          "commentaire": "« rythme irrégulier non sinusal » ne suffit pas à caractériser explicitement une arythmie atriale ; l’origine atriale n’est pas affirmée."
+        },
+        {
+          "concept": "Localisation antérieure de l’onde Q de nécrose",
+          "type_probleme": "omission",
+          "commentaire": "Le territoire est précisé dans « onde Q de nécrose en antérieur », mais seule la présence d’une onde Q pathologique est annotée."
+        }
+      ],
+      "synthese": "Annotation globalement fidèle, avec une bradycardie discutable à 60/min, une interprétation atriale insuffisamment étayée et l’omission du territoire antérieur."
+    }
+  },
+  "25-02": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "Rythme régulier",
+          "type_probleme": "omission",
+          "commentaire": "Le texte mentionne explicitement « Rythme régulier », mais cette caractéristique n’est pas reprise dans l’annotation."
+        },
+        {
+          "concept": "Bradycardie",
+          "type_probleme": "douteux",
+          "commentaire": "La fréquence indiquée est « 60 bpm », valeur habituellement considérée comme la limite basse de la normale ; le texte ne qualifie pas le rythme de bradycarde. Le statut present est donc discutable."
+        }
+      ],
+      "synthese": "Annotation globalement fidèle, avec une omission du caractère régulier et une bradycardie insuffisamment étayée à 60 bpm."
+    }
+  },
+  "25-03": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "Bradycardie",
+          "type_probleme": "statut_a_verifier",
+          "commentaire": "Le texte indique une fréquence à « 60 bpm » sans employer le terme bradycardie. À la limite conventionnelle de 60/min, le statut présent est discutable, surtout sans fréquence inférieure à 60/min."
+        },
+        {
+          "concept": "Rythme sinusal irrégulier / arythmie sinusale",
+          "type_probleme": "omission",
+          "commentaire": "La qualification « irrégulier » dans « rythme sinusal irrégulier » n’est pas reprise. Elle pourrait correspondre à une irrégularité du rythme ou à une arythmie sinusale."
+        }
+      ],
+      "synthese": "Annotation globalement fidèle, avec une bradycardie discutable à 60 bpm et l’irrégularité du rythme sinusal non reprise."
+    }
+  },
+  "25-04": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "Arythmie atriale",
+          "type_probleme": "douteux",
+          "commentaire": "Le texte dit seulement « rythme irrégulier et non sinusal », ce qui ne permet pas d’affirmer spécifiquement une arythmie d’origine atriale. Il serait plus fidèle d’annoter un rythme non sinusal/une arythmie non spécifiée."
+        }
+      ],
+      "synthese": "Annotation globalement fidèle, avec une possible surinterprétation de l’origine atriale du rythme non sinusal."
+    }
+  },
+  "25-05": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "PR allongé",
+          "type_probleme": "douteux",
+          "commentaire": "Le texte indique « PR fixe à 200 ms » sans le qualifier d’allongé. Une durée de 200 ms correspond à la limite supérieure de la normale, et non clairement à un PR prolongé."
+        }
+      ],
+      "synthese": "Annotation globalement fidèle, avec une possible surinterprétation du PR à 200 ms comme allongé."
+    }
+  },
+  "26-01": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "Rythme régulier",
+          "type_probleme": "omission",
+          "commentaire": "Le qualificatif « régulière » dans « Bradycardie régulière » n’est pas repris ; il décrit explicitement la régularité du rythme."
+        }
+      ],
+      "synthese": "Annotation globalement fidèle, avec une omission possible de la régularité du rythme."
+    }
+  },
+  "26-02": {
+    "annotation_expert": {
+      "alertes": [],
+      "synthese": "L’annotation correspond fidèlement au texte « BAV 2/1 » et son statut present est approprié."
+    }
+  },
+  "26-03": {
+    "annotation_expert": {
+      "alertes": [],
+      "synthese": "Annotation correcte et complète, fidèle aux quatre éléments explicitement mentionnés dans le texte."
+    }
+  },
+  "26-04": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "Rythme régulier",
+          "type_probleme": "omission",
+          "commentaire": "Le texte précise « régulier », mais la régularité du rythme n’est pas annotée."
+        },
+        {
+          "concept": "Fréquence cardiaque à 48 bpm",
+          "type_probleme": "omission",
+          "commentaire": "La valeur explicite « 48 bpm » n’est pas reprise ; seule la bradycardie est annotée."
+        }
+      ],
+      "synthese": "Annotation globalement fidèle, avec deux précisions explicites du texte non reprises : la régularité du rythme et la fréquence chiffrée."
+    }
+  },
+  "26-05": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "Rythme régulier",
+          "type_probleme": "omission",
+          "commentaire": "Le texte affirme explicitement « Rythme sinusal et régulier », mais le caractère régulier du rythme n’est pas annoté."
+        }
+      ],
+      "synthese": "Annotation globalement cohérente ; seule l’omission explicite du caractère régulier du rythme est à vérifier."
+    }
+  },
+  "28-01": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "Arythmie atriale",
+          "type_probleme": "douteux",
+          "commentaire": "Le texte dit « rythme irrégulier non sinusal », ce qui ne suffit pas à conclure spécifiquement à une arythmie atriale ; un rythme non sinusal peut notamment être jonctionnel ou ventriculaire, en particulier dans un BAV complet."
+        },
+        {
+          "concept": "Trouble de la dépolarisation",
+          "type_probleme": "omission",
+          "commentaire": "Le texte affirme « pas de troubles de la dépolarisation », mais cette négation n’est pas reprise dans l’annotation."
+        },
+        {
+          "concept": "Pas d’anomalie de la repolarisation",
+          "type_probleme": "douteux",
+          "commentaire": "L’étudiant parle de « dépolarisation » et non de repolarisation. L’item « Pas d’anomalie de la repolarisation » ne correspond donc pas littéralement au texte et son statut est à contrôler selon la convention d’annotation."
+        }
+      ],
+      "synthese": "L’annotation reprend correctement la plupart des éléments, mais surinterprète possiblement le rythme non sinusal et confond dépolarisation et repolarisation."
+    }
+  },
+  "28-02": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "Rythme régulier",
+          "type_probleme": "omission",
+          "commentaire": "Le texte indique explicitement « rythme régulier », mais cette caractéristique n’apparaît pas dans l’annotation."
+        }
+      ],
+      "synthese": "Annotation globalement fidèle, avec pour seule omission claire la régularité du rythme."
+    }
+  },
+  "28-03": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "Rythme régulier",
+          "type_probleme": "omission",
+          "commentaire": "Le texte mentionne explicitement « rythme régulier », mais cette caractéristique n’apparaît pas dans l’annotation."
+        }
+      ],
+      "synthese": "Annotation globalement fidèle ; seule la régularité du rythme semble avoir été omise."
+    }
+  },
+  "28-04": {
+    "annotation_expert": {
+      "alertes": [],
+      "synthese": "Annotation correcte et complète, fidèle au texte de l’étudiant ; aucun point douteux identifié."
+    }
+  },
+  "28-05": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "Fréquence cardiaque à 54 bpm / bradycardie",
+          "type_probleme": "omission",
+          "commentaire": "Le texte indique explicitement « fréquence à 54 bpm », donnée non reprise dans l’annotation ; cette fréquence correspond en outre à une bradycardie."
+        },
+        {
+          "concept": "Signes d’hypertrophie",
+          "type_probleme": "omission",
+          "commentaire": "Le texte affirme « pas de signes d'hypertrophie », mais l’absence d’hypertrophie n’est pas annotée."
+        }
+      ],
+      "synthese": "Annotation globalement fidèle, avec deux omissions explicites concernant la fréquence cardiaque basse et l’absence de signes d’hypertrophie."
+    }
+  },
+  "29-01": {
+    "annotation_expert": {
+      "alertes": [],
+      "synthese": "L’annotation est complète et fidèle au texte de l’étudiant, y compris le statut absent du trouble de repolarisation (« sans trouble de la repolarisation »)."
+    }
+  },
+  "3-01": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "ECG normal",
+          "type_probleme": "douteux",
+          "commentaire": "Le texte ne qualifie pas l’ECG de normal et décrit au contraire une « bradycardie sinusale à 56 bpm ». L’inférence d’un ECG globalement normal est donc discutable."
+        },
+        {
+          "concept": "Absence d'ischémie",
+          "type_probleme": "douteux",
+          "commentaire": "« Ni séquelle d’ischémie décelée » affirme l’absence de séquelle d’ischémie, pas nécessairement l’absence de toute ischémie actuelle. Le concept annoté est plus large que la formulation source."
+        }
+      ],
+      "synthese": "Annotation globalement fidèle, avec deux généralisations discutables concernant la normalité globale de l’ECG et l’absence d’ischémie."
+    },
+    "annotation_expert_2": {
+      "alertes": [
+        {
+          "concept": "Absence d'ischémie",
+          "type_probleme": "douteux",
+          "commentaire": "Le texte dit seulement « ni séquelle d'ischémie décelée », ce qui exclut des séquelles d'ischémie, et non toute ischémie actuelle. « Absence d'ischémie » est donc une généralisation excessive."
+        },
+        {
+          "concept": "ECG normal",
+          "type_probleme": "douteux",
+          "commentaire": "Le texte ne conclut pas explicitement à un « ECG normal » et décrit une bradycardie sinusale à 56 bpm. Cette synthèse paraît extrapolée."
+        },
+        {
+          "concept": "QT normal",
+          "type_probleme": "ok_mais_limite",
+          "commentaire": "La formulation exacte est « QTc normal ». L'annotation « QT normal » peut être acceptable selon l'ontologie, mais confond potentiellement QT mesuré et QT corrigé."
+        }
+      ],
+      "synthese": "Annotation globalement fidèle, avec une généralisation discutable concernant l'ischémie et une conclusion d'ECG normal non explicitement formulée."
+    }
+  },
+  "3-02": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "Pas d'anomalie de la repolarisation",
+          "type_probleme": "statut_a_verifier",
+          "commentaire": "Le texte affirme explicitement « pas anomalie [...] repolarisation ». Le concept négatif « Pas d'anomalie de la repolarisation » devrait donc être [present], et non [absent]."
+        },
+        {
+          "concept": "Rythme irrégulier",
+          "type_probleme": "omission",
+          "commentaire": "Le caractère irrégulier est explicitement décrit dans « Bradycardie à 48 bpm irrégulière » mais n'apparaît pas dans l'annotation."
+        }
+      ],
+      "synthese": "Annotation globalement fidèle, avec un statut probablement inversé pour l'absence d'anomalie de repolarisation et l'omission du caractère irrégulier du rythme."
+    }
+  },
+  "3-03": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "Rythme irrégulier",
+          "type_probleme": "omission",
+          "commentaire": "Le texte décrit explicitement un rythme « irrégulière », mais cette irrégularité n’apparaît pas dans l’annotation."
+        },
+        {
+          "concept": "Pas d'anomalie de la repolarisation",
+          "type_probleme": "statut_a_verifier",
+          "commentaire": "Le texte affirme « pas anomalie […] de repolarisation ». Si le concept annoté est bien « Pas d'anomalie de la repolarisation », son statut devrait être present et non absent, même si cette affirmation est contradictoire avec le « sous ST v1 v2 »."
+        }
+      ],
+      "synthese": "Annotation globalement fidèle, mais avec omission du caractère irrégulier et probable inversion du statut concernant l'absence d'anomalie de repolarisation."
+    }
+  },
+  "3-04": {
+    "annotation_expert": {
+      "alertes": [],
+      "synthese": "L’annotation est cohérente et complète par rapport au texte source."
+    }
+  },
+  "33-01": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "Rythme régulier",
+          "type_probleme": "omission",
+          "commentaire": "Le texte indique explicitement « Rythme sinusal et régulier », mais le caractère régulier du rythme n’est pas annoté."
+        },
+        {
+          "concept": "Miroir",
+          "type_probleme": "douteux",
+          "commentaire": "L’annotation « Miroir » reprend littéralement un segment manifestement fautif ou ambigu (« simplet mono miroir »). Dans ce contexte, l’étudiant voulait probablement écrire « simple et monomorphe » ; le concept de miroir est donc douteux."
+        },
+        {
+          "concept": "Extrasystole atriale simple et monomorphe",
+          "type_probleme": "ok_mais_limite",
+          "commentaire": "La formulation « simplet mono miroir » semble probablement correspondre à « simple et monomorphe ». Si cette lecture est retenue, les caractères simple et monomorphe de l’extrasystole ont été omis, mais le texte est trop altéré pour l’affirmer avec certitude."
+        }
+      ],
+      "synthese": "Annotation globalement fidèle, avec omission du rythme régulier et interprétation probablement erronée d’une formulation typographique ambiguë autour de l’extrasystole."
+    }
+  },
+  "37-01": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "Flutter droit typique",
+          "type_probleme": "douteux",
+          "commentaire": "Le texte indique seulement « Flutter atrial » sans préciser son caractère droit ni typique. Cette sous-classification paraît surinterprétée."
+        },
+        {
+          "concept": "Pas d'anomalie de la repolarisation",
+          "type_probleme": "statut_a_verifier",
+          "commentaire": "Le texte affirme explicitement « pas d’anomalie de la repolarisation ». Si le concept annoté est bien la négation elle-même, son statut devrait être present, et non absent."
+        }
+      ],
+      "synthese": "Annotation globalement fidèle, mais avec une spécification injustifiée du type de flutter et un statut probablement incohérent pour l’absence d’anomalie de repolarisation."
+    }
+  },
+  "37-02": {
+    "annotation_expert": {
+      "alertes": [],
+      "synthese": "Annotation correcte et complète, fidèle au texte source."
+    },
+    "annotation_expert_2": {
+      "alertes": [],
+      "synthese": "Annotation correcte et complète, fidèle au texte source."
+    }
+  },
+  "37-03": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "Rythme non sinusal",
+          "type_probleme": "omission",
+          "commentaire": "Le texte indique explicitement « non sinusal », mais aucun concept correspondant à un rythme non sinusal n’apparaît dans l’annotation."
+        }
+      ],
+      "synthese": "Annotation globalement fidèle, avec une omission possible de la mention explicite de rythme non sinusal."
+    }
+  },
+  "37-04": {
+    "annotation_expert": {
+      "alertes": [],
+      "synthese": "L’annotation est cohérente et complète : la fibrillation atriale, l’arythmie atriale associée et le caractère irrégulier sont explicitement ou directement exprimés dans le texte."
+    }
+  },
+  "37-05": {
+    "annotation_expert": {
+      "alertes": [],
+      "synthese": "Annotation correcte et cohérente avec le texte : la fibrillation atriale est explicitement décrite, avec un rythme atrial non sinusal et irrégulier."
+    }
+  },
+  "38-01": {
+    "annotation_expert": {
+      "alertes": [],
+      "synthese": "L’annotation est cohérente et complète ; « Pause sinusale » est correctement couverte par le concept générique « Pause »."
+    }
+  },
+  "39-01": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "Frequence normale",
+          "type_probleme": "ok_mais_limite",
+          "commentaire": "Le texte dit « rythme normal » mais ne mentionne pas explicitement une fréquence normale. L’assimilation de « rythme normal » à une fréquence normale est possible, mais reste ambiguë, d’autant que le rythme est ensuite décrit comme « irrégulier » avec un « intervalle RR irrégulier »."
+        }
+      ],
+      "synthese": "Annotation globalement fidèle ; seule l’interprétation de « rythme normal » comme fréquence normale est à la limite."
+    }
+  },
+  "4-01": {
+    "annotation_expert": {
+      "alertes": [],
+      "synthese": "L’annotation est correcte et complète : les deux concepts explicitement mentionnés dans le texte sont annotés comme présents."
+    },
+    "annotation_expert_2": {
+      "alertes": [],
+      "synthese": "L’annotation est correcte et complète : le texte mentionne explicitement un rythme sinusal et des signes d’hypertrophie ventriculaire gauche."
+    }
+  },
+  "4-02": {
+    "annotation_expert": {
+      "alertes": [],
+      "synthese": "L’annotation est correcte et complète : le texte mentionne explicitement un rythme sinusal et des signes d’hypertrophie ventriculaire gauche."
+    }
+  },
+  "40-01": {
+    "annotation_expert": {
+      "alertes": [],
+      "synthese": "L’annotation est correcte et complète : elle reprend fidèlement le rythme sinusal, la déviation axiale gauche et la tachycardie sinusale explicitement mentionnés."
+    }
+  },
+  "40-02": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "Rythme régulier",
+          "type_probleme": "omission",
+          "commentaire": "Le texte précise explicitement « régulière », mais la régularité du rythme n’est pas annotée."
+        }
+      ],
+      "synthese": "Annotation globalement fidèle, avec une omission probable de la régularité du rythme."
+    }
+  },
+  "41-01": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "Flutter droit typique",
+          "type_probleme": "douteux",
+          "commentaire": "Le texte mentionne seulement « flutter atrial », sans préciser son caractère droit ni typique. Cette qualification est donc plus spécifique que le texte source."
+        },
+        {
+          "concept": "Rythme régulier",
+          "type_probleme": "omission",
+          "commentaire": "Le texte affirme explicitement « rythme régulier », mais cette caractéristique n’apparaît pas dans l’annotation."
+        }
+      ],
+      "synthese": "Annotation globalement cohérente, mais le type de flutter est surinterprété et la régularité du rythme a été omise."
+    }
+  },
+  "42-01": {
+    "annotation_expert": {
+      "alertes": [
+        {
+          "concept": "Flutter droit typique",
+          "type_probleme": "douteux",
+          "commentaire": "Le texte mentionne seulement « Flutter atrial » sans préciser un caractère typique ni une origine droite. L'annotation « Flutter droit typique » est donc trop spécifique."
+        },
+        {
+          "concept": "Trémulation de la ligne de base",
+          "type_probleme": "omission",
+          "commentaire": "La « Trémulation ligne de base » est explicitement décrite mais n'apparaît pas dans l'annotation."
+        },
+        {
+          "concept": "Rythme régulier",
+          "type_probleme": "omission",
+          "commentaire": "Le caractère régulier est explicitement indiqué par « Rythme non sinusal régulier » mais n'est pas repris."
+        }
+      ],
+      "synthese": "L'annotation reprend le flutter et les QRS fins, mais sur-spécifie le type de flutter et omet deux éléments explicitement décrits."
+    }
+  }
+}

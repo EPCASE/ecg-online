@@ -112,6 +112,16 @@ const Progress = (() => {
     const sum = cs.reduce((a, c) => a + (c.best || 0), 0);
     return Math.round(sum / cs.length);
   }
+  /* Statistiques restreintes à un sous-ensemble de cas (ex. un thème) :
+   * nb de cas faits + score moyen, pour la grille de thèmes de l'accueil
+   * (NOTE_UX_THEMES_ACCUEIL.md §7 : "score moyen si disponible"). */
+  function summaryForCases(nums) {
+    const cs = _load().cases;
+    const done = (nums || []).filter((n) => cs[String(n)]);
+    if (!done.length) return { done: 0, total: (nums || []).length, average: null };
+    const sum = done.reduce((a, n) => a + (cs[String(n)].best || 0), 0);
+    return { done: done.length, total: nums.length, average: Math.round(sum / done.length) };
+  }
   function streak() {
     const s = _load();
     if (!s.lastActiveDay) return 0;
@@ -196,7 +206,7 @@ const Progress = (() => {
 
   return {
     sessionId, recordResult, caseStat, isDone, doneCount,
-    summary, nextCase, randomCase, dailyCase, reset,
+    summary, summaryForCases, nextCase, randomCase, dailyCase, reset,
   };
 })();
 

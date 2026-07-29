@@ -101,6 +101,72 @@ def families() -> List[dict]:
     )
 
 
+# ─────────────────────────── Thèmes (accueil) ───────────────────────────
+# Contrairement à `families()` (masquée en anonymisation, car le libellé brut
+# "famille" du JSON reflète parfois une sous-catégorie fine), les THÈMES sont
+# des regroupements cliniques volontairement LARGES (cf.
+# ecg-online/docs/NOTE_UX_THEMES_ACCUEIL.md §4) : un thème de ≥5 cas ne trahit
+# qu'une famille de diagnostics possibles, jamais LE diagnostic d'un cas
+# précis. Ils restent donc visibles même en mode anonymisé.
+_THEME_LABELS = {
+    "rythme": "Rythme",
+    "conduction": "Conduction",
+    "ischemie": "Ischémie",
+    "hypertrophie": "Hypertrophie",
+    "pericarde": "Péricarde",
+    "normal": "ECG normal",
+    "genetique": "Génétique",
+    "embolie": "Embolie pulmonaire",
+    "metabolique": "Métabolique",
+    "technique": "Technique / stimulation",
+    "infiltratif": "Infiltratif",
+}
+_THEME_MIN_SIZE = 5   # sous ce seuil, le thème est trop précis -> regroupé
+_THEME_OTHER_ID = "divers"
+_THEME_OTHER_LABEL = "Divers"
+
+
+def themes() -> List[dict]:
+    """Thèmes larges pour la carte d'accueil « S'entraîner par thème ».
+    Regroupe les familles à faible effectif (< _THEME_MIN_SIZE cas) sous un
+    thème « Divers » pour ne jamais exposer un thème qui ne contiendrait
+    qu'1-2 cas (ce qui reviendrait à révéler le diagnostic avant lecture)."""
+    counts: dict = {}
+    for c in all_cases():
+        fam = (c.get("famille") or "autre").strip().lower()
+        counts[fam] = counts.get(fam, 0) + 1
+
+    out: dict = {}
+    for fam, count in counts.items():
+        if count < _THEME_MIN_SIZE:
+            key, label = _THEME_OTHER_ID, _THEME_OTHER_LABEL
+        else:
+            key, label = fam, _THEME_LABELS.get(fam, fam.capitalize())
+        entry = out.setdefault(key, {"id": key, "label": label, "count": 0, "families": []})
+        entry["count"] += count
+        entry["families"].append(fam)
+
+    result = list(out.values())
+    # "Divers" toujours en dernier, le reste trié par effectif décroissant.
+    result.sort(key=lambda d: (d["id"] == _THEME_OTHER_ID, -d["count"], d["label"]))
+    return result
+
+
+def theme_for_family(fam: Optional[str]) -> Optional[str]:
+    """Thème (id) correspondant à une famille brute — utilisé pour filtrer la
+    banque de cas depuis un thème choisi sur l'accueil."""
+    if not fam:
+        return None
+    fam = fam.strip().lower()
+    counts: dict = {}
+    for c in all_cases():
+        f = (c.get("famille") or "autre").strip().lower()
+        counts[f] = counts.get(f, 0) + 1
+    if counts.get(fam, 0) < _THEME_MIN_SIZE:
+        return _THEME_OTHER_ID
+    return fam
+
+
 def public_case(case: dict) -> dict:
     """Version « énoncé » d'un cas : contexte + images, SANS la correction.
     Si l'anonymisation est active, le `titre` (= diagnostic) est masqué et la
@@ -118,7 +184,11 @@ def public_case(case: dict) -> dict:
 def public_index() -> List[dict]:
     """Liste légère pour le sélecteur (num, titre, famille, nb images).
     Si l'anonymisation est active, `titre` = « Cas N » et `famille` est masquée
-    (la famille — ex. « ischémie » — trahirait aussi le diagnostic)."""
+    (la famille — ex. « ischémie » — trahirait aussi le diagnostic).
+    `theme` (regroupement large, cf. `themes()`) reste TOUJOURS exposé : il ne
+    trahit qu'une famille de diagnostics possibles (≥5 cas), jamais LE
+    diagnostic d'un cas précis — nécessaire pour filtrer la banque depuis la
+    carte d'accueil « S'entraîner par thème » même en mode anonymisé."""
     out = []
     for c in all_cases():
         num = c.get("num")
@@ -126,6 +196,7 @@ def public_index() -> List[dict]:
             "num": num,
             "titre": anon_titre(num) if _ANONYMIZE else c.get("titre"),
             "famille": None if _ANONYMIZE else c.get("famille"),
+            "theme": theme_for_family(c.get("famille")),
             "images": c.get("images", []),
             "has_qcm": bool((c.get("qcm") or {}).get("options")),
         })

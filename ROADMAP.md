@@ -21,8 +21,8 @@
 
 | # | Action | Statut |
 |---|--------|:------:|
-| P0.1 | Créer le **golden d'extraction** (~50 réponses annotées par un expert, tous les concepts réellement présents, pas seulement ceux qui comptent pour la note ; double annotation sur ~15 → Kappa de Cohen) | ❌ pas commencé |
-| P0.2 | Recalculer précision/rappel/F1 réels de l'extraction contre ce golden | ❌ dépend de P0.1 |
+| P0.1 | Créer le **golden d'extraction** (~50 réponses annotées par un expert, tous les concepts réellement présents, pas seulement ceux qui comptent pour la note ; double annotation sur ~15 → Kappa de Cohen) | ✅ fait — 100 réponses, cf. `GOLDEN_EXTRACTION.md` |
+| P0.2 | Recalculer précision/rappel/F1 réels de l'extraction contre ce golden | ✅ fait — P=90.4%, R=89.2%, F1=89.8% (`scripts/compute_extraction_metrics.py`) |
 | P0.3 | Unifier les chiffres publiés (README ~92 %, RAG-onto 62,4 %, ARCHITECTURE 42 %, CSV réel 85,1 %/60,2 % → incohérents) en une source de vérité versionnée | ❌ pas commencé |
 | P0.4 | Tests de non-régression du scoring | ✅ fait (`rag_pipeline/tests/test_scoring_v3.py`, 18 tests) |
 
@@ -30,8 +30,8 @@
 
 | # | Action | Statut |
 |---|--------|:------:|
-| P1.5 | Étendre le golden de **scoring** (40-50 cas, ≥2 experts, plusieurs validants/cas — actuellement 75 cas mais mono-expert) | ❌ pas commencé (voir *Phase E* ci-dessous : le nettoyage de cohérence interne du golden actuel est un prérequis pratique) |
-| P1.6 | Refondre la métrique : note exactitude (existante) + note fiabilité (pénalité concepts faux pondérée par gravité clinique) | ❌ dépend de P0.1 |
+| P1.5 | Étendre le golden de **scoring** (40-50 cas, ≥2 experts, plusieurs validants/cas — actuellement 75 cas mais mono-expert) | ❌ pas commencé — **Phase E (prérequis) ✅ terminée**, prêt à démarrer |
+| P1.6 | Refondre la métrique : note exactitude (existante) + note fiabilité (pénalité concepts faux pondérée par gravité clinique) | ❌ maintenant déblocable (cf. P0.2, chiffres disponibles) |
 | P1.7 | Corriger la négation trop généreuse (`absent("trouble de repolarisation")` → `ECG_NORMAL` complet = 100 % avec une seule négation isolée) | ❌ pas commencé |
 | P1.8 | Ablation par brique (NER/Search/Juge) + validation humaine d'un échantillon du juge | ❌ pas commencé |
 | P1.9 | Étendre les tests à `semantic_layer` et à la conversion des négations | ❌ pas commencé |
@@ -69,13 +69,21 @@ incohérences internes ont été détectées et corrigées :
   cosmétiques du barème. Résultat sur les 40 duplications restantes : **19 CONFLIT
   RÉEL / 21 doublons inoffensifs**.
 
-### 🔜 Phase E — PROCHAINE ÉTAPE : corriger les 19 CONFLIT RÉEL restants
+### 🔜 Phase E — ✅ TERMINÉE (2026-07-29) : les 19 CONFLIT RÉEL corrigés
 
-**Statut : ❌ pas commencé — c'est la suite immédiate.**
+**Statut : ✅ fait.** `python scripts/audit_golden.py` → **0 bloquant**, 21
+avertissements résiduels (doublons inoffensifs, sans risque fonctionnel).
 
-Liste des 19 cas (obtenue via `python scripts/audit_golden.py`), à traiter par lot
-puis valider en UNE SEULE fois avec `scripts/audit_golden_impact.py` (replay coûteux
-en API/Google Sheets, à ne pas relancer à chaque petite modif) :
+Script de correction (jetable, conservé pour trace) :
+`scripts/_fix_phase_e_conflicts.py`. Politique appliquée : pour chaque
+concept en conflit, le label **validant** est conservé (il pilote le
+scoring), le(s) label(s) **complémentaire(s)** redondant(s) sont démappés
+(21 labels démappés au total sur 19 cas). Cas 43/44 (vraies contradictions
+present/absent, cf. pattern cas 4) : le label le plus central au diagnostic
+est conservé, l'autre démappé. Sanity check : `golden_for_scorer` conserve
+≥1 validant sur les 19 cas modifiés (pas de dégradation du scoring).
+
+Liste des 19 cas traités (obtenue via `python scripts/audit_golden.py`) :
 
 | Cas | Concept | Gravité |
 |---|---|---|
@@ -83,13 +91,24 @@ en API/Google Sheets, à ne pas relancer à chaque petite modif) :
 | 44 | `RYTHME_SINUSAL` | 🔴 present/absent — même pattern que cas 4 |
 | 6, 8, 12, 17, 16, 14, 22, 27, 31, 33, 39, 40, 46, 56 (×2), 68, 70 | divers | 🟠 rôle validant/descripteur divergent, statut identique (present/present) — pattern cas 39/40, déjà neutralisé côté scorer par le garde-fou `_validant_manque_ids` mais données à nettoyer |
 
-**Procédure** :
-1. Corriger les cas 43 et 44 en priorité (vraies contradictions cliniques comme cas 4).
-2. Traiter le reste du lot (17 cas restants) par groupes de 5-6.
-3. Une fois tout le lot terminé : `scripts/audit_golden.py` (doit tomber à 0 CONFLIT RÉEL)
-   **puis** `scripts/audit_golden_impact.py` (322 réponses, doit rester 0 contradiction)
-   pour valider l'ensemble en une seule passe.
-4. Commit + push.
+**Procédure suivie** :
+1. ✅ Corrigé les cas 43 et 44 en priorité (vraies contradictions cliniques comme cas 4).
+2. ✅ Traité le reste du lot (17 cas restants).
+3. ✅ `scripts/audit_golden.py` tombe à 0 CONFLIT RÉEL.
+4. ✅ **Validé** : `scripts/audit_golden_impact.py` rejoué sur 343 réponses réelles
+   (2026-07-29) — **0 contradiction, 0 exception** (`data/audit_golden_impact_report.json`).
+   57 dérives de score notables détectées, dont **1 seule** (cas 44) touche un cas
+   modifié par la Phase E (cohérent : `RYTHME_SINUSAL` était le concept en conflit) ;
+   les 14 autres dérives à la baisse concernent des cas **hors périmètre Phase E**
+   (2, 4, 9, 10, 23, 24, 25, 26, 37, 38, 41, 42, 49, 57) — variabilité normale du
+   juge LLM (brique non-déterministe) entre l'exécution actuelle et le score
+   historique du Google Sheet, pas une régression introduite par les corrections.
+5. ❌ Reste à faire : commit + push.
+
+### 🔜 Prochaine étape : P1.5 (étendre le golden de scoring)
+
+Le prérequis pratique (Phase E) étant levé, P1.5 (40-50 cas, ≥2 experts,
+plusieurs validants/cas) peut démarrer.
 
 ### Repères de contexte technique
 

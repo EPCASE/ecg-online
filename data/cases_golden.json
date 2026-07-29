@@ -184,14 +184,6 @@
           "confiance": 0.78,
           "valide_par": "gpt",
           "justification": "Négation du BBG incomplet; hémiblocs aussi niés mais label principal cite d'abord BBG incomplet."
-        },
-        "Contexte étiologique mentionné : insuffisance aortique significative avec dilatation et HVG à l’échographie": {
-          "golden_id": "HYPERTROPHIE_VENTRICULAIRE_GAUCHE",
-          "concept_name": "Hypertrophie ventriculaire gauche",
-          "statut": "present",
-          "confiance": 0.72,
-          "valide_par": "gpt",
-          "justification": "Pas de concept insuffisance aortique; HVG échographique mentionnée."
         }
       }
     },
@@ -447,20 +439,6 @@
           "valide_par": "gpt",
           "justification": "Pas de concept onde q septale physiologique; SEPTAL reflète l’activation septale."
         },
-        "Aspect normal rS en V1": {
-          "golden_id": "ECG_NORMAL",
-          "concept_name": "ECG normal",
-          "confiance": 0.45,
-          "valide_par": "gpt",
-          "justification": "Aucun concept rS en V1; mapping approximatif vers normalité globale."
-        },
-        "Aspect normal qR en V6": {
-          "golden_id": "ECG_NORMAL",
-          "concept_name": "ECG normal",
-          "confiance": 0.45,
-          "valide_par": "gpt",
-          "justification": "Aucun concept qR en V6; mapping approximatif vers normalité globale."
-        },
         "Absence de trouble de la repolarisation et QT normal": {
           "golden_id": "PAS_D_ANOMALIE_DE_LE_REPOLARISATION",
           "concept_name": "Pas d'anomalie de la repolarisation",
@@ -704,13 +682,6 @@
           "confiance": 0.82,
           "valide_par": "gpt",
           "justification": "Ondes T négatives; plus spécifique que trouble de repolarisation général."
-        },
-        "Conclusion : bloc de branche droite complet associé à une hypertrophie ventriculaire droite": {
-          "golden_id": "BLOC_DE_BRANCHE_DROIT_COMPLET",
-          "concept_name": "Bloc de branche droit complet",
-          "confiance": 0.8,
-          "valide_par": "gpt",
-          "justification": "Label composite; le BBD complet est le diagnostic de conduction central."
         }
       }
     },
@@ -895,14 +866,6 @@
           "valide_par": "gpt",
           "justification": "Repolarisation normale/absence de trouble est le concept central."
         },
-        "Conclusion : bradycardie sinusale physiologique du sportif": {
-          "golden_id": "BRADYCARDIE_SINUSALE",
-          "concept_name": "Bradycardie sinusale",
-          "statut": "present",
-          "confiance": 0.99,
-          "valide_par": "gpt",
-          "justification": "Diagnostic de conclusion correspondant au concept bradycardie sinusale."
-        },
         "Absence d’HVG et d’ondes Q de nécrose": {
           "golden_id": "ABSENCE_D_ONDE_Q_PATHOLOGIQUE",
           "concept_name": "Absence d'onde Q pathologique",
@@ -947,14 +910,6 @@
           "confiance": 0.99,
           "valide_par": "gpt",
           "justification": "Correspond exactement à une déviation axiale gauche."
-        },
-        "Morphologie d’hémibloc antérieur gauche : rS en dérivations inférieures, qR en DI/aVL": {
-          "golden_id": "BLOC_FASCICULAIRE_ANTERIEUR_GAUCHE",
-          "concept_name": "Bloc fasciculaire antérieur gauche",
-          "statut": "present",
-          "confiance": 0.95,
-          "valide_par": "gpt",
-          "justification": "Morphologie typique d'hémibloc/bloc fasciculaire antérieur gauche."
         },
         "Absence de troubles de la repolarisation": {
           "golden_id": "PAS_D_ANOMALIE_DE_LE_REPOLARISATION",
@@ -1039,14 +994,6 @@
     "14": {
       "diagnostic_principal": "Bloc de branche alternant avec troubles de conduction atrio-ventriculaire",
       "mapping": {
-        "Identifier un bloc de branche alternant": {
-          "golden_id": "BLOC_DE_BRANCHE",
-          "concept_name": "Bloc de branche",
-          "statut": "present",
-          "confiance": 0.68,
-          "valide_par": "gpt",
-          "justification": "Pas de concept dédié au bloc alternant ; bloc de branche est le plus proche."
-        },
         "Décrire l’alternance bloc de branche droite complet / bloc de branche gauche complet": {
           "golden_id": "BLOC_DE_BRANCHE",
           "concept_name": "Bloc de branche",
@@ -1242,13 +1189,6 @@
           "confiance": 0.92,
           "valide_par": "gpt",
           "justification": "Spikes suivis de capture atriale = stimulation atriale, plus spécifique qu'artéfact/stimulation."
-        },
-        "Conclure à des activités atriales stimulées, non spontanées sinusales et non rétrogrades": {
-          "golden_id": "STIMULATION_ATRIALE",
-          "concept_name": "Stimulation atriale",
-          "confiance": 0.96,
-          "valide_par": "gpt",
-          "justification": "Activité atriale électroentraînée, non sinusale spontanée."
         },
         "Reconnaître que les QRS sont spontanés/non stimulés, car fins et détectés après conduction AV native": {
           "golden_id": "QRS",
@@ -1632,13 +1572,6 @@
           "valide_par": "gpt",
           "justification": "Décrit des ondes P bloquées; pas de ratio fixe plus spécifique."
         },
-        "Diagnostic de bloc auriculoventriculaire de haut degré": {
-          "golden_id": "BAV_DE_HAUT_GRADE",
-          "concept_name": "BAV de haut grade",
-          "confiance": 0.99,
-          "valide_par": "gpt",
-          "justification": "Correspondance exacte au diagnostic de BAV haut degré."
-        },
         "QRS larges avec aspect de bloc de branche droit complet": {
           "golden_id": "BLOC_DE_BRANCHE_DROIT_COMPLET",
           "concept_name": "Bloc de branche droit complet",
@@ -1739,13 +1672,6 @@
           "confiance": 0.78,
           "valide_par": "gpt",
           "justification": "Phrase composite; le concept central est la tachycardie, avec irrégularité et QRS fins descriptifs."
-        },
-        "Décrire l’activité atriale rapide, polymorphe/anarchique avec trémulation de la ligne de base": {
-          "golden_id": "FIBRILLATION_ATRIALE",
-          "concept_name": "Fibrillation atriale",
-          "confiance": 0.95,
-          "valide_par": "gpt",
-          "justification": "Synonyme catalogue: activité atriale rapide polymorphe anarchique, typique de FA."
         },
         "Conclure à une fibrillation atriale avec conduction ventriculaire rapide": {
           "golden_id": "FIBRILLATION_ATRIALE",
@@ -2068,13 +1994,6 @@
           "valide_par": "gpt",
           "justification": "Rythme sinusal avec fréquence lente autour de 50/min."
         },
-        "Identification d’un battement prématuré supraventriculaire à QRS fin identique aux QRS de base": {
-          "golden_id": "EXTRASYSTOLE_ATRIALE",
-          "concept_name": "Extrasystole atriale",
-          "confiance": 0.82,
-          "valide_par": "gpt",
-          "justification": "Battement prématuré supraventriculaire; concept ESA inclut ce synonyme."
-        },
         "Diagnostic d’extrasystole atriale, avec activité atriale prématurée visible notamment en V1 à la fin de l’onde T": {
           "golden_id": "EXTRASYSTOLE_ATRIALE",
           "concept_name": "Extrasystole atriale",
@@ -2369,14 +2288,6 @@
           "valide_par": "gpt",
           "justification": "Le concept principal du label composite est le rythme sinusal."
         },
-        "Irrégularité sinusale périodique des intervalles PP avec accélérations et ralentissements successifs suivant la respiration": {
-          "golden_id": "ARYTHMIE_SINUSALE",
-          "concept_name": "Arythmie sinusale",
-          "statut": "present",
-          "confiance": 0.88,
-          "valide_par": "gpt",
-          "justification": "Décrit l’irrégularité respiratoire typique de l’arythmie sinusale."
-        },
         "Intervalle PR normal, pas de BAV": {
           "golden_id": "PR_NORMAL",
           "concept_name": "PR normal",
@@ -2445,14 +2356,6 @@
           "confiance": 0.7,
           "valide_par": "gpt",
           "justification": "Diagnostic différentiel nié ; FA citée en premier comme concept central."
-        },
-        "Contexte compatible avec une tachycardie sinusale réactionnelle : fièvre/surinfection, anémie, insuffisance rénale, décompensation cardiaque": {
-          "golden_id": "TACHYCARDIE_SINUSALE",
-          "concept_name": "Tachycardie sinusale",
-          "statut": "present",
-          "confiance": 0.9,
-          "valide_par": "gpt",
-          "justification": "Contexte réactionnel d’une tachycardie sinusale."
         },
         "Traitement orienté vers les causes plutôt que vers la tachycardie elle-même": {
           "golden_id": "TACHYCARDIE",
@@ -2607,14 +2510,6 @@
           "confiance": 0.95,
           "valide_par": "gpt",
           "justification": "Troubles de repolarisation explicitement décrits."
-        },
-        "Après ablation : disparition de la pré-excitation, PR non court, onde delta absente, QRS fins": {
-          "golden_id": "FAISCEAU_ACCESSOIRE_A_CONDUCTION_ANTEROGRADE",
-          "concept_name": "Faisceau accessoire à conduction antérograde",
-          "statut": "absent",
-          "confiance": 0.9,
-          "valide_par": "gpt",
-          "justification": "La pré-excitation liée au faisceau accessoire antérograde a disparu après ablation."
         }
       }
     },
@@ -2828,14 +2723,6 @@
           "valide_par": "gpt",
           "justification": "Concept principal du libellé : fréquence rapide, avec régularité et QRS fins descriptifs."
         },
-        "Rythme non sinusal pendant la crise, activité atriale difficile à voir": {
-          "golden_id": "RYTHME_SINUSAL",
-          "concept_name": "Rythme sinusal",
-          "statut": "absent",
-          "confiance": 0.9,
-          "valide_par": "gpt",
-          "justification": "Le libellé nie explicitement le caractère sinusal du rythme pendant la crise."
-        },
         "Ondes P’ rétrogrades en fin de QRS, négatives en inférieur et positives en V1/aVR": {
           "golden_id": "MORPHOLOGIE_DE_L_ONDE_P_NON_SINUSALE",
           "concept_name": "Morphologie de l'onde P non sinusale",
@@ -2952,13 +2839,6 @@
           "confiance": 0.95,
           "valide_par": "gpt",
           "justification": "Concept diagnostique de pré-excitation ventriculaire avec onde delta/PR court."
-        },
-        "Aspect de QRS proche de celui de la première tachycardie en faveur d’une tachycardie antidromique sur voie accessoire": {
-          "golden_id": "TJ_ANTIDROMIQUE_UTILISANT_UNE_VOIE_ACCESSOIRE",
-          "concept_name": "TJ antidromique utilisant une voie accessoire",
-          "confiance": 0.92,
-          "valide_par": "gpt",
-          "justification": "Correspond directement à la tachycardie antidromique sur voie accessoire."
         }
       }
     },
@@ -3502,14 +3382,6 @@
           "valide_par": "gpt",
           "justification": "Microvoltage diffus est synonyme du concept."
         },
-        "Définition du microvoltage : QRS ≤ 5 mm en périphériques et/ou ≤ 10 mm en précordiales, ici absence de dépassement de ces seuils": {
-          "golden_id": "MICROVOLTAGE",
-          "concept_name": "Microvoltage",
-          "statut": "present",
-          "confiance": 0.95,
-          "valide_par": "gpt",
-          "justification": "Décrit les critères diagnostiques du microvoltage QRS."
-        },
         "Alternance électrique des QRS, surtout en V3-V4": {
           "golden_id": "ALTERNANCE_DES_QRS",
           "concept_name": "alternance des QRS",
@@ -3525,14 +3397,6 @@
           "confiance": 0.72,
           "valide_par": "gpt",
           "justification": "Pas d'épanchement dédié; tamponnade associée microvoltage/alternance."
-        },
-        "Contexte compatible avec perforation de sonde de défibrillateur et épanchement/tamponnade": {
-          "golden_id": "TAMPONNADE",
-          "concept_name": "Tamponnade",
-          "statut": "present",
-          "confiance": 0.8,
-          "valide_par": "gpt",
-          "justification": "Concept clinique central: épanchement/tamponnade."
         },
         "Ne pas retenir hypertrophie auriculaire droite ou gauche": {
           "golden_id": "HYPERTROPHIE_ATRIALE_DROITE",
@@ -4184,12 +4048,6 @@
           "valide_par": "gpt",
           "statut": "present"
         },
-        "Signe de gravité imposant une prise en charge urgente comme SCA avec sus-décalage ST": {
-          "golden_id": "SYNDROME_CORONARIEN_A_LA_PHASE_AIGUE_AVEC_SUS_DECALAGE_DU_SEGMENT_ST",
-          "concept_name": "Syndrome coronarien à la phase aigue avec sus-décalage du segment ST",
-          "valide_par": "gpt",
-          "statut": "present"
-        },
         "Syndrome coronarien à la phase aigue avec sus-décalage du segment ST": {
           "golden_id": "SYNDROME_CORONARIEN_A_LA_PHASE_AIGUE_AVEC_SUS_DECALAGE_DU_SEGMENT_ST",
           "concept_name": "Syndrome coronarien à la phase aigue avec sus-décalage du segment ST",
@@ -4276,20 +4134,6 @@
           "confiance": 0.99,
           "valide_par": "gpt",
           "justification": "Concept exact pour rythme sinusal."
-        },
-        "Sus-décalage ST majeur > 10 mm en territoire inférieur": {
-          "golden_id": "COURANT_DE_LESION_SOUS_EPICARDIQUE",
-          "concept_name": "Courant de lésion sous-épicardique",
-          "confiance": 0.9,
-          "valide_par": "gpt",
-          "justification": "Sus-décalage ST = courant de lésion sous-épicardique; topographie incluse dans label."
-        },
-        "Aspect en dôme monophasique englobant l’onde T": {
-          "golden_id": "COURANT_DE_LESION_SOUS_EPICARDIQUE",
-          "concept_name": "Courant de lésion sous-épicardique",
-          "confiance": 0.72,
-          "valide_par": "gpt",
-          "justification": "Aspect monophasique en dôme lié au sus-ST ischémique, hors Brugada."
         },
         "Sous-décalage en miroir en DI, aVL, V3-V5": {
           "golden_id": "MIROIR",
