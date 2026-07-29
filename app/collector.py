@@ -58,7 +58,7 @@ LOG_COLS = ["horodatage", "session", "cas", "titre", "reponse",
             # Traçabilité (Palier 2 — FEUILLE_DE_ROUTE_ALIGNEE.md) :
             # identifiants stables + état de résolution explicite du backend.
             "response_id", "resolution_status", "resolution_reason",
-            "pipeline_version"]
+            "pipeline_version", "ontology_version"]
 PARCAS_HEADER = ["cas", "titre", "réponses →"]
 
 # Journal des signalements (bouton « Signaler un problème », version pré-alpha).
@@ -255,7 +255,8 @@ def _write(num: int, titre: str, answer: str, score, correspondance: str,
                  _m("orientation"), _m("brouillon_restaure"),
                  _m("ouvertures_visionneuse"), _m("zooms_visionneuse"),
                  _m("response_id"), _m("resolution_status"),
-                 _m("resolution_reason"), _m("pipeline_version")],
+                 _m("resolution_reason"), _m("pipeline_version"),
+                 _m("ontology_version")],
                 value_input_option="RAW",  # type: ignore[arg-type]
             )
 

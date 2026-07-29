@@ -622,6 +622,46 @@ function buildPunchLine(d) {
   return "Bonne base : complète les éléments « à compléter » ci-dessous pour viser l'exhaustivité.";
 }
 
+/* Palier 2 (abstention.py) : bandeau de confiance discret. Affiché SEULEMENT
+ * pour les statuts moins fiables que SUCCESS — le cas nominal ne change pas.
+ * Le message reste rassurant/pédagogique : on ne cache pas la limite, mais
+ * on ne bloque jamais la correction (comportement inchangé, cf. Décision B
+ * du document de cadrage : abstention TRACÉE, pas un blocage UX). */
+function buildResolutionBanner(resolution) {
+  if (!resolution || typeof resolution !== "object") return "";
+  const status = resolution.status || "SUCCESS";
+  const variants = {
+    LOW_CONFIDENCE: {
+      icon: "🔍",
+      cls: "resolution-low",
+      title: "Confiance limitée sur cette correction",
+      detail: "Peu d'éléments cliniques ont été reconnus avec certitude dans ta réponse — vérifie les points ci-dessous avec un œil critique.",
+    },
+    FALLBACK_GPT: {
+      icon: "🔁",
+      cls: "resolution-fallback",
+      title: "Correction via le moteur de secours",
+      detail: "Le moteur principal n'était pas disponible pour ce cas ; une correction alternative a été utilisée — la précision peut légèrement varier.",
+    },
+    TECHNICAL_ERROR: {
+      icon: "⚠️",
+      cls: "resolution-error",
+      title: "Incident technique pendant la correction",
+      detail: "Une erreur a été rencontrée — si le résultat te semble incohérent, utilise le bouton de signalement.",
+    },
+  };
+  const v = variants[status];
+  if (!v) return "";  // SUCCESS / ABSTAIN (non déclenché) : rien à afficher.
+  return `
+    <div class="resolution-banner ${v.cls}">
+      <span class="resolution-ic">${v.icon}</span>
+      <div class="resolution-body">
+        <div class="resolution-t">${escapeHtml(v.title)}</div>
+        <div class="resolution-d">${escapeHtml(v.detail)}</div>
+      </div>
+    </div>`;
+}
+
 function renderResult(d) {
   const box = $("#result");
   box.classList.remove("hidden");
@@ -671,6 +711,13 @@ function renderResult(d) {
       </div>
     </div>` : "";
 
+  // Palier 2, semaine 2 : bandeau de confiance dérivé de `resolution`
+  // (app/abstention.py). SUCCESS reste invisible (aucun changement UX pour
+  // le cas nominal) — on n'affiche un avertissement discret QUE si la
+  // correction est moins fiable que d'habitude (repli GPT ou peu de concepts
+  // résolus par le NER), pour rester honnête sans alarmer inutilement.
+  const resolutionBanner = buildResolutionBanner(d.resolution);
+
   // Validation de concepts (P5) : ce que le pipeline a COMPRIS de la réponse.
   // L'étudiant confirme (👍) ou infirme (👎) chaque interprétation → curation.
   CURRENT_CONCEPTS = Array.isArray(d.concepts_detectes) ? d.concepts_detectes : [];
@@ -679,6 +726,7 @@ function renderResult(d) {
 
   box.innerHTML = `
     ${reveal}
+    ${resolutionBanner}
     <div class="result-top">
       <div class="score-ring" style="--val:${d.score};--ring-color:${scoreColor(d.score)}">
         <div><span>${d.score}</span><small>/ 100</small></div>

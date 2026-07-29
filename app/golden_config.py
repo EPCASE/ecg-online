@@ -116,6 +116,29 @@ def onto_available() -> bool:
     return bool(_onto_concepts())
 
 
+@lru_cache(maxsize=1)
+def ontology_version() -> str:
+    """Numéro de version de l'ontologie vendorée (Palier 2, semaine 3 —
+    FEUILLE_DE_ROUTE_ALIGNEE.md : « Versionner l'ontologie »).
+
+    Lit `metadata.version` dans `ontology_v2.json` (déjà présent : "2.0",
+    cf. `convert_owl_to_v2.py`) — on l'EXPOSE simplement dans les réponses
+    HTTP (`/api/health`, `/api/grade`) au lieu de le laisser invisible.
+    Retourne "inconnue" si le fichier est introuvable/mal formé (jamais
+    d'exception : la traçabilité ne doit pas faire planter la correction).
+    """
+    for p in ONTO_CANDIDATES:
+        if os.path.exists(p):
+            try:
+                with open(p, encoding="utf-8") as f:
+                    data = json.load(f)
+                v = (data.get("metadata") or {}).get("version")
+                return str(v) if v else "inconnue"
+            except Exception:
+                return "inconnue"
+    return "inconnue"
+
+
 def resolve_concept(cid: Optional[str]) -> Optional[dict]:
     """Infos d'affichage d'un concept, ou None si l'ID n'existe pas dans l'onto."""
     if not cid:

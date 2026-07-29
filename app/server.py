@@ -113,6 +113,7 @@ def create_app() -> Flask:
             "openai_key": bool(os.environ.get("OPENAI_API_KEY")),
             "grader_backend": GRADER_BACKEND,
             "pipeline_version": neuro_grader.PIPELINE_VERSION,
+            "ontology_version": golden_config.ontology_version(),
             "neuro": neuro_grader.status(),
             "collector": collector.status(),
             "anonymize": cases_repo.anonymize_enabled(),
@@ -218,6 +219,7 @@ def create_app() -> Flask:
         result = corr.to_dict()
         result["backend"] = backend_used
         result["pipeline_version"] = neuro_grader.PIPELINE_VERSION
+        result["ontology_version"] = golden_config.ontology_version()
         result["resolution"] = resolution
         # Identifiants stables (Palier 2) : permettent de relier une réponse
         # HTTP à sa trace de collecte (Google Sheets aujourd'hui, base de
@@ -250,6 +252,7 @@ def create_app() -> Flask:
         meta["resolution_status"] = resolution["status"]
         meta["resolution_reason"] = resolution.get("reason") or ""
         meta["pipeline_version"] = neuro_grader.PIPELINE_VERSION
+        meta["ontology_version"] = golden_config.ontology_version()
         collector.collect_answer(
             num_i,
             case.get("titre", ""),

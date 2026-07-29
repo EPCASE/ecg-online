@@ -40,6 +40,7 @@
 | `error` | str \| null | idem | Message d'erreur si le backend utilisé a échoué. |
 | `backend` | enum | `server.py` | `neuro` ou `gpt` — backend qui a **effectivement** produit la correction. |
 | `pipeline_version` | str | `neuro_grader.PIPELINE_VERSION` | Version figée du pipeline neurosymbolique (ex. `neuro-v1.1`). **Palier 1.** |
+| `ontology_version` | str | `golden_config.ontology_version()` | Version de l'ontologie vendorée (`metadata.version` de `ontology_v2.json`, ex. `2.0`). Renvoie `"inconnue"` si le fichier est introuvable. **Palier 2, semaine 3.** |
 | `response_id` | str (UUID) | `server.py` (généré à chaque appel) | Identifiant unique de cette correction précise. **Palier 2.** |
 | `prediction_id` | str (UUID) | idem (alias de `response_id`) | Nom conforme à la littérature ML ; même valeur que `response_id` aujourd'hui. **Palier 2.** |
 | `resolution` | object | `abstention.classify()` | Cf. section dédiée ci-dessous. **Palier 1 → 2.** |
@@ -65,9 +66,13 @@
 | `TECHNICAL_ERROR` | Le backend utilisé (neuro ou gpt) a levé une exception/erreur API. | `Correction.error` non vide. |
 | `ABSTAIN` | *(Réservé, non déclenché aujourd'hui)* aucun backend n'a pu produire de correction fiable. | À implémenter si un jour GPT échoue aussi après repli neuro. |
 
+Côté frontend (Palier 2, semaine 2) : `app.js::buildResolutionBanner()` affiche
+un bandeau discret pour `LOW_CONFIDENCE`, `FALLBACK_GPT` et `TECHNICAL_ERROR`
+(rien pour `SUCCESS`/`ABSTAIN` — aucun changement UX pour le cas nominal).
+Cf. `.resolution-banner` dans `style.css`.
+
 ## Non couvert par ce document (volontairement, cf. anti-scope-creep §3)
 
-- `ontology_version` : pas encore exposé (Palier 2, semaine 3).
 - États `HUMAN_REVIEW` : nécessitent une file de curation qui n'existe pas encore.
 - Endpoints autres que `/api/grade` (QCM, thèmes, curation…) : non documentés ici,
   cf. les docstrings de `server.py` en tête de fichier pour la liste complète des routes.
