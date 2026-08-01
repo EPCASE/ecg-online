@@ -1,0 +1,192 @@
+{
+  "_meta": {
+    "title": "Phase 1 curriculum — audit de couverture des 75 ECG",
+    "date": "2026-08-01",
+    "source_ref": "ecg-online/docs/ECG_Online_curriculum_75_ECG_feedback_IA_2026-07-31.md §12 Phase 1",
+    "objectif": "Affecter chaque ECG (num 1 à 75) à exactement un parcours et une phase, en conservant les 5 parcours existants (frontend/pathways.json) sous compatibilité pendant la migration.",
+    "note": "Ce mapping est un premier jet d'audit structurel (regroupement par thème clinique). Il doit être validé cliniquement avant toute mise en production (cf. avertissement du curriculum §avant-propos). Les 5 parcours marqués legacy_id existent déjà dans frontend/pathways.json ; les 10 autres sont proposés pour couvrir les 53 cas restants.",
+    "phases": ["foundation", "guided", "contrast", "integration", "mastery"]
+  },
+  "pathways": [
+    {
+      "id": "bav-foundations",
+      "legacy_id": "bav-foundations",
+      "title": "Blocs auriculoventriculaires — fondamentaux",
+      "cases": [
+        {"num": 23, "phase": "foundation"},
+        {"num": 24, "phase": "guided"},
+        {"num": 25, "phase": "contrast"},
+        {"num": 26, "phase": "integration"},
+        {"num": 28, "phase": "mastery"}
+      ]
+    },
+    {
+      "id": "bav-advanced",
+      "legacy_id": null,
+      "title": "Blocs auriculoventriculaires — formes avancées et associations",
+      "cases": [
+        {"num": 27, "phase": "foundation"},
+        {"num": 29, "phase": "guided"},
+        {"num": 30, "phase": "contrast"},
+        {"num": 49, "phase": "integration"},
+        {"num": 65, "phase": "mastery"}
+      ]
+    },
+    {
+      "id": "wide-qrs-sinus",
+      "legacy_id": "wide-qrs-sinus",
+      "title": "Morphologies des QRS larges (rythme sinusal)",
+      "cases": [
+        {"num": 8, "phase": "foundation"},
+        {"num": 9, "phase": "guided"},
+        {"num": 13, "phase": "contrast"},
+        {"num": 10, "phase": "integration"},
+        {"num": 14, "phase": "mastery"}
+      ]
+    },
+    {
+      "id": "bundle-branch-advanced",
+      "legacy_id": null,
+      "title": "Blocs de branche et hémiblocs — formes complexes",
+      "cases": [
+        {"num": 16, "phase": "foundation"},
+        {"num": 11, "phase": "guided"},
+        {"num": 12, "phase": "contrast"},
+        {"num": 15, "phase": "integration"},
+        {"num": 19, "phase": "mastery"}
+      ]
+    },
+    {
+      "id": "sinus-node-dysfunction",
+      "legacy_id": null,
+      "title": "Dysfonction sinusale",
+      "cases": [
+        {"num": 17, "phase": "foundation"},
+        {"num": 18, "phase": "guided"},
+        {"num": 20, "phase": "contrast"},
+        {"num": 21, "phase": "integration"},
+        {"num": 22, "phase": "mastery"}
+      ]
+    },
+    {
+      "id": "normal-and-hypertrophy",
+      "legacy_id": null,
+      "title": "ECG normal et hypertrophies",
+      "cases": [
+        {"num": 3, "phase": "foundation"},
+        {"num": 4, "phase": "guided"},
+        {"num": 5, "phase": "contrast"},
+        {"num": 6, "phase": "integration"},
+        {"num": 7, "phase": "mastery"}
+      ]
+    },
+    {
+      "id": "artifacts-and-normal-variants",
+      "legacy_id": null,
+      "title": "Pièges techniques et variantes du rythme normal",
+      "cases": [
+        {"num": 1, "phase": "foundation"},
+        {"num": 2, "phase": "guided"},
+        {"num": 39, "phase": "contrast"},
+        {"num": 33, "phase": "integration"},
+        {"num": 34, "phase": "mastery"}
+      ]
+    },
+    {
+      "id": "fa-flutter",
+      "legacy_id": "fa-flutter",
+      "title": "Fibrillation atriale et flutter",
+      "cases": [
+        {"num": 31, "phase": "foundation"},
+        {"num": 37, "phase": "guided"},
+        {"num": 38, "phase": "contrast"},
+        {"num": 41, "phase": "integration"},
+        {"num": 42, "phase": "mastery"}
+      ]
+    },
+    {
+      "id": "regular-narrow-tachycardias",
+      "legacy_id": "regular-narrow-tachycardias",
+      "title": "Orientation des tachycardies à QRS fins",
+      "cases": [
+        {"num": 32, "phase": "foundation"},
+        {"num": 40, "phase": "guided"},
+        {"num": 43, "phase": "contrast"},
+        {"num": 44, "phase": "integration"},
+        {"num": 46, "phase": "mastery"}
+      ]
+    },
+    {
+      "id": "wide-complex-tachycardias",
+      "legacy_id": "wide-complex-tachycardias",
+      "title": "Orientation des tachycardies à QRS larges",
+      "cases": [
+        {"num": 35, "phase": "foundation"},
+        {"num": 36, "phase": "guided"},
+        {"num": 45, "phase": "contrast"},
+        {"num": 47, "phase": "integration"},
+        {"num": 48, "phase": "mastery"}
+      ]
+    },
+    {
+      "id": "malignant-rhythms-and-channelopathies",
+      "legacy_id": null,
+      "title": "Rythmes malins, canalopathies et mort subite",
+      "cases": [
+        {"num": 50, "phase": "foundation"},
+        {"num": 51, "phase": "guided"},
+        {"num": 52, "phase": "contrast"},
+        {"num": 74, "phase": "integration"}
+      ]
+    },
+    {
+      "id": "embolism-and-pericardium",
+      "legacy_id": null,
+      "title": "Cœur pulmonaire aigu et atteintes péricardiques",
+      "cases": [
+        {"num": 53, "phase": "foundation"},
+        {"num": 54, "phase": "guided"},
+        {"num": 55, "phase": "contrast"},
+        {"num": 56, "phase": "integration"},
+        {"num": 57, "phase": "mastery"}
+      ]
+    },
+    {
+      "id": "acs-st-elevation",
+      "legacy_id": null,
+      "title": "Syndrome coronarien aigu avec sus-décalage",
+      "cases": [
+        {"num": 58, "phase": "foundation"},
+        {"num": 59, "phase": "guided"},
+        {"num": 60, "phase": "contrast"},
+        {"num": 61, "phase": "integration"},
+        {"num": 62, "phase": "mastery"}
+      ]
+    },
+    {
+      "id": "acs-complex-and-nste",
+      "legacy_id": null,
+      "title": "SCA compliqué et sans sus-décalage",
+      "cases": [
+        {"num": 63, "phase": "foundation"},
+        {"num": 64, "phase": "guided"},
+        {"num": 66, "phase": "contrast"},
+        {"num": 67, "phase": "integration"},
+        {"num": 68, "phase": "mastery"}
+      ]
+    },
+    {
+      "id": "ischemia-variants-and-metabolic",
+      "legacy_id": null,
+      "title": "Variantes ischémiques rares et causes métaboliques/infiltratives",
+      "cases": [
+        {"num": 69, "phase": "foundation"},
+        {"num": 70, "phase": "guided"},
+        {"num": 71, "phase": "contrast"},
+        {"num": 72, "phase": "integration"},
+        {"num": 73, "phase": "mastery"},
+        {"num": 75, "phase": "mastery"}
+      ]
+    }
+  ]
+}
