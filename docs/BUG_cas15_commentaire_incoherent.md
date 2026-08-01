@@ -236,3 +236,58 @@ Ce bug a été découvert incidemment en construisant le parcours curriculum
 le curriculum et n'a pas été corrigé ici. Le correctif touche
 `rag_pipeline/edn_knowledge_base.py` et/ou `data/scoring_config.json`,
 tous deux actifs sur `main` (pipeline de production déployé sur Scalingo).
+
+## Statut final : remédiation complète (branche `fix/edn-bloc-indifferencie`)
+
+Le trou de couverture a été intégralement résorbé en 4 commits sur cette
+branche (non fusionnée sur `main` à ce stade, en attente de validation) :
+
+1. `381a149` — fix ciblé cas 15 (`BLOC_INTRAVENTRICULAIRE_ASPECIFIQUE` +
+   entrée `scoring_config.json`).
+2. `0e1f9b1` — documentation de l'audit complet (125/153 golden_ids
+   manquants, 48 concepts diagnostiques, 59/75 cas).
+3. `9123c9a` — correction de bugs de normalisation/alias (accents non
+   strippés dans `get_edn_entry`, typos `TACHYCARDIE_JONCTIONELLE`,
+   golden_ids parent/enfant non reliés) : **48 → 39** concepts
+   diagnostiques manquants, sans aucun nouveau contenu — uniquement des
+   bugs de correspondance.
+4. `9b81c93` — remédiation complète : alias supplémentaires validés via
+   `ontology_v2.json` (parents/synonymes) + nouvelles `EDNEntry` rédigées
+   à partir du cours SFC Item 231 (fetché intégralement) pour les concepts
+   réellement absents. **39 → 0** concepts diagnostiques sans `EDNEntry`.
+
+**Sources utilisées** (conformément à la demande) :
+- Cours SFC Item 231 (page web officielle) : source primaire pour tout
+  contenu de cours nouvellement rédigé (BAV de haut grade, ECG normal,
+  etc.).
+- Document de référence utilisateur (`textes à envoyer.docx`) : vérifié
+  et jugé redondant avec `cases_reference.json`/`cases_golden.json` déjà
+  disponibles (même corpus de 75 cas) — utilisé uniquement pour valider
+  ponctuellement des descriptions cliniques (ex. Brugada cas 74, amylose
+  cas 75), pas comme source de contenu de cours nouveau.
+
+**Concepts hors périmètre strict de l'item 231** (Brugada, Takotsubo,
+tamponnade, myocardite, amylose) : ces pathologies relèvent principalement
+d'autres items EDN (cardiomyopathies, mort subite, péricardite/myocardite)
+et ne sont pas détaillées par le cours ECG lui-même. Des `EDNEntry` ont
+néanmoins été rédigées, volontairement brèves et génériques, pour éviter
+que `_build_course_context()` reste sans aucune citation sur ces cas —
+conformément à la consigne explicite de ne pas produire de correction
+« trop verbeuse et ajustée à la réponse de l'étudiant ».
+
+**Vérification finale** (script d'audit ci-dessus, ré-exécuté après
+`9b81c93`) :
+```
+153 golden_ids distincts, 0 concepts diagnostiques sans EDNEntry
+EDN_ENTRIES : 47 entrées, index inversé : 128 ontology_ids couverts
+```
+
+**Reste à faire avant fusion sur `main`** :
+- Revue humaine du contenu des nouvelles entrées (notamment celles non
+  sourcées verbatim du cours : `TACHYCARDIE_SINUSALE`, `RIVA`, `QT_COURT`)
+  pour confirmer l'exactitude clinique et la concision.
+- Décision sur l'ajout d'un `logger.warning` dans `get_edn_entries_for_ids()`
+  pour la télémétrie de couverture (non implémenté ici, cf. recommandation
+  ci-dessus).
+- Merge explicite sur `main` après validation utilisateur (aucun push
+  n'a été effectué à ce stade).
