@@ -40,7 +40,7 @@
 
 | # | Action | Statut |
 |---|--------|:------:|
-| P2.10 | Monorepo (fusionner `RAG ontologique` ↔ `ECG lecture/rag_pipeline`, nettoyer les scripts `_*.py` jetables) | ❌ pas commencé |
+| P2.10 | Nettoyer les scripts `_*.py` jetables ; évaluer si `RAG ontologique` (workspace séparé, exploratoire) doit fusionner avec `edu-ecg/rag_pipeline`. **Note (2026-08-01)** : la fusion `edu-ecg/rag_pipeline` ↔ `ecg-online/rag_pipeline` n'est **plus** l'objectif — ce sont désormais deux copies à rôles distincts par convention (dev vs vendorée figée), cf. `edu-ecg/rag_pipeline/README.md` | ❌ pas commencé |
 | P2.11 | Fallback local (embeddings sentence-transformers + juge Mistral/Llama, reproductibilité) | ❌ pas commencé |
 | P2.12 | Panel multi-juges + exploitation du score de confiance | ❌ pas commencé |
 | P2.13 | (Optionnel/bonus) Mapping SNOMED + raisonneur OWL | ❌ déclassé par l'audit lui-même |
