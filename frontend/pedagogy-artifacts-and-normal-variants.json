@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "id": "artifacts-and-normal-variants",
+  "title": "Pièges techniques et variantes du rythme normal",
+  "subtitle": "Reconnaître les artefacts d'enregistrement les plus fréquents et les variantes bénignes du rythme sinusal, sans les confondre avec de vraies pathologies.",
+  "estimated_minutes": 15,
+  "learning_objectives": [
+    "Reconnaître une inversion d'électrodes des membres et ne pas la sur-interpréter.",
+    "Distinguer un artefact de ligne de base (tremblement) d'une vraie arythmie atriale.",
+    "Reconnaître une arythmie sinusale respiratoire physiologique.",
+    "Reconnaître une extrasystole atriale conduite à QRS fin.",
+    "Reconnaître un trigéminisme ventriculaire."
+  ],
+  "mastery": {
+    "diagnostic_threshold": 75,
+    "unsafe_error_types": ["etudiant"]
+  },
+  "completion": {
+    "passed": "Tu identifies les artefacts techniques et les variantes bénignes du rythme sinusal sans les confondre avec une vraie pathologie. Une réactivation différée reste nécessaire pour confirmer la rétention.",
+    "not_passed": "Reprends les critères qui distinguent un artefact technique (inversion d'électrodes, trémulation) d'une vraie anomalie du rythme. Une nouvelle tentative différée sera plus informative qu'une répétition immédiate."
+  },
+  "cases": [
+    {
+      "step_id": "anv-inversion-electrodes",
+      "num": 1,
+      "phase": "foundation",
+      "step_title": "Un DI totalement négatif",
+      "objective": "Reconnaître une inversion des électrodes des membres et ne pas la sur-interpréter comme une pathologie.",
+      "teaching_point": "Une onde P, un QRS et une onde T négatifs en DI, avec par ailleurs un rythme sinusal normal (PR, QRS, QT normaux) et une progression normale de l'onde R en précordiales, orientent vers une inversion des électrodes des membres plutôt qu'une vraie pathologie.",
+      "allow_hints": true,
+      "hints": [
+        "La négativité en DI concerne-t-elle uniquement l'onde P/QRS/T, ou tout le tracé est-il cohérent par ailleurs (PR, QRS, QT normaux) ?",
+        "Regarde la progression de l'onde R en précordiales : est-elle normale ?",
+        "DI totalement négatif (P, QRS, T) avec le reste du tracé normal = inversion d'électrodes, pas une pathologie."
+      ],
+      "required_concepts": ["INVERSION_D_ELECTRODES"],
+      "unsafe_errors": ["DEVIATION_AXIALE_DROITE", "BLOC_FASCICULAIRE_POSTERIEUR_GAUCHE"]
+    },
+    {
+      "step_id": "anv-artefact-tremblement",
+      "num": 2,
+      "phase": "guided",
+      "step_title": "Une ligne de base trémulante",
+      "objective": "Distinguer un artefact de ligne de base d'une vraie arythmie atriale, tout en décrivant un bloc de branche gauche authentique associé.",
+      "teaching_point": "Une trémulation de la ligne de base liée à un tremblement peut mimer une fibrillation ou un flutter atrial ; la présence de QRS réguliers et d'ondes P sinusales identifiables dans certaines dérivations permet d'éliminer une vraie arythmie atriale.",
+      "allow_hints": true,
+      "hints": [
+        "Les QRS sont-ils réguliers malgré l'aspect trémulant de la ligne de base ?",
+        "Cherche des ondes P sinusales identifiables dans au moins une dérivation.",
+        "QRS réguliers + P sinusales retrouvables = artefact de ligne de base, pas une arythmie atriale ; ne pas oublier de décrire le BBG associé."
+      ],
+      "required_concepts": ["RYTHME_SINUSAL", "BLOC_DE_BRANCHE_GAUCHE_COMPLET"],
+      "unsafe_errors": ["FIBRILLATION_ATRIALE"]
+    },
+    {
+      "step_id": "anv-arythmie-sinusale",
+      "num": 39,
+      "phase": "contrast",
+      "step_title": "Une variation de fréquence qui reste physiologique",
+      "objective": "Reconnaître une arythmie sinusale respiratoire physiologique et ne pas la confondre avec une dysfonction sinusale.",
+      "teaching_point": "Une variation de la fréquence cardiaque en rythme sinusal (P normales, PR normal), sans pause ni ralentissement pathologique, chez un adolescent asymptomatique, définit une arythmie sinusale physiologique.",
+      "allow_hints": true,
+      "hints": [
+        "Le rythme reste-t-il sinusal (onde P normale devant chaque QRS) malgré la variation de fréquence ?",
+        "Y a-t-il une vraie pause ou un ralentissement pathologique, ou seulement une variation progressive ?",
+        "Variation de fréquence en rythme sinusal, sans pause pathologique, chez un sujet jeune = arythmie sinusale physiologique."
+      ],
+      "required_concepts": ["ARYTHMIE_SINUSALE"],
+      "unsafe_errors": ["DYSFONCTION_SINUSALE"]
+    },
+    {
+      "step_id": "anv-extrasystole-atriale",
+      "num": 33,
+      "phase": "integration",
+      "step_title": "Une activité atriale prématurée à QRS fin",
+      "objective": "Reconnaître une extrasystole atriale conduite en s'appuyant sur la finesse du QRS qui suit.",
+      "teaching_point": "Une activité atriale prématurée de morphologie différente de l'onde P sinusale, suivie d'un QRS fin non modifié, définit une extrasystole atriale conduite — le QRS fin élimine une origine ventriculaire.",
+      "allow_hints": true,
+      "hints": [
+        "Cherche une onde P prématurée de morphologie différente des P sinusales (parfois masquée dans l'onde T précédente).",
+        "Le QRS qui suit est-il fin ou large ?",
+        "P prématurée + QRS fin conduit normalement = extrasystole atriale, pas ventriculaire."
+      ],
+      "required_concepts": ["EXTRASYSTOLE_ATRIALE"],
+      "unsafe_errors": ["EXTRASYSTOLE_VENTRICULAIRE"]
+    },
+    {
+      "step_id": "anv-test-trigeminisme",
+      "num": 34,
+      "phase": "mastery",
+      "step_title": "Test de maîtrise : trigéminisme ventriculaire",
+      "objective": "Reconnaître un trigéminisme ventriculaire à partir de l'organisation régulière des battements sinusaux et de l'extrasystole.",
+      "teaching_point": "Une organisation régulière de deux battements sinusaux suivis d'une extrasystole ventriculaire (QRS large, non précédée d'activité atriale) définit un trigéminisme ventriculaire.",
+      "allow_hints": false,
+      "hints": [],
+      "required_concepts": ["TRIGEMINISME_VENTRICULAIRE"],
+      "unsafe_errors": ["EXTRASYSTOLE_ATRIALE"]
+    }
+  ]
+}

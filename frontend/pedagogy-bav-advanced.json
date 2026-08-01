@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "id": "bav-advanced",
+  "title": "Blocs auriculoventriculaires — formes avancées et associations",
+  "subtitle": "Distinguer un bloc de haut degré d'un bloc complet, reconnaître les causes réversibles et les pièges diagnostiques voisins (bloc sino-atrial, FA, SCA).",
+  "estimated_minutes": 18,
+  "learning_objectives": [
+    "Différencier un bloc de haut degré (certaines ondes P bloquées) d'un bloc complet (dissociation atrioventriculaire totale).",
+    "Rechercher systématiquement une cause réversible (hyperkaliémie, ischémie) devant un bloc de haut degré ou complet.",
+    "Reconnaître un bloc complet associé à une fibrillation atriale (rythme ventriculaire régulier malgré une FA).",
+    "Ne pas confondre un bloc sino-atrial (conduction AV normale, fréquence atriale divisée) avec un bloc atrioventriculaire.",
+    "Identifier un bloc auriculoventriculaire compliquant un syndrome coronarien aigu inférieur."
+  ],
+  "mastery": {
+    "diagnostic_threshold": 75,
+    "unsafe_error_types": ["etudiant"]
+  },
+  "completion": {
+    "passed": "Tu distingues correctement les blocs de haut degré des blocs complets, et tu recherches systématiquement une cause réversible ou une association à risque. Une réactivation différée reste nécessaire pour confirmer la rétention.",
+    "not_passed": "Reprends la distinction entre onde P bloquée par intermittence (haut degré) et dissociation atrioventriculaire totale (complet), ainsi que la recherche systématique d'une cause déclenchante. Une nouvelle tentative différée sera plus informative qu'une répétition immédiate."
+  },
+  "cases": [
+    {
+      "step_id": "bav-avance-haut-degre-hyperk",
+      "num": 27,
+      "phase": "foundation",
+      "step_title": "Bloc de haut degré : ne pas s'arrêter au rythme",
+      "objective": "Décrire un bloc de haut degré et rechercher activement une cause métabolique devant des ondes T amples.",
+      "teaching_point": "Plusieurs ondes P consécutives bloquées avec QRS larges définissent un bloc de haut degré ; des ondes T amples, fines et symétriques avec un QT court doivent faire rechercher une hyperkaliémie.",
+      "allow_hints": true,
+      "hints": [
+        "Compte les ondes P bloquées consécutivement : s'agit-il d'un blocage isolé ou répété ?",
+        "Regarde la morphologie des ondes T : sont-elles anormalement amples et pointues ?",
+        "Plusieurs ondes P bloquées de suite + ondes T amples et QT court = bloc de haut degré à faire explorer sur le plan métabolique."
+      ],
+      "required_concepts": ["BAV_DE_HAUT_GRADE", "ONDE_T_AMPLE"],
+      "unsafe_errors": []
+    },
+    {
+      "step_id": "bav-avance-complet-echappement-lent",
+      "num": 29,
+      "phase": "guided",
+      "step_title": "Reconnaître la dissociation complète",
+      "objective": "Distinguer un bloc complet d'un bloc de haut degré en démontrant l'indépendance totale des deux activités.",
+      "teaching_point": "Une fréquence atriale régulière et rapide totalement indépendante d'un rythme ventriculaire lent et régulier signe un BAV complet, à ne pas confondre avec un bloc de haut degré où certaines ondes P restent conduites.",
+      "allow_hints": true,
+      "hints": [
+        "Mesure séparément la fréquence atriale et la fréquence ventriculaire : sont-elles identiques ou différentes ?",
+        "Cherche si un seul complexe QRS est précédé d'un intervalle PR constant : si aucun ne l'est, la conduction est totalement interrompue.",
+        "Fréquences atriale et ventriculaire indépendantes = dissociation complète, différente du bloc de haut degré du cas précédent."
+      ],
+      "required_concepts": ["BAV_COMPLET", "DISSOCIATION_ATRIO_VENTRICULAIRE"],
+      "unsafe_errors": ["BAV_DE_HAUT_GRADE"]
+    },
+    {
+      "step_id": "bav-avance-fa-bav-complet",
+      "num": 30,
+      "phase": "contrast",
+      "step_title": "Un piège classique : FA + BAV complet",
+      "objective": "Reconnaître qu'un rythme ventriculaire parfaitement régulier au cours d'une FA n'est pas compatible avec une conduction normale.",
+      "teaching_point": "Une fibrillation atriale ne peut conduire des QRS parfaitement réguliers : cette régularité paradoxale signe un échappement jonctionnel sur bloc auriculoventriculaire complet surajouté à la FA.",
+      "allow_hints": true,
+      "hints": [
+        "L'activité atriale est-elle organisée (ondes P) ou anarchique (trémulation de la ligne de base) ?",
+        "Les complexes QRS sont-ils parfaitement réguliers ? Une FA conduite donne normalement des QRS irréguliers.",
+        "QRS fins et parfaitement réguliers sur une FA = incompatible avec une conduction directe ; c'est un échappement jonctionnel sur BAV complet."
+      ],
+      "required_concepts": ["FIBRILLATION_ATRIALE", "BAV_COMPLET"],
+      "unsafe_errors": ["BAV_2_MOBITZ_2", "FA_LENTE"]
+    },
+    {
+      "step_id": "bav-avance-piege-bloc-sino-atrial",
+      "num": 19,
+      "phase": "integration",
+      "step_title": "Le piège du bloc sino-atrial : une fréquence divisée par deux sans bloc AV",
+      "objective": "Reconnaître qu'un ralentissement brutal de la fréquence cardiaque par un facteur 2 peut venir d'un problème de conduction sino-atriale, et non atrioventriculaire.",
+      "teaching_point": "Une chute brutale de la fréquence cardiaque de moitié, avec une conduction atrioventriculaire strictement normale (toutes les ondes P conduites, PR fixe), oriente vers un bloc sino-auriculaire du deuxième degré — un trouble de conduction en amont du nœud AV, à ne pas confondre avec un BAV.",
+      "allow_hints": true,
+      "hints": [
+        "La fréquence cardiaque chute brutalement : est-ce la fréquence atriale elle-même qui ralentit, ou des ondes P qui restent bloquées ?",
+        "Vérifie l'intervalle PR avant et après le ralentissement : reste-t-il fixe et dans les limites de la normale ?",
+        "Toutes les ondes P sont conduites avec un PR normal, mais leur fréquence est divisée par deux : le problème est sino-atrial, pas atrioventriculaire.",
+        "Contrairement aux cas précédents, ici la conduction atrioventriculaire elle-même n'est jamais en cause."
+      ],
+      "required_concepts": ["BLOC_SINO_AURICULAIRE_DEUXIEME_DEGRE"],
+      "unsafe_errors": ["BAV_DE_HAUT_GRADE", "BAV_COMPLET"]
+    },
+    {
+      "step_id": "bav-avance-test-sca-inferieur",
+      "num": 65,
+      "phase": "mastery",
+      "step_title": "Test de maîtrise : un bloc qui doit faire chercher une ischémie",
+      "objective": "Reconnaître un bloc auriculoventriculaire de haut degré compliquant un syndrome coronarien aigu inférieur, sans négliger l'un ou l'autre diagnostic.",
+      "teaching_point": "Des ondes P bloquées associées à un sus-décalage systématisé du territoire inférieur avec image en miroir définissent un bloc auriculoventriculaire de haut degré compliquant un SCA ST+ inférieur — les deux diagnostics doivent être formulés, pas seulement l'un des deux.",
+      "allow_hints": false,
+      "hints": [],
+      "required_concepts": [
+        "SYNDROME_CORONARIEN_A_LA_PHASE_AIGUE_AVEC_SUS_DECALAGE_DU_SEGMENT_ST",
+        "BAV_DE_HAUT_GRADE"
+      ],
+      "unsafe_errors": []
+    }
+  ]
+}

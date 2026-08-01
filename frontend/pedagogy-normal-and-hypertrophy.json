@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "id": "normal-and-hypertrophy",
+  "title": "ECG normal et hypertrophies",
+  "subtitle": "Consolider les critères d'un ECG normal puis reconnaître les hypertrophies atriales et ventriculaires les plus fréquentes.",
+  "estimated_minutes": 15,
+  "learning_objectives": [
+    "Consolider les critères complets d'un ECG normal.",
+    "Reconnaître une hypertrophie atriale gauche.",
+    "Reconnaître une hypertrophie atriale et ventriculaire droite associées.",
+    "Reconnaître une hypertrophie ventriculaire gauche électrique (indice de Sokolow).",
+    "Reconnaître une hypertrophie ventriculaire droite isolée avec troubles de repolarisation."
+  ],
+  "mastery": {
+    "diagnostic_threshold": 75,
+    "unsafe_error_types": ["etudiant"]
+  },
+  "completion": {
+    "passed": "Tu vérifies systématiquement les critères d'un ECG normal et tu distingues correctement les principales hypertrophies atriales et ventriculaires. Une réactivation différée reste nécessaire pour confirmer la rétention.",
+    "not_passed": "Reprends la démarche systématique de lecture d'un ECG normal, puis les critères précis de chaque hypertrophie (durée/morphologie de P, indice de Sokolow, axe). Une nouvelle tentative différée sera plus informative qu'une répétition immédiate."
+  },
+  "cases": [
+    {
+      "step_id": "nh-ecg-normal",
+      "num": 3,
+      "phase": "foundation",
+      "step_title": "Consolider les critères d'un ECG normal",
+      "objective": "Vérifier systématiquement chaque paramètre de l'ECG avant de conclure à la normalité.",
+      "teaching_point": "Un ECG strictement normal impose de vérifier chaque paramètre (rythme, PR, QRS, axe, repolarisation, QT) — la petite onde q physiologique en V5-V6 ne doit pas être confondue avec une séquelle de nécrose.",
+      "allow_hints": true,
+      "hints": [
+        "Vérifie chaque paramètre un par un : rythme, PR, QRS, axe, repolarisation, QT.",
+        "Une petite onde q isolée en V5-V6 est-elle pathologique ?",
+        "Tous les paramètres sont dans la norme et la q septale est physiologique → ECG normal."
+      ],
+      "required_concepts": ["ECG_NORMAL"],
+      "unsafe_errors": []
+    },
+    {
+      "step_id": "nh-hypertrophie-atriale-gauche",
+      "num": 4,
+      "phase": "guided",
+      "step_title": "Une onde P élargie et bifide",
+      "objective": "Reconnaître les critères d'une hypertrophie atriale gauche à partir de la morphologie de l'onde P.",
+      "teaching_point": "Une onde P élargie (> 120 ms), bifide/crochetée dans les dérivations inférieures et latérales, définit une hypertrophie atriale gauche — l'indice de Sokolow peut rester négatif malgré des troubles de repolarisation latéraux associés.",
+      "allow_hints": true,
+      "hints": [
+        "Mesure la durée de l'onde P : dépasse-t-elle 120 ms ?",
+        "Regarde la morphologie de l'onde P en DI-DII-DIII/aVF : est-elle bifide ?",
+        "P élargie et bifide en inférieur/latéral = hypertrophie atriale gauche, indépendamment du Sokolow."
+      ],
+      "required_concepts": ["HYPERTROPHIE_ATRIALE_GAUCHE"],
+      "unsafe_errors": []
+    },
+    {
+      "step_id": "nh-hypertrophie-atriale-droite",
+      "num": 5,
+      "phase": "contrast",
+      "step_title": "Une onde P ample et pointue",
+      "objective": "Distinguer la morphologie de l'onde P de l'hypertrophie atriale droite de celle de l'hypertrophie atriale gauche du cas précédent.",
+      "teaching_point": "Une onde P ample et pointue (> 2,5 mm en D2) définit une hypertrophie atriale droite ; associée à de grandes ondes R en V1-V2, elle oriente vers une hypertrophie ventriculaire droite concomitante.",
+      "allow_hints": true,
+      "hints": [
+        "Compare la morphologie de l'onde P à celle du cas précédent : pointue ou bifide ?",
+        "Mesure son amplitude en D2 : dépasse-t-elle 2,5 mm ?",
+        "P ample et pointue = hypertrophie atriale droite ; cherche des signes de HVD associée (grandes ondes R en V1-V2)."
+      ],
+      "required_concepts": ["HYPERTROPHIE_ATRIALE_DROITE", "HYPERTROPHIE_VENTRICULAIRE_DROITE"],
+      "unsafe_errors": ["HYPERTROPHIE_ATRIALE_GAUCHE"]
+    },
+    {
+      "step_id": "nh-hvg-diastolique",
+      "num": 6,
+      "phase": "integration",
+      "step_title": "Un indice de Sokolow positif",
+      "objective": "Calculer l'indice de Sokolow et le relier à la polarité des ondes T en précordiales gauches.",
+      "teaching_point": "Un indice de Sokolow > 35 mm (R amples en V5-V6 + S profondes en V1-V2) avec des ondes T positives en précordiales gauches définit une HVG de type diastolique — à ne pas confondre avec la forme sévère (T négatives).",
+      "allow_hints": true,
+      "hints": [
+        "Calcule ou estime l'indice de Sokolow : dépasse-t-il 35 mm ?",
+        "Regarde la polarité des ondes T en précordiales gauches : positives ou négatives ?",
+        "Sokolow > 35 mm avec T positives = HVG de type diastolique (moins sévère que la forme avec T négatives)."
+      ],
+      "required_concepts": ["HYPERTROPHIE_VENTRICULAIRE_GAUCHE"],
+      "unsafe_errors": []
+    },
+    {
+      "step_id": "nh-test-hvd",
+      "num": 7,
+      "phase": "mastery",
+      "step_title": "Test de maîtrise : hypertrophie ventriculaire droite",
+      "objective": "Reconnaître une hypertrophie ventriculaire droite isolée à partir de l'axe, du rapport R/S en V1 et des troubles de repolarisation associés.",
+      "teaching_point": "Une déviation axiale droite avec un rapport R/S > 1 en V1 (grandes ondes R) et des troubles de repolarisation en précordiales droites définissent une hypertrophie ventriculaire droite — à ne pas confondre avec un trouble de conduction comme l'hémibloc postérieur gauche.",
+      "allow_hints": false,
+      "hints": [],
+      "required_concepts": ["HYPERTROPHIE_VENTRICULAIRE_DROITE"],
+      "unsafe_errors": ["BLOC_FASCICULAIRE_POSTERIEUR_GAUCHE"]
+    }
+  ]
+}

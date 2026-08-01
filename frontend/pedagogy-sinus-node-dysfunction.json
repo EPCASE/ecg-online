@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "id": "sinus-node-dysfunction",
+  "title": "Dysfonction sinusale",
+  "subtitle": "Distinguer une bradycardie sinusale physiologique d'une véritable dysfonction sinusale, reconnaître les pauses, l'échappement jonctionnel avec conduction rétrograde, et le fonctionnement attendu d'un stimulateur cardiaque implanté pour cette indication.",
+  "estimated_minutes": 16,
+  "learning_objectives": [
+    "Différencier une bradycardie sinusale physiologique (sportif) d'une bradycardie sinusale pathologique symptomatique.",
+    "Reconnaître les critères diagnostiques de la dysfonction sinusale symptomatique.",
+    "Identifier une pause sinusale et ne pas la confondre à tort avec un bloc auriculoventriculaire.",
+    "Reconnaître un rythme d'échappement jonctionnel avec conduction rétrograde en l'absence d'activité sinusale.",
+    "Reconnaître le fonctionnement attendu d'un stimulateur cardiaque double chambre implanté pour dysfonction sinusale."
+  ],
+  "mastery": {
+    "diagnostic_threshold": 75,
+    "unsafe_error_types": ["etudiant"]
+  },
+  "completion": {
+    "passed": "Tu distingues correctement une bradycardie sinusale physiologique d'une dysfonction sinusale pathologique, tu identifies les pauses sans les confondre avec un BAV, et tu reconnais l'échappement jonctionnel ainsi que le fonctionnement attendu d'un stimulateur cardiaque. Une réactivation différée reste nécessaire pour confirmer la rétention.",
+    "not_passed": "Reprends les critères qui distinguent une bradycardie sinusale physiologique d'une dysfonction sinusale symptomatique, ainsi que la démarche qui permet de ne pas confondre une pause sinusale avec un BAV. Une nouvelle tentative différée sera plus informative qu'une répétition immédiate."
+  },
+  "cases": [
+    {
+      "step_id": "snd-bradycardie-physiologique",
+      "num": 17,
+      "phase": "foundation",
+      "step_title": "Une bradycardie sinusale qui n'est pas pathologique",
+      "objective": "Reconnaître une bradycardie sinusale physiologique et ne pas la traiter comme une dysfonction sinusale.",
+      "teaching_point": "Une bradycardie sinusale marquée (autour de 40/min) avec une conduction atrioventriculaire normale et des QRS fins peut être un simple reflet de l'entraînement sportif d'endurance — elle ne définit pas à elle seule une dysfonction sinusale.",
+      "allow_hints": true,
+      "hints": [
+        "Vérifie d'abord que le rythme est bien sinusal (onde P positive en D2/D3/aVF devant chaque QRS).",
+        "Regarde si la conduction atrioventriculaire (PR) et la largeur des QRS sont normales.",
+        "Une bradycardie sinusale isolée, sans symptôme ni pause, chez un sportif, est le plus souvent physiologique."
+      ],
+      "required_concepts": ["BRADYCARDIE_SINUSALE", "RYTHME_SINUSAL"],
+      "unsafe_errors": ["DYSFONCTION_SINUSALE"]
+    },
+    {
+      "step_id": "snd-bradycardie-symptomatique",
+      "num": 18,
+      "phase": "guided",
+      "step_title": "Quand la bradycardie sinusale devient pathologique",
+      "objective": "Reconnaître les critères d'une dysfonction sinusale symptomatique devant une bradycardie sinusale majeure.",
+      "teaching_point": "Une bradycardie sinusale marquée (20-30/min), avec une conduction atrioventriculaire par ailleurs conservée en 1/1, définit une dysfonction sinusale lorsqu'elle est symptomatique — à la différence d'une simple bradycardie sinusale physiologique.",
+      "allow_hints": true,
+      "hints": [
+        "Compare la fréquence à celle du cas précédent : est-elle encore compatible avec un fonctionnement physiologique ?",
+        "Vérifie que la conduction atrioventriculaire (1/1, PR normal) reste préservée.",
+        "Une bradycardie sinusale très marquée et symptomatique, même avec une conduction AV normale, définit une dysfonction sinusale."
+      ],
+      "required_concepts": ["BRADYCARDIE_SINUSALE", "DYSFONCTION_SINUSALE"],
+      "unsafe_errors": []
+    },
+    {
+      "step_id": "snd-pause-sinusale-vs-bav",
+      "num": 20,
+      "phase": "contrast",
+      "step_title": "Une pause qui n'est pas un bloc auriculoventriculaire",
+      "objective": "Identifier une pause sinusale par disparition de l'activité atriale, sans onde P bloquée, et ne pas la confondre avec un BAV.",
+      "teaching_point": "Une pause caractérisée par l'absence complète d'onde P (et non par une onde P bloquée) correspond à une pause sinusale par dysfonction sinusale, et non à un bloc auriculoventriculaire — la distinction repose sur la présence ou l'absence d'activité atriale pendant la pause.",
+      "allow_hints": true,
+      "hints": [
+        "Cherche une onde P pendant la pause : est-elle présente mais bloquée, ou totalement absente ?",
+        "L'absence totale d'onde P pendant la pause oriente vers le nœud sinusal, pas vers le nœud atrioventriculaire.",
+        "Pause avec disparition complète de l'onde P = dysfonction sinusale ; pause avec onde P bloquée visible = BAV."
+      ],
+      "required_concepts": ["DYSFONCTION_SINUSALE", "ABSENCE_D_ONDE_P"],
+      "unsafe_errors": ["BAV_COMPLET", "BAV_2_MOBITZ_2"]
+    },
+    {
+      "step_id": "snd-echappement-jonctionnel",
+      "num": 21,
+      "phase": "integration",
+      "step_title": "Le rythme de secours quand le sinus se tait",
+      "objective": "Reconnaître un rythme d'échappement jonctionnel apparaissant en l'absence d'activité sinusale, dans un contexte de dysfonction sinusale.",
+      "teaching_point": "Des QRS fins, réguliers, non précédés d'onde P sinusale, sur un tracé sans activité sinusale identifiable, définissent un rythme d'échappement jonctionnel — un mécanisme de suppléance qui prend le relais lorsque le nœud sinusal est défaillant.",
+      "allow_hints": true,
+      "hints": [
+        "Vérifie s'il existe une onde P sinusale devant les QRS : en trouves-tu une ?",
+        "Regarde la morphologie des QRS : sont-ils fins et réguliers malgré l'absence de P sinusale ?",
+        "QRS fins réguliers sans onde P sinusale = rythme d'échappement jonctionnel, à intégrer dans le contexte d'une dysfonction sinusale."
+      ],
+      "required_concepts": ["RYTHME_D_ECHAPPEMENT_JONCTIONNEL", "DYSFONCTION_SINUSALE"],
+      "unsafe_errors": ["BAV_COMPLET"]
+    },
+    {
+      "step_id": "snd-test-pacemaker-double-chambre",
+      "num": 22,
+      "phase": "mastery",
+      "step_title": "Test de maîtrise : stimulateur double chambre pour dysfonction sinusale",
+      "objective": "Reconnaître le fonctionnement attendu d'un stimulateur cardiaque double chambre implanté pour dysfonction sinusale, avec stimulation atriale et conduction atrioventriculaire native conservée.",
+      "teaching_point": "Des spikes de stimulation réguliers suivis d'une dépolarisation atriale, puis de QRS fins spontanés apparaissant après un intervalle de conduction atrioventriculaire native normale, correspondent au fonctionnement attendu d'un stimulateur double chambre implanté pour dysfonction sinusale — le nœud atrioventriculaire n'a ici pas besoin d'être suppléé.",
+      "allow_hints": false,
+      "hints": [],
+      "required_concepts": ["STIMULATION_ATRIALE", "DYSFONCTION_SINUSALE"],
+      "unsafe_errors": ["STIMULATION_VENTRICULAIRE", "BAV_COMPLET"]
+    }
+  ]
+}

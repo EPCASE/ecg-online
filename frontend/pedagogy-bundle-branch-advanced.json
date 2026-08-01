@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "id": "bundle-branch-advanced",
+  "title": "Blocs de branche et hémiblocs — formes complexes",
+  "subtitle": "Reconnaître les hémiblocs isolés, leurs associations (bloc bifasciculaire), les blocs indifférenciés et le piège d'un bloc de branche sur fibrillation atriale.",
+  "estimated_minutes": 16,
+  "learning_objectives": [
+    "Reconnaître un hémibloc antérieur gauche isolé (déviation axiale gauche, QRS fins).",
+    "Identifier un bloc bifasciculaire (bloc de branche droite + hémibloc antérieur gauche) et en mesurer le contexte de risque (syncope).",
+    "Ne pas confondre un bloc de branche droite avec les signes électriques d'une hypertrophie ventriculaire droite associée.",
+    "Reconnaître un bloc indifférencié quand aucun critère typique de bloc de branche droite ou gauche n'est rempli.",
+    "Identifier un bloc de branche complet conduit sur fibrillation atriale sans le confondre avec une tachycardie ventriculaire ou un trouble de conduction atrioventriculaire."
+  ],
+  "mastery": {
+    "diagnostic_threshold": 75,
+    "unsafe_error_types": ["etudiant"]
+  },
+  "completion": {
+    "passed": "Tu identifies correctement les hémiblocs isolés, leurs associations, les blocs indifférenciés, et tu ne confonds pas un trouble de conduction intraventriculaire avec un problème atrioventriculaire ou un trouble du rythme ventriculaire. Une réactivation différée reste nécessaire pour confirmer la rétention.",
+    "not_passed": "Reprends les critères électriques précis de chaque hémibloc et bloc de branche (axe, morphologie en V1/V6, durée du QRS), ainsi que la démarche qui permet d'écarter une tachycardie ventriculaire devant des QRS larges monomorphes. Une nouvelle tentative différée sera plus informative qu'une répétition immédiate."
+  },
+  "cases": [
+    {
+      "step_id": "bba-hemibloc-anterieur-gauche",
+      "num": 16,
+      "phase": "foundation",
+      "step_title": "Un hémibloc isolé, QRS fins",
+      "objective": "Reconnaître les critères électriques d'un hémibloc antérieur gauche isolé sans élargissement du QRS.",
+      "teaching_point": "Une déviation axiale gauche avec aspect qR en DI/aVL et rS dans les dérivations inférieures, sur des QRS de durée normale, définit un hémibloc antérieur gauche isolé — il ne s'agit pas d'un bloc de branche complet.",
+      "allow_hints": true,
+      "hints": [
+        "Mesure la durée du QRS : est-elle normale ou élargie ?",
+        "Regarde l'axe électrique : est-il dévié à gauche ?",
+        "QRS fins + déviation axiale gauche + aspect qR en DI/aVL = hémibloc antérieur gauche isolé."
+      ],
+      "required_concepts": ["HEMIBLOC_ANTERIEUR_GAUCHE"],
+      "unsafe_errors": []
+    },
+    {
+      "step_id": "bba-bloc-bifasciculaire-syncope",
+      "num": 11,
+      "phase": "guided",
+      "step_title": "Association à risque : bloc bifasciculaire",
+      "objective": "Reconnaître l'association d'un bloc de branche droite complet et d'un hémibloc antérieur gauche, et en tirer les conséquences dans un contexte de syncope.",
+      "teaching_point": "Un aspect rSR' en V1, une onde S large en V6, associés à une déviation axiale gauche, définissent un bloc bifasciculaire (bloc de branche droite complet + hémibloc antérieur gauche) — une association qui, chez un patient syncopal, fait craindre une atteinte plus étendue du système de conduction.",
+      "allow_hints": true,
+      "hints": [
+        "Cherche d'abord les critères de bloc de branche droite en V1 et V6.",
+        "Cherche ensuite si l'axe est dévié à gauche, en plus du bloc de branche droite.",
+        "Bloc de branche droite + hémibloc antérieur gauche = bloc bifasciculaire ; à corréler avec le contexte clinique de syncope."
+      ],
+      "required_concepts": ["BLOC_DE_BRANCHE_DROIT_COMPLET", "HEMIBLOC_ANTERIEUR_GAUCHE"],
+      "unsafe_errors": []
+    },
+    {
+      "step_id": "bba-bbd-hvd-contraste",
+      "num": 12,
+      "phase": "contrast",
+      "step_title": "Ne pas laisser l'hypertrophie masquer le bloc de branche",
+      "objective": "Distinguer les critères propres au bloc de branche droite de ceux, associés mais distincts, de l'hypertrophie ventriculaire droite.",
+      "teaching_point": "Un bloc de branche droite complet peut coexister avec une hypertrophie ventriculaire droite (déviation axiale droite, aspect S1Q3, grande onde R en V1) ; les deux diagnostics doivent être posés séparément, sans que l'un masque l'autre.",
+      "allow_hints": true,
+      "hints": [
+        "Retrouve d'abord l'aspect typique de bloc de branche droite en V1/V6, comme dans le cas précédent.",
+        "Cherche ensuite des signes indépendants d'hypertrophie ventriculaire droite : axe, amplitude de l'onde R en V1, aspect S1Q3.",
+        "Bloc de branche droite ET hypertrophie ventriculaire droite peuvent coexister : ce sont deux diagnostics à formuler, pas un seul."
+      ],
+      "required_concepts": ["BLOC_DE_BRANCHE_DROIT_COMPLET", "HYPERTROPHIE_VENTRICULAIRE_DROITE"],
+      "unsafe_errors": []
+    },
+    {
+      "step_id": "bba-bloc-indifferencie",
+      "num": 15,
+      "phase": "integration",
+      "step_title": "Quand aucun bloc de branche typique ne s'applique",
+      "objective": "Reconnaître un bloc indifférencié en écartant explicitement les critères de bloc de branche gauche et droite.",
+      "teaching_point": "Des QRS larges dont la morphologie ne correspond ni aux critères de bloc de branche droite (V1/V6) ni à ceux de bloc de branche gauche (DI/aVL) définissent un bloc indifférencié — un diagnostic d'exclusion qui nécessite d'avoir explicitement écarté les deux formes typiques.",
+      "allow_hints": true,
+      "hints": [
+        "Teste d'abord les critères de bloc de branche droite : sont-ils remplis ?",
+        "Teste ensuite les critères de bloc de branche gauche : sont-ils remplis ?",
+        "Si aucun des deux jeux de critères n'est rempli malgré des QRS larges, il s'agit d'un bloc indifférencié — pas d'un bloc de branche droite ou gauche par défaut."
+      ],
+      "required_concepts": ["BLOC_INDIFFERENCIE"],
+      "unsafe_errors": ["BLOC_DE_BRANCHE_DROIT_COMPLET", "BLOC_DE_BRANCHE_GAUCHE_COMPLET"]
+    },
+    {
+      "step_id": "bba-test-fa-bloc-branche",
+      "num": 49,
+      "phase": "mastery",
+      "step_title": "Test de maîtrise : bloc de branche conduit sur fibrillation atriale",
+      "objective": "Reconnaître un bloc de branche complet conduit sur fibrillation atriale, en l'écartant d'une tachycardie ventriculaire et d'un trouble de conduction atrioventriculaire.",
+      "teaching_point": "Une tachycardie irrégulière à QRS larges monomorphes, avec un aspect rsR' en V1 et une trémulation de la ligne de base, correspond à une fibrillation atriale conduite avec bloc de branche droite complet — le caractère monomorphe des QRS permet d'écarter torsade de pointes et fibrillation ventriculaire, et il n'y a ici aucun trouble de la conduction atrioventriculaire.",
+      "allow_hints": false,
+      "hints": [],
+      "required_concepts": ["FIBRILLATION_ATRIALE", "BLOC_DE_BRANCHE_DROIT_COMPLET"],
+      "unsafe_errors": ["TACHYCARDIE_VENTRICULAIRE", "BAV_COMPLET"]
+    }
+  ]
+}

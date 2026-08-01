@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "id": "embolism-and-pericardium",
+  "title": "Embolie pulmonaire et atteintes péricardiques",
+  "subtitle": "Reconnaître les signes ECG de l'embolie pulmonaire et des atteintes péricardiques (péricardite, tamponnade, myocardite).",
+  "estimated_minutes": 15,
+  "learning_objectives": [
+    "Repérer les signes ECG évocateurs d'embolie pulmonaire (tachycardie sinusale, S1Q3T3, aspect de retard droit).",
+    "Reconnaître les signes de gravité de l'embolie pulmonaire massive (BBD complet nouveau).",
+    "Différencier la péricardite aiguë du SCA ST+.",
+    "Reconnaître le microvoltage et l'alternance électrique comme signes de tamponnade.",
+    "Évoquer une myocardite devant un sus-décalage modéré sans miroir."
+  ],
+  "mastery": {
+    "diagnostic_threshold": 75,
+    "unsafe_error_types": ["etudiant"]
+  },
+  "completion": {
+    "passed": "Tu sais reconnaître l'embolie pulmonaire et différencier les atteintes péricardiques du SCA ST+. Réactive ces réflexes sur des tracés atypiques.",
+    "not_passed": "Reprends les signes clés : S1Q3T3 pour l'EP, sous-décalage PQ et sus-décalage diffus concave pour la péricardite, microvoltage/alternance pour la tamponnade, absence de miroir pour la myocardite."
+  },
+  "cases": [
+    {
+      "step_id": "embolism-ep-non-compliquee",
+      "num": 53,
+      "phase": "foundation",
+      "step_title": "Un S1Q3T3",
+      "objective": "Repérer les signes ECG évocateurs d'EP (tachycardie sinusale, S1Q3T3, aspect de retard droit).",
+      "teaching_point": "Le S1Q3T3 (onde S en DI, onde Q et T négative en DIII) associé à une tachycardie sinusale et un aspect de retard droit doit faire évoquer une EP, en l'absence de trouble majeur de repolarisation évocateur de SCA ST+.",
+      "allow_hints": true,
+      "hints": [
+        "La fréquence cardiaque est-elle normale ?",
+        "Cherchez l'aspect S1Q3T3.",
+        "Y a-t-il un sus-décalage ST évocateur de SCA ?"
+      ],
+      "required_concepts": ["EMBOLIE_PULMONAIRE", "TACHYCARDIE_SINUSALE"],
+      "unsafe_errors": ["SYNDROME_CORONARIEN_A_LA_PHASE_AIGUE_AVEC_SUS_DECALAGE_DU_SEGMENT_ST"]
+    },
+    {
+      "step_id": "embolism-ep-massive",
+      "num": 54,
+      "phase": "guided",
+      "step_title": "Un BBD qui apparaît",
+      "objective": "Reconnaître les signes de gravité de l'EP (BBD complet nouveau, tachycardie).",
+      "teaching_point": "Dans l'EP massive, un BBD complet peut apparaître (surcharge ventriculaire droite aiguë), associé à S1Q3T3 et ondes T négatives antérieures (V1-V3) — l'ECG n'est ni sensible ni spécifique mais rarement normal dans l'EP massive.",
+      "allow_hints": true,
+      "hints": [
+        "Le BBD est-il complet ou incomplet ?",
+        "Où sont les ondes T négatives (antérieures vs inférieures) ?",
+        "L'ECG normal élimine-t-il une EP grave ?"
+      ],
+      "required_concepts": ["EMBOLIE_PULMONAIRE", "BLOC_DE_BRANCHE_DROIT_COMPLET"],
+      "unsafe_errors": []
+    },
+    {
+      "step_id": "embolism-pericardite",
+      "num": 55,
+      "phase": "contrast",
+      "step_title": "Un sus-décalage diffus concave",
+      "objective": "Différencier la péricardite du SCA ST+ (sus-décalage diffus concave, sous-décalage PQ, absence de miroir/onde Q).",
+      "teaching_point": "Sus-décalage ST diffus concave vers le haut (plusieurs territoires, hors aVR/V1), sous-décalage du segment PQ (surtout DI-DII, sus-décalage en aVR), absence de systématisation coronaire et pas d'onde Q de nécrose — clés pour distinguer d'un SCA ST+.",
+      "allow_hints": true,
+      "hints": [
+        "Le sus-décalage respecte-t-il un territoire coronaire unique ?",
+        "Cherchez le sous-décalage du segment PQ.",
+        "Y a-t-il un miroir ou des ondes Q ?"
+      ],
+      "required_concepts": ["PERICARDITE", "SOUS_PQ"],
+      "unsafe_errors": ["SYNDROME_CORONARIEN_A_LA_PHASE_AIGUE_AVEC_SUS_DECALAGE_DU_SEGMENT_ST"]
+    },
+    {
+      "step_id": "embolism-tamponnade",
+      "num": 56,
+      "phase": "integration",
+      "step_title": "Un microvoltage qui alterne",
+      "objective": "Reconnaître le microvoltage et l'alternance électrique comme signes de tamponnade.",
+      "teaching_point": "Tachycardie sinusale + microvoltage diffus + alternance électrique des QRS (surtout V3-V4) constituent le trépied classique évocateur d'un épanchement péricardique abondant/tamponnade — ne pas confondre le microvoltage avec une hypertrophie atriale.",
+      "allow_hints": true,
+      "hints": [
+        "L'amplitude des QRS varie-t-elle d'un battement à l'autre ?",
+        "Le voltage global est-il faible ?",
+        "Fréquence cardiaque ?"
+      ],
+      "required_concepts": ["TAMPONNADE", "ALTERNANCE_DES_QRS", "MICROVOLTAGE"],
+      "unsafe_errors": ["HYPERTROPHIE_ATRIALE_DROITE"]
+    },
+    {
+      "step_id": "embolism-myocardite",
+      "num": 57,
+      "phase": "mastery",
+      "step_title": "Un sus-décalage modéré sans miroir",
+      "objective": "Évoquer une myocardite devant un sus-décalage modéré sans miroir, en contexte viral/douleur thoracique.",
+      "teaching_point": "Sus-décalage ST modéré (souvent inférieur), QRS fins, absence de miroir — la myocardite est un diagnostic différentiel majeur du SCA ST+ à éliminer en cas de doute (troponine, contexte viral, IRM cardiaque).",
+      "allow_hints": true,
+      "hints": [
+        "Y a-t-il un miroir ?",
+        "Le contexte est-il évocateur (fièvre, syndrome viral récent) ?",
+        "Quel diagnostic différentiel principal à éliminer ?"
+      ],
+      "required_concepts": ["MYOCARDITE"],
+      "unsafe_errors": ["SYNDROME_CORONARIEN_A_LA_PHASE_AIGUE_AVEC_SUS_DECALAGE_DU_SEGMENT_ST"]
+    }
+  ]
+}

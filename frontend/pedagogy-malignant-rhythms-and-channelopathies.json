@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "id": "malignant-rhythms-and-channelopathies",
+  "title": "Rythmes malins et canalopathies",
+  "subtitle": "Reconnaître les arythmies ventriculaires menaçantes et les canalopathies à risque de mort subite.",
+  "estimated_minutes": 13,
+  "learning_objectives": [
+    "Reconnaître la fibrillation ventriculaire et son contexte de survenue.",
+    "Différencier la torsade de pointes d'une TV polymorphe classique et d'une FV.",
+    "Reconnaître une fibrillation atriale pré-excitée sur WPW (Wolf malin).",
+    "Identifier l'aspect ECG typique du syndrome de Brugada."
+  ],
+  "mastery": {
+    "diagnostic_threshold": 75,
+    "unsafe_error_types": ["etudiant"]
+  },
+  "completion": {
+    "passed": "Tu sais reconnaître les rythmes ventriculaires malins et les canalopathies à risque de mort subite. Réactive régulièrement cette vigilance devant toute tachycardie à QRS larges.",
+    "not_passed": "Reprends la distinction entre FV, torsade de pointes, FA pré-excitée sur WPW et syndrome de Brugada : chacun a une signature et un piège spécifique."
+  },
+  "cases": [
+    {
+      "step_id": "malignant-fv-post-idm",
+      "num": 50,
+      "phase": "foundation",
+      "step_title": "Une extrasystole qui dégénère",
+      "objective": "Reconnaître la fibrillation ventriculaire et son contexte de survenue (séquelle de nécrose, ESV à couplage court).",
+      "teaching_point": "La FV se traduit par des QRS larges, polymorphes, irréguliers, sans organisation, à une fréquence non mesurable — urgence vitale absolue nécessitant un choc électrique immédiat. Le déclencheur classique est une extrasystole ventriculaire tombant sur l'onde T (phénomène R/T) sur un myocarde cicatriciel.",
+      "allow_hints": true,
+      "hints": [
+        "Le tracé de base est-il organisé ou anarchique ?",
+        "Cherchez la séquelle de nécrose sous-jacente.",
+        "Qu'est-ce qui a déclenché l'épisode ?"
+      ],
+      "required_concepts": ["FIBRILLATION_VENTRICULAIRE", "SEQUELLE_DE_NECROSE"],
+      "unsafe_errors": ["TACHYCARDIE_VENTRICULAIRE_POLYMORPHE"]
+    },
+    {
+      "step_id": "malignant-torsade-de-pointes",
+      "num": 51,
+      "phase": "guided",
+      "step_title": "Une torsion autour de la ligne isoélectrique",
+      "objective": "Différencier la torsade de pointes d'une TV polymorphe classique et d'une FV.",
+      "teaching_point": "La torsade de pointes est une TV polymorphe particulière avec axe des QRS variant progressivement (\"torsion\" autour de la ligne isoélectrique), sur QT long, souvent auto-résolutive, déclenchée par une ESV en contexte de QT long (médicamenteux, hypokaliémie).",
+      "allow_hints": true,
+      "hints": [
+        "Mesurez le QT avant/après l'épisode.",
+        "L'axe des QRS change-t-il progressivement pendant l'épisode ?",
+        "Quel contexte médicamenteux/métabolique favorisant ?"
+      ],
+      "required_concepts": ["TORSADE_DE_POINTES", "QT_LONG"],
+      "unsafe_errors": ["FIBRILLATION_VENTRICULAIRE"]
+    },
+    {
+      "step_id": "malignant-wolf-malin",
+      "num": 52,
+      "phase": "contrast",
+      "step_title": "Un aspect en accordéon",
+      "objective": "Reconnaître la fibrillation atriale conduite par voie accessoire — piège classique car ressemble à une TV.",
+      "teaching_point": "Tachycardie irrégulière à QRS larges polymorphes (alternance de QRS fins/larges/intermédiaires, aspect \"en accordéon\"), à ne pas confondre avec une TV ni un BBG. Risque de dégénérescence en FV — CEE si instable, éviter les bloquants du nœud AV (digoxine, vérapamil, bêtabloquants) qui favorisent la conduction par la voie accessoire.",
+      "allow_hints": true,
+      "hints": [
+        "La tachycardie est-elle réellement régulière ?",
+        "Les QRS ont-ils tous la même morphologie ?",
+        "Contre-indication thérapeutique majeure à connaître."
+      ],
+      "required_concepts": ["WOLF_MALIN", "FAISCEAU_ACCESSOIRE_A_CONDUCTION_ANTEROGRADE"],
+      "unsafe_errors": ["TORSADE_DE_POINTES", "BLOC_DE_BRANCHE_GAUCHE"]
+    },
+    {
+      "step_id": "malignant-brugada",
+      "num": 74,
+      "phase": "mastery",
+      "step_title": "Un dôme en V1-V3",
+      "objective": "Identifier l'aspect ECG typique de Brugada de type 1 (canalopathie, risque de mort subite).",
+      "teaching_point": "Sus-décalage ST en dôme (>2mm) en V1-V3 avec onde T négative, sans miroir — pattern électrique isolé, en dehors de tout contexte ischémique aigu. Diagnostic différentiel majeur du SCA ST+ antérieur mais contexte et morphologie diffèrent (dôme vs onde de Pardee, pas de miroir).",
+      "allow_hints": true,
+      "hints": [
+        "Quelle est la morphologie précise du sus-décalage (dôme vs convexe classique) ?",
+        "Y a-t-il un miroir ?",
+        "Contexte clinique évocateur (syncope, mort subite familiale) ?"
+      ],
+      "required_concepts": ["SYNDROME_DE_BRUGADA", "ASPECT_DE_BRUGADA_DE_TYPE_1"],
+      "unsafe_errors": []
+    }
+  ]
+}

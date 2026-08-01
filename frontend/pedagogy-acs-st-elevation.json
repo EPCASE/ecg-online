@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "id": "acs-st-elevation",
+  "title": "SCA ST+ : territoires et pièges",
+  "subtitle": "Reconnaître les territoires du SCA ST+ et ses complications, y compris sur bloc de branche gauche.",
+  "estimated_minutes": 16,
+  "learning_objectives": [
+    "Identifier le territoire antérieur étendu et l'onde de Pardee.",
+    "Reconnaître le territoire inférieur systématisé sans que les ondes Q n'éliminent l'indication de reperfusion.",
+    "Repérer une complication rythmique (dysfonction sinusale + échappement) associée à un SCA ST+ inférieur.",
+    "Reconnaître une extension postérieure et un trouble conductif associé (BAV 2/1).",
+    "Diagnostiquer un SCA ST+ malgré la présence d'un BBG complet."
+  ],
+  "mastery": {
+    "diagnostic_threshold": 75,
+    "unsafe_error_types": ["etudiant"]
+  },
+  "completion": {
+    "passed": "Tu sais localiser les territoires du SCA ST+ et reconnaître ses complications et pièges, y compris sur BBG. Réactive ce réflexe sur des tracés complexes.",
+    "not_passed": "Reprends la topographie des territoires (miroir, dérivations concernées) et les critères de Sgarbossa pour le SCA ST+ sur BBG."
+  },
+  "cases": [
+    {
+      "step_id": "acs-stemi-antero-septo-apical",
+      "num": 58,
+      "phase": "foundation",
+      "step_title": "Une onde de Pardee étendue",
+      "objective": "Identifier le territoire antérieur étendu (V1-V4 + DI/aVL) et l'onde de Pardee.",
+      "teaching_point": "Sus-décalage englobant l'onde T (onde de Pardee) de V1 à V4 + DI/aVL/aVR, avec miroir inférieur/V6 — évoque une occlusion proximale de l'IVA en amont de la première septale.",
+      "allow_hints": true,
+      "hints": [
+        "Quelles dérivations sont concernées ?",
+        "Où est le miroir ?",
+        "Quel territoire coronaire est probablement occlus ?"
+      ],
+      "required_concepts": ["SYNDROME_CORONARIEN_A_LA_PHASE_AIGUE_AVEC_SUS_DECALAGE_DU_SEGMENT_ST", "SEPTAL"],
+      "unsafe_errors": []
+    },
+    {
+      "step_id": "acs-stemi-inferieur",
+      "num": 59,
+      "phase": "guided",
+      "step_title": "Des ondes Q qui n'éliminent rien",
+      "objective": "Reconnaître le territoire inférieur systématisé (DII-DIII-aVF) avec miroir et ondes Q sans que celles-ci n'éliminent l'indication de reperfusion.",
+      "teaching_point": "Sus-décalage systématisé inférieur avec onde de Pardee, miroir en aVL/V2, ondes Q inférieures présentes dès la phase aiguë — ne pas conclure à tort que la présence d'ondes Q rend la reperfusion inutile.",
+      "allow_hints": true,
+      "hints": [
+        "Le territoire est-il systématisé ?",
+        "Où est le miroir ?",
+        "Les ondes Q contre-indiquent-elles la reperfusion ?"
+      ],
+      "required_concepts": ["SYNDROME_CORONARIEN_A_LA_PHASE_AIGUE_AVEC_SUS_DECALAGE_DU_SEGMENT_ST", "PRESENCE_D_ONDE_Q_PATHOLOGIQUE"],
+      "unsafe_errors": []
+    },
+    {
+      "step_id": "acs-stemi-inferieur-vd-dysfonction",
+      "num": 60,
+      "phase": "contrast",
+      "step_title": "Une complication rythmique",
+      "objective": "Repérer une complication rythmique (dysfonction sinusale + échappement) associée à un SCA ST+ inférieur avec extension droite.",
+      "teaching_point": "L'extension au VD (sus-décalage V3R-V4R) et la dysfonction sinusale (absence d'onde P, rythme d'échappement) sont des complications fréquentes du SCA ST+ inférieur (artère coronaire droite proximale irrigant le nœud sinusal).",
+      "allow_hints": true,
+      "hints": [
+        "Cherchez le sus-décalage en dérivations droites V3R-V4R.",
+        "Voyez-vous des ondes P ?",
+        "Quelle est l'origine probable du rythme d'échappement ?"
+      ],
+      "required_concepts": ["VENTRICULE_DROIT", "DYSFONCTION_SINUSALE", "ECHAPPEMENT"],
+      "unsafe_errors": []
+    },
+    {
+      "step_id": "acs-stemi-inferieur-postérieur-bav",
+      "num": 61,
+      "phase": "integration",
+      "step_title": "Un 18 dérivations systématique",
+      "objective": "Reconnaître une extension postérieure (miroir V1-V2, à confirmer par V7-V9) et un trouble conductif associé (BAV 2/1).",
+      "teaching_point": "Devant un infarctus inférieur, l'ECG 18 dérivations est systématique pour rechercher une extension droite et postérieure. Une bradycardie à QRS fins avec BAV 2/1 peut compliquer un SCA inférieur (atteinte du nœud AV par l'artère coronaire droite).",
+      "allow_hints": true,
+      "hints": [
+        "Quel est le rapport R/S en V1-V2 ?",
+        "Pourquoi demander un 18 dérivations ?",
+        "Le rythme est-il régulier ?"
+      ],
+      "required_concepts": ["POSTERIEUR", "VENTRICULE_DROIT", "BAV_2_POUR_1"],
+      "unsafe_errors": []
+    },
+    {
+      "step_id": "acs-stemi-sur-bbg",
+      "num": 62,
+      "phase": "mastery",
+      "step_title": "Un BBG qui ne doit pas masquer le diagnostic",
+      "objective": "Diagnostiquer un SCA ST+ malgré la présence d'un BBG complet — piège classique.",
+      "teaching_point": "Un BBG complet ne doit pas empêcher le diagnostic de SCA ST+ si le sus-décalage est très ample et concordant (ici V1-V4, >5mm en V2-V3) — évoquer les critères de Sgarbossa devant un contexte de douleur thoracique typique.",
+      "allow_hints": true,
+      "hints": [
+        "Un BBG élimine-t-il un diagnostic de SCA ST+ ?",
+        "L'amplitude du sus-décalage est-elle habituelle pour un simple trouble de repolarisation du BBG ?",
+        "Quel est le contexte clinique ?"
+      ],
+      "required_concepts": ["BLOC_DE_BRANCHE_GAUCHE_COMPLET", "SYNDROME_CORONARIEN_A_LA_PHASE_AIGUE_AVEC_SUS_DECALAGE_DU_SEGMENT_ST"],
+      "unsafe_errors": []
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "id": "acs-complex-and-nste",
+  "title": "SCA compliqué et sans sus-décalage",
+  "subtitle": "Reconnaître les complications rythmiques du SCA ST+ et les formes sans sus-décalage (NSTEMI).",
+  "estimated_minutes": 16,
+  "learning_objectives": [
+    "Associer un SCA ST+ antérieur typique à sa complication rythmique majeure (FV).",
+    "Reconnaître le RIVA comme signe de reperfusion bénin, à ne pas confondre avec une TV.",
+    "Différencier le NSTEMI du SCA ST+.",
+    "Repérer une FA rapide comme facteur précipitant/masquant d'un SCA NSTEMI.",
+    "Reconnaître le pattern à haut risque de lésion du tronc commun gauche ou tritronculaire."
+  ],
+  "mastery": {
+    "diagnostic_threshold": 75,
+    "unsafe_error_types": ["etudiant"]
+  },
+  "completion": {
+    "passed": "Tu sais reconnaître les complications rythmiques du SCA ST+ (FV, RIVA) et différencier NSTEMI du SCA ST+. Réactive ce réflexe sur des tracés atypiques.",
+    "not_passed": "Reprends la distinction entre FV et RIVA (fréquence !), et les critères du NSTEMI (sous-décalage, absence de sus-décalage)."
+  },
+  "cases": [
+    {
+      "step_id": "acs-nste-stemi-fv",
+      "num": 63,
+      "phase": "foundation",
+      "step_title": "Une extrasystole qui déclenche une FV",
+      "objective": "Associer un SCA ST+ antérieur typique à sa complication rythmique majeure (FV), sans la confondre avec une torsade/TV organisée/RIVA.",
+      "teaching_point": "Le sus-décalage antérieur (onde de Pardee en V5) précède la FV déclenchée par une ESV — reconnaître la FV (rythme extrêmement rapide, polymorphe, anarchique) et la distinguer d'une torsade (pas de QT long ici), d'une TV organisée, ou d'un RIVA (fréquence bien plus basse).",
+      "allow_hints": true,
+      "hints": [
+        "Le rythme initial est-il sinusal ?",
+        "Qu'est-ce qui déclenche l'épisode ?",
+        "En quoi ce rythme diffère-t-il d'une torsade ou d'un RIVA ?"
+      ],
+      "required_concepts": ["SYNDROME_CORONARIEN_A_LA_PHASE_AIGUE_AVEC_SUS_DECALAGE_DU_SEGMENT_ST", "FIBRILLATION_VENTRICULAIRE"],
+      "unsafe_errors": ["TORSADE_DE_POINTES"]
+    },
+    {
+      "step_id": "acs-nste-riva-reperfusion",
+      "num": 64,
+      "phase": "guided",
+      "step_title": "Un rythme bénin de reperfusion",
+      "objective": "Reconnaître le RIVA comme signe de reperfusion (bénin), à ne pas confondre avec une TV.",
+      "teaching_point": "Le RIVA est un rythme ventriculaire focal, fréquence ~80/min (donc < 100/min, à la différence d'une TV), QRS larges, souvent avec complexe de fusion — signe indirect de reperfusion coronaire réussie, ne nécessite habituellement pas de traitement spécifique.",
+      "allow_hints": true,
+      "hints": [
+        "Quelle est la fréquence exacte du rythme ventriculaire ?",
+        "Voyez-vous un complexe de fusion ?",
+        "Ce rythme doit-il inquiéter dans ce contexte ?"
+      ],
+      "required_concepts": ["RYTHME_IDIOVENTRICULAIRE_ACCELERE", "COMPLEXE_DE_FUSION"],
+      "unsafe_errors": ["TACHYCARDIE_VENTRICULAIRE"]
+    },
+    {
+      "step_id": "acs-nste-nstemi-anterieur",
+      "num": 66,
+      "phase": "contrast",
+      "step_title": "Un sous-décalage sans sus-décalage",
+      "objective": "Différencier le NSTEMI du SCA ST+ (sous-décalage + ondes T négatives, sans sus-décalage).",
+      "teaching_point": "Sous-décalage significatif V1-V4 avec ondes T négatives, en l'absence de sus-décalage — évoque un NSTEMI antérieur (à confirmer par l'élévation enzymatique, orientant vers NSTEMI plutôt qu'angor instable).",
+      "allow_hints": true,
+      "hints": [
+        "Y a-t-il un sus-décalage ST ?",
+        "Quel est l'aspect des ondes T ?",
+        "Qu'est-ce qui distingue NSTEMI et angor instable sur le plan biologique ?"
+      ],
+      "required_concepts": ["SYNDROME_CORONARIEN_A_LA_PHASE_AIGUE_SANS_ELEVATION_DU_SEGMENT_ST"],
+      "unsafe_errors": []
+    },
+    {
+      "step_id": "acs-nste-fa-rapide",
+      "num": 67,
+      "phase": "integration",
+      "step_title": "Une tachyarythmie qui précipite l'ischémie",
+      "objective": "Repérer une FA rapide comme facteur précipitant/masquant d'un SCA NSTEMI.",
+      "teaching_point": "Une FA rapide (~130 bpm, PR non mesurable) peut précipiter une ischémie myocardique par déséquilibre besoin/apport en O2 chez une patiente coronarienne — le sous-décalage ST diffus et les troubles de repolarisation orientent vers un angor instable secondaire dans ce contexte.",
+      "allow_hints": true,
+      "hints": [
+        "Le rythme est-il sinusal ?",
+        "Quel est l'aspect du segment ST ?",
+        "Comment la tachyarythmie peut-elle expliquer l'ischémie ?"
+      ],
+      "required_concepts": ["FIBRILLATION_ATRIALE", "SYNDROME_CORONARIEN_A_LA_PHASE_AIGUE_SANS_ELEVATION_DU_SEGMENT_ST"],
+      "unsafe_errors": []
+    },
+    {
+      "step_id": "acs-nste-ischemie-diffuse",
+      "num": 68,
+      "phase": "mastery",
+      "step_title": "Un sus-décalage en aVR qui alerte",
+      "objective": "Reconnaître le pattern à haut risque de lésion du tronc commun gauche ou tritronculaire.",
+      "teaching_point": "L'association sus-décalage ST en aVR (et V1) + sous-décalage diffus important (inférieur, V3-V6) est un pattern à très haut risque, évocateur d'une lésion du tronc commun gauche ou de lésions tritronculaires sévères — urgence coronarographique.",
+      "allow_hints": true,
+      "hints": [
+        "Quelles dérivations montrent un sus-décalage (aVR est-il concerné) ?",
+        "Le sous-décalage est-il localisé ou diffus ?",
+        "Quel est le niveau de risque de ce pattern ?"
+      ],
+      "required_concepts": ["SYNDROME_CORONARIEN_A_LA_PHASE_AIGUE_AVEC_SUS_DECALAGE_DU_SEGMENT_ST", "ISCHEMIQUE"],
+      "unsafe_errors": []
+    }
+  ]
+}
