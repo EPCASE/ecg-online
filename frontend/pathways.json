@@ -131,6 +131,61 @@
       "recommended_after": ["normal-and-hypertrophy"],
       "competency_label": "Artefacts d'enregistrement et variantes bénignes",
       "accent": "coral"
+    },
+    {
+      "id": "malignant-rhythms-and-channelopathies",
+      "config_url": "/static/pedagogy-malignant-rhythms-and-channelopathies.json",
+      "icon": "FV",
+      "eyebrow": "Urgences rythmiques",
+      "level": "Avancé",
+      "curriculum_level": 3,
+      "recommended_after": ["fa-flutter"],
+      "competency_label": "Rythmes ventriculaires malins et canalopathies",
+      "accent": "red"
+    },
+    {
+      "id": "embolism-and-pericardium",
+      "config_url": "/static/pedagogy-embolism-and-pericardium.json",
+      "icon": "EP",
+      "eyebrow": "Atteintes péricardiques",
+      "level": "Intermédiaire",
+      "curriculum_level": 2,
+      "recommended_after": ["normal-and-hypertrophy"],
+      "competency_label": "Embolie pulmonaire, péricardite, tamponnade, myocardite",
+      "accent": "teal"
+    },
+    {
+      "id": "acs-st-elevation",
+      "config_url": "/static/pedagogy-acs-st-elevation.json",
+      "icon": "ST+",
+      "eyebrow": "SCA ST+",
+      "level": "Avancé",
+      "curriculum_level": 3,
+      "recommended_after": ["embolism-and-pericardium"],
+      "competency_label": "Territoires et complications du SCA ST+",
+      "accent": "orange"
+    },
+    {
+      "id": "acs-complex-and-nste",
+      "config_url": "/static/pedagogy-acs-complex-and-nste.json",
+      "icon": "NSTE",
+      "eyebrow": "SCA compliqué",
+      "level": "Avancé",
+      "curriculum_level": 3,
+      "recommended_after": ["acs-st-elevation"],
+      "competency_label": "Complications rythmiques du SCA et NSTEMI",
+      "accent": "amber"
+    },
+    {
+      "id": "ischemia-variants-and-metabolic",
+      "config_url": "/static/pedagogy-ischemia-variants-and-metabolic.json",
+      "icon": "K+",
+      "eyebrow": "Variantes rares",
+      "level": "Avancé",
+      "curriculum_level": 3,
+      "recommended_after": ["acs-complex-and-nste"],
+      "competency_label": "Variantes ischémiques atypiques et causes métaboliques/infiltratives",
+      "accent": "violet"
     }
   ]
 }

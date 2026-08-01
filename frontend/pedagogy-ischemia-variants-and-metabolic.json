@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "id": "ischemia-variants-and-metabolic",
+  "title": "Variantes ischémiques et causes métaboliques",
+  "subtitle": "Reconnaître les variantes ischémiques atypiques (anévrisme, spasme, Takotsubo) et les causes métaboliques/infiltratives d'anomalies ECG.",
+  "estimated_minutes": 16,
+  "learning_objectives": [
+    "Reconnaître une séquelle ancienne avec anévrisme ventriculaire, sans la confondre avec un BBG.",
+    "Évoquer un spasme coronaire devant un sus-décalage régressif transitoire.",
+    "Évoquer le Takotsubo comme diagnostic d'exclusion devant des ondes T négatives géantes et un QT long.",
+    "Reconnaître l'onde U et l'allongement apparent du QT comme signes d'hypokaliémie.",
+    "Reconnaître les signes de gravité de l'hyperkaliémie menaçante.",
+    "Évoquer une amylose cardiaque devant un microvoltage périphérique contrastant avec un voltage précordial conservé."
+  ],
+  "mastery": {
+    "diagnostic_threshold": 75,
+    "unsafe_error_types": ["etudiant"]
+  },
+  "completion": {
+    "passed": "Tu sais reconnaître les variantes ischémiques atypiques et les causes métaboliques/infiltratives d'anomalies ECG. Réactive ces réflexes sur des tracés complexes.",
+    "not_passed": "Reprends les signatures spécifiques : anévrisme (sus-décalage persistant), Prinzmetal (transitoire), Takotsubo (exclusion), hypo/hyperkaliémie (ondes U/T), amylose (microvoltage périphérique contrastant)."
+  },
+  "cases": [
+    {
+      "step_id": "ischemia-anevrisme-vg",
+      "num": 69,
+      "phase": "foundation",
+      "step_title": "Un sus-décalage qui persiste",
+      "objective": "Reconnaître une séquelle ancienne (ondes Q, rabotage R) avec sus-décalage persistant évoquant un anévrisme, sans le confondre avec un BBG.",
+      "teaching_point": "Onde Q + rabotage de l'onde R de V1 à V4 (séquelle antéro-septo-apicale) avec sus-décalage persistant modéré évoque un anévrisme ventriculaire à distance de l'infarctus — le BBD complet associé (axe droit) ne doit pas être confondu avec un BBG ou un hémibloc antérieur gauche.",
+      "allow_hints": true,
+      "hints": [
+        "L'aspect QRS évoque-t-il un BBD ou un BBG ?",
+        "Le sus-décalage est-il aigu ou chronique (persistant) ?",
+        "Que suggère la persistance du sus-décalage à distance ?"
+      ],
+      "required_concepts": ["SEQUELLE_DE_NECROSE", "ANEVRYSME_VENTRICULAIRE", "BLOC_DE_BRANCHE_DROIT_COMPLET"],
+      "unsafe_errors": ["BLOC_DE_BRANCHE_GAUCHE"]
+    },
+    {
+      "step_id": "ischemia-prinzmetal",
+      "num": 70,
+      "phase": "guided",
+      "step_title": "Un sus-décalage qui régresse",
+      "objective": "Évoquer un spasme coronaire devant un sus-décalage régressif spontanément/sous trinitrine.",
+      "teaching_point": "Le caractère transitoire et régressif du sus-décalage (souvent sous trinitrine), associé à des extrasystoles ventriculaires pendant l'épisode, oriente vers un angor spastique de Prinzmetal plutôt qu'une occlusion fixe.",
+      "allow_hints": true,
+      "hints": [
+        "Le sus-décalage est-il permanent ou transitoire ?",
+        "Quel traitement fait régresser les symptômes ?",
+        "Quelles arythmies peuvent accompagner l'épisode ?"
+      ],
+      "required_concepts": ["SYNDROME_CORONARIEN_A_LA_PHASE_AIGUE_AVEC_SUS_DECALAGE_DU_SEGMENT_ST"],
+      "unsafe_errors": []
+    },
+    {
+      "step_id": "ischemia-takotsubo",
+      "num": 71,
+      "phase": "contrast",
+      "step_title": "Des ondes T négatives géantes",
+      "objective": "Évoquer le Takotsubo comme diagnostic d'exclusion devant des ondes T négatives géantes et un QT long, sans argument pour un BBG.",
+      "teaching_point": "Ondes T négatives géantes diffuses (inférieur + V2-V6) avec QT très allongé, en l'absence de BBG franc — le Takotsubo est un diagnostic différentiel de SCA à évoquer après exclusion d'une cause coronarienne (diagnostic d'exclusion).",
+      "allow_hints": true,
+      "hints": [
+        "Les ondes T sont-elles négatives de façon localisée ou diffuse ?",
+        "Le QT est-il normal ?",
+        "Ce diagnostic est-il un diagnostic de certitude ou d'exclusion ?"
+      ],
+      "required_concepts": ["TAKOTSUBO", "ONDE_T_NEGATIVE", "QT_LONG"],
+      "unsafe_errors": ["BLOC_DE_BRANCHE_GAUCHE"]
+    },
+    {
+      "step_id": "ischemia-hypokaliemie",
+      "num": 72,
+      "phase": "integration",
+      "step_title": "Une onde U qui se dévoile",
+      "objective": "Reconnaître l'onde U et l'allongement apparent du QT comme signes d'hypokaliémie, sans conclure à tort à une hyperkaliémie ou un BAV.",
+      "teaching_point": "Onde U ample avec allongement apparent du QT (en réalité QU) et contexte de traitement diurétique (furosémide) orientent vers une hypokaliémie — à ne pas confondre avec une hyperkaliémie (signes ECG opposés) ni sur-interpréter comme un BAV du 2e degré.",
+      "allow_hints": true,
+      "hints": [
+        "Cherchez une onde U après l'onde T.",
+        "Le QT est-il vraiment long ou est-ce un QU ?",
+        "Quel contexte médicamenteux est évocateur ?"
+      ],
+      "required_concepts": ["HYPOKALIEMIE", "ONDE_U"],
+      "unsafe_errors": ["HYPERKALIEMIE"]
+    },
+    {
+      "step_id": "ischemia-hyperkaliemie",
+      "num": 73,
+      "phase": "mastery",
+      "step_title": "Des ondes T amples et pointues",
+      "objective": "Reconnaître les signes de gravité de l'hyperkaliémie (ondes T amples pointues, QRS très élargis).",
+      "teaching_point": "Ondes T amples, pointues et symétriques + QRS extrêmement élargis (proche de 200ms, sans aspect typique de bloc de branche) sont des signes de gravité de l'hyperkaliémie menaçante — l'activité atriale peut disparaître, rendant le rythme sinusal non affirmable (mais ce n'est pas un trouble du rythme atrial primitif).",
+      "allow_hints": true,
+      "hints": [
+        "Quel est l'aspect des ondes T ?",
+        "La largeur du QRS est-elle celle d'un bloc de branche classique ?",
+        "Voit-on des ondes P ?"
+      ],
+      "required_concepts": ["HYPERKALIEMIE", "ONDE_T_AMPLE"],
+      "unsafe_errors": []
+    },
+    {
+      "step_id": "ischemia-amylose",
+      "num": 75,
+      "phase": "mastery",
+      "step_title": "Un microvoltage qui contraste",
+      "objective": "Évoquer une amylose cardiaque devant un microvoltage périphérique contrastant avec un voltage précordial conservé et des pseudo-ondes Q.",
+      "teaching_point": "Microvoltage des dérivations périphériques (<5mm) avec voltage précordial conservé (QRS >10mm en V3-V4) et pseudo-ondes Q de nécrose en V1-V2 — pattern évocateur d'infiltration amyloïde du myocarde, à ne pas confondre avec une vraie séquelle de nécrose.",
+      "allow_hints": true,
+      "hints": [
+        "Comparez le voltage périphérique et précordial.",
+        "Les ondes Q en V1-V2 correspondent-elles à une vraie séquelle ?",
+        "Quel diagnostic infiltratif évoquer ?"
+      ],
+      "required_concepts": ["AMYLOSE", "MICROVOLTAGE"],
+      "unsafe_errors": ["PRESENCE_D_ONDE_Q_PATHOLOGIQUE"]
+    }
+  ]
+}
