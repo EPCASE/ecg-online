@@ -10,6 +10,9 @@
   --coral: var(--ecg-coral);
   --green: var(--ecg-green);
   --amber: var(--ecg-amber);
+  --red: var(--ecg-red);
+  --orange: var(--ecg-orange);
+  --teal: var(--ecg-teal);
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--ink);
   background: var(--canvas);
@@ -80,7 +83,6 @@ a { color: inherit; }
 .curriculum-level-heading h3 { margin: 3px 0 3px; font-size: 23px; letter-spacing: -.035em; }
 .curriculum-level-heading p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.5; }
 .pathway-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
-.curriculum-level[data-curriculum-level="3"] .pathway-grid { grid-template-columns: minmax(0, 560px); }
 
 .pathway-card { --accent: var(--blue); background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 22px; display: flex; flex-direction: column; min-height: 350px; position: relative; overflow: hidden; transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
 .pathway-card::before { content: ""; position: absolute; inset: 0 0 auto; height: 4px; background: var(--accent); }
@@ -90,6 +92,9 @@ a { color: inherit; }
 .accent-coral { --accent: var(--coral); }
 .accent-green { --accent: var(--green); }
 .accent-amber { --accent: var(--amber); }
+.accent-red { --accent: var(--red); }
+.accent-orange { --accent: var(--orange); }
+.accent-teal { --accent: var(--teal); }
 .card-topline, .card-badges, .card-meta, .card-progress > div:first-child, .card-action { display: flex; align-items: center; }
 .card-topline { justify-content: space-between; gap: 12px; }
 .pathway-icon { width: 48px; height: 48px; border-radius: 15px; display: grid; place-items: center; background: color-mix(in srgb, var(--accent) 16%, var(--surface-raised)); color: var(--accent); font-size: 15px; font-weight: 800; letter-spacing: -.02em; }
@@ -127,12 +132,12 @@ a { color: inherit; }
 .profile-overview > div:first-child { display: flex; flex-direction: column; }
 .profile-overview strong { font-size: 39px; line-height: 1; letter-spacing: -.055em; }
 .profile-overview > div:first-child span { color: var(--muted); font-size: 11px; line-height: 1.4; font-weight: 700; margin-top: 7px; }
-.profile-track { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; margin-top: 22px; }
+.profile-track { display: grid; grid-template-columns: repeat(auto-fit, minmax(14px, 1fr)); gap: 5px; margin-top: 22px; }
 .profile-segment { height: 9px; border-radius: 999px; background: var(--surface-raised); }
 .segment-mastered { background: var(--green); }
 .segment-in-progress { background: var(--blue); }
 .segment-consolidate { background: var(--amber); }
-.profile-list { overflow: hidden; }
+.profile-list { overflow-y: auto; max-height: 520px; }
 .competency-row { display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto; gap: 12px; align-items: center; min-height: 65px; padding: 12px 17px; text-decoration: none; border-bottom: 1px solid var(--line); }
 .competency-row:last-child { border-bottom: 0; }
 .competency-row:hover { background: var(--surface-raised); }
@@ -158,7 +163,6 @@ a { color: inherit; }
   .next-recommendation { grid-template-columns: auto 1fr; }
   .next-recommendation-action { grid-column: 1 / -1; justify-content: space-between; }
   .pathway-grid { grid-template-columns: 1fr; }
-  .curriculum-level[data-curriculum-level="3"] .pathway-grid { grid-template-columns: 1fr; }
   .pathway-card { min-height: 0; }
   .competency-profile { grid-template-columns: 1fr; }
 }

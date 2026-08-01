@@ -108,7 +108,7 @@
       "curriculum_level": 3,
       "recommended_after": ["bav-foundations"],
       "competency_label": "Bradycardie physiologique, dysfonction sinusale, échappement, stimulateur",
-      "accent": "blue"
+      "accent": "teal"
     },
     {
       "id": "normal-and-hypertrophy",
@@ -119,7 +119,7 @@
       "curriculum_level": 1,
       "recommended_after": [],
       "competency_label": "ECG normal et hypertrophies atriales/ventriculaires",
-      "accent": "violet"
+      "accent": "amber"
     },
     {
       "id": "artifacts-and-normal-variants",
@@ -174,7 +174,7 @@
       "curriculum_level": 3,
       "recommended_after": ["acs-st-elevation"],
       "competency_label": "Complications rythmiques du SCA et NSTEMI",
-      "accent": "amber"
+      "accent": "green"
     },
     {
       "id": "ischemia-variants-and-metabolic",
