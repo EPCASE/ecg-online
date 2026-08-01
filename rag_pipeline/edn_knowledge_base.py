@@ -409,6 +409,7 @@ EDN_ENTRIES: List[EDNEntry] = [
     EDNEntry(
         ontology_ids=[
             "TACHYCARDIE_ATRIALE_FOCALE",
+            "TACHYCARDIE_ATRIALE",
         ],
         rang_edn="C",
         titre_cours="I.C.3 — Tachycardies atriales focales",
@@ -427,6 +428,7 @@ EDN_ENTRIES: List[EDNEntry] = [
     EDNEntry(
         ontology_ids=[
             "TACHYCARDIE_JONCTIONNELLE",
+            "TACHYCARDIE_JONCTIONELLE",
             "TACHYCARDIE_PAR_RÉENTRÉE_INTRANODALE",
             "TACHYCARDIE_ORTHODROMIQUE",
         ],
@@ -473,6 +475,8 @@ EDN_ENTRIES: List[EDNEntry] = [
             "ESV",
             "BIGÉMINISME",
             "TRIGÉMINISME",
+            "BIGEMINISME_VENTRICULAIRE",
+            "TRIGEMINISME_VENTRICULAIRE",
             "DOUBLET_ESV",
             "TRIPLET_ESV",
             "MULTIPLES_ESV",
@@ -880,6 +884,20 @@ EDN_ENTRIES: List[EDNEntry] = [
 # INDEX inversé : ontology_id → EDNEntry
 # ──────────────────────────────────────────────────────────────────────────────
 
+import unicodedata
+
+
+def _normalize_id(ontology_id: str) -> str:
+    """Normalise un ontology_id pour l'indexation/la recherche : supprime les
+    accents et met en majuscules. Les `golden_id` de `cases_golden.json` sont
+    systématiquement sans accent (ex. `PERICARDITE`), alors que certains
+    `ontology_ids` d'`EDNEntry` ci-dessus sont accentués (ex. `PÉRICARDITE`) —
+    sans cette normalisation, `get_edn_entry()` ne les retrouvait jamais bien
+    que l'entrée existe (cf. docs/BUG_cas15_commentaire_incoherent.md)."""
+    s = unicodedata.normalize("NFD", ontology_id.strip().upper())
+    return "".join(c for c in s if unicodedata.category(c) != "Mn")
+
+
 _INDEX: Dict[str, EDNEntry] = {}
 
 def _build_index():
@@ -888,14 +906,14 @@ def _build_index():
         return
     for entry in EDN_ENTRIES:
         for oid in entry.ontology_ids:
-            _INDEX[oid.strip().upper()] = entry
+            _INDEX[_normalize_id(oid)] = entry
 
 _build_index()
 
 
 def get_edn_entry(ontology_id: str) -> Optional[EDNEntry]:
-    """Récupère l'entrée EDN pour un concept donné."""
-    return _INDEX.get(ontology_id.strip().upper())
+    """Récupère l'entrée EDN pour un concept donné (insensible aux accents)."""
+    return _INDEX.get(_normalize_id(ontology_id))
 
 
 def get_edn_entries_for_ids(ontology_ids: List[str]) -> Dict[str, EDNEntry]:
