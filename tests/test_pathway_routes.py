@@ -60,7 +60,9 @@ class PathwayRoutesTest(unittest.TestCase):
         self.assertEqual(catalog_response.status_code, 200)
         catalog = catalog_response.get_json()
         self.assertEqual(catalog["default_id"], "bav-foundations")
-        self.assertEqual(len(catalog["pathways"]), 5)
+        # Curriculum Phase 2 (2026-08-01) : 15 parcours (au lieu des 5
+        # initiaux) — cf. ecg-online/data/case_curriculum_map.json.
+        self.assertEqual(len(catalog["pathways"]), 15)
 
         for entry in catalog["pathways"]:
             response = self.get_response(entry["config_url"])
