@@ -24,82 +24,76 @@
       "num": 23,
       "phase": "foundation",
       "step_title": "Relation entre les ondes P et les QRS",
-      "objective": "Décrire la conduction de chaque onde P et mesurer la stabilité de l’intervalle PR.",
-      "teaching_point": "Toutes les ondes P sont conduites avec un PR fixe supérieur à 200 ms : BAV du premier degré.",
+      "objective": "Décrire la conduction de chaque onde P et mesurer la stabilité de l'intervalle PR.",
+      "teaching_point": "Toutes les ondes P sont conduites avec un PR fixe supérieur à 200 ms : BAV du premier degré. Une hypertrophie atriale gauche associée n'en change pas la nature.",
       "allow_hints": true,
       "hints": [
         "Compte séparément les ondes P et les complexes QRS : chaque onde P est-elle conduite ?",
-        "Mesure ou estime l’intervalle PR sur plusieurs cycles : est-il fixe ?",
+        "Mesure ou estime l'intervalle PR sur plusieurs cycles : est-il fixe ?",
         "Toutes les ondes P sont conduites, mais le PR est fixe et supérieur à 200 ms."
-      ]
+      ],
+      "required_concepts": ["BAV_DE_TYPE_1", "RYTHME_SINUSAL"],
+      "unsafe_errors": []
     },
     {
       "step_id": "bav-pr-progressif",
       "num": 24,
       "phase": "guided",
       "step_title": "Comprendre une pause ventriculaire",
-      "objective": "Repérer une onde P non suivie d’un QRS et comparer les intervalles PR qui la précèdent.",
-      "teaching_point": "L’allongement progressif du PR avant une onde P bloquée définit un BAV du deuxième degré Mobitz I (Wenckebach).",
+      "objective": "Repérer une onde P non suivie d'un QRS et comparer les intervalles PR qui la précèdent.",
+      "teaching_point": "L'allongement progressif du PR avant une onde P bloquée définit un BAV du deuxième degré Mobitz I (Wenckebach) — un bloc bifasciculaire associé ne doit pas faire conclure à tort à un Mobitz II.",
       "allow_hints": true,
       "hints": [
-        "Repère d’abord une onde P qui n’est pas suivie d’un QRS.",
+        "Repère d'abord une onde P qui n'est pas suivie d'un QRS.",
         "Compare les intervalles PR des battements conduits avant la pause.",
-        "Le PR s’allonge progressivement, puis une onde P est bloquée avant que la séquence recommence."
-      ]
+        "Le PR s'allonge progressivement, puis une onde P est bloquée avant que la séquence recommence."
+      ],
+      "required_concepts": ["BAV_2_MOBITZ_1"],
+      "unsafe_errors": ["BAV_2_MOBITZ_2"]
     },
     {
       "step_id": "bav-pr-fixe",
       "num": 25,
       "phase": "contrast",
       "step_title": "Comparer les cycles conduits",
-      "objective": "Analyser le PR autour d’une onde P non conduite et intégrer la largeur des QRS au niveau de risque.",
-      "teaching_point": "Une onde P bloquée de façon inopinée avec des PR conduits constants définit un BAV Mobitz II, souvent infranodal.",
+      "objective": "Analyser le PR autour d'une onde P non conduite et intégrer la largeur des QRS au niveau de risque.",
+      "teaching_point": "Une onde P bloquée de façon inopinée avec des PR conduits constants (sans allongement progressif préalable) définit un BAV Mobitz II, souvent infrahissien — à distinguer du Mobitz I du cas précédent.",
       "allow_hints": true,
       "hints": [
-        "Cherche l’onde P responsable de la pause ventriculaire.",
-        "Compare le PR avant et après l’onde P bloquée : existe-t-il un allongement progressif ?",
+        "Cherche l'onde P responsable de la pause ventriculaire.",
+        "Compare le PR avant et après l'onde P bloquée : existe-t-il un allongement progressif ?",
         "Une onde P est bloquée de façon inopinée alors que les PR conduits restent constants ; regarde aussi la largeur des QRS."
-      ]
+      ],
+      "required_concepts": ["BAV_2_MOBITZ_2"],
+      "unsafe_errors": ["BAV_2_MOBITZ_1", "DYSFONCTION_SINUSALE"]
     },
     {
       "step_id": "bav-conduction-alternee",
       "num": 26,
-      "phase": "contrast",
+      "phase": "integration",
       "step_title": "Comparer les fréquences atriale et ventriculaire",
       "objective": "Déterminer le rapport de conduction sans attribuer un mécanisme que le tracé de surface ne démontre pas.",
-      "teaching_point": "Une onde P sur deux est conduite : BAV 2/1, sans pouvoir imposer Mobitz I ou II sur ce seul tracé.",
+      "teaching_point": "Une onde P sur deux est conduite : le diagnostic est un BAV 2/1, une forme de bloc de haut grade qui ne peut être classée en Mobitz I ou II sur ce seul tracé — le siège (nodal/infrahissien) se déduit de la largeur du QRS.",
       "allow_hints": true,
       "hints": [
         "Recherche une activité atriale cachée dans la fin des ondes T.",
         "Compare la fréquence atriale à la fréquence ventriculaire.",
-        "Une onde P sur deux est conduite : le diagnostic descriptif est BAV 2/1, sans imposer un type I ou II sur ce seul tracé."
-      ]
+        "Une onde P sur deux est conduite : le diagnostic est BAV 2/1 ; regarde la largeur du QRS pour orienter le siège."
+      ],
+      "required_concepts": ["BAV_2_POUR_1"],
+      "unsafe_errors": []
     },
     {
       "step_id": "bav-test-dissociation",
       "num": 28,
       "phase": "mastery",
       "step_title": "Test de maîtrise",
-      "objective": "Décrire séparément l’activité atriale, l’activité ventriculaire et leur relation, puis conclure.",
-      "teaching_point": "La dissociation atrioventriculaire complète avec échappement jonctionnel correspond à un BAV complet.",
+      "objective": "Décrire séparément l'activité atriale, l'activité ventriculaire et leur relation, puis conclure.",
+      "teaching_point": "La dissociation atrioventriculaire complète (ondes P régulières sans lien avec les QRS) avec un échappement jonctionnel régulier à QRS fins correspond à un BAV complet à échappement proximal.",
       "allow_hints": false,
-      "hints": []
+      "hints": [],
+      "required_concepts": ["BAV_COMPLET", "RYTHME_D_ECHAPPEMENT_JONCTIONNEL"],
+      "unsafe_errors": []
     }
-  ],
-  "remediation": {
-    "step_id": "bav-remediation-echappement",
-    "num": 29,
-    "phase": "remediation",
-    "step_title": "Consolidation : analyser deux activités indépendantes",
-    "objective": "Réexaminer la relation atrioventriculaire, puis caractériser le rythme qui commande les ventricules.",
-    "teaching_point": "La dissociation atrioventriculaire avec échappement lent à QRS larges indique un BAV complet à échappement distal.",
-    "offer_title": "Un ECG supplémentaire est proposé",
-    "offer_text": "Il reprend le BAV complet avec un échappement plus distal. Le parcours reste limité à six ECG au maximum.",
-    "allow_hints": true,
-    "hints": [
-      "Vérifie si l’activité atriale et l’activité ventriculaire évoluent indépendamment.",
-      "Observe la fréquence et la largeur des complexes QRS de l’échappement.",
-      "Un échappement lent à QRS larges suggère un foyer distal et une situation plus instable."
-    ]
-  }
+  ]
 }

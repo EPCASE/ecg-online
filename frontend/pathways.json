@@ -109,6 +109,28 @@
       "recommended_after": ["bav-foundations"],
       "competency_label": "Bradycardie physiologique, dysfonction sinusale, échappement, stimulateur",
       "accent": "blue"
+    },
+    {
+      "id": "normal-and-hypertrophy",
+      "config_url": "/static/pedagogy-normal-and-hypertrophy.json",
+      "icon": "N",
+      "eyebrow": "Morphologie de base",
+      "level": "Fondamental",
+      "curriculum_level": 1,
+      "recommended_after": [],
+      "competency_label": "ECG normal et hypertrophies atriales/ventriculaires",
+      "accent": "violet"
+    },
+    {
+      "id": "artifacts-and-normal-variants",
+      "config_url": "/static/pedagogy-artifacts-and-normal-variants.json",
+      "icon": "!",
+      "eyebrow": "Pièges techniques",
+      "level": "Fondamental",
+      "curriculum_level": 1,
+      "recommended_after": ["normal-and-hypertrophy"],
+      "competency_label": "Artefacts d'enregistrement et variantes bénignes",
+      "accent": "coral"
     }
   ]
 }
