@@ -63,6 +63,30 @@ EDN_ENTRIES: List[EDNEntry] = [
         ),
     ),
 
+    EDNEntry(
+        ontology_ids=[
+            "ECG_NORMAL",
+            "PAS_D_ANOMALIE_DE_LE_REPOLARISATION",
+            "ONDE_T_NORMALES",
+        ],
+        rang_edn="A",
+        titre_cours="I.A — ECG normal : critères complets",
+        points_cles=[
+            "Affirmer qu'un ECG est normal impose d'être systématique sur tous les paramètres : rythme, conduction (PR/QRS/QT), axe, repolarisation.",
+            "Repolarisation normale : ondes T positives dans toutes les dérivations sauf aVR (et parfois D3, aVL, V1 isolément selon l'orientation du cœur).",
+            "Deux ondes T négatives dans un même territoire signent une anomalie pathologique.",
+        ],
+        pieges_classiques=[
+            "Ne pas conclure trop vite à la normalité : la seule façon d'être sûr qu'un ECG est normal est d'être systématique sur tous les critères (rythme, PR, QRS, axe, ST, T, QT).",
+        ],
+        extrait_cours=(
+            "Il est important de savoir affirmer qu'un ECG est normal ; la seule manière d'en être "
+            "certain est d'être systématique. Sur un ECG normal, les ondes T sont positives partout "
+            "sauf en aVR (et parfois D3, aVL ou V1 selon l'orientation du cœur). Deux ondes T négatives "
+            "dans un même territoire signent une pathologie."
+        ),
+    ),
+
     # ══════════════════════════════════════════════════════════════════
     # I.B — BLOCS DE BRANCHE
     # ══════════════════════════════════════════════════════════════════
@@ -122,6 +146,7 @@ EDN_ENTRIES: List[EDNEntry] = [
         ontology_ids=[
             "BLOC_DE_BRANCHE_DROIT_INCOMPLET",
             "BLOC_DE_BRANCHE_GAUCHE_INCOMPLET",
+            "BBG_INCOMPLET",
         ],
         rang_edn="B",
         titre_cours="I.B.1 — Blocs incomplets de branche",
@@ -165,6 +190,7 @@ EDN_ENTRIES: List[EDNEntry] = [
         ontology_ids=[
             "HÉMIBLOC_ANTÉRIEUR_GAUCHE",
             "HBAG",
+            "BLOC_FASCICULAIRE_ANTERIEUR_GAUCHE",
         ],
         rang_edn="A",
         titre_cours="I.B.2 — Hémibloc antérieur gauche",
@@ -237,6 +263,7 @@ EDN_ENTRIES: List[EDNEntry] = [
         ontology_ids=[
             "BAV_1",
             "BAV_1ER_DEGRÉ",
+            "BAV_DE_TYPE_1",
         ],
         rang_edn="A",
         titre_cours="I.B.4 — BAV du 1er degré",
@@ -321,6 +348,26 @@ EDN_ENTRIES: List[EDNEntry] = [
         ),
     ),
 
+    EDNEntry(
+        ontology_ids=[
+            "BAV_DE_HAUT_GRADE",
+            "BAV_2_POUR_1",
+        ],
+        rang_edn="B",
+        titre_cours="I.B.4 — BAV de haut grade et BAV 2 pour 1",
+        points_cles=[
+            "Le BAV 2/1 ne peut être classé ni Mobitz 1 ni Mobitz 2 (il n'y a qu'un seul PR avant chaque blocage, donc pas d'allongement progressif observable).",
+            "On s'oriente vers un BAV infrahissien si les QRS sont larges, suprahissien si les QRS sont fins (et si du Mobitz 1 est présent à d'autres moments).",
+        ],
+        pieges_classiques=[
+            "Ne pas essayer de classer à tort un BAV 2/1 en Mobitz 1 ou 2 : c'est un BAV de haut grade à part, dont le siège se déduit de la largeur du QRS.",
+        ],
+        extrait_cours=(
+            "Dans le BAV 2/1, on s'oriente vers un BAV infrahissien si les QRS sont larges "
+            "et suprahissien si les QRS sont fins et s'il existe du BAV2 Mobitz I à d'autres moments."
+        ),
+    ),
+
     # ══════════════════════════════════════════════════════════════════
     # I.B.5 — DYSFONCTION SINUSALE
     # ══════════════════════════════════════════════════════════════════
@@ -330,6 +377,8 @@ EDN_ENTRIES: List[EDNEntry] = [
             "DYSFONCTION_SINUSALE",
             "BRADYCARDIE_SINUSALE",
             "BLOC_SINO_ATRIAL",
+            "RYTHME_D_ECHAPPEMENT_JONCTIONNEL",
+            "DISSOCIATION_ATRIO_VENTRICULAIRE",
         ],
         rang_edn="A",
         titre_cours="I.B.5 — Dysfonction sinusale",
@@ -355,6 +404,7 @@ EDN_ENTRIES: List[EDNEntry] = [
             "FIBRILLATION_ATRIALE",
             "FA",
             "ACFA",
+            "REPONSE_VENTRICULAIRE_LENTE",
         ],
         rang_edn="A",
         titre_cours="I.C.1 — Fibrillation atriale",
@@ -363,6 +413,7 @@ EDN_ENTRIES: List[EDNEntry] = [
             "Activation atriale anarchique → QRS irrégulièrement irréguliers (intervalles RR non multiples d'une valeur commune).",
             "L'activité sinusale est remplacée par des mailles amples ou une fine trémulation de la ligne de base.",
             "En l'absence de bloc de branche, les QRS sont fins.",
+            "Réponse ventriculaire lente : cadence ventriculaire ralentie (souvent sous traitement freinateur ou par BAV associé), à distinguer d'un rythme d'échappement régulier.",
         ],
         pieges_classiques=[
             "On ne doit pas évoquer un flutter dès que les mailles de FA sont amples. L'activité atriale du flutter est monomorphe, celle de la FA est anarchique.",
@@ -403,6 +454,29 @@ EDN_ENTRIES: List[EDNEntry] = [
             "Les flutters atriaux correspondent à une boucle d'activation atriale se répétant à l'identique. "
             "Activité monomorphe ~300 bpm, aspect en dents de scie. Flutter typique : F négatives en inférieur. "
             "Cadence ventriculaire usuelle 150 bpm (2/1). Manœuvres vagales utiles pour démasquer les ondes F."
+        ),
+    ),
+
+    EDNEntry(
+        ontology_ids=[
+            "TACHYCARDIE_SINUSALE",
+            "TACHYCARDIE_SUPRA_VENTRICULAIRE",
+        ],
+        rang_edn="A",
+        titre_cours="I.C — Tachycardie sinusale vs tachycardie supraventriculaire",
+        points_cles=[
+            "La tachycardie sinusale est un rythme sinusal accéléré (> 100 bpm) : onde P sinusale (positive en D2/D3/aVF) devant chaque QRS, PR normal.",
+            "Elle est le plus souvent réactionnelle (effort, fièvre, douleur, anxiété, anémie, hyperthyroïdie) et ne nécessite pas de traitement antiarythmique spécifique.",
+            "À différencier des tachycardies supraventriculaires non sinusales (jonctionnelles, atriales, FA, flutter) dont l'onde P n'est pas sinusale ou est absente.",
+        ],
+        pieges_classiques=[
+            "Ne pas traiter une tachycardie sinusale comme un trouble du rythme : chercher et traiter sa cause déclenchante plutôt que de la ralentir.",
+        ],
+        extrait_cours=(
+            "La tachycardie sinusale est un rythme sinusal accéléré (FC > 100 bpm), le plus souvent "
+            "réactionnelle à une cause sous-jacente (effort, fièvre, douleur, anémie). "
+            "Elle se différencie des tachycardies supraventriculaires non sinusales par la morphologie "
+            "de l'onde P (sinusale, positive en D2) devant chaque QRS avec PR normal."
         ),
     ),
 
@@ -478,20 +552,28 @@ EDN_ENTRIES: List[EDNEntry] = [
             "BIGEMINISME_VENTRICULAIRE",
             "TRIGEMINISME_VENTRICULAIRE",
             "DOUBLET_ESV",
+            "DOUBLET_VENTRICULAIRE",
             "TRIPLET_ESV",
             "MULTIPLES_ESV",
+            "EXTRASYSTOLE_A_COUPLAGE_COURT",
         ],
         rang_edn="A",
         titre_cours="I.C.5 — Extrasystoles ventriculaires",
         points_cles=[
             "QRS large prématuré ± onde P rétrograde.",
             "Bigéminisme = un battement sur deux, trigéminisme = un battement sur trois.",
+            "Doublet = 2 ESV consécutives, triplet = 3 (au-delà, on parle de TV non soutenue).",
             "Des ESV fréquentes ou polymorphes doivent faire rechercher une cardiopathie.",
+            "Une ESV à couplage très court (tombant sur l'onde T précédente, phénomène R/T) est un facteur déclenchant classique de torsade de pointes ou de fibrillation ventriculaire.",
         ],
-        pieges_classiques=[],
+        pieges_classiques=[
+            "Ne pas banaliser une extrasystole ventriculaire à couplage très court : le risque de dégénérescence en trouble du rythme ventriculaire grave est plus élevé qu'une ESV isolée à couplage normal.",
+        ],
         extrait_cours=(
-            "Les ESV sont des QRS larges prématurés. Bigéminisme = 1 sur 2, trigéminisme = 1 sur 3. "
-            "Des ESV fréquentes ou polymorphes doivent faire rechercher une cardiopathie."
+            "Les ESV sont des QRS larges prématurés. Bigéminisme = 1 sur 2, trigéminisme = 1 sur 3, "
+            "doublet = 2 ESV consécutives. Des ESV fréquentes ou polymorphes doivent faire rechercher "
+            "une cardiopathie. Une ESV à couplage très court (phénomène R/T) est un facteur déclenchant "
+            "classique de torsade de pointes ou de fibrillation ventriculaire."
         ),
     ),
 
@@ -507,6 +589,7 @@ EDN_ENTRIES: List[EDNEntry] = [
             "TACHYCARDIE_VENTRICULAIRE_MONOMORPHE",
             "TACHYCARDIE_VENTRICULAIRE_POLYMORPHE",
             "TVNS",
+            "CAPTURE_SUPRAVENTRICULAIRE",
         ],
         rang_edn="A",
         titre_cours="I.D.1 — Tachycardies ventriculaires",
@@ -515,6 +598,7 @@ EDN_ENTRIES: List[EDNEntry] = [
             "Suspicion : tachycardie (FC > 100 bpm) + QRS > 120 ms pour ≥3 battements.",
             "TVNS = entre 3 battements et 30 secondes. TV soutenue = > 30 secondes.",
             "Arguments de certitude : dissociation ventriculo-atriale, complexes de capture ou de fusion.",
+            "Un complexe de capture (QRS fin précédé d'une onde P) ne peut exister que s'il y a dissociation ventriculo-atriale : il prouve indirectement le diagnostic de TV.",
             "Arguments en faveur : cardiopathie sous-jacente, concordance positive/négative V1-V6, déviation axiale extrême.",
         ],
         pieges_classiques=[
@@ -525,14 +609,35 @@ EDN_ENTRIES: List[EDNEntry] = [
             "Les TV naissent sous la bifurcation hissienne → QRS larges. "
             "Règle : toute tachycardie régulière à QRS larges est une TV jusqu'à preuve du contraire. "
             "Suspicion = FC > 100 + QRS > 120 ms × ≥3 battements. "
-            "Arguments de certitude : dissociation VA, captures, fusions. "
+            "Arguments de certitude : dissociation VA, captures (QRS fin précédé d'une P), fusions. "
             "La TV est un état instable, prémonitoire de l'arrêt cardiaque."
         ),
     ),
 
     EDNEntry(
         ontology_ids=[
+            "RYTHME_IDIOVENTRICULAIRE_ACCELERE",
+        ],
+        rang_edn="C",
+        titre_cours="I.D.1 bis — Rythme idioventriculaire accéléré (RIVA)",
+        points_cles=[
+            "Rythme ventriculaire régulier, à QRS larges, mais à fréquence relativement lente (40-120 bpm) — contrairement à la TV qui est > 100 bpm avec un contexte de tachycardie franche.",
+            "Souvent bénin, classiquement observé lors de la reperfusion après désobstruction coronaire dans le SCA avec sus-décalage du ST.",
+        ],
+        pieges_classiques=[
+            "Ne pas traiter un RIVA comme une TV : il est le plus souvent bien toléré et ne nécessite pas d'antiarythmique, surtout dans le contexte post-reperfusion.",
+        ],
+        extrait_cours=(
+            "Le RIVA est un rythme ventriculaire régulier à QRS larges mais à fréquence relativement "
+            "lente (40-120 bpm), classiquement observé à la reperfusion après désobstruction coronaire. "
+            "Il est généralement bénin, à ne pas confondre avec une TV."
+        ),
+    ),
+
+    EDNEntry(
+        ontology_ids=[
             "FIBRILLATION_VENTRICULAIRE",
+            "CARDIOVERSION_ELECTRIQUE",
         ],
         rang_edn="A",
         titre_cours="I.D.2 — Fibrillation ventriculaire",
@@ -690,6 +795,7 @@ EDN_ENTRIES: List[EDNEntry] = [
         ontology_ids=[
             "PÉRICARDITE_AIGUË",
             "PÉRICARDITE",
+            "MICROVOLTAGE",
         ],
         rang_edn="B",
         titre_cours="I.F.2 — Péricardite aiguë",
@@ -717,6 +823,10 @@ EDN_ENTRIES: List[EDNEntry] = [
             "PRÉEXCITATION_VENTRICULAIRE",
             "WOLFF_PARKINSON_WHITE",
             "WPW",
+            "FAISCEAU_ACCESSOIRE_A_CONDUCTION_ANTEROGRADE",
+            "WOLF_MALIN",
+            "TJ_ORTHODROMIQUE_UTILISANT_UNE_VOIE_ACCESSOIRE",
+            "TJ_ANTIDROMIQUE_UTILISANT_UNE_VOIE_ACCESSOIRE",
         ],
         rang_edn="B",
         titre_cours="I.F.3 — Préexcitation / Wolff-Parkinson-White",
@@ -747,8 +857,13 @@ EDN_ENTRIES: List[EDNEntry] = [
             "INFARCTUS_DU_MYOCARDE_À_LA_PHASE_AIGUE",
             "ISCHÉMIE_SOUS_ENDOCARDIQUE",
             "ISCHÉMIE_SOUS_ÉPICARDIQUE",
+            "COURANT_DE_LESION_SOUS_EPICARDIQUE",
+            "COURANT_DE_LESION_SOUS_ENDOCARDIQUE",
             "SYNDROME_CORONARIEN_À_LA_PHASE_AIGUE_SANS_ÉLÉVATION_DU_SEGMENT_ST",
             "ONDE_Q_DE_NÉCROSE",
+            "SEQUELLE_DE_NECROSE",
+            "CARDIOPATHIE_ISCHEMIQUE_CHRONIQUE",
+            "ANEVRYSME_VENTRICULAIRE",
         ],
         rang_edn="A",
         titre_cours="I.F.4 — Maladie coronarienne / Syndromes coronariens aigus",
@@ -759,6 +874,8 @@ EDN_ENTRIES: List[EDNEntry] = [
             "SCA sans ST : sous-décalage ST, inversion des T, pseudo-normalisation des T, aplatissement des T, ou ECG normal.",
             "Ondes Q de nécrose : ≥1/3 du QRS en amplitude et > 30-40 ms.",
             "Sous-décalage en antérieur (V1-V3) = penser au miroir d'un sus-décalage postérieur → ECG 18 dérivations.",
+            "Séquelle de nécrose (cardiopathie ischémique chronique) : ondes Q de nécrose persistantes, sans sus-décalage ST évolutif.",
+            "Anévrisme ventriculaire : sus-décalage ST persistant à distance d'un infarctus, associé à des ondes Q séquellaires.",
         ],
         pieges_classiques=[
             "Au cours des SCA avec ST, ne pas confondre la lésion et son miroir.",
@@ -836,13 +953,14 @@ EDN_ENTRIES: List[EDNEntry] = [
         ontology_ids=[
             "QT_LONG",
             "ALLONGEMENT_QT",
+            "MEDICAMENTS",
         ],
         rang_edn="A",
         titre_cours="I.F.1 — Allongement de l'intervalle QT",
         points_cles=[
             "QT corrigé (Bazett) = QT mesuré / √(RR en secondes).",
             "QTc normal < 440 ms à 60 bpm.",
-            "Causes : médicamenteuses, congénitales, ioniques (hypokaliémie, hypocalcémie).",
+            "Causes : médicamenteuses (antiarythmiques, psychotropes, antibiotiques, antiémétiques, antipaludéens), congénitales, ioniques (hypokaliémie, hypocalcémie, hypomagnésémie).",
             "Un QT allongé expose au risque de torsade de pointes → vérifier ionogramme et médicaments.",
         ],
         pieges_classiques=[
@@ -850,8 +968,28 @@ EDN_ENTRIES: List[EDNEntry] = [
         ],
         extrait_cours=(
             "Le QT est corrigé par la formule de Bazett : QTc = QT / √(RR). "
-            "Normal < 440 ms. Un QT allongé doit alerter : vérifier médicaments et ionogramme "
-            "pour prévenir les torsades de pointes."
+            "Normal < 440 ms. Un QT allongé doit alerter : vérifier médicaments (antiarythmiques, "
+            "psychotropes, antibiotiques...) et ionogramme pour prévenir les torsades de pointes."
+        ),
+    ),
+
+    EDNEntry(
+        ontology_ids=[
+            "QT_COURT",
+        ],
+        rang_edn="C",
+        titre_cours="I.F.1 bis — QT court",
+        points_cles=[
+            "Anomalie inverse du QT long : intervalle QT raccourci pour la fréquence cardiaque, à mesurer avec la même méthode (Bazett) que le QT long.",
+            "Peut être d'origine génétique (canalopathie rare) ou favorisé par une hyperkaliémie/hypercalcémie.",
+        ],
+        pieges_classiques=[
+            "Toujours corriger le QT par la fréquence cardiaque (Bazett) avant de conclure à un QT anormalement court : un QT apparemment court peut simplement refléter une bradycardie.",
+        ],
+        extrait_cours=(
+            "Le QT court est l'anomalie inverse du QT long, mesuré et corrigé selon la même "
+            "méthode (formule de Bazett). Il peut être génétique ou favorisé par une dyskaliémie/"
+            "dyscalcémie."
         ),
     ),
 
@@ -875,6 +1013,172 @@ EDN_ENTRIES: List[EDNEntry] = [
         extrait_cours=(
             "La repolarisation précoce donne un sus-décalage ST dans les dérivations inférolatérales. "
             "C'est un diagnostic différentiel du SCA et de la péricardite."
+        ),
+    ),
+
+    # ══════════════════════════════════════════════════════════════════
+    # ARTEFACTS TECHNIQUES
+    # ══════════════════════════════════════════════════════════════════
+
+    EDNEntry(
+        ontology_ids=[
+            "INVERSION_D_ELECTRODES",
+        ],
+        rang_edn="B",
+        titre_cours="Artefact technique — Inversion d'électrodes",
+        points_cles=[
+            "Inversion bras droit/bras gauche : onde P, QRS et T négatifs en DI, avec aVR positif (aspect en miroir des dérivations des membres).",
+            "À évoquer devant un tracé discordant avec la clinique avant de conclure à une pathologie.",
+        ],
+        pieges_classiques=[
+            "Ne pas interpréter à tort une inversion d'électrodes comme un trouble du rythme ou une dextrocardie.",
+        ],
+        extrait_cours=(
+            "Une inversion des électrodes des membres (typiquement bras droit/bras gauche) donne un "
+            "tracé en miroir : onde P, QRS et T négatifs en DI et aVR positif. Il faut y penser devant "
+            "un ECG discordant avec la clinique avant d'évoquer une pathologie."
+        ),
+    ),
+
+    EDNEntry(
+        ontology_ids=[
+            "ARYTHMIE_SINUSALE",
+        ],
+        rang_edn="B",
+        titre_cours="I.A — Arythmie sinusale",
+        points_cles=[
+            "Variation physiologique de la fréquence cardiaque liée à la respiration (accélération à l'inspiration).",
+            "Rythme reste sinusal (onde P positive en D2, D3, aVF) : ne pas confondre avec un trouble du rythme.",
+        ],
+        pieges_classiques=[
+            "Fréquente chez le sujet jeune et sportif : ne pas la confondre avec une pathologie du nœud sinusal.",
+        ],
+        extrait_cours=(
+            "L'arythmie sinusale correspond à une variation physiologique, le plus souvent respiratoire, "
+            "de la fréquence cardiaque en rythme sinusal. Elle n'a pas de caractère pathologique."
+        ),
+    ),
+
+    # ══════════════════════════════════════════════════════════════════
+    # AUTRES CAUSES DE SUS-DÉCALAGE / PATHOLOGIES HORS ITEM 231
+    # (contenu bref, ces items relèvent d'autres items EDN — cardiomyopathies,
+    #  péricardite/myocardite, mort subite — le programme Item 231 ne les
+    #  détaille pas ; entrées volontairement synthétiques)
+    # ══════════════════════════════════════════════════════════════════
+
+    EDNEntry(
+        ontology_ids=[
+            "SYNDROME_DE_BRUGADA",
+            "ASPECT_DE_BRUGADA_DE_TYPE_1",
+        ],
+        rang_edn="B",
+        titre_cours="Canalopathie — Syndrome de Brugada",
+        points_cles=[
+            "Type 1 : sus-décalage ST 'en dôme' > 2 mm suivi d'une onde T négative en V1-V2.",
+            "Risque de mort subite par TV/FV, souvent d'origine génétique.",
+        ],
+        pieges_classiques=[
+            "Ne pas confondre avec un bloc de branche droit ou un SCA antérieur.",
+        ],
+        extrait_cours=(
+            "Le syndrome de Brugada de type 1 se manifeste par un sus-décalage ST en dôme en V1-V2 "
+            "suivi d'une onde T négative, avec un risque de mort subite rythmique."
+        ),
+    ),
+
+    EDNEntry(
+        ontology_ids=[
+            "TAKOTSUBO",
+        ],
+        rang_edn="C",
+        titre_cours="Cardiomyopathie de stress — Takotsubo",
+        points_cles=[
+            "Peut mimer un SCA avec sus-décalage ST, souvent déclenché par un stress intense.",
+            "Coronarographie normale malgré l'aspect ECG évocateur d'ischémie.",
+        ],
+        pieges_classiques=[
+            "Diagnostic différentiel du SCA : ne pas l'affirmer sans coronarographie.",
+        ],
+        extrait_cours=(
+            "Le syndrome de Takotsubo mime un SCA à l'ECG (sus-décalage ST) mais les coronaires "
+            "sont angiographiquement normales ; il est déclenché par un stress physique ou émotionnel intense."
+        ),
+    ),
+
+    EDNEntry(
+        ontology_ids=[
+            "TAMPONNADE",
+        ],
+        rang_edn="B",
+        titre_cours="Complication péricardique — Tamponnade",
+        points_cles=[
+            "Microvoltage et alternance électrique (variation d'amplitude des QRS d'un battement à l'autre).",
+            "Tachycardie sinusale quasi constante.",
+        ],
+        pieges_classiques=[
+            "L'ECG seul ne fait pas le diagnostic : l'échocardiographie est indispensable.",
+        ],
+        extrait_cours=(
+            "La tamponnade péricardique peut se traduire par un microvoltage et une alternance "
+            "électrique (variation d'amplitude des QRS), associés à une tachycardie sinusale."
+        ),
+    ),
+
+    EDNEntry(
+        ontology_ids=[
+            "MYOCARDITE",
+        ],
+        rang_edn="B",
+        titre_cours="Atteinte myocardique — Myocardite",
+        points_cles=[
+            "ECG souvent peu spécifique : troubles de repolarisation, parfois aspect pseudo-SCA ou troubles du rythme/conduction.",
+            "Peut se compliquer de troubles du rythme ventriculaire ou de BAV.",
+        ],
+        pieges_classiques=[
+            "Un ECG normal n'élimine pas une myocardite.",
+        ],
+        extrait_cours=(
+            "La myocardite peut donner un ECG normal ou des anomalies non spécifiques (troubles de "
+            "repolarisation, troubles du rythme ou de conduction), parfois un aspect pseudo-SCA."
+        ),
+    ),
+
+    EDNEntry(
+        ontology_ids=[
+            "AMYLOSE",
+        ],
+        rang_edn="C",
+        titre_cours="Cardiopathie infiltrative — Amylose cardiaque",
+        points_cles=[
+            "Microvoltage contrastant avec un épaississement pariétal important à l'échographie.",
+            "Association évocatrice : microvoltage + hypertrophie pariétale échographique.",
+        ],
+        pieges_classiques=[
+            "Ne pas conclure à tort à une HVG devant l'épaississement pariétal : le microvoltage électrique oriente vers l'amylose.",
+        ],
+        extrait_cours=(
+            "L'amylose cardiaque associe classiquement un microvoltage électrique à un épaississement "
+            "pariétal important en échographie, discordance évocatrice du diagnostic."
+        ),
+    ),
+
+    EDNEntry(
+        ontology_ids=[
+            "ISCHEMIQUE",
+        ],
+        rang_edn="A",
+        titre_cours="I.F.4 — Ischémie myocardique (terme générique)",
+        points_cles=[
+            "Sous-décalage ST ou inversion des ondes T dans un territoire coronaire.",
+            "À distinguer de la lésion (sus-décalage ST) et de la nécrose (onde Q).",
+        ],
+        pieges_classiques=[
+            "Ischémie, lésion et nécrose sont 3 stades distincts à ne pas confondre.",
+        ],
+        extrait_cours=(
+            "L'ischémie myocardique se traduit par un sous-décalage ST ou une inversion des ondes T "
+            "systématisés à un territoire coronaire, à distinguer de la lésion (sus-décalage ST) et "
+            "de la nécrose (onde Q de nécrose)."
         ),
     ),
 ]
