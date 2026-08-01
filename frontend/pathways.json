@@ -31,6 +31,17 @@
       "accent": "blue"
     },
     {
+      "id": "bav-advanced",
+      "config_url": "/static/pedagogy-bav-advanced.json",
+      "icon": "AV+",
+      "eyebrow": "Conduction",
+      "level": "Avancé",
+      "curriculum_level": 3,
+      "recommended_after": ["bav-foundations"],
+      "competency_label": "Blocs avancés et associations à risque",
+      "accent": "blue"
+    },
+    {
       "id": "fa-flutter",
       "config_url": "/static/pedagogy-fa-flutter.json",
       "icon": "RR",
