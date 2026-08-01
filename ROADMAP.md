@@ -23,7 +23,7 @@
 |---|--------|:------:|
 | P0.1 | Créer le **golden d'extraction** (~50 réponses annotées par un expert, tous les concepts réellement présents, pas seulement ceux qui comptent pour la note ; double annotation sur ~15 → Kappa de Cohen) | ✅ fait — 100 réponses, cf. `GOLDEN_EXTRACTION.md` |
 | P0.2 | Recalculer précision/rappel/F1 réels de l'extraction contre ce golden | ✅ fait — P=90.4%, R=89.2%, F1=89.8% (`scripts/compute_extraction_metrics.py`) |
-| P0.3 | Unifier les chiffres publiés (README ~92 %, RAG-onto 62,4 %, ARCHITECTURE 42 %, CSV réel 85,1 %/60,2 % → incohérents) en une source de vérité versionnée | ❌ pas commencé |
+| P0.3 | Unifier les chiffres publiés (README ~92 %, RAG-onto 62,4 %, ARCHITECTURE 42 %, CSV réel 85,1 %/60,2 % → incohérents) en une source de vérité versionnée | ✅ fait — `audit_doc/METRICS_LEDGER.md` (registre unique) + README racine corrigé (chiffre daté/sourcé) |
 | P0.4 | Tests de non-régression du scoring | ✅ fait (`rag_pipeline/tests/test_scoring_v3.py`, 18 tests) |
 
 ### 🟡 P1 — Important (validité scientifique)
