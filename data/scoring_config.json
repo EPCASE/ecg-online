@@ -1019,6 +1019,21 @@
       "removed": [
         "Évoquer très secondairement la dextrocardie comme diagnostic différentiel rare devant DI négative"
       ]
+    },
+    "15": {
+      "roles": {
+        "Diagnostic de bloc indifférencié": "validant",
+        "Absence de morphologie caractéristique de bloc de branche droit ou gauche": "validant",
+        "QRS larges à 150 ms": "complementaire",
+        "Rythme sinusal à environ 55/min": "complementaire",
+        "Conduction atrio-ventriculaire normale : conduction 1/1, PR normal": "complementaire",
+        "Axe gauche": "complementaire",
+        "Rabotage des ondes R dans le précordium": "complementaire",
+        "Ondes T négatives en DI-aVL": "complementaire",
+        "Hypertrophie auriculaire gauche retenue dans le QCM": "complementaire"
+      },
+      "extra_validants": [],
+      "removed": []
     }
   }
 }

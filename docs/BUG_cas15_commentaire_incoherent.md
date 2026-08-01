@@ -1,11 +1,12 @@
 # Bug — Commentaire pédagogique incohérent sur le cas 15 (bloc indifférencié)
 
 **Date de découverte : 01/08/2026**
-**Sévérité : moyenne** (n'affecte que le cas 15 sur 75, mais commentaire
-pédagogique activement trompeur — cite une règle de cours qui contredit le
-diagnostic attendu du cas)
-**Statut : documenté, PAS corrigé** (correctif hors périmètre de la branche
-`agent/curriculum-phase2` ; touche le pipeline de production sur `main`)
+**Sévérité : moyenne pour le cas 15 isolément, MAJEURE à l'échelle du produit**
+(audit du 01/08/2026 : 125/153 `golden_id` sans `EDNEntry`, dont 48 concepts
+diagnostiques touchant 59 des 75 cas — voir section « Portée de l'impact »)
+**Statut : cas 15 CORRIGÉ** (branche `fix/edn-bloc-indifferencie`, commit
+`381a149`, non fusionné dans `main`) — **le trou de couverture générique
+reste ouvert et documenté ci-dessous, remédiation à planifier séparément**
 
 ---
 
@@ -141,13 +142,91 @@ feedback de ce cas.
    empêcher explicitement toute citation de cours sur une famille de
    concepts exclue par le concept réellement attendu.
 
-## Portée de l'impact
+## Portée de l'impact — audit exhaustif effectué le 01/08/2026
 
-Recherche des autres concepts golden potentiellement dans le même cas
-(présents dans `cases_golden.json` mais absents de `edn_knowledge_base.py`)
-— **non exhaustivement vérifiée**, à faire avant de corriger uniquement ce
-cas ponctuel : il est possible que d'autres `golden_id` utilisés dans les
-75 cas souffrent du même trou de couverture EDN.
+Le correctif ponctuel du cas 15 étant appliqué (branche `fix/edn-bloc-indifferencie`,
+commit `381a149`), un audit systématique a été mené sur les **153 `golden_id`
+distincts** utilisés dans les mappings de `cases_golden.json` à travers les
+75 cas, en croisant avec `rag_pipeline/edn_knowledge_base.py` (`get_edn_entry`)
+et la `categorie` de chaque concept dans `data/ontology_v2.json`.
+
+**Résultat : le trou de couverture EDN est bien plus large que le seul cas 15.**
+
+- **125 des 153 `golden_id` utilisés (82 %) n'ont aucune `EDNEntry`.**
+- Parmi eux, **48 sont des concepts diagnostiques** (`categorie` commençant par
+  `DIAGNOSTIC_`, donc de vrais points de conclusion clinique et pas de simples
+  descripteurs/qualificatifs comme `PR_NORMAL` ou `AXE_NORMAL_DU_QRS`) :
+  - **3 `DIAGNOSTIC_URGENT`** : `EXTRASYSTOLE_A_COUPLAGE_COURT` (cas 36, 50),
+    `CARDIOVERSION_ELECTRIQUE` (cas 50, 63), `WOLF_MALIN` (cas 52).
+  - **29 `DIAGNOSTIC_MAJEUR`**, dont des diagnostics majeurs à fort enjeu
+    pédagogique/clinique : `SYNDROME_CORONARIEN_A_LA_PHASE_AIGUE_AVEC_SUS_DECALAGE_DU_SEGMENT_ST`
+    (12 cas : 53, 57–65, 68, 70), `FAISCEAU_ACCESSOIRE_A_CONDUCTION_ANTEROGRADE` (5 cas),
+    `TACHYCARDIE_SINUSALE` (5 cas), `ECG_NORMAL` (3 cas : 3, 8, 39 — même le
+    diagnostic « normal » n'a pas d'entrée !), `HYPERKALIEMIE`, `BAV_DE_TYPE_1`,
+    `RYTHME_D_ECHAPPEMENT_JONCTIONNEL`, `SYNDROME_CORONARIEN_...SANS_ELEVATION_ST`,
+    `PERICARDITE`, `TAMPONNADE`, `MYOCARDITE`, `TAKOTSUBO`, `ASPECT_DE_BRUGADA_DE_TYPE_1`,
+    `SYNDROME_DE_BRUGADA`, `AMYLOSE`, `HYPOKALIEMIE`, `QT_COURT`, `MICROVOLTAGE`,
+    et d'autres (liste complète disponible via le script d'audit ci-dessous).
+  - **16 `DIAGNOSTIC_MOYEN`**, dont `PAS_D_ANOMALIE_DE_LE_REPOLARISATION` (16 cas)
+    et `COURANT_DE_LESION_SOUS_EPICARDIQUE` (19 cas) qui sont très fréquemment
+    utilisés dans les cas d'ischémie/SCA.
+- **59 des 75 cas (79 %)** ont au moins un concept `DIAGNOSTIC_*` sans `EDNEntry`
+  — donc potentiellement exposés au même mode de défaillance que le cas 15
+  (GPT sans la bonne citation de cours, susceptible de substituer une entrée
+  proche mais incorrecte).
+- Répartition par famille clinique (nombre de concepts diagnostiques manquants) :
+  `rythme` (24), `conduction` (16), `ischemie` (13), `pericarde` (9), `genetique` (5),
+  `normal` (3), `hypertrophie` (3), `embolie` (2), `metabolique` (2), `infiltratif` (2),
+  `technique` (1) — **toutes les familles cliniques sont touchées**, sans exception.
+
+Script d'audit utilisé (reproductible) :
+```python
+import json, sys
+sys.path.insert(0, "rag_pipeline")
+from edn_knowledge_base import get_edn_entry
+
+onto = json.load(open("../data/ontology_v2.json", encoding="utf-8"))["concepts"]
+golden = json.load(open("data/cases_golden.json", encoding="utf-8"))["cases"]
+
+from collections import defaultdict
+usage = defaultdict(list)
+for num, c in golden.items():
+    for label, m in c["mapping"].items():
+        usage[m.get("golden_id")].append(num)
+
+missing_diag = [
+    (gid, onto.get(gid, {}).get("categorie", "?"), sorted(set(int(n) for n in nums)))
+    for gid, nums in usage.items()
+    if not get_edn_entry(gid) and onto.get(gid, {}).get("categorie", "").startswith("DIAGNOSTIC")
+]
+print(f"{len(usage)} golden_ids distincts, {len(missing_diag)} concepts diagnostiques sans EDNEntry")
+```
+
+### Recommandation
+
+Compte tenu de l'ampleur (125 concepts, 59 cas), il n'est **pas raisonnable
+de corriger cela cas par cas en réactif** (comme pour le cas 15). Deux options
+pour la suite, à trancher séparément de ce ticket :
+
+1. **Remédiation manuelle priorisée** : rédiger d'abord les `EDNEntry` pour
+   les 3 `DIAGNOSTIC_URGENT` et les 29 `DIAGNOSTIC_MAJEUR` (32 entrées),
+   qui couvrent le risque clinique/pédagogique le plus élevé (SCA ST+,
+   Brugada, tamponnade, hyperkaliémie, WPW, etc.), en s'appuyant sur
+   `cases_reference.json`/`fiche_secours` de chaque cas concerné comme
+   source de texte clinique déjà validé (même méthode que pour le cas 15).
+2. **Remédiation structurelle** : générer semi-automatiquement un squelette
+   d'`EDNEntry` pour chaque `golden_id` manquant à partir des champs déjà
+   présents dans `ontology_v2.json` (`concept_name`, `synonymes`) et de
+   `cases_reference.json` (texte clinique), puis relecture/validation
+   manuelle rang par rang — plus rapide à grande échelle que la rédaction
+   entièrement manuelle.
+
+Dans les deux cas, il serait utile de compléter `get_edn_entries_for_ids()`
+avec un log d'avertissement (`logger.warning`) quand un `golden_id` demandé
+par `_build_course_context()` n'a pas d'entrée, pour rendre ce trou de
+couverture visible en production au lieu de silencieux — actuellement
+aucune télémétrie ne signale ces trous, ils ne sont détectables que par
+audit manuel comme celui-ci.
 
 ## Périmètre de cette découverte
 
@@ -157,3 +236,58 @@ Ce bug a été découvert incidemment en construisant le parcours curriculum
 le curriculum et n'a pas été corrigé ici. Le correctif touche
 `rag_pipeline/edn_knowledge_base.py` et/ou `data/scoring_config.json`,
 tous deux actifs sur `main` (pipeline de production déployé sur Scalingo).
+
+## Statut final : remédiation complète (branche `fix/edn-bloc-indifferencie`)
+
+Le trou de couverture a été intégralement résorbé en 4 commits sur cette
+branche (non fusionnée sur `main` à ce stade, en attente de validation) :
+
+1. `381a149` — fix ciblé cas 15 (`BLOC_INTRAVENTRICULAIRE_ASPECIFIQUE` +
+   entrée `scoring_config.json`).
+2. `0e1f9b1` — documentation de l'audit complet (125/153 golden_ids
+   manquants, 48 concepts diagnostiques, 59/75 cas).
+3. `9123c9a` — correction de bugs de normalisation/alias (accents non
+   strippés dans `get_edn_entry`, typos `TACHYCARDIE_JONCTIONELLE`,
+   golden_ids parent/enfant non reliés) : **48 → 39** concepts
+   diagnostiques manquants, sans aucun nouveau contenu — uniquement des
+   bugs de correspondance.
+4. `9b81c93` — remédiation complète : alias supplémentaires validés via
+   `ontology_v2.json` (parents/synonymes) + nouvelles `EDNEntry` rédigées
+   à partir du cours SFC Item 231 (fetché intégralement) pour les concepts
+   réellement absents. **39 → 0** concepts diagnostiques sans `EDNEntry`.
+
+**Sources utilisées** (conformément à la demande) :
+- Cours SFC Item 231 (page web officielle) : source primaire pour tout
+  contenu de cours nouvellement rédigé (BAV de haut grade, ECG normal,
+  etc.).
+- Document de référence utilisateur (`textes à envoyer.docx`) : vérifié
+  et jugé redondant avec `cases_reference.json`/`cases_golden.json` déjà
+  disponibles (même corpus de 75 cas) — utilisé uniquement pour valider
+  ponctuellement des descriptions cliniques (ex. Brugada cas 74, amylose
+  cas 75), pas comme source de contenu de cours nouveau.
+
+**Concepts hors périmètre strict de l'item 231** (Brugada, Takotsubo,
+tamponnade, myocardite, amylose) : ces pathologies relèvent principalement
+d'autres items EDN (cardiomyopathies, mort subite, péricardite/myocardite)
+et ne sont pas détaillées par le cours ECG lui-même. Des `EDNEntry` ont
+néanmoins été rédigées, volontairement brèves et génériques, pour éviter
+que `_build_course_context()` reste sans aucune citation sur ces cas —
+conformément à la consigne explicite de ne pas produire de correction
+« trop verbeuse et ajustée à la réponse de l'étudiant ».
+
+**Vérification finale** (script d'audit ci-dessus, ré-exécuté après
+`9b81c93`) :
+```
+153 golden_ids distincts, 0 concepts diagnostiques sans EDNEntry
+EDN_ENTRIES : 47 entrées, index inversé : 128 ontology_ids couverts
+```
+
+**Reste à faire avant fusion sur `main`** :
+- Revue humaine du contenu des nouvelles entrées (notamment celles non
+  sourcées verbatim du cours : `TACHYCARDIE_SINUSALE`, `RIVA`, `QT_COURT`)
+  pour confirmer l'exactitude clinique et la concision.
+- Décision sur l'ajout d'un `logger.warning` dans `get_edn_entries_for_ids()`
+  pour la télémétrie de couverture (non implémenté ici, cf. recommandation
+  ci-dessus).
+- Merge explicite sur `main` après validation utilisateur (aucun push
+  n'a été effectué à ce stade).
