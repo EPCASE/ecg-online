@@ -136,6 +136,27 @@ EDN_ENTRIES: List[EDNEntry] = [
         ),
     ),
 
+    EDNEntry(
+        ontology_ids=["BLOC_INTRAVENTRICULAIRE_ASPECIFIQUE"],
+        rang_edn="B",
+        titre_cours="I.B.1 — Bloc intraventriculaire aspécifique (diagnostic d'élimination)",
+        points_cles=[
+            "Diagnostic d'élimination devant un QRS large (> 120 ms) qui ne remplit "
+            "ni les critères de bloc de branche droit (V1/V6) ni ceux de bloc de "
+            "branche gauche (V1/V6/DI/aVL).",
+        ],
+        pieges_classiques=[
+            "Ne pas conclure à un bloc de branche gauche ou droit par défaut devant "
+            "un QRS large : vérifier explicitement les critères des deux avant de "
+            "retenir un bloc indifférencié/aspécifique.",
+        ],
+        extrait_cours=(
+            "Le bloc intraventriculaire aspécifique (ou bloc indifférencié) est un "
+            "diagnostic d'élimination en présence d'un QRS large (> 120 ms) mais ne "
+            "présentant pas les caractéristiques d'un bloc de branche droite ou gauche."
+        ),
+    ),
+
     # ══════════════════════════════════════════════════════════════════
     # I.B.2 — HÉMIBLOCS
     # ══════════════════════════════════════════════════════════════════
