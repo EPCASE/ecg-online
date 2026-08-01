@@ -28,7 +28,7 @@
         {"num": 27, "phase": "foundation"},
         {"num": 29, "phase": "guided"},
         {"num": 30, "phase": "contrast"},
-        {"num": 49, "phase": "integration"},
+        {"num": 19, "phase": "integration"},
         {"num": 65, "phase": "mastery"}
       ]
     },
@@ -53,7 +53,7 @@
         {"num": 11, "phase": "guided"},
         {"num": 12, "phase": "contrast"},
         {"num": 15, "phase": "integration"},
-        {"num": 19, "phase": "mastery"}
+        {"num": 49, "phase": "mastery"}
       ]
     },
     {

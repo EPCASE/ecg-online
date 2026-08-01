@@ -2,13 +2,13 @@
   "schema_version": 1,
   "id": "bav-advanced",
   "title": "Blocs auriculoventriculaires — formes avancées et associations",
-  "subtitle": "Distinguer un bloc de haut degré d'un bloc complet, reconnaître les causes réversibles et les associations à risque (FA, SCA).",
+  "subtitle": "Distinguer un bloc de haut degré d'un bloc complet, reconnaître les causes réversibles et les pièges diagnostiques voisins (bloc sino-atrial, FA, SCA).",
   "estimated_minutes": 18,
   "learning_objectives": [
     "Différencier un bloc de haut degré (certaines ondes P bloquées) d'un bloc complet (dissociation atrioventriculaire totale).",
     "Rechercher systématiquement une cause réversible (hyperkaliémie, ischémie) devant un bloc de haut degré ou complet.",
     "Reconnaître un bloc complet associé à une fibrillation atriale (rythme ventriculaire régulier malgré une FA).",
-    "Repérer une association bloc de branche + FA sans surestimer un bloc atrioventriculaire.",
+    "Ne pas confondre un bloc sino-atrial (conduction AV normale, fréquence atriale divisée) avec un bloc atrioventriculaire.",
     "Identifier un bloc auriculoventriculaire compliquant un syndrome coronarien aigu inférieur."
   ],
   "mastery": {
@@ -69,20 +69,21 @@
       "unsafe_errors": ["BAV_2_MOBITZ_2", "FA_LENTE"]
     },
     {
-      "step_id": "bav-avance-fa-bloc-branche",
-      "num": 49,
+      "step_id": "bav-avance-piege-bloc-sino-atrial",
+      "num": 19,
       "phase": "integration",
-      "step_title": "Ne pas confondre bloc de branche et bloc atrioventriculaire",
-      "objective": "Différencier un trouble de conduction intraventriculaire (bloc de branche) associé à une FA, d'un authentique bloc atrioventriculaire.",
-      "teaching_point": "Une tachycardie irrégulière à QRS larges monomorphes avec trémulation de la ligne de base correspond à une FA conduite avec bloc de branche complet — il n'y a ici aucun bloc atrioventriculaire, seulement un trouble de la conduction intraventriculaire.",
+      "step_title": "Le piège du bloc sino-atrial : une fréquence divisée par deux sans bloc AV",
+      "objective": "Reconnaître qu'un ralentissement brutal de la fréquence cardiaque par un facteur 2 peut venir d'un problème de conduction sino-atriale, et non atrioventriculaire.",
+      "teaching_point": "Une chute brutale de la fréquence cardiaque de moitié, avec une conduction atrioventriculaire strictement normale (toutes les ondes P conduites, PR fixe), oriente vers un bloc sino-auriculaire du deuxième degré — un trouble de conduction en amont du nœud AV, à ne pas confondre avec un BAV.",
       "allow_hints": true,
       "hints": [
-        "Le rythme est-il irrégulier ? Compare avec les cas précédents où le rythme ventriculaire était régulier malgré la FA.",
-        "Les QRS larges sont-ils monomorphes ? Cherche un aspect rsR' en V1 évocateur de bloc de branche droite.",
-        "Tachycardie irrégulière + QRS larges monomorphes + trémulation atriale = FA avec bloc de branche, pas un bloc atrioventriculaire."
+        "La fréquence cardiaque chute brutalement : est-ce la fréquence atriale elle-même qui ralentit, ou des ondes P qui restent bloquées ?",
+        "Vérifie l'intervalle PR avant et après le ralentissement : reste-t-il fixe et dans les limites de la normale ?",
+        "Toutes les ondes P sont conduites avec un PR normal, mais leur fréquence est divisée par deux : le problème est sino-atrial, pas atrioventriculaire.",
+        "Contrairement aux cas précédents, ici la conduction atrioventriculaire elle-même n'est jamais en cause."
       ],
-      "required_concepts": ["FIBRILLATION_ATRIALE", "BLOC_DE_BRANCHE_DROIT_COMPLET"],
-      "unsafe_errors": ["BAV_COMPLET", "TACHYCARDIE_VENTRICULAIRE"]
+      "required_concepts": ["BLOC_SINO_AURICULAIRE_DEUXIEME_DEGRE"],
+      "unsafe_errors": ["BAV_DE_HAUT_GRADE", "BAV_COMPLET"]
     },
     {
       "step_id": "bav-avance-test-sca-inferieur",

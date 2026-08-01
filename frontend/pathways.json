@@ -42,6 +42,17 @@
       "accent": "blue"
     },
     {
+      "id": "bundle-branch-advanced",
+      "config_url": "/static/pedagogy-bundle-branch-advanced.json",
+      "icon": "BB",
+      "eyebrow": "Conduction",
+      "level": "Avancé",
+      "curriculum_level": 3,
+      "recommended_after": ["wide-qrs-sinus"],
+      "competency_label": "Hémiblocs, bloc bifasciculaire, blocs indifférenciés",
+      "accent": "green"
+    },
+    {
       "id": "fa-flutter",
       "config_url": "/static/pedagogy-fa-flutter.json",
       "icon": "RR",
