@@ -1,0 +1,145 @@
+{
+  "baseline_generated_at": "2026-08-01T14:06:46.672277+00:00",
+  "roadmap_reference": "audit_doc/roadmap_scientifique_2026.md §P0.1",
+  "git": {
+    "commit": "10ddd550de2ad8bfffb2cf5af15c5f4f4c6f4db5",
+    "commit_short": "10ddd55",
+    "branch": "main",
+    "describe": "10ddd55",
+    "date": "2026-08-01 16:01:48 +0200"
+  },
+  "pipeline_version": "neuro-v1.1",
+  "ontology_version": {
+    "version": "2.0",
+    "source": "BrYOzRZIu7jQTwmfcGsi35.owl",
+    "generated_by": "convert_owl_to_v2.py",
+    "total_concepts": 345,
+    "total_patterns": 53,
+    "total_findings": 146,
+    "total_qualifiers": 106,
+    "total_topography": 40,
+    "total_qualifier_families": 7,
+    "total_synonymes": 316,
+    "total_requires_relations": 69,
+    "total_supports_relations": 48,
+    "total_excludes_relations": 43,
+    "total_hidden": 55,
+    "skipped_reference_concepts": 55,
+    "last_patch": {
+      "date": "20260705_181338",
+      "source": "apply_onto_patch.py",
+      "synonymes_ajoutes": 1088,
+      "ecg_normal_composition": true
+    }
+  },
+  "datasets_versions": {
+    "cases.json": {
+      "version": "n/a (pas de champ version explicite)",
+      "n_cases": 75
+    },
+    "cases_golden.json": {
+      "version": 1,
+      "n_cases": 75,
+      "updated": "2026-07-06T23:07:13"
+    },
+    "scoring_config.json": {
+      "version": 1,
+      "n_cases": 75,
+      "updated": "2026-07-06T23:07:37"
+    },
+    "case_curriculum_map.json": {
+      "version": "n/a (pas de champ version explicite)",
+      "meta": {
+        "title": "Phase 1 curriculum — audit de couverture des 75 ECG",
+        "date": "2026-08-01",
+        "source_ref": "ecg-online/docs/ECG_Online_curriculum_75_ECG_feedback_IA_2026-07-31.md §12 Phase 1",
+        "objectif": "Affecter chaque ECG (num 1 à 75) à exactement un parcours et une phase, en conservant les 5 parcours existants (frontend/pathways.json) sous compatibilité pendant la migration.",
+        "note": "Ce mapping est un premier jet d'audit structurel (regroupement par thème clinique). Il doit être validé cliniquement avant toute mise en production (cf. avertissement du curriculum §avant-propos). Les 5 parcours marqués legacy_id existent déjà dans frontend/pathways.json ; les 10 autres sont proposés pour couvrir les 53 cas restants.",
+        "phases": [
+          "foundation",
+          "guided",
+          "contrast",
+          "integration",
+          "mastery"
+        ]
+      }
+    }
+  },
+  "models": {
+    "grader_etudiant_default_model": "gpt-4o-2024-08-06",
+    "neuro_grader_pipeline_tag": "neuro-pipeline-v3",
+    "golden_mapping_model": "gpt-5.5"
+  },
+  "python_dependencies": {
+    "python_executable": "C:\\Users\\Administrateur\\bmad\\ECG lecture\\ecg-online\\.venv\\Scripts\\python.exe",
+    "python_version": "Python 3.11.9",
+    "requirements_txt_pinned": [
+      "flask==3.0.3",
+      "flask-cors==5.0.0",
+      "openai==1.54.3",
+      "httpx==0.27.2",
+      "gunicorn==22.0.0",
+      "python-dotenv==1.0.1",
+      "numpy==1.26.4",
+      "rank-bm25==0.2.2",
+      "pydantic==2.9.2",
+      "gspread==6.1.2",
+      "google-auth==2.35.0"
+    ]
+  },
+  "extraction_metrics": {
+    "source_file": "data/extraction_metrics_report.json",
+    "n_items_used": 100,
+    "global": {
+      "tp": 547,
+      "fp": 58,
+      "fn": 66,
+      "precision": 0.9041322314049587,
+      "recall": 0.8923327895595432,
+      "f1": 0.8981937602627258
+    },
+    "per_method": {
+      "coupe_circuit": {
+        "tp": 466,
+        "fp": 17,
+        "precision": 0.9648033126293996
+      },
+      "juge_llm": {
+        "tp": 57,
+        "fp": 27,
+        "precision": 0.6785714285714286
+      },
+      "pattern_inference": {
+        "tp": 0,
+        "fp": 3,
+        "precision": 0.0
+      },
+      "fallback_subterm": {
+        "tp": 6,
+        "fp": 3,
+        "precision": 0.6666666666666666
+      },
+      "lexical_backstop": {
+        "tp": 18,
+        "fp": 8,
+        "precision": 0.6923076923076923
+      }
+    },
+    "inter_annotator_jaccard_f1": {
+      "jaccard_mean": 0.9771604938271605,
+      "f1_mean": 0.9869281045751634,
+      "n_items": 18,
+      "n_perfect_agreement": 16
+    },
+    "inter_annotator_caveat": "Le Kappa de Cohen classique est PEU FIABLE ici : l'univers de concepts par item est restreint (union des 2 relectures), donc quasi tous les items sont 'oui' dans cet univers → l'accord attendu par hasard (pe) est artificiellement gonflé, ce qui peut produire un Kappa proche de 0 ou négatif MÊME EN CAS D'ACCORD QUASI-PARFAIT. Préférer `jaccard_f1` (moyenne du Jaccard/F1 par item), métrique standard pour l'accord inter-annotateur en NER à univers ouvert."
+  },
+  "golden_audit_status": {
+    "raw_last_lines": "   … et 1 de plus\n\n------------------------------------------------------------------------------\nTOTAL : 0 bloquant(s), 21 avertissement(s) sur 21 anomalie(s).\n------------------------------------------------------------------------------",
+    "returncode": 0
+  },
+  "test_suite_status": {
+    "summary_last_lines": "..................\n----------------------------------------------------------------------\nRan 18 tests in 0.081s\n\nOK",
+    "returncode": 0,
+    "all_passed": true
+  }
+}
