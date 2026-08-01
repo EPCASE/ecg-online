@@ -1,0 +1,92 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "scoring_schema_v2.json",
+  "title": "Golden conceptuel de scoring — schéma V2 (P1.1)",
+  "description": "Schéma d'un critère de scoring enrichi, tel que défini dans audit_doc/roadmap_scientifique_2026.md §P1.1. Sert de validateur pour le pilote (P1.2) puis pour la migration complète des 75 cas (P1.4).",
+  "type": "object",
+  "required": [
+    "criterion_id",
+    "concept_id",
+    "label",
+    "role",
+    "expected_status",
+    "importance",
+    "error_severity",
+    "group_logic",
+    "expert_confidence",
+    "evidence_source"
+  ],
+  "properties": {
+    "criterion_id": {
+      "type": "string",
+      "description": "Identifiant unique du critère, convention : case_<num>_<slug>.",
+      "pattern": "^case_[0-9]+_[a-z0-9_]+$"
+    },
+    "concept_id": {
+      "type": "string",
+      "description": "Identifiant du concept dans l'ontologie ECG (golden_id existant ou nouveau)."
+    },
+    "label": {
+      "type": "string",
+      "description": "Libellé lisible du critère, destiné à l'annotateur et à l'audit."
+    },
+    "role": {
+      "type": "string",
+      "enum": ["required", "alternative", "optional", "exclusion"],
+      "description": "required = indispensable ; alternative = un parmi plusieurs suffit (cf. alternative_group) ; optional = valorisé mais non pénalisant ; exclusion = ne doit pas être conclu (pénalité si présent)."
+    },
+    "expected_status": {
+      "type": "string",
+      "enum": ["present", "absent", "hypothesis_acceptable"],
+      "description": "Statut attendu du concept dans une réponse correcte."
+    },
+    "importance": {
+      "type": "string",
+      "enum": ["major", "intermediate", "minor"],
+      "description": "Poids clinique/pédagogique du critère, indépendant de la gravité d'erreur."
+    },
+    "error_severity": {
+      "type": "string",
+      "enum": ["none", "minor", "major", "dangerous"],
+      "description": "Gravité si le critère est manqué ou contredit (ex: 'dangerous' = erreur cliniquement dangereuse, cf. P4.1 score de sécurité)."
+    },
+    "alternative_group": {
+      "type": ["string", "null"],
+      "description": "Identifiant du groupe de critères alternatifs/concurrents (ex: plusieurs diagnostics recevables pour un même cas). Null si le critère est autonome."
+    },
+    "group_logic": {
+      "type": "string",
+      "enum": ["ANY", "ALL", "AT_LEAST_N"],
+      "description": "Logique appliquée au groupe : ANY = un seul suffit, ALL = tous requis, AT_LEAST_N = seuil (voir group_min_n)."
+    },
+    "group_min_n": {
+      "type": ["integer", "null"],
+      "description": "Seuil minimal si group_logic == AT_LEAST_N, sinon null.",
+      "minimum": 1
+    },
+    "sufficient_alone": {
+      "type": "boolean",
+      "description": "True si la présence de ce seul critère suffit à valider le diagnostic principal, sans autre critère 'required'."
+    },
+    "minimum_specificity": {
+      "type": "string",
+      "enum": ["exact_only", "child_ok", "parent_ok", "any_related"],
+      "description": "Spécificité minimale acceptée dans la hiérarchie ontologique (ex: 'child_ok' = un concept plus spécifique que celui attendu est accepté)."
+    },
+    "expert_confidence": {
+      "type": "string",
+      "enum": ["high", "medium", "low"],
+      "description": "Confiance de l'expert annotateur sur la pertinence de ce critère (distinct de la confiance du modèle)."
+    },
+    "evidence_source": {
+      "type": "string",
+      "enum": ["expert_consensus", "single_expert", "gpt_assisted_reviewed", "literature"],
+      "description": "Origine de la définition du critère — traçabilité scientifique obligatoire (cf. P2.3 : un LLM ne peut pas être evidence_source seul sans revue)."
+    },
+    "comment": {
+      "type": "string",
+      "description": "Commentaire libre de l'annotateur (justification, ambiguïté résiduelle, désaccord non résolu)."
+    }
+  },
+  "additionalProperties": false
+}
