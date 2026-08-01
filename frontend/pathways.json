@@ -98,6 +98,17 @@
       ],
       "competency_label": "Orientation des tachycardies à QRS larges",
       "accent": "amber"
+    },
+    {
+      "id": "sinus-node-dysfunction",
+      "config_url": "/static/pedagogy-sinus-node-dysfunction.json",
+      "icon": "SA",
+      "eyebrow": "Conduction",
+      "level": "Avancé",
+      "curriculum_level": 3,
+      "recommended_after": ["bav-foundations"],
+      "competency_label": "Bradycardie physiologique, dysfonction sinusale, échappement, stimulateur",
+      "accent": "blue"
     }
   ]
 }
