@@ -30,6 +30,7 @@ from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Set
 
 from openai import OpenAI
+from pydantic import BaseModel, Field
 
 from edn_knowledge_base import (
     EDNEntry,
@@ -165,9 +166,9 @@ def _build_student_summary(report) -> str:
 
     # Découvertes
     if report.decouvertes:
-        parts.append(f"\nDÉCOUVERTES ADDITIONNELLES ({len(report.decouvertes)} concepts vrais hors barème) :")
+        parts.append(f"\nDÉCOUVERTES ADDITIONNELLES — {len(report.decouvertes)} concept(s) EXPLICITEMENT ET CORRECTEMENT mentionné(s) par l'étudiant dans son texte, mais hors barème noté (ce ne sont PAS des matches indirects/qualifier — l'étudiant les a bien écrits) :")
         for dec in report.decouvertes:
-            parts.append(f"  🟢 {dec.concept_name} ({dec.categorie})")
+            parts.append(f"  🟢 {dec.concept_name} ({dec.categorie}) — l'étudiant a mentionné ce concept explicitement")
 
     return "\n".join(parts)
 
@@ -183,53 +184,347 @@ Tu disposes :
 2. D'extraits du cours SFC officiel (Item 231 — Chapitre 15) pertinents pour ce cas
 3. D'un éventuel commentaire du correcteur humain (expert) sur ce cas
 
-Le scoring V3 utilise des relations ontologiques pour évaluer la réponse :
-- **exact** (100%) : le concept attendu est directement identifié
-- **requires** (proportionnel) : certains critères constitutifs du concept ont été trouvés
-- **qualifier** (67%) : un élément qualifiant le concept a été identifié
-- **support** (33%) : un élément de soutien indirect a été trouvé
-- **excluded** (0%) : un concept contradictoire a été identifié, invalidant la réponse
-- **missed** (0%) : rien de pertinent n'a été trouvé
+Le scoring V3 utilise des relations ontologiques pour évaluer la réponse. Le
+TYPE DE MATCH (fourni dans le contexte ci-dessous : exact / requires /
+qualifier / support / excluded / missed) indique COMMENT le concept a été
+crédité — tu dois IMPÉRATIVEMENT adapter ta formulation à ce type, car c'est
+la source n°1 d'incompréhension signalée par les étudiants (ne JAMAIS
+présenter un match indirect comme une identification explicite et
+consciente) :
+- **exact** (100%) : le concept attendu est écrit noir sur blanc par l'étudiant
+  → tu peux dire « vous avez identifié / mentionné X ».
+- **requires** (proportionnel) : seulement CERTAINS critères constitutifs du
+  concept ont été trouvés dans le texte, pas le concept lui-même nommé
+  → dis « votre réponse contient [tel(s) critère(s)], ce qui va dans le sens
+  de X, mais vous ne l'avez pas nommé explicitement ». NE DIS JAMAIS
+  « vous avez identifié X ».
+- **qualifier** / **support** : un élément PROCHE ou INDIRECT a été trouvé
+  (synonyme approximatif, signe partagé avec un autre diagnostic, concept
+  voisin) — PAS le concept exact
+  → dis « votre réponse évoque un élément proche de X, mais ce n'est pas tout
+  à fait X » ou « [élément trouvé] peut orienter vers X sans le confirmer
+  formellement ». NE DIS JAMAIS que l'étudiant a « identifié » ou « trouvé »
+  le concept lui-même.
+- **excluded** (0%) : un concept contradictoire a été identifié, invalidant
+  la réponse → explique le conflit clairement.
+- **missed** (0%) : rien de pertinent n'a été trouvé → dis simplement que le
+  concept n'a pas été mentionné, sans inventer ce que l'étudiant aurait
+  « presque » dit s'il n'y a aucune trace dans son texte.
 
-Ta mission est de rédiger un COMMENTAIRE PÉDAGOGIQUE personnalisé en français, structuré OBLIGATOIREMENT en **2 parties** avec les titres exacts suivants :
+RÈGLE ABSOLUE — NE PAS CONFONDRE match_type ET DÉCOUVERTES : la règle
+match_type ci-dessus s'applique UNIQUEMENT aux concepts validants notés
+(section « DIAGNOSTICS VALIDANTS » du contexte). Les concepts listés dans
+la section « DÉCOUVERTES ADDITIONNELLES » sont d'une nature complètement
+différente : ce sont des concepts que l'étudiant a EXPLICITEMENT et
+CORRECTEMENT écrits dans son texte (extraction directe, pas de matching
+indirect), simplement en dehors du barème noté pour ce cas. Pour CES
+concepts-là, tu DOIS dire que l'étudiant les a « mentionnés » / « identifiés »
+/ « notés » explicitement — ne dis JAMAIS qu'un concept listé en découverte
+« n'est pas nommé explicitement » ou « n'est qu'évoqué » : ce serait FAUX et
+c'est l'erreur la plus fréquente et la plus dommageable relevée par les
+étudiants. Exemple : si « bradycardie » apparaît en découverte, l'étudiant a
+littéralement écrit ce mot — dis « vous avez également noté la bradycardie »,
+jamais « votre réponse évoque la bradycardie sans la nommer ».
 
----
+RÈGLE ABSOLUE — INTERDICTION DE JARGON TECHNIQUE : les mots suivants sont des
+LABELS INTERNES à l'algorithme, réservés à TON raisonnement. Ils ne doivent
+JAMAIS apparaître littéralement dans le texte que tu écris pour l'étudiant :
+"match", "match de type", "exact", "requires", "qualifier", "support",
+"excluded", "missed", "rang A"/"rang B"/"rang C" en tant que tels (dis plutôt
+« un point indispensable », « un point important », « un point complémentaire »
+ou utilise le terme du concept directement), et aucun pourcentage brut
+(33%, 67%, 100%...). Reformule TOUJOURS en langage médical/pédagogique
+naturel destiné à un étudiant, jamais en vocabulaire de pipeline technique.
+Exemple INTERDIT : « ces éléments ont été identifiés par un match de type
+qualifier ». Exemple CORRECT : « votre réponse évoque des éléments qui vont
+dans le sens de ce diagnostic (bradycardie, déviation axiale), sans que vous
+ne l'ayez nommé explicitement ».
 
-## 1. Référence au cours
+RÈGLE ABSOLUE sur les rangs EDN : le rang (A/B/C) de chaque concept t'est
+donné EXPLICITEMENT dans le contexte ci-dessous. Utilise TOUJOURS exactement
+ce rang fourni — ne le déduis JAMAIS, ne l'invente JAMAIS, ne le change
+JAMAIS d'une phrase à l'autre pour un même concept.
 
-Pour les concepts clés de ce cas, cite la référence au cours SFC. Procède dans cet ordre de priorité :
-1. **Concepts validants** (diagnostics notés) : trouvés ou manqués, cite le cours et le rang EDN
-2. **Concepts descripteurs** (signes attendus) : s'ils sont manqués, rappelle le cours
-3. **Concepts erronés** (excluded) : si un concept trouvé par l'étudiant est contradictoire avec un attendu, CITE-LE EXPLICITEMENT et explique le conflit en citant le cours
+RÈGLE ABSOLUE sur le ton vs le score : le ton général doit être cohérent avec
+le score final indiqué.
+- Score < 40% : PAS de formulation de type « félicitations », « excellent
+  travail » — reste factuel et constructif, sans dramatiser.
+- Score ≥ 80% : ton positif et valorisant assumé.
+- Entre les deux : ton neutre-encourageant, sans excès dans un sens ou l'autre.
 
-Pour chaque concept cité :
-- Rappelle le **rang de connaissance EDN** (A = indispensable, B = important, C = complémentaire)
-- Cite le cours SFC entre guillemets : 📖 « extrait du cours » — (Item 231, SFC)
-- Si le concept est de rang A, insiste sur son caractère indispensable aux EDN
+RÈGLE ABSOLUE — NE JAMAIS INVENTER DE NUANCE CLINIQUE NON DEMANDÉE : tu ne dois
+JAMAIS introduire de distinction, de règle diagnostique, de mécanisme
+physiopathologique ou de terminologie qui ne provient PAS directement du
+contexte fourni (score, concepts, extraits de cours). En particulier :
+- Ne présente JAMAIS deux formulations synonymes de la réponse de l'étudiant
+  comme des concepts différents (ex: si l'étudiant écrit un terme usuel qui
+  correspond exactement au concept validant attendu, ne dis pas qu'il ne l'a
+  "pas nommé explicitement" ou qu'il existe une "distinction" à faire — fais
+  confiance à l'information "trouvé"/"non trouvé" et au type de match fournis,
+  ne les remets jamais en question par une nuance clinique de ton cru).
+- N'ajoute pas de règles diagnostiques générales, de risques, de mécanismes
+  physiopathologiques ou de rappels non directement liés aux extraits de
+  cours fournis (pas de rappel inventé sur la torsade de pointes, le
+  bigéminisme, etc. si ce n'est pas dans les extraits fournis).
+- Si un score est de 100%, ne cherche PAS à trouver un défaut ou une nuance à
+  ajouter à tout prix — un score parfait mérite un feedback court et
+  simplement valorisant, sans conseil de révision artificiel.
 
-Sois CONCIS : ne cite que les concepts les plus importants (max 3-4 rappels de cours).
+Si tu as un doute sur une nuance clinique, ABSTIENS-toi de la mentionner
+plutôt que de risquer une approximation ou une contradiction avec la réponse
+réelle de l'étudiant : la fiabilité prime toujours sur l'exhaustivité.
 
-## 2. Votre interprétation
+Ta mission est de rédiger un COMMENTAIRE PÉDAGOGIQUE personnalisé en français,
+en UNE SEULE section continue (pas de titres de sous-parties, pas de
+séparation artificielle en 2 blocs qui répéteraient la même information sous
+deux formes différentes). Le commentaire doit, dans un flux naturel :
 
-Analyse personnalisée COURTE de la copie de l'étudiant :
-- Si le score est élevé (≥80%) : une phrase de félicitation courte et sincère
-- Si le score n'est pas 100% : explique CLAIREMENT et BRIÈVEMENT pourquoi (quels concepts manqués/partiels), sans paraphraser la section 1
-- Si des concepts sont **erronés (excluded)**, signale-le comme point d'attention
-- Si des découvertes pertinentes ont été faites hors barème, mentionne-les brièvement (preuve de compétence)
-- Si un **commentaire du correcteur** est fourni, intègre-le ici comme conseil expert : reprends-le, développe-le en 1-2 phrases en le reliant au cours SFC
-- Si le commentaire du correcteur est vide et le score < 100%, donne un conseil concret en 1 phrase
-- Si le score est 100%, encourage à aller plus loin (ex: "Vous pourriez approfondir...")
+1. Traiter les concepts clés de ce cas (validants d'abord, puis descripteurs
+   manqués les plus importants, puis erreurs/exclusions le cas échéant) :
+   pour chacun, indique le statut (trouvé exact / partiellement évoqué /
+   manqué / erroné) EN RESPECTANT le type de match (cf. règle ci-dessus, SANS
+   jamais nommer le type de match littéralement) et le rang EDN fourni (SANS
+   jamais écrire "rang A/B/C" littéralement, cf. règle ci-dessus). Quand tu
+   cites le cours, recopie MOT POUR MOT un passage réellement présent dans
+   la section "EXTRAITS DU COURS SFC" fournie plus bas dans le contexte
+   utilisateur (jamais une paraphrase, jamais un texte inventé). N'écris
+   JAMAIS de texte de substitution générique du type "extrait du cours" ou
+   toute formule décrivant l'action de citer plutôt que de citer réellement.
+   Le format attendu est : 📖 « [ici le texte du cours copié tel quel] » —
+   (Item 231, SFC), où [ici le texte du cours copié tel quel] est remplacé
+   par le contenu réel — jamais laissé sous cette forme littérale entre
+   crochets. Si aucun extrait pertinent n'est disponible pour un concept
+   donné, ne fais simplement PAS de citation pour ce concept (pas de
+   citation vide, pas de placeholder).
+2. Ne PAS répéter un même concept une deuxième fois pour le commenter à
+   nouveau sous un angle différent — chaque concept n'est mentionné QU'UNE
+   SEULE FOIS dans tout le texte.
+3. Terminer par UNE SEULE phrase de synthèse/conseil (pas un résumé de ce qui
+   précède) — UNIQUEMENT si un point manque réellement ou peut être précisé ;
+   si le score est de 100% et qu'aucun manque réel n'existe, ne force PAS de
+   conseil et termine simplement sur une note positive brève. Intègre le
+   commentaire du correcteur humain si fourni, sans le dupliquer par une
+   remarque similaire de ton cru.
 
----
-
-## Règles :
-- Ton bienveillant mais exigeant, comme un bon PU qui veut que ses étudiants réussissent
-- TOUJOURS citer le cours SFC quand tu fais un rappel (entre guillemets avec source)
-- Respecter STRICTEMENT les 2 titres de section (## 1. Référence au cours / ## 2. Votre interprétation)
-- Ne PAS répéter le score numérique (il est déjà affiché ailleurs)
-- Rester CONCIS : 150-300 mots maximum au total
-- Le commentaire est au format texte simple (pas de HTML), avec des emojis si pertinent
+## Règles générales :
+- Ton bienveillant mais exigeant, comme un bon PU qui veut que ses étudiants réussissent.
+- Cite le cours SFC UNIQUEMENT si tu recopies un extrait réel présent dans le
+  contexte fourni (jamais de citation inventée ou vide) — entre guillemets avec source.
+- Ne cite QUE les concepts les plus importants (max 2-3 rappels de cours au total,
+  jamais plus — préfère la concision à l'exhaustivité).
+- Ne PAS répéter le score numérique (il est déjà affiché ailleurs).
+- Ne PAS utiliser de titres markdown (## ...) — un texte continu, éventuellement avec des sauts de paragraphe.
+- Rester CONCIS : 80-160 mots au total pour un score ≥ 80% (feedback court et
+  valorisant), jusqu'à 220 mots maximum pour un score plus faible nécessitant
+  plus de rappels — ne jamais dépasser ces bornes.
+- Format texte simple (pas de HTML), avec des emojis si pertinent, sans excès.
+- Vérifie-toi avant de conclure : aucun des mots interdits de la RÈGLE ABSOLUE
+  sur le jargon technique ne doit apparaître dans ta réponse finale, et aucune
+  nuance clinique non fournie dans le contexte n'a été ajoutée.
 """
+
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Garde-fou déterministe : cohérence du ton avec le score (P5, belt-and-suspenders)
+# ──────────────────────────────────────────────────────────────────────────────
+
+_CONGRATULATORY_PATTERNS = [
+    "félicitations", "excellent travail", "excellente interprétation",
+    "superbe travail", "bravo", "parfait !", "magnifique",
+]
+
+
+def _enforce_tone_guardrail(texte: str, score_pct: float) -> str:
+    """
+    Filet de sécurité déterministe (non-LLM) : si le score est < 40%, on
+    retire toute formulation congratulatoire que le LLM aurait pu laisser
+    passer malgré l'instruction dans le prompt (P5). Ne modifie pas le texte
+    si le score est >= 40%.
+    """
+    if score_pct >= 40:
+        return texte
+
+    import re as _re
+    cleaned = texte
+    for pattern in _CONGRATULATORY_PATTERNS:
+        cleaned = _re.sub(pattern, "", cleaned, flags=_re.IGNORECASE)
+    # Nettoyer une ponctuation orpheline éventuelle laissée par la suppression
+    cleaned = _re.sub(r"\s{2,}", " ", cleaned)
+    cleaned = _re.sub(r"\s+([.,!?])", r"\1", cleaned)
+    return cleaned.strip()
+
+
+# Termes de jargon interne qui ne doivent jamais apparaître dans le texte
+# destiné à l'étudiant (P2 belt-and-suspenders). Détection simple par
+# expressions régulières, insensible à la casse.
+_JARGON_PATTERNS = [
+    r"\bmatch(?:e|é)?\s+(?:de\s+type\s+)?(?:exact|requires?|qualifier|support|excluded|missed)\b",
+    r"\btype\s+de\s+match\b",
+    r"\brang\s+[ABC]\b",
+    r"\b\d{1,3}\s?%\b",
+    r"«\s*extrait du cours\s*»",
+    r"«\s*texte\s+(?:réellement\s+)?recopié",
+    r"\[ici le texte",
+    r"\btexte de substitution\b",
+    r"«\s*\[.*?\]\s*»",  # citation encore sous forme de placeholder entre crochets
+]
+
+
+def _detect_jargon_leak(texte: str) -> List[str]:
+    """
+    Détecte (sans corriger automatiquement, car une correction naïve
+    dégraderait la lisibilité) toute fuite de jargon technique interne dans
+    le texte pédagogique final. Retourne la liste des motifs trouvés, pour
+    logging/monitoring — permet de mesurer la fréquence du problème sans
+    bloquer la génération.
+    """
+    import re as _re
+    found = []
+    for pattern in _JARGON_PATTERNS:
+        if _re.search(pattern, texte, flags=_re.IGNORECASE):
+            found.append(pattern)
+    return found
+
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Validation post-hoc des affirmations cliniques (piste "problèmes résiduels"
+# de l'audit 2026-08-06) : un second appel LLM, dédié et à température nulle,
+# relit le texte généré à la lumière STRICTE du contexte fourni (concepts +
+# extraits de cours réels) et signale toute affirmation clinique qui n'y est
+# PAS ancrée (règle diagnostique inventée, distinction terminologique non
+# fournie, mécanisme physiopathologique non cité). Contrairement au garde-fou
+# jargon (regex), ceci nécessite un jugement sémantique — d'où un LLM juge
+# dédié, séparé du rédacteur, avec une consigne volontairement stricte et un
+# rôle borné (verdict + citation du passage fautif, pas de réécriture libre).
+# ──────────────────────────────────────────────────────────────────────────────
+
+class ClinicalClaimValidation(BaseModel):
+    """Verdict structuré du juge de validation clinique post-hoc."""
+    contient_affirmation_non_fondee: bool = Field(
+        description="True si le texte contient au moins une affirmation clinique "
+                    "(règle diagnostique, distinction terminologique, mécanisme "
+                    "physiopathologique) qui n'est PAS directement soutenue par le "
+                    "contexte fourni (concepts trouvés/manqués, extraits de cours)."
+    )
+    passages_problematiques: List[str] = Field(
+        default_factory=list,
+        description="Citation exacte (courte, 5-20 mots) du/des passage(s) du texte "
+                    "contenant une affirmation clinique non fondée par le contexte. "
+                    "Liste vide si contient_affirmation_non_fondee est False."
+    )
+    justification: str = Field(
+        default="",
+        description="Brève explication (1 phrase) de pourquoi chaque passage cité "
+                    "est considéré comme non fondé par le contexte."
+    )
+
+
+_CLINICAL_VALIDATOR_SYSTEM_PROMPT = """Tu es un relecteur cardiologue extrêmement
+rigoureux. Ta SEULE tâche est de vérifier qu'un texte de feedback pédagogique
+destiné à un étudiant ne contient AUCUNE affirmation clinique qui ne soit pas
+directement soutenue par le contexte fourni (liste des concepts trouvés/
+manqués, extraits du cours SFC).
+
+Une affirmation clinique est "non fondée" si elle relève de l'un de ces cas :
+- Une règle diagnostique générale (ex: "les QRS fins signent toujours une
+  origine nodale") qui n'apparaît PAS mot pour mot ou en substance dans les
+  extraits de cours fournis.
+- Une distinction terminologique entre deux formulations qui, dans le
+  contexte fourni, désignent en réalité le MÊME concept validant (trouvé/
+  manqué) — le texte ne doit jamais remettre en question le statut
+  trouvé/manqué donné dans le contexte.
+- Un mécanisme physiopathologique, un risque, ou un rappel médical qui
+  n'est PAS présent dans les extraits de cours fournis.
+
+Ce n'est PAS une affirmation non fondée :
+- Le simple fait de nommer un concept et son statut (trouvé/manqué/rang EDN)
+  tel que donné dans le contexte.
+- Une reformulation fidèle d'un extrait de cours fourni.
+- Une phrase d'encouragement ou de synthèse générique sans contenu clinique
+  nouveau.
+
+Analyse le texte ci-dessous STRICTEMENT à la lumière du contexte fourni.
+Ne sois PAS complaisant : si un doute raisonnable existe sur le fondement
+d'une affirmation, considère-la comme non fondée."""
+
+
+def _validate_clinical_claims(
+    feedback_text: str,
+    course_context: str,
+    student_summary: str,
+    model: str = "gpt-4o",
+) -> ClinicalClaimValidation:
+    """
+    Appelle un juge LLM dédié (Structured Outputs) pour détecter toute
+    affirmation clinique du texte de feedback non fondée par le contexte
+    réellement fourni (concepts + extraits de cours). Utilisé en filet de
+    sécurité post-génération : en cas de détection, une reformulation
+    corrective ciblée est demandée au rédacteur (cf. appelant).
+    """
+    client = OpenAI()
+    user_message = f"""CONTEXTE FOURNI AU RÉDACTEUR (concepts + cours) :
+
+{student_summary}
+
+{course_context}
+
+TEXTE DE FEEDBACK À VÉRIFIER :
+
+{feedback_text}"""
+    response = client.beta.chat.completions.parse(
+        model=model,
+        messages=[
+            {"role": "system", "content": _CLINICAL_VALIDATOR_SYSTEM_PROMPT},
+            {"role": "user", "content": user_message},
+        ],
+        temperature=0,
+        response_format=ClinicalClaimValidation,
+    )
+    parsed = response.choices[0].message.parsed
+    if parsed is None:
+        return ClinicalClaimValidation(contient_affirmation_non_fondee=False)
+    return parsed
+
+
+def _correct_unfounded_claims(
+    feedback_text: str,
+    validation: ClinicalClaimValidation,
+    model: str = "gpt-4o",
+) -> str:
+    """
+    Demande une réécriture ciblée du texte de feedback pour retirer/adoucir
+    les passages signalés comme non fondés par le juge de validation
+    clinique, sans changer le reste du texte ni le ton général.
+    """
+    client = OpenAI()
+    passages = "\n".join(f"- « {p} »" for p in validation.passages_problematiques)
+    retry_message = f"""Le texte de feedback pédagogique suivant contient des
+affirmations cliniques jugées NON FONDÉES par le contexte réellement fourni
+(règle diagnostique, distinction terminologique ou mécanisme physiopatho-
+logique inventé, absent du contexte) :
+
+{passages}
+
+Raison : {validation.justification}
+
+Réécris le texte en SUPPRIMANT ou en NEUTRALISANT uniquement ces passages
+(remplace-les par une formulation neutre qui reste dans les limites du
+contexte fourni, ou supprime-les si aucune reformulation fondée n'est
+possible), SANS modifier le reste du texte ni son ton général, et en
+respectant STRICTEMENT toutes les règles système (jargon interdit, rangs
+EDN, ton vs score, citations réelles uniquement) :
+
+{feedback_text}"""
+    response = client.chat.completions.create(
+        model=model,
+        messages=[
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user", "content": retry_message},
+        ],
+        temperature=0.3,
+        max_tokens=800,
+    )
+    return (response.choices[0].message.content or "").strip()
 
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -238,7 +533,7 @@ Analyse personnalisée COURTE de la copie de l'étudiant :
 
 def generate_pedagogical_feedback(
     report,
-    model: str = "gpt-4o-mini",
+    model: str = "gpt-4o",
     temperature: float = 0.7,
     commentaire_correcteur: str = "",
 ) -> PedagogicalFeedback:
@@ -247,7 +542,10 @@ def generate_pedagogical_feedback(
 
     Args:
         report:      CandidateReport (résultat de generate_candidate_report)
-        model:       Modèle OpenAI à utiliser (default: gpt-4o-mini pour le coût)
+        model:       Modèle OpenAI à utiliser (default: gpt-4o — la précision clinique
+                     et le respect strict des consignes de formulation priment sur le
+                     coût ; gpt-4o-mini a montré trop d'approximations cliniques et de
+                     confusions terminologiques lors des audits qualité)
         temperature: Créativité du feedback (0.7 = naturel mais pas trop créatif)
         commentaire_correcteur: Commentaire libre du correcteur humain pour ce cas
 
@@ -283,7 +581,7 @@ def generate_pedagogical_feedback(
     # Appel GPT
     correcteur_section = ""
     if commentaire_correcteur and commentaire_correcteur.strip():
-        correcteur_section = f"\n\nCOMMENTAIRE DU CORRECTEUR HUMAIN (expert) :\n« {commentaire_correcteur.strip()} »\n(Intègre ce commentaire dans la partie 2 « Votre interprétation » comme conseil expert.)"
+        correcteur_section = f"\n\nCOMMENTAIRE DU CORRECTEUR HUMAIN (expert) :\n« {commentaire_correcteur.strip()} »\n(Intègre ce commentaire naturellement dans le texte, comme un conseil d'expert.)"
 
     user_message = f"""Voici l'évaluation d'un étudiant sur un cas ECG.
 
@@ -291,7 +589,7 @@ def generate_pedagogical_feedback(
 
 {course_context}{correcteur_section}
 
-Rédige le commentaire pédagogique en 2 parties (## 1. Référence au cours / ## 2. Votre interprétation)."""
+Rédige le commentaire pédagogique en un seul texte continu (pas de titres, pas de sections numérotées), en respectant strictement les règles de ton, de rang EDN et de formulation par match_type données dans les instructions système."""
 
     try:
         client = OpenAI()
@@ -304,7 +602,64 @@ Rédige le commentaire pédagogique en 2 parties (## 1. Référence au cours / #
             temperature=temperature,
             max_tokens=800,
         )
-        feedback_text = response.choices[0].message.content.strip()
+        feedback_text = (response.choices[0].message.content or "").strip()
+
+        # Garde-fou P2 (belt-and-suspenders) : si du jargon technique interne
+        # a fui dans le texte malgré l'instruction système, on redemande UNE
+        # fois une reformulation strictement corrective avant d'abandonner.
+        jargon_found = _detect_jargon_leak(feedback_text)
+        if jargon_found:
+            logger.warning(f"Fuite de jargon détectée dans le feedback ({jargon_found}) — nouvelle tentative de reformulation.")
+            retry_message = f"""Le texte suivant contient du jargon technique interdit
+(termes de pipeline comme "match", "type de match", "qualifier", "support",
+"rang A/B/C", des pourcentages bruts, ou une citation placeholder non réelle
+« extrait du cours »). Réécris-le en langage naturel destiné à un étudiant,
+en respectant STRICTEMENT les mêmes règles système (aucun de ces termes ne
+doit apparaître), sans changer le fond clinique du message :
+
+{feedback_text}"""
+            retry_response = client.chat.completions.create(
+                model=model,
+                messages=[
+                    {"role": "system", "content": SYSTEM_PROMPT},
+                    {"role": "user", "content": retry_message},
+                ],
+                temperature=0.3,
+                max_tokens=800,
+            )
+            retried_text = (retry_response.choices[0].message.content or "").strip()
+            if retried_text and not _detect_jargon_leak(retried_text):
+                feedback_text = retried_text
+            else:
+                logger.warning("La reformulation n'a pas éliminé le jargon détecté — texte conservé tel quel.")
+
+        # Validation post-hoc des affirmations cliniques : un juge LLM dédié
+        # relit le texte à la lumière STRICTE du contexte fourni, et signale
+        # toute affirmation clinique non fondée (règle inventée, distinction
+        # terminologique non fournie, mécanisme physiopathologique absent du
+        # cours). En cas de détection, une reformulation ciblée est demandée
+        # (retire/neutralise uniquement les passages fautifs, sans réécrire
+        # tout le texte).
+        try:
+            validation = _validate_clinical_claims(feedback_text, course_context, student_summary, model=model)
+            if validation.contient_affirmation_non_fondee and validation.passages_problematiques:
+                logger.warning(
+                    f"Affirmation(s) clinique(s) non fondée(s) détectée(s) : "
+                    f"{validation.passages_problematiques} — {validation.justification}"
+                )
+                corrected_text = _correct_unfounded_claims(feedback_text, validation, model=model)
+                if corrected_text:
+                    # Re-vérifier que la correction n'a pas réintroduit du jargon
+                    if not _detect_jargon_leak(corrected_text):
+                        feedback_text = corrected_text
+                    else:
+                        logger.warning("La correction clinique a réintroduit du jargon — texte conservé tel quel.")
+        except Exception as e_validate:
+            # La validation post-hoc est un filet de sécurité best-effort :
+            # une erreur ici ne doit jamais faire échouer la génération.
+            logger.warning(f"Validation post-hoc des affirmations cliniques ignorée (erreur : {e_validate})")
+
+        feedback_text = _enforce_tone_guardrail(feedback_text, report.score_final_pct)
 
     except Exception as e:
         logger.error(f"Erreur GPT pour feedback pédagogique : {e}")
