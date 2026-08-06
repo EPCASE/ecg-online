@@ -1,0 +1,2028 @@
+{
+  "generated_at": "2026-08-06 22:59:13",
+  "judge_model": "gpt-5.6",
+  "source_file": "data\\audit_feedback_2026-08-06_v9.json",
+  "summary": {
+    "n_items": 100,
+    "n_valid": 100,
+    "n_skipped": 0,
+    "adaptation_score_moyenne": 3.72,
+    "coherence_score_moyenne": 4.3,
+    "redondance_score_moyenne": 4.04,
+    "exactitude_clinique_score_moyenne": 3.41,
+    "ton_pedagogique_score_moyenne": 4.06,
+    "verdict_global_distribution": {
+      "acceptable": 64,
+      "excellent": 5,
+      "problematique": 28,
+      "inadapte": 3
+    },
+    "n_total_problemes_detectes": 382,
+    "exemples_problemes": [
+      "Le feedback valorise à juste titre tous les éléments réellement écrits par l’étudiant, mais formule une critique artificielle : l’étudiant a indiqué un « échappement jonctionnel », donc lui reprocher l’absence d’« échappement ventriculaire » est peu pertinent et peut laisser croire à tort que les deux devraient coexister.",
+      "La citation décrit correctement le principe du BAV complet, mais l’expression « ondes P régulières à fréquence normale » est trop absolue : la fréquence atriale n’est pas nécessairement normale.",
+      "Qualifier sans nuance la bradycardie, les ondes Q et la déviation axiale gauche de « caractéristiques ECG associées » au BAV complet peut suggérer qu’elles sont typiques ou constitutives, alors qu’il s’agit surtout de constatations additionnelles propres au tracé.",
+      "Le ton très laudatif reste globalement cohérent avec 100/100, mais « excellente compréhension » et « solide » sont un peu suraffirmatifs à partir d’une réponse télégraphique sur un seul cas.",
+      "La formulation « peut orienter vers un BAV de haut grade, sans toutefois le nommer explicitement » est un peu injuste : l’étudiant a explicitement nommé un BAV du 2e degré Mobitz II, qui est déjà une anomalie de conduction significative et peut être considéré comme un BAV de haut grade selon l’usage retenu.",
+      "Le conseil final reste générique et n’indique pas précisément quelle distinction de BAV aurait dû être améliorée.",
+      "La citation attribuée à « Item 231, SFC » est présentée de façon autoritative sans possibilité d’en vérifier ici la formulation exacte.",
+      "La citation est globalement juste mais un peu simplificatrice : dans le flutter typique antihoraire, les ondes F sont classiquement négatives dans les dérivations inférieures, sans que ce seul signe résume toute la présentation ECG.",
+      "Le conseil de « continuer à réviser » est légèrement générique malgré une réponse entièrement correcte.",
+      "La maxime « toute tachycardie régulière à QRS larges est une TV jusqu'à preuve du contraire » est une règle de prudence clinique pertinente, mais le caractère « à QRS larges » n'a pas été explicitement mentionné par l'étudiant et la citation/source présentée comme verbatim gagnerait à être vérifiée.",
+      "Le ton est légèrement emphatique (« travail remarquable », emoji), même s'il reste cohérent avec le score maximal.",
+      "La formulation « le rythme est irrégulier » est reprise sans nuance : une ESV isolée rend les intervalles RR irréguliers, mais ne signifie pas nécessairement que le rythme de fond est irrégulier.",
+      "« Les QRS sont larges » généralise légèrement ce que l’étudiant avait écrit plus précisément : ce sont les QRS des extrasystoles qui sont larges.",
+      "Le feedback est un peu emphatique et long pour une réponse correcte mais très brève ; les émojis et la citation bibliographique apportent peu de valeur pédagogique.",
+      "Le feedback affirme que l’étudiant « n’a pas explicitement nommé l’ECG normal », alors que « pas d’anomalie visible » exprime bien cette conclusion en termes équivalents et que le concept « ECG normal » a été validé.",
+      "Il reproche l’absence de recherche d’un bloc interatrial alors que ce descripteur est présenté comme indicatif et manqué, et que le diagnostic attendu est un ECG normal : cette formulation laisse à tort entendre qu’un bloc interatrial devait être présent ou spécifiquement signalé.",
+      "L’exigence de détailler systématiquement PR/QRS/QT, axe et repolarisation peut être un conseil pédagogique utile, mais elle est formulée trop catégoriquement au regard d’une réponse libre concise ayant correctement conclu à l’absence d’anomalie.",
+      "La citation attribuée à « Item 231, SFC » paraît insuffisamment contextualisée et potentiellement non vérifiable, ce qui fragilise le feedback.",
+      "La citation sur la polarité des ondes T est hors sujet : l'anomalie discutée concerne les ondes P, et l'étudiant a explicitement écrit qu'il n'y avait pas de trouble de repolarisation.",
+      "Le feedback affirme que l'étudiant a « correctement identifié un bloc interatrial », alors que celui-ci n'a jamais employé ce diagnostic ; il a décrit des P négatives ou diphasiques en inférieur et proposé un rythme du sinus coronaire. Ces descriptions ne suffisent pas, à elles seules, à conclure à un bloc interatrial."
+    ]
+  },
+  "verdicts": [
+    {
+      "code": "ECG-ZKB9",
+      "num_cas": 2,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 4,
+        "coherence_score": 4,
+        "exactitude_clinique_score": 3,
+        "problemes_detectes": [
+          "Le feedback valorise à juste titre tous les éléments réellement écrits par l’étudiant, mais formule une critique artificielle : l’étudiant a indiqué un « échappement jonctionnel », donc lui reprocher l’absence d’« échappement ventriculaire » est peu pertinent et peut laisser croire à tort que les deux devraient coexister.",
+          "La citation décrit correctement le principe du BAV complet, mais l’expression « ondes P régulières à fréquence normale » est trop absolue : la fréquence atriale n’est pas nécessairement normale.",
+          "Qualifier sans nuance la bradycardie, les ondes Q et la déviation axiale gauche de « caractéristiques ECG associées » au BAV complet peut suggérer qu’elles sont typiques ou constitutives, alors qu’il s’agit surtout de constatations additionnelles propres au tracé.",
+          "Le ton très laudatif reste globalement cohérent avec 100/100, mais « excellente compréhension » et « solide » sont un peu suraffirmatifs à partir d’une réponse télégraphique sur un seul cas."
+        ],
+        "redondance_score": 5,
+        "suggestion_amelioration": "Supprimer le reproche sur l’échappement ventriculaire et préciser sobrement : « Vous avez correctement identifié le BAV complet et décrit la bradycardie ainsi qu’un échappement jonctionnel ; les ondes Q et la déviation axiale gauche sont des anomalies additionnelles du tracé. »",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-ZKB9",
+      "num_cas": 5,
+      "score_regenere": 66.7,
+      "verdict": {
+        "adaptation_score": 4,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "La formulation « peut orienter vers un BAV de haut grade, sans toutefois le nommer explicitement » est un peu injuste : l’étudiant a explicitement nommé un BAV du 2e degré Mobitz II, qui est déjà une anomalie de conduction significative et peut être considéré comme un BAV de haut grade selon l’usage retenu.",
+          "Le conseil final reste générique et n’indique pas précisément quelle distinction de BAV aurait dû être améliorée.",
+          "La citation attribuée à « Item 231, SFC » est présentée de façon autoritative sans possibilité d’en vérifier ici la formulation exacte."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Reconnaître explicitement que « BAV 2 Mobitz 2 » répond déjà au concept de trouble conductif sévère, puis préciser que l’amélioration attendue serait de décrire les critères ECG permettant de confirmer ce diagnostic plutôt que de lui reprocher de ne pas avoir écrit « BAV de haut grade ».",
+        "ton_pedagogique_score": 5,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-ZKB9",
+      "num_cas": 8,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 5,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "La citation est globalement juste mais un peu simplificatrice : dans le flutter typique antihoraire, les ondes F sont classiquement négatives dans les dérivations inférieures, sans que ce seul signe résume toute la présentation ECG.",
+          "Le conseil de « continuer à réviser » est légèrement générique malgré une réponse entièrement correcte."
+        ],
+        "redondance_score": 5,
+        "suggestion_amelioration": "Remplacer le conseil générique par un renforcement ciblé : « Vous avez correctement reconnu le flutter droit typique antihoraire ; retenez ses ondes F négatives en inférieur et habituellement positives en V1. »",
+        "ton_pedagogique_score": 5,
+        "verdict_global": "excellent"
+      }
+    },
+    {
+      "code": "ECG-ZKB9",
+      "num_cas": 11,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 5,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "La maxime « toute tachycardie régulière à QRS larges est une TV jusqu'à preuve du contraire » est une règle de prudence clinique pertinente, mais le caractère « à QRS larges » n'a pas été explicitement mentionné par l'étudiant et la citation/source présentée comme verbatim gagnerait à être vérifiée.",
+          "Le ton est légèrement emphatique (« travail remarquable », emoji), même s'il reste cohérent avec le score maximal."
+        ],
+        "redondance_score": 5,
+        "suggestion_amelioration": "Conserver la félicitation concise, mais formuler la règle comme un principe de sécurité (« devant une tachycardie régulière à QRS larges, il faut présumer une TV jusqu'à preuve du contraire ») sans citation non vérifiée, et alléger la conclusion.",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "excellent"
+      }
+    },
+    {
+      "code": "ECG-ZKB9",
+      "num_cas": 14,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 5,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "La formulation « le rythme est irrégulier » est reprise sans nuance : une ESV isolée rend les intervalles RR irréguliers, mais ne signifie pas nécessairement que le rythme de fond est irrégulier.",
+          "« Les QRS sont larges » généralise légèrement ce que l’étudiant avait écrit plus précisément : ce sont les QRS des extrasystoles qui sont larges.",
+          "Le feedback est un peu emphatique et long pour une réponse correcte mais très brève ; les émojis et la citation bibliographique apportent peu de valeur pédagogique."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Raccourcir et préciser : « Vous avez correctement identifié des extrasystoles ventriculaires, caractérisées ici par des complexes prématurés à QRS larges ; leur survenue rend les intervalles RR irréguliers. Réponse complète et précise. »",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-Z8C5",
+      "num_cas": 1,
+      "score_regenere": 25.0,
+      "verdict": {
+        "adaptation_score": 2,
+        "coherence_score": 3,
+        "exactitude_clinique_score": 2,
+        "problemes_detectes": [
+          "Le feedback affirme que l’étudiant « n’a pas explicitement nommé l’ECG normal », alors que « pas d’anomalie visible » exprime bien cette conclusion en termes équivalents et que le concept « ECG normal » a été validé.",
+          "Il reproche l’absence de recherche d’un bloc interatrial alors que ce descripteur est présenté comme indicatif et manqué, et que le diagnostic attendu est un ECG normal : cette formulation laisse à tort entendre qu’un bloc interatrial devait être présent ou spécifiquement signalé.",
+          "L’exigence de détailler systématiquement PR/QRS/QT, axe et repolarisation peut être un conseil pédagogique utile, mais elle est formulée trop catégoriquement au regard d’une réponse libre concise ayant correctement conclu à l’absence d’anomalie.",
+          "La citation attribuée à « Item 231, SFC » paraît insuffisamment contextualisée et potentiellement non vérifiable, ce qui fragilise le feedback."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Reconnaître explicitement que « pas d’anomalie visible » équivaut à conclure à un ECG normal, puis proposer sans reproche indu de structurer davantage la lecture (fréquence, rythme, axe, intervalles, QRS et repolarisation), sans mentionner un bloc interatrial comme anomalie attendue.",
+        "ton_pedagogique_score": 3,
+        "verdict_global": "problematique"
+      }
+    },
+    {
+      "code": "ECG-YEUE",
+      "num_cas": 1,
+      "score_regenere": 0.0,
+      "verdict": {
+        "adaptation_score": 2,
+        "coherence_score": 3,
+        "exactitude_clinique_score": 2,
+        "problemes_detectes": [
+          "La citation sur la polarité des ondes T est hors sujet : l'anomalie discutée concerne les ondes P, et l'étudiant a explicitement écrit qu'il n'y avait pas de trouble de repolarisation.",
+          "Le feedback affirme que l'étudiant a « correctement identifié un bloc interatrial », alors que celui-ci n'a jamais employé ce diagnostic ; il a décrit des P négatives ou diphasiques en inférieur et proposé un rythme du sinus coronaire. Ces descriptions ne suffisent pas, à elles seules, à conclure à un bloc interatrial.",
+          "Le reproche d'une analyse non systématique est peu adapté : l'étudiant a renseigné rythme, fréquence, PR, QRS, axe, voltage/HVG et repolarisation. Il fallait plutôt cibler l'interprétation erronée de la morphologie des ondes P et l'absence de conclusion explicite « ECG normal ».",
+          "L'idée qu'une morphologie de P non sinusale exclut nécessairement tout « ECG normal » est formulée trop catégoriquement et sans confronter précisément la description de l'étudiant au tracé de référence.",
+          "Le feedback mêle le rythme sinusal, les ondes T et un supposé bloc interatrial, ce qui brouille le message pédagogique."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Centrer le feedback sur le point décisif : reconnaître que l'analyse était largement systématique, expliquer précisément pourquoi l'interprétation des ondes P comme négatives/diphasiques et d'un rythme du sinus coronaire n'était pas retenue sur ce tracé, puis demander de conclure explicitement « rythme sinusal, ECG normal », sans évoquer les ondes T ni attribuer à l'étudiant un bloc interatrial non formulé.",
+        "ton_pedagogique_score": 3,
+        "verdict_global": "problematique"
+      }
+    },
+    {
+      "code": "ECG-YEUE",
+      "num_cas": 4,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 2,
+        "coherence_score": 4,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "Le feedback affirme à tort que l’étudiant a mentionné l’amylose, alors que ce terme n’apparaît pas dans sa réponse.",
+          "Il reproche l’absence de « perte des ondes Q septales » sans reconnaître que l’étudiant a décrit un aspect QS en V1-V2, formulation proche mais pas strictement équivalente, qui méritait une clarification plutôt qu’un simple constat de manque.",
+          "Le retour est un peu trop long et chargé de citations pour une réponse ayant obtenu 100 %, et l’emoji final est peu nécessaire.",
+          "La phrase sur l’amylose est globalement exacte mais suggère une association directe avec ce que l’étudiant aurait écrit, créant un contresens pédagogique."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Féliciter brièvement l’étudiant pour l’identification du microvoltage et du BAV I, puis préciser que l’aspect QS en V1-V2 peut évoquer un rabotage de R mais ne formule pas explicitement la perte des petites ondes q septales, sans lui attribuer à tort la mention d’une amylose.",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "problematique"
+      }
+    },
+    {
+      "code": "ECG-YEUE",
+      "num_cas": 7,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 5,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "La définition proposée de l'hémibloc antérieur gauche est trop simplifiée : la déviation axiale gauche est évocatrice mais ne suffit pas seule au diagnostic, et le critère « QRS > 100 ms » n'est pas un critère définitoire fiable, surtout en présence concomitante d'un bloc de branche droit.",
+          "Le feedback est légèrement long et citationnel pour une réponse entièrement correcte ; il pourrait être plus synthétique pour un interne.",
+          "L'éloge final est un peu appuyé, bien qu'il reste cohérent avec le score de 100/100."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Conserver les félicitations mais condenser le feedback et nuancer l'HBAG : « La déviation axiale gauche est compatible avec un bloc fasciculaire antérieur gauche, à confirmer par la morphologie qR en I/aVL et rS dans les dérivations inférieures. »",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-YEUE",
+      "num_cas": 10,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 5,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 3,
+        "problemes_detectes": [
+          "Le seuil est formulé de façon trop stricte : un BBG complet correspond à une durée de QRS ≥ 120 ms chez l’adulte, et non nécessairement > 120 ms ; l’étudiant indique précisément 120 ms.",
+          "La formulation « critères essentiels tels que le QRS large à 120 ms et la discordance appropriée » est incomplète : ces éléments soutiennent le diagnostic mais ne suffisent pas seuls à définir la morphologie d’un BBG complet.",
+          "La référence bibliographique présentée comme une citation exacte (« Item 231, SFC ») est difficilement vérifiable et son contenu est simplifié ; mieux vaut éviter cette attribution si la source n’est pas certaine.",
+          "Les deux paragraphes répètent la mention du QRS large sans réelle valeur ajoutée.",
+          "« Travail impeccable » est légèrement excessif alors que l’interprétation de l’étudiant comporte une formulation grammaticale mineure et que les critères morphologiques détaillés ne sont pas explicités."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Remplacer la citation par une formulation exacte et concise — « Le diagnostic est correctement posé : QRS ≥ 120 ms avec morphologie compatible avec un BBG et repolarisation secondaire discordante » — puis regrouper en une seule conclusion les éléments complémentaires sans répéter le QRS large.",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-YEUE",
+      "num_cas": 13,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 5,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "Le feedback assimile « ECG évocateur de Wolff-Parkinson-White » à un syndrome de WPW, alors que l’ECG seul établit surtout un aspect de préexcitation ventriculaire ; le terme « syndrome » suppose classiquement des manifestations cliniques ou des tachyarythmies associées.",
+          "La négativité des ondes T et le QT normal sont valorisés comme des précisions utiles sans expliquer leur portée limitée pour le diagnostic principal.",
+          "Le ton est un peu trop laudatif et chargé en emojis/citation pour un feedback destiné à un interne."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Conserver la validation du PR court et de l’onde delta, mais préciser qu’il s’agit d’un aspect de préexcitation par voie accessoire et réserver l’expression « syndrome de WPW » à un contexte clinique ou rythmique compatible, avec un ton plus sobre.",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-XRQP",
+      "num_cas": 3,
+      "score_regenere": 66.7,
+      "verdict": {
+        "adaptation_score": 2,
+        "coherence_score": 3,
+        "exactitude_clinique_score": 2,
+        "problemes_detectes": [
+          "Le feedback affirme que l’étudiant n’a pas nommé explicitement la fibrillation atriale, alors que les données du pipeline indiquent que ce concept a été trouvé ; il existe donc un décalage majeur avec la correction fournie.",
+          "La formule « la fibrillation atriale est le seul diagnostic en cas de tachycardie complètement irrégulière à QRS fins » est trop absolue et cliniquement trompeuse : une FA est le diagnostic principal à évoquer, mais d’autres diagnostics ou mécanismes sont possibles.",
+          "Le feedback valide sans réserve le « syndrome coronarien aigu avec sus-décalage du ST », alors que le cas signale une repolarisation précoce et que l’interprétation de l’étudiant pourrait donc être une surinterprétation nécessitant une correction explicite.",
+          "La repolarisation précoce est présentée comme typiquement inférolatérale sans expliquer son inadéquation apparente avec la description V1–V3 ni donner de critères permettant de la distinguer d’un STEMI.",
+          "La conclusion générique (« bien réviser ces concepts ») apporte peu de guidance pratique."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Reconnaître que l’étudiant a identifié une tachyarythmie irrégulière à QRS fins compatible avec une FA, lui demander de nommer explicitement la FA si ce terme était réellement absent du texte brut, puis corriger prudemment l’interprétation du sus-décalage en expliquant les critères ECG distinguant repolarisation précoce et STEMI, sans valider automatiquement un SCA ST+.",
+        "ton_pedagogique_score": 3,
+        "verdict_global": "problematique"
+      }
+    },
+    {
+      "code": "ECG-WY55",
+      "num_cas": 1,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 4,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "Le feedback qualifie l'analyse de « complète » et affirme que « tous les critères essentiels » sont mentionnés, alors que l'axe électrique n'apparaît pas dans la réponse de l'étudiant malgré sa présence dans la citation méthodologique.",
+          "La définition proposée du rythme sinusal est trop restrictive : la positivité de P en D2, D3 et aVF n'est pas une exigence absolue, notamment en D3.",
+          "La remarque sur le bloc interatrial est peu pertinente et potentiellement déroutante dans un ECG attendu normal ; elle reprend un descripteur indicatif manqué sans véritable valeur pédagogique.",
+          "Le rythme sinusal est félicité deux fois, ce qui crée une légère redondance.",
+          "La citation attribuée à « Item 231, SFC » est présentée comme verbatim sans élément permettant d'en vérifier la fidélité."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Raccourcir le feedback en validant l'interprétation normale et la démarche systématique, puis ajouter sobrement que l'axe pourrait aussi être précisé, sans évoquer le bloc interatrial ni donner une définition trop rigide du rythme sinusal.",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-WY55",
+      "num_cas": 2,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 5,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "Le feedback est un peu plus long que nécessaire pour une réponse entièrement correcte et très concise.",
+          "L'affirmation « QRS larges → bloc infrahissien » est globalement pertinente dans ce contexte, mais formulée de façon trop catégorique : des QRS larges orientent vers un siège infranodal sans le prouver à eux seuls.",
+          "La longue citation et les félicitations finales ajoutent une légère emphase sans grande valeur pédagogique supplémentaire."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Raccourcir en indiquant simplement que « BAV3 » correspond bien à un BAV complet et que l'échappement à QRS larges est compatible avec un siège infranodal, sans présenter cette localisation comme certaine sur ce seul critère.",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "excellent"
+      }
+    },
+    {
+      "code": "ECG-WY55",
+      "num_cas": 3,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 3,
+        "coherence_score": 4,
+        "exactitude_clinique_score": 2,
+        "problemes_detectes": [
+          "Le reproche concernant l'absence de « repolarisation précoce » est hors-sol : ce descripteur n'est pas requis pour diagnostiquer une fibrillation atriale et rien dans les éléments fournis n'établit qu'il soit réellement présent sur cet ECG.",
+          "La citation affirme de façon trop restrictive que la repolarisation précoce donne un sus-décalage ST dans les dérivations inférolatérales ; son expression ECG et sa distribution sont plus variables, et son évocation comme diagnostic différentiel n'est pas pertinente ici.",
+          "Le feedback valorise à juste titre « FA rapide » et « QRS fins », mais ne tient pas compte de la formulation « pas de trouble de la repolarisation », qui rend la critique sur la repolarisation précoce particulièrement maladroite.",
+          "La fin (« approfondir... toutes les nuances possibles ») est générique et inutilement corrective malgré une réponse complète notée 100/100."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Supprimer entièrement le passage sur la repolarisation précoce et conclure sobrement : « Très bonne réponse : vous identifiez correctement une fibrillation atriale rapide à QRS fins ; l'interprétation est claire et suffisante pour le diagnostic attendu. »",
+        "ton_pedagogique_score": 3,
+        "verdict_global": "problematique"
+      }
+    },
+    {
+      "code": "ECG-WY55",
+      "num_cas": 4,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 3,
+        "coherence_score": 4,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "Le feedback affirme à tort que l’étudiant n’a pas mentionné la perte des ondes Q septales, alors que « QS antérieur » peut traduire une perte des Q septales associée à un rabotage ou à une mauvaise progression de R ; il fallait au minimum reconnaître cette formulation et en préciser l’interprétation.",
+          "La conclusion « ne rien manquer d’essentiel » est mal calibrée puisque le seul élément reproché est un descripteur indicatif et que le diagnostic attendu a été correctement identifié, avec un score de 100/100.",
+          "La citation sur l’amylose est globalement juste, mais un peu longue et périphérique pour un feedback centré sur le microvoltage."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Reconnaître explicitement que « QS antérieur » peut correspondre à la perte des Q septales et/ou au rabotage de R, puis proposer de préciser cette description plutôt que d’affirmer qu’elle a été omise.",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-WY55",
+      "num_cas": 5,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 5,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "La citation est un peu longue et insuffisamment contextualisée pour une réponse déjà entièrement correcte.",
+          "La formulation « l’hyperkaliémie donne » est trop catégorique : les anomalies ECG varient selon la sévérité et ne sont pas toujours toutes présentes.",
+          "Les emojis et les superlatifs (« parfaitement », « exemplaire ») rendent le ton légèrement emphatique pour un interne."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Raccourcir en validant directement les trois éléments relevés et nuancer : « Les ondes T hautes, pointues et symétriques sont évocatrices d’hyperkaliémie, qui peut aussi entraîner des troubles de conduction, dont un BAV de haut grade dans les formes sévères. »",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-WY55",
+      "num_cas": 6,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 4,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "La valorisation de la simple mention de « QRS » comme preuve d'une « attention aux détails » est artificielle : l'étudiant précisait surtout que les QRS étaient spontanés, information plus pertinente qui n'est pas réellement commentée.",
+          "Le rappel du bloc intraventriculaire aspécifique, descripteur indicatif hors barème, apporte peu après une réponse complète et parfaite et peut brouiller le message pédagogique.",
+          "La définition de l'HBAG par « QRS > 100 ms » est trop catégorique : l'élément central est la déviation axiale gauche avec morphologie compatible, et la durée du QRS peut être normale ou légèrement prolongée."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Féliciter brièvement l'étudiant pour l'identification de la stimulation atriale avec conduction ventriculaire spontanée et de l'HBAG, sans survaloriser le mot « QRS » ni insister sur un descripteur hors barème, et nuancer le critère de durée du QRS dans l'HBAG.",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-WY55",
+      "num_cas": 7,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 5,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 5,
+        "problemes_detectes": [
+          "Feedback légèrement long et laudatif pour une réponse entièrement correcte mais très concise.",
+          "La citation sur le BAV1 apporte une précision utile, mais la phrase suivante (« vous avez noté son existence avec précision ») est quelque peu redondante."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Raccourcir en confirmant directement les quatre éléments correctement identifiés, puis ajouter au plus un rappel ciblé sur les critères du BBD complet (QRS ≥ 120 ms et morphologie caractéristique), plutôt que deux citations générales.",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "excellent"
+      }
+    },
+    {
+      "code": "ECG-WY55",
+      "num_cas": 8,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 5,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "Le feedback est un peu emphatique pour une réponse très brève : « compréhension approfondie » et « maîtrise [...] excellente » dépassent légèrement ce que démontrent les deux éléments fournis.",
+          "La citation générale sur la fréquence atriale, l'aspect en dents de scie et les ondes F négatives en inférieur est exacte dans son cadre typique, mais ajoute des critères que l'étudiant n'a pas explicitement décrits et n'apporte pas de correction nécessaire.",
+          "« Flutter droit typique » et « flutter atrial antihoraire » sont ici largement deux formulations du même diagnostic ; les présenter comme deux apports distincts crée une légère redondance."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Raccourcir et calibrer ainsi : « Vous identifiez correctement un flutter atrial droit typique antihoraire et précisez que les QRS sont fins. Réponse concise et conforme au diagnostic attendu. »",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "excellent"
+      }
+    },
+    {
+      "code": "ECG-WY55",
+      "num_cas": 9,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 5,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "La formulation « indication de pacemaker même sans symptôme » est trop absolue sans préciser qu’elle concerne un Mobitz II acquis, non réversible et hors contexte physiologique.",
+          "La citation attribuée à « Item 231, SFC » est insuffisamment contextualisée et son caractère littéral/vérifiable n’est pas établi.",
+          "Les emojis et les félicitations appuyées sont légèrement excessifs pour un feedback destiné à un interne."
+        ],
+        "redondance_score": 5,
+        "suggestion_amelioration": "Conserver la validation précise des trois éléments écrits par l’étudiant, mais remplacer la citation par une formulation clinique nuancée : « Un Mobitz II acquis, en l’absence de cause réversible, relève généralement d’une stimulation permanente même s’il est asymptomatique. »",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-WY55",
+      "num_cas": 10,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 5,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "Feedback un peu trop long et chargé de citations pour une réponse déjà entièrement correcte.",
+          "La description morphologique du BBG est légèrement simplifiée : en V6, D1 et aVL, l'aspect attendu est plutôt une onde R large, souvent empâtée ou crochetée, sans onde q, plutôt qu'une « onde R exclusive » systématique.",
+          "La phrase sur le rythme sinusal est imprécise : l'origine sinusale ne se résume pas à une onde P positive en D2 ; il faut notamment une onde P sinusale précédant chaque QRS avec conduction régulière."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Raccourcir en confirmant directement les éléments relevés (« rythme sinusal, PR normal, QRS à 160 ms et BBG complet ») et, si un rappel est utile, employer des critères morphologiques plus précis sans citation longue.",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-WY55",
+      "num_cas": 11,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 5,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "La « règle d'or » est une heuristique prudente et utile, mais sa formulation absolue mériterait d'être contextualisée comme une conduite diagnostique devant une tachycardie régulière à QRS larges, et non comme une équivalence formelle.",
+          "La référence précise « Item 231, SFC » est difficilement vérifiable et n'apporte pas de valeur pédagogique directe.",
+          "Le conseil sur les critères diagnostiques et pièges reste assez générique alors que la réponse attendue a été exactement fournie."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Conserver la félicitation concise, puis préciser que devant une tachycardie régulière à QRS larges il faut, par prudence, présumer une TV jusqu'à preuve du contraire, sans citation non vérifiable ni recommandation générique superflue.",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-WY55",
+      "num_cas": 12,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 4,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 3,
+        "problemes_detectes": [
+          "Le feedback est globalement adapté, mais il reformule « onde Q septoapicale » en « ondes Q pathologiques » sans préciser la topographie pourtant donnée par l’étudiant.",
+          "Les seuils de sus-décalage présentés comme ≥2 mm en V1-V3 et ≥1 mm ailleurs sont trop simplifiés et ne correspondent pas exactement aux critères diagnostiques contemporains, qui varient notamment selon le sexe et l’âge en V2-V3.",
+          "La citation didactique est disproportionnée après une réponse notée 100/100 et introduit des éléments sur le SCA sans sus-décalage peu pertinents pour ce cas.",
+          "La conclusion invitant à rechercher « d’autres diagnostics » est générique et peu utile ici."
+        ],
+        "redondance_score": 3,
+        "suggestion_amelioration": "Féliciter brièvement l’étudiant pour l’identification correcte du STEMI, puis valoriser ses précisions topographiques (« septo-apical », miroir inférieur, onde Q) sans ajouter une longue citation ni des seuils simplifiés potentiellement trompeurs.",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-WY55",
+      "num_cas": 13,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 3,
+        "coherence_score": 3,
+        "exactitude_clinique_score": 2,
+        "problemes_detectes": [
+          "Le feedback affirme à tort que l'étudiant a « noté la normalité de l'ECG » : il a seulement indiqué l'absence de trouble de la repolarisation, alors que la préexcitation constitue précisément une anomalie ECG.",
+          "L'absence de trouble de la repolarisation ne suffit pas à affirmer qu'un ECG est normal ; la formulation est médicalement trompeuse.",
+          "La référence à la démarche nécessaire pour déclarer un ECG normal est hors cible, puisque ni la réponse de l'étudiant ni cet ECG ne doivent être qualifiés de normaux.",
+          "Le terme « faisceau accessoire à conduction antérograde » n'était pas littéralement écrit, mais il est correctement couvert par « PR court, onde delta, pré-excitation » ; le feedback aurait gagné à expliciter cette équivalence plutôt qu'à prétendre qu'il a été nommé directement."
+        ],
+        "redondance_score": 5,
+        "suggestion_amelioration": "Remplacer le passage sur la « normalité » par : « Vous avez correctement reconnu une préexcitation ventriculaire, attestée par le PR court et l’onde delta, ce qui traduit la conduction antérograde par un faisceau accessoire ; l’absence de trouble de repolarisation est un élément descriptif supplémentaire, sans rendre l’ECG normal. »",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "problematique"
+      }
+    },
+    {
+      "code": "ECG-WY55",
+      "num_cas": 14,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 4,
+        "coherence_score": 4,
+        "exactitude_clinique_score": 3,
+        "problemes_detectes": [
+          "Le feedback transforme « pas de trouble de la repolarisation » en « ECG normal », alors qu'un ECG comportant des extrasystoles ventriculaires n'est pas strictement normal.",
+          "La formulation « les QRS fins » gagnerait à préciser qu'il s'agit des QRS sinusaux, les ESV étant par définition prématurées et généralement à QRS larges.",
+          "La citation détaillant les critères du rythme sinusal est peu utile ici et sa formulation est simplifiée : la positivité de P en D3 n'est pas un critère indispensable.",
+          "Le feedback ne valorise pas l'information plus spécifique apportée par l'étudiant sur l'origine infundibulaire droite des ESV."
+        ],
+        "redondance_score": 5,
+        "suggestion_amelioration": "Remplacer « ECG normal » par « absence de trouble de repolarisation sur les complexes sinusaux », préciser que les QRS fins concernent les battements sinusaux, et relever avec prudence la localisation morphologique infundibulaire droite proposée par l'étudiant.",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-WY55",
+      "num_cas": 15,
+      "score_regenere": 83.3,
+      "verdict": {
+        "adaptation_score": 4,
+        "coherence_score": 4,
+        "exactitude_clinique_score": 3,
+        "problemes_detectes": [
+          "Le feedback est globalement adapté, mais « évoque des éléments proches du diagnostic » minimise le fait que l’étudiant a bien écrit explicitement « BBG » ; seule la mention « complet » manque.",
+          "La définition de la fibrillation atriale comme « une tachycardie entre 100 et 200 bpm » est trompeuse : la fréquence ventriculaire en FA peut être lente, normale ou rapide ; ici, il fallait parler de FA à réponse ventriculaire rapide si la fréquence le justifie.",
+          "Le critère « QRS > 120 ms » devrait être formulé « QRS ≥ 120 ms » chez l’adulte, avec des critères morphologiques plus complets si l’objectif est d’enseigner le diagnostic de BBG complet.",
+          "La citation sur la difficulté d’interpréter la repolarisation antérieure en présence d’un BBG apporte peu à la correction de l’omission du caractère complet."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Dire directement : « Vous avez correctement identifié une FA rapide et un BBG ; pour répondre exactement au diagnostic attendu, précisez “BBG complet”, défini chez l’adulte par un QRS ≥ 120 ms associé à une morphologie compatible », sans présenter toute FA comme une tachycardie.",
+        "ton_pedagogique_score": 5,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-WM1O",
+      "num_cas": 1,
+      "score_regenere": 0.0,
+      "verdict": {
+        "adaptation_score": 1,
+        "coherence_score": 2,
+        "exactitude_clinique_score": 2,
+        "problemes_detectes": [
+          "Le feedback attribue à tort à l’étudiant l’expression « morphologie de l’onde P non sinusale » : il a écrit « onde P bifide inférieur (HAG) » et a explicitement conclu à un rythme sinusal.",
+          "Il prétend que l’étudiant a « identifié avec précision un bloc interatrial », alors que ce diagnostic n’apparaît pas dans sa réponse ; une onde P bifide n’équivaut pas à elle seule à un bloc interatrial.",
+          "Il valide l’hypertrophie atriale gauche comme une observation précise sans discuter que, dans ce cas attendu normal, cette interprétation de l’onde P est vraisemblablement l’erreur centrale.",
+          "La définition proposée du rythme sinusal est trop catégorique : les ondes P sont habituellement positives en DII et aVF, mais peuvent être variables en DIII ; la formulation ne suffit pas non plus à elle seule à définir complètement l’origine sinusale.",
+          "Le conseil de « vérifier chaque paramètre avant de conclure à la normalité » est hors cible, puisque l’étudiant n’a justement pas conclu à un ECG normal mais à une HAG.",
+          "Le texte est répétitif dans ses deux dernières phrases sur l’analyse systématique et l’évitement des contradictions."
+        ],
+        "redondance_score": 3,
+        "suggestion_amelioration": "Centrer le feedback sur l’erreur réelle : « Vous avez correctement décrit le rythme, la fréquence, l’axe, le PR, les QRS et la repolarisation, mais l’interprétation d’une onde P bifide comme HAG paraît injustifiée ici ; revoyez les critères précis d’anomalie atriale avant de conclure, car l’ECG attendu est normal. »",
+        "ton_pedagogique_score": 3,
+        "verdict_global": "inadapte"
+      }
+    },
+    {
+      "code": "ECG-WM1O",
+      "num_cas": 4,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 2,
+        "coherence_score": 4,
+        "exactitude_clinique_score": 5,
+        "problemes_detectes": [
+          "Le feedback affirme à tort que l’étudiant a identifié l’amylose, alors que ce terme ne figure pas dans sa réponse.",
+          "La mention de la perte des ondes Q septales est adaptée comme précision secondaire, mais sa formulation pourrait mieux indiquer qu’il s’agit d’un descripteur non requis plutôt que d’un manque important.",
+          "La deuxième section est partiellement hors-sol puisqu’elle développe une association avec l’amylose sur la base d’une identification inexistante."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Remplacer « Vous avez identifié l’amylose » par « Le microvoltage peut notamment s’observer dans l’amylose cardiaque » et présenter l’absence de mention des ondes Q septales comme un complément facultatif, sans l’attribuer à l’étudiant.",
+        "ton_pedagogique_score": 5,
+        "verdict_global": "problematique"
+      }
+    },
+    {
+      "code": "ECG-WM1O",
+      "num_cas": 7,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 5,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "Le feedback est légèrement trop laudatif et répète sous plusieurs formulations que les éléments identifiés sont corrects.",
+          "La citation définit le BBD complet de façon un peu simplifiée : la morphologie typique en V1 est plutôt rsR’, rSR’ ou parfois une onde R terminale large, et le seuil adulte usuel est QRS ≥ 120 ms plutôt que strictement > 120 ms.",
+          "L'« aspect HVD » et la « repolarisation appropriée », pourtant mentionnés par l'étudiant, ne sont ni commentés ni nuancés ; l'HVD peut notamment être difficile à affirmer en présence d'un BBD."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Raccourcir les félicitations, confirmer les trois diagnostics majeurs, puis ajouter une nuance ciblée sur l'interprétation prudente de l'HVD en présence d'un BBD et employer le critère QRS ≥ 120 ms avec une description morphologique moins restrictive.",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-WM1O",
+      "num_cas": 10,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 4,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "Le feedback reformule « repolarisation appropriée » en « absence d’anomalie de la repolarisation », ce qui est imprécis : dans un BBG complet, les anomalies secondaires de repolarisation sont attendues et peuvent être dites appropriées/discordantes, mais il ne s’agit pas strictement d’une repolarisation normale.",
+          "La citation des critères morphologiques du BBG est pertinente mais un peu longue et peu personnalisée, puisque l’étudiant n’a pas détaillé les dérivations ni la morphologie.",
+          "« Éléments essentiels » et « détails importants » survalorisent légèrement le rythme sinusal et le PR normal alors que le diagnostic central était déjà correctement posé."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Remplacer « absence d’anomalie de la repolarisation » par « anomalies secondaires de repolarisation appropriées au BBG » et condenser le rappel des critères morphologiques en une phrase directement reliée au QRS à 130 ms.",
+        "ton_pedagogique_score": 5,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-WM1O",
+      "num_cas": 13,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 5,
+        "coherence_score": 4,
+        "exactitude_clinique_score": 3,
+        "problemes_detectes": [
+          "Le feedback assimile implicitement la préexcitation ECG au syndrome de WPW. En pratique, un aspect de préexcitation avec voie accessoire antérograde ne suffit pas à parler de syndrome de WPW sans tachyarythmie ou symptômes compatibles documentés.",
+          "La citation « WPW = voie accessoire + palpitations par réentrée » est trop simplificatrice et sa formulation/source paraît insuffisamment rigoureuse.",
+          "Le ton est légèrement surélogieux pour une réponse correcte mais brève."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Féliciter l’étudiant pour l’identification correcte de la préexcitation (PR court, onde delta, QRS élargi), tout en précisant qu’en l’absence de tachyarythmie ou de symptômes documentés, le terme le plus rigoureux est « aspect de préexcitation ventriculaire par voie accessoire » plutôt que « syndrome de WPW ».",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-VQTW",
+      "num_cas": 1,
+      "score_regenere": 0.0,
+      "verdict": {
+        "adaptation_score": 4,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 3,
+        "problemes_detectes": [
+          "Le feedback est bien ancré dans la réponse réelle de l’étudiant, mais reprend comme acquises des anomalies pourtant incompatibles avec le diagnostic attendu d’ECG normal, au lieu de les identifier comme des surinterprétations.",
+          "Il emploie « syndrome de Wolff-Parkinson-White » de façon imprécise : un PR court et une onde delta décrivent une préexcitation ventriculaire ; le terme de syndrome de WPW suppose classiquement des manifestations cliniques ou des tachyarythmies associées.",
+          "La phrase « ces éléments ne suffisent pas à conclure à la normalité [...] en présence de signes de préexcitation » reste ambiguë : elle laisse entendre que les signes de préexcitation sont réellement présents sur le tracé.",
+          "La citation et les formulations générales sur la systématisation apportent peu de correction concrète sur la lecture erronée du PR, de l’empâtement initial du QRS et de l’axe."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Préciser que le rythme sinusal a été correctement reconnu, mais que le PR court, l’onde delta, la préexcitation et la déviation axiale gauche ont été surinterprétés sur ce tracé normal, puis rappeler brièvement comment vérifier objectivement PR, début du QRS et axe ; éviter de parler de « syndrome de WPW » sans contexte clinique.",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-VQTW",
+      "num_cas": 4,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 2,
+        "coherence_score": 4,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "Le feedback affirme à tort que l’étudiant a identifié une amylose, alors que ce terme n’apparaît pas dans sa réponse.",
+          "Il précise « sans onde P bloquée », élément que l’étudiant n’a pas explicitement décrit ; cette formulation devrait être présentée comme un critère diagnostique à vérifier, non comme un fait rapporté.",
+          "La remarque sur la perte des ondes Q septales est adaptée au descripteur manqué, mais reste secondaire après un score de 100/100.",
+          "Le ton très laudatif et les deux citations alourdissent légèrement un retour sur une réponse courte."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Supprimer l’attribution erronée de l’amylose et reformuler ainsi : « Vous avez correctement identifié le microvoltage, ainsi qu’un rythme sinusal avec PR fixe à 240 ms compatible avec un BAV du premier degré ; vous pouviez aussi signaler la perte des ondes Q septales. »",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "problematique"
+      }
+    },
+    {
+      "code": "ECG-VQTW",
+      "num_cas": 7,
+      "score_regenere": 66.7,
+      "verdict": {
+        "adaptation_score": 4,
+        "coherence_score": 4,
+        "exactitude_clinique_score": 3,
+        "problemes_detectes": [
+          "Le feedback transforme l'interrogation prudente « inversion des fils ? » en découverte affirmée (« vous avez bien mentionné » puis « pertinente »), sans relever son caractère hypothétique ni préciser quelles dérivations sont concernées.",
+          "L'explication de l'inversion des électrodes est trop générale : le profil DI négatif et aVR positif correspond surtout à une inversion des électrodes des bras droit et gauche, et non à toute inversion d'électrodes des membres.",
+          "La formulation « diagnostics essentiels pour ce cas » puis « BAV1 indispensable » est imparfaitement alignée avec le diagnostic attendu affiché, limité au bloc de branche droit complet, même si ces éléments figurent dans le barème fourni.",
+          "La conclusion reste assez générique et pourrait donner un conseil plus opérationnel, notamment la vérification systématique de l'intervalle PR."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Reformuler en distinguant clairement l'hypothèse de l'étudiant d'une constatation certaine : « Vous avez correctement identifié le BBD complet et le bloc fasciculaire antérieur gauche ; pensez aussi à mesurer systématiquement le PR, ici compatible avec un BAV1. Votre question sur une inversion d'électrodes mérite une vérification ciblée, car DI négatif et aVR positif évoquent spécifiquement une inversion bras droit–bras gauche. »",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-VQTW",
+      "num_cas": 10,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 5,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "La formulation « normalité du segment PR » est impropre : le PR est un intervalle, non un segment.",
+          "La citation présente une morphologie crénelée (« notch ») en V6/D1/aVL et une onde R exclusive comme des éléments définitoires de façon un peu trop catégorique, alors que les critères morphologiques peuvent varier et que tous ne sont pas indispensables dans chaque tracé.",
+          "Le ton est légèrement emphatique et chargé en emojis pour un interne, malgré une appréciation globalement adaptée au score maximal."
+        ],
+        "redondance_score": 5,
+        "suggestion_amelioration": "Remplacer par une formulation plus sobre et précise : « Pour compléter la description, vous pouviez préciser que l’intervalle PR est normal ; le diagnostic de BBG complet est correctement posé devant l’élargissement des QRS et la morphologie compatible. »",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-VQTW",
+      "num_cas": 13,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 3,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 3,
+        "problemes_detectes": [
+          "Le feedback affirme que l’étudiant a explicitement noté une bradycardie, alors qu’il a écrit « 60 bpm », valeur à la limite basse de la normale et non une bradycardie au sens strict chez l’adulte.",
+          "Il qualifie l’interprétation de « très complète et précise » sans discuter la proposition de localisation « VD antéroseptale probably », pourtant incertaine, formulée maladroitement et potentiellement à nuancer.",
+          "L’emploi de « syndrome de Wolff-Parkinson-White » est impropre sans tachyarythmie clinique documentée : l’ECG décrit plutôt une préexcitation ventriculaire par voie accessoire.",
+          "La citation attribuée à « Item 231, SFC » est insuffisamment contextualisée et sa formulation ne permet pas d’en vérifier clairement la source."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Féliciter l’étudiant pour l’identification de la préexcitation (PR court et onde delta), sans parler de bradycardie à 60/min ni de syndrome de WPW en l’absence de tachyarythmie, et nuancer ou corriger séparément sa tentative de localisation de la voie accessoire.",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "problematique"
+      }
+    },
+    {
+      "code": "ECG-VQMD",
+      "num_cas": 2,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 3,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "Le feedback attribue à l’étudiant la mention explicite d’une « bradycardie », alors qu’il a seulement écrit « 60 bpm » ; à cette fréquence seuil, le terme est en outre discutable.",
+          "Il affirme que l’étudiant a « noté l’échappement ventriculaire », ce qui ne figure pas explicitement dans sa réponse, même si le pipeline l’a inféré.",
+          "La citation sur la dissociation P-QRS et le niveau nodal/infrahissien apporte un enseignement utile, mais dépasse légèrement ce que l’étudiant a effectivement décrit et pourrait être formulée avec davantage de nuance."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Féliciter l’étudiant pour le diagnostic de BAV complet, le rythme régulier à 60/min et les QRS larges, puis préciser que ces derniers sont compatibles avec un échappement probablement ventriculaire/infra-hissien, sans lui attribuer explicitement les mots « bradycardie » ou « échappement ventriculaire ».",
+        "ton_pedagogique_score": 5,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-VQMD",
+      "num_cas": 5,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 4,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 3,
+        "problemes_detectes": [
+          "Le feedback entérine sans nuance l'expression « rythme irrégulier sinusal », alors qu'un rythme sinusal est normalement régulier ; une irrégularité peut exister, mais doit être caractérisée plutôt que simplement félicitée.",
+          "Il qualifie le BAV 2/1 de « BAV de haut grade » comme une équivalence certaine. Un BAV 2/1 est un BAV du deuxième degré dont le niveau et le type ne sont pas toujours déterminables sur l'ECG seul ; la formulation devrait être plus prudente.",
+          "La citation sur l'hyperkaliémie est utile mais un peu surdimensionnée par rapport au besoin, et « deux diagnostics principaux » suggère que le BAV a le même statut que le diagnostic attendu alors qu'il s'agit surtout d'une manifestation/trouble associé dans ce cas.",
+          "Le ton très laudatif (« parfaitement », « complète et précise », emojis) laisse peu de place à la correction des formulations ambiguës de l'étudiant."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Féliciter l'identification de l'hyperkaliémie et de la bradycardie avec ondes T amples, puis préciser sobrement que l'aspect 2/1 évoque un BAV du deuxième degré sans permettre à lui seul de le classer en Mobitz I ou II, et demander de mieux caractériser l'irrégularité plutôt que de valider « rythme irrégulier sinusal » sans nuance.",
+        "ton_pedagogique_score": 3,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-VQMD",
+      "num_cas": 8,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 4,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 3,
+        "problemes_detectes": [
+          "Le feedback transforme « flutter atrial » en identification correcte et explicite d’un « flutter droit typique », alors que l’étudiant n’a pas précisé le caractère droit ni typique.",
+          "Il valorise comme bien faite l’interprétation d’un sus-décalage ST V2-V3 comme courant de lésion sous-épicardique sans nuance clinique, alors qu’un sus-décalage limité à V2-V3 sans miroir n’est pas à lui seul synonyme de lésion sous-épicardique et mérite une mise en contexte.",
+          "La citation sur l’activité atriale à environ 300/min et les dents de scie est informative mais peu reliée aux éléments réellement décrits par l’étudiant."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Féliciter l’identification d’un flutter atrial, puis préciser que l’étudiant aurait dû documenter les critères ECG permettant de le qualifier de droit typique, tout en nuançant l’interprétation du sus-décalage ST en V2-V3 selon le contexte et les critères associés.",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-VQMD",
+      "num_cas": 11,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 5,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "La formulation « fréquence cardiaque supérieure à 100 battements par minute et QRS de plus de 120 ms pour au moins trois battements » est inutilement normative et peut être trompeuse : elle décrit une définition générale de TV mais n'établit pas à elle seule le diagnostic différentiel d'une tachycardie régulière à QRS larges.",
+          "La citation attribuée précisément à « Item 231, SFC » devrait être vérifiée ; cette maxime clinique est classique, mais la référence présentée ainsi peut sembler artificielle.",
+          "Le ton est légèrement emphatique et l'émoji peu nécessaire pour un interne."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Conserver la validation concise du diagnostic et des arguments fournis, puis remplacer la pseudo-définition et la citation incertaine par : « Devant une tachycardie régulière à QRS larges, il faut retenir une TV jusqu'à preuve du contraire. »",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-VQMD",
+      "num_cas": 14,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 5,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "La formulation « excellente maîtrise des détails ECG » est légèrement surévaluée : le feedback valide sans nuance toutes les observations hors barème, alors que certaines sont peu spécifiques et que « rythme sinusal irrégulier » peut simplement refléter les ESV.",
+          "La citation « Item 231, SFC » est insuffisamment contextualisée et sa référence n'est pas vérifiable dans le feedback.",
+          "La définition des ESV comme de simples « QRS larges prématurés » est globalement juste mais incomplète, notamment sans mention de leur origine ventriculaire et de l'absence habituelle d'onde P sinusale préalable."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Conserver les félicitations, mais remplacer l'éloge global des détails par une formulation plus mesurée et donner une définition plus complète de l'ESV, sans citation bibliographique imprécise.",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-VQFO",
+      "num_cas": 3,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 4,
+        "coherence_score": 4,
+        "exactitude_clinique_score": 3,
+        "problemes_detectes": [
+          "Le feedback laisse entendre que l’étudiant a affirmé que l’ECG était normal, alors qu’il a décrit une fibrillation atriale rapide et n’a jamais employé cette conclusion.",
+          "La formule « la fibrillation atriale est le seul diagnostic en cas de tachycardie complètement irrégulière à QRS fins » est trop absolue et cliniquement trompeuse : cet aspect est très évocateur de FA, mais certains diagnostics différentiels existent.",
+          "Le rappel générique sur la méthode pour affirmer un ECG normal est peu pertinent ici et détourne du principal point perfectible, notamment la caractérisation explicite de l’irrégularité et de l’activité atriale."
+        ],
+        "redondance_score": 5,
+        "suggestion_amelioration": "Remplacer le passage sur « l’ECG normal » et l’affirmation diagnostique absolue par un conseil ciblé : « Diagnostic correct de FA rapide à QRS fins ; pour renforcer votre description, précisez l’irrégularité complète des intervalles RR et l’absence d’ondes P organisées. »",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-VQFO",
+      "num_cas": 6,
+      "score_regenere": 50.0,
+      "verdict": {
+        "adaptation_score": 1,
+        "coherence_score": 3,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "Contresens majeur : l’étudiant a explicitement écrit « électro entraîné en atriale », formulation qui désigne une stimulation atriale ; le feedback affirme à tort qu’elle n’a pas été mentionnée.",
+          "Le conseil de se concentrer sur les spikes repose donc sur un faux manque et n’est pas adapté à la réponse réelle.",
+          "La formulation « rythme sinusal » est reprise sans signaler l’ambiguïté terminologique avec un rythme atrial stimulé : il aurait été plus précis de parler d’activité atriale électro-entraînée avec conduction atrioventriculaire.",
+          "La citation sur l’HBAG est globalement défendable mais simplificatrice : sa définition ne repose pas uniquement sur QRS > 100 ms, axe < −30° et négativité de DII.",
+          "Le feedback est un peu redondant en citant séparément le BAV1, l’allongement du PR puis le PR à 256 ms."
+        ],
+        "redondance_score": 3,
+        "suggestion_amelioration": "Reconnaître explicitement que « électro entraîné en atriale » identifie bien la stimulation atriale, puis proposer seulement d’employer la formulation standard « rythme atrial stimulé, avec spikes précédant les ondes P » et de préciser les autres anomalies éventuellement attendues.",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "inadapte"
+      }
+    },
+    {
+      "code": "ECG-VQFO",
+      "num_cas": 9,
+      "score_regenere": 0.0,
+      "verdict": {
+        "adaptation_score": 4,
+        "coherence_score": 4,
+        "exactitude_clinique_score": 3,
+        "problemes_detectes": [
+          "Le feedback est globalement adapté, mais il reprend comme acquis un « BAV 2 pour 1 » puis demande de le distinguer du Mobitz II : en pratique, un bloc 2/1 ne permet généralement pas de trancher formellement entre Mobitz I et Mobitz II sur le seul comportement du PR.",
+          "La définition « PR fixe avant le blocage d'une onde P » est imprécise : c'est une onde P qui n'est pas conduite, et non une onde P qui est « bloquée » ; il faut aussi préciser l'absence d'allongement progressif du PR.",
+          "L'affirmation « indication de pacemaker même sans symptôme » est trop absolue sans préciser le contexte de Mobitz II acquis, non réversible.",
+          "Le reproche concernant le bloc de branche droit et le bloc fasciculaire postérieur gauche est pertinent au regard des descripteurs, mais gagnerait à expliquer que le « BBG incomplet » proposé par l'étudiant est probablement une mauvaise caractérisation de la conduction intraventriculaire.",
+          "La phrase finale sur la vérification systématique de tous les paramètres est générique et peu reliée à l'erreur diagnostique centrale."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Centrer le feedback sur les critères discriminants : « Vous avez reconnu un BAV du 2e degré, notamment une conduction 2/1, mais celle-ci n'est pas à elle seule classable en Mobitz I ou II ; ici, les PR constants sur les battements conduits, sans allongement progressif avant l'onde P non conduite, et les anomalies de conduction intraventriculaire orientent vers un Mobitz II, à haut risque et relevant habituellement d'une stimulation s'il est acquis et non réversible. »",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-VQFO",
+      "num_cas": 12,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 4,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 3,
+        "problemes_detectes": [
+          "Le feedback affirme que l’étudiant a « mentionné le courant de lésion sous-épicardique », alors qu’il a écrit directement « sus-décalage ST » : l’idée est proche, mais cette formulation ne doit pas lui être attribuée textuellement.",
+          "Les seuils « ≥2 mm en V1-V3, ≥1 mm ailleurs » sont trop simplifiés et partiellement inexacts : les critères contemporains dépendent notamment du sexe et de l’âge en V2-V3, et V1 ne suit pas le seuil uniforme de 2 mm.",
+          "La référence « Item 231, SFC » est présentée de façon difficilement vérifiable et apporte peu de valeur pédagogique ici.",
+          "Le conseil final de différencier les étiologies du sus-décalage reste générique malgré une réponse déjà très précise."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Féliciter l’étudiant pour avoir identifié le sus-décalage antérieur avec miroir inférieur et les éléments associés, sans lui attribuer l’expression « courant de lésion sous-épicardique », puis remplacer les seuils simplifiés par un rappel exact et ciblé des critères de sus-décalage en V2-V3 selon l’âge et le sexe.",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-VQFO",
+      "num_cas": 15,
+      "score_regenere": 33.3,
+      "verdict": {
+        "adaptation_score": 3,
+        "coherence_score": 4,
+        "exactitude_clinique_score": 2,
+        "problemes_detectes": [
+          "Le feedback dit que la « tachycardie ventriculaire » est pertinente, alors qu'elle constitue un diagnostic distinct et potentiellement erroné par rapport au BBG complet attendu ; cette formulation risque de valider à tort le diagnostic principal de l'étudiant.",
+          "Il affirme que l'étudiant n'a pas lié le QRS large au BBG, ce qui est fidèle à son texte, mais entre en tension avec le pipeline qui marque le concept « BBG complet » comme trouvé ; cette discordance devrait être explicitée ou évitée.",
+          "La définition donnée de la fibrillation atriale est inexacte : la FA n'est pas nécessairement une tachycardie à 100–200 bpm, et l'irrégularité concerne les intervalles RR/réponses ventriculaires plutôt que des « QRS irrégulièrement irréguliers ».",
+          "La dernière recommandation sur les rythmes nécessitant une intervention rapide est générique et peu ciblée sur l'erreur diagnostique réelle.",
+          "Les citations alourdissent légèrement le feedback et la description du BBG gagnerait à être formulée avec davantage de précision morphologique."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Dire explicitement que l'étudiant a bien repéré une tachycardie à QRS larges mais que le diagnostic de TV n'est pas celui attendu, puis préciser les critères en faveur d'un BBG complet et décrire correctement la FA comme une activité atriale désorganisée avec intervalles RR totalement irréguliers, sans lui imposer une fréquence de 100–200/min.",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "problematique"
+      }
+    },
+    {
+      "code": "ECG-UV0W",
+      "num_cas": 3,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 5,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 3,
+        "problemes_detectes": [
+          "La définition citée est trop restrictive et potentiellement trompeuse : la fibrillation atriale n'est pas nécessairement une tachycardie entre 100 et 200 bpm ; la fréquence ventriculaire peut être lente, normale ou rapide.",
+          "La formulation « à QRS irrégulièrement irréguliers » est imprécise : c'est le rythme ventriculaire ou les intervalles RR qui sont irrégulièrement irréguliers, non les QRS eux-mêmes.",
+          "Le conseil final de « réviser tous les concepts clés » est générique et apporte peu après une réponse notée 100/100."
+        ],
+        "redondance_score": 5,
+        "suggestion_amelioration": "Remplacer la citation par une définition exacte et concise — « La FA associe une activité atriale désorganisée, sans ondes P individualisables, à des intervalles RR irrégulièrement irréguliers » — puis terminer par un conseil ciblé, par exemple vérifier systématiquement la régularité des RR et la fréquence ventriculaire.",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-UV0W",
+      "num_cas": 6,
+      "score_regenere": 50.0,
+      "verdict": {
+        "adaptation_score": 5,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "La formulation « point indispensable pour ce cas » est un peu excessive puisque le diagnostic attendu annoncé est la stimulation atriale, même si le bloc fasciculaire antérieur gauche figure bien parmi les concepts validants.",
+          "La définition citée de l'HBAG est légèrement simplificatrice : elle devrait idéalement préciser la morphologie qR en aVL et rS dans les dérivations inférieures, plutôt que de reposer surtout sur la largeur du QRS et l'axe.",
+          "Les deux dernières phrases répètent presque le même conseil sur les blocs de conduction."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Remplacer la fin par une consigne unique et plus précise : « Votre diagnostic de stimulation atriale à environ 75/min est correct ; complétez l'analyse systématique par l'axe et la morphologie du QRS afin de repérer ici le bloc fasciculaire antérieur gauche. »",
+        "ton_pedagogique_score": 5,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-UV0W",
+      "num_cas": 9,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 4,
+        "coherence_score": 4,
+        "exactitude_clinique_score": 3,
+        "problemes_detectes": [
+          "Le feedback qualifie l'axe gauche de « correct », alors que les descripteurs indiquent un bloc fasciculaire postérieur gauche, classiquement associé à une déviation axiale droite ; cette validation est donc au minimum insuffisamment étayée et potentiellement fausse.",
+          "Il ne corrige pas l'association faite par l'étudiant entre axe gauche et hémibloc antérieur gauche, alors que le tracé attendu semble comporter un bloc fasciculaire postérieur gauche.",
+          "« Travail impeccable » est excessif puisque des anomalies de conduction associées (bloc de branche droit et bloc fasciculaire postérieur gauche) n'ont pas été reconnues et que certaines formulations de l'étudiant sont discutables.",
+          "L'injonction générique à ne manquer « aucun détail important » apporte peu sans nommer précisément les éléments omis.",
+          "La citation attribuée à « Item 231, SFC » est présentée de façon difficilement vérifiable ; en outre, l'indication de stimulation dans un Mobitz II doit être contextualisée, même si elle est généralement retenue en l'absence de cause réversible."
+        ],
+        "redondance_score": 5,
+        "suggestion_amelioration": "Conserver la félicitation pour le diagnostic principal, mais signaler explicitement que l'étudiant n'a pas identifié le bloc de branche droit et le bloc fasciculaire postérieur gauche, corriger prudemment son interprétation d'axe gauche/HBAG, et remplacer « travail impeccable » par une appréciation plus mesurée.",
+        "ton_pedagogique_score": 3,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-UV0W",
+      "num_cas": 12,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 4,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 3,
+        "problemes_detectes": [
+          "Le feedback affirme que l’étudiant a explicitement mentionné un « courant de lésion sous-épicardique », alors qu’il a écrit « sus-ST » : c’est une reformulation/interprétation acceptable sur le fond, mais pas une mention explicite.",
+          "Le rappel « ≥2 mm en V1-V3, ≥1 mm ailleurs » est trop simplifié et partiellement inexact au regard des critères contemporains : les seuils en V2-V3 dépendent notamment du sexe et de l’âge, tandis que V1 n’appartient pas à cette exception.",
+          "La citation attribuée à « Item 231, SFC » est présentée comme une référence textuelle sans source vérifiable et emploie la formulation imprécise « SCA avec ST ».",
+          "Le feedback reprend presque mot pour mot les éléments déjà listés avant de les louer globalement, avec une valeur pédagogique limitée."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Remplacer la citation imprécise par un conseil ciblé et exact, par exemple : « Diagnostic correct et description structurée ; précisez idéalement les dérivations concernées et gardez en tête que les seuils de sus-décalage en V2–V3 varient selon l’âge et le sexe. »",
+        "ton_pedagogique_score": 5,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-UV0W",
+      "num_cas": 15,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 4,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 3,
+        "problemes_detectes": [
+          "La définition de la fibrillation atriale est trop restrictive et partiellement trompeuse : une FA n'est pas nécessairement une tachycardie à 100–200/min ; la fréquence ventriculaire peut être lente, normale ou rapide.",
+          "La formulation « QRS irrégulièrement irréguliers » est impropre : ce sont les intervalles RR ou le rythme ventriculaire qui sont irrégulièrement irréguliers.",
+          "Le feedback qualifie le bloc fasciculaire antérieur gauche de découverte pertinente sans signaler que son diagnostic est délicat, voire non individualisable, en présence d'un BBG complet.",
+          "« Tous les aspects attendus » est légèrement excessif : l'étudiant a bien mentionné la discordance appropriée, mais le feedback ne la reprend pas alors qu'elle contribue à son analyse du BBG."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Remplacer la définition de la FA par « absence d'ondes P organisées avec irrégularité complète des intervalles RR », reprendre la discordance appropriée mentionnée par l'étudiant, et éviter de valider sans nuance un hémibloc antérieur gauche associé à un BBG complet.",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-U8SA",
+      "num_cas": 2,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 4,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "Le feedback reformule utilement le diagnostic, mais le passage introduit par « Concernant le bloc de branche gauche » ne traite pas réellement de la validité du BBG et enchaîne sur un rappel général du BAV complet.",
+          "La bradycardie à 60 bpm est une qualification limite : 60 bpm correspond à la borne basse de la normale selon les conventions usuelles.",
+          "Le rappel cité est un peu long et partiellement redondant après avoir déjà félicité l'identification du BAV complet et des QRS larges."
+        ],
+        "redondance_score": 3,
+        "suggestion_amelioration": "Remplacer le passage sur le BBG par un conseil ciblé : « Votre diagnostic de BAV complet est correct ; pour le justifier explicitement, décrivez la dissociation auriculo-ventriculaire (ondes P et QRS réguliers mais indépendants) et précisez qu’un échappement à QRS larges oriente vers un siège infrahissien ; à 60/min, parlez plutôt de fréquence basse que de bradycardie franche. »",
+        "ton_pedagogique_score": 5,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-U8SA",
+      "num_cas": 5,
+      "score_regenere": 50.0,
+      "verdict": {
+        "adaptation_score": 3,
+        "coherence_score": 4,
+        "exactitude_clinique_score": 3,
+        "problemes_detectes": [
+          "Le feedback est adapté lorsqu’il relève que l’étudiant a décrit des ondes T amples sans nommer explicitement l’hyperkaliémie.",
+          "Il surinterprète toutefois la simple bradycardie comme orientant vers un BAV de haut grade : une fréquence lente et irrégulière ne suffit pas à établir ce diagnostic sans analyse des ondes P et de la conduction AV.",
+          "Le développement sur la distinction « ischémie, lésion et nécrose » est générique et peu utile ici ; il détourne du diagnostic principal et ne répond pas précisément à l’hypothèse d’ischémie antéro-septo-apicale formulée par l’étudiant.",
+          "L’affirmation selon laquelle l’ischémie myocardique se traduit par un sous-décalage ST ou une inversion des T est trop restrictive et risque d’être trompeuse ; des ondes T hyperaiguës et un sus-décalage ST peuvent aussi s’inscrire dans un syndrome coronarien aigu selon le contexte.",
+          "Le ton est globalement bienveillant, mais le feedback gagnerait à expliquer directement que des ondes T diffuses, amples, pointues et symétriques associées à une bradycardie évoquent en priorité une hyperkaliémie plutôt qu’une ischémie territoriale."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Remplacer le détour générique sur l’ischémie par une comparaison ciblée : « Vous avez bien repéré la bradycardie et les ondes T amples ; leur caractère pointu, symétrique et non strictement territorial doit faire évoquer explicitement une hyperkaliémie, tandis qu’un BAV de haut grade ne peut être affirmé qu’après analyse des ondes P et de leur relation aux QRS. »",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-U8SA",
+      "num_cas": 8,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 4,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 5,
+        "problemes_detectes": [
+          "Le feedback affirme que l’étudiant a identifié un « flutter droit typique », alors qu’il a seulement écrit « flutter atrial » : la précision du mécanisme typique droit n’était pas explicite dans sa réponse.",
+          "La formule « compréhension précise et complète » est légèrement surévaluée, car l’étudiant n’a décrit ni les ondes F ni leur polarité, et n’a pas explicitement qualifié le flutter de typique droit.",
+          "La citation théorique est assez longue au regard d’une réponse étudiante très brève et d’un diagnostic déjà validé à 100 %."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Féliciter l’étudiant pour l’identification correcte du flutter atrial et de la fréquence ventriculaire normale, puis préciser sobrement que la formulation la plus complète attendue était « flutter atrial typique droit », sans lui attribuer explicitement cette précision absente de son texte.",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-U8SA",
+      "num_cas": 11,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 4,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "Le feedback affirme que l’étudiant a « correctement identifié la tachycardie ventriculaire », alors que sa réponse décrit très précisément une tachycardie régulière monomorphe à QRS larges sans formuler explicitement le diagnostic de TV.",
+          "La règle clinique citée est pertinente, mais son attribution bibliographique précise (« Item 231, SFC ») n’est pas vérifiable ici et peut donner une impression de citation artificielle.",
+          "Le ton est un peu emphatique (« compétence évidente », emojis) pour un feedback destiné à un interne."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Remplacer l’affirmation d’un diagnostic explicitement posé par : « Votre description reconnaît tous les éléments en faveur d’une tachycardie ventriculaire monomorphe ; concluez explicitement par ce diagnostic », avec un ton plus sobre et sans référence non vérifiée.",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-U8SA",
+      "num_cas": 14,
+      "score_regenere": 33.3,
+      "verdict": {
+        "adaptation_score": 1,
+        "coherence_score": 3,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "Contresens majeur : le feedback affirme que l’étudiant n’a pas nommé explicitement le diagnostic, alors qu’il décrit à plusieurs reprises des « extrasystoles » et précise leurs caractéristiques ventriculaires (QRS larges, absence d’onde P, repolarisation discordante, pause compensatoire, monomorphisme).",
+          "La recommandation finale répète ce même reproche erroné et constitue l’essentiel du conseil pédagogique.",
+          "Le texte ne reconnaît pas clairement que l’association des termes employés équivaut sans ambiguïté à l’identification d’extrasystoles ventriculaires.",
+          "La formulation « absence d’onde P » mériterait d’être nuancée : il s’agit surtout de l’absence d’onde P sinusale précédant le QRS ectopique.",
+          "Le feedback est partiellement redondant entre l’ouverture et la conclusion."
+        ],
+        "redondance_score": 3,
+        "suggestion_amelioration": "Reconnaître explicitement que l’étudiant a correctement identifié des extrasystoles ventriculaires monomorphes, puis proposer seulement de formuler le diagnostic de synthèse en une phrase (« rythme sinusal avec ESV monomorphes ») et de préciser leur caractère prématuré.",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "inadapte"
+      }
+    },
+    {
+      "code": "ECG-U1JK",
+      "num_cas": 1,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 3,
+        "coherence_score": 3,
+        "exactitude_clinique_score": 3,
+        "problemes_detectes": [
+          "Le feedback prétend que l’étudiant a « identifié avec précision que l’ECG est normal », alors qu’il ne l’a pas formulé explicitement et a signalé une déviation axiale gauche, ce qui rend cette synthèse trop affirmative.",
+          "Il valorise la « normalité » tout en mentionnant la déviation axiale gauche sans préciser si celle-ci est réellement présente, variante acceptable ou erreur d’interprétation ; cela laisse une ambiguïté pédagogique.",
+          "La citation attribuée à « Item 231, SFC » paraît insuffisamment contextualisée et potentiellement fabriquée ou invérifiable.",
+          "Le descripteur de bloc interatrial manqué n’est pas abordé ; selon sa pertinence réelle sur ce cas, il faudrait soit le discuter, soit ne pas le présenter comme attendu."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Reformuler en distinguant clairement ce que l’étudiant a effectivement décrit de la conclusion attendue : « Votre analyse du rythme, de la fréquence et de la repolarisation va dans le sens d’un ECG normal ; toutefois, vous n’avez pas explicitement conclu “ECG normal” et votre mention d’une déviation axiale gauche mérite d’être vérifiée ou nuancée. »",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "problematique"
+      }
+    },
+    {
+      "code": "ECG-TU31",
+      "num_cas": 2,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 3,
+        "coherence_score": 4,
+        "exactitude_clinique_score": 3,
+        "problemes_detectes": [
+          "Le feedback attribue à l’étudiant une « arythmie atriale », alors qu’il a seulement écrit « rythme régulier non sinusal » ; cette reformulation n’est ni fidèle ni cliniquement équivalente.",
+          "Il affirme que l’étudiant a mentionné un « bloc de branche droit complet », alors que celui-ci a écrit « Bloc de branche droit ? », donc avec incertitude et sans préciser qu’il était complet.",
+          "La définition citée (« dissociation complète entre P et QRS ») est imprécise : le BAV complet correspond à une dissociation atrioventriculaire, les ondes P et les QRS ayant des rythmes indépendants.",
+          "Le reproche concernant l’absence d’échappement ventriculaire est acceptable comme piste d’amélioration, mais devrait être formulé comme un complément descriptif et non comme une lacune importante puisque le diagnostic attendu a été correctement posé et le score est maximal.",
+          "Le ton est un peu emphatique et chargé pour un interne, avec citation décorative et emojis peu nécessaires."
+        ],
+        "redondance_score": 3,
+        "suggestion_amelioration": "Féliciter brièvement l’étudiant pour le diagnostic correct de BAV complet, reprendre fidèlement la bradycardie et la déviation axiale droite, signaler que le BBD a été seulement suspecté, puis proposer comme amélioration de décrire la dissociation atrioventriculaire et le rythme d’échappement ventriculaire.",
+        "ton_pedagogique_score": 3,
+        "verdict_global": "problematique"
+      }
+    },
+    {
+      "code": "ECG-TU31",
+      "num_cas": 5,
+      "score_regenere": 16.7,
+      "verdict": {
+        "adaptation_score": 2,
+        "coherence_score": 3,
+        "exactitude_clinique_score": 3,
+        "problemes_detectes": [
+          "Le feedback affirme que le « flutter atrial atypique » et le « rythme sinusal » étaient corrects, alors que ces deux diagnostics sont difficilement conciliables simultanément et que l’étudiant les avait formulés avec incertitude (« flutter atypique ? »).",
+          "Il ne valorise pas explicitement le BAV de haut grade, pourtant indiqué comme concept validant trouvé par le pipeline ; dire seulement que la bradycardie n’a pas été associée à un diagnostic spécifique est donc potentiellement contradictoire avec la correction automatique.",
+          "La description de l’hyperkaliémie est globalement juste mais trop catégorique et incomplètement contextualisée : les anomalies ECG varient avec la sévérité et ne sont pas toutes constamment présentes.",
+          "Le conseil reste assez générique et ne relie pas précisément les observations de l’étudiant au raisonnement attendu."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Reconnaître explicitement la bradycardie et le BAV de haut grade retenu par la correction, éviter de valider simultanément rythme sinusal et flutter atypique, puis expliquer que l’association bradycardie/trouble conductif avec des ondes T pointues et/ou un élargissement du QRS doit faire évoquer une hyperkaliémie.",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "problematique"
+      }
+    },
+    {
+      "code": "ECG-TU31",
+      "num_cas": 8,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 4,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "Le feedback attribue à l’étudiant le terme « arythmie atriale », qu’il n’a pas explicitement écrit, même si cette notion découle du diagnostic de flutter.",
+          "Il reformule « dents de scie » en « toit d’usine » comme s’il s’agissait d’une observation distincte, alors que ce sont ici deux formulations du même signe.",
+          "La phrase « critères du flutter atrial » est un peu imprécise : l’aspect en dents de scie est surtout caractéristique du flutter typique, avec une morphologie et une topographie des ondes F à préciser si l’on veut être rigoureux."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Rester strictement fidèle aux mots de l’étudiant et éviter de compter séparément des synonymes : « Excellente réponse : vous identifiez le flutter droit typique et relevez à juste titre le rythme régulier, la fréquence à 70/min, l’axe normal et l’aspect en dents de scie des ondes F. »",
+        "ton_pedagogique_score": 5,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-TU31",
+      "num_cas": 11,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 5,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "La formulation selon laquelle le rythme non sinusal, l’axe normal et les QRS larges « confirment » une TV est trop affirmative : ces éléments sont compatibles, mais ne suffisent pas à eux seuls à distinguer une TV d’une tachycardie supraventriculaire avec aberration.",
+          "La confusion évoquée avec « un bloc de branche » est imprécise : le diagnostic différentiel pertinent est une tachycardie supraventriculaire avec aberration de conduction, notamment sur bloc de branche.",
+          "Le feedback est légèrement emphatique et les emojis/citation décorative sont peu nécessaires pour un interne."
+        ],
+        "redondance_score": 5,
+        "suggestion_amelioration": "Remplacer l’idée que ces critères « confirment » la TV par : « Votre conclusion est correcte ; devant une tachycardie régulière à QRS larges, il faut considérer une TV jusqu’à preuve du contraire, tout en gardant comme diagnostic différentiel une tachycardie supraventriculaire avec aberration. »",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-TU31",
+      "num_cas": 14,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 4,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "Le feedback transforme une réponse interrogative (« Extrasystole ventriculaire? ») en identification « avec précision », sans relever cette hésitation diagnostique.",
+          "Il qualifie l'analyse de « précise et complète », alors que la formulation « rythme sinusal non régulier » reste peu précise et gagnerait à être reliée explicitement à l'extrasystole.",
+          "La citation sur le rythme sinusal est générique et apporte peu de valeur corrective; sa formulation est réductrice, car l'identification du rythme sinusal ne repose pas uniquement sur une onde P positive en DII.",
+          "Le ton est légèrement surélogieux et chargé en formules de félicitation pour une réponse très brève."
+        ],
+        "redondance_score": 3,
+        "suggestion_amelioration": "Remplacer les éloges répétés et la citation générique par un retour ciblé : « Vous avez correctement évoqué une extrasystole ventriculaire, avec une fréquence et un axe normaux; pour être plus affirmatif et précis, concluez sans point d’interrogation et indiquez que l’irrégularité du rythme sinusal est liée à l’extrasystole. »",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-SW1B",
+      "num_cas": 1,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 3,
+        "coherence_score": 3,
+        "exactitude_clinique_score": 3,
+        "problemes_detectes": [
+          "Le feedback affirme que l’étudiant a « noté une bradycardie », alors qu’il a seulement rapporté une fréquence de 62 bpm, qui n’est pas une bradycardie chez l’adulte selon le seuil usuel (< 60 bpm).",
+          "La déviation axiale gauche est présentée comme renforçant la conclusion d’un ECG normal, formulation trop catégorique : elle peut être une variante mais doit être interprétée selon son degré et le contexte.",
+          "Le feedback félicite justement une réponse complète, mais ajoute une mise en garde confuse (« il n’y a pas d’erreur ici ») à propos d’une bradycardie inexistante.",
+          "La référence « Item 231, SFC » est insuffisamment identifiable et paraît artificiellement attribuée sous forme de citation exacte."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Supprimer le passage sur la bradycardie et reformuler ainsi : « Votre lecture est systématique et concorde avec un ECG normal ; la fréquence à 62 bpm est normale, et l’axe gauche doit simplement être qualifié selon son degré et le contexte clinique. »",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "problematique"
+      }
+    },
+    {
+      "code": "ECG-SW1B",
+      "num_cas": 4,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 2,
+        "coherence_score": 3,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "Le feedback affirme que l'étudiant a mentionné « la normalité de l'ECG », alors qu'il n'a jamais qualifié l'ECG de normal et décrit au contraire un microvoltage, un BAV1 et des ondes T aplaties.",
+          "Il reproche l'absence de mention explicite de l'ischémie, alors que l'étudiant a écrit « pas de signe d'ischémie » : c'est un contresens direct.",
+          "Qualifier de « très complète » une réponse sans relever la perte des ondes Q septales est légèrement excessif au regard des descripteurs fournis.",
+          "La définition du BAV1 est globalement juste, mais « allongement fixe et constant de PR » est une formulation inutilement restrictive ; le critère essentiel est un PR > 200 ms avec conduction auriculo-ventriculaire 1:1."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Supprimer la fausse attribution d'un « ECG normal » et reconnaître explicitement que l'étudiant a bien exclu des signes d'ischémie, puis ajouter comme seul axe d'amélioration la recherche de la perte des ondes Q septales.",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "problematique"
+      }
+    },
+    {
+      "code": "ECG-SW1B",
+      "num_cas": 7,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 3,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 2,
+        "problemes_detectes": [
+          "Le feedback affirme que l’étudiant a diagnostiqué un BAV du premier degré, alors qu’il a seulement écrit « PR limite à environ 200 ms » ; à 200 ms environ, on ne peut pas affirmer un PR strictement > 200 ms ni un BAV I.",
+          "La formulation « allongement fixe et constant de PR > 200 ms » est maladroite et trompeuse : le BAV I correspond à un intervalle PR prolongé et constant avec conduction 1:1, mais « fixe » n’est pas le critère discriminant principal.",
+          "Le critère cité pour l’hémibloc antérieur gauche (« QRS > 100 ms ») est inadapté ici : le diagnostic repose surtout sur la déviation axiale gauche et la morphologie qR en I/aVL avec rS dans les dérivations inférieures ; en présence d’un BBD complet, la largeur du QRS est de toute façon augmentée.",
+          "Le feedback est excessivement laudatif et un peu long, avec des citations détaillées qui n’apportent pas de correction ciblée malgré l’ambiguïté du PR."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Conserver les félicitations pour l’identification du BBD complet et du bloc bifasciculaire, mais préciser : « Un PR autour de 200 ms est à la limite supérieure ; ne concluez à un BAV I que s’il est clairement > 200 ms avec conduction 1:1 », puis rappeler brièvement les critères morphologiques pertinents du bloc fasciculaire antérieur gauche.",
+        "ton_pedagogique_score": 3,
+        "verdict_global": "problematique"
+      }
+    },
+    {
+      "code": "ECG-SW1B",
+      "num_cas": 10,
+      "score_regenere": 66.7,
+      "verdict": {
+        "adaptation_score": 5,
+        "coherence_score": 4,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "Le feedback est fidèle à la réponse de l’étudiant, mais il reste surtout laudatif et n’explique pas ce qui justifie le score relativement bas de 66,7/100.",
+          "Dire qu’un BBG complet « se caractérise par QRS > 120 ms » est exact mais incomplet : la durée seule ne suffit pas, des critères morphologiques sont nécessaires.",
+          "La formulation « PR normal, ce qui indique une bonne compréhension » surinterprète légèrement une simple observation correcte."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Conserver les points positifs, mais préciser que le diagnostic est correct et que, pour une description complète, il faudrait expliciter les critères morphologiques du BBG (par exemple complexes QS/rS en V1 et onde R large, empâtée ou crochetée en I, aVL, V5-V6), ce qui rendrait aussi le feedback plus cohérent avec le score.",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-SW1B",
+      "num_cas": 13,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 5,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 3,
+        "problemes_detectes": [
+          "La formulation « WPW = voie accessoire + palpitations par réentrée » est trop simplificatrice et potentiellement trompeuse : le syndrome de WPW associe une préexcitation ventriculaire à des tachyarythmies symptomatiques, qui ne se résument pas nécessairement à des « palpitations par réentrée ».",
+          "L'affirmation que la réponse est « complète et précise » est un peu excessive : elle donne le bon diagnostic, mais ne décrit pas les critères ECG de préexcitation.",
+          "Le feedback est légèrement surchargé en félicitations et en emojis pour une réponse très brève."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Conserver la validation du diagnostic, mais remplacer la formule simplificatrice sur le WPW par : « La préexcitation ventriculaire repose classiquement sur un PR court, une onde delta et un QRS élargi ; on parle de syndrome de WPW lorsqu'elle s'accompagne de tachyarythmies symptomatiques », avec des félicitations plus sobres.",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-SSRO",
+      "num_cas": 1,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 3,
+        "coherence_score": 4,
+        "exactitude_clinique_score": 3,
+        "problemes_detectes": [
+          "Le feedback affirme que l’étudiant a « identifié l’ECG comme étant normal », alors que sa conclusion explicite est « Bradycardie » ; il a décrit par ailleurs un tracé sans anomalie majeure, mais n’a pas formulé le diagnostic attendu tel quel.",
+          "La remarque sur le « bloc interatrial » est hors-sol et potentiellement trompeuse : ce descripteur manqué n’est pas nécessaire pour conclure à un ECG normal, et un bloc interatrial constituerait au contraire une anomalie.",
+          "La définition proposée du rythme sinusal est trop restrictive : la polarité attendue des ondes P s’apprécie surtout avec une P positive en DII et négative en aVR ; exiger sa positivité en DIII n’est pas un critère universel.",
+          "Le feedback ne nuance pas que 50 bpm correspond à une bradycardie sinusale, laquelle peut être physiologique mais rend l’expression « ECG normal » dépendante du contexte et des conventions du cas."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Reconnaître que l’étudiant décrit correctement une bradycardie sinusale isolée sans autre anomalie, sans prétendre qu’il a explicitement conclu « ECG normal », supprimer la référence au bloc interatrial et employer une définition plus juste du rythme sinusal.",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "problematique"
+      }
+    },
+    {
+      "code": "ECG-SSRO",
+      "num_cas": 4,
+      "score_regenere": 0.0,
+      "verdict": {
+        "adaptation_score": 4,
+        "coherence_score": 4,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "Le feedback transforme « PR long » en BAV du premier degré sans disposer ici de la valeur mesurée du PR ; l'interprétation est plausible, mais formulée trop affirmativement.",
+          "Il reproche l'absence d'amylose et de perte des ondes Q septales alors que ces éléments sont seulement indicatifs et hors concept validant principal ; cela surcharge et dilue l'objectif central, qui est l'identification du microvoltage.",
+          "La consigne d'« explorer tous les paramètres possibles » est vague, peu opérationnelle et potentiellement irréaliste.",
+          "La citation attribuée à « Item 231, SFC » paraît insuffisamment contextualisée et son rattachement exact devrait être vérifié.",
+          "Le feedback reprend sans réserve le « QT long », alors que l'appréciation du QT doit idéalement reposer sur le QT corrigé, notamment en contexte de bradycardie."
+        ],
+        "redondance_score": 3,
+        "suggestion_amelioration": "Recentrez le feedback sur le point discriminant : « Vous avez correctement décrit le rythme sinusal lent et l'allongement du PR, mais vous n'avez pas évalué l'amplitude des QRS ; mesurez-la dans les dérivations périphériques et précordiales afin d'identifier le microvoltage, diagnostic attendu ici », puis présentez l'amylose et la perte des Q septales comme indices contextuels facultatifs plutôt que comme omissions majeures.",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-SSRO",
+      "num_cas": 7,
+      "score_regenere": 22.2,
+      "verdict": {
+        "adaptation_score": 2,
+        "coherence_score": 3,
+        "exactitude_clinique_score": 2,
+        "problemes_detectes": [
+          "Le feedback affirme que l’étudiant a explicitement noté une bradycardie, alors qu’il a écrit une fréquence à 60/min, valeur limite basse mais non clairement bradycardique.",
+          "Il ne relève pas l’erreur diagnostique centrale de l’étudiant, qui conclut à un « BAV Mobitz 3 (2:1) », formulation incohérente et différente d’un BAV du premier degré.",
+          "Il reproche l’absence de BAV du premier degré tout en le définissant comme un PR > 200 ms, alors que l’étudiant a écrit « PR normal » : cette discordance aurait dû être explicitement corrigée.",
+          "La description du bloc fasciculaire antérieur gauche est imprécise et potentiellement trompeuse : le critère essentiel est la déviation axiale gauche avec morphologie compatible, non un « élargissement modéré du QRS » qui n’est pas requis.",
+          "La formulation « QRS large, ce qui va dans le sens d’un bloc de branche droit complet » est insuffisamment spécifique : un QRS large seul ne permet pas d’identifier un BBD complet.",
+          "Le feedback passe sous silence plusieurs éléments problématiques de la réponse, notamment « 2 ondes P », « QT long », « onde T- » et « ischémie ? », qui nécessitaient clarification ou correction."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Recentrer le feedback sur la discordance entre le QRS large et l’absence de diagnostic explicite de BBD complet, corriger clairement la conclusion erronée « Mobitz 3 (2:1) », puis préciser les critères fiables du BAV du premier degré et du bloc fasciculaire antérieur gauche sans attribuer à l’étudiant une bradycardie certaine.",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "problematique"
+      }
+    },
+    {
+      "code": "ECG-SSRO",
+      "num_cas": 10,
+      "score_regenere": 66.7,
+      "verdict": {
+        "adaptation_score": 2,
+        "coherence_score": 2,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "Contradiction immédiate : le feedback affirme que l’étudiant a « bien mentionné le bloc de branche gauche complet », puis qu’il « ne l’identifie pas de manière explicite », alors que sa conclusion écrit clairement « Bloc de branche gauche ».",
+          "Le qualificatif « complet » n’est certes pas écrit dans la conclusion, mais la mention de QRS larges rend la formulation du reproche excessive et ambiguë.",
+          "Le passage sur le sus-décalage est globalement pertinent, mais reste trop général : il faudrait expliquer que les anomalies secondaires de repolarisation du BBG peuvent simuler un STEMI et que l’analyse repose sur des critères adaptés, notamment ceux de Sgarbossa/modifiés, plutôt que simplement inciter à la prudence.",
+          "La citation « douleur thoracique + BBG » introduit un contexte clinique absent de la réponse et du cas fourni ; elle est donc partiellement hors-sol.",
+          "La référence « Item 231, SFC » est peu exploitable et insuffisamment contextualisée pour un interne."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Remplacer la contradiction par : « Vous avez correctement conclu à un BBG, compatible avec un BBG complet compte tenu des QRS larges ; en revanche, l’affirmation d’un SCA ST+ antéro-septal ne peut pas reposer sur le sus-décalage seul, car le BBG entraîne des anomalies secondaires de repolarisation : recherchez des critères de Sgarbossa, idéalement modifiés, et confrontez-les au contexte clinique. »",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "problematique"
+      }
+    },
+    {
+      "code": "ECG-SSRO",
+      "num_cas": 13,
+      "score_regenere": 50.0,
+      "verdict": {
+        "adaptation_score": 3,
+        "coherence_score": 2,
+        "exactitude_clinique_score": 2,
+        "problemes_detectes": [
+          "Contradiction directe : le feedback affirme d’abord que l’étudiant a « mentionné le faisceau accessoire », puis reconnaît qu’il ne l’a pas explicitement nommé ; l’étudiant a seulement décrit un PR court.",
+          "Un PR court isolé ne permet pas d’affirmer un faisceau accessoire à conduction antérograde : il faut notamment rechercher une onde delta et une morphologie compatible de préexcitation.",
+          "Le « bloc de branche gauche » est repris parmi les éléments corrects alors qu’il s’agit de la conclusion diagnostique de l’étudiant et qu’un QRS large de préexcitation peut mimer un trouble de conduction ; cette validation est donc trompeuse.",
+          "La formulation « identification directe de ce syndrome » est imprécise : le diagnostic attendu porte sur un faisceau accessoire à conduction antérograde, pas nécessairement sur un syndrome clinique.",
+          "Le deuxième paragraphe valorise longuement des éléments périphériques sans corriger clairement la confusion centrale entre préexcitation et bloc de branche gauche."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Dire clairement : « Vous avez repéré le PR court et le QRS large, compatibles avec une préexcitation, mais vous avez conclu à tort à un bloc de branche gauche ; il fallait rechercher et mentionner une onde delta puis conclure à un faisceau accessoire à conduction antérograde. »",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "problematique"
+      }
+    },
+    {
+      "code": "ECG-SM9K",
+      "num_cas": 3,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 4,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 3,
+        "problemes_detectes": [
+          "La définition citée est imprécise : en fibrillation atriale, ce sont les intervalles RR (ou la réponse ventriculaire) qui sont irrégulièrement irréguliers, et non les QRS eux-mêmes.",
+          "Présenter la fibrillation atriale comme nécessairement une tachycardie entre 100 et 200 bpm est trompeur : la fréquence ventriculaire peut être lente, normale ou rapide.",
+          "Le reproche sur la repolarisation précoce est peu pertinent puisqu'elle n'appartient pas au diagnostic attendu et que le feedback n'explique pas si elle est réellement visible sur cet ECG."
+        ],
+        "redondance_score": 5,
+        "suggestion_amelioration": "Remplacer la citation par une formulation exacte (« absence d'ondes P organisées et intervalles RR irrégulièrement irréguliers, avec réponse ventriculaire ici rapide à environ 120/min ») et ne mentionner la repolarisation précoce que si elle est clairement présente et pédagogiquement utile.",
+        "ton_pedagogique_score": 5,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-SM9K",
+      "num_cas": 6,
+      "score_regenere": 50.0,
+      "verdict": {
+        "adaptation_score": 4,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "Le feedback est globalement fidèle, mais il affirme que la déviation axiale gauche « va dans le sens » d’un bloc fasciculaire antérieur gauche sans rappeler qu’elle ne suffit pas, à elle seule, à établir ce diagnostic.",
+          "La formule « stimulation atriale = spike + onde P » est utile mais simplifiée : il faut idéalement préciser qu’un spike précède chaque onde P capturée.",
+          "Le retour est légèrement verbeux et générique dans sa conclusion."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Raccourcir la conclusion et préciser : « Vous avez correctement décrit le rythme, la fréquence, le BAV I, le QTc et l’axe gauche ; le diagnostic principal manquant était la stimulation atriale, reconnaissable à des spikes précédant les ondes P, et l’axe gauche devait être complété par les critères morphologiques pour nommer un bloc fasciculaire antérieur gauche. »",
+        "ton_pedagogique_score": 5,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-SM9K",
+      "num_cas": 9,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 5,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "La formulation « PR fixe avant le blocage d'une onde P » est imprécise : dans un Mobitz II, les intervalles PR des ondes P conduites restent constants, tandis qu'une onde P est soudainement non conduite.",
+          "L'affirmation « indication de pacemaker même sans symptôme » est globalement conforme à la gravité du Mobitz II, mais gagnerait à être contextualisée selon le caractère acquis, réversible ou non et les recommandations applicables.",
+          "Les emojis et l'accumulation de compliments rendent le ton légèrement emphatique pour un interne."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Remplacer la citation par une formulation précise et contextualisée : « Dans le Mobitz II, les PR des battements conduits sont constants, avec survenue brutale d'une onde P non conduite ; ce trouble généralement infrahissien expose à une progression vers un BAV complet et justifie habituellement une stimulation en l'absence de cause réversible. »",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-SM9K",
+      "num_cas": 12,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 4,
+        "coherence_score": 4,
+        "exactitude_clinique_score": 3,
+        "problemes_detectes": [
+          "La phrase « cruciale pour établir un ECG normal » est inadaptée et potentiellement trompeuse puisque cet ECG est pathologique (STEMI).",
+          "Les seuils de sus-décalage cités sont trop simplifiés : ils dépendent notamment du sexe et de l’âge en V2-V3, et non uniformément de V1-V3.",
+          "Le feedback omet de valoriser explicitement la localisation antérieure donnée par l’étudiant et l’absence de bloc de branche, alors qu’il énumère ses autres éléments.",
+          "Dire que la réponse est « complète » est un peu excessif : elle pose correctement le diagnostic, mais ne détaille pas les dérivations ni les anomalies de repolarisation."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Remplacer le passage sur « établir un ECG normal » par une valorisation de l’analyse systématique malgré un ECG pathologique, mentionner la localisation antérieure et l’absence de bloc de branche, et supprimer ou préciser les seuils de sus-décalage selon les dérivations, l’âge et le sexe.",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-SM9K",
+      "num_cas": 15,
+      "score_regenere": 83.3,
+      "verdict": {
+        "adaptation_score": 4,
+        "coherence_score": 4,
+        "exactitude_clinique_score": 2,
+        "problemes_detectes": [
+          "La définition citée de la fibrillation atriale est médicalement trompeuse : elle n'est pas nécessairement une tachycardie à 100–200 bpm, et ce sont les intervalles RR (ou la réponse ventriculaire) qui sont irrégulièrement irréguliers, pas les QRS eux-mêmes.",
+          "Dire que la fibrillation atriale est « un point indispensable pour ce cas » est discutable puisque le diagnostic attendu annoncé est le bloc de branche gauche complet, même si la FA figure parmi les concepts validants.",
+          "Le feedback reconnaît à juste titre la mention de « bloc de branche gauche », mais pourrait mieux expliquer que l'absence du qualificatif « complet » constitue surtout un manque de précision plutôt qu'une absence du diagnostic."
+        ],
+        "redondance_score": 5,
+        "suggestion_amelioration": "Remplacer la définition erronée de la FA par « activité atriale désorganisée avec absence d’ondes P et intervalles RR irrégulièrement irréguliers », puis préciser brièvement que « bloc de branche gauche » est une identification correcte mais incomplètement formulée sans le qualificatif « complet » ni ses critères ECG.",
+        "ton_pedagogique_score": 5,
+        "verdict_global": "problematique"
+      }
+    },
+    {
+      "code": "ECG-S9QV",
+      "num_cas": 3,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 2,
+        "coherence_score": 3,
+        "exactitude_clinique_score": 2,
+        "problemes_detectes": [
+          "Le feedback affirme que l’étudiant a « correctement identifié » une fibrillation atriale, alors qu’il a seulement proposé « flutter ou FA ? » et a simultanément qualifié le rythme de sinusal : l’incertitude et la contradiction de sa réponse sont occultées.",
+          "Il attribue à l’étudiant une extrasystole atriale et une « arythmie atriale » comme des constatations assurées, alors que le texte comporte seulement « ESA ? » et une hésitation diagnostique.",
+          "Il félicite la mention du rythme sinusal comme un élément correct, alors qu’un rythme sinusal est incompatible avec une fibrillation atriale soutenue.",
+          "La formulation « la FA est le seul diagnostic en cas de tachycardie complètement irrégulière à QRS fins » est trop absolue et trompeuse : d’autres diagnostics peuvent produire une tachycardie irrégulière à QRS fins, notamment une tachycardie atriale multifocale ou un flutter à conduction variable.",
+          "Le ton très laudatif et la formule « excellent travail » sont insuffisamment nuancés au regard de l’hésitation entre flutter et FA et de la contradiction avec « rythme sinusal ».",
+          "La citation longue apporte peu de personnalisation et remplace partiellement l’explication des critères ECG qui permettraient de trancher."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Reconnaître que l’étudiant a évoqué la FA sans la retenir clairement, puis lui demander de trancher en s’appuyant sur l’irrégularité complète du rythme et l’absence d’ondes P organisées, tout en corrigeant explicitement l’incompatibilité avec un rythme sinusal et en évitant les affirmations diagnostiques absolues.",
+        "ton_pedagogique_score": 2,
+        "verdict_global": "problematique"
+      }
+    },
+    {
+      "code": "ECG-S9QV",
+      "num_cas": 6,
+      "score_regenere": 50.0,
+      "verdict": {
+        "adaptation_score": 5,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 3,
+        "problemes_detectes": [
+          "La formulation « le spike de stimulation est pathognomonique d'une stimulation cardiaque » est trop catégorique : des artéfacts peuvent simuler un spike, et un spike isolé doit être interprété selon sa relation temporelle avec l'onde P ou le QRS et la capture.",
+          "La citation définissant l'HBAG par « QRS > 100 ms » est discutable et trop restrictive : un bloc fasciculaire antérieur gauche peut s'accompagner d'un QRS normal ou seulement légèrement élargi.",
+          "Le feedback est un peu long et chargé de citations pour un message correctif portant principalement sur l'identification d'une stimulation atriale."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Raccourcir et nuancer ainsi : « Vous avez correctement relevé le rythme régulier à 80/min et la déviation axiale gauche compatible avec un bloc fasciculaire antérieur gauche. Le diagnostic principal manquant est la stimulation atriale : recherchez un spike immédiatement avant chaque onde P, avec capture atriale ; un spike doit toujours être distingué d'un artéfact et interprété selon sa relation avec les complexes. »",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-R48T",
+      "num_cas": 1,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 4,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "Le feedback affirme que l’étudiant a « correctement identifié que l’ECG est normal », alors qu’il ne l’a pas formulé explicitement ; cette conclusion était seulement implicite dans sa description.",
+          "Qualifier « 62 bpm » de « fréquence normale » est exact, mais la plage annoncée de 50 à 100 bpm n’est pas la définition conventionnelle la plus consensuelle de la fréquence sinusale normale chez l’adulte, généralement donnée à 60–100 bpm ; la bradycardie entre 50 et 59 bpm peut toutefois être physiologique.",
+          "La remarque sur la nécessité d’être systématique est générique et peu utile après une réponse complète notée 100/100.",
+          "La formulation sur l’axe gauche comme « détail subtil » manque de précision : l’étudiant a écrit « axe limite gauche », et ce constat mériterait d’être repris sans le transformer en déviation axiale gauche franche."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Remplacer l’affirmation selon laquelle l’étudiant a explicitement identifié un ECG normal par une formulation fidèle — « Votre description conclut implicitement à un ECG sans anomalie significative » — et supprimer le conseil générique, tout en reprenant précisément « axe limite gauche » et une référence usuelle de 60–100 bpm.",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-R48T",
+      "num_cas": 4,
+      "score_regenere": 0.0,
+      "verdict": {
+        "adaptation_score": 4,
+        "coherence_score": 4,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "L'expression « bonne compréhension des paramètres normaux » est maladroite puisque le QT long et le BAV du premier degré sont des anomalies, non des paramètres normaux.",
+          "Le feedback confirme le « QT long » sans nuance alors que l'énoncé ne fournit pas le QTc ni de mesure permettant de vérifier cette affirmation.",
+          "Il recommande de revoir les critères du microvoltage sans les donner, ce qui limite la valeur pédagogique immédiate.",
+          "L'association avec l'amylose est exacte mais un peu développée au regard de l'objectif principal, qui est d'apprendre à reconnaître le microvoltage sur l'ECG."
+        ],
+        "redondance_score": 5,
+        "suggestion_amelioration": "Remplacer la première phrase par une formulation distinguant les éléments correctement décrits des anomalies, puis préciser les critères du microvoltage (QRS < 5 mm dans toutes les dérivations frontales et/ou < 10 mm dans toutes les précordiales) et éviter de valider le QT long sans QTc mesuré.",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-R48T",
+      "num_cas": 7,
+      "score_regenere": 88.9,
+      "verdict": {
+        "adaptation_score": 4,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "Le feedback qualifie le BAV du premier degré et l'HBAG d'éléments « essentiels » alors que le diagnostic attendu annoncé est le bloc de branche droit complet ; cette hiérarchisation est discutable.",
+          "La citation donne des critères morphologiques trop rigides : en V1, un BBD complet peut prendre un aspect rsR’, rSR’ ou qR, et la morphologie de V6 est surtout caractérisée par une onde S terminale large plutôt que nécessairement par un aspect qRs.",
+          "Le conseil de « détailler chaque élément » reste générique et ne précise pas ce qui devait être documenté, notamment la durée du QRS et les critères morphologiques justifiant le caractère complet.",
+          "La déviation axiale gauche mentionnée par l'étudiant n'est pas explicitement reprise, bien qu'elle soit cohérente avec l'HBAG."
+        ],
+        "redondance_score": 5,
+        "suggestion_amelioration": "Centrer le retour sur la bonne identification du BBD complet, puis demander concrètement d'en justifier le caractère complet par un QRS ≥ 120 ms et une morphologie compatible (R’ terminale en V1–V2, onde S terminale large en I/V6), tout en confirmant brièvement le rythme sinusal, l'axe gauche/HBAG et le BAV du premier degré.",
+        "ton_pedagogique_score": 5,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-R48T",
+      "num_cas": 10,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 4,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "Le feedback reformule « axe limite gauche » en « déviation axiale gauche », ce qui est légèrement plus affirmatif que la réponse réelle de l’étudiant.",
+          "La description du BBG est globalement juste mais trop télégraphique et imprécise (« notch », « onde R exclusive ») ; elle omet aussi la discordance secondaire de repolarisation, pourtant évoquée par l’étudiant (« repolarisations en rapports », probablement pour « appropriées »).",
+          "L’insistance sur le PR normal, non noté, apporte peu après une réponse pleinement validée et détourne légèrement du principal axe d’amélioration rédactionnelle."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Féliciter pour le diagnostic complet et les éléments associés, reprendre fidèlement « axe limite gauche », puis préciser que la formulation « repolarisations en rapports » gagnerait à être remplacée par « anomalies secondaires de repolarisation discordantes au QRS », sans insister excessivement sur le PR non coté.",
+        "ton_pedagogique_score": 5,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-R48T",
+      "num_cas": 13,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 4,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "Le feedback affirme que l’étudiant a « brillamment identifié le faisceau accessoire à conduction antérograde », alors qu’il a seulement écrit « aspect de pré-excitation » : c’est compatible et validant, mais moins spécifique.",
+          "La citation sur le rythme sinusal est générique, peu utile ici et alourdit inutilement un feedback destiné à un interne.",
+          "La formulation « onde P positive dans les dérivations inférieures (D2) » est imprécise : DII est une seule dérivation, tandis que les dérivations inférieures sont DII, DIII et aVF.",
+          "Le feedback ne valorise pas la mention pertinente de l’absence de trouble de la repolarisation."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Remplacer l’affirmation trop spécifique et la citation générique par un retour concis : « Vous avez correctement reconnu un aspect de pré-excitation, compatible avec un faisceau accessoire à conduction antérograde, et décrit le rythme sinusal à 58/min, l’axe normal ainsi que l’absence de trouble de repolarisation. »",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-QHCN",
+      "num_cas": 2,
+      "score_regenere": 66.7,
+      "verdict": {
+        "adaptation_score": 2,
+        "coherence_score": 3,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "Le feedback affirme que l’étudiant a « évoqué des éléments allant dans le sens » du BAV complet, alors que sa réponse ne décrit ni dissociation auriculo-ventriculaire ni rythme d’échappement ; la bradycardie seule n’est pas spécifique.",
+          "Il reproche à l’étudiant de ne pas avoir nommé explicitement le BAV complet, ce qui est fidèle au texte libre, mais contredit le tableau du pipeline indiquant « BAV complet : trouvé » et mérite d’être signalé plutôt que présenté sans nuance.",
+          "La formulation « ondes P régulières à fréquence normale » est trop restrictive : dans un BAV complet, l’activité atriale est indépendante et souvent régulière, mais sa fréquence n’est pas nécessairement normale.",
+          "Le feedback reprend presque intégralement la liste des découvertes sans expliquer leur pertinence ni discuter les formulations potentiellement inadéquates, notamment « onde P négative » et « rythme irrégulier ».",
+          "L’emoji et la citation bibliographique alourdissent légèrement un feedback destiné à un interne sans apporter ici de réelle valeur pédagogique."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Dire clairement que la réponse décrit plusieurs anomalies mais ne formule ni ne démontre le BAV complet, puis demander de rechercher une dissociation P–QRS avec activité atriale et rythme d’échappement indépendants, en évitant de présenter la bradycardie comme un argument spécifique.",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "problematique"
+      }
+    },
+    {
+      "code": "ECG-QHCN",
+      "num_cas": 5,
+      "score_regenere": 16.7,
+      "verdict": {
+        "adaptation_score": 2,
+        "coherence_score": 3,
+        "exactitude_clinique_score": 3,
+        "problemes_detectes": [
+          "Le feedback affirme que l’étudiant a noté la bradycardie et l’irrégularité « mais ne l’a pas nommé explicitement » : formulation incohérente et probablement destinée au BAV de haut grade, pourtant crédité par le pipeline sans être explicitement formulé dans la réponse.",
+          "Il ne restitue pas le BAV de haut grade validé par le pipeline et n’explique pas le lien éventuel entre la description de l’étudiant et ce concept.",
+          "Il qualifie le BBG et les troubles de repolarisation de « corrects » alors qu’il faudrait nuancer : une hyperkaliémie sévère peut élargir le QRS et simuler un trouble de conduction, sans nécessairement constituer un véritable BBG.",
+          "La liste sémiologique de l’hyperkaliémie est incomplète et un peu rigide : disparition/aplatissement des ondes P, troubles de conduction et aspect sinusoïdal aux stades sévères devraient être évoqués; l’allongement du PR n’est pas toujours observable.",
+          "Le feedback est légèrement répétitif sur l’absence de diagnostic d’hyperkaliémie et la nécessité d’en reconnaître les signes."
+        ],
+        "redondance_score": 3,
+        "suggestion_amelioration": "Reformuler en reconnaissant précisément les éléments décrits (bradycardie, irrégularité, QRS larges/trouble de repolarisation et anomalie des P), en explicitant leur compatibilité avec une hyperkaliémie sévère et un trouble de conduction de haut grade, tout en précisant que l’aspect peut simuler un BBG plutôt que d’affirmer un BBG certain.",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "problematique"
+      }
+    },
+    {
+      "code": "ECG-QHCN",
+      "num_cas": 8,
+      "score_regenere": 0.0,
+      "verdict": {
+        "adaptation_score": 5,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "La phrase « ces éléments ne conduisent pas directement au diagnostic » est un peu trop globale : la mention d'une onde P négative pouvait constituer un indice imparfait d'activité atriale négative, notamment dans les dérivations inférieures, et méritait d'être explicitement requalifiée en ondes F plutôt que simplement écartée.",
+          "Les manœuvres vagales peuvent augmenter transitoirement le bloc AV et rendre les ondes F plus visibles, mais elles ne diagnostiquent pas à elles seules le flutter et doivent être évoquées avec prudence dans un feedback centré sur la lecture de l'ECG.",
+          "La citation théorique est légèrement longue au regard d'un score nul et pourrait être davantage transformée en conseil discriminant appliqué à la réponse de l'étudiant."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Relier explicitement l'« onde P négative » décrite par l'étudiant au bon raisonnement : rechercher plutôt des ondes F régulières en dents de scie, sans véritable ligne isoélectrique, négatives en inférieur, et préciser que la réponse ventriculaire peut être lente ou irrégulière en cas de bloc AV variable.",
+        "ton_pedagogique_score": 5,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-QHCN",
+      "num_cas": 11,
+      "score_regenere": 0.0,
+      "verdict": {
+        "adaptation_score": 5,
+        "coherence_score": 4,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "Le feedback reprend fidèlement les éléments écrits par l’étudiant et souligne correctement l’absence du diagnostic attendu.",
+          "La formule « le BBG [...] est pertinent » est ambiguë : elle peut valider à tort un diagnostic de BBG alors qu’une TV à QRS larges peut seulement en avoir la morphologie.",
+          "La règle pédagogique citée vise une tachycardie régulière à QRS larges, mais le feedback ne confronte pas explicitement les erreurs centrales de l’étudiant (« bradycardie » et « irrégulier ») à la fréquence et à la régularité réelles du tracé.",
+          "L’affirmation selon laquelle la TV peut être « prémonitoire de l’arrêt cardiaque » est globalement recevable mais imprécise ; mieux vaut parler de risque d’instabilité hémodynamique et de dégénérescence en fibrillation ventriculaire.",
+          "Le feedback est un peu long et chargé de citations pour un score nul fondé sur un unique concept diagnostique."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Remplacer la validation ambiguë du BBG par une correction ciblée : « Vous avez décrit une bradycardie irrégulière avec BBG, alors que le tracé montre une tachycardie à QRS larges ; dans ce contexte, une TV doit être retenue jusqu’à preuve du contraire », puis citer brièvement les critères observables sur ce tracé.",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-QHCN",
+      "num_cas": 14,
+      "score_regenere": 0.0,
+      "verdict": {
+        "adaptation_score": 4,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "Le feedback reprend fidèlement les éléments écrits par l’étudiant et cible correctement l’absence d’identification de l’extrasystole ventriculaire.",
+          "L’affirmation selon laquelle tous les éléments cités sont « notés correctement » est trop catégorique : une morphologie évoquant une ESV peut être prise à tort pour un BBG, et une onde P négative ne suffit pas à conclure à une morphologie non sinusale sans préciser sa dérivation et sa relation au QRS.",
+          "La mention d’un risque de troubles du rythme plus graves est générale et potentiellement anxiogène ; la portée pronostique des ESV dépend fortement du contexte clinique, de leur charge et d’une éventuelle cardiopathie sous-jacente.",
+          "Le texte est un peu long et surchargé de références au cours pour un objectif correctif simple."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Raccourcir en distinguant les observations recevables des interprétations à vérifier, puis préciser que le point clé était de reconnaître un QRS large survenant prématurément, compatible avec une extrasystole ventriculaire, plutôt que d’affirmer sans nuance que le BBG et l’onde P négative étaient corrects.",
+        "ton_pedagogique_score": 5,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-Q4T8",
+      "num_cas": 2,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 3,
+        "coherence_score": 4,
+        "exactitude_clinique_score": 3,
+        "problemes_detectes": [
+          "Le feedback reproche l'absence d'un « échappement ventriculaire » alors que l'étudiant a explicitement décrit un rythme d'échappement jonctionnel ; ce n'est pas un simple élément manqué, mais une caractérisation différente du mécanisme d'échappement.",
+          "Il affirme que l'étudiant a « noté la bradycardie », alors que celui-ci a indiqué 60 BPM sans employer ce terme ; à 60/min, parler de bradycardie est en outre discutable selon la convention retenue.",
+          "La règle « QRS fins → bloc nodal, QRS larges → bloc infrahissien » est trop catégorique : la largeur des QRS oriente surtout sur le siège ou l'origine de l'échappement, sans permettre à elle seule une localisation certaine du bloc.",
+          "La longue citation et les emojis apportent peu de valeur à un interne et alourdissent un feedback portant sur une réponse déjà complète."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Remplacer le reproche sur l'échappement ventriculaire par une nuance ciblée : « Vous avez bien identifié le BAV complet et décrit un échappement jonctionnel ; si les QRS sont réellement larges avec BBG, discutez prudemment un échappement plus distal, sans conclure sur la seule largeur des QRS. »",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-Q4T8",
+      "num_cas": 5,
+      "score_regenere": 50.0,
+      "verdict": {
+        "adaptation_score": 2,
+        "coherence_score": 3,
+        "exactitude_clinique_score": 3,
+        "problemes_detectes": [
+          "Le feedback affirme que l’étudiant « n’a pas mentionné directement le type de BAV », alors qu’il a écrit « BAV3 », abréviation usuelle de BAV du troisième degré/complet.",
+          "Il prétend que la réponse « évoque [...] le BAV complet », alors que cette formulation ne figure pas littéralement dans le texte étudiant ; elle correspond toutefois à « BAV3 ».",
+          "L’irrégularité n’est pas un critère permettant de caractériser un BAV complet ; le critère clé est la dissociation auriculo-ventriculaire, avec activité atriale et rythme d’échappement indépendants.",
+          "La citation attribuée à « Item 231, SFC » paraît imprécise ou insuffisamment vérifiable et risque de donner une fausse autorité au propos.",
+          "Le conseil final est générique et répète l’idée de nommer explicitement les diagnostics, alors que seul le diagnostic étiologique d’hyperkaliémie était réellement absent ; le type de BAV avait bien été nommé."
+        ],
+        "redondance_score": 4,
+        "ton_pedagogique_score": 4,
+        "suggestion_amelioration": "Reconnaître explicitement que « BAV3 » désigne bien un BAV complet, puis cibler l’unique lacune principale : « Vous avez identifié le BAV complet, le rythme d’échappement jonctionnel et les ondes T amples ; il fallait conclure explicitement à une hyperkaliémie, les ondes T amples et pointues étant évocatrices dans ce contexte. »",
+        "verdict_global": "problematique"
+      }
+    },
+    {
+      "code": "ECG-Q4T8",
+      "num_cas": 8,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 4,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "Le feedback reformule « flutter atrial » en « flutter droit typique », alors que la réponse de l’étudiant ne précise pas explicitement le caractère droit typique ; cette équivalence peut être admise par le correcteur, mais le texte devrait éviter de prétendre que ce qualificatif a été formulé.",
+          "La citation théorique est un peu longue et générique au regard d’une réponse déjà complète, et n’exploite pas le point spécifique du bloc 4:1 à 75/min.",
+          "La formule « cas de rang indispensable » est maladroite et peu naturelle pour un interne.",
+          "L’énoncé « cadence ventriculaire usuelle 150 bpm (2/1) » est globalement classique mais gagnerait à être contextualisé, puisque ce tracé est décrit avec une conduction 4:1 à 75/min."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Remplacer la citation générique par un retour ciblé : « Interprétation complète et structurée : flutter atrial régulier avec conduction 4:1 à 75/min, QRS fins et axe normal ; pour être encore plus précis, explicitez les critères ECG permettant de conclure à un flutter droit typique, notamment l’aspect et la polarité des ondes F. »",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-Q4T8",
+      "num_cas": 11,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 5,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 4,
+        "problemes_detectes": [
+          "La formulation « toute tachycardie régulière à QRS larges est une TV jusqu’à preuve du contraire » est une règle de prudence clinique utile, mais non un critère diagnostique absolu.",
+          "La référence précise « Item 231, SFC » est présentée comme une citation formelle sans possibilité d’en vérifier ici l’exactitude.",
+          "Le feedback est légèrement emphatique et plus long que nécessaire pour une réponse correcte et concise."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Conserver la félicitation tout en condensant le message et en formulant la règle comme une conduite prudente : « Vous identifiez correctement la tachycardie ventriculaire à 160/min, avec QRS larges et axe droit ; en pratique, une tachycardie régulière à QRS larges doit être considérée comme ventriculaire jusqu’à preuve du contraire. »",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-Q4T8",
+      "num_cas": 14,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 4,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 3,
+        "problemes_detectes": [
+          "La citation sur la polarité normale des ondes T est hors sujet par rapport au diagnostic d'extrasystole ventriculaire et n'apporte aucune valeur pédagogique au feedback.",
+          "L'affirmation citée selon laquelle les ondes T sont « positives partout sauf en aVR » est trop simplificatrice et potentiellement trompeuse, notamment pour V1 et parfois III.",
+          "Le feedback qualifie implicitement l'ensemble de l'ECG de normal alors que la présence d'une extrasystole ventriculaire constitue précisément une anomalie ; il aurait été préférable de parler de tracé sinusal par ailleurs sans anomalie décrite."
+        ],
+        "redondance_score": 5,
+        "suggestion_amelioration": "Supprimer la citation hors sujet et préciser sobrement : « Vous avez correctement identifié l'extrasystole ventriculaire et décrit de façon systématique le rythme sinusal, la fréquence, l'axe et les QRS sinusaux ; le tracé est par ailleurs sans autre anomalie décrite. »",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-P9EJ",
+      "num_cas": 2,
+      "score_regenere": 66.7,
+      "verdict": {
+        "adaptation_score": 2,
+        "coherence_score": 3,
+        "exactitude_clinique_score": 3,
+        "problemes_detectes": [
+          "Le feedback affirme que l’étudiant a « mentionné la bradycardie », alors qu’il a écrit 60 bpm, valeur limite qui ne constitue pas à elle seule une bradycardie franche.",
+          "Il lui reproche de ne pas avoir nommé explicitement le BAV complet, ce qui est fidèle au texte libre mais contredit directement le tableau du pipeline indiquant « BAV complet : trouvé » ; cette discordance aurait dû être signalée ou résolue.",
+          "Le feedback ne relève pas le principal contresens de la réponse : « onde P avec QRS et QRS après onde P » décrit une association/conduction P-QRS plutôt que la dissociation auriculo-ventriculaire caractéristique du BAV complet.",
+          "L’expression « courants de lésion sous-endocardique et sous-épicardique » est attribuée à l’étudiant alors qu’il a décrit un sus-décalage inférieur et un sous-décalage en miroir en V2 ; cette reformulation est imprécise et le caractère réellement « en miroir » de V2 n’est pas discuté.",
+          "La formulation sur l’échappement est trop catégorique : tout BAV complet comporte un rythme d’échappement, mais avec une fréquence à 60 bpm et sans analyse morphologique détaillée, il ne faut pas nécessairement exiger l’étiquette spécifique d’« échappement ventriculaire ».",
+          "Les deux citations alourdissent le texte et répètent largement la même notion sans traiter suffisamment l’erreur centrale de dissociation P-QRS."
+        ],
+        "redondance_score": 3,
+        "suggestion_amelioration": "Recentrer le feedback sur l’erreur décisive : « Vous avez bien repéré les QRS larges et les anomalies de ST, mais votre description suggère une relation P-QRS ; pour conclure à un BAV complet, il faut décrire explicitement une dissociation auriculo-ventriculaire avec ondes P et QRS réguliers mais indépendants, puis caractériser le rythme d’échappement sans le qualifier de ventriculaire si les données ne le permettent pas. »",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "problematique"
+      }
+    },
+    {
+      "code": "ECG-OSCK",
+      "num_cas": 3,
+      "score_regenere": 0.0,
+      "verdict": {
+        "adaptation_score": 3,
+        "coherence_score": 4,
+        "exactitude_clinique_score": 2,
+        "problemes_detectes": [
+          "Le feedback affirme à tort qu’une tachycardie complètement irrégulière à QRS fins impose comme seul diagnostic une fibrillation atriale : un flutter à conduction variable peut aussi produire une réponse ventriculaire irrégulière à QRS fins.",
+          "Il minimise la pertinence des ondes F décrites par l’étudiant, alors que cette observation soutient précisément son diagnostic de flutter et devrait être discutée plutôt que simplement écartée.",
+          "La formulation « ce qui n’est pas le cas ici » affirme l’absence d’activité atriale organisée sans expliciter les éléments ECG permettant de réfuter les ondes F rapportées.",
+          "Le feedback répète plusieurs fois la nécessité de distinguer FA et flutter sans apporter de critère supplémentaire."
+        ],
+        "redondance_score": 3,
+        "suggestion_amelioration": "Reconnaître que l’étudiant a proposé un diagnostic différentiel plausible à partir d’ondes F inférieures et d’une conduction variable, puis expliquer précisément pourquoi, sur ce tracé, l’activité atriale est jugée désorganisée et l’irrégularité ventriculaire compatible avec une FA, sans présenter la FA comme l’unique cause possible d’une tachycardie irrégulière à QRS fins.",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "problematique"
+      }
+    },
+    {
+      "code": "ECG-OSCK",
+      "num_cas": 6,
+      "score_regenere": 50.0,
+      "verdict": {
+        "adaptation_score": 4,
+        "coherence_score": 4,
+        "exactitude_clinique_score": 3,
+        "problemes_detectes": [
+          "Le feedback présente le bloc fasciculaire antérieur gauche comme « indispensable », alors que le diagnostic attendu affiché est la stimulation atriale ; cette formulation survalorise un élément associé.",
+          "Le critère « QRS élargi (> 100 ms) » pour l'hémibloc antérieur gauche est imprécis et potentiellement trompeur : un bloc fasciculaire antérieur gauche isolé n'impose pas un QRS élargi, et le diagnostic repose surtout sur la déviation axiale gauche et la morphologie compatible.",
+          "La mention du bloc intraventriculaire aspécifique, simple descripteur indicatif non retrouvé, alourdit le feedback et peut laisser croire qu'il fallait poser simultanément ce diagnostic avec le bloc fasciculaire.",
+          "La citation sur le spike est générale et ne précise pas que, pour conclure à une stimulation atriale, il faut relier le spike à une dépolarisation atriale."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Féliciter brièvement l'étudiant pour l'identification correcte de la stimulation atriale, puis signaler comme point complémentaire le bloc fasciculaire antérieur gauche en donnant ses critères fiables (axe gauche marqué et morphologie qR en I/aVL, rS en II-III-aVF), sans exiger un QRS > 100 ms ni insister sur le bloc intraventriculaire aspécifique.",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    },
+    {
+      "code": "ECG-OSCK",
+      "num_cas": 9,
+      "score_regenere": 33.3,
+      "verdict": {
+        "adaptation_score": 2,
+        "coherence_score": 2,
+        "exactitude_clinique_score": 3,
+        "problemes_detectes": [
+          "Le feedback affirme que l’étudiant n’a pas explicitement nommé le Mobitz 2, alors que le pipeline classe précisément ce concept comme trouvé ; surtout, l’étudiant décrit des « ondes P bloquées par intermittence », ce qui ne suffit certes pas à typer formellement le BAV mais ne doit pas être présenté comme une simple allusion générique aux troubles de conduction.",
+          "Contradiction entre « a partiellement identifié le diagnostic principal » et « sans nommer explicitement le Mobitz 2 », alors que l’unique concept validant est indiqué comme trouvé.",
+          "Le feedback valide comme correcte la mention d’un bloc fasciculaire antérieur gauche, tout en reprochant l’absence d’un bloc fasciculaire postérieur gauche ; ces diagnostics sont opposés et cette juxtaposition exige une explication fondée sur les critères ECG, faute de quoi elle est déroutante.",
+          "La formulation « PR fixe avant le blocage d’une onde P » est imprécise : dans un Mobitz II, les intervalles PR des ondes P conduites restent constants, avec survenue intermittente d’ondes P non conduites.",
+          "Le conseil final est assez générique et ne dit pas concrètement comment passer de la description d’ondes P bloquées au diagnostic explicite de BAV du 2e degré Mobitz II."
+        ],
+        "redondance_score": 4,
+        "suggestion_amelioration": "Reconnaître que l’étudiant a bien repéré des ondes P intermittentes non conduites, puis préciser qu’il devait conclure explicitement à un BAV du 2e degré Mobitz II en vérifiant la constance des PR conduits, et expliquer sur des critères ECG pourquoi le bloc fasciculaire antérieur proposé doit être remplacé par un bloc fasciculaire postérieur associé à un bloc de branche droit.",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "problematique"
+      }
+    },
+    {
+      "code": "ECG-OSCK",
+      "num_cas": 12,
+      "score_regenere": 100.0,
+      "verdict": {
+        "adaptation_score": 4,
+        "coherence_score": 5,
+        "exactitude_clinique_score": 3,
+        "problemes_detectes": [
+          "Le feedback transforme « 58 bpm » en bradycardie explicitement mentionnée, alors que l’étudiant a seulement donné la fréquence ; 58/min correspond au mieux à une bradycardie légère selon la convention retenue.",
+          "Il affirme que l’étudiant a explicitement mentionné un « courant de lésion sous-épicardique » et un « infarctus du myocarde à la phase aiguë », formulations absentes de sa réponse, même si elles sont proches de son sus-décalage ST et de son diagnostic de SCA ST+.",
+          "Les seuils cités « ≥2 mm en V1-V3, ≥1 mm ailleurs » sont trop simplifiés et imparfaits : les critères contemporains dépendent notamment du sexe et de l’âge en V2-V3, et non uniformément de V1-V3.",
+          "La formule « onde de Pardee = sus-décalage englobant l’onde T » est réductrice et peu standardisée.",
+          "Le feedback est très laudatif et un peu générique ; il ne relève pas les imprécisions de formulation ou de topographie dans la réponse étudiante."
+        ],
+        "redondance_score": 3,
+        "suggestion_amelioration": "Féliciter plus sobrement l’étudiant pour l’identification du SCA ST+ antérieur étendu, reprendre uniquement les signes qu’il a réellement écrits, puis corriger brièvement la topographie et rappeler que les seuils de sus-décalage en V2-V3 varient selon l’âge et le sexe.",
+        "ton_pedagogique_score": 4,
+        "verdict_global": "acceptable"
+      }
+    }
+  ]
+}

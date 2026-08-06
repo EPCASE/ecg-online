@@ -8946,14 +8946,6 @@
     },
     {
       "ontology_id": "PRESENCE_D_ONDE_Q_PATHOLOGIQUE",
-      "surface_form": "Aspect QS",
-      "source_type": "synonym",
-      "concept_name": "Presence d'onde Q pathologique",
-      "categorie": "DESCRIPTION_ECG",
-      "poids": 2
-    },
-    {
-      "ontology_id": "PRESENCE_D_ONDE_Q_PATHOLOGIQUE",
       "surface_form": "Onde Q de nécrose",
       "source_type": "synonym",
       "concept_name": "Presence d'onde Q pathologique",

@@ -71,10 +71,31 @@ NEGATION_CREDIT: float = 0.0
 
 # ─────────────────────────── Rattrapage lexical (rag_pipeline/candidate_report.py) ──
 
-# Longueur minimale (en mots) d'un synonyme pour être éligible au rattrapage
-# lexical déterministe post-NER. Un synonyme trop court (« bloc », « onde »)
-# risquerait un faux positif ; les vrais oublis du NER sont des expressions
-# multi-mots distinctives.
+# Un synonyme est éligible au rattrapage lexical déterministe post-NER s'il
+# contient au moins un mot « spécifique » — c'est-à-dire un mot dont la
+# fréquence documentaire (DF = nombre de concepts DISTINCTS de l'ontologie
+# utilisant ce mot dans leur nom canonique ou un de leurs synonymes) est
+# inférieure ou égale à ce seuil. Calcul 100 % dérivé de l'ontologie (pas de
+# liste de mots figée en dur, donc indépendant de la langue et du domaine —
+# fonctionne pareil si l'ontologie est étendue ou traduite).
+#
+# Historique : la règle précédente ("≥ 3 mots pour être éligible") a raté un
+# vrai cas ("Echappement ventriculaire" écrit mot pour mot par 3 étudiants
+# distincts, jamais rattrapé car ce synonyme canonique ne fait que 2 mots).
+# Le vrai critère de risque n'est pas la LONGUEUR du synonyme mais la
+# SPÉCIFICITÉ de ses mots : "ventriculaire" apparaît dans 56 concepts de
+# l'ontologie (générique, ne doit jamais suffire seul), alors que
+# "échappement" n'apparaît que dans 4 concepts (DF=4, largement assez
+# spécifique pour ancrer un rattrapage sans risque de faux positif).
+# Seuil retenu (DF<=4) : validé empiriquement sur l'ontologie V2 (349 formes
+# à 2 mots) — rend éligibles les synonymes cliniquement distinctifs à 2 mots
+# ("Echappement ventriculaire", DF=4) sans ouvrir la porte aux combinaisons
+# purement génériques ("bloc"=24, "onde"=38, "gauche"=26, "ventriculaire"=56
+# restent tous au-dessus du seuil et donc jamais suffisants seuls).
+BACKSTOP_MAX_WORD_DOCUMENT_FREQUENCY: int = 4
+
+# Ancienne constante (dépréciée, conservée pour compat descendante si du code
+# externe l'importe encore) — ne plus utiliser, cf. remplacement ci-dessus.
 BACKSTOP_MIN_DISTINCTIVE_WORDS: int = 3
 
 # ─────────────────────────── Affichage (rapport HTML / synthèse texte) ────────────

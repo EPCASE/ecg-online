@@ -1,0 +1,3779 @@
+{
+  "generated_at": "2026-08-06 22:46:27",
+  "pipeline_version": "RAG Neurosymbolique v1.1 (C1+C2) — rejoué depuis ECG lecture/rag_pipeline",
+  "golden_source": "C:\\Users\\Administrateur\\ECG collector\\corrections\\golden.json",
+  "n_items": 100,
+  "n_errors": 0,
+  "items": [
+    {
+      "code": "ECG-ZKB9",
+      "num_cas": 2,
+      "reponse_etudiant": "Bradycardie\nBAV 3\nDéviation axiale gauche\nEchappement jonctionnel\nOnde Q antérolatérale et inférieure",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:33:40",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "BAV complet",
+      "commentaire_ia": "Vous avez parfaitement identifié le diagnostic principal de BAV complet, ce qui est un point indispensable pour ce cas. 📖 « BAV 3e degré (complet) : dissociation complète entre P et QRS. Ondes P régulières à fréquence normale, QRS à rythme d'échappement. » — (Item 231, SFC). Vous avez également mentionné explicitement des concepts supplémentaires comme la bradycardie, le rythme d'échappement jonctionnel, la présence d'onde Q pathologique et la déviation axiale gauche, ce qui démontre une excellente compréhension des caractéristiques ECG associées. L'échappement ventriculaire n'a pas été mentionné, mais cela n'affecte pas votre score parfait dans l'évaluation de ce cas. Continuez sur cette lancée, votre compréhension des diagnostics ECG est solide !",
+      "validant_details": [
+        {
+          "golden_name": "BAV complet",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Echappement ventriculaire",
+          "found": false
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "Bradycardie"
+        },
+        {
+          "concept_name": "Rythme d'échappement jonctionnel"
+        },
+        {
+          "concept_name": "Presence d'onde Q pathologique"
+        },
+        {
+          "concept_name": "Déviation axiale gauche"
+        }
+      ]
+    },
+    {
+      "code": "ECG-ZKB9",
+      "num_cas": 5,
+      "reponse_etudiant": "Bradycardie\nOnde T ample et symétrique\nBAV 2 M2\nQRS élargis\nEvoque une hyperkaliémie",
+      "score_pipeline_batch_ancien": 66.7,
+      "generated_at_original": "2026-07-04 05:33:40",
+      "score_regenere": 66.7,
+      "diagnostic_principal_golden": "Hyperkaliémie",
+      "commentaire_ia": "Votre réponse montre une bonne compréhension des éléments clés de l'ECG en lien avec l'hyperkaliémie. Vous avez identifié l'hyperkaliémie de manière correcte, ce qui est essentiel. 📖 « L'hyperkaliémie donne : onde T ample, pointue, symétrique, allongement PR, élargissement QRS. Risque : BAV, TV, dysfonction sinusale. » (Item 231, SFC). Vous avez également mentionné des critères importants comme l'onde T ample et les QRS élargis. Concernant le bloc auriculo-ventriculaire (BAV), votre réponse évoque une bradycardie et un BAV 2 Mobitz 2, ce qui peut orienter vers un BAV de haut grade, sans toutefois le nommer explicitement comme tel. 📖 « BAV 2e degré Mobitz 2 : PR fixe avant le blocage d'une onde P. Siège infrahissien, souvent QRS larges. » (Item 231, SFC).\n\nPour progresser, assurez-vous de bien distinguer les différents types de BAV et leur implication clinique. Continuez à vous familiariser avec ces distinctions pour renforcer votre diagnostic.",
+      "validant_details": [
+        {
+          "golden_name": "Hyperkaliémie",
+          "found": true,
+          "score_pct": 100.0
+        },
+        {
+          "golden_name": "BAV de haut grade",
+          "found": true,
+          "score_pct": 33.3
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "Bradycardie"
+        },
+        {
+          "concept_name": "BAV 2 Mobitz 2"
+        },
+        {
+          "concept_name": "QRS large"
+        },
+        {
+          "concept_name": "Onde T ample"
+        }
+      ]
+    },
+    {
+      "code": "ECG-ZKB9",
+      "num_cas": 8,
+      "reponse_etudiant": "Flutter commun antihoraire",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:33:40",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Flutter droit typique",
+      "commentaire_ia": "Vous avez parfaitement identifié le diagnostic principal de ce cas, le flutter droit typique, ce qui est excellent car c'est un point indispensable pour l'évaluation. 📖 « Les flutters atriaux correspondent à une boucle d'activation atriale se répétant à l'identique. Activité monomorphe ~300 bpm, aspect en dents de scie. Flutter typique : F négatives en inférieur. » — (Item 231, SFC). Continuez de réviser les détails du flutter atrial, comme leur présentation sur l'ECG, pour maintenir cette excellente qualité de diagnostic. Bravo pour votre travail ! 🎉",
+      "validant_details": [
+        {
+          "golden_name": "Flutter droit typique",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "Flutter atrial antihoraire"
+        }
+      ]
+    },
+    {
+      "code": "ECG-ZKB9",
+      "num_cas": 11,
+      "reponse_etudiant": "Tachycardie ventriculaire régulière\nDéviation axiale droite",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:33:40",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Tachycardie ventriculaire",
+      "commentaire_ia": "Vous avez correctement identifié la tachycardie ventriculaire, un point essentiel pour ce cas. Cette identification est cruciale car 📖 « toute tachycardie régulière à QRS larges est une TV jusqu'à preuve du contraire » — (Item 231, SFC). Vous avez également noté la déviation axiale droite et le rythme régulier, qui sont des éléments pertinents bien que non notés pour ce cas spécifique. Votre analyse montre une bonne compréhension des critères ECG associés à la tachycardie ventriculaire. Continuez sur cette voie pour maîtriser les cas ECG complexes. Bravo pour votre travail remarquable ! 🌟",
+      "validant_details": [
+        {
+          "golden_name": "Tachycardie ventriculaire",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "Déviation axiale droite"
+        },
+        {
+          "concept_name": "rythme régulier"
+        }
+      ]
+    },
+    {
+      "code": "ECG-ZKB9",
+      "num_cas": 14,
+      "reponse_etudiant": "Rythme irrégulier\nExtrasystoles à QRS larges\nExtrasystoles ventriculaires",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:33:40",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Extrasystole ventriculaire",
+      "commentaire_ia": "Vous avez parfaitement identifié le diagnostic principal de ce cas, l'extrasystole ventriculaire, ce qui est un point indispensable. 📖 « Les ESV sont des QRS larges prématurés » (Item 231, SFC), et vous avez également mentionné explicitement que le rythme est irrégulier et que les QRS sont larges, ce qui renforce votre compréhension de cette pathologie. Votre capacité à reconnaître ces caractéristiques clés démontre une solide maîtrise du sujet. Continuez à vous appuyer sur ces compétences analytiques pour aborder les ECG avec confiance. Bravo pour votre excellent travail ! 🎉",
+      "validant_details": [
+        {
+          "golden_name": "Extrasystole ventriculaire",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "Irrégulier"
+        },
+        {
+          "concept_name": "QRS large"
+        }
+      ]
+    },
+    {
+      "code": "ECG-Z8C5",
+      "num_cas": 1,
+      "reponse_etudiant": "Rythme sinusal a 62 bm régulier pas d’anomalie visible",
+      "score_pipeline_batch_ancien": 50.0,
+      "generated_at_original": "2026-07-04 05:33:10",
+      "score_regenere": 25.0,
+      "diagnostic_principal_golden": "ECG normal",
+      "commentaire_ia": "Vous avez mentionné un rythme sinusal régulier à 62 bpm, ce qui est correct et va dans le sens d'un ECG normal. Cependant, pour affirmer qu'un ECG est normal, il est indispensable de vérifier systématiquement tous les paramètres, y compris la conduction, l'axe et la repolarisation. 📖 « Affirmer qu'un ECG est normal impose d'être systématique sur tous les paramètres : rythme, conduction (PR/QRS/QT), axe, repolarisation. » (Item 231, SFC). Vous avez bien noté une fréquence normale et un rythme sinusal, mais vous n'avez pas explicitement nommé l'ECG normal, ni évalué d'autres critères comme la repolarisation ou la présence d'un bloc interatrial. Pour améliorer votre analyse, assurez-vous de passer en revue chaque critère de manière systématique afin de confirmer l'absence d'anomalies.",
+      "validant_details": [
+        {
+          "golden_name": "ECG normal",
+          "found": true,
+          "score_pct": 25.0
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Bloc interatrial",
+          "found": false
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "Frequence normale"
+        },
+        {
+          "concept_name": "Rythme sinusal"
+        }
+      ]
+    },
+    {
+      "code": "ECG-YEUE",
+      "num_cas": 1,
+      "reponse_etudiant": "Rythme régulier, onde P négative ou diphasique en inférieur, rythme provenant probablement du sinus coronaire, PR normal, QRS fins, aspect QS en DIII, axe normal, pas d'HVG, FC a 60bpm, pas de trouble de repolarisation",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:33:09",
+      "score_regenere": 0.0,
+      "diagnostic_principal_golden": "ECG normal",
+      "commentaire_ia": "Votre analyse de l'ECG présente des éléments corrects mais contient une erreur importante qui a conduit à l'exclusion du diagnostic principal d'un ECG normal. Vous avez mentionné une « morphologie de l'onde P non sinusale », ce qui contredit la présence d'un rythme sinusal normal et, par conséquent, l'interprétation d'un ECG normal. 📖 « Sur un ECG normal, les ondes T sont positives partout sauf en aVR (et parfois D3, aVL ou V1 selon l'orientation du cœur) » — (Item 231, SFC). De plus, l'affirmation d'un ECG normal exige une approche systématique incluant tous les paramètres comme le rythme, la conduction et la repolarisation, ce qui n'a pas été complètement réalisé ici. Vous avez correctement identifié un bloc interatrial, ce qui est un point pertinent mais non noté pour ce cas. Pour progresser, je vous encourage à revoir la systématisation des critères pour affirmer la normalité d'un ECG et à bien vérifier chaque élément pour éviter les conclusions hâtives.",
+      "validant_details": [
+        {
+          "golden_name": "ECG normal",
+          "found": false,
+          "score_pct": 0.0
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Bloc interatrial",
+          "found": true
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "rythme régulier"
+        },
+        {
+          "concept_name": "PR normal"
+        },
+        {
+          "concept_name": "QRS fins"
+        },
+        {
+          "concept_name": "Morphologie de l'onde P non sinusale"
+        },
+        {
+          "concept_name": "Frequence normale"
+        },
+        {
+          "concept_name": "Voltage normal du QRS"
+        },
+        {
+          "concept_name": "Rythme"
+        },
+        {
+          "concept_name": "Axe normal du QRS"
+        }
+      ]
+    },
+    {
+      "code": "ECG-YEUE",
+      "num_cas": 4,
+      "reponse_etudiant": "Rythme régulier, sinusal, BAV I avec PR allongé fixe a 220ms, QRS fins, pas d'HVG, microvoltés diffus, axe normal, aspect QS en V1, V2, pas de trouble de repolarisation, FC a 70bpm",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:33:09",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Microvoltage",
+      "commentaire_ia": "Très bien, vous avez identifié correctement le diagnostic principal de microvoltage, ce qui est un point important pour cet ECG. En lien avec cela, vous avez aussi mentionné l'amylose, qui est associée au microvoltage selon le cours : 📖 « L'amylose cardiaque associe classiquement un microvoltage électrique à un épaississement pariétal important en échographie, discordance évocatrice du diagnostic. » (Item 231, SFC). Vous avez également noté le bloc auriculo-ventriculaire de type 1 avec un PR allongé, ce qui est conforme à l'extrait suivant : 📖 « Le BAV1 est un allongement fixe et constant de PR > 200 ms sans onde P bloquée. » (Item 231, SFC). Bien que la perte des ondes Q septales ne soit pas mentionnée, cela n'impacte pas votre évaluation dans ce cas précis. Vous avez fait un excellent travail en notant des détails supplémentaires comme le rythme sinusal, les QRS fins, et l'axe normal, ce qui montre une bonne compréhension de l'ECG. Continuez à pratiquer pour maintenir ce niveau de précision et de compréhension! 🎉",
+      "validant_details": [
+        {
+          "golden_name": "Microvoltage",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Amylose",
+          "found": true
+        },
+        {
+          "golden_name": "BAV de type 1",
+          "found": true
+        },
+        {
+          "golden_name": "Perte des onde Q septales",
+          "found": false
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "Rythme sinusal"
+        },
+        {
+          "concept_name": "ECG normal"
+        },
+        {
+          "concept_name": "QRS fins"
+        },
+        {
+          "concept_name": "PR allongé"
+        },
+        {
+          "concept_name": "Frequence normale"
+        },
+        {
+          "concept_name": "Voltage normal du QRS"
+        },
+        {
+          "concept_name": "Axe normal du QRS"
+        },
+        {
+          "concept_name": "Rabotage de l'onde R"
+        }
+      ]
+    },
+    {
+      "code": "ECG-YEUE",
+      "num_cas": 7,
+      "reponse_etudiant": "Rythme sinusal, régulier, BAV I avec PR fixe à 240ms, QRS larges à 160 ms, type bloc de branche droit complet, axe gauche, hemibloc antérieur gauche, repolarisation en rapport avec le bloc de branche droit, FC à 75bpm",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:33:09",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Bloc de branche droit complet",
+      "commentaire_ia": "Vous avez parfaitement identifié les éléments clés de cet ECG. Vous avez mentionné de manière précise le bloc de branche droit complet, ce qui est essentiel, car 📖 « Le bloc complet de branche droite se caractérise par : QRS > 120 ms, en V1 QRS globalement positif avec aspect RsR', en V6 aspect qRs avec onde S traînante » — (Item 231, SFC). Vous avez également correctement identifié le BAV de type 1, en notant que le PR est allongé à 240 ms, ce qui est conforme à 📖 « Le BAV1 est un allongement fixe et constant de PR > 200 ms sans onde P bloquée » — (Item 231, SFC). De plus, vous avez reconnu l'hémibloc antérieur gauche, caractérisé par la déviation axiale gauche, conformément à 📖 « L'HBAG est caractérisé par un QRS > 100 ms avec déviation axiale gauche au-delà de −30° » — (Item 231, SFC).\n\nEn plus de ces concepts clés, vous avez explicitement mentionné d'autres éléments pertinents tels que le rythme sinusal, les QRS larges, le PR allongé, la déviation axiale gauche et la fréquence cardiaque normale. Votre réponse démontre une compréhension complète et précise de l'ECG présenté, ce qui est excellent. Continuez sur cette voie, votre attention aux détails est remarquable ! 🎉",
+      "validant_details": [
+        {
+          "golden_name": "Bloc de branche droit complet",
+          "found": true,
+          "score_pct": 100.0
+        },
+        {
+          "golden_name": "BAV de type 1",
+          "found": true,
+          "score_pct": 100.0
+        },
+        {
+          "golden_name": "Bloc fasciculaire antérieur gauche",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "Rythme sinusal"
+        },
+        {
+          "concept_name": "QRS large"
+        },
+        {
+          "concept_name": "PR allongé"
+        },
+        {
+          "concept_name": "Déviation axiale gauche"
+        },
+        {
+          "concept_name": "Frequence normale"
+        }
+      ]
+    },
+    {
+      "code": "ECG-YEUE",
+      "num_cas": 10,
+      "reponse_etudiant": "Rythme sinusal, régulier, PR normal, QRS larges à 120ms type bloc de branche gauche complet, axe gauche, discordance approprié, FC à 80bpm",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:33:09",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Bloc de branche gauche complet",
+      "commentaire_ia": "Vous avez parfaitement identifié le diagnostic principal de bloc de branche gauche complet, en mentionnant explicitement les critères essentiels tels que le QRS large à 120 ms et la discordance appropriée. 📖 « Le BBG complet se caractérise par : QRS > 120 ms, en V1 QRS négatif (rS ou QS), en V6/D1/aVL notch avec onde R exclusive » — (Item 231, SFC). Vos observations sur le rythme sinusal et le PR normal sont également correctes et bien notées.\n\nVous avez également mentionné des concepts complémentaires comme la déviation axiale gauche, la fréquence cardiaque normale et le QRS large, qui sont tous pertinents pour compléter le tableau de votre interprétation ECG. Tout cela démontre une solide compréhension des éléments clés de l'analyse ECG. Continuez à garder cette rigueur et précision dans vos futures interprétations. Félicitations pour ce travail impeccable ! 🎉",
+      "validant_details": [
+        {
+          "golden_name": "Bloc de branche gauche complet",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Rythme sinusal",
+          "found": true
+        },
+        {
+          "golden_name": "PR normal",
+          "found": true
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "Déviation axiale gauche"
+        },
+        {
+          "concept_name": "Frequence normale"
+        },
+        {
+          "concept_name": "QRS large"
+        }
+      ]
+    },
+    {
+      "code": "ECG-YEUE",
+      "num_cas": 13,
+      "reponse_etudiant": "Rythme sinusal, régulier, aspect de PR court en lien avec une onde delta de pre-excitation ventriculaire, onde Q en AVL probablement en miroir de l'Inde delta, axe des QRS normal, 60bpm, onde T négative en V1, V2, AVL, QT normal\nECG évocateur de Wolff Parkinson White (Faisceau de Kent)",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:33:09",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Faisceau accessoire à conduction antérograde",
+      "commentaire_ia": "Vous avez brillamment identifié le diagnostic principal de faisceau accessoire à conduction antérograde, qui est un point important du cas. Votre analyse est précise et vous avez correctement mentionné plusieurs éléments clés qui supportent ce diagnostic. Vous avez noté un PR court et une onde delta, qui sont des signes caractéristiques de la préexcitation. 📖 « La préexcitation se manifeste par un PR court < 120 ms et une onde δ » — (Item 231, SFC). Vous avez également identifié d'autres détails pertinents comme l'axe normal des QRS, le rythme sinusal et une fréquence cardiaque normale, ce qui montre une bonne compréhension de l'ECG de base. De plus, l'onde T négative et le QT normal que vous avez mentionnés ajoutent des précisions utiles à votre interprétation. Votre capacité à intégrer ces éléments pour évoquer le syndrome de Wolff-Parkinson-White est excellente. Continuez sur cette voie, vous démontrez une solide maîtrise des concepts ECG essentiels ! 😊",
+      "validant_details": [
+        {
+          "golden_name": "Faisceau accessoire à conduction antérograde",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "PR court"
+        },
+        {
+          "concept_name": "QT normal"
+        },
+        {
+          "concept_name": "Onde T négative"
+        },
+        {
+          "concept_name": "Rythme sinusal"
+        },
+        {
+          "concept_name": "Frequence normale"
+        },
+        {
+          "concept_name": "Onde delta"
+        },
+        {
+          "concept_name": "Axe normal du QRS"
+        }
+      ]
+    },
+    {
+      "code": "ECG-XRQP",
+      "num_cas": 3,
+      "reponse_etudiant": "Rythme non sinusal irrégulier\nTachycardie à 150 bpm à QRS fin de cause probable atriale \nAxe du coeur normal\nSus-décalage segment ST V1-V3 miroir D1-D2: probable syndrome coronarien aigu ST+ en territoire antérieur",
+      "score_pipeline_batch_ancien": 66.7,
+      "generated_at_original": "2026-07-04 05:32:21",
+      "score_regenere": 66.7,
+      "diagnostic_principal_golden": "Fibrillation atriale",
+      "commentaire_ia": "Vous avez partiellement évoqué la fibrillation atriale en notant un rythme irrégulier, ce qui constitue un critère important, mais vous n'avez pas nommé explicitement ce diagnostic indispensable. Il est essentiel de se rappeler que 📖 « la fibrillation atriale est le seul diagnostic en cas de tachycardie complètement irrégulière à QRS fins » — (Item 231, SFC). Vous avez correctement mentionné d'autres éléments, tels que la tachycardie, l'arythmie atriale, et le syndrome coronarien aigu avec sus-décalage du segment ST. Cependant, la notion de repolarisation précoce, un diagnostic différentiel important du sus-décalage ST, n'a pas été abordée. Cela peut être pertinent car 📖 « la repolarisation précoce donne un sus-décalage ST dans les dérivations inférolatérales » — (Item 231, SFC). Je vous encourage à bien réviser ces concepts afin de renforcer votre compréhension des diagnostics ECG.",
+      "validant_details": [
+        {
+          "golden_name": "Fibrillation atriale",
+          "found": true,
+          "score_pct": 66.7
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Repolarisation précoce",
+          "found": false
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "Irrégulier"
+        },
+        {
+          "concept_name": "Syndrome coronarien à la phase aigue avec sus-décalage du segment ST"
+        },
+        {
+          "concept_name": "Antérieur"
+        },
+        {
+          "concept_name": "Tachycardie atriale"
+        },
+        {
+          "concept_name": "Courant de lésion sous-épicardique"
+        },
+        {
+          "concept_name": "Arythmie atriale"
+        },
+        {
+          "concept_name": "Tachycardie"
+        },
+        {
+          "concept_name": "QRS fins"
+        },
+        {
+          "concept_name": "Miroir"
+        },
+        {
+          "concept_name": "Axe normal du QRS"
+        }
+      ]
+    },
+    {
+      "code": "ECG-WY55",
+      "num_cas": 1,
+      "reponse_etudiant": "ECG normal : rythme sinusal, régulier, QRS fins, pas de trouble de la repolarisation, pas de séquelle de nécrose, PR normal, QTc normal",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:32:13",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "ECG normal",
+      "commentaire_ia": "Votre analyse de l'ECG est excellente. Vous avez correctement identifié un ECG normal, un point indispensable pour les EDN, en mentionnant explicitement tous les critères essentiels : rythme sinusal, QRS fins, pas de trouble de la repolarisation, PR et QTc normaux, ainsi que l'absence de séquelles de nécrose. 📖 « Affirmer qu'un ECG est normal impose d'être systématique sur tous les paramètres : rythme, conduction (PR/QRS/QT), axe, repolarisation. » — (Item 231, SFC). Vous avez également bien noté le rythme sinusal, en accord avec les critères : « Le rythme sinusal est défini par une onde P positive en D2, D3, aVF avec un QRS après chaque P et une P avant chaque QRS. » — (Item 231, SFC). Bien que le bloc interatrial n'ait pas été mentionné, cela n'affecte pas votre interprétation principale ici. Continuez à pratiquer votre approche systématique pour maintenir ce niveau de précision. Bravo pour ce travail rigoureux et complet !",
+      "validant_details": [
+        {
+          "golden_name": "ECG normal",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Bloc interatrial",
+          "found": false
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "PR normal"
+        },
+        {
+          "concept_name": "QT normal"
+        },
+        {
+          "concept_name": "QRS fins"
+        },
+        {
+          "concept_name": "Rythme sinusal"
+        }
+      ]
+    },
+    {
+      "code": "ECG-WY55",
+      "num_cas": 2,
+      "reponse_etudiant": "BAV3 avec échappement ventriculaire large",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:32:13",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "BAV complet",
+      "commentaire_ia": "Vous avez parfaitement identifié le diagnostic principal de BAV complet, ce qui est essentiel pour ce cas et reflète une bonne compréhension de l'ECG. 📖 « Dissociation complète entre P et QRS. Ondes P régulières à fréquence normale, QRS à rythme d'échappement. QRS fins → bloc nodal, QRS larges → bloc infrahissien. » (Item 231, SFC). Vous avez également noté l'échappement ventriculaire, ainsi que la présence de QRS larges, ce qui est conforme à un bloc infrahissien. Cela démontre une analyse complète et précise des caractéristiques ECG associées au BAV complet. Félicitations pour cette interprétation précise et complète ! 🎉 Continuez ainsi dans vos révisions.",
+      "validant_details": [
+        {
+          "golden_name": "BAV complet",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Echappement ventriculaire",
+          "found": true
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "QRS large"
+        }
+      ]
+    },
+    {
+      "code": "ECG-WY55",
+      "num_cas": 3,
+      "reponse_etudiant": "FA rapide, QRS fins, pas de trouble de la repolarisation",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:32:13",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Fibrillation atriale",
+      "commentaire_ia": "Vous avez identifié avec précision la fibrillation atriale, un point indispensable pour ce diagnostic. Bravo pour cette identification claire ! Vous avez également noté explicitement la tachycardie et les QRS fins, ce qui est pertinent et montre une bonne compréhension des caractéristiques ECG associées à la fibrillation atriale. Toutefois, vous n'avez pas mentionné la repolarisation précoce. 📖 « La repolarisation précoce donne un sus-décalage ST dans les dérivations inférolatérales. C'est un diagnostic différentiel du SCA et de la péricardite. » — (Item 231, SFC). Cela aurait été un point complémentaire intéressant à inclure. Continuez à approfondir votre analyse ECG pour renforcer votre capacité à identifier toutes les nuances possibles. Globalement, excellent travail ! 🎉",
+      "validant_details": [
+        {
+          "golden_name": "Fibrillation atriale",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Repolarisation précoce",
+          "found": false
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "Tachycardie"
+        },
+        {
+          "concept_name": "QRS fins"
+        },
+        {
+          "concept_name": "ECG normal"
+        }
+      ]
+    },
+    {
+      "code": "ECG-WY55",
+      "num_cas": 4,
+      "reponse_etudiant": "Rythme sinusal, BAV1, microvoltage, QS antérieur, suspicion d'amylose",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:32:13",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Microvoltage",
+      "commentaire_ia": "Vous avez fait un excellent travail en identifiant correctement le microvoltage, qui est un point important à noter dans ce cas. Vous avez également mentionné l'amylose, ce qui est un bon complément au diagnostic de microvoltage, car 📖 « l'amylose cardiaque associe classiquement un microvoltage électrique à un épaississement pariétal important en échographie, discordance évocatrice du diagnostic » — (Item 231, SFC). Vous avez noté le BAV de type 1, ce qui démontre une bonne compréhension de l'ECG, et vous avez bien mentionné le rythme sinusal. Cependant, vous n'avez pas mentionné la perte des ondes Q septales, ce qui pourrait être un élément à garder à l'esprit lors de votre prochaine analyse ECG. Dans l'ensemble, votre analyse est solide et vous démontrez une bonne maîtrise des concepts discutés. Continuez à affiner votre attention aux détails pour ne rien manquer d'essentiel à l'avenir. Félicitations pour votre score parfait !",
+      "validant_details": [
+        {
+          "golden_name": "Microvoltage",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Amylose",
+          "found": true
+        },
+        {
+          "golden_name": "BAV de type 1",
+          "found": true
+        },
+        {
+          "golden_name": "Perte des onde Q septales",
+          "found": false
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "Rabotage de l'onde R"
+        },
+        {
+          "concept_name": "Rythme sinusal"
+        }
+      ]
+    },
+    {
+      "code": "ECG-WY55",
+      "num_cas": 5,
+      "reponse_etudiant": "BAV de haut grade, ondes T amples et pointues évocatrices d'hyperkaliémie",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:32:13",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Hyperkaliémie",
+      "commentaire_ia": "Vous avez parfaitement identifié l'hyperkaliémie, ce qui est essentiel, surtout étant donné que ce concept est classé comme indispensable pour ce cas. Vous avez également reconnu avec précision le BAV de haut grade, un élément important à considérer. Votre mention des ondes T amples et pointues est tout à fait pertinente et soutient le diagnostic d'hyperkaliémie. 📖 « L'hyperkaliémie donne : onde T ample, pointue, symétrique, allongement PR, élargissement QRS. Risque : BAV, TV, dysfonction sinusale. » — (Item 231, SFC). Vous avez démontré une compréhension claire des points clés du cas, ce qui est exemplaire. Continuez à approfondir votre pratique de l'ECG avec cette précision ! 🌟",
+      "validant_details": [
+        {
+          "golden_name": "Hyperkaliémie",
+          "found": true,
+          "score_pct": 100.0
+        },
+        {
+          "golden_name": "BAV de haut grade",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "Anomalie des ondes T"
+        }
+      ]
+    },
+    {
+      "code": "ECG-WY55",
+      "num_cas": 6,
+      "reponse_etudiant": "Rythme életroentrainé à l'étage atrial avec QRS spontané, HBAG",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:32:13",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Stimulation atriale",
+      "commentaire_ia": "Excellent travail ! Vous avez identifié avec précision la stimulation atriale, ce qui est essentiel pour ce cas. 📖 « Stimulation atriale : spike + onde P » — (Item 231, SFC). Vous avez également mentionné le bloc fasciculaire antérieur gauche, qui est un point indispensable à reconnaître. 📖 « L'HBAG est caractérisé par un QRS > 100 ms avec déviation axiale gauche au-delà de −30° (négativité de D2) » — (Item 231, SFC). De plus, vous avez noté explicitement la présence de QRS dans votre réponse, ce qui montre votre attention aux détails. Néanmoins, le bloc intraventriculaire aspécifique n'a pas été mentionné, mais cela n'affecte pas votre score final, car ce n'était pas un élément noté dans ce cas. Gardez cette rigueur et cette précision dans vos futures interprétations ECG. Félicitations pour ce score parfait ! 🎉",
+      "validant_details": [
+        {
+          "golden_name": "Stimulation atriale",
+          "found": true,
+          "score_pct": 100.0
+        },
+        {
+          "golden_name": "Bloc fasciculaire antérieur gauche",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Bloc intraventriculaire aspécifique",
+          "found": false
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "QRS"
+        }
+      ]
+    },
+    {
+      "code": "ECG-WY55",
+      "num_cas": 7,
+      "reponse_etudiant": "Rythme sinusal, BAV1, bloc de branche droit complet à 150ms, HBAG",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:32:13",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Bloc de branche droit complet",
+      "commentaire_ia": "Vous avez réalisé une excellente analyse de cet ECG, en identifiant correctement le bloc de branche droit complet, le BAV de type 1 et le bloc fasciculaire antérieur gauche, tous des éléments essentiels pour ce cas. 📖 « Le bloc complet de branche droite se caractérise par : QRS > 120 ms » — (Item 231, SFC). Pour le BAV du 1er degré, vous avez noté son existence avec précision. 📖 « Le BAV1 est un allongement fixe et constant de PR > 200 ms sans onde P bloquée » — (Item 231, SFC). En outre, vous avez également mentionné le rythme sinusal, ce qui est un bon réflexe dans l'analyse d'un ECG. L'ensemble de votre réponse démontre une compréhension précise et complète des concepts clés liés à ce cas. Continuez ainsi ! 🌟",
+      "validant_details": [
+        {
+          "golden_name": "Bloc de branche droit complet",
+          "found": true,
+          "score_pct": 100.0
+        },
+        {
+          "golden_name": "BAV de type 1",
+          "found": true,
+          "score_pct": 100.0
+        },
+        {
+          "golden_name": "Bloc fasciculaire antérieur gauche",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "Rythme sinusal"
+        }
+      ]
+    },
+    {
+      "code": "ECG-WY55",
+      "num_cas": 8,
+      "reponse_etudiant": "Flutter commun anti-horaire, QRS fins",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:32:13",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Flutter droit typique",
+      "commentaire_ia": "Vous avez identifié avec précision le diagnostic principal de ce cas, à savoir le flutter droit typique. Votre réponse est exemplaire, car elle mentionne explicitement le concept attendu. Vous avez également noté le flutter atrial antihoraire et la présence de QRS fins, ce qui montre une compréhension approfondie des caractéristiques ECG. 📖 « Les flutters atriaux correspondent à une boucle d'activation atriale se répétant à l'identique. Activité monomorphe ~300 bpm, aspect en dents de scie. Flutter typique : F négatives en inférieur. » (Item 231, SFC). Continuez sur cette lancée, votre maîtrise des concepts ECG est excellente ! 👏",
+      "validant_details": [
+        {
+          "golden_name": "Flutter droit typique",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "Flutter atrial antihoraire"
+        },
+        {
+          "concept_name": "QRS fins"
+        }
+      ]
+    },
+    {
+      "code": "ECG-WY55",
+      "num_cas": 9,
+      "reponse_etudiant": "BAV2M2, bloc droit complet large, HBAG",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:32:13",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "BAV 2 Mobitz 2",
+      "commentaire_ia": "Félicitations pour votre excellente analyse ! Vous avez correctement identifié le BAV du 2e degré Mobitz 2, un point indispensable pour ce cas. 📖 « BAV 2e degré Mobitz 2 : PR fixe avant le blocage d'une onde P. Siège infrahissien, souvent QRS larges. Indication de pacemaker même sans symptôme. » (Item 231, SFC). Vous avez aussi noté explicitement le bloc de branche droit complet, ainsi que l'hémibloc antérieur gauche, ce qui démontre une bonne compréhension des éléments ECG supplémentaires. Enfin, vous avez mentionné que le QRS est large, un détail important à noter dans ce contexte. Continuez dans cette voie, vos compétences en ECG sont solides ! 😊",
+      "validant_details": [
+        {
+          "golden_name": "BAV 2 Mobitz 2",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Bloc de branche droit",
+          "found": true
+        },
+        {
+          "golden_name": "Bloc fasciculaire postérieur gauche",
+          "found": false
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "Bloc fasciculaire antérieur gauche"
+        },
+        {
+          "concept_name": "Bloc de branche droit complet"
+        },
+        {
+          "concept_name": "QRS large"
+        }
+      ]
+    },
+    {
+      "code": "ECG-WY55",
+      "num_cas": 10,
+      "reponse_etudiant": "Rythme sinusal, BBG complet 160ms, PR normal",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:32:13",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Bloc de branche gauche complet",
+      "commentaire_ia": "Vous avez parfaitement identifié le diagnostic principal de ce cas, un bloc de branche gauche complet. 📖 « Le BBG complet se caractérise par : QRS > 120 ms, en V1 QRS négatif (rS ou QS), en V6/D1/aVL notch avec onde R exclusive. » — (Item 231, SFC). Ce concept est indispensable à connaître pour les ECG. Vous avez également noté un rythme sinusal et un PR normal, ce qui montre une bonne compréhension des bases de l'ECG. 📖 « Le rythme sinusal est un rythme qui provient d'un automatisme du nœud sinusal. Il génère une onde P positive dans les dérivations inférieures (D2). » — (Item 231, SFC). De plus, vous avez mentionné explicitement la largeur des QRS, ce qui est un élément clé pour diagnostiquer un bloc de branche. Votre réponse est complète et précise, ce qui témoigne d'une excellente maîtrise du sujet. Continuez sur cette voie !",
+      "validant_details": [
+        {
+          "golden_name": "Bloc de branche gauche complet",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Rythme sinusal",
+          "found": true
+        },
+        {
+          "golden_name": "PR normal",
+          "found": true
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "QRS large"
+        }
+      ]
+    },
+    {
+      "code": "ECG-WY55",
+      "num_cas": 11,
+      "reponse_etudiant": "Tachycardie ventriculaire",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:32:13",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Tachycardie ventriculaire",
+      "commentaire_ia": "Bravo pour votre réponse ! Vous avez identifié correctement la tachycardie ventriculaire, ce qui est essentiel pour ce cas. 📖 « RÈGLE D'OR : Toute tachycardie régulière à QRS larges est une TV jusqu'à preuve du contraire » (Item 231, SFC). Vous avez démontré une compréhension claire de ce concept fondamental. Continuez à vous familiariser avec les autres critères diagnostiques et les pièges classiques associés à la tachycardie ventriculaire pour renforcer votre expertise en ECG. Excellente continuation dans votre préparation ! 🌟",
+      "validant_details": [
+        {
+          "golden_name": "Tachycardie ventriculaire",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": []
+    },
+    {
+      "code": "ECG-WY55",
+      "num_cas": 12,
+      "reponse_etudiant": "Infarctus du myocarde avec susST sept l'API collatéral et miroir inférieur, onde Q septoapicale",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:32:13",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Syndrome coronarien à la phase aigue avec sus-décalage du segment ST",
+      "commentaire_ia": "Vous avez parfaitement identifié le syndrome coronarien à la phase aiguë avec sus-décalage du segment ST, un point indispensable pour ce cas. Votre réponse démontre une bonne compréhension de l'ECG, en mentionnant explicitement l'infarctus du myocarde à la phase aiguë et la présence d'ondes Q pathologiques. 📖 « SCA avec ST : traquer le sus-décalage (≥2 mm en V1-V3, ≥1 mm ailleurs), chercher le miroir. Onde de Pardee = sus-décalage englobant l'onde T. SCA sans ST : sous-décalage, T négatives, pseudo-normalisation, T plates, ou ECG normal. Ondes Q de nécrose : ≥1/3 du QRS, > 30-40 ms. » — (Item 231, SFC). Continuez sur cette lancée et restez attentif aux détails de l'ECG qui peuvent orienter vers d'autres diagnostics. Excellent travail, gardez cette rigueur et précision dans vos futures analyses !",
+      "validant_details": [
+        {
+          "golden_name": "Syndrome coronarien à la phase aigue avec sus-décalage du segment ST",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "Presence d'onde Q pathologique"
+        },
+        {
+          "concept_name": "Infarctus du myocarde à la phase aigue"
+        }
+      ]
+    },
+    {
+      "code": "ECG-WY55",
+      "num_cas": 13,
+      "reponse_etudiant": "Rythme sinusal, PR court, onde delta, pré-excitation, pas de trouble de la repolarisation",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:32:13",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Faisceau accessoire à conduction antérograde",
+      "commentaire_ia": "Félicitations pour votre excellente interprétation de l'ECG. Vous avez correctement identifié le faisceau accessoire à conduction antérograde, un point important pour ce cas. Votre réponse inclut également des détails pertinents comme le rythme sinusal, l'onde delta et le PR court, qui sont des éléments clés associés à la préexcitation. Vous avez noté la normalité de l'ECG en mentionnant l'absence de trouble de la repolarisation, ce qui est essentiel pour affirmer la normalité d'un ECG. 📖 « Affirmer qu'un ECG est normal impose d'être systématique sur tous les paramètres : rythme, conduction (PR/QRS/QT), axe, repolarisation » — (Item 231, SFC). Continuez à appliquer cette rigueur systématique dans vos analyses futures. Bravo pour ce résultat parfait ! 🎉",
+      "validant_details": [
+        {
+          "golden_name": "Faisceau accessoire à conduction antérograde",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "Rythme sinusal"
+        },
+        {
+          "concept_name": "ECG normal"
+        },
+        {
+          "concept_name": "Onde delta"
+        },
+        {
+          "concept_name": "PR court"
+        }
+      ]
+    },
+    {
+      "code": "ECG-WY55",
+      "num_cas": 14,
+      "reponse_etudiant": "Rythme sinusal, QRS fins, pas de trouble de la repolarisation, ESV infundibulaires droites",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:32:13",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Extrasystole ventriculaire",
+      "commentaire_ia": "Vous avez identifié avec précision le diagnostic principal d'extrasystole ventriculaire, un point indispensable pour ce cas. Le fait que vous ayez également mentionné le rythme sinusal, les QRS fins et l'ECG normal montre une bonne compréhension des paramètres de base d'un ECG. 📖 « Le rythme sinusal est défini par une onde P positive en D2, D3, aVF avec un QRS après chaque P et une P avant chaque QRS » — (Item 231, SFC). Continuez à pratiquer régulièrement l'analyse ECG pour maintenir et approfondir cette compétence. Excellent travail sur ce cas !",
+      "validant_details": [
+        {
+          "golden_name": "Extrasystole ventriculaire",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "Rythme sinusal"
+        },
+        {
+          "concept_name": "QRS fins"
+        },
+        {
+          "concept_name": "ECG normal"
+        }
+      ]
+    },
+    {
+      "code": "ECG-WY55",
+      "num_cas": 15,
+      "reponse_etudiant": "FA rapide, BBG",
+      "score_pipeline_batch_ancien": 83.3,
+      "generated_at_original": "2026-07-04 05:32:13",
+      "score_regenere": 83.3,
+      "diagnostic_principal_golden": "Bloc de branche gauche complet",
+      "commentaire_ia": "Vous avez correctement identifié la fibrillation atriale, un point indispensable, en la nommant explicitement. 📖 « La fibrillation atriale correspond à une activation atriale anarchique. C'est une tachycardie entre 100 et 200 bpm à QRS irrégulièrement irréguliers » — (Item 231, SFC). Concernant le bloc de branche gauche complet, votre réponse évoque des éléments proches du diagnostic. Vous avez mentionné le bloc de branche gauche, mais sans préciser qu'il est complet. Les caractéristiques d'un BBG complet incluent notamment un QRS > 120 ms et en V1 un QRS négatif (rS ou QS). 📖 « En présence d'un BBG, l'interprétation de la repolarisation antérieure est difficile » — (Item 231, SFC). Vous avez également noté la rapidité du rythme, ce qui est pertinent mais ne remplace pas la précision sur le caractère complet du bloc. Pour renforcer votre compréhension, assurez-vous de bien distinguer les critères qui définissent un bloc de branche gauche complet. Bravo pour votre travail, continuez à affiner vos compétences en ECG !",
+      "validant_details": [
+        {
+          "golden_name": "Bloc de branche gauche complet",
+          "found": true,
+          "score_pct": 66.7
+        },
+        {
+          "golden_name": "Fibrillation atriale",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "rapide"
+        },
+        {
+          "concept_name": "Bloc de branche gauche"
+        }
+      ]
+    },
+    {
+      "code": "ECG-WM1O",
+      "num_cas": 1,
+      "reponse_etudiant": "Rythme sinusal à 60bpm, axe normal, onde p bifide inférieur (HAG), PR 150ms, QRS fin, pas de trouble de la repolarisation",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:31:28",
+      "score_regenere": 0.0,
+      "diagnostic_principal_golden": "ECG normal",
+      "commentaire_ia": "Votre interprétation de l'ECG présente des éléments intéressants, mais elle contient une contradiction qui empêche de conclure à un ECG normal. Vous avez mentionné explicitement une « morphologie de l'onde P non sinusale », ce qui exclut la possibilité de considérer l'ECG comme normal, car un ECG normal nécessite des ondes P sinusales. 📖 « Le rythme sinusal est défini par une onde P positive en D2, D3, aVF avec un QRS après chaque P et une P avant chaque QRS. » (Item 231, SFC). Par ailleurs, vous avez identifié avec précision un bloc interatrial, reflétant votre capacité à reconnaître certaines anomalies. Vous avez également noté une hypertrophie atriale gauche, ce qui montre une bonne attention aux détails de l'ECG. Pour améliorer votre évaluation, assurez-vous de bien vérifier chaque paramètre systématiquement avant de conclure à la normalité d'un ECG. Continuez à travailler sur l'analyse systématique de l'ECG pour éviter de telles contradictions à l'avenir.",
+      "validant_details": [
+        {
+          "golden_name": "ECG normal",
+          "found": false,
+          "score_pct": 0.0
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Bloc interatrial",
+          "found": true
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "Rythme sinusal"
+        },
+        {
+          "concept_name": "PR normal"
+        },
+        {
+          "concept_name": "QRS fins"
+        },
+        {
+          "concept_name": "Morphologie de l'onde P non sinusale"
+        },
+        {
+          "concept_name": "Frequence normale"
+        },
+        {
+          "concept_name": "Axe normal du QRS"
+        },
+        {
+          "concept_name": "Hypertrophie atriale gauche"
+        }
+      ]
+    },
+    {
+      "code": "ECG-WM1O",
+      "num_cas": 4,
+      "reponse_etudiant": "Rythme sinusal 66bpm, axe normal, BAV 1 PR 240ms, QRS fin, micro voltage, pas de trouble de repolarisation, pas d’allongement du QT",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:31:28",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Microvoltage",
+      "commentaire_ia": "Excellent travail sur l'interprétation de cet ECG ! Vous avez identifié avec précision le microvoltage, qui est un point important pour ce cas. Vous avez également noté un BAV de type 1, ce qui est correct : 📖 « Le BAV1 est un allongement fixe et constant de PR > 200 ms sans onde P bloquée » (Item 231, SFC). Votre texte mentionne aussi le rythme sinusal, un axe normal, des QRS fins, et une fréquence normale, ce qui témoigne de votre capacité à analyser systématiquement l'ECG.\n\nVous avez identifié l'amylose, qui peut être associée au microvoltage : 📖 « L'amylose cardiaque associe classiquement un microvoltage électrique à un épaississement pariétal important en échographie » (Item 231, SFC). La perte des ondes Q septales n'a pas été mentionnée, mais cela n'affecte pas votre excellente performance sur ce cas.\n\nContinuez à pratiquer pour maintenir ce niveau d'excellence ! 🎉",
+      "validant_details": [
+        {
+          "golden_name": "Microvoltage",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Amylose",
+          "found": true
+        },
+        {
+          "golden_name": "BAV de type 1",
+          "found": true
+        },
+        {
+          "golden_name": "Perte des onde Q septales",
+          "found": false
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "Rythme sinusal"
+        },
+        {
+          "concept_name": "ECG normal"
+        },
+        {
+          "concept_name": "QRS fins"
+        },
+        {
+          "concept_name": "PR allongé"
+        },
+        {
+          "concept_name": "Frequence normale"
+        },
+        {
+          "concept_name": "Axe normal du QRS"
+        }
+      ]
+    },
+    {
+      "code": "ECG-WM1O",
+      "num_cas": 7,
+      "reponse_etudiant": "Rythme sinusal à 72bpm, axe gauche, HBAG, BAV 1 avec PR 200ms, QRS large 140ms avec BBD complet et aspect HVD, repolarisation appropriée : BAV1 + bloc bi fasciculaire",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:31:28",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Bloc de branche droit complet",
+      "commentaire_ia": "Félicitations pour votre analyse précise de cet ECG. Vous avez correctement identifié le bloc de branche droit complet, le BAV de type 1, et le bloc fasciculaire antérieur gauche, tous des points essentiels pour ce cas. 📖 « Le bloc complet de branche droite se caractérise par : QRS > 120 ms, en V1 QRS globalement positif avec aspect RsR' » — (Item 231, SFC). Vous avez également mentionné d'autres éléments pertinents tels que le rythme sinusal, la déviation axiale gauche, et le bloc bifasciculaire, ce qui démontre une compréhension approfondie de l'ECG. Votre identification de la fréquence cardiaque normale et du QRS large est également précise et complète. Continuez votre excellent travail, votre maîtrise du sujet est évidente. 😊",
+      "validant_details": [
+        {
+          "golden_name": "Bloc de branche droit complet",
+          "found": true,
+          "score_pct": 100.0
+        },
+        {
+          "golden_name": "BAV de type 1",
+          "found": true,
+          "score_pct": 100.0
+        },
+        {
+          "golden_name": "Bloc fasciculaire antérieur gauche",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "Rythme sinusal"
+        },
+        {
+          "concept_name": "Déviation axiale gauche"
+        },
+        {
+          "concept_name": "Bloc bifasciculaire"
+        },
+        {
+          "concept_name": "QRS large"
+        },
+        {
+          "concept_name": "PR allongé"
+        },
+        {
+          "concept_name": "Hypertrophie ventriculaire droite"
+        },
+        {
+          "concept_name": "Frequence normale"
+        }
+      ]
+    },
+    {
+      "code": "ECG-WM1O",
+      "num_cas": 10,
+      "reponse_etudiant": "Rythme sinusal à 84bpm, axe gauche, PR 150ms, QRS large 130ms avec bloc de branche gauche complet, repolarisation appropriée",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:31:28",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Bloc de branche gauche complet",
+      "commentaire_ia": "Excellent travail sur votre interprétation de cet ECG ! Vous avez correctement identifié le bloc de branche gauche complet, un point indispensable pour la compréhension de ce cas. 📖 « Le BBG complet se caractérise par : QRS > 120 ms, en V1 QRS négatif (rS ou QS), en V6/D1/aVL notch avec onde R exclusive » (Item 231, SFC). Vous avez également mentionné des éléments essentiels tels que le rythme sinusal et un PR normal, démontrant votre attention aux détails importants. De plus, votre mention explicite de la déviation axiale gauche, de la fréquence normale, de l'absence d'anomalie de la repolarisation et du QRS large montre une analyse approfondie et précise de l'ECG. Continuez sur cette lancée pour maintenir ce niveau d'excellence. Félicitations pour ce score parfait ! 🎉",
+      "validant_details": [
+        {
+          "golden_name": "Bloc de branche gauche complet",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Rythme sinusal",
+          "found": true
+        },
+        {
+          "golden_name": "PR normal",
+          "found": true
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "Déviation axiale gauche"
+        },
+        {
+          "concept_name": "Frequence normale"
+        },
+        {
+          "concept_name": "Pas d'anomalie de la repolarisation"
+        },
+        {
+          "concept_name": "QRS large"
+        }
+      ]
+    },
+    {
+      "code": "ECG-WM1O",
+      "num_cas": 13,
+      "reponse_etudiant": "Rythme sinusal à 60bpm, axe normal, aspect de pré excitation avec PR court, QRS large et onde delta : syndrome de Wolf Parkinson white",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:31:28",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Faisceau accessoire à conduction antérograde",
+      "commentaire_ia": "Vous avez identifié avec précision le faisceau accessoire à conduction antérograde, ce qui est essentiel dans ce cas. Votre réponse est en parfaite adéquation avec le diagnostic attendu pour ce type de situation. Vous avez également mentionné plusieurs éléments clés, tels que le PR court, le QRS large, le rythme sinusal, la fréquence normale, l'onde delta et l'axe normal du QRS, montrant une compréhension complète de l'interprétation ECG. 📖 « La préexcitation se manifeste par un PR court < 120 ms et une onde δ. WPW = voie accessoire + palpitations par réentrée » — (Item 231, SFC). Votre travail est remarquable et témoigne d'une maîtrise du sujet. Continuez sur cette voie pour les prochains cas ! 😊",
+      "validant_details": [
+        {
+          "golden_name": "Faisceau accessoire à conduction antérograde",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "PR court"
+        },
+        {
+          "concept_name": "QRS large"
+        },
+        {
+          "concept_name": "Rythme sinusal"
+        },
+        {
+          "concept_name": "Frequence normale"
+        },
+        {
+          "concept_name": "Onde delta"
+        },
+        {
+          "concept_name": "Axe normal du QRS"
+        }
+      ]
+    },
+    {
+      "code": "ECG-VQTW",
+      "num_cas": 1,
+      "reponse_etudiant": "rythme sinusal \nPR court,onde delta\nPreexcitation, localisation probablement latéral \ndéviation Axiale gauche",
+      "score_pipeline_batch_ancien": 0.0,
+      "generated_at_original": "2026-07-04 05:30:56",
+      "score_regenere": 0.0,
+      "diagnostic_principal_golden": "ECG normal",
+      "commentaire_ia": "Votre réponse présente plusieurs éléments qui contredisent l'idée d'un ECG normal. Vous avez identifié un faisceau accessoire à conduction antérograde, ce qui exclut la normalité de l'ECG. 📖 « Il est important de savoir affirmer qu'un ECG est normal ; la seule manière d'en être certain est d'être systématique. » — (Item 231, SFC). Vous avez mentionné un PR court et une onde delta, qui suggèrent une préexcitation, ce qui est compatible avec le syndrome de Wolff-Parkinson-White. 📖 « La préexcitation se manifeste par un PR court < 120 ms et une onde δ. » — (Item 231, SFC). Vous avez également noté un rythme sinusal et une déviation axiale gauche, mais ces éléments ne suffisent pas à conclure à la normalité de l'ECG en présence de signes de préexcitation. Je vous encourage à bien réviser les critères d'un ECG normal pour être systématique dans votre évaluation.",
+      "validant_details": [
+        {
+          "golden_name": "ECG normal",
+          "found": false,
+          "score_pct": 0.0
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Bloc interatrial",
+          "found": false
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "PR court"
+        },
+        {
+          "concept_name": "Faisceau accessoire à conduction antérograde"
+        },
+        {
+          "concept_name": "Rythme sinusal"
+        },
+        {
+          "concept_name": "Déviation axiale gauche"
+        },
+        {
+          "concept_name": "Onde delta"
+        }
+      ]
+    },
+    {
+      "code": "ECG-VQTW",
+      "num_cas": 4,
+      "reponse_etudiant": "Rythme sinusal régulier\nallongement permanent et constant PR 240ms\nBAVI\nmicro voltage precordial",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:30:56",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Microvoltage",
+      "commentaire_ia": "Vous avez parfaitement identifié le microvoltage, qui était le diagnostic principal attendu pour ce cas. Bravo pour cette précision ! Vous avez également mentionné le rythme sinusal et un PR allongé, ce qui témoigne d'une bonne observation des caractéristiques de cet ECG. Concernant le BAV de type 1, votre réponse contient les éléments nécessaires pour le reconnaître : un allongement fixe et constant du PR supérieur à 200 ms, sans onde P bloquée. 📖 « Le BAV1 est un allongement fixe et constant de PR > 200 ms sans onde P bloquée » — (Item 231, SFC). De plus, vous avez identifié la possibilité d'une amylose, ce qui est pertinent dans le contexte d'un microvoltage. 📖 « L'amylose cardiaque associe classiquement un microvoltage électrique à un épaississement pariétal important en échographie » — (Item 231, SFC). Vous n'avez pas mentionné la perte des ondes Q septales, mais cela n'a pas affecté votre score. Continuez sur cette lancée ! 🎉",
+      "validant_details": [
+        {
+          "golden_name": "Microvoltage",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Amylose",
+          "found": true
+        },
+        {
+          "golden_name": "BAV de type 1",
+          "found": true
+        },
+        {
+          "golden_name": "Perte des onde Q septales",
+          "found": false
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "Rythme sinusal"
+        },
+        {
+          "concept_name": "PR allongé"
+        }
+      ]
+    },
+    {
+      "code": "ECG-VQTW",
+      "num_cas": 7,
+      "reponse_etudiant": "Rythme sinusal régulier 80\nbloc de branche droit complet avec trouble secondaire de la repolarisation\nHemibloc antérieure gauche \nl'aspect en latéral: inversion des fils?",
+      "score_pipeline_batch_ancien": 66.7,
+      "generated_at_original": "2026-07-04 05:30:56",
+      "score_regenere": 66.7,
+      "diagnostic_principal_golden": "Bloc de branche droit complet",
+      "commentaire_ia": "Vous avez correctement identifié un bloc de branche droit complet et un bloc fasciculaire antérieur gauche, qui sont des diagnostics essentiels pour ce cas. 📖 « Le bloc complet de branche droite se caractérise par : QRS > 120 ms, en V1 QRS globalement positif avec aspect RsR', en V6 aspect qRs avec onde S traînante » — (Item 231, SFC). Cependant, vous n'avez pas mentionné le bloc auriculo-ventriculaire (BAV) de type 1, qui est également un point indispensable. 📖 « Le BAV1 est un allongement fixe et constant de PR > 200 ms sans onde P bloquée » — (Item 231, SFC).\n\nEn dehors des critères notés, vous avez bien mentionné la fréquence normale, le rythme sinusal, le trouble de repolarisation et l'inversion d'électrodes. Votre observation sur l'inversion des électrodes est pertinente : 📖 « Une inversion des électrodes des membres donne un tracé en miroir : onde P, QRS et T négatifs en DI et aVR positif » — (Item 231, SFC).\n\nPour améliorer votre performance, veillez à ne pas omettre des diagnostics clés comme le BAV de type 1. Continuez à vous exercer pour intégrer tous les points essentiels de l'évaluation ECG.",
+      "validant_details": [
+        {
+          "golden_name": "Bloc de branche droit complet",
+          "found": true,
+          "score_pct": 100.0
+        },
+        {
+          "golden_name": "BAV de type 1",
+          "found": false,
+          "score_pct": 0.0
+        },
+        {
+          "golden_name": "Bloc fasciculaire antérieur gauche",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "Frequence normale"
+        },
+        {
+          "concept_name": "Trouble de repolarisation"
+        },
+        {
+          "concept_name": "Inversion d'électrodes"
+        },
+        {
+          "concept_name": "Rythme sinusal"
+        }
+      ]
+    },
+    {
+      "code": "ECG-VQTW",
+      "num_cas": 10,
+      "reponse_etudiant": "Rythme sinusal \nQRS lage \naspect QS en antérieure \ndéviation Axiale \nbloc de branche gauche complet",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:30:56",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Bloc de branche gauche complet",
+      "commentaire_ia": "Vous avez brillamment identifié le diagnostic principal de ce cas, le bloc de branche gauche complet, un point indispensable dans les EDN. Votre description inclut également des éléments pertinents comme le rythme sinusal et un QRS large, ce qui montre une bonne compréhension des critères ECG associés. 📖 « Le BBG complet se caractérise par : QRS > 120 ms, en V1 QRS négatif (rS ou QS), en V6/D1/aVL notch avec onde R exclusive » — (Item 231, SFC). Vous avez aussi noté des caractéristiques telles que l'aspect QS en antérieure et la déviation axiale, ce qui complète bien votre analyse. Pour être encore plus complet, vous pourriez mentionner la normalité du segment PR, mais votre réponse reste excellente. Continuez sur cette lancée positive ! 🎉",
+      "validant_details": [
+        {
+          "golden_name": "Bloc de branche gauche complet",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Rythme sinusal",
+          "found": true
+        },
+        {
+          "golden_name": "PR normal",
+          "found": false
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "QRS large"
+        },
+        {
+          "concept_name": "Rabotage de l'onde R"
+        },
+        {
+          "concept_name": "Déviation axiale"
+        }
+      ]
+    },
+    {
+      "code": "ECG-VQTW",
+      "num_cas": 13,
+      "reponse_etudiant": "Rythme régulier 60bpm\nPR court\nEmpattement pied QRS \nonde delta positif en inférieur\nnégatif en V1 Faisceau de Kent en localisation VD enteroseptale probably",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:30:56",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Faisceau accessoire à conduction antérograde",
+      "commentaire_ia": "Vous avez parfaitement identifié le diagnostic principal de faisceau accessoire à conduction antérograde, ce qui est essentiel pour ce cas. Vous avez également noté explicitement plusieurs éléments importants comme la bradycardie, l'onde delta, le PR court et la morphologie du QRS. Ces observations sont en accord avec la description de la préexcitation due au syndrome de Wolff-Parkinson-White, qui inclut un PR court et un élargissement du QRS par onde delta. 📖 « La préexcitation se manifeste par un PR court < 120 ms et une onde δ » — (Item 231, SFC). Votre interprétation est donc très complète et précise. Continuez sur cette voie et gardez confiance en vos compétences d'analyse ECG ! 😊",
+      "validant_details": [
+        {
+          "golden_name": "Faisceau accessoire à conduction antérograde",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "Bradycardie"
+        },
+        {
+          "concept_name": "Onde delta"
+        },
+        {
+          "concept_name": "PR court"
+        },
+        {
+          "concept_name": "Morphologie du QRS"
+        }
+      ]
+    },
+    {
+      "code": "ECG-VQMD",
+      "num_cas": 2,
+      "reponse_etudiant": "rythme régulier, 60 bpm, QRS large, BAV complet",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:30:35",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "BAV complet",
+      "commentaire_ia": "Vous avez identifié avec précision le bloc auriculo-ventriculaire (BAV) complet, un élément essentiel de l'évaluation. Votre mention de la bradycardie, du rythme régulier et des QRS larges démontre une excellente compréhension de l'ECG, même si ces éléments n'étaient pas spécifiquement notés pour ce cas. 📖 « Dissociation complète entre P et QRS. Ondes P régulières à fréquence normale, QRS à rythme d'échappement. QRS fins → bloc nodal, QRS larges → bloc infrahissien » (Item 231, SFC). Vous avez également noté l'échappement ventriculaire, ce qui témoigne de votre bonne analyse des caractéristiques ECG. Continuez ce travail rigoureux et précis dans vos futures évaluations ! 🌟",
+      "validant_details": [
+        {
+          "golden_name": "BAV complet",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Echappement ventriculaire",
+          "found": true
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "Bradycardie"
+        },
+        {
+          "concept_name": "rythme régulier"
+        },
+        {
+          "concept_name": "QRS large"
+        }
+      ]
+    },
+    {
+      "code": "ECG-VQMD",
+      "num_cas": 5,
+      "reponse_etudiant": "rythme irrégulier sinusal, 36 bpm (bradycardie), ondes T amples (hyperkaliemie), onde P bloquée (BAV 2/1)",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:30:35",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Hyperkaliémie",
+      "commentaire_ia": "Vous avez parfaitement identifié les deux diagnostics principaux : l'hyperkaliémie et le bloc auriculo-ventriculaire (BAV) de haut grade. Votre mention de l'hyperkaliémie est précise, avec la reconnaissance des ondes T amples, conformément à l'extrait du cours : 📖 « L'hyperkaliémie donne : onde T ample, pointue, symétrique, allongement PR, élargissement QRS. » — (Item 231, SFC). Vous avez également noté correctement le BAV 2 pour 1 et la présence d'une onde P bloquée, ce qui est en accord avec le fait qu'un BAV 2/1 ne peut être classé en Mobitz 1 ou 2 : 📖 « Le BAV 2/1 ne peut être classé ni Mobitz 1 ni Mobitz 2 (il n'y a qu'un seul PR avant chaque blocage, donc pas d'allongement progressif observable). » — (Item 231, SFC). Vous avez aussi mentionné des caractéristiques supplémentaires de l'ECG comme la bradycardie (36 bpm), le rythme sinusal et l'irrégularité, ce qui montre une bonne compréhension globale. Votre analyse est complète et précise, bravo pour ce travail excellent et détaillé ! 🎉 Continuez à utiliser cette méthodologie pour vos futurs cas ECG.",
+      "validant_details": [
+        {
+          "golden_name": "Hyperkaliémie",
+          "found": true,
+          "score_pct": 100.0
+        },
+        {
+          "golden_name": "BAV de haut grade",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "Bradycardie"
+        },
+        {
+          "concept_name": "Irrégulier"
+        },
+        {
+          "concept_name": "BAV 2 pour 1"
+        },
+        {
+          "concept_name": "Une onde P bloquée"
+        },
+        {
+          "concept_name": "Onde T ample"
+        },
+        {
+          "concept_name": "Rythme sinusal"
+        }
+      ]
+    },
+    {
+      "code": "ECG-VQMD",
+      "num_cas": 8,
+      "reponse_etudiant": "Rythme régulier 78 bpm, QRS fins, flutter atrial, sus-décalage du segment ST en V2-V3 sans miroir",
+      "score_pipeline_batch_ancien": 66.7,
+      "generated_at_original": "2026-07-04 05:30:35",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Flutter droit typique",
+      "commentaire_ia": "Votre analyse de l'ECG est excellente. Vous avez correctement identifié le flutter droit typique, ce qui constitue un point indispensable, et votre description est précise. Vous avez également noté explicitement des éléments supplémentaires tels que la fréquence normale, les QRS fins, et un courant de lésion sous-épicardique, qui montrent une bonne compréhension de l'ECG. 📖 « Les flutters atriaux correspondent à une boucle d'activation atriale se répétant à l'identique. Activité monomorphe ~300 bpm, aspect en dents de scie. » — (Item 231, SFC). Votre description du sus-décalage du segment ST en V2-V3 sans miroir est également bien faite. Votre travail reflète une maîtrise claire des concepts clés de cet ECG. Félicitations pour cet excellent travail ! 🎉",
+      "validant_details": [
+        {
+          "golden_name": "Flutter droit typique",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "Frequence normale"
+        },
+        {
+          "concept_name": "QRS fins"
+        },
+        {
+          "concept_name": "Courant de lésion sous-épicardique"
+        }
+      ]
+    },
+    {
+      "code": "ECG-VQMD",
+      "num_cas": 11,
+      "reponse_etudiant": "Rythme régulier 162 bpm, tachycardie à QRS larges donc tachycardie ventriculaire",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:30:35",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Tachycardie ventriculaire",
+      "commentaire_ia": "Vous avez correctement identifié le diagnostic principal de tachycardie ventriculaire, ce qui est essentiel pour ce cas. 📖 « Toute tachycardie régulière à QRS larges est une TV jusqu'à preuve du contraire » — (Item 231, SFC). Vous avez également mentionné explicitement la présence de QRS larges et de tachycardie, des éléments qui renforcent votre diagnostic. Ces observations sont en accord avec les critères de suspicion pour une tachycardie ventriculaire, qui incluent une fréquence cardiaque supérieure à 100 battements par minute et des QRS de plus de 120 ms pour au moins trois battements. Votre réponse est précise et complète pour ce cas. Continuez à appliquer cette rigueur dans vos analyses futures — c'est la clé du succès !",
+      "validant_details": [
+        {
+          "golden_name": "Tachycardie ventriculaire",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "QRS large"
+        },
+        {
+          "concept_name": "Tachycardie"
+        }
+      ]
+    },
+    {
+      "code": "ECG-VQMD",
+      "num_cas": 14,
+      "reponse_etudiant": "Rythme sinusal irrégulier 78 bpm , axe gauche, plusieurs extrasystoles ventriculaires avec repos compensateur, ondes T négatives en DIII et aVR, ondes T amples",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:30:35",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Extrasystole ventriculaire",
+      "commentaire_ia": "Vous avez correctement identifié l'extrasystole ventriculaire, un point indispensable pour ce cas. Votre description est précise et montre une bonne compréhension de l'ECG : vous avez mentionné explicitement le rythme sinusal, la fréquence normale, le repos compensateur, les ondes T amples et négatives, ainsi que la déviation axiale gauche. Ces éléments, bien que hors du barème noté, démontrent une excellente maîtrise des détails ECG. 📖 « Les ESV sont des QRS larges prématurés. » — (Item 231, SFC) et vous avez su les détecter efficacement. Continuez à approfondir votre compréhension des ECG, car votre approche est solide et prometteuse. Bravo pour ce travail excellent !",
+      "validant_details": [
+        {
+          "golden_name": "Extrasystole ventriculaire",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "Repos compensateur"
+        },
+        {
+          "concept_name": "Onde T ample"
+        },
+        {
+          "concept_name": "Onde T négative"
+        },
+        {
+          "concept_name": "Rythme sinusal"
+        },
+        {
+          "concept_name": "Déviation axiale gauche"
+        },
+        {
+          "concept_name": "Frequence normale"
+        }
+      ]
+    },
+    {
+      "code": "ECG-VQFO",
+      "num_cas": 3,
+      "reponse_etudiant": "Rythme non régulier à 150bpm à QRS fins, FA, normo axé, pas de trouble de la repolarisation, pas de signe d’ischémie, pas d’hypertrophie.",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:30:11",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Fibrillation atriale",
+      "commentaire_ia": "Vous avez parfaitement identifié le diagnostic principal de fibrillation atriale, ce qui est essentiel dans cette situation clinique. 📖 « La fibrillation atriale est le seul diagnostic en cas de tachycardie complètement irrégulière à QRS fins » — (Item 231, SFC). Vous avez également noté plusieurs éléments importants tels que l'axe normal du QRS, la tachycardie, les QRS fins et l'absence de signes d'ischémie ou d'hypertrophie, ce qui montre une bonne compréhension de l'analyse ECG. Cependant, il est crucial de rester systématique pour affirmer qu'un ECG est normal, en vérifiant tous les paramètres comme le rythme, la conduction, l'axe, et la repolarisation 📖 « la seule façon d'être sûr qu'un ECG est normal est d'être systématique sur tous les critères » — (Item 231, SFC). Continuez sur cette lancée pour maintenir ce niveau d'excellence dans vos analyses futures !",
+      "validant_details": [
+        {
+          "golden_name": "Fibrillation atriale",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Repolarisation précoce",
+          "found": false
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "Axe normal du QRS"
+        },
+        {
+          "concept_name": "Tachycardie"
+        },
+        {
+          "concept_name": "QRS fins"
+        },
+        {
+          "concept_name": "ECG normal"
+        }
+      ]
+    },
+    {
+      "code": "ECG-VQFO",
+      "num_cas": 6,
+      "reponse_etudiant": "Rythme sinusal régulier électro entraîné en atriale à 80bpm, axe gauche, HBAG , PR 256ms BAV1, trouble de la repolarisation en inférieur, pas de signe d’ischémie, pas de signe d’hypertrophie.",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:30:11",
+      "score_regenere": 50.0,
+      "diagnostic_principal_golden": "Stimulation atriale",
+      "commentaire_ia": "Vous avez correctement identifié le bloc fasciculaire antérieur gauche, ce qui est un point indispensable dans l'analyse de cet ECG. 📖 « L'HBAG est caractérisé par un QRS > 100 ms avec déviation axiale gauche au-delà de −30° (négativité de D2). » (Item 231, SFC). Cependant, la stimulation atriale, qui est un point important, n'a pas été mentionnée. 📖 « Stimulation atriale = spike + P. » (Item 231, SFC). Vous avez noté plusieurs éléments de manière précise, comme le rythme sinusal, le trouble de repolarisation, le BAV de type 1 et l'allongement du PR, qui indiquent un bon sens de l'observation. Votre description de l'axe gauche et du PR allongé à 256 ms est pertinente. Pour améliorer votre analyse, concentrez-vous sur l'identification des spikes de stimulation sur l'ECG, car cela vous aidera à reconnaître la stimulation atriale. Continuez à affiner votre capacité à détecter ces éléments spécifiques.",
+      "validant_details": [
+        {
+          "golden_name": "Stimulation atriale",
+          "found": false,
+          "score_pct": 0.0
+        },
+        {
+          "golden_name": "Bloc fasciculaire antérieur gauche",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Bloc intraventriculaire aspécifique",
+          "found": false
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "Rythme sinusal"
+        },
+        {
+          "concept_name": "Trouble de repolarisation"
+        },
+        {
+          "concept_name": "BAV de type 1"
+        },
+        {
+          "concept_name": "ECG normal"
+        },
+        {
+          "concept_name": "PR allongé"
+        },
+        {
+          "concept_name": "Déviation axiale gauche"
+        },
+        {
+          "concept_name": "Frequence normale"
+        }
+      ]
+    },
+    {
+      "code": "ECG-VQFO",
+      "num_cas": 9,
+      "reponse_etudiant": "Rythme non régulier sinusal à 78bpm, axe droit, BBG incomplet, BAV2 mobitz 1 + BAV 2/1, trouble de la repolarisation en antérieur, pas d’hypertrophie, pas de signes d’ischémie.",
+      "score_pipeline_batch_ancien": 0.0,
+      "generated_at_original": "2026-07-04 05:30:11",
+      "score_regenere": 0.0,
+      "diagnostic_principal_golden": "BAV 2 Mobitz 2",
+      "commentaire_ia": "Votre analyse ECG manque le diagnostic principal attendu, à savoir le BAV 2 Mobitz 2, qui est un point indispensable. 📖 « BAV 2e degré Mobitz 2 : PR fixe avant le blocage d'une onde P. Siège infrahissien, souvent QRS larges. Indication de pacemaker même sans symptôme. » — (Item 231, SFC). Vous avez correctement mentionné le BAV 2 pour 1 et le BAV 2 Mobitz 1, mais il est important de ne pas confondre ces entités avec le Mobitz 2, car leur distinction a un impact significatif sur la prise en charge. Vous avez aussi identifié un rythme sinusal et une fréquence normale, ainsi qu'un bloc de branche gauche incomplet, mais vous n'avez pas abordé le bloc de branche droit ou le bloc fasciculaire postérieur gauche. Enfin, bien que vous ayez mentionné l'absence de signes d'ischémie, il est crucial de vérifier systématiquement tous les paramètres d'un ECG. Je vous encourage à revoir les distinctions clés entre Mobitz 1 et 2 pour éviter toute confusion future.",
+      "validant_details": [
+        {
+          "golden_name": "BAV 2 Mobitz 2",
+          "found": false,
+          "score_pct": 0.0
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Bloc de branche droit",
+          "found": false
+        },
+        {
+          "golden_name": "Bloc fasciculaire postérieur gauche",
+          "found": false
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "Déviation axiale droite"
+        },
+        {
+          "concept_name": "BAV 2 pour 1"
+        },
+        {
+          "concept_name": "BAV 2 Mobitz 1"
+        },
+        {
+          "concept_name": "Trouble de repolarisation"
+        },
+        {
+          "concept_name": "ECG normal"
+        },
+        {
+          "concept_name": "Rythme sinusal"
+        },
+        {
+          "concept_name": "Frequence normale"
+        },
+        {
+          "concept_name": "BBG incomplet"
+        }
+      ]
+    },
+    {
+      "code": "ECG-VQFO",
+      "num_cas": 12,
+      "reponse_etudiant": "Rythme régulier sinusal à 54bpm, normo axe, SUS décalage ST en antérieur miroir en inférieur, séquelle de nécrose en antérieur rabotage de l’onde R, pas de signe d hypertrophie",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:30:11",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Syndrome coronarien à la phase aigue avec sus-décalage du segment ST",
+      "commentaire_ia": "Votre interprétation de l'ECG est excellente, avec un score parfait de 100%. Vous avez correctement identifié le syndrome coronarien à la phase aiguë avec sus-décalage du segment ST en mentionnant le courant de lésion sous-épicardique. 📖 « SCA avec ST : traquer le sus-décalage (≥2 mm en V1-V3, ≥1 mm ailleurs), chercher le miroir. Onde de Pardee = sus-décalage englobant l'onde T. » (Item 231, SFC). Vous avez aussi noté plusieurs éléments additionnels importants, tels que la bradycardie, le rythme sinusal, l'axe normal du QRS, les séquelles de nécrose, et le rabotage de l'onde R. Ces éléments démontrent une compréhension approfondie de l'ECG. Continuez sur cette voie, en gardant à l'esprit l'importance de différencier les différents types de sus-décalage et leurs étiologies possibles. Félicitations pour votre travail rigoureux et précis !",
+      "validant_details": [
+        {
+          "golden_name": "Syndrome coronarien à la phase aigue avec sus-décalage du segment ST",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "Bradycardie"
+        },
+        {
+          "concept_name": "Séquelle de nécrose"
+        },
+        {
+          "concept_name": "Courant de lésion sous-épicardique"
+        },
+        {
+          "concept_name": "Rythme sinusal"
+        },
+        {
+          "concept_name": "Axe normal du QRS"
+        },
+        {
+          "concept_name": "Rabotage de l'onde R"
+        }
+      ]
+    },
+    {
+      "code": "ECG-VQFO",
+      "num_cas": 15,
+      "reponse_etudiant": "Tachycardie à QRS large à 240bpm. Tachycardie ventriculaire.",
+      "score_pipeline_batch_ancien": 33.3,
+      "generated_at_original": "2026-07-04 05:30:11",
+      "score_regenere": 33.3,
+      "diagnostic_principal_golden": "Bloc de branche gauche complet",
+      "commentaire_ia": "Votre réponse mentionne la tachycardie à QRS large et la tachycardie ventriculaire, ce qui est pertinent dans ce contexte. Vous avez identifié le concept de QRS large, mais sans le lier explicitement à un bloc de branche gauche complet. Le bloc de branche gauche est un point indispensable à reconnaître. 📖 « Le BBG complet se caractérise par : QRS > 120 ms, en V1 QRS négatif (rS ou QS), en V6/D1/aVL notch avec onde R exclusive. » — (Item 231, SFC). En revanche, vous n'avez pas mentionné la fibrillation atriale, qui est également un point essentiel à identifier. 📖 « La fibrillation atriale correspond à une activation atriale anarchique. C'est une tachycardie entre 100 et 200 bpm à QRS irrégulièrement irréguliers. » — (Item 231, SFC). Pensez à bien intégrer ces éléments lors de votre révision pour améliorer votre diagnostic ECG. Concentrez-vous sur la reconnaissance des différents rythmes cardiaques, en particulier ceux qui nécessitent une intervention rapide.",
+      "validant_details": [
+        {
+          "golden_name": "Bloc de branche gauche complet",
+          "found": true,
+          "score_pct": 66.7
+        },
+        {
+          "golden_name": "Fibrillation atriale",
+          "found": false,
+          "score_pct": 0.0
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "QRS large"
+        },
+        {
+          "concept_name": "Tachycardie"
+        },
+        {
+          "concept_name": "Tachycardie ventriculaire"
+        }
+      ]
+    },
+    {
+      "code": "ECG-UV0W",
+      "num_cas": 3,
+      "reponse_etudiant": "FA à 150bpm, \naxe normal, \nBBG imcomplet,\ndiscordance approprié",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:29:31",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Fibrillation atriale",
+      "commentaire_ia": "Vous avez correctement identifié la fibrillation atriale, un point indispensable pour ce cas. 📖 « La fibrillation atriale correspond à une activation atriale anarchique. C'est une tachycardie entre 100 et 200 bpm à QRS irrégulièrement irréguliers. » (Item 231, SFC). Vous avez également mentionné explicitement des éléments pertinents tels que l'axe normal du QRS, la tachycardie, et le BBG incomplet, ce qui montre une compréhension détaillée du tracé ECG. La repolarisation précoce, bien que non mentionnée, n'était pas essentielle dans ce contexte. Continuez sur cette lancée en vous assurant de bien réviser tous les concepts clés, et félicitations pour ce score parfait ! 🎉",
+      "validant_details": [
+        {
+          "golden_name": "Fibrillation atriale",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Repolarisation précoce",
+          "found": false
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "Axe normal du QRS"
+        },
+        {
+          "concept_name": "Tachycardie"
+        },
+        {
+          "concept_name": "BBG incomplet"
+        }
+      ]
+    },
+    {
+      "code": "ECG-UV0W",
+      "num_cas": 6,
+      "reponse_etudiant": "Rythme électro-entrainé au niveau de l’oreillette a environ 75bpm",
+      "score_pipeline_batch_ancien": 0.0,
+      "generated_at_original": "2026-07-04 05:29:31",
+      "score_regenere": 50.0,
+      "diagnostic_principal_golden": "Stimulation atriale",
+      "commentaire_ia": "Vous avez correctement identifié la stimulation atriale, ce qui est un point important à noter. 📖 « Stimulation atriale : spike + onde P. » — (Item 231, SFC). Cela montre votre bonne compréhension de ce type de rythme. Vous avez également mentionné explicitement une fréquence normale, ce qui est un bon complément d'information, même si cela ne faisait pas partie du barème noté. Cependant, vous n'avez pas mentionné le bloc fasciculaire antérieur gauche, qui est un point indispensable pour ce cas. 📖 « L'HBAG est caractérisé par un QRS > 100 ms avec déviation axiale gauche au-delà de −30° (négativité de D2). » — (Item 231, SFC). En fin de compte, pensez à bien vérifier les critères spécifiques des blocs de conduction pour améliorer votre diagnostic. Continuez à travailler sur l'identification des blocs de conduction importants pour renforcer votre interprétation ECG.",
+      "validant_details": [
+        {
+          "golden_name": "Stimulation atriale",
+          "found": true,
+          "score_pct": 100.0
+        },
+        {
+          "golden_name": "Bloc fasciculaire antérieur gauche",
+          "found": false,
+          "score_pct": 0.0
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Bloc intraventriculaire aspécifique",
+          "found": false
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "Frequence normale"
+        }
+      ]
+    },
+    {
+      "code": "ECG-UV0W",
+      "num_cas": 9,
+      "reponse_etudiant": "Rythme sinusal irrégulier à 78bpm,\nBAV 2 mobitz 2 avec un PR long 250ms,\naxe gauche possible hemibloc antérieur gauche,\nQRS large avec rabotage des ondes R,\npas de trouble de la re polarisation onde T neg à la reprise des QRS bloqué",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:29:31",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "BAV 2 Mobitz 2",
+      "commentaire_ia": "Vous avez parfaitement identifié le diagnostic principal de ce cas, le BAV de 2e degré Mobitz 2, un point indispensable à maîtriser. 📖 « BAV 2e degré Mobitz 2 : PR fixe avant le blocage d'une onde P. Siège infrahissien, souvent QRS larges. Indication de pacemaker même sans symptôme. » — (Item 231, SFC). Votre analyse a également mentionné plusieurs éléments supplémentaires pertinents, comme le rythme sinusal et le PR allongé, qui démontrent une bonne compréhension de l'ECG. Vous avez aussi noté des caractéristiques comme l'axe gauche et le QRS large, qui sont corrects bien qu'ils ne soient pas notés dans ce cas précis. Continuez à être systématique dans votre analyse pour ne manquer aucun détail important. Félicitations pour ce travail impeccable ! 🎉",
+      "validant_details": [
+        {
+          "golden_name": "BAV 2 Mobitz 2",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Bloc de branche droit",
+          "found": false
+        },
+        {
+          "golden_name": "Bloc fasciculaire postérieur gauche",
+          "found": false
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "Onde T"
+        },
+        {
+          "concept_name": "PR allongé"
+        },
+        {
+          "concept_name": "ECG normal"
+        },
+        {
+          "concept_name": "Bloc fasciculaire antérieur gauche"
+        },
+        {
+          "concept_name": "QRS large"
+        },
+        {
+          "concept_name": "Rythme sinusal"
+        },
+        {
+          "concept_name": "Déviation axiale gauche"
+        },
+        {
+          "concept_name": "Frequence normale"
+        },
+        {
+          "concept_name": "Rabotage de l'onde R"
+        }
+      ]
+    },
+    {
+      "code": "ECG-UV0W",
+      "num_cas": 12,
+      "reponse_etudiant": "Rythme sinusal bradycarde à 50 bpm,\naxe normal, \nQRS fin,\ndécalage sus-ST en antéro apical avec miroir en inférieure Donc SCAT ST+",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:29:31",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Syndrome coronarien à la phase aigue avec sus-décalage du segment ST",
+      "commentaire_ia": "Vous avez correctement identifié le diagnostic principal de ce cas, qui est un syndrome coronarien à la phase aiguë avec sus-décalage du segment ST, ce qui est un point essentiel et indispensable. Vous avez également mentionné plusieurs concepts de manière explicite, notamment la bradycardie, le rythme sinusal, le courant de lésion sous-épicardique, les QRS fins, le miroir, et un axe normal du QRS. Ces éléments sont bien décrits, même s'ils ne faisaient pas partie des critères notés pour ce cas. \n\n📖 « SCA avec ST : traquer le sus-décalage (≥2 mm en V1-V3, ≥1 mm ailleurs), chercher le miroir. Onde de Pardee = sus-décalage englobant l'onde T » — (Item 231, SFC).\n\nVotre compréhension des éléments électrocardiographiques est solide, et vous avez su intégrer les caractéristiques pertinentes pour ce diagnostic. Continuez à vous appuyer sur vos connaissances pour analyser les ECG de manière aussi précise et complète. Félicitations pour votre excellent travail ! 🎉",
+      "validant_details": [
+        {
+          "golden_name": "Syndrome coronarien à la phase aigue avec sus-décalage du segment ST",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "Bradycardie"
+        },
+        {
+          "concept_name": "Courant de lésion sous-épicardique"
+        },
+        {
+          "concept_name": "QRS fins"
+        },
+        {
+          "concept_name": "Rythme sinusal"
+        },
+        {
+          "concept_name": "Miroir"
+        },
+        {
+          "concept_name": "Axe normal du QRS"
+        }
+      ]
+    },
+    {
+      "code": "ECG-UV0W",
+      "num_cas": 15,
+      "reponse_etudiant": "Rythme tachycardie 130bpm irrégulier sans onde P clairement visible donc FA \nAxe gauche possible hemibloc antérieur gauche \nBBG complet\nDiscordance approprié",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:29:31",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Bloc de branche gauche complet",
+      "commentaire_ia": "Vous avez parfaitement identifié les deux diagnostics principaux de ce cas. Vous avez mentionné explicitement le bloc de branche gauche complet et la fibrillation atriale, tous deux des points indispensables. 📖 « Le BBG complet se caractérise par : QRS > 120 ms, en V1 QRS négatif (rS ou QS), en V6/D1/aVL notch avec onde R exclusive » (Item 231, SFC). 📖 « La fibrillation atriale correspond à une activation atriale anarchique. C'est une tachycardie entre 100 et 200 bpm à QRS irrégulièrement irréguliers » (Item 231, SFC). Vous avez également noté la déviation axiale gauche, la tachycardie, et le bloc fasciculaire antérieur gauche, ce qui montre une analyse détaillée de l'ECG. Votre réponse est complète et précise, couvrant tous les aspects attendus pour ce cas. Continuez sur cette lancée ! 😊",
+      "validant_details": [
+        {
+          "golden_name": "Bloc de branche gauche complet",
+          "found": true,
+          "score_pct": 100.0
+        },
+        {
+          "golden_name": "Fibrillation atriale",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "Bloc fasciculaire antérieur gauche"
+        },
+        {
+          "concept_name": "Tachycardie"
+        },
+        {
+          "concept_name": "Déviation axiale gauche"
+        }
+      ]
+    },
+    {
+      "code": "ECG-U8SA",
+      "num_cas": 2,
+      "reponse_etudiant": "- rythme à 60 bpm\n- rythme régulier\n- Le rythme n'est pas sinusal : chaque QRS n'est pas tout le temps précédé par une onde P, il n'y a pas tout le temps un QRS qui suite chaque onde P.\n- Anomalie possible : BAV 3\n- On observe en V1 et V6 un aspect des QRS en BBG\n- QRS larges",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:29:09",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "BAV complet",
+      "commentaire_ia": "Votre analyse de l'ECG est excellente, vous avez correctement identifié le bloc auriculo-ventriculaire complet, ce qui est un point essentiel pour ce cas. Vous avez également noté la bradycardie, le rythme régulier et les QRS larges, qui sont des éléments importants pour caractériser ce type de blocage. Concernant le bloc de branche gauche, bien que vous l'ayez mentionné, il est important de rappeler que le BAV complet se caractérise par une dissociation complète entre les ondes P et les QRS, avec des QRS à rythme d'échappement, comme le précise le cours : 📖 « BAV 3e degré (complet) : dissociation complète entre P et QRS. Ondes P régulières à fréquence normale, QRS à rythme d'échappement. QRS fins → bloc nodal, QRS larges → bloc infrahissien. » — (Item 231, SFC). Continuez dans cette voie pour vos prochaines analyses ECG ! 😊",
+      "validant_details": [
+        {
+          "golden_name": "BAV complet",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Echappement ventriculaire",
+          "found": true
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "Bradycardie"
+        },
+        {
+          "concept_name": "rythme régulier"
+        },
+        {
+          "concept_name": "QRS large"
+        },
+        {
+          "concept_name": "Bloc de branche gauche"
+        }
+      ]
+    },
+    {
+      "code": "ECG-U8SA",
+      "num_cas": 5,
+      "reponse_etudiant": "- Rythme irrégulier à 36 bpm\n- bradycardie\n- ondes T amples de v2 à v5, possible ischémie antéro-septo-apicale",
+      "score_pipeline_batch_ancien": 50.0,
+      "generated_at_original": "2026-07-04 05:29:09",
+      "score_regenere": 50.0,
+      "diagnostic_principal_golden": "Hyperkaliémie",
+      "commentaire_ia": "Votre réponse montre une bonne compréhension de certains aspects de l'ECG, mais quelques points clés manquent encore. Vous avez évoqué des ondes T amples, ce qui est un signe allant dans le sens de l'hyperkaliémie, mais sans le nommer explicitement. 📖 « L'hyperkaliémie donne : onde T ample, pointue, symétrique, allongement PR, élargissement QRS. Risque : BAV, TV, dysfonction sinusale. » (Item 231, SFC). Vous avez également mentionné la bradycardie, ce qui peut orienter vers un BAV de haut grade, sans toutefois le confirmer formellement. Concernant l'ischémie, même si vous l'avez notée, il est crucial de distinguer les différents stades tels que l'ischémie, la lésion et la nécrose. 📖 « L'ischémie myocardique se traduit par un sous-décalage ST ou une inversion des ondes T systématisés à un territoire coronaire. » (Item 231, SFC). Pour progresser, concentrez-vous sur l'identification explicite des diagnostics principaux et des liens entre les signes ECG et les conditions sous-jacentes.",
+      "validant_details": [
+        {
+          "golden_name": "Hyperkaliémie",
+          "found": true,
+          "score_pct": 66.7
+        },
+        {
+          "golden_name": "BAV de haut grade",
+          "found": true,
+          "score_pct": 33.3
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "Bradycardie"
+        },
+        {
+          "concept_name": "Onde T ample"
+        },
+        {
+          "concept_name": "Ischémique"
+        }
+      ]
+    },
+    {
+      "code": "ECG-U8SA",
+      "num_cas": 8,
+      "reponse_etudiant": "- rythme non sinusal à 72 bpm\n- flutter atrial",
+      "score_pipeline_batch_ancien": 66.7,
+      "generated_at_original": "2026-07-04 05:29:09",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Flutter droit typique",
+      "commentaire_ia": "Vous avez parfaitement identifié le diagnostic principal de ce cas, le flutter droit typique, ce qui est un élément indispensable à maîtriser pour votre examen. 📖 « Les flutters atriaux correspondent à une boucle d'activation atriale se répétant à l'identique. Activité monomorphe ~300 bpm, aspect en dents de scie. Flutter typique : F négatives en inférieur. » (Item 231, SFC). De plus, vous avez mentionné explicitement une fréquence cardiaque normale, ce qui enrichit votre réponse bien que ce ne soit pas un critère noté pour ce cas. Vous avez démontré une compréhension précise et complète de l'ECG présenté, bravo pour ce travail excellent et rigoureux. Continuez à vous entraîner ainsi pour maintenir ce niveau de précision. 🎉",
+      "validant_details": [
+        {
+          "golden_name": "Flutter droit typique",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "Frequence normale"
+        }
+      ]
+    },
+    {
+      "code": "ECG-U8SA",
+      "num_cas": 11,
+      "reponse_etudiant": "Fréquence cardiaque : estimée entre 180 et 200 battements par minute.\nLe rythme est régulier.\nLes complexes QRS sont très larges et ont une forme anormale.\nTous les complexes ont la même forme dans une même dérivation, on parle donc d'aspect monomorphe.\nAucune onde P n'est clairement identifiable avant les complexes QRS.",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:29:09",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Tachycardie ventriculaire",
+      "commentaire_ia": "Votre analyse de l'ECG est excellente ! Vous avez correctement identifié la tachycardie ventriculaire, un point indispensable, en mentionnant des critères clés tels que la largeur des complexes QRS et la tachycardie. 📖 « RÈGLE D'OR : Toute tachycardie régulière à QRS larges est une TV jusqu'à preuve du contraire. » — (Item 231, SFC). Vous avez également noté des éléments supplémentaires pertinents comme le rythme régulier, l'aspect monomorphe des complexes, et leur morphologie anormale, ce qui renforce votre interprétation. Votre compétence dans la lecture de cet ECG est évidente. Continuez sur cette lancée ! 🎉",
+      "validant_details": [
+        {
+          "golden_name": "Tachycardie ventriculaire",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "rythme régulier"
+        },
+        {
+          "concept_name": "QRS large"
+        },
+        {
+          "concept_name": "Tachycardie"
+        },
+        {
+          "concept_name": "monomorphe"
+        },
+        {
+          "concept_name": "Morphologie anormale du QRS"
+        }
+      ]
+    },
+    {
+      "code": "ECG-U8SA",
+      "num_cas": 14,
+      "reponse_etudiant": "La majorité du tracé montre un rythme sinusal normal. On voit bien de petites ondes P régulières suivies de complexes QRS fins et normaux.\nQuelques extrasystoles\nComplexes QRS larges et déformés avec absence d'onde P\ninvertion de l'onde T\nPause compensatoire : après chaque extrasystole, on remarque une ligne plate un peu plus longue que d'habitude.\nToutes les extrasystoles que l'on voit sur ce tracé ont exactement la même forme dans une même dérivationOn dit qu'elles sont \"monomorphes\"",
+      "score_pipeline_batch_ancien": 0.0,
+      "generated_at_original": "2026-07-04 05:29:09",
+      "score_regenere": 33.3,
+      "diagnostic_principal_golden": "Extrasystole ventriculaire",
+      "commentaire_ia": "Votre réponse contient certains critères qui vont dans le sens du diagnostic d'extrasystole ventriculaire, notamment l'identification des complexes QRS larges. Cependant, vous n'avez pas nommé explicitement ce diagnostic. Il est important de se rappeler que les extrasystoles ventriculaires se caractérisent par des QRS larges prématurés, comme mentionné dans le cours : 📖 « Les ESV sont des QRS larges prématurés ». De plus, vous avez bien noté plusieurs éléments additionnels comme la pause compensatoire, l'inversion de l'onde T, et le caractère monomorphe des extrasystoles, ce qui montre une compréhension des anomalies ECG. Vous avez également correctement identifié le rythme sinusal et les QRS fins en dehors des extrasystoles. Pour renforcer vos futures analyses, veillez à nommer explicitement les concepts principaux comme l'extrasystole ventriculaire lorsque vous remarquez des QRS larges prématurés.",
+      "validant_details": [
+        {
+          "golden_name": "Extrasystole ventriculaire",
+          "found": true,
+          "score_pct": 33.3
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "Pause"
+        },
+        {
+          "concept_name": "QRS large"
+        },
+        {
+          "concept_name": "QRS fins"
+        },
+        {
+          "concept_name": "Onde T négative"
+        },
+        {
+          "concept_name": "Rythme sinusal"
+        },
+        {
+          "concept_name": "monomorphe"
+        }
+      ]
+    },
+    {
+      "code": "ECG-U1JK",
+      "num_cas": 1,
+      "reponse_etudiant": "Rythme sinusal regulier a 62bpm\nDeviation axiale gauche\nAbsence de troubles de la repolarisation",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:28:40",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "ECG normal",
+      "commentaire_ia": "Votre réponse est excellente ! Vous avez identifié avec précision que l'ECG est normal, ce qui est un point indispensable pour ce cas. C'est une compétence cruciale, car, comme le souligne le cours : 📖 « Affirmer qu'un ECG est normal impose d'être systématique sur tous les paramètres : rythme, conduction (PR/QRS/QT), axe, repolarisation. » — (Item 231, SFC). Vous avez également mentionné explicitement le rythme sinusal régulier, la fréquence normale et l'absence de troubles de la repolarisation, qui sont des éléments pertinents pour confirmer la normalité de l'ECG. Bien que vous ayez noté une déviation axiale gauche, cela n'a pas affecté votre score ici. Il est important de vérifier systématiquement chaque critère pour éviter toute confusion. Continuez à travailler avec cette rigueur et cette attention aux détails ! 😊",
+      "validant_details": [
+        {
+          "golden_name": "ECG normal",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Bloc interatrial",
+          "found": false
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "Frequence normale"
+        },
+        {
+          "concept_name": "Déviation axiale gauche"
+        },
+        {
+          "concept_name": "Rythme sinusal"
+        }
+      ]
+    },
+    {
+      "code": "ECG-TU31",
+      "num_cas": 2,
+      "reponse_etudiant": "Fréquence à 45-50 bpm, rythme régulier non sinusal. BAV 3. Axe hyperdroit.\nBloc de branche droit ?",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:28:39",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "BAV complet",
+      "commentaire_ia": "Vous avez identifié avec précision le BAV complet, un point essentiel et indispensable dans l'analyse de cet ECG. 📖 « BAV 3e degré (complet) : dissociation complète entre P et QRS » — (Item 231, SFC). C'est un excellent travail, car cette capacité à reconnaître un BAV complet est cruciale en cardiologie. Vous avez également mentionné des éléments importants tels que la bradycardie, l'arythmie atriale, la déviation axiale droite et le bloc de branche droit complet, ce qui montre une bonne observation et compréhension des caractéristiques de l'ECG. Bien que vous n'ayez pas mentionné l'échappement ventriculaire, votre réponse est globalement très solide. Continuez à renforcer votre connaissance des différents types de bloc cardiaque et leurs caractéristiques spécifiques. Félicitations pour cette excellente performance ! 🎉",
+      "validant_details": [
+        {
+          "golden_name": "BAV complet",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Echappement ventriculaire",
+          "found": false
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "Bradycardie"
+        },
+        {
+          "concept_name": "Arythmie atriale"
+        },
+        {
+          "concept_name": "Déviation axiale droite"
+        },
+        {
+          "concept_name": "Bloc de branche droit complet"
+        }
+      ]
+    },
+    {
+      "code": "ECG-TU31",
+      "num_cas": 5,
+      "reponse_etudiant": "Fréquence 35 bpm, rythme sinusal non régulier. Axe ?\nflutter atypique ?",
+      "score_pipeline_batch_ancien": 16.7,
+      "generated_at_original": "2026-07-04 05:28:39",
+      "score_regenere": 16.7,
+      "diagnostic_principal_golden": "Hyperkaliémie",
+      "commentaire_ia": "Votre analyse de l'ECG a mentionné plusieurs aspects importants, mais il vous manque le diagnostic principal d'hyperkaliémie, qui est indispensable. 📖 « L'hyperkaliémie donne : onde T ample, pointue, symétrique, allongement PR, élargissement QRS. Risque : BAV, TV, dysfonction sinusale. » (Item 231, SFC). Vous avez noté la bradycardie, mais sans l'associer à un diagnostic spécifique. De plus, vous avez mentionné un flutter atrial atypique et un rythme sinusal, qui étaient corrects mais ne faisaient pas partie des critères principaux évalués ici. Pour progresser, concentrez-vous sur l'identification des signes ECG spécifiques à l'hyperkaliémie, comme les modifications des ondes T et QRS. Cela vous aidera à mieux cibler les diagnostics principaux et à améliorer votre interprétation globale des ECGs.",
+      "validant_details": [
+        {
+          "golden_name": "Hyperkaliémie",
+          "found": false,
+          "score_pct": 0.0
+        },
+        {
+          "golden_name": "BAV de haut grade",
+          "found": true,
+          "score_pct": 33.3
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "Bradycardie"
+        },
+        {
+          "concept_name": "Flutter atrial atypique"
+        },
+        {
+          "concept_name": "Rythme sinusal"
+        }
+      ]
+    },
+    {
+      "code": "ECG-TU31",
+      "num_cas": 8,
+      "reponse_etudiant": "70 bpm. axe normal. rythme non sinusal, régulier. Aspect en dent de scie évocateur d'un flutter commun",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:28:39",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Flutter droit typique",
+      "commentaire_ia": "Votre réponse est excellente, vous avez identifié correctement le diagnostic principal de flutter droit typique, ce qui est un point indispensable à connaître. Vous avez également noté plusieurs éléments supplémentaires pertinents, tels que le rythme régulier, l'arythmie atriale, une fréquence normale, et l'axe normal du QRS, ainsi que l'aspect en 'toit d'usine'. Ces observations sont conformes aux critères du flutter atrial décrits dans le cours : 📖 « Aspect en 'toit d'usine' ou 'dents de scie' des ondes F » — (Item 231, SFC). Votre identification précise et complète illustre une excellente compréhension de ce tracé ECG. Continuez sur cette lancée dans vos révisions ! 😊",
+      "validant_details": [
+        {
+          "golden_name": "Flutter droit typique",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "rythme régulier"
+        },
+        {
+          "concept_name": "Arythmie atriale"
+        },
+        {
+          "concept_name": "Frequence normale"
+        },
+        {
+          "concept_name": "Axe normal du QRS"
+        },
+        {
+          "concept_name": "Toit d'usine"
+        }
+      ]
+    },
+    {
+      "code": "ECG-TU31",
+      "num_cas": 11,
+      "reponse_etudiant": "150 bpm. Rythme non sinusal, régulier. Axe normal. Tachycardie avec QRS large -> tachycardie ventriculaire",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:28:39",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Tachycardie ventriculaire",
+      "commentaire_ia": "Vous avez réalisé un excellent travail en identifiant correctement la tachycardie ventriculaire, un point indispensable pour ce cas. Votre analyse mentionne explicitement le rythme non sinusal, la tachycardie, les QRS larges et l'axe normal, ce qui confirme votre compréhension des critères de ce diagnostic. Comme le rappelle le cours, 📖 « toute tachycardie régulière à QRS larges est une TV jusqu'à preuve du contraire » — (Item 231, SFC), et vous avez bien appliqué cette règle d'or. Cette compréhension approfondie des critères ECG est essentielle pour éviter les pièges classiques, tels que la confusion avec un bloc de branche. Félicitations pour cette interprétation précise et complète ! 🎉",
+      "validant_details": [
+        {
+          "golden_name": "Tachycardie ventriculaire",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "Arythmie atriale"
+        },
+        {
+          "concept_name": "QRS large"
+        },
+        {
+          "concept_name": "Tachycardie"
+        },
+        {
+          "concept_name": "Axe normal du QRS"
+        }
+      ]
+    },
+    {
+      "code": "ECG-TU31",
+      "num_cas": 14,
+      "reponse_etudiant": "80 bpm. Rythme sinusal non régulier. Extrasystole ventriculaire?\nAxe normal",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:28:39",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Extrasystole ventriculaire",
+      "commentaire_ia": "Votre interprétation de l'ECG est excellente ! Vous avez identifié avec précision l'extrasystole ventriculaire, ce qui est un point indispensable et essentiel pour ce cas. Vous avez également mentionné des éléments supplémentaires importants comme la fréquence normale, l'axe normal du QRS, et le rythme sinusal. Ces observations démontrent une bonne compréhension de l'ECG dans son ensemble. 📖 « Le rythme sinusal est un rythme qui provient d'un automatisme du nœud sinusal. Il génère une onde P positive dans les dérivations inférieures (D2) » (Item 231, SFC). Continuez sur cette lancée, votre approche rigoureuse vous servira bien dans vos études et vos futures pratiques cliniques. Félicitations pour cette analyse précise et complète ! 🎉",
+      "validant_details": [
+        {
+          "golden_name": "Extrasystole ventriculaire",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "Frequence normale"
+        },
+        {
+          "concept_name": "Axe normal du QRS"
+        },
+        {
+          "concept_name": "Rythme sinusal"
+        }
+      ]
+    },
+    {
+      "code": "ECG-SW1B",
+      "num_cas": 1,
+      "reponse_etudiant": "Rythme sinusal et régulier à 62 bpm, axe gauche, absence de trouble de la conduction avec un QRS fin et un PR < 200, pas de signe d’hypertrophie, pas de signe d’ischémie, pas de trouble de la repolarisation",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:28:24",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "ECG normal",
+      "commentaire_ia": "Votre analyse de l'ECG est excellente ! Vous avez identifié avec précision un ECG normal, ce qui est essentiel pour ce type de cas. Vous avez mentionné explicitement un rythme sinusal régulier, un PR normal, des QRS fins, et une déviation axiale gauche. Ces observations renforcent la conclusion d'un ECG normal. De plus, votre description ne présente aucun signe de pathologie, comme l'ischémie ou les troubles de la conduction, ce qui va dans le sens d'un ECG sain.\n\n📖 « Affirmer qu'un ECG est normal impose d'être systématique sur tous les paramètres : rythme, conduction (PR/QRS/QT), axe, repolarisation. » — (Item 231, SFC)\n\nVous avez également noté une bradycardie, bien que la fréquence rapportée soit de 62 bpm. Il n'y a pas d'erreur ici, mais c'est un point à surveiller pour éviter toute confusion future. Continuez à pratiquer cette approche systématique pour confirmer la normalité des ECG. Beau travail ! 😊",
+      "validant_details": [
+        {
+          "golden_name": "ECG normal",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Bloc interatrial",
+          "found": false
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "Bradycardie"
+        },
+        {
+          "concept_name": "PR normal"
+        },
+        {
+          "concept_name": "QRS fins"
+        },
+        {
+          "concept_name": "Rythme sinusal"
+        },
+        {
+          "concept_name": "Déviation axiale gauche"
+        }
+      ]
+    },
+    {
+      "code": "ECG-SW1B",
+      "num_cas": 4,
+      "reponse_etudiant": "Rythme sinusal et régulier, normo-axé, présence d’un BAV 1 avec un PR > 200, QRS fins, pas de signe d’hypertrophie, pas de signe d’ischémie, onde T aplati, ECG microvolé",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:28:24",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Microvoltage",
+      "commentaire_ia": "Vous avez correctement identifié le microvoltage, un élément important à reconnaître dans l'interprétation des ECG. Vous avez également noté la présence d'un bloc auriculo-ventriculaire de type 1, ce qui est précis. 📖 « Le BAV1 est un allongement fixe et constant de PR > 200 ms sans onde P bloquée » — (Item 231, SFC). Vous avez correctement mentionné des éléments supplémentaires tels que le rythme sinusal, la normalité de l'ECG, les QRS fins, l'axe normal du QRS, le PR allongé et les ondes T aplaties. Concernant l'ischémie, votre réponse aurait pu bénéficier d'une mention explicite, mais ce n'est pas un point critique dans ce cas. Votre analyse est très complète, et il est important de continuer à être systématique dans l'évaluation de tous les paramètres ECG. Bravo pour cet excellent travail ! 🎉",
+      "validant_details": [
+        {
+          "golden_name": "Microvoltage",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Amylose",
+          "found": true
+        },
+        {
+          "golden_name": "BAV de type 1",
+          "found": true
+        },
+        {
+          "golden_name": "Perte des onde Q septales",
+          "found": false
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "Rythme sinusal"
+        },
+        {
+          "concept_name": "ECG normal"
+        },
+        {
+          "concept_name": "QRS fins"
+        },
+        {
+          "concept_name": "PR allongé"
+        },
+        {
+          "concept_name": "Axe normal du QRS"
+        },
+        {
+          "concept_name": "Onde T aplatie"
+        }
+      ]
+    },
+    {
+      "code": "ECG-SW1B",
+      "num_cas": 7,
+      "reponse_etudiant": "Rythme sinusal et régulier, axe gauche, PR limite à environ 200 ms, bloc de branche droit, hemibloc antérieur gauche donc bloc bifasciculaire, pas de signe d’hypertrophie",
+      "score_pipeline_batch_ancien": 88.9,
+      "generated_at_original": "2026-07-04 05:28:24",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Bloc de branche droit complet",
+      "commentaire_ia": "Votre réponse est excellente, bravo ! Vous avez identifié correctement le bloc de branche droit complet, un point indispensable. 📖 « Le bloc complet de branche droite se caractérise par : QRS > 120 ms, en V1 QRS globalement positif avec aspect RsR', en V6 aspect qRs avec onde S traînante » (Item 231, SFC). Vous avez également mentionné le BAV de type 1 en signalant un PR allongé, ce qui correspond à un allongement fixe et constant de PR > 200 ms, un critère crucial pour ce diagnostic. Vous avez également identifié le bloc fasciculaire antérieur gauche, qui est un autre point essentiel. 📖 « L'HBAG est caractérisé par un QRS > 100 ms avec déviation axiale gauche au-delà de −30° » (Item 231, SFC). De plus, vous avez mentionné le rythme sinusal, la déviation axiale gauche et le bloc bifasciculaire, ce qui montre une compréhension approfondie de l'ECG. Continuez sur cette lancée, votre attention aux détails et votre précision sont exemplaires. Félicitations pour ce score parfait ! 🌟",
+      "validant_details": [
+        {
+          "golden_name": "Bloc de branche droit complet",
+          "found": true,
+          "score_pct": 100.0
+        },
+        {
+          "golden_name": "BAV de type 1",
+          "found": true,
+          "score_pct": 100.0
+        },
+        {
+          "golden_name": "Bloc fasciculaire antérieur gauche",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "Déviation axiale gauche"
+        },
+        {
+          "concept_name": "Bloc bifasciculaire"
+        },
+        {
+          "concept_name": "PR allongé"
+        },
+        {
+          "concept_name": "Rythme sinusal"
+        }
+      ]
+    },
+    {
+      "code": "ECG-SW1B",
+      "num_cas": 10,
+      "reponse_etudiant": "Rythme sinusal et régulier à 84 bpm, axe gauche, présence d’un bloc de branche gauche avec un QRS à 160, PR normal, repolarisation adaptée au bloc de branche",
+      "score_pipeline_batch_ancien": 66.7,
+      "generated_at_original": "2026-07-04 05:28:24",
+      "score_regenere": 66.7,
+      "diagnostic_principal_golden": "Bloc de branche gauche complet",
+      "commentaire_ia": "Vous avez bien identifié plusieurs éléments importants dans votre analyse de l'ECG. Vous avez mentionné le bloc de branche gauche, en notant un QRS à 160 ms. 📖 « Le BBG complet se caractérise par : QRS > 120 ms » — (Item 231, SFC). Vous avez correctement noté le rythme sinusal et un PR normal, ce qui indique une bonne compréhension des paramètres de base de l'ECG. De plus, vous avez identifié une déviation axiale gauche, une fréquence normale, et un QRS large, qui sont des détails pertinents même s'ils ne sont pas notés ici.\n\nContinuez ainsi à vous familiariser avec les critères spécifiques des différents troubles de conduction. Bravo pour votre travail !",
+      "validant_details": [
+        {
+          "golden_name": "Bloc de branche gauche complet",
+          "found": true,
+          "score_pct": 66.7
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Rythme sinusal",
+          "found": true
+        },
+        {
+          "golden_name": "PR normal",
+          "found": true
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "Déviation axiale gauche"
+        },
+        {
+          "concept_name": "Frequence normale"
+        },
+        {
+          "concept_name": "QRS large"
+        },
+        {
+          "concept_name": "Bloc de branche gauche"
+        }
+      ]
+    },
+    {
+      "code": "ECG-SW1B",
+      "num_cas": 13,
+      "reponse_etudiant": "Sd de wolf parkinson White avec aspect de pré excitation",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:28:24",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Faisceau accessoire à conduction antérograde",
+      "commentaire_ia": "Vous avez parfaitement identifié le diagnostic principal du cas, à savoir un faisceau accessoire à conduction antérograde, en mentionnant explicitement le syndrome de Wolff-Parkinson-White et l'aspect de préexcitation. 📖 « La préexcitation se manifeste par un PR court < 120 ms et une onde δ. WPW = voie accessoire + palpitations par réentrée » — (Item 231, SFC). Cela reflète une bonne compréhension des caractéristiques clés de cette condition. Votre réponse est complète et précise, ce qui est excellent. Continuez sur cette lancée dans vos révisions futures. Bravo pour votre travail impeccable ! 🎉",
+      "validant_details": [
+        {
+          "golden_name": "Faisceau accessoire à conduction antérograde",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": []
+    },
+    {
+      "code": "ECG-SSRO",
+      "num_cas": 1,
+      "reponse_etudiant": "Fréquence: 50bpm (bradycardie)\nRythme: régulier, sinusal\nAxe: normal\nConduction: PR et QT normaux\nHypertrophie: QRS fins, absence d'hypertrophie atriale ou ventriculaire\nIschémie: pas de sus ou sous décalage du segment ST\n\nConclusion: Bradycardie",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:27:54",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "ECG normal",
+      "commentaire_ia": "Vous avez correctement identifié l'ECG comme étant normal, ce qui est un point essentiel à maîtriser. 📖 « Affirmer qu'un ECG est normal impose d'être systématique sur tous les paramètres : rythme, conduction (PR/QRS/QT), axe, repolarisation. » — (Item 231, SFC). Vous avez également mentionné explicitement plusieurs éléments clés : la bradycardie, un PR et QT normaux, des QRS fins, un rythme sinusal, et un axe normal du QRS. Ces observations sont précises et montrent une bonne compréhension de l'interprétation de l'ECG. 📖 « Le rythme sinusal est défini par une onde P positive en D2, D3, aVF avec un QRS après chaque P et une P avant chaque QRS. » — (Item 231, SFC). Bien que vous n'ayez pas mentionné le bloc interatrial, cela n'affecte pas votre diagnostic principal ici. Continuez à pratiquer pour maintenir cette rigueur dans l'analyse des ECG. Félicitations pour votre excellente performance !",
+      "validant_details": [
+        {
+          "golden_name": "ECG normal",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Bloc interatrial",
+          "found": false
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "Bradycardie"
+        },
+        {
+          "concept_name": "PR normal"
+        },
+        {
+          "concept_name": "QT normal"
+        },
+        {
+          "concept_name": "QRS fins"
+        },
+        {
+          "concept_name": "Rythme sinusal"
+        },
+        {
+          "concept_name": "Axe normal du QRS"
+        }
+      ]
+    },
+    {
+      "code": "ECG-SSRO",
+      "num_cas": 4,
+      "reponse_etudiant": "Fréquence: 55bpm \nRythme: régulier, sinusal\nAxe: normal\nConduction: PR long et QT long\nHypertrophie: QRS fins, absence d'hypertrophie atriale ou ventriculaire\nIschémie: pas de sus ou sous décalage du segment ST\n\nConclusion: PR long",
+      "score_pipeline_batch_ancien": 0.0,
+      "generated_at_original": "2026-07-04 05:27:54",
+      "score_regenere": 0.0,
+      "diagnostic_principal_golden": "Microvoltage",
+      "commentaire_ia": "Votre analyse de l'ECG montre que vous avez identifié plusieurs éléments pertinents, comme la bradycardie, le PR allongé, le long QT, le rythme sinusal et l'axe normal du QRS. Cependant, vous n'avez pas mentionné le microvoltage, un point important à considérer dans ce cas. 📖 « L'amylose cardiaque associe classiquement un microvoltage électrique à un épaississement pariétal important en échographie, discordance évocatrice du diagnostic » (Item 231, SFC). C'est un élément clé qui n'a pas été évoqué et qui aurait été central pour ce diagnostic. Vous avez correctement noté le BAV de type 1, ce qui démontre une bonne compréhension de l'allongement du PR. 📖 « Le BAV1 est un allongement fixe et constant de PR > 200 ms sans onde P bloquée » (Item 231, SFC). En revanche, l'absence de mention de la perte des ondes Q septales et de l'amylose cardiaque indique que ces aspects doivent être revus pour une évaluation complète. Pour améliorer votre analyse, assurez-vous d'explorer tous les paramètres possibles, en particulier ceux qui peuvent indiquer des pathologies moins évidentes comme l'amylose, et gardez en tête l'importance du microvoltage dans ce contexte.",
+      "validant_details": [
+        {
+          "golden_name": "Microvoltage",
+          "found": false,
+          "score_pct": 0.0
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Amylose",
+          "found": false
+        },
+        {
+          "golden_name": "BAV de type 1",
+          "found": true
+        },
+        {
+          "golden_name": "Perte des onde Q septales",
+          "found": false
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "Bradycardie"
+        },
+        {
+          "concept_name": "PR allongé"
+        },
+        {
+          "concept_name": "ECG normal"
+        },
+        {
+          "concept_name": "QT long"
+        },
+        {
+          "concept_name": "QRS fins"
+        },
+        {
+          "concept_name": "Rythme sinusal"
+        },
+        {
+          "concept_name": "Axe normal du QRS"
+        }
+      ]
+    },
+    {
+      "code": "ECG-SSRO",
+      "num_cas": 7,
+      "reponse_etudiant": "Fréquence: 60bpm \nRythme: régulier, 2 ondes P\nAxe: \nConduction: PR normal et QT long\nHypertrophie: QRS large, absence d'hypertrophie atriale ou ventriculaire\nIschémie: pas de sus ou sous décalage du segment ST; onde T-\n\nConclusion: BAV mobitz 3 (2:1), ischémie?",
+      "score_pipeline_batch_ancien": 22.2,
+      "generated_at_original": "2026-07-04 05:27:54",
+      "score_regenere": 22.2,
+      "diagnostic_principal_golden": "Bloc de branche droit complet",
+      "commentaire_ia": "Votre analyse ECG a mentionné certains éléments pertinents, mais il y a des points importants à revoir. Vous avez noté la largeur du QRS, ce qui va dans le sens d'un bloc de branche droit complet sans le nommer explicitement. 📖 « Le bloc complet de branche droite se caractérise par : QRS > 120 ms... » (Item 231, SFC). Cependant, vous n'avez pas identifié le bloc auriculo-ventriculaire de type 1, défini par un allongement du PR > 200 ms sans onde P bloquée. Vous n'avez pas non plus mentionné le bloc fasciculaire antérieur gauche, qui se caractérise par un élargissement modéré du QRS et une déviation axiale gauche. Vous avez noté explicitement des concepts comme la bradycardie, le rythme régulier, et le QT long. Pour progresser, concentrez-vous sur les critères diagnostiques des blocs de branche et des BAV, et assurez-vous de nommer explicitement les diagnostics clés.",
+      "validant_details": [
+        {
+          "golden_name": "Bloc de branche droit complet",
+          "found": true,
+          "score_pct": 66.7
+        },
+        {
+          "golden_name": "BAV de type 1",
+          "found": false,
+          "score_pct": 0.0
+        },
+        {
+          "golden_name": "Bloc fasciculaire antérieur gauche",
+          "found": false,
+          "score_pct": 0.0
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "Bradycardie"
+        },
+        {
+          "concept_name": "rythme régulier"
+        },
+        {
+          "concept_name": "Onde P"
+        },
+        {
+          "concept_name": "PR normal"
+        },
+        {
+          "concept_name": "ECG normal"
+        },
+        {
+          "concept_name": "QT long"
+        },
+        {
+          "concept_name": "QRS large"
+        },
+        {
+          "concept_name": "Onde T"
+        },
+        {
+          "concept_name": "Axe normal du QRS"
+        },
+        {
+          "concept_name": "Ischémique"
+        }
+      ]
+    },
+    {
+      "code": "ECG-SSRO",
+      "num_cas": 10,
+      "reponse_etudiant": "Fréquence: 70bpm \nRythme: régulier, sinusal\nAxe: normal\nConduction: PR et QT normaux\nHypertrophie: QRS larges, absence d'hypertrophie atriale ou ventriculaire\nIschémie: sus décalage du segment ST (ST+) en territoire antéro-septal (v1 v2 v3) avec miroir (AVF D1)\n\nConclusion: Bloc de branche gauche et SCA ST+ en antéro-septal",
+      "score_pipeline_batch_ancien": 66.7,
+      "generated_at_original": "2026-07-04 05:27:54",
+      "score_regenere": 66.7,
+      "diagnostic_principal_golden": "Bloc de branche gauche complet",
+      "commentaire_ia": "Vous avez bien mentionné le bloc de branche gauche complet, ce qui est essentiel pour ce cas. Cependant, votre réponse ne l'identifie pas de manière explicite. Vous avez correctement noté un rythme sinusal ainsi qu'un PR normal, ce qui est un bon point de départ pour l'analyse de cet ECG. En ce qui concerne le sus-décalage du segment ST en territoire antéro-septal, votre réponse mentionne un élément qui peut orienter vers un syndrome coronarien aigu (SCA) avec ST, mais il est important de noter que le bloc de branche gauche peut parfois mimer un sus-décalage de ST, créant une situation où l'interprétation de la repolarisation est délicate. 📖 « En contexte de douleur thoracique + BBG, il faut éliminer un SCA » — (Item 231, SFC). Notez que l'évaluation des ECG avec un bloc de branche gauche nécessite une prudence particulière afin d'éviter de conclure à tort à un infarctus. Continuez à approfondir votre compréhension des ECG en vous concentrant sur l'interprétation spécifique des blocs de branche et des syndromes coronariens.",
+      "validant_details": [
+        {
+          "golden_name": "Bloc de branche gauche complet",
+          "found": true,
+          "score_pct": 66.7
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Rythme sinusal",
+          "found": true
+        },
+        {
+          "golden_name": "PR normal",
+          "found": true
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "Courant de lésion sous-épicardique"
+        },
+        {
+          "concept_name": "ECG normal"
+        },
+        {
+          "concept_name": "Bloc de branche gauche"
+        },
+        {
+          "concept_name": "QT normal"
+        },
+        {
+          "concept_name": "QRS large"
+        },
+        {
+          "concept_name": "Frequence normale"
+        },
+        {
+          "concept_name": "Axe normal du QRS"
+        },
+        {
+          "concept_name": "Infarctus du myocarde à la phase aigue"
+        }
+      ]
+    },
+    {
+      "code": "ECG-SSRO",
+      "num_cas": 13,
+      "reponse_etudiant": "Fréquence: 50bpm (bradycardie)\nRythme: régulier, sinusal\nAxe: normal\nConduction: PR court et QT normal\nHypertrophie: QRS large, absence d'hypertrophie atriale ou ventriculaire\nIschémie: pas de sus ou sous décalage du segment ST\n\nConclusion: bradycardie et léger bloc de branche gauche",
+      "score_pipeline_batch_ancien": 50.0,
+      "generated_at_original": "2026-07-04 05:27:54",
+      "score_regenere": 50.0,
+      "diagnostic_principal_golden": "Faisceau accessoire à conduction antérograde",
+      "commentaire_ia": "Vous avez bien mentionné le faisceau accessoire à conduction antérograde en indiquant un PR court, ce qui est un point important à retenir pour ce diagnostic. Cependant, vous n'avez pas explicitement nommé le faisceau accessoire lui-même. 📖 « La préexcitation se manifeste par un PR court < 120 ms et une onde δ. » — (Item 231, SFC). Cela va dans le sens de la préexcitation, mais l'identification directe de ce syndrome est essentielle.\n\nVotre réponse contient également plusieurs éléments corrects en dehors de ce diagnostic principal. Vous avez noté la bradycardie, le bloc de branche gauche, le rythme sinusal, un axe QRS normal, un QRS large, et un QT normal. Ces observations montrent une bonne capacité d'analyse des paramètres ECG, bien qu'elles ne soient pas directement liées à l'évaluation du faisceau accessoire.\n\nJe vous encourage à approfondir votre compréhension des caractéristiques ECG spécifiques des faisceaux accessoires afin de mieux les identifier à l'avenir.",
+      "validant_details": [
+        {
+          "golden_name": "Faisceau accessoire à conduction antérograde",
+          "found": true,
+          "score_pct": 50.0
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "Bradycardie"
+        },
+        {
+          "concept_name": "PR court"
+        },
+        {
+          "concept_name": "Bloc de branche gauche"
+        },
+        {
+          "concept_name": "ECG normal"
+        },
+        {
+          "concept_name": "QT normal"
+        },
+        {
+          "concept_name": "QRS large"
+        },
+        {
+          "concept_name": "Rythme sinusal"
+        },
+        {
+          "concept_name": "Axe normal du QRS"
+        }
+      ]
+    },
+    {
+      "code": "ECG-SM9K",
+      "num_cas": 3,
+      "reponse_etudiant": "Fibrillation atriale, rythme irregulier, FC 120 bpm, tachycardie a QRS fin, axe normal, pas de bloc de branche",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:27:09",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Fibrillation atriale",
+      "commentaire_ia": "Vous avez identifié correctement la fibrillation atriale, un diagnostic essentiel dans ce cas. 📖 « La fibrillation atriale correspond à une activation atriale anarchique. C'est une tachycardie entre 100 et 200 bpm à QRS irrégulièrement irréguliers » — (Item 231, SFC). Vous avez également mentionné l'irrégularité du rythme, la tachycardie à QRS fins, et l'axe normal du QRS, ce qui témoigne d'une excellente compréhension de l'ECG. Ces éléments, bien que non notés dans ce cas, renforcent votre diagnostic principal. Vous n'avez pas mentionné la repolarisation précoce, mais cela n'affecte pas votre score parfait. Continuez à être systématique dans vos analyses ECG pour maintenir ce niveau d'excellence ! 👍",
+      "validant_details": [
+        {
+          "golden_name": "Fibrillation atriale",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Repolarisation précoce",
+          "found": false
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "Irrégulier"
+        },
+        {
+          "concept_name": "ECG normal"
+        },
+        {
+          "concept_name": "Tachycardie"
+        },
+        {
+          "concept_name": "QRS fins"
+        },
+        {
+          "concept_name": "Axe normal du QRS"
+        }
+      ]
+    },
+    {
+      "code": "ECG-SM9K",
+      "num_cas": 6,
+      "reponse_etudiant": "Rythme sinusal regulier, FC 80 bpm, axe gauche, BAV 1 degre, pas de bloc de branche, QTc normal",
+      "score_pipeline_batch_ancien": 50.0,
+      "generated_at_original": "2026-07-04 05:27:09",
+      "score_regenere": 50.0,
+      "diagnostic_principal_golden": "Stimulation atriale",
+      "commentaire_ia": "Votre analyse de l'ECG montre une bonne compréhension de plusieurs éléments clés, mais il y a quelques points à corriger. Vous avez mentionné explicitement le rythme sinusal, un BAV de type 1, un QT normal et une fréquence cardiaque normale, ce qui témoigne de votre attention aux détails. Cependant, vous avez omis de reconnaître la stimulation atriale, un point important. 📖 « Stimulation atriale = spike + onde P » — (Item 231, SFC). Cette omission a affecté votre évaluation. Vous avez noté une déviation axiale gauche, ce qui va dans le sens d'un bloc fasciculaire antérieur gauche, mais vous ne l'avez pas nommé explicitement. Pensez à être systématique pour identifier tous les aspects d'un ECG, y compris les détails subtils comme les spikes de stimulation qui indiquent une stimulation cardiaque. Cela vous aidera à améliorer votre diagnostic pour les prochains examens.",
+      "validant_details": [
+        {
+          "golden_name": "Stimulation atriale",
+          "found": false,
+          "score_pct": 0.0
+        },
+        {
+          "golden_name": "Bloc fasciculaire antérieur gauche",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Bloc intraventriculaire aspécifique",
+          "found": false
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "ECG normal"
+        },
+        {
+          "concept_name": "BAV de type 1"
+        },
+        {
+          "concept_name": "QT normal"
+        },
+        {
+          "concept_name": "Rythme sinusal"
+        },
+        {
+          "concept_name": "Déviation axiale gauche"
+        },
+        {
+          "concept_name": "Frequence normale"
+        }
+      ]
+    },
+    {
+      "code": "ECG-SM9K",
+      "num_cas": 9,
+      "reponse_etudiant": "Rythme sinusal et regulier, FC 78 bpm, axe droit, BAV 2 degré mobitz 2, pas de bloc de branche",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:27:09",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "BAV 2 Mobitz 2",
+      "commentaire_ia": "Votre analyse de l'ECG est excellente, félicitations ! Vous avez correctement identifié le bloc auriculo-ventriculaire de 2e degré de type Mobitz 2, un point indispensable pour ce cas. 📖 « BAV 2e degré Mobitz 2 : PR fixe avant le blocage d'une onde P. Siège infrahissien, souvent QRS larges. Indication de pacemaker même sans symptôme. » — (Item 231, SFC). Vous avez également mentionné explicitement des éléments importants comme le rythme sinusal et la fréquence cardiaque normale, ce qui démontre une bonne compréhension de l'ECG. Continuez sur cette lancée en consolidant vos connaissances sur les autres types de blocs et leurs implications cliniques. Bravo pour ce travail précis et rigoureux !",
+      "validant_details": [
+        {
+          "golden_name": "BAV 2 Mobitz 2",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Bloc de branche droit",
+          "found": false
+        },
+        {
+          "golden_name": "Bloc fasciculaire postérieur gauche",
+          "found": false
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "Déviation axiale droite"
+        },
+        {
+          "concept_name": "Rythme sinusal"
+        },
+        {
+          "concept_name": "Frequence normale"
+        },
+        {
+          "concept_name": "ECG normal"
+        }
+      ]
+    },
+    {
+      "code": "ECG-SM9K",
+      "num_cas": 12,
+      "reponse_etudiant": "Rythme sinusal et regulier, FC 60 bpm, axe normal, PR normal, pas de bloc de branche, infarctus du myocarde ST+ antérieur",
+      "score_pipeline_batch_ancien": 66.7,
+      "generated_at_original": "2026-07-04 05:27:09",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Syndrome coronarien à la phase aigue avec sus-décalage du segment ST",
+      "commentaire_ia": "Vous avez correctement identifié le diagnostic principal, le syndrome coronarien à la phase aiguë avec sus-décalage du segment ST, ce qui est essentiel pour ce cas (rang indispensable). 📖 « SCA avec ST : traquer le sus-décalage (≥2 mm en V1-V3, ≥1 mm ailleurs) » — (Item 231, SFC). C'est un excellent point de départ pour l'analyse de l'ECG dans le contexte d'un syndrome coronarien aigu.\n\nEn plus, vous avez mentionné plusieurs éléments importants de l'analyse ECG : le rythme sinusal, la fréquence cardiaque normale (60 bpm), l'axe normal du QRS, et un intervalle PR normal. Ces observations démontrent une approche systématique, qui est cruciale pour établir un ECG normal : 📖 « Affirmer qu'un ECG est normal impose d'être systématique sur tous les paramètres : rythme, conduction (PR/QRS/QT), axe, repolarisation » — (Item 231, SFC). \n\nDans l'ensemble, votre réponse est complète et montre une bonne maîtrise de l'interprétation ECG. Continuez à pratiquer pour renforcer votre capacité d'analyse et à reconnaître rapidement les signes critiques d'un infarctus du myocarde. Bravo pour votre travail ! 👏",
+      "validant_details": [
+        {
+          "golden_name": "Syndrome coronarien à la phase aigue avec sus-décalage du segment ST",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "PR normal"
+        },
+        {
+          "concept_name": "ECG normal"
+        },
+        {
+          "concept_name": "Rythme sinusal"
+        },
+        {
+          "concept_name": "Frequence normale"
+        },
+        {
+          "concept_name": "Axe normal du QRS"
+        }
+      ]
+    },
+    {
+      "code": "ECG-SM9K",
+      "num_cas": 15,
+      "reponse_etudiant": "Fibrillation atrial, rythme irregulier, axe gauche, Bloc de branche gauche",
+      "score_pipeline_batch_ancien": 83.3,
+      "generated_at_original": "2026-07-04 05:27:09",
+      "score_regenere": 83.3,
+      "diagnostic_principal_golden": "Bloc de branche gauche complet",
+      "commentaire_ia": "Vous avez correctement identifié la fibrillation atriale, un point indispensable pour ce cas, en notant son rythme irrégulier. 📖 « La fibrillation atriale correspond à une activation atriale anarchique. C'est une tachycardie entre 100 et 200 bpm à QRS irrégulièrement irréguliers » — (Item 231, SFC). Concernant le bloc de branche gauche complet, votre réponse contient des éléments qui vont dans ce sens, tels que la mention de \"bloc de branche gauche\", mais vous n'avez pas nommé explicitement le bloc complet. 📖 « Le BBG complet se caractérise par : QRS > 120 ms, en V1 QRS négatif (rS ou QS), en V6/D1/aVL notch avec onde R exclusive » — (Item 231, SFC). Vous avez également noté la déviation axiale gauche, ce qui est pertinent bien que non noté pour ce cas spécifique. Pour renforcer votre réponse, il serait utile de préciser les critères ECG du bloc de branche gauche complet, comme la durée des QRS et leur morphologie spécifique. Continuez à vous appuyer sur les critères ECG précis pour affiner vos diagnostics.",
+      "validant_details": [
+        {
+          "golden_name": "Bloc de branche gauche complet",
+          "found": true,
+          "score_pct": 66.7
+        },
+        {
+          "golden_name": "Fibrillation atriale",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "Déviation axiale gauche"
+        },
+        {
+          "concept_name": "Irrégulier"
+        },
+        {
+          "concept_name": "Bloc de branche gauche"
+        }
+      ]
+    },
+    {
+      "code": "ECG-S9QV",
+      "num_cas": 3,
+      "reponse_etudiant": "Fréquence à 125bpm, rythme non régulier et son sinusal (flutter ou FA?), axe normal, ESA ?, QRS fins,\nonde Q V1",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:26:51",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Fibrillation atriale",
+      "commentaire_ia": "Vous avez correctement identifié le diagnostic principal de fibrillation atriale, un point indispensable pour cette évaluation. 📖 « La fibrillation atriale correspond à une activation atriale anarchique. C'est une tachycardie entre 100 et 200 bpm à QRS irrégulièrement irréguliers. La FA est le seul diagnostic en cas de tachycardie complètement irrégulière à QRS fins » (Item 231, SFC). Vous avez également noté plusieurs éléments additionnels importants : l'extrasystole atriale, l'arythmie atriale, la tachycardie, les QRS fins, le rythme sinusal et l'axe normal du QRS, ce qui montre votre capacité à reconnaître de nombreux aspects de l'ECG. Bien que la repolarisation précoce ne soit pas mentionnée, cela n'affecte pas votre évaluation du cas principal. Continuez à approfondir vos connaissances sur les diverses pathologies pour renforcer votre confiance dans l'interprétation ECG. Félicitations pour cet excellent travail !",
+      "validant_details": [
+        {
+          "golden_name": "Fibrillation atriale",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Repolarisation précoce",
+          "found": false
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "Extrasystole atriale"
+        },
+        {
+          "concept_name": "Arythmie atriale"
+        },
+        {
+          "concept_name": "Tachycardie"
+        },
+        {
+          "concept_name": "QRS fins"
+        },
+        {
+          "concept_name": "Rythme sinusal"
+        },
+        {
+          "concept_name": "Axe normal du QRS"
+        }
+      ]
+    },
+    {
+      "code": "ECG-S9QV",
+      "num_cas": 6,
+      "reponse_etudiant": "Rythme sinusale régulier à 80 bpm. Axe Gauche (D1+ et D2 AVF -).",
+      "score_pipeline_batch_ancien": 50.0,
+      "generated_at_original": "2026-07-04 05:26:51",
+      "score_regenere": 50.0,
+      "diagnostic_principal_golden": "Stimulation atriale",
+      "commentaire_ia": "Votre analyse a correctement identifié certaines caractéristiques de l'ECG, notamment la fréquence cardiaque normale et le rythme sinusal. Vous avez également mentionné la déviation axiale gauche, ce qui va dans le sens d'un bloc fasciculaire antérieur gauche, un point indispensable à connaître. 📖 « L'HBAG est caractérisé par un QRS > 100 ms avec déviation axiale gauche au-delà de −30° (négativité de D2). » — (Item 231, SFC). Cependant, vous n'avez pas mentionné la stimulation atriale, un point important dans ce cas. 📖 « Stimulation atriale = spike + P. » — (Item 231, SFC). Il est essentiel de se rappeler que le spike de stimulation est pathognomonique d'une stimulation cardiaque. Pour améliorer votre analyse, je vous recommande de prêter attention aux signes de stimulation cardiaque sur l'ECG, tels que la présence de spikes associés à l'onde P ou au QRS, ce qui vous aidera à ne pas manquer un diagnostic de stimulation atriale à l'avenir.",
+      "validant_details": [
+        {
+          "golden_name": "Stimulation atriale",
+          "found": false,
+          "score_pct": 0.0
+        },
+        {
+          "golden_name": "Bloc fasciculaire antérieur gauche",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Bloc intraventriculaire aspécifique",
+          "found": false
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "Frequence normale"
+        },
+        {
+          "concept_name": "Déviation axiale gauche"
+        },
+        {
+          "concept_name": "Rythme sinusal"
+        }
+      ]
+    },
+    {
+      "code": "ECG-R48T",
+      "num_cas": 1,
+      "reponse_etudiant": "Rythme sinusal à 62 bpm, axe limite gauche, pas de troubles de la conductions, pas de troubles de la repolarisations significatifs",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:26:40",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "ECG normal",
+      "commentaire_ia": "Votre évaluation de l'ECG est excellente, et vous avez correctement identifié que l'ECG est normal, ce qui est un point indispensable. Vous avez également noté explicitement le rythme sinusal, ce qui est essentiel dans l'évaluation de la normalité d'un ECG. 📖 « Le rythme sinusal est un rythme qui provient d'un automatisme du nœud sinusal. Il génère une onde P positive dans les dérivations inférieures (D2) » — (Item 231, SFC). Vous avez mentionné la fréquence normale en notant « 62 bpm », ce qui est conforme à la plage normale de repos entre 50 et 100 bpm. De plus, vous avez abordé la déviation axiale gauche comme un détail, ce qui montre votre attention aux détails subtils de l'ECG. N'oubliez pas d'être systématique dans votre approche pour éviter les pièges classiques lors de l'analyse de l'ECG. Continuez sur cette lancée ! 🌟",
+      "validant_details": [
+        {
+          "golden_name": "ECG normal",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Bloc interatrial",
+          "found": false
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "Frequence normale"
+        },
+        {
+          "concept_name": "Déviation axiale gauche"
+        },
+        {
+          "concept_name": "Rythme sinusal"
+        }
+      ]
+    },
+    {
+      "code": "ECG-R48T",
+      "num_cas": 4,
+      "reponse_etudiant": "Rythme sinusal à 70 bpm, axe normal, BAV du premier degrès, pas de troubles de la repolarisations, QT allongé",
+      "score_pipeline_batch_ancien": 0.0,
+      "generated_at_original": "2026-07-04 05:26:40",
+      "score_regenere": 0.0,
+      "diagnostic_principal_golden": "Microvoltage",
+      "commentaire_ia": "Vous avez bien identifié plusieurs éléments de l'ECG, notamment le rythme sinusal, l'axe normal du QRS et le QT long, ce qui démontre une bonne compréhension des paramètres normaux de l'ECG. Vous avez également mentionné le bloc auriculo-ventriculaire (BAV) de type 1, qui est caractérisé par un allongement fixe et constant de PR > 200 ms sans onde P bloquée 📖 « Le BAV1 est un allongement fixe et constant de PR > 200 ms sans onde P bloquée » — (Item 231, SFC). Cependant, vous avez manqué de mentionner le microvoltage, qui est un point important pour ce cas particulier. Le microvoltage est souvent associé à certaines pathologies comme l'amylose cardiaque, où il contraste avec un épaississement pariétal important à l'échographie 📖 « L'amylose cardiaque associe classiquement un microvoltage électrique à un épaississement pariétal important en échographie, discordance évocatrice du diagnostic » — (Item 231, SFC). Pour progresser, je vous conseille de revoir les critères spécifiques du microvoltage et son association avec des pathologies comme l'amylose, afin de mieux l'identifier à l'avenir.",
+      "validant_details": [
+        {
+          "golden_name": "Microvoltage",
+          "found": false,
+          "score_pct": 0.0
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Amylose",
+          "found": false
+        },
+        {
+          "golden_name": "BAV de type 1",
+          "found": true
+        },
+        {
+          "golden_name": "Perte des onde Q septales",
+          "found": false
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "ECG normal"
+        },
+        {
+          "concept_name": "QT long"
+        },
+        {
+          "concept_name": "Rythme sinusal"
+        },
+        {
+          "concept_name": "Frequence normale"
+        },
+        {
+          "concept_name": "Axe normal du QRS"
+        }
+      ]
+    },
+    {
+      "code": "ECG-R48T",
+      "num_cas": 7,
+      "reponse_etudiant": "Rythme sinusal à 75 bpm, axe gauche avec HBAG et BBD et BAV du premier degrés, pas de troubles de la repolarisations",
+      "score_pipeline_batch_ancien": 88.9,
+      "generated_at_original": "2026-07-04 05:26:40",
+      "score_regenere": 88.9,
+      "diagnostic_principal_golden": "Bloc de branche droit complet",
+      "commentaire_ia": "Vous avez correctement identifié plusieurs éléments clés de l'ECG, notamment le bloc fasciculaire antérieur gauche et le BAV de type 1, qui sont essentiels à reconnaître. Vous avez également mentionné le bloc de branche droit complet. 📖 « Le bloc complet de branche droite se caractérise par : QRS > 120 ms, en V1 QRS globalement positif avec aspect RsR', en V6 aspect qRs avec onde S traînante. » (Item 231, SFC). Vous avez également noté des paramètres comme le rythme sinusal et la fréquence normale. Continuez votre bon travail en gardant à l'esprit l'importance de détailler chaque élément pour assurer une interprétation précise.",
+      "validant_details": [
+        {
+          "golden_name": "Bloc de branche droit complet",
+          "found": true,
+          "score_pct": 66.7
+        },
+        {
+          "golden_name": "BAV de type 1",
+          "found": true,
+          "score_pct": 100.0
+        },
+        {
+          "golden_name": "Bloc fasciculaire antérieur gauche",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "Bloc de branche droit"
+        },
+        {
+          "concept_name": "ECG normal"
+        },
+        {
+          "concept_name": "Rythme sinusal"
+        },
+        {
+          "concept_name": "Déviation axiale gauche"
+        },
+        {
+          "concept_name": "Frequence normale"
+        }
+      ]
+    },
+    {
+      "code": "ECG-R48T",
+      "num_cas": 10,
+      "reponse_etudiant": "Rythme sinusal à 70 bpm, axe limite gauche, BBG complet avec repolarisations en rapports.",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:26:40",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Bloc de branche gauche complet",
+      "commentaire_ia": "Vous avez correctement identifié le bloc de branche gauche complet, un point essentiel de votre analyse. 📖 « Le BBG complet se caractérise par : QRS > 120 ms, en V1 QRS négatif (rS ou QS), en V6/D1/aVL notch avec onde R exclusive. » (Item 231, SFC). Vous avez également mentionné le rythme sinusal et une fréquence cardiaque normale, ce qui est pertinent pour l'analyse globale de l'ECG. Cependant, vous n'avez pas mentionné la normalité de l'intervalle PR, un détail qui, bien que non noté, peut être utile pour affiner votre diagnostic. Votre réponse inclut aussi une déviation axiale gauche, montrant une bonne reconnaissance des caractéristiques ECG. Dans l'ensemble, votre analyse est excellente. Continuez à prêter attention aux détails tels que l'intervalle PR pour affiner encore davantage vos compétences en interprétation ECG.",
+      "validant_details": [
+        {
+          "golden_name": "Bloc de branche gauche complet",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Rythme sinusal",
+          "found": true
+        },
+        {
+          "golden_name": "PR normal",
+          "found": false
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "Frequence normale"
+        },
+        {
+          "concept_name": "Déviation axiale gauche"
+        }
+      ]
+    },
+    {
+      "code": "ECG-R48T",
+      "num_cas": 13,
+      "reponse_etudiant": "Rythme sinusal à 58 bpm, axe normal, aspect de pré excitation. Pas de troubles de la repolarisations.",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:26:40",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Faisceau accessoire à conduction antérograde",
+      "commentaire_ia": "Vous avez brillamment identifié le faisceau accessoire à conduction antérograde, ce qui est essentiel dans ce cas. Bravo pour cette précision ! Vous avez également mentionné explicitement des éléments importants tels que le rythme sinusal, la bradycardie et un axe normal du QRS, ce qui démontre une bonne compréhension de l'ECG. 📖 « Le rythme sinusal est un rythme qui provient d'un automatisme du nœud sinusal. Il génère une onde P positive dans les dérivations inférieures (D2) » — (Item 231, SFC). Votre capacité à analyser ces détails est un atout précieux. Continuez à utiliser cette approche systématique pour assurer la précision de vos interprétations ECG à l'avenir. Félicitations pour votre performance remarquable !",
+      "validant_details": [
+        {
+          "golden_name": "Faisceau accessoire à conduction antérograde",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "Bradycardie"
+        },
+        {
+          "concept_name": "Rythme sinusal"
+        },
+        {
+          "concept_name": "Axe normal du QRS"
+        },
+        {
+          "concept_name": "ECG normal"
+        }
+      ]
+    },
+    {
+      "code": "ECG-QHCN",
+      "num_cas": 2,
+      "reponse_etudiant": "Rythme irregulier, bradycardie qui montre un BBG avec trouble de repolarisation. Onde P négative",
+      "score_pipeline_batch_ancien": 66.7,
+      "generated_at_original": "2026-07-04 05:26:18",
+      "score_regenere": 66.7,
+      "diagnostic_principal_golden": "BAV complet",
+      "commentaire_ia": "Vous avez évoqué des éléments allant dans le sens d'un bloc auriculo-ventriculaire (BAV) complet, notamment en mentionnant la bradycardie. Cependant, vous n'avez pas nommé explicitement le BAV complet, qui est un point indispensable. 📖 « BAV 3e degré (complet) : dissociation complète entre P et QRS. Ondes P régulières à fréquence normale, QRS à rythme d'échappement. » — (Item 231, SFC). Par ailleurs, vous avez bien noté une bradycardie, une irrégularité du rythme, un trouble de repolarisation, un bloc de branche gauche (BBG) et une morphologie de l'onde P non sinusale.\n\nPour progresser, assurez-vous de bien identifier la dissociation complète entre les ondes P et les QRS, caractéristique du BAV complet. Cela vous aidera à améliorer votre reconnaissance de ce diagnostic.",
+      "validant_details": [
+        {
+          "golden_name": "BAV complet",
+          "found": true,
+          "score_pct": 66.7
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Echappement ventriculaire",
+          "found": false
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "Bradycardie"
+        },
+        {
+          "concept_name": "Irrégulier"
+        },
+        {
+          "concept_name": "Trouble de repolarisation"
+        },
+        {
+          "concept_name": "Bloc de branche gauche"
+        },
+        {
+          "concept_name": "Morphologie de l'onde P non sinusale"
+        }
+      ]
+    },
+    {
+      "code": "ECG-QHCN",
+      "num_cas": 5,
+      "reponse_etudiant": "Rythme irregulier, bradycardie qui montre un BBG avec trouble de repolarisation. Onde P négative",
+      "score_pipeline_batch_ancien": 16.7,
+      "generated_at_original": "2026-07-04 05:26:18",
+      "score_regenere": 16.7,
+      "diagnostic_principal_golden": "Hyperkaliémie",
+      "commentaire_ia": "Votre réponse présente plusieurs éléments pertinents, mais le diagnostic principal d'hyperkaliémie n'a pas été mentionné, ce qui est crucial. 📖 « L'hyperkaliémie donne : onde T ample, pointue, symétrique, allongement PR, élargissement QRS » (Item 231, SFC). Vous avez noté une bradycardie et un rythme irrégulier, mais vous ne l'avez pas nommé explicitement. Votre mention d'un bloc de branche gauche et de troubles de la repolarisation est correcte, mais ces éléments ne couvrent pas les spécificités de l'hyperkaliémie. Il est important de se rappeler que l'hyperkaliémie peut se manifester par des modifications spécifiques des ondes T et un élargissement des QRS. Pour progresser, concentrez-vous sur l'identification des signes électrocardiographiques typiques de l'hyperkaliémie dans les prochains exercices.",
+      "validant_details": [
+        {
+          "golden_name": "Hyperkaliémie",
+          "found": false,
+          "score_pct": 0.0
+        },
+        {
+          "golden_name": "BAV de haut grade",
+          "found": true,
+          "score_pct": 33.3
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "Bradycardie"
+        },
+        {
+          "concept_name": "Irrégulier"
+        },
+        {
+          "concept_name": "Trouble de repolarisation"
+        },
+        {
+          "concept_name": "Bloc de branche gauche"
+        },
+        {
+          "concept_name": "Morphologie de l'onde P non sinusale"
+        }
+      ]
+    },
+    {
+      "code": "ECG-QHCN",
+      "num_cas": 8,
+      "reponse_etudiant": "Rythme irregulier, bradycardie qui montre un BBG avec trouble de repolarisation. Onde P négative",
+      "score_pipeline_batch_ancien": 0.0,
+      "generated_at_original": "2026-07-04 05:26:18",
+      "score_regenere": 0.0,
+      "diagnostic_principal_golden": "Flutter droit typique",
+      "commentaire_ia": "Votre analyse ECG n'a pas permis d'identifier le **flutter droit typique**, un point indispensable. 📖 « Les flutters atriaux correspondent à une boucle d'activation atriale se répétant à l'identique. Activité monomorphe ~300 bpm, aspect en dents de scie. Flutter typique : F négatives en inférieur. Cadence ventriculaire usuelle 150 bpm (2/1) » (Item 231, SFC). Vous avez mentionné des éléments comme la bradycardie, l'irrégularité du rythme, le trouble de repolarisation, un bloc de branche gauche et une morphologie de l'onde P non sinusale, ce qui montre votre capacité à observer et décrire des anomalies précises. Cependant, ces éléments ne conduisent pas directement au diagnostic de flutter droit typique. Je vous encourage à revoir la caractéristique spécifique de l'ECG du flutter typique, notamment l'aspect en « dents de scie » des ondes F qui est primordial pour ce diagnostic. N'hésitez pas à utiliser les manœuvres vagales pour démasquer les ondes F lorsque vous soupçonnez un flutter.",
+      "validant_details": [
+        {
+          "golden_name": "Flutter droit typique",
+          "found": false,
+          "score_pct": 0.0
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "Bradycardie"
+        },
+        {
+          "concept_name": "Irrégulier"
+        },
+        {
+          "concept_name": "Trouble de repolarisation"
+        },
+        {
+          "concept_name": "Bloc de branche gauche"
+        },
+        {
+          "concept_name": "Morphologie de l'onde P non sinusale"
+        }
+      ]
+    },
+    {
+      "code": "ECG-QHCN",
+      "num_cas": 11,
+      "reponse_etudiant": "Rythme irregulier, bradycardie qui montre un BBG avec trouble de repolarisation. Onde P négative",
+      "score_pipeline_batch_ancien": 0.0,
+      "generated_at_original": "2026-07-04 05:26:18",
+      "score_regenere": 0.0,
+      "diagnostic_principal_golden": "Tachycardie ventriculaire",
+      "commentaire_ia": "Vous n'avez pas mentionné la tachycardie ventriculaire, qui est un élément essentiel à identifier dans ce cas. 📖 « Les TV naissent sous la bifurcation hissienne → QRS larges. Règle : toute tachycardie régulière à QRS larges est une TV jusqu'à preuve du contraire » — (Item 231, SFC). Il est important de se rappeler que la tachycardie ventriculaire est un diagnostic critique car elle peut être prémonitoire de l'arrêt cardiaque. Vous avez noté des éléments tels que la bradycardie, l'irrégularité du rythme, le trouble de repolarisation, le bloc de branche gauche et la morphologie de l'onde P non sinusale, mais ces éléments ne suffisent pas à identifier une tachycardie ventriculaire. Le BBG que vous avez mentionné est pertinent mais il s'agit d'un autre aspect du tracé ECG. 📖 « Le BBG complet se caractérise par : QRS > 120 ms, en V1 QRS négatif (rS ou QS), en V6/D1/aVL notch avec onde R exclusive » — (Item 231, SFC). Pour améliorer votre diagnostic, concentrez-vous sur l'identification des critères de la tachycardie ventriculaire lors de votre prochaine évaluation.",
+      "validant_details": [
+        {
+          "golden_name": "Tachycardie ventriculaire",
+          "found": false,
+          "score_pct": 0.0
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "Bradycardie"
+        },
+        {
+          "concept_name": "Irrégulier"
+        },
+        {
+          "concept_name": "Trouble de repolarisation"
+        },
+        {
+          "concept_name": "Bloc de branche gauche"
+        },
+        {
+          "concept_name": "Morphologie de l'onde P non sinusale"
+        }
+      ]
+    },
+    {
+      "code": "ECG-QHCN",
+      "num_cas": 14,
+      "reponse_etudiant": "Rythme irregulier, bradycardie qui montre un BBG avec trouble de repolarisation. Onde P négative",
+      "score_pipeline_batch_ancien": 0.0,
+      "generated_at_original": "2026-07-04 05:26:18",
+      "score_regenere": 0.0,
+      "diagnostic_principal_golden": "Extrasystole ventriculaire",
+      "commentaire_ia": "Votre analyse de l'ECG présente plusieurs observations pertinentes, mais il manque l'identification du diagnostic principal attendu pour ce cas : l'extrasystole ventriculaire. Ce concept est essentiel pour l'évaluation, car les ESV sont caractérisées par des QRS larges prématurés et peuvent être associées à des risques de troubles du rythme plus graves, comme le précise le cours 📖 « Les ESV sont des QRS larges prématurés... » (Item 231, SFC). Vous avez mentionné des éléments tels que la bradycardie, l'irrégularité du rythme, le bloc de branche gauche et le trouble de repolarisation. Tous ces points sont notés correctement, mais ils n'adressent pas directement le diagnostic principal des ESV. Le bloc de branche gauche est bien décrit dans le cours avec des caractéristiques distinctes 📖 « Le BBG complet se caractérise par : QRS > 120 ms, en V1 QRS négatif... » (Item 231, SFC), ce qui montre que vous avez une bonne compréhension de ces éléments, même s'ils ne sont pas centraux pour ce cas particulier. Pour progresser, concentrez-vous sur la reconnaissance des caractéristiques typiques des extrasystoles ventriculaires lors de l'analyse des ECG, notamment les QRS prématurés. Cela vous permettra d'améliorer votre précision diagnostique pour les futurs cas.",
+      "validant_details": [
+        {
+          "golden_name": "Extrasystole ventriculaire",
+          "found": false,
+          "score_pct": 0.0
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "Bradycardie"
+        },
+        {
+          "concept_name": "Irrégulier"
+        },
+        {
+          "concept_name": "Trouble de repolarisation"
+        },
+        {
+          "concept_name": "Bloc de branche gauche"
+        },
+        {
+          "concept_name": "Morphologie de l'onde P non sinusale"
+        }
+      ]
+    },
+    {
+      "code": "ECG-Q4T8",
+      "num_cas": 2,
+      "reponse_etudiant": "Ondes P sinusales, BAV3 avec rythme d'échappement jonctionnel à 60 BPM, axe gauche, bloc de branche gauche à 120/130ms",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:25:57",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "BAV complet",
+      "commentaire_ia": "Vous avez parfaitement identifié le bloc auriculo-ventriculaire (BAV) complet, un point indispensable pour ce cas. Votre réponse contient également des éléments pertinents tels que le rythme d'échappement jonctionnel, la morphologie des ondes P sinusales, et le bloc de branche gauche, ce qui montre une bonne compréhension globale de l'ECG. 📖 « BAV 3e degré (complet) : dissociation complète entre P et QRS. Ondes P régulières à fréquence normale, QRS à rythme d'échappement. QRS fins → bloc nodal, QRS larges → bloc infrahissien. » — (Item 231, SFC). Toutefois, l'échappement ventriculaire n'a pas été mentionné, bien qu'il soit un élément complémentaire dans le cadre d'un BAV complet. Vous avez également noté la bradycardie et la déviation axiale gauche, ce qui enrichit votre analyse. Continuez sur cette voie pour consolider votre capacité à identifier les différents types d'échappements et leur importance clinique. Félicitations pour votre excellente performance ! 🎉",
+      "validant_details": [
+        {
+          "golden_name": "BAV complet",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Echappement ventriculaire",
+          "found": false
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "Bradycardie"
+        },
+        {
+          "concept_name": "Rythme d'échappement jonctionnel"
+        },
+        {
+          "concept_name": "Morphologie onde P sinusale"
+        },
+        {
+          "concept_name": "Bloc de branche gauche"
+        },
+        {
+          "concept_name": "QRS large"
+        },
+        {
+          "concept_name": "Déviation axiale gauche"
+        }
+      ]
+    },
+    {
+      "code": "ECG-Q4T8",
+      "num_cas": 5,
+      "reponse_etudiant": "Bav3 avec rythme d'échappement jonctionnel irrégulier, ondes P sinusales, ondes T amples, extrasystoles jonctionnelles",
+      "score_pipeline_batch_ancien": 50.0,
+      "generated_at_original": "2026-07-04 05:25:57",
+      "score_regenere": 50.0,
+      "diagnostic_principal_golden": "Hyperkaliémie",
+      "commentaire_ia": "Votre réponse montre que vous avez reconnu certains éléments importants du cas d'hyperkaliémie. Vous avez mentionné les ondes T amples, ce qui est un critère allant dans le sens de l'hyperkaliémie, mais vous n'avez pas nommé explicitement le diagnostic d'hyperkaliémie. 📖 « L'hyperkaliémie donne : onde T ample, pointue, symétrique, allongement PR, élargissement QRS. » (Item 231, SFC). Concernant le bloc auriculo-ventriculaire (BAV), votre réponse évoque des critères comme l'irrégularité et le BAV complet, mais vous n'avez pas mentionné directement le type de BAV. Vous avez bien noté le rythme d'échappement jonctionnel et les ondes P sinusales, qui sont des observations correctes et permettent de mieux comprendre le tableau clinique. 📖 « BAV 3e degré (complet) : dissociation complète entre P et QRS. Ondes P régulières à fréquence normale, QRS à rythme d'échappement. » (Item 231, SFC).\n\nJe vous encourage à être plus explicite dans vos diagnostics à l'avenir, en mentionnant clairement les entités pathologiques lorsque vous identifiez leurs signes caractéristiques. Cela vous aidera à obtenir un meilleur score et à renforcer votre compréhension clinique.",
+      "validant_details": [
+        {
+          "golden_name": "Hyperkaliémie",
+          "found": true,
+          "score_pct": 66.7
+        },
+        {
+          "golden_name": "BAV de haut grade",
+          "found": true,
+          "score_pct": 33.3
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "Irrégulier"
+        },
+        {
+          "concept_name": "Rythme d'échappement jonctionnel"
+        },
+        {
+          "concept_name": "Morphologie onde P sinusale"
+        },
+        {
+          "concept_name": "Onde T ample"
+        },
+        {
+          "concept_name": "BAV complet"
+        }
+      ]
+    },
+    {
+      "code": "ECG-Q4T8",
+      "num_cas": 8,
+      "reponse_etudiant": "Flutter atrial régulier 4:1 à 75 BPM, axe normal, QRS fins, pas de troubles de la repolarisation, pas de séquelles de nécrose, pas de signe d'hypertrophie",
+      "score_pipeline_batch_ancien": 66.7,
+      "generated_at_original": "2026-07-04 05:25:57",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Flutter droit typique",
+      "commentaire_ia": "Vous avez parfaitement identifié le diagnostic principal de ce cas : un flutter droit typique, ce qui est crucial pour un cas de rang indispensable. Vous avez également mentionné avec précision plusieurs éléments supplémentaires tels que le rythme régulier, les QRS fins, et l'axe normal du QRS. Ces observations montrent une attention méticuleuse aux détails de l'ECG, bien que ces éléments ne faisaient pas partie du barème noté pour ce cas. 📖 « Les flutters atriaux correspondent à une boucle d'activation atriale se répétant à l'identique. Activité monomorphe ~300 bpm, aspect en dents de scie. Flutter typique : F négatives en inférieur. Cadence ventriculaire usuelle 150 bpm (2/1). Manœuvres vagales utiles pour démasquer les ondes F. » — (Item 231, SFC). Vous avez démontré une compréhension claire et précise de l'ECG, ce qui est essentiel pour la pratique clinique. Continuez à cultiver cette rigueur dans l'interprétation des ECG, c'est un atout précieux pour votre formation médicale. 😊",
+      "validant_details": [
+        {
+          "golden_name": "Flutter droit typique",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "rythme régulier"
+        },
+        {
+          "concept_name": "ECG normal"
+        },
+        {
+          "concept_name": "QRS fins"
+        },
+        {
+          "concept_name": "Frequence normale"
+        },
+        {
+          "concept_name": "Axe normal du QRS"
+        }
+      ]
+    },
+    {
+      "code": "ECG-Q4T8",
+      "num_cas": 11,
+      "reponse_etudiant": "QRS larges, axe droit\nTachycardie ventriculaire à 160 BPM",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:25:57",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Tachycardie ventriculaire",
+      "commentaire_ia": "Vous avez parfaitement identifié le diagnostic principal de tachycardie ventriculaire, ce qui est un point indispensable pour ce cas. Vous avez également mentionné des éléments cruciaux tels que les QRS larges et la déviation axiale droite. 📖 « Toute tachycardie régulière à QRS larges est une TV jusqu'à preuve du contraire. » — (Item 231, SFC). Cela montre que vous avez une bonne compréhension des critères électrocardiographiques associés aux tachycardies ventriculaires. Vous avez su reconnaître les caractéristiques essentielles de cette pathologie, ce qui est rassurant pour la prise en charge rapide et efficace des patients. Continuez à vous appuyer sur ces bases solides pour renforcer votre confiance en l'interprétation des ECGs. Bravo pour cette performance impeccable ! 🌟",
+      "validant_details": [
+        {
+          "golden_name": "Tachycardie ventriculaire",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "Déviation axiale droite"
+        },
+        {
+          "concept_name": "QRS large"
+        }
+      ]
+    },
+    {
+      "code": "ECG-Q4T8",
+      "num_cas": 14,
+      "reponse_etudiant": "Rythme sinusal régulier avec la présence d'extrasystoles ventriculaires, fréquence à environ 80bpm, axe normal, QRS sinusaux fins, pas de troubles de la repolarisation, pas de signe de nécrose, pas de signe d'hypertrophie",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:25:57",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Extrasystole ventriculaire",
+      "commentaire_ia": "Bravo pour votre travail sur ce cas ECG ! Vous avez identifié avec précision l'extrasystole ventriculaire, qui est un point indispensable à connaître. En plus de cela, vous avez mentionné plusieurs éléments pertinents qui démontrent votre compréhension approfondie de l'analyse ECG. Vous avez noté un rythme sinusal régulier, une fréquence normale, des QRS fins, et un axe normal. 📖 « Sur un ECG normal, les ondes T sont positives partout sauf en aVR [...] » — (Item 231, SFC). Cette capacité à analyser l'ECG de manière systématique est cruciale pour votre pratique future. Continuez sur cette voie ! 🎉",
+      "validant_details": [
+        {
+          "golden_name": "Extrasystole ventriculaire",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "ECG normal"
+        },
+        {
+          "concept_name": "QRS fins"
+        },
+        {
+          "concept_name": "Rythme sinusal"
+        },
+        {
+          "concept_name": "Frequence normale"
+        },
+        {
+          "concept_name": "Axe normal du QRS"
+        }
+      ]
+    },
+    {
+      "code": "ECG-P9EJ",
+      "num_cas": 2,
+      "reponse_etudiant": "60 de bpm \nRythme sinusale : onde p avec QRS ET QRS après onde p \nQRS large, \nSus décalage ST territoire inférieur \nSous décalage en miroir V2",
+      "score_pipeline_batch_ancien": 66.7,
+      "generated_at_original": "2026-07-04 05:25:29",
+      "score_regenere": 66.7,
+      "diagnostic_principal_golden": "BAV complet",
+      "commentaire_ia": "Votre réponse montre une bonne compréhension de certains aspects clés de l'ECG. Vous avez mentionné la bradycardie, ce qui va dans le sens du diagnostic de bloc auriculo-ventriculaire (BAV) complet, bien que vous n'ayez pas nommé explicitement ce dernier. 📖 « BAV 3e degré (complet) : dissociation complète entre P et QRS. Ondes P régulières à fréquence normale, QRS à rythme d'échappement. QRS fins → bloc nodal, QRS larges → bloc infrahissien » — (Item 231, SFC). Vous avez également identifié plusieurs caractéristiques importantes de l'ECG, comme le QRS large et les courants de lésion sous-endocardique et sous-épicardique. Cependant, l'échappement ventriculaire, un élément important du BAV complet, n'a pas été mentionné. 📖 « Ondes P régulières à fréquence normale, QRS à échappement (jonctionnel 40-60 bpm ou ventriculaire 15-30 bpm) » — (Item 231, SFC). Pour renforcer votre compréhension, assurez-vous de bien identifier et nommer explicitement les diagnostics principaux, tels que le BAV complet. Continuez vos efforts, vous êtes sur la bonne voie !",
+      "validant_details": [
+        {
+          "golden_name": "BAV complet",
+          "found": true,
+          "score_pct": 66.7
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Echappement ventriculaire",
+          "found": false
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "Bradycardie"
+        },
+        {
+          "concept_name": "Courant de lésion sous-endocardique"
+        },
+        {
+          "concept_name": "Courant de lésion sous-épicardique"
+        },
+        {
+          "concept_name": "QRS large"
+        },
+        {
+          "concept_name": "Rythme sinusal"
+        }
+      ]
+    },
+    {
+      "code": "ECG-OSCK",
+      "num_cas": 3,
+      "reponse_etudiant": "Tachycardie irrégulière a QRS fins\nOndes P negatives en inferior sans retour a la ligne isoelectric (ondes F)\nil s'agit d'un flutter a conduction variable",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:25:24",
+      "score_regenere": 0.0,
+      "diagnostic_principal_golden": "Fibrillation atriale",
+      "commentaire_ia": "Votre évaluation de l'ECG présente quelques confusions importantes. Vous avez décrit une « tachycardie irrégulière à QRS fins », ce qui est juste ; cependant, vous avez conclu à un « flutter à conduction variable », alors que ces caractéristiques correspondent à une fibrillation atriale, un point indispensable à maîtriser. 📖 « La fibrillation atriale est le seul diagnostic en cas de tachycardie complètement irrégulière à QRS fins » — (Item 231, SFC). Vous avez bien mentionné des concepts tels que « conduction variable » et « QRS fins », qui peuvent orienter vers le bon diagnostic, mais vous avez interprété ces éléments comme un flutter atrial atypique. Le flutter atrial, bien que mentionné, se distingue par une activité atriale monomorphe et organisée, ce qui n'est pas le cas ici. 📖 « Ne pas confondre flutter (activité atriale monomorphe, organisée) et FA (activité anarchique) » — (Item 231, SFC). Pour améliorer votre diagnostic, concentrez-vous sur l'identification des signes distinctifs de la fibrillation atriale, tels que l'irrégularité complète des QRS. N'oubliez pas de bien différencier les caractéristiques de la fibrillation atriale et du flutter atrial pour éviter de telles confusions.",
+      "validant_details": [
+        {
+          "golden_name": "Fibrillation atriale",
+          "found": false,
+          "score_pct": 0.0
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Repolarisation précoce",
+          "found": false
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "conduction variable"
+        },
+        {
+          "concept_name": "QRS fins"
+        },
+        {
+          "concept_name": "Tachycardie"
+        },
+        {
+          "concept_name": "Flutter atrial atypique"
+        }
+      ]
+    },
+    {
+      "code": "ECG-OSCK",
+      "num_cas": 6,
+      "reponse_etudiant": "Rythme électro entraîné de façon permanente en atrial",
+      "score_pipeline_batch_ancien": 0.0,
+      "generated_at_original": "2026-07-04 05:25:24",
+      "score_regenere": 50.0,
+      "diagnostic_principal_golden": "Stimulation atriale",
+      "commentaire_ia": "Vous avez correctement identifié la stimulation atriale en mentionnant explicitement un « rythme électro entraîné de façon permanente en atrial ». C'est un point important, car 📖 « le spike de stimulation est pathognomonique d'une stimulation cardiaque » — (Item 231, SFC). Cependant, vous n'avez pas mentionné le bloc fasciculaire antérieur gauche, qui est un élément indispensable à reconnaître dans ce cas. L'hémibloc antérieur gauche se caractérise par un QRS élargi (> 100 ms) et une déviation axiale gauche au-delà de −30°, comme indiqué dans le cours. Par ailleurs, le bloc intraventriculaire aspécifique n'a pas été abordé, mais il s'agit d'un diagnostic d'élimination utile à considérer en présence de QRS larges sans les caractéristiques spécifiques de bloc de branche. Pour renforcer votre préparation, je vous encourage à bien réviser les critères des différents blocs pour pouvoir les identifier plus systématiquement.",
+      "validant_details": [
+        {
+          "golden_name": "Stimulation atriale",
+          "found": true,
+          "score_pct": 100.0
+        },
+        {
+          "golden_name": "Bloc fasciculaire antérieur gauche",
+          "found": false,
+          "score_pct": 0.0
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Bloc intraventriculaire aspécifique",
+          "found": false
+        }
+      ],
+      "decouvertes": []
+    },
+    {
+      "code": "ECG-OSCK",
+      "num_cas": 9,
+      "reponse_etudiant": "Rythme de base sinusal ,irrégulier avec des Ondes P bloqués par intermittence a partir du 8 ème complexe\nRabottages des ondes R en antérieure \nBloc indéterminé QRS a 120ms\nHemibloc antérieure gauche\nSéquelle de nécrose en antérieure compliqué de trouble de conduction",
+      "score_pipeline_batch_ancien": 33.3,
+      "generated_at_original": "2026-07-04 05:25:24",
+      "score_regenere": 33.3,
+      "diagnostic_principal_golden": "BAV 2 Mobitz 2",
+      "commentaire_ia": "Votre interprétation de l'ECG a partiellement identifié le diagnostic principal attendu, le bloc auriculo-ventriculaire de 2e degré de type Mobitz 2. Vous avez mentionné des éléments qui peuvent orienter vers ce diagnostic, comme le rythme sinusal et les troubles de conduction, mais sans nommer explicitement le Mobitz 2, ce qui est crucial car c'est un point indispensable. 📖 « BAV 2e degré Mobitz 2 : PR fixe avant le blocage d'une onde P. Siège infrahissien, souvent QRS larges » (Item 231, SFC). Concernant les descripteurs à noter, vous n'avez pas mentionné le bloc de branche droit ni le bloc fasciculaire postérieur gauche, qui sont des éléments importants à identifier pour une interprétation complète. Vous avez cependant correctement noté plusieurs autres concepts comme le bloc fasciculaire antérieur gauche et la séquelle de nécrose, ce qui montre une bonne compréhension des anomalies présentes sur l'ECG. Pour améliorer votre diagnostic, je vous conseille de bien réviser les caractéristiques spécifiques des différents types de blocs auriculo-ventriculaires pour les distinguer clairement lors de vos analyses.",
+      "validant_details": [
+        {
+          "golden_name": "BAV 2 Mobitz 2",
+          "found": true,
+          "score_pct": 33.3
+        }
+      ],
+      "descripteur_details": [
+        {
+          "golden_name": "Bloc de branche droit",
+          "found": false
+        },
+        {
+          "golden_name": "Bloc fasciculaire postérieur gauche",
+          "found": false
+        }
+      ],
+      "decouvertes": [
+        {
+          "concept_name": "Séquelle de nécrose"
+        },
+        {
+          "concept_name": "Bloc fasciculaire antérieur gauche"
+        },
+        {
+          "concept_name": "QRS large"
+        },
+        {
+          "concept_name": "Rythme sinusal"
+        },
+        {
+          "concept_name": "Troubles de conduction et de l'automaticité"
+        },
+        {
+          "concept_name": "Rabotage de l'onde R"
+        }
+      ]
+    },
+    {
+      "code": "ECG-OSCK",
+      "num_cas": 12,
+      "reponse_etudiant": "Rythme sinusal irrégulier a 58bpm\nSus décalage ST de 2-3mm en V2-3 4 (Onde de pardee) entendu en latéral bas et en D1\nImage en miroir en inferior \nonde q de nécrose en v2-3 \nAu total SCA ST+ semi récent en antérieure étendue",
+      "score_pipeline_batch_ancien": 100.0,
+      "generated_at_original": "2026-07-04 05:25:24",
+      "score_regenere": 100.0,
+      "diagnostic_principal_golden": "Syndrome coronarien à la phase aigue avec sus-décalage du segment ST",
+      "commentaire_ia": "Votre analyse de l'ECG est excellente, et vous avez correctement identifié le diagnostic principal de syndrome coronarien aigu avec sus-décalage du segment ST, ce qui est un point indispensable. Vous avez mentionné explicitement plusieurs éléments pertinents, tels que la bradycardie, le courant de lésion sous-épicardique, le rythme sinusal, l'image en miroir, la présence d'onde Q pathologique, et l'infarctus du myocarde à la phase aiguë. Ces observations montrent une compréhension approfondie des caractéristiques ECG du syndrome coronarien aigu. 📖 « SCA avec ST : traquer le sus-décalage (≥2 mm en V1-V3, ≥1 mm ailleurs), chercher le miroir. Onde de Pardee = sus-décalage englobant l'onde T. » — (Item 231, SFC). Votre capacité à repérer et à décrire ces éléments cruciaux témoigne de votre maîtrise du sujet. Continuez sur cette lancée, et n'hésitez pas à renforcer votre compréhension des nuances diagnostiques pour devenir encore plus performant. Félicitations pour ce score parfait !",
+      "validant_details": [
+        {
+          "golden_name": "Syndrome coronarien à la phase aigue avec sus-décalage du segment ST",
+          "found": true,
+          "score_pct": 100.0
+        }
+      ],
+      "descripteur_details": [],
+      "decouvertes": [
+        {
+          "concept_name": "Bradycardie"
+        },
+        {
+          "concept_name": "Courant de lésion sous-épicardique"
+        },
+        {
+          "concept_name": "Rythme sinusal"
+        },
+        {
+          "concept_name": "Miroir"
+        },
+        {
+          "concept_name": "Presence d'onde Q pathologique"
+        },
+        {
+          "concept_name": "Infarctus du myocarde à la phase aigue"
+        }
+      ]
+    }
+  ]
+}

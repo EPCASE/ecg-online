@@ -199,9 +199,70 @@ def _fix_negation(entite: ClinicalEntity) -> ClinicalEntity:
 
 # Nombre minimal de mots d'un synonyme pour être considéré « distinctif » : on
 # évite de rattraper sur un mot isolé trop ambigu (« bloc », « onde ») qui
-# pourrait matcher par hasard. Les vrais oublis du NER sont des phrases longues.
-# Valeur : cf. `scoring_thresholds.BACKSTOP_MIN_DISTINCTIVE_WORDS` (Phase 0.3).
+# pourrait matcher par hasard. Les vrais oublis du NER sont des expressions
+# multi-mots distinctives.
+# ⚠️ Dépréciée (2026-08-06) : remplacée par un critère de SPÉCIFICITÉ LEXICALE
+# (cf. `_word_document_frequency` + `BACKSTOP_MAX_WORD_DOCUMENT_FREQUENCY`
+# ci-dessous), qui a détecté et corrigé un vrai bug — cf. commentaire dans
+# `scoring_thresholds.py`. Conservée pour compat descendante uniquement.
 _BACKSTOP_MIN_WORDS = scoring_thresholds.BACKSTOP_MIN_DISTINCTIVE_WORDS
+
+_BACKSTOP_MAX_WORD_DF = scoring_thresholds.BACKSTOP_MAX_WORD_DOCUMENT_FREQUENCY
+
+_word_df_cache: Optional[Dict[str, int]] = None
+
+
+def _word_document_frequency() -> Dict[str, int]:
+    """
+    Calcule, une seule fois (cache module-level), la fréquence documentaire
+    (DF) de chaque mot normalisé à travers TOUTES les formes (nom canonique +
+    synonymes) de TOUS les concepts de l'ontologie V2.
+
+    DF(mot) = nombre de concepts DISTINCTS dont au moins une forme contient
+    ce mot. Un mot très partagé (« ventriculaire », « bloc », « onde » — DF
+    élevé) est structurellement générique et ne doit jamais, à lui seul,
+    justifier un rattrapage lexical déterministe (trop de faux positifs
+    potentiels). Un mot rare (DF bas) est au contraire un ancrage fiable,
+    quel que soit le nombre total de mots du synonyme qui le contient.
+
+    100 % dérivé de l'ontologie chargée — aucune liste figée, aucune
+    dépendance à la langue : fonctionne à l'identique si l'ontologie est
+    étendue, traduite, ou versionnée différemment.
+    """
+    global _word_df_cache
+    if _word_df_cache is not None:
+        return _word_df_cache
+
+    onto = _get_ontology_v2()
+    concepts = onto.get("concepts", onto)
+    df: Dict[str, int] = {}
+    for _cid, c in concepts.items():
+        formes = [c.get("concept_name", "")] + list(c.get("synonymes", []))
+        mots_ce_concept: Set[str] = set()
+        for forme in formes:
+            for mot in normalize_text(forme).split():
+                if len(mot) > 1:
+                    mots_ce_concept.add(mot)
+        for mot in mots_ce_concept:
+            df[mot] = df.get(mot, 0) + 1
+
+    _word_df_cache = df
+    return df
+
+
+def _is_synonym_specific_enough(forme_norm: str) -> bool:
+    """
+    Un synonyme est éligible au rattrapage lexical s'il contient au moins un
+    mot dont la fréquence documentaire (DF, cf. `_word_document_frequency`)
+    est <= `BACKSTOP_MAX_WORD_DOCUMENT_FREQUENCY`. Remplace l'ancien critère
+    de longueur brute (nombre de mots), qui ratait les synonymes courts mais
+    cliniquement spécifiques (ex. « Echappement ventriculaire », 2 mots).
+    """
+    df = _word_document_frequency()
+    mots = [m for m in forme_norm.split() if len(m) > 1]
+    if not mots:
+        return False
+    return min(df.get(m, 999) for m in mots) <= _BACKSTOP_MAX_WORD_DF
 
 
 def _descendants_of(ontology_id: str, _seen: Optional[set] = None) -> Set[str]:
@@ -263,8 +324,8 @@ def _lexical_backstop_ids(
         formes = [c.get("concept_name", "")] + list(c.get("synonymes", []))
         for forme in formes:
             forme_norm = normalize_text(forme)
-            if len(forme_norm.split()) < _BACKSTOP_MIN_WORDS:
-                continue  # trop court → risque de faux positif
+            if not _is_synonym_specific_enough(forme_norm):
+                continue  # aucun mot assez rare → risque de faux positif
             # Correspondance littérale sur une frontière de mot.
             if not re.search(rf"(?<![\w]){re.escape(forme_norm)}(?![\w])", texte_norm):
                 continue
@@ -717,7 +778,19 @@ def generate_candidate_report(
             #      validant (ex. TACHYCARDIE_SINUSALE via requires satisfaits)
             #      restait affiché "manqué" côté descripteur (cas 39/40).
             cs = _score_one_concept(nid, found_set, None)
-            found = cs.match_type not in ("missed", "excluded")
+            # NB (bug "Bloc interatrial" du 2026-08-06) : un match de type
+            # "support" est le lien le PLUS FAIBLE du scoring V3 (poids 1/3,
+            # ex: BLOC_INTERATRIAL a "supports: [RYTHME_SINUSAL]" — un lien
+            # statistique faible, pas un vrai indice sémantique). Pour un
+            # validant noté, ce niveau de confiance est acceptable (le score
+            # partiel de 33% reflète l'incertitude). Mais pour un DESCRIPTEUR,
+            # le statut est binaire ("trouvé"/"non mentionné") et le feedback
+            # pédagogique l'affiche comme une affirmation ferme ("vous avez
+            # identifié X") — un match "support" ne doit donc JAMAIS suffire à
+            # déclarer un descripteur "trouvé", sous peine d'affirmer qu'un
+            # étudiant a mentionné un concept qu'il n'a en réalité jamais écrit
+            # (ex: "rythme sinusal" seul faisait crédité "Bloc interatrial").
+            found = cs.match_type not in ("missed", "excluded", "support")
             match_type = cs.match_type
             if found:
                 n_desc_found += 1
