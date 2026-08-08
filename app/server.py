@@ -29,6 +29,15 @@ Endpoints :
   GET  /api/annotation/<item_id>       -> texte + extraction pipeline + concepts déjà annotés
   POST /api/annotation/<item_id>       -> enregistre l'annotation experte {concepts, annotateur, slot}
 
+  -- Golden conceptuel de scoring V2 — annotation multi-expert (P1.3, cf.
+     audit_doc/roadmap_scientifique_2026.md §P1.3) --
+  GET  /scoring-review                          -> page de double annotation (protégée)
+  GET  /api/scoring-review/overview             -> liste des 10 cas pilote + statut
+  GET  /api/scoring-review/<case_id>             -> critères pilote + expert_1/expert_2/adjudication
+  POST /api/scoring-review/<case_id>/<slot>      -> enregistre l'annotation experte (slot=expert_1|expert_2)
+  GET  /api/scoring-review/<case_id>/disagreements -> désaccords calculés entre expert_1/expert_2
+  POST /api/scoring-review/<case_id>/adjudication  -> enregistre la version consensuelle + résolutions
+
 Lancement local :  python -m app.server   (ou via run.py)
 Prod (Scalingo)  :  gunicorn "app.server:create_app()"
 """
@@ -46,6 +55,7 @@ from . import golden_config
 from . import neuro_grader
 from . import collector
 from . import extraction_golden
+from . import scoring_v2_review
 from . import abstention
 from .grader import grade, DEFAULT_MODEL
 
@@ -496,6 +506,81 @@ def create_app() -> Flask:
             abort(400, description=str(exc))
             raise RuntimeError("unreachable")
         return jsonify({"item_id": item_id, "saved": True, **item})
+
+    # ---- Golden conceptuel de scoring V2 — annotation multi-expert (P1.3) -
+    @app.get("/scoring-review")
+    def scoring_review_page():
+        if not _curation_authorized(request):
+            abort(403, description="Accès réservé.")
+        return send_from_directory(FRONTEND_DIR, "scoring_review.html")
+
+    @app.get("/api/scoring-review/overview")
+    def scoring_review_overview():
+        if not _curation_authorized(request):
+            abort(403, description="Accès réservé.")
+        return jsonify({"cases": scoring_v2_review.overview()})
+
+    @app.get("/api/scoring-review/<case_id>")
+    def scoring_review_case(case_id: str):
+        if not _curation_authorized(request):
+            abort(403, description="Accès réservé.")
+        data = scoring_v2_review.get_case(case_id)
+        if data is None:
+            abort(404, description=f"Cas '{case_id}' introuvable dans le pilote.")
+            raise RuntimeError("unreachable")
+        return jsonify(data)
+
+    @app.post("/api/scoring-review/<case_id>/<slot>")
+    def scoring_review_save(case_id: str, slot: str):
+        if not _curation_authorized(request):
+            abort(403, description="Accès réservé.")
+        payload = request.get_json(silent=True) or {}
+        criteria = payload.get("criteria")
+        if not isinstance(criteria, list):
+            abort(400, description="Champ 'criteria' (liste) requis.")
+            raise RuntimeError("unreachable")
+        annotateur = str(payload.get("annotateur", "")).strip()[:80]
+        try:
+            entry = scoring_v2_review.save_expert_annotation(
+                case_id, slot, criteria, annotateur=annotateur)
+        except KeyError:
+            abort(404, description=f"Cas '{case_id}' introuvable.")
+            raise RuntimeError("unreachable")
+        except ValueError as exc:
+            abort(400, description=str(exc))
+            raise RuntimeError("unreachable")
+        return jsonify({"case_id": case_id, "saved": True, **entry})
+
+    @app.get("/api/scoring-review/<case_id>/disagreements")
+    def scoring_review_disagreements(case_id: str):
+        if not _curation_authorized(request):
+            abort(403, description="Accès réservé.")
+        return jsonify({
+            "case_id": case_id,
+            "disagreements": scoring_v2_review.compute_disagreements(case_id),
+        })
+
+    @app.post("/api/scoring-review/<case_id>/adjudication")
+    def scoring_review_adjudicate(case_id: str):
+        if not _curation_authorized(request):
+            abort(403, description="Accès réservé.")
+        payload = request.get_json(silent=True) or {}
+        criteria = payload.get("criteria")
+        disagreements = payload.get("disagreements", [])
+        if not isinstance(criteria, list):
+            abort(400, description="Champ 'criteria' (liste) requis.")
+            raise RuntimeError("unreachable")
+        if not isinstance(disagreements, list):
+            abort(400, description="Champ 'disagreements' doit être une liste.")
+            raise RuntimeError("unreachable")
+        adjudicateur = str(payload.get("adjudicateur", "")).strip()[:80]
+        try:
+            entry = scoring_v2_review.save_adjudication(
+                case_id, criteria, disagreements, adjudicateur=adjudicateur)
+        except ValueError as exc:
+            abort(400, description=str(exc))
+            raise RuntimeError("unreachable")
+        return jsonify({"case_id": case_id, "saved": True, **entry})
 
     # ---- Images ECG -----------------------------------------------------
     @app.get("/images/<path:filename>")
