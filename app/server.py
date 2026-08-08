@@ -279,9 +279,17 @@ def create_app() -> Flask:
         contexte = str(payload.get("contexte", "")).strip()[:500]
         session = str(payload.get("session", "")).strip()[:80]
         user_agent = str(request.headers.get("User-Agent", ""))[:300]
+        # Contenu affiché à l'écran au moment du signalement (audit_doc/
+        # roadmap_scientifique_2026.md, demande UX du 07/08/2026) : le
+        # commentaire du correcteur IA et les mots-clés NER détectés sont
+        # dupliqués dans la feuille « feedback » pour permettre le diagnostic
+        # sans avoir à retrouver la session dans le journal « reponses ».
+        commentaire_ia = str(payload.get("commentaire_ia", "")).strip()[:4000]
+        mots_cles_ner = str(payload.get("mots_cles_ner", "")).strip()[:2000]
         saved = collector.collect_feedback(
             message[:2000], session=session, cas=cas,
             categorie=categorie, contexte=contexte, user_agent=user_agent,
+            commentaire_ia=commentaire_ia, mots_cles_ner=mots_cles_ner,
         )
         # `saved=False` => recueil non configuré : le front proposera un repli mail.
         return jsonify({"ok": True, "saved": saved})

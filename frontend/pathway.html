@@ -42,7 +42,40 @@
     <div class="lightbox-scroll">
       <div id="lightbox-stage" class="lightbox-stage">
         <img id="lightbox-image" src="" alt="Tracé ECG agrandi">
+
       </div>
+    </div>
+  </div>
+
+  <!-- Modale de signalement (version pré-alpha) — même composant que index.html -->
+  <div id="report-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="report-title">
+    <div class="modal-card">
+      <button type="button" id="report-close" class="modal-close" aria-label="Fermer">✕</button>
+      <h3 id="report-title">🧪 Signaler un problème</h3>
+      <p class="modal-sub">
+        Merci d'aider à améliorer cet outil <strong>pré-alpha</strong>. Décris ce
+        qui te semble faux ou étrange (score, commentaire, tracé, bug…).
+      </p>
+      <label for="report-category">Type de problème</label>
+      <select id="report-category" class="modal-field">
+        <option value="correction">Correction / score incohérent</option>
+        <option value="negation">Négation mal prise en compte</option>
+        <option value="contenu">Erreur dans l'énoncé ou le tracé</option>
+        <option value="bug">Bug technique</option>
+        <option value="autre">Autre</option>
+      </select>
+      <label for="report-message">Ta description</label>
+      <textarea id="report-message" class="modal-field" rows="5"
+        placeholder="Ex. Cas 57 : j'ai écrit « SCA ST+ et miroir » et le miroir a été compté juste alors que la référence dit « sans miroir »."></textarea>
+      <p id="report-context" class="modal-context"></p>
+      <div class="modal-actions">
+        <button type="button" id="report-send" class="btn-primary">
+          <span class="btn-label">Envoyer</span>
+          <span class="spinner hidden"></span>
+        </button>
+        <button type="button" id="report-cancel" class="btn-ghost">Annuler</button>
+      </div>
+      <div id="report-status" class="modal-status hidden"></div>
     </div>
   </div>
 

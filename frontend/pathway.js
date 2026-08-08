@@ -24,6 +24,10 @@
   let viewerZoomCount = 0;
   let lightboxScale = 1;
   let lightboxBaseWidth = 0;
+  // Dernier résultat affiché (commentaire IA + concepts), pour le
+  // signalement « Signaler un problème » (audit_doc/roadmap_scientifique_2026.md,
+  // demande UX du 07/08/2026).
+  let lastResult = null;
 
   const $ = (selector) => document.querySelector(selector);
 
@@ -604,6 +608,7 @@
   function renderResult(result, masteryEvaluation, initialAnswer, finalAnswer) {
     const stage = $("#result-stage");
     stage.classList.remove("hidden");
+    lastResult = result;
     const diagnostic = Core.diagnosticScore(result);
     const found = feedbackItems(result.elements_trouves, "Aucun élément validant identifié.");
     const missed = feedbackItems(result.elements_manques, "Aucun élément majeur manquant.");
@@ -665,13 +670,19 @@
           <div class="score-secondary"><strong>${Math.round(diagnostic)}</strong><span>${diagnosticLabel}</span></div>
         </div>
       </details>
-      <details class="teacher-comment"><summary>Commentaire du correcteur</summary><div>${simpleMarkdown(result.commentaire || "Commentaire non disponible.")}</div></details>
+      <details class="teacher-comment"><summary>Commentaire du correcteur</summary><div>${simpleMarkdown(result.commentaire || "Commentaire non disponible.")}</div>
+        <p class="report-trigger">
+          🧪 Cette correction te semble faussée ?
+          <button type="button" id="report-btn" class="link-report">Signaler un problème</button>
+        </p>
+      </details>
       <details class="reference-panel"><summary>Voir l’interprétation de référence</summary><div>${simpleMarkdown((result.reference && result.reference.interpretation_ref) || "")}</div></details>
       ${secondary.length ? `<section class="secondary-traces"><h3>Tracé complémentaire révélé après correction</h3>${secondary.map((name) => `<img src="${API}/images/${encodeURIComponent(name)}" alt="Tracé complémentaire du cas ${currentDefinition.num}">`).join("")}</section>` : ""}
       <div id="continuation-actions" class="continuation-actions"></div>`;
 
     stage.querySelectorAll(".secondary-traces img").forEach((img) => img.addEventListener("click", openLightbox));
     renderContinuation(evaluation);
+    wireReport();
     stage.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
@@ -780,6 +791,121 @@
     renderHeaderProgress();
   }
 
+  /* ─── Signalement d'un problème (repris de app.js / index.html) ─── */
+  function formatConceptsForReport(concepts) {
+    if (!Array.isArray(concepts) || concepts.length === 0) return "";
+    return concepts.map((c) => {
+      const terme = c.terme || c.terme_brut || "";
+      const concept = c.concept || c.label || "";
+      const statut = c.statut ? ` [${c.statut}]` : "";
+      const resolu = c.resolu === false ? " (non résolu)" : "";
+      return `${terme} → ${concept}${statut}${resolu}`;
+    }).join("\n");
+  }
+
+  function wireReport() {
+    const openBtn = $("#report-btn");
+    const modal = $("#report-modal");
+    if (!openBtn || !modal) return;
+    openBtn.onclick = openReport;
+    const close = $("#report-close");
+    const cancel = $("#report-cancel");
+    if (close) close.onclick = closeReport;
+    if (cancel) cancel.onclick = closeReport;
+    const send = $("#report-send");
+    if (send) send.onclick = sendReport;
+  }
+
+  function openReport() {
+    const modal = $("#report-modal");
+    if (!modal) return;
+    const ctx = $("#report-context");
+    if (ctx) {
+      ctx.textContent = currentDefinition
+        ? `Contexte joint : cas #${currentDefinition.num} (parcours « ${config.title} », phase ${phaseName(currentDefinition.phase)}).`
+        : "Contexte joint : aucun cas ouvert.";
+    }
+    const status = $("#report-status");
+    if (status) { status.classList.add("hidden"); status.innerHTML = ""; }
+    modal.classList.remove("hidden");
+    const ta = $("#report-message");
+    if (ta) setTimeout(() => ta.focus(), 50);
+  }
+
+  function closeReport() {
+    const modal = $("#report-modal");
+    if (modal) modal.classList.add("hidden");
+  }
+
+  async function sendReport() {
+    const msgEl = $("#report-message");
+    const catEl = $("#report-category");
+    const btn = $("#report-send");
+    const message = (msgEl ? msgEl.value : "").trim();
+    if (!message) { if (msgEl) msgEl.focus(); return; }
+    const categorie = catEl ? catEl.value : "autre";
+
+    if (btn) {
+      btn.disabled = true;
+      btn.querySelector(".btn-label").textContent = "Envoi…";
+      btn.querySelector(".spinner").classList.remove("hidden");
+    }
+    try {
+      const r = await fetch(`${API}/api/feedback`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          message,
+          categorie,
+          cas: currentDefinition ? currentDefinition.num : null,
+          contexte: currentDefinition
+            ? `Cas #${currentDefinition.num} — parcours « ${config.title} », phase ${currentDefinition.phase}`
+            : "",
+          session: sessionId(),
+          commentaire_ia: lastResult ? (lastResult.commentaire || "") : "",
+          mots_cles_ner: lastResult ? formatConceptsForReport(lastResult.concepts_detectes) : "",
+        }),
+      });
+      const data = await r.json();
+      if (data && data.saved) {
+        showReportStatus(true, "Merci ! Ton signalement a bien été transmis à l'équipe. 🙏");
+        if (msgEl) msgEl.value = "";
+        setTimeout(closeReport, 1800);
+      } else {
+        offerMailFallback(message, categorie);
+      }
+    } catch (e) {
+      offerMailFallback(message, categorie);
+    } finally {
+      if (btn) {
+        btn.disabled = false;
+        btn.querySelector(".btn-label").textContent = "Envoyer";
+        btn.querySelector(".spinner").classList.add("hidden");
+      }
+    }
+  }
+
+  function showReportStatus(ok, html) {
+    const status = $("#report-status");
+    if (!status) return;
+    status.className = "modal-status " + (ok ? "ok" : "warn");
+    status.innerHTML = html;
+    status.classList.remove("hidden");
+  }
+
+  function offerMailFallback(message, categorie) {
+    const REPORT_EMAIL = "correction.ecg@gmail.com";
+    const cas = currentDefinition ? `Cas #${currentDefinition.num}` : "Aucun cas";
+    const subject = encodeURIComponent(`[ECG pré-alpha] Signalement — ${categorie}`);
+    const body = encodeURIComponent(
+      `${cas}\nCatégorie : ${categorie}\n\n${message}\n\n—\n(envoyé depuis l'app ECG pré-alpha, parcours)`
+    );
+    const href = `mailto:${REPORT_EMAIL}?subject=${subject}&body=${body}`;
+    showReportStatus(false,
+      `Envoi direct indisponible. <a href="${href}">Clique ici pour envoyer par e-mail</a> ` +
+      `à <b>${REPORT_EMAIL}</b>.`);
+  }
+
   function openLightbox(event) {
     const src = event.currentTarget.src;
     const stage = $("#lightbox-stage");
@@ -847,7 +973,15 @@
     });
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") closeLightbox();
+      const reportModal = $("#report-modal");
+      if (event.key === "Escape" && reportModal && !reportModal.classList.contains("hidden")) closeReport();
     });
+    const reportModal = $("#report-modal");
+    if (reportModal) {
+      reportModal.addEventListener("click", (event) => {
+        if (event.target === reportModal) closeReport();
+      });
+    }
     init();
   });
 })();

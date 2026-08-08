@@ -35,6 +35,11 @@ let CASE_COUNTS = null;
  * Alimente la curation golden/NER. Réinitialisé à chaque correction. */
 let CURRENT_CONCEPTS = [];
 let CONCEPT_VOTES = {};
+// Dernier résultat de correction affiché (commentaire IA + concepts NER) —
+// dupliqué dans le signalement pour permettre le diagnostic sans avoir à
+// retrouver la session dans le journal « reponses » (audit_doc/
+// roadmap_scientifique_2026.md, demande UX du 07/08/2026).
+let LAST_RESULT = null;
 let HOME_PATHWAY_HREF = "/static/pathways.html";
 
 const $ = (sel) => document.querySelector(sel);
@@ -665,6 +670,7 @@ function buildResolutionBanner(resolution) {
 function renderResult(d) {
   const box = $("#result");
   box.classList.remove("hidden");
+  LAST_RESULT = d;
 
   const found = (d.elements_trouves || []).map(
     (e) => `<li><span class="rang ${e.rang}">${e.rang}</span>${escapeHtml(e.label)}</li>`
@@ -1352,6 +1358,19 @@ function wireGlobal() {
 }
 
 /* ─────────── Signalement d'un problème (version pré-alpha) ─────────── */
+// Formate la liste des concepts NER détectés en texte compact pour le
+// signalement (un item par ligne : terme écrit → concept canonique [statut]).
+function formatConceptsForReport(concepts) {
+  if (!Array.isArray(concepts) || concepts.length === 0) return "";
+  return concepts.map((c) => {
+    const terme = c.terme || c.terme_brut || "";
+    const concept = c.concept || c.label || "";
+    const statut = c.statut ? ` [${c.statut}]` : "";
+    const resolu = c.resolu === false ? " (non résolu)" : "";
+    return `${terme} → ${concept}${statut}${resolu}`;
+  }).join("\n");
+}
+
 // Câble le bouton d'ouverture + les actions de la modale.
 function wireReport() {
   const openBtn = $("#report-btn");
@@ -1417,6 +1436,12 @@ async function sendReport() {
         cas: CURRENT ? CURRENT.num : null,
         contexte: CURRENT ? `Cas #${CURRENT.num} — ${CURRENT.titre || ""}` : "",
         session: window.Progress ? Progress.sessionId() : "",
+        // Duplique dans la feuille de signalement le contenu affiché à
+        // l'écran au moment du clic : commentaire du correcteur IA + mots-clés
+        // NER détectés dans la réponse (audit_doc/roadmap_scientifique_2026.md,
+        // demande UX du 07/08/2026).
+        commentaire_ia: LAST_RESULT ? (LAST_RESULT.commentaire || "") : "",
+        mots_cles_ner: formatConceptsForReport(CURRENT_CONCEPTS),
       }),
     });
     const data = await r.json();

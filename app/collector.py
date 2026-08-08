@@ -62,8 +62,13 @@ LOG_COLS = ["horodatage", "session", "cas", "titre", "reponse",
 PARCAS_HEADER = ["cas", "titre", "réponses →"]
 
 # Journal des signalements (bouton « Signaler un problème », version pré-alpha).
+# `commentaire_ia`/`mots_cles_ner` sont ajoutés en fin de colonnes (append,
+# ordre stable) : ils dupliquent dans la feuille le contenu affiché à
+# l'étudiant au moment du signalement (commentaire du correcteur IA + liste
+# des concepts extraits par le NER), pour permettre le diagnostic sans avoir
+# à retrouver la session dans le journal « reponses ».
 FEEDBACK_COLS = ["horodatage", "session", "cas", "categorie", "message",
-                 "contexte", "user_agent"]
+                 "contexte", "user_agent", "commentaire_ia", "mots_cles_ner"]
 
 # Validation de concepts par l'étudiant (P5) : pour chaque concept que le
 # pipeline a extrait de sa réponse, un vote 👍/👎 « le système m'a-t-il bien
@@ -300,7 +305,8 @@ def collect_answer(num: int, titre: str, answer: str, score=None,
 
 # ─────────────────────────── Signalements (feedback) ───────────────────────────
 def _write_feedback(session: str, cas, categorie: str, message: str,
-                    contexte: str, user_agent: str) -> None:
+                    contexte: str, user_agent: str,
+                    commentaire_ia: str = "", mots_cles_ner: str = "") -> None:
     """Écrit une ligne dans la feuille « feedback » (best-effort, thread détaché)."""
     ss = _get_spreadsheet()
     if not ss:
@@ -312,9 +318,18 @@ def _write_feedback(session: str, cas, categorie: str, message: str,
                 ws = ss.add_worksheet(title="feedback", rows=500, cols=len(FEEDBACK_COLS))
                 ws.append_row(FEEDBACK_COLS)
             ws_fb = ss.worksheet("feedback")
+            # Migration non destructive : étend l'en-tête si la feuille a été
+            # créée avant l'ajout de commentaire_ia/mots_cles_ner.
+            current_header = ws_fb.row_values(1)
+            if current_header != FEEDBACK_COLS:
+                if getattr(ws_fb, "col_count", 0) < len(FEEDBACK_COLS):
+                    ws_fb.resize(cols=len(FEEDBACK_COLS))
+                end_col = _column_label(len(FEEDBACK_COLS))
+                ws_fb.update(values=[FEEDBACK_COLS], range_name=f"A1:{end_col}1")
             ws_fb.append_row(
                 [_now_iso(), session, "" if cas is None else cas,
-                 categorie, message, contexte, user_agent],
+                 categorie, message, contexte, user_agent,
+                 commentaire_ia, mots_cles_ner],
                 value_input_option="RAW",  # type: ignore[arg-type]
             )
         except Exception as ex:
@@ -323,8 +338,13 @@ def _write_feedback(session: str, cas, categorie: str, message: str,
 
 def collect_feedback(message: str, session: str = "", cas=None,
                      categorie: str = "", contexte: str = "",
-                     user_agent: str = "") -> bool:
+                     user_agent: str = "", commentaire_ia: str = "",
+                     mots_cles_ner: str = "") -> bool:
     """Archive un signalement étudiant (bouton « Signaler un problème »).
+
+    `commentaire_ia`/`mots_cles_ner` reprennent le contenu affiché à l'écran
+    au moment du signalement (commentaire du correcteur IA + concepts NER
+    détectés), pour permettre un diagnostic direct depuis la feuille.
 
     Non bloquant (thread détaché). Renvoie True si le recueil est configuré et
     la tâche lancée, False sinon (l'appelant peut alors proposer un repli mail).
@@ -336,7 +356,9 @@ def collect_feedback(message: str, session: str = "", cas=None,
     try:
         threading.Thread(
             target=_write_feedback,
-            args=(session, cas, categorie, message.strip(), contexte, user_agent),
+            args=(session, cas, categorie, message.strip(), contexte,
+                  user_agent, commentaire_ia.strip()[:4000],
+                  mots_cles_ner.strip()[:2000]),
             daemon=True,
         ).start()
         return True
