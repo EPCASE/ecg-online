@@ -2072,7 +2072,8 @@
         "ANOMALIE_DE_DUREE_DU_QT",
         "ONDE_P_ANORMALE",
         "PR_ANORMAL",
-        "ANOMALIE_DES_ONDES_T"
+        "ANOMALIE_DES_ONDES_T",
+        "TROUBLE_DE_LA_DEPOLARISATION_ATRIAL"
       ],
       "synonymes": [
         "ECG physiologique",
@@ -4379,6 +4380,7 @@
       "poids": 2,
       "type": "finding",
       "synonymes": [
+        "Aspect QS",
         "Onde Q de nécrose",
         "Trou électrique",
         "ondes Q de nécrose",
