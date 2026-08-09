@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-08-09T16:55:18",
+  "updated": "2026-08-09T18:41:07",
   "cases": {
     "48": {
       "ai_suggested_criteria": {
@@ -8390,7 +8390,7 @@
       },
       "expert_1": {
         "annotateur": "",
-        "annotated_at": "2026-08-09T15:03:54",
+        "annotated_at": "2026-08-09T18:41:07",
         "criteria": [
           {
             "alternative_group": null,
@@ -8512,21 +8512,21 @@
             "sufficient_alone": false
           },
           {
-            "criterion_id": "case_51_nouveau_msltd49c",
-            "concept_id": "TACHYCARDIE_VENTRICULAIRE",
-            "label": "Ne pas conclure à une tachycardie ventriculaire monomorphe (le tracé montre une TV polymorphe/torsade)",
-            "role": "exclusion",
-            "expected_status": "present",
-            "importance": "intermediate",
-            "error_severity": "minor",
             "alternative_group": null,
+            "comment": " Ajout manuel du relecteur (label manquant, complété le 2026-08-09).",
+            "concept_id": "TACHYCARDIE_VENTRICULAIRE",
+            "criterion_id": "case_51_nouveau_msltd49c",
+            "error_severity": "minor",
+            "evidence_source": "single_expert",
+            "expected_status": "absent",
+            "expert_confidence": "medium",
             "group_logic": "ALL",
             "group_min_n": null,
-            "sufficient_alone": false,
+            "importance": "intermediate",
+            "label": "Ne pas conclure à une tachycardie ventriculaire monomorphe (le tracé montre une TV polymorphe/torsade)",
             "minimum_specificity": "exact_only",
-            "expert_confidence": "medium",
-            "evidence_source": "single_expert",
-            "comment": " Ajout manuel du relecteur (label manquant, complété le 2026-08-09)."
+            "role": "exclusion",
+            "sufficient_alone": false
           }
         ]
       }
@@ -10810,7 +10810,7 @@
       },
       "expert_1": {
         "annotateur": "",
-        "annotated_at": "2026-08-09T15:22:54",
+        "annotated_at": "2026-08-09T18:40:25",
         "criteria": [
           {
             "alternative_group": null,
@@ -10870,7 +10870,7 @@
             "criterion_id": "case_68_syndrome_coronarien_a_la_phase_aigue_avec_sus_decalage_du_segment_st",
             "error_severity": "major",
             "evidence_source": "bareme_v1_migre",
-            "expected_status": "present",
+            "expected_status": "hypothesis_acceptable",
             "expert_confidence": "medium",
             "group_logic": "ALL",
             "group_min_n": null,

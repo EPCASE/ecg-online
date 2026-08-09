@@ -110,6 +110,27 @@ RÈGLES STRICTES (par ordre de priorité) :
 8. Si AUCUNE option ne correspond cliniquement (le terme parle d'autre chose, ou les options sont toutes fausses), renvoie impérativement 'NONE'.
 
 9. Ne devine pas : si tu n'es pas sûr, renvoie 'NONE'.
+
+10. PIÈGE DE LA DOUBLE NÉGATION : si le terme de l'étudiant (déjà nettoyé de sa
+    négation par l'extraction — ex. « anomalie de la repolarisation » au lieu
+    de « pas d'anomalie de la repolarisation ») décrit une ANOMALIE/un TROUBLE,
+    et que les options contiennent à la fois :
+      a) un concept POSITIF représentant cette anomalie elle-même
+         (ex. TROUBLE_DE_REPOLARISATION)
+      b) un concept qui est la NÉGATION explicite de cette même anomalie
+         (nom commençant par « Pas de »/« Absence de », ex.
+         PAS_D_ANOMALIE_DE_LE_REPOLARISATION)
+    tu dois choisir l'option (a), le pôle POSITIF de l'anomalie — JAMAIS
+    l'option (b). Le statut « absent » sera appliqué EN AVAL par le système
+    de scoring (via la relation `negation_of` de l'ontologie), pas par toi.
+    Choisir directement le concept négatif (b) créerait une double négation
+    (« absent(Pas d'anomalie) » au lieu de « absent(Anomalie) ») qui inverse
+    le sens clinique de la phrase.
+    Exemple CRITIQUE :
+    - terme="anomalie de la repolarisation", contexte="absence d'anomalie de
+      la repolarisation" → TROUBLE_DE_REPOLARISATION (PAS
+      PAS_D_ANOMALIE_DE_LE_REPOLARISATION, même si son nom contient les mêmes
+      mots — c'est un piège lexical).
 """.strip()
 
 # Modèle rapide et économique pour le QCM
