@@ -1,7 +1,7 @@
 {
   "version": 1,
   "created": "2026-07-29T01:34:14",
-  "updated": "2026-07-29T04:17:35",
+  "updated": "2026-08-09T21:42:40",
   "seed": 42,
   "n_total": 100,
   "n_double_annotation": 20,
@@ -94,6 +94,13 @@
             "concept_name": "Inversion d'électrodes",
             "statut": "present",
             "source": "confirme_pipeline"
+          },
+          {
+            "ontology_id": "RYTHME_REGULIER",
+            "statut": "present",
+            "terme_brut": "régulier",
+            "concept_name": "Rythme régulier",
+            "source": "reannotation_2026-08-09_rythme_regulier_gap"
           }
         ]
       },
@@ -1149,6 +1156,13 @@
             "concept_name": "Tachycardie jonctionnelle par réentrée intra-nodale",
             "statut": "present",
             "source": "confirme_pipeline"
+          },
+          {
+            "ontology_id": "RYTHME_REGULIER",
+            "statut": "present",
+            "terme_brut": "régulier",
+            "concept_name": "Rythme régulier",
+            "source": "reannotation_2026-08-09_rythme_regulier_gap"
           }
         ]
       },
@@ -2035,12 +2049,6 @@
             "statut": "present"
           },
           {
-            "concept_name": "Arythmie atriale",
-            "ontology_id": "ARYTHMIE_ATRIALE",
-            "source": "confirme_pipeline",
-            "statut": "present"
-          },
-          {
             "concept_name": "Intervalle PR",
             "ontology_id": "INTERVALLE_PR",
             "source": "confirme_pipeline",
@@ -2075,6 +2083,18 @@
             "concept_name": "Antérieur",
             "statut": "present",
             "source": "ajoute_expert"
+          },
+          {
+            "ontology_id": "RYTHME_SINUSAL",
+            "concept_name": "Rythme sinusal",
+            "statut": "absent",
+            "source": "reannotation_2026-08-09_non_sinusal_gap"
+          },
+          {
+            "ontology_id": "FREQUENCE_NORMALE",
+            "concept_name": "Normocarde",
+            "statut": "present",
+            "source": "reannotation_2026-08-09_residual_fp_fix"
           }
         ]
       },
@@ -2379,7 +2399,7 @@
             "statut": "absent"
           },
           {
-            "ontology_id": "",
+            "ontology_id": "RYTHME_SINUSAL",
             "concept_name": "Rythme sinusal",
             "statut": "absent",
             "source": "ajoute_gpt56"
@@ -2495,6 +2515,13 @@
             "concept_name": "Pas d'anomalie de la repolarisation",
             "statut": "present",
             "source": "ajoute_expert"
+          },
+          {
+            "ontology_id": "FLUTTER_ATRIAL",
+            "statut": "present",
+            "terme_brut": "Flutter atrial",
+            "concept_name": "Flutter atrial",
+            "source": "reannotation_2026-08-09_flutter_atrial_gap"
           }
         ]
       },
@@ -2718,28 +2745,35 @@
         "annotated_at": "2026-07-29T04:07:37",
         "concepts": [
           {
-            "concept_name": "Arythmie atriale",
-            "ontology_id": "ARYTHMIE_ATRIALE",
-            "source": "confirme_pipeline",
-            "statut": "present"
-          },
-          {
             "concept_name": "QRS fins",
             "ontology_id": "QRS_FINS",
             "source": "confirme_pipeline",
             "statut": "present"
           },
           {
-            "ontology_id": "",
+            "ontology_id": "FLUTTER_ATRIAL",
             "concept_name": "Flutter atrial",
             "statut": "present",
-            "source": "ajoute_gpt56"
+            "source": "correction_2026-08-09_ontology_id_vide"
           },
           {
             "ontology_id": "",
             "concept_name": "Rythme régulier",
             "statut": "present",
             "source": "ajoute_gpt56"
+          },
+          {
+            "ontology_id": "RYTHME_REGULIER",
+            "statut": "present",
+            "terme_brut": "régulier",
+            "concept_name": "Rythme régulier",
+            "source": "reannotation_2026-08-09_rythme_regulier_gap"
+          },
+          {
+            "ontology_id": "RYTHME_SINUSAL",
+            "concept_name": "Rythme sinusal",
+            "statut": "absent",
+            "source": "reannotation_2026-08-09_non_sinusal_gap"
           }
         ]
       },
@@ -2900,6 +2934,13 @@
             "concept_name": "Rythme régulier",
             "statut": "present",
             "source": "ajoute_gpt56"
+          },
+          {
+            "ontology_id": "RYTHME_REGULIER",
+            "statut": "present",
+            "terme_brut": "régulier",
+            "concept_name": "Rythme régulier",
+            "source": "reannotation_2026-08-09_rythme_regulier_gap"
           }
         ]
       },
@@ -3096,6 +3137,13 @@
             "ontology_id": "FREQUENCE_NORMALE",
             "source": "ajoute_expert",
             "statut": "present"
+          },
+          {
+            "ontology_id": "RYTHME_REGULIER",
+            "statut": "present",
+            "terme_brut": "régulier",
+            "concept_name": "Rythme régulier",
+            "source": "reannotation_2026-08-09_rythme_regulier_gap"
           }
         ]
       },
@@ -3185,16 +3233,23 @@
             "statut": "absent"
           },
           {
-            "ontology_id": "",
+            "ontology_id": "FLUTTER_ATRIAL",
             "concept_name": "Flutter atrial",
             "statut": "present",
-            "source": "ajoute_gpt56"
+            "source": "correction_2026-08-09_ontology_id_vide"
           },
           {
             "ontology_id": "",
             "concept_name": "Rythme régulier",
             "statut": "present",
             "source": "ajoute_gpt56"
+          },
+          {
+            "ontology_id": "RYTHME_REGULIER",
+            "statut": "present",
+            "terme_brut": "régulier",
+            "concept_name": "Rythme régulier",
+            "source": "reannotation_2026-08-09_rythme_regulier_gap"
           }
         ]
       },
@@ -3505,6 +3560,13 @@
             "concept_name": "Bloc de branche",
             "statut": "present",
             "source": "confirme_pipeline"
+          },
+          {
+            "ontology_id": "RYTHME_REGULIER",
+            "statut": "present",
+            "terme_brut": "régulier",
+            "concept_name": "Rythme régulier",
+            "source": "reannotation_2026-08-09_rythme_regulier_gap"
           }
         ]
       },
@@ -3878,8 +3940,8 @@
             "source": "confirme_pipeline"
           },
           {
-            "ontology_id": "MORPHOLOGIE_DE_L_ONDE_P_NON_SINUSALE",
-            "concept_name": "Morphologie de l'onde P non sinusale",
+            "ontology_id": "ONDE_P_RETROGRADE",
+            "concept_name": "Onde P rétrograde",
             "statut": "present",
             "source": "confirme_pipeline"
           },
@@ -3991,8 +4053,8 @@
             "source": "confirme_pipeline"
           },
           {
-            "ontology_id": "MORPHOLOGIE_DE_L_ONDE_P_NON_SINUSALE",
-            "concept_name": "Morphologie de l'onde P non sinusale",
+            "ontology_id": "ONDE_P_RETROGRADE",
+            "concept_name": "Onde P rétrograde",
             "statut": "present",
             "source": "confirme_pipeline"
           },
@@ -4082,6 +4144,13 @@
             "concept_name": "Tachycardie sinusale",
             "statut": "present",
             "source": "confirme_pipeline"
+          },
+          {
+            "ontology_id": "RYTHME_REGULIER",
+            "statut": "present",
+            "terme_brut": "régulier",
+            "concept_name": "Rythme régulier",
+            "source": "reannotation_2026-08-09_rythme_regulier_gap"
           }
         ]
       },
@@ -5079,12 +5148,6 @@
         "annotated_at": "2026-07-29T03:07:43",
         "concepts": [
           {
-            "ontology_id": "ARYTHMIE_ATRIALE",
-            "concept_name": "Arythmie atriale",
-            "statut": "present",
-            "source": "confirme_pipeline"
-          },
-          {
             "ontology_id": "TACHYCARDIE",
             "concept_name": "Tachycardie",
             "statut": "present",
@@ -5137,6 +5200,26 @@
             "concept_name": "Bloc fasciculaire antérieur gauche",
             "statut": "present",
             "source": "confirme_pipeline"
+          },
+          {
+            "ontology_id": "RYTHME_REGULIER",
+            "statut": "present",
+            "terme_brut": "régulier",
+            "concept_name": "Rythme régulier",
+            "source": "reannotation_2026-08-09_rythme_regulier_gap"
+          },
+          {
+            "ontology_id": "FLUTTER_ATRIAL",
+            "statut": "present",
+            "terme_brut": "Flutter atrial",
+            "concept_name": "Flutter atrial",
+            "source": "reannotation_2026-08-09_flutter_atrial_gap"
+          },
+          {
+            "ontology_id": "RYTHME_SINUSAL",
+            "concept_name": "Rythme sinusal",
+            "statut": "absent",
+            "source": "reannotation_2026-08-09_non_sinusal_gap"
           }
         ]
       },
@@ -5273,6 +5356,13 @@
             "concept_name": "Tachycardie ventriculaire",
             "statut": "present",
             "source": "confirme_pipeline"
+          },
+          {
+            "ontology_id": "RYTHME_REGULIER",
+            "statut": "present",
+            "terme_brut": "régulier",
+            "concept_name": "Rythme régulier",
+            "source": "reannotation_2026-08-09_rythme_regulier_gap"
           }
         ]
       },
@@ -5533,6 +5623,25 @@
             "concept_name": "Tachycardie atriale",
             "statut": "present",
             "source": "ajoute_expert"
+          },
+          {
+            "ontology_id": "RYTHME_REGULIER",
+            "statut": "present",
+            "terme_brut": "régulier",
+            "concept_name": "Rythme régulier",
+            "source": "reannotation_2026-08-09_rythme_regulier_gap"
+          },
+          {
+            "ontology_id": "ONDE_P_RETROGRADE",
+            "concept_name": "Onde P rétrograde",
+            "statut": "hypothese",
+            "source": "reannotation_2026-08-09_onde_p_retrograde_gap"
+          },
+          {
+            "ontology_id": "FLUTTER_ATRIAL",
+            "concept_name": "Flutter atrial",
+            "statut": "hypothese",
+            "source": "reannotation_2026-08-09_residual_fp_fix"
           }
         ]
       },
@@ -7087,12 +7196,6 @@
         "annotated_at": "2026-07-29T03:19:28",
         "concepts": [
           {
-            "ontology_id": "ARYTHMIE_ATRIALE",
-            "concept_name": "Arythmie atriale",
-            "statut": "present",
-            "source": "confirme_pipeline"
-          },
-          {
             "ontology_id": "RYTHME_REGULIER",
             "concept_name": "rythme régulier",
             "statut": "present",
@@ -7109,6 +7212,12 @@
             "concept_name": "Tachycardie jonctionnelle par réentrée intra-nodale",
             "statut": "present",
             "source": "confirme_pipeline"
+          },
+          {
+            "ontology_id": "RYTHME_SINUSAL",
+            "concept_name": "Rythme sinusal",
+            "statut": "absent",
+            "source": "reannotation_2026-08-09_non_sinusal_gap"
           }
         ]
       },
@@ -7341,6 +7450,13 @@
             "concept_name": "rythme régulier",
             "statut": "present",
             "source": "ajoute_expert"
+          },
+          {
+            "ontology_id": "FREQUENCE_NORMALE",
+            "statut": "present",
+            "terme_brut": "Normocarde",
+            "concept_name": "Frequence normale",
+            "source": "reannotation_2026-08-09_frequence_normale_gap"
           }
         ]
       },
@@ -7476,6 +7592,13 @@
             "concept_name": "Stimulation ventriculaire",
             "statut": "present",
             "source": "ajoute_expert"
+          },
+          {
+            "ontology_id": "RYTHME_REGULIER",
+            "statut": "present",
+            "terme_brut": "régulier",
+            "concept_name": "Rythme régulier",
+            "source": "reannotation_2026-08-09_rythme_regulier_gap"
           }
         ]
       },
@@ -8225,12 +8348,6 @@
             "statut": "present"
           },
           {
-            "concept_name": "Arythmie atriale",
-            "ontology_id": "ARYTHMIE_ATRIALE",
-            "source": "confirme_pipeline",
-            "statut": "present"
-          },
-          {
             "concept_name": "Déviation axiale gauche",
             "ontology_id": "DEVIATION_AXIALE_GAUCHE",
             "source": "confirme_pipeline",
@@ -8277,6 +8394,12 @@
             "concept_name": "Trouble de la dépolarisation ventriculaire",
             "statut": "absent",
             "source": "ajoute_expert"
+          },
+          {
+            "ontology_id": "RYTHME_SINUSAL",
+            "concept_name": "Rythme sinusal",
+            "statut": "absent",
+            "source": "reannotation_2026-08-09_non_sinusal_gap"
           }
         ]
       },
@@ -8350,12 +8473,6 @@
           {
             "concept_name": "Tachycardie",
             "ontology_id": "TACHYCARDIE",
-            "source": "confirme_pipeline",
-            "statut": "present"
-          },
-          {
-            "concept_name": "Arythmie atriale",
-            "ontology_id": "ARYTHMIE_ATRIALE",
             "source": "confirme_pipeline",
             "statut": "present"
           },
@@ -8463,6 +8580,13 @@
             "concept_name": "Rythme régulier",
             "statut": "present",
             "source": "ajoute_gpt56"
+          },
+          {
+            "ontology_id": "RYTHME_REGULIER",
+            "statut": "present",
+            "terme_brut": "régulier",
+            "concept_name": "Rythme régulier",
+            "source": "reannotation_2026-08-09_rythme_regulier_gap"
           }
         ]
       },
@@ -8614,6 +8738,12 @@
             "ontology_id": "FLUTTER_DROIT_TYPIQUE",
             "source": "confirme_pipeline",
             "statut": "present"
+          },
+          {
+            "ontology_id": "FLUTTER_ATRIAL",
+            "concept_name": "Flutter atrial",
+            "statut": "present",
+            "source": "reannotation_2026-08-09_residual_fp_fix"
           }
         ]
       },
@@ -9029,6 +9159,12 @@
             "concept_name": "Pas d'anomalie de la repolarisation",
             "statut": "present",
             "source": "confirme_pipeline"
+          },
+          {
+            "ontology_id": "ECG_NORMAL",
+            "concept_name": "ECG normal",
+            "statut": "present",
+            "source": "reannotation_2026-08-09_ecg_normal_gap"
           }
         ]
       },
@@ -9166,9 +9302,9 @@
             "statut": "present"
           },
           {
-            "concept_name": "Bradycardie",
-            "ontology_id": "BRADYCARDIE",
-            "source": "confirme_pipeline",
+            "concept_name": "Frequence normale",
+            "ontology_id": "FREQUENCE_NORMALE",
+            "source": "correction_2026-08-09_frequence_normale",
             "statut": "present"
           },
           {
@@ -9413,6 +9549,13 @@
             "concept_name": "Arythmie sinusale",
             "statut": "present",
             "source": "ajoute_expert"
+          },
+          {
+            "ontology_id": "IRREGULIER",
+            "statut": "present",
+            "terme_brut": "irrégulier",
+            "concept_name": "Irrégulier",
+            "source": "reannotation_2026-08-09_rythme_regulier_gap"
           }
         ]
       },
@@ -10002,6 +10145,20 @@
             "concept_name": "Hypertrophie ventriculaire",
             "statut": "absent",
             "source": "ajoute_expert"
+          },
+          {
+            "ontology_id": "RYTHME_REGULIER",
+            "statut": "present",
+            "terme_brut": "régulier",
+            "concept_name": "Rythme régulier",
+            "source": "reannotation_2026-08-09_rythme_regulier_gap"
+          },
+          {
+            "ontology_id": "FREQUENCE_NORMALE",
+            "statut": "present",
+            "terme_brut": "Normocarde",
+            "concept_name": "Frequence normale",
+            "source": "reannotation_2026-08-09_frequence_normale_gap"
           }
         ]
       },
@@ -10102,12 +10259,6 @@
         "annotated_at": "2026-07-29T03:19:03",
         "concepts": [
           {
-            "ontology_id": "ARYTHMIE_ATRIALE",
-            "concept_name": "Arythmie atriale",
-            "statut": "present",
-            "source": "confirme_pipeline"
-          },
-          {
             "ontology_id": "TACHYCARDIE",
             "concept_name": "Tachycardie",
             "statut": "present",
@@ -10136,6 +10287,26 @@
             "concept_name": "Flutter droit typique",
             "statut": "present",
             "source": "ajoute_expert"
+          },
+          {
+            "ontology_id": "RYTHME_REGULIER",
+            "statut": "present",
+            "terme_brut": "régulier",
+            "concept_name": "Rythme régulier",
+            "source": "reannotation_2026-08-09_rythme_regulier_gap"
+          },
+          {
+            "ontology_id": "FLUTTER_ATRIAL",
+            "statut": "present",
+            "terme_brut": "Flutter atrial",
+            "concept_name": "Flutter atrial",
+            "source": "reannotation_2026-08-09_flutter_atrial_gap"
+          },
+          {
+            "ontology_id": "RYTHME_SINUSAL",
+            "concept_name": "Rythme sinusal",
+            "statut": "absent",
+            "source": "reannotation_2026-08-09_non_sinusal_gap"
           }
         ]
       },
@@ -10378,12 +10549,6 @@
             "source": "confirme_pipeline"
           },
           {
-            "ontology_id": "ARYTHMIE_ATRIALE",
-            "concept_name": "Arythmie atriale",
-            "statut": "present",
-            "source": "confirme_pipeline"
-          },
-          {
             "ontology_id": "DEVIATION_AXIALE_GAUCHE",
             "concept_name": "Déviation axiale gauche",
             "statut": "present",
@@ -10418,6 +10583,19 @@
             "concept_name": "Hypertrophie ventriculaire",
             "statut": "absent",
             "source": "ajoute_expert"
+          },
+          {
+            "ontology_id": "FREQUENCE_NORMALE",
+            "statut": "present",
+            "terme_brut": "Normocarde",
+            "concept_name": "Frequence normale",
+            "source": "reannotation_2026-08-09_frequence_normale_gap"
+          },
+          {
+            "ontology_id": "RYTHME_SINUSAL",
+            "concept_name": "Rythme sinusal",
+            "statut": "absent",
+            "source": "reannotation_2026-08-09_non_sinusal_gap"
           }
         ]
       },
@@ -11149,7 +11327,7 @@
           {
             "ontology_id": "RYTHME_SINUSAL",
             "concept_name": "Rythme sinusal",
-            "statut": "present",
+            "statut": "absent",
             "source": "ajoute_expert"
           }
         ]
@@ -11579,12 +11757,6 @@
         "annotated_at": "2026-07-29T03:16:59",
         "concepts": [
           {
-            "ontology_id": "ARYTHMIE_ATRIALE",
-            "concept_name": "Arythmie atriale",
-            "statut": "present",
-            "source": "confirme_pipeline"
-          },
-          {
             "ontology_id": "IRREGULIER",
             "concept_name": "Irrégulier",
             "statut": "present",
@@ -11595,6 +11767,12 @@
             "concept_name": "Fibrillation atriale",
             "statut": "present",
             "source": "confirme_pipeline"
+          },
+          {
+            "ontology_id": "RYTHME_SINUSAL",
+            "concept_name": "Rythme sinusal",
+            "statut": "absent",
+            "source": "reannotation_2026-08-09_non_sinusal_gap"
           }
         ]
       },
@@ -11642,16 +11820,23 @@
         "annotated_at": "2026-07-29T03:17:04",
         "concepts": [
           {
-            "ontology_id": "ARYTHMIE_ATRIALE",
-            "concept_name": "Arythmie atriale",
-            "statut": "present",
-            "source": "confirme_pipeline"
-          },
-          {
             "ontology_id": "FIBRILLATION_ATRIALE",
             "concept_name": "Fibrillation atriale",
             "statut": "present",
             "source": "confirme_pipeline"
+          },
+          {
+            "ontology_id": "IRREGULIER",
+            "statut": "present",
+            "terme_brut": "irrégulier",
+            "concept_name": "Irrégulier",
+            "source": "reannotation_2026-08-09_rythme_regulier_gap"
+          },
+          {
+            "ontology_id": "RYTHME_SINUSAL",
+            "concept_name": "Rythme sinusal",
+            "statut": "absent",
+            "source": "reannotation_2026-08-09_non_sinusal_gap"
           }
         ]
       },
@@ -11770,6 +11955,13 @@
             "concept_name": "Tachycardie jonctionnelle par réentrée intra-nodale",
             "statut": "present",
             "source": "confirme_pipeline"
+          },
+          {
+            "ontology_id": "RYTHME_REGULIER",
+            "statut": "present",
+            "terme_brut": "régulier",
+            "concept_name": "Rythme régulier",
+            "source": "reannotation_2026-08-09_rythme_regulier_gap"
           }
         ]
       },
@@ -12469,6 +12661,19 @@
             "concept_name": "Séquelles d’ischémie myocardique",
             "statut": "absent",
             "source": "ajoute_gpt56"
+          },
+          {
+            "ontology_id": "RYTHME_REGULIER",
+            "statut": "present",
+            "terme_brut": "régulier",
+            "concept_name": "Rythme régulier",
+            "source": "reannotation_2026-08-09_rythme_regulier_gap"
+          },
+          {
+            "ontology_id": "ECG_NORMAL",
+            "concept_name": "ECG normal",
+            "statut": "present",
+            "source": "reannotation_2026-08-09_ecg_normal_gap"
           }
         ]
       },
@@ -12551,6 +12756,13 @@
             "concept_name": "Axe normal du QRS",
             "statut": "absent",
             "source": "ajoute_expert"
+          },
+          {
+            "ontology_id": "RYTHME_REGULIER",
+            "statut": "present",
+            "terme_brut": "régulier",
+            "concept_name": "Rythme régulier",
+            "source": "reannotation_2026-08-09_rythme_regulier_gap"
           }
         ]
       },
@@ -12652,16 +12864,16 @@
             "source": "confirme_pipeline"
           },
           {
-            "ontology_id": "ARYTHMIE_ATRIALE",
-            "concept_name": "Arythmie atriale",
-            "statut": "present",
-            "source": "confirme_pipeline"
-          },
-          {
             "ontology_id": "TACHYCARDIE_JONCTIONNELLE_PAR_REENTREE_INTRA_NODALE",
             "concept_name": "Tachycardie jonctionnelle par réentrée intra-nodale",
             "statut": "present",
             "source": "confirme_pipeline"
+          },
+          {
+            "ontology_id": "RYTHME_SINUSAL",
+            "concept_name": "Rythme sinusal",
+            "statut": "absent",
+            "source": "reannotation_2026-08-09_non_sinusal_gap"
           }
         ]
       },
@@ -12876,6 +13088,13 @@
             "concept_name": "rythme régulier",
             "statut": "present",
             "source": "ajoute_expert"
+          },
+          {
+            "ontology_id": "FREQUENCE_NORMALE",
+            "statut": "present",
+            "terme_brut": "Normocarde",
+            "concept_name": "Frequence normale",
+            "source": "reannotation_2026-08-09_frequence_normale_gap"
           }
         ]
       },
@@ -12954,16 +13173,16 @@
             "source": "confirme_pipeline"
           },
           {
-            "ontology_id": "ARYTHMIE_ATRIALE",
-            "concept_name": "Arythmie atriale",
-            "statut": "present",
-            "source": "confirme_pipeline"
-          },
-          {
             "ontology_id": "QRS_FINS",
             "concept_name": "QRS fins",
             "statut": "present",
             "source": "confirme_pipeline"
+          },
+          {
+            "ontology_id": "RYTHME_SINUSAL",
+            "concept_name": "Rythme sinusal",
+            "statut": "absent",
+            "source": "reannotation_2026-08-09_non_sinusal_gap"
           }
         ]
       },
@@ -13303,8 +13522,8 @@
             "source": "confirme_pipeline"
           },
           {
-            "ontology_id": "MORPHOLOGIE_DE_L_ONDE_P_NON_SINUSALE",
-            "concept_name": "Morphologie de l'onde P non sinusale",
+            "ontology_id": "ONDE_P_RETROGRADE",
+            "concept_name": "Onde P rétrograde",
             "statut": "present",
             "source": "confirme_pipeline"
           },
@@ -13313,6 +13532,13 @@
             "concept_name": "Tachycardie jonctionnelle par réentrée intra-nodale",
             "statut": "present",
             "source": "confirme_pipeline"
+          },
+          {
+            "ontology_id": "RYTHME_REGULIER",
+            "statut": "present",
+            "terme_brut": "régulier",
+            "concept_name": "Rythme régulier",
+            "source": "reannotation_2026-08-09_rythme_regulier_gap"
           }
         ]
       },

@@ -92,6 +92,15 @@ RÈGLES STRICTES :
      - "pas de critère de Sgarbossa"        → terme_brut="critère de Sgarbossa",      statut="absent"
      - "Pas de signe d'embolie pulmonaire"  → terme_brut="embolie pulmonaire",        statut="absent"
      - "ni FA ni flutter"                   → 2 entités : terme_brut="FA" statut="absent" + terme_brut="flutter" statut="absent"
+
+   CAS PARTICULIER "NON SINUSAL" :
+   Quand l'étudiant écrit "non sinusal" ou "rythme non sinusal" SEUL (sans nommer un diagnostic
+   précis d'arythmie atriale comme "flutter", "FA", "tachycardie atriale"), il s'agit d'une simple
+   négation du rythme sinusal, PAS d'une affirmation d'arythmie atriale (le rythme peut être
+   jonctionnel, ventriculaire, un BAV complet, etc.). Tu dois extraire :
+     terme_brut="Rythme sinusal", statut="absent"
+   Exemple : "rythme non sinusal, régulier, bradycarde, échappement jonctionnel" →
+     {"terme_brut": "Rythme sinusal", "statut": "absent"} + {"terme_brut": "régulier"} + {"terme_brut": "Bradycardie"} + {"terme_brut": "Rythme d'échappement jonctionnel"}
    
    ERREUR TYPIQUE À ÉVITER :
      ❌ terme_brut="Pas de trouble de repolarisation", statut="present"   ← FAUX !
@@ -104,6 +113,11 @@ RÈGLES STRICTES :
       -> Exemples de modificateurs à extraire SEULS : "monomorphe", "polymorphe", "soutenu", "non soutenu", "en salve", "isolée", "bigéminée", "trigéminée".
       -> EXEMPLE D'APPLICATION : Si l'étudiant écrit "Salves non soutenues d'ESV polymorphes", tu dois extraire 4 entités distinctes : {"terme_brut": "Salve"}, {"terme_brut": "non soutenues"}, {"terme_brut": "ESV"}, {"terme_brut": "polymorphes"}. Ne crée JAMAIS de terme fusionné comme "ESV polymorphe".
     -> exception, pour les modificateurs de durée (ex: "BBD complet", "BAV complet", "BAV 2 Mobitz 2") qui peuvent être extraits en même temps que le diagnostic principal, car ils font partie intégrante du concept clinique.
+   c) Rythme + régularité : si l'étudiant qualifie un rythme de "régulier" ou "irrégulier" (ex: "rythme sinusal régulier", "rythme sinusal, régulier", "FA irrégulière", "rythme régulier et sinusal", "tachycardie régulière"), tu dois IMPÉRATIVEMENT extraire DEUX entités distinctes : le rythme lui-même (ex: "Rythme sinusal") ET le qualificatif de régularité seul (ex: "régulier" ou "irrégulier"). Ne fusionne JAMAIS "régulier"/"irrégulier" dans le terme du rythme.
+      -> EXEMPLES OBLIGATOIRES :
+         - "Rythme sinusal régulier à 66 bpm" → {"terme_brut": "Rythme sinusal"} + {"terme_brut": "régulier"} + {"terme_brut": "Normocarde"}
+         - "rythme sinusal, régulier, BPM normal" → {"terme_brut": "Rythme sinusal"} + {"terme_brut": "régulier"} + {"terme_brut": "Normocarde"}
+         - "tachycardie reguliere non sinusal" → {"terme_brut": "Tachycardie"} + {"terme_brut": "régulier"} + {"terme_brut": "Rythme sinusal", "statut": "absent"}
     
 5. TRADUCTION CLINIQUE DES MESURES : Les espaces de recherche ne comprennent pas les chiffres. Si l'étudiant donne une valeur numérique brute, ne l'extrais JAMAIS telle quelle dans `terme_brut`. Tu dois la traduire en conclusion clinique standardisée, tout en gardant la valeur d'origine dans `contexte_phrase`.
 Applique STRICTEMENT ces règles de conversion pour générer le `terme_brut` :

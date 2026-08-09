@@ -130,6 +130,9 @@
       ],
       "parents": [
         "ISCHEMIQUE"
+      ],
+      "excludes": [
+        "ISCHEMIQUE"
       ]
     },
     "ABSENCE_D_ONDE_P": {
@@ -482,7 +485,6 @@
       "poids": 2,
       "type": "qualifier",
       "synonymes": [
-        "rythme non sinusal",
         "arythmie supraventriculaire",
         "arythmie auriculaire",
         "trouble du rythme atrial",
@@ -2078,7 +2080,6 @@
       "synonymes": [
         "ECG physiologique",
         "ECG sans anomalie",
-        "Pas d'anomalie",
         "Tracé normal",
         "aspect qui peut paraitre normal",
         "tracé paraissant normal",
@@ -2545,7 +2546,7 @@
         "flutters atypiques"
       ],
       "parents": [
-        "TACHYCARDIE_ATRIALE"
+        "FLUTTER_ATRIAL"
       ]
     },
     "FLUTTER_ATRIAL_HORAIRE": {
@@ -2601,7 +2602,7 @@
         "flutter originaire de l'oreillette droite"
       ],
       "parents": [
-        "TACHYCARDIE_ATRIALE"
+        "FLUTTER_ATRIAL"
       ],
       "children": [
         "FLUTTER_ATRIAL_ANTIHORAIRE",
@@ -2771,6 +2772,12 @@
       "children": [
         "HYPERTROPHIE_VENTRICULAIRE_DROITE",
         "HYPERTROPHIE_VENTRICULAIRE_GAUCHE"
+      ],
+      "synonymes": [
+        "hypertrophie",
+        "signes d hypertrophie",
+        "hypertrophie ventriculaire",
+        "signes d'hypertrophie"
       ]
     },
     "HYPERTROPHIE_VENTRICULAIRE_DROITE": {
@@ -3180,7 +3187,12 @@
         "ischémie antéro-septale",
         "aspect d'ischémie antéro-septale",
         "ischémie",
-        "ischémie myocardique"
+        "ischémie myocardique",
+        "séquelle d'ischémie",
+        "ischémie décelée"
+      ],
+      "excludes": [
+        "ABSENCE_D_ISCHEMIE"
       ]
     },
     "ISOLE": {
@@ -4084,6 +4096,9 @@
       ],
       "negation_of": [
         "TROUBLE_DE_REPOLARISATION"
+      ],
+      "excludes": [
+        "TROUBLE_DE_REPOLARISATION"
       ]
     },
     "PAS_DE_TROUBLES_DE_LA_CONDUCTION": {
@@ -4832,19 +4847,15 @@
       "synonymes": [
         "RS",
         "sinusal",
-        "Rythme sinusal régulier",
         "activité sinusal",
         "activité atriale sinusale",
-        "activité atriale sinusale régulière",
         "rythme paraissant sinusal",
         "rythme apparemment sinusal",
         "rythme bien sinusal",
         "rythme sinusal normal",
         "l'activité atriale reste sinusale",
         "activité sinusale normale",
-        "activité atriale sinusale irrégulière",
         "rythme à commande sinusale",
-        "rythme sinusal irrégulier",
         "origine sinusale",
         "d’origine sinusale",
         "rythme de base sinusal"
@@ -5552,9 +5563,7 @@
         "TACHYCARDIE_SUPRA_VENTRICULAIRE"
       ],
       "children": [
-        "FLUTTER_DROIT_TYPIQUE",
         "TACHYCARDIE_ATRIALE_FOCALE",
-        "FLUTTER_ATRIAL_ATYPIQUE",
         "FLUTTER_ATRIAL"
       ],
       "origin_structure": [
@@ -6200,7 +6209,12 @@
         "FAISCEAU_ACCESSOIRE_A_CONDUCTION_ANTEROGRADE",
         "HYPERTROPHIE_VENTRICULAIRE"
       ],
-      "hide": 1
+      "hide": 1,
+      "synonymes": [
+        "troubles de la dépolarisation",
+        "trouble de la dépolarisation",
+        "trouble de dépolarisation"
+      ]
     },
     "TROUBLE_DE_REPOLARISATION": {
       "concept_name": "Trouble de repolarisation",
@@ -6212,8 +6226,9 @@
         "ANOMALIE_DES_ONDES_T"
       ],
       "excludes": [
-        "ST_NORMAL",
-        "ONDE_U_NORMALE"
+        "PAS_D_ANOMALIE_DE_LE_REPOLARISATION",
+        "ONDE_U_NORMALE",
+        "ST_NORMAL"
       ],
       "synonymes": [
         "Trouble de la repolarisation",
@@ -6295,7 +6310,9 @@
         "une onde P sur deux bloquée",
         "plusieurs ondes P consécutives bloquées",
         "2 ondes P consécutives bloquées",
-        "ondes P conduites alternant avec plusieurs ondes P bloquées"
+        "ondes P conduites alternant avec plusieurs ondes P bloquées",
+        "blocage de l'onde P",
+        "blocage de la onde P"
       ],
       "parents": [
         "CONDUCTION"
@@ -6924,7 +6941,11 @@
       "parents": [
         "TACHYCARDIE_ATRIALE"
       ],
-      "comment": "Concept générique de flutter atrial, utilisé pour une exclusion large sans choisir de sous-type précis. Les sous-types spécifiques (FLUTTER_DROIT_TYPIQUE, FLUTTER_ATRIAL_ATYPIQUE, etc.) restent rattachés à TACHYCARDIE_ATRIALE, pas à ce concept générique, pour ne pas créer de double hiérarchie. Cf. relecture 2026-08-09, cas 65."
+      "comment": "Concept générique de flutter atrial, utilisé pour une exclusion large sans choisir de sous-type précis. Les sous-types spécifiques (FLUTTER_DROIT_TYPIQUE, FLUTTER_ATRIAL_ATYPIQUE, etc.) restent rattachés à TACHYCARDIE_ATRIALE, pas à ce concept générique, pour ne pas créer de double hiérarchie. Cf. relecture 2026-08-09, cas 65.",
+      "children": [
+        "FLUTTER_DROIT_TYPIQUE",
+        "FLUTTER_ATRIAL_ATYPIQUE"
+      ]
     },
     "SYNCOPE": {
       "concept_name": "Syncope",

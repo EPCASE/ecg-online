@@ -1042,14 +1042,6 @@
     },
     {
       "ontology_id": "ARYTHMIE_ATRIALE",
-      "surface_form": "rythme non sinusal",
-      "source_type": "synonym",
-      "concept_name": "Arythmie atriale",
-      "categorie": "DESCRIPTION_ECG",
-      "poids": 2
-    },
-    {
-      "ontology_id": "ARYTHMIE_ATRIALE",
       "surface_form": "arythmie supraventriculaire",
       "source_type": "synonym",
       "concept_name": "Arythmie atriale",
@@ -1194,14 +1186,6 @@
     },
     {
       "ontology_id": "ARYTHMIE_VENTRICULAIRE",
-      "surface_form": "arythmie ventriculaire polymorphe",
-      "source_type": "synonym",
-      "concept_name": "Arythmie ventriculaire",
-      "categorie": "QUALIFICATEUR",
-      "poids": 2
-    },
-    {
-      "ontology_id": "ARYTHMIE_VENTRICULAIRE",
       "surface_form": "troubles du rythme ventriculaire grave",
       "source_type": "synonym",
       "concept_name": "Arythmie ventriculaire",
@@ -1212,14 +1196,6 @@
       "ontology_id": "ASPECT_DE_BRUGADA",
       "surface_form": "Aspect de Brugada",
       "source_type": "canonical",
-      "concept_name": "Aspect de Brugada",
-      "categorie": "DIAGNOSTIC_MAJEUR",
-      "poids": 4
-    },
-    {
-      "ontology_id": "ASPECT_DE_BRUGADA",
-      "surface_form": "BRS",
-      "source_type": "synonym",
       "concept_name": "Aspect de Brugada",
       "categorie": "DIAGNOSTIC_MAJEUR",
       "poids": 4
@@ -2602,14 +2578,6 @@
     },
     {
       "ontology_id": "BLOC_DE_BRANCHE_DROIT",
-      "surface_form": "aspect de bloc de branche droite",
-      "source_type": "synonym",
-      "concept_name": "Bloc de branche droit",
-      "categorie": "DIAGNOSTIC_MOYEN",
-      "poids": 3
-    },
-    {
-      "ontology_id": "BLOC_DE_BRANCHE_DROIT",
       "surface_form": "bloc de branche droit associé",
       "source_type": "synonym",
       "concept_name": "Bloc de branche droit",
@@ -2681,22 +2649,6 @@
       "poids": 4
     },
     {
-      "ontology_id": "BLOC_DE_BRANCHE_DROIT_COMPLET",
-      "surface_form": "aspect de bloc de branche droite",
-      "source_type": "synonym",
-      "concept_name": "Bloc de branche droit complet",
-      "categorie": "DIAGNOSTIC_MAJEUR",
-      "poids": 4
-    },
-    {
-      "ontology_id": "BLOC_DE_BRANCHE_DROIT_COMPLET",
-      "surface_form": "bloc de branche droite",
-      "source_type": "synonym",
-      "concept_name": "Bloc de branche droit complet",
-      "categorie": "DIAGNOSTIC_MAJEUR",
-      "poids": 4
-    },
-    {
       "ontology_id": "BLOC_DE_BRANCHE_GAUCHE",
       "surface_form": "Bloc de branche gauche",
       "source_type": "canonical",
@@ -2739,14 +2691,6 @@
     {
       "ontology_id": "BLOC_DE_BRANCHE_GAUCHE",
       "surface_form": "aspect caractéristique de bloc de branche gauche",
-      "source_type": "synonym",
-      "concept_name": "Bloc de branche gauche",
-      "categorie": "DIAGNOSTIC_MOYEN",
-      "poids": 3
-    },
-    {
-      "ontology_id": "BLOC_DE_BRANCHE_GAUCHE",
-      "surface_form": "aspect de bloc de branche gauche",
       "source_type": "synonym",
       "concept_name": "Bloc de branche gauche",
       "categorie": "DIAGNOSTIC_MOYEN",
@@ -3794,14 +3738,6 @@
     },
     {
       "ontology_id": "COURANT_DE_LESION_SOUS_ENDOCARDIQUE",
-      "surface_form": "sous-décalage en miroir",
-      "source_type": "synonym",
-      "concept_name": "Courant de lésion sous-endocardique",
-      "categorie": "DIAGNOSTIC_MOYEN",
-      "poids": 3
-    },
-    {
-      "ontology_id": "COURANT_DE_LESION_SOUS_ENDOCARDIQUE",
       "surface_form": "sous-décalage significatif",
       "source_type": "synonym",
       "concept_name": "Courant de lésion sous-endocardique",
@@ -4354,14 +4290,6 @@
     },
     {
       "ontology_id": "DYSFONCTION_SINUSALE",
-      "surface_form": "perte de l'automatisme sinusal",
-      "source_type": "synonym",
-      "concept_name": "Dysfonction sinusale",
-      "categorie": "DIAGNOSTIC_MAJEUR",
-      "poids": 4
-    },
-    {
-      "ontology_id": "DYSFONCTION_SINUSALE",
       "surface_form": "baisse de l'automatisme sinusal",
       "source_type": "synonym",
       "concept_name": "Dysfonction sinusale",
@@ -4570,14 +4498,6 @@
     },
     {
       "ontology_id": "ECG_NORMAL",
-      "surface_form": "Pas d'anomalie",
-      "source_type": "synonym",
-      "concept_name": "ECG normal",
-      "categorie": "DIAGNOSTIC_MAJEUR",
-      "poids": 4
-    },
-    {
-      "ontology_id": "ECG_NORMAL",
       "surface_form": "Tracé normal",
       "source_type": "synonym",
       "concept_name": "ECG normal",
@@ -4699,14 +4619,6 @@
     {
       "ontology_id": "ECHAPPEMENT",
       "surface_form": "rythme d'échappement",
-      "source_type": "synonym",
-      "concept_name": "Echappement",
-      "categorie": "DESCRIPTION_ECG",
-      "poids": 2
-    },
-    {
-      "ontology_id": "ECHAPPEMENT",
-      "surface_form": "échappement jonctionnel",
       "source_type": "synonym",
       "concept_name": "Echappement",
       "categorie": "DESCRIPTION_ECG",
@@ -5377,6 +5289,14 @@
       "poids": 2
     },
     {
+      "ontology_id": "FLUTTER_ATRIAL_ANTIHORAIRE",
+      "surface_form": "Flutter commun anti-horaire",
+      "source_type": "synonym",
+      "concept_name": "Flutter atrial antihoraire",
+      "categorie": "QUALIFICATEUR",
+      "poids": 2
+    },
+    {
       "ontology_id": "FLUTTER_ATRIAL_ATYPIQUE",
       "surface_form": "Flutter atrial atypique",
       "source_type": "canonical",
@@ -5387,14 +5307,6 @@
     {
       "ontology_id": "FLUTTER_ATRIAL_ATYPIQUE",
       "surface_form": "Flutter atrial non commun",
-      "source_type": "synonym",
-      "concept_name": "Flutter atrial atypique",
-      "categorie": "QUALIFICATEUR",
-      "poids": 2
-    },
-    {
-      "ontology_id": "FLUTTER_ATRIAL_ATYPIQUE",
-      "surface_form": "TA",
       "source_type": "synonym",
       "concept_name": "Flutter atrial atypique",
       "categorie": "QUALIFICATEUR",
@@ -5523,14 +5435,6 @@
     {
       "ontology_id": "FLUTTER_DROIT_TYPIQUE",
       "surface_form": "Flutter droit",
-      "source_type": "synonym",
-      "concept_name": "Flutter droit typique",
-      "categorie": "QUALIFICATEUR",
-      "poids": 2
-    },
-    {
-      "ontology_id": "FLUTTER_DROIT_TYPIQUE",
-      "surface_form": "flutter atrial",
       "source_type": "synonym",
       "concept_name": "Flutter droit typique",
       "categorie": "QUALIFICATEUR",
@@ -5772,6 +5676,38 @@
       "ontology_id": "HYPERTROPHIE_VENTRICULAIRE",
       "surface_form": "Hypertrophie ventriculaire",
       "source_type": "canonical",
+      "concept_name": "Hypertrophie ventriculaire",
+      "categorie": "DESCRIPTION_ECG",
+      "poids": 2
+    },
+    {
+      "ontology_id": "HYPERTROPHIE_VENTRICULAIRE",
+      "surface_form": "hypertrophie",
+      "source_type": "synonym",
+      "concept_name": "Hypertrophie ventriculaire",
+      "categorie": "DESCRIPTION_ECG",
+      "poids": 2
+    },
+    {
+      "ontology_id": "HYPERTROPHIE_VENTRICULAIRE",
+      "surface_form": "signes d hypertrophie",
+      "source_type": "synonym",
+      "concept_name": "Hypertrophie ventriculaire",
+      "categorie": "DESCRIPTION_ECG",
+      "poids": 2
+    },
+    {
+      "ontology_id": "HYPERTROPHIE_VENTRICULAIRE",
+      "surface_form": "hypertrophie ventriculaire",
+      "source_type": "synonym",
+      "concept_name": "Hypertrophie ventriculaire",
+      "categorie": "DESCRIPTION_ECG",
+      "poids": 2
+    },
+    {
+      "ontology_id": "HYPERTROPHIE_VENTRICULAIRE",
+      "surface_form": "signes d'hypertrophie",
+      "source_type": "synonym",
       "concept_name": "Hypertrophie ventriculaire",
       "categorie": "DESCRIPTION_ECG",
       "poids": 2
@@ -6497,6 +6433,22 @@
       "poids": 2
     },
     {
+      "ontology_id": "ISCHEMIQUE",
+      "surface_form": "séquelle d'ischémie",
+      "source_type": "synonym",
+      "concept_name": "Ischémique",
+      "categorie": "DIAGNOSTIC_MAJEUR",
+      "poids": 2
+    },
+    {
+      "ontology_id": "ISCHEMIQUE",
+      "surface_form": "ischémie décelée",
+      "source_type": "synonym",
+      "concept_name": "Ischémique",
+      "categorie": "DIAGNOSTIC_MAJEUR",
+      "poids": 2
+    },
+    {
       "ontology_id": "ISOLE",
       "surface_form": "Isolé",
       "source_type": "canonical",
@@ -6954,14 +6906,6 @@
     },
     {
       "ontology_id": "MORPHOLOGIE_ONDE_P_SINUSALE",
-      "surface_form": "activité atriale sinusale",
-      "source_type": "synonym",
-      "concept_name": "Morphologie onde P sinusale",
-      "categorie": "DESCRIPTION_ECG",
-      "poids": 2
-    },
-    {
-      "ontology_id": "MORPHOLOGIE_ONDE_P_SINUSALE",
       "surface_form": "activité atriale provenant du nœud sinusal",
       "source_type": "synonym",
       "concept_name": "Morphologie onde P sinusale",
@@ -7314,22 +7258,6 @@
     },
     {
       "ontology_id": "ONDE_P_NORMALE",
-      "surface_form": "ondes P de morphologie normale",
-      "source_type": "synonym",
-      "concept_name": "Onde P normale",
-      "categorie": "DIAGNOSTIC_MOYEN",
-      "poids": 3
-    },
-    {
-      "ontology_id": "ONDE_P_NORMALE",
-      "surface_form": "morphologie normale des ondes P",
-      "source_type": "synonym",
-      "concept_name": "Onde P normale",
-      "categorie": "DIAGNOSTIC_MOYEN",
-      "poids": 3
-    },
-    {
-      "ontology_id": "ONDE_P_NORMALE",
       "surface_form": "ondes P normales",
       "source_type": "synonym",
       "concept_name": "Onde P normale",
@@ -7467,14 +7395,6 @@
     {
       "ontology_id": "ONDE_P_PRESENTE",
       "surface_form": "onde P avant chaque QRS",
-      "source_type": "synonym",
-      "concept_name": "Onde P présente",
-      "categorie": "DESCRIPTION_ECG",
-      "poids": 2
-    },
-    {
-      "ontology_id": "ONDE_P_PRESENTE",
-      "surface_form": "onde P avant chaque complexe QRS",
       "source_type": "synonym",
       "concept_name": "Onde P présente",
       "categorie": "DESCRIPTION_ECG",
@@ -8946,6 +8866,14 @@
     },
     {
       "ontology_id": "PRESENCE_D_ONDE_Q_PATHOLOGIQUE",
+      "surface_form": "Aspect QS",
+      "source_type": "synonym",
+      "concept_name": "Presence d'onde Q pathologique",
+      "categorie": "DESCRIPTION_ECG",
+      "poids": 2
+    },
+    {
+      "ontology_id": "PRESENCE_D_ONDE_Q_PATHOLOGIQUE",
       "surface_form": "Onde Q de nécrose",
       "source_type": "synonym",
       "concept_name": "Presence d'onde Q pathologique",
@@ -9874,14 +9802,6 @@
     },
     {
       "ontology_id": "REPOLARISATION_PRECOCE",
-      "surface_form": "ERS",
-      "source_type": "synonym",
-      "concept_name": "Repolarisation précoce",
-      "categorie": "DESCRIPTION_ECG",
-      "poids": 2
-    },
-    {
-      "ontology_id": "REPOLARISATION_PRECOCE",
       "surface_form": "Notch",
       "source_type": "synonym",
       "concept_name": "Repolarisation précoce",
@@ -9932,14 +9852,6 @@
       "ontology_id": "RYTHME_D_ECHAPPEMENT_JONCTIONNEL",
       "surface_form": "Rythme d'échappement jonctionnel",
       "source_type": "canonical",
-      "concept_name": "Rythme d'échappement jonctionnel",
-      "categorie": "DIAGNOSTIC_MAJEUR",
-      "poids": 4
-    },
-    {
-      "ontology_id": "RYTHME_D_ECHAPPEMENT_JONCTIONNEL",
-      "surface_form": "RIJA",
-      "source_type": "synonym",
       "concept_name": "Rythme d'échappement jonctionnel",
       "categorie": "DIAGNOSTIC_MAJEUR",
       "poids": 4
@@ -10066,14 +9978,6 @@
     },
     {
       "ontology_id": "RYTHME_SINUSAL",
-      "surface_form": "Rythme sinusal régulier",
-      "source_type": "synonym",
-      "concept_name": "Rythme sinusal",
-      "categorie": "DIAGNOSTIC_MOYEN",
-      "poids": 3
-    },
-    {
-      "ontology_id": "RYTHME_SINUSAL",
       "surface_form": "activité sinusal",
       "source_type": "synonym",
       "concept_name": "Rythme sinusal",
@@ -10083,14 +9987,6 @@
     {
       "ontology_id": "RYTHME_SINUSAL",
       "surface_form": "activité atriale sinusale",
-      "source_type": "synonym",
-      "concept_name": "Rythme sinusal",
-      "categorie": "DIAGNOSTIC_MOYEN",
-      "poids": 3
-    },
-    {
-      "ontology_id": "RYTHME_SINUSAL",
-      "surface_form": "activité atriale sinusale régulière",
       "source_type": "synonym",
       "concept_name": "Rythme sinusal",
       "categorie": "DIAGNOSTIC_MOYEN",
@@ -10146,23 +10042,7 @@
     },
     {
       "ontology_id": "RYTHME_SINUSAL",
-      "surface_form": "activité atriale sinusale irrégulière",
-      "source_type": "synonym",
-      "concept_name": "Rythme sinusal",
-      "categorie": "DIAGNOSTIC_MOYEN",
-      "poids": 3
-    },
-    {
-      "ontology_id": "RYTHME_SINUSAL",
       "surface_form": "rythme à commande sinusale",
-      "source_type": "synonym",
-      "concept_name": "Rythme sinusal",
-      "categorie": "DIAGNOSTIC_MOYEN",
-      "poids": 3
-    },
-    {
-      "ontology_id": "RYTHME_SINUSAL",
-      "surface_form": "rythme sinusal irrégulier",
       "source_type": "synonym",
       "concept_name": "Rythme sinusal",
       "categorie": "DIAGNOSTIC_MOYEN",
@@ -10802,14 +10682,6 @@
     },
     {
       "ontology_id": "SYNDROME_CORONARIEN_A_LA_PHASE_AIGUE_AVEC_SUS_DECALAGE_DU_SEGMENT_ST",
-      "surface_form": "Onde de Pardee",
-      "source_type": "synonym",
-      "concept_name": "Syndrome coronarien à la phase aigue avec sus-décalage du segment ST",
-      "categorie": "DIAGNOSTIC_MAJEUR",
-      "poids": 5
-    },
-    {
-      "ontology_id": "SYNDROME_CORONARIEN_A_LA_PHASE_AIGUE_AVEC_SUS_DECALAGE_DU_SEGMENT_ST",
       "surface_form": "SCA ST+ inférieur",
       "source_type": "synonym",
       "concept_name": "Syndrome coronarien à la phase aigue avec sus-décalage du segment ST",
@@ -11266,14 +11138,6 @@
     },
     {
       "ontology_id": "TACHYCARDIE_ATRIALE",
-      "surface_form": "Flutter atrial",
-      "source_type": "synonym",
-      "concept_name": "Tachycardie atriale",
-      "categorie": "DIAGNOSTIC_MOYEN",
-      "poids": 3
-    },
-    {
-      "ontology_id": "TACHYCARDIE_ATRIALE",
       "surface_form": "TA",
       "source_type": "synonym",
       "concept_name": "Tachycardie atriale",
@@ -11348,14 +11212,6 @@
       "ontology_id": "TACHYCARDIE_ATRIALE_FOCALE",
       "surface_form": "Tachycardie atriale focale",
       "source_type": "canonical",
-      "concept_name": "Tachycardie atriale focale",
-      "categorie": "DIAGNOSTIC_MAJEUR",
-      "poids": 4
-    },
-    {
-      "ontology_id": "TACHYCARDIE_ATRIALE_FOCALE",
-      "surface_form": "AT",
-      "source_type": "synonym",
       "concept_name": "Tachycardie atriale focale",
       "categorie": "DIAGNOSTIC_MAJEUR",
       "poids": 4
@@ -11850,30 +11706,6 @@
     },
     {
       "ontology_id": "TACHYCARDIE_VENTRICULAIRE",
-      "surface_form": "TVNS",
-      "source_type": "synonym",
-      "concept_name": "Tachycardie ventriculaire",
-      "categorie": "DIAGNOSTIC_URGENT",
-      "poids": 5
-    },
-    {
-      "ontology_id": "TACHYCARDIE_VENTRICULAIRE",
-      "surface_form": "tachycardie ventriculaire soutenue",
-      "source_type": "synonym",
-      "concept_name": "Tachycardie ventriculaire",
-      "categorie": "DIAGNOSTIC_URGENT",
-      "poids": 5
-    },
-    {
-      "ontology_id": "TACHYCARDIE_VENTRICULAIRE",
-      "surface_form": "TV soutenue",
-      "source_type": "synonym",
-      "concept_name": "Tachycardie ventriculaire",
-      "categorie": "DIAGNOSTIC_URGENT",
-      "poids": 5
-    },
-    {
-      "ontology_id": "TACHYCARDIE_VENTRICULAIRE",
       "surface_form": "salve de TV",
       "source_type": "synonym",
       "concept_name": "Tachycardie ventriculaire",
@@ -12273,6 +12105,30 @@
       "poids": 2
     },
     {
+      "ontology_id": "TROUBLE_DE_LA_DEPOLARISATION_VENTRICULAIRE",
+      "surface_form": "troubles de la dépolarisation",
+      "source_type": "synonym",
+      "concept_name": "Trouble de la dépolarisation ventriculaire",
+      "categorie": "DESCRIPTION_ECG",
+      "poids": 2
+    },
+    {
+      "ontology_id": "TROUBLE_DE_LA_DEPOLARISATION_VENTRICULAIRE",
+      "surface_form": "trouble de la dépolarisation",
+      "source_type": "synonym",
+      "concept_name": "Trouble de la dépolarisation ventriculaire",
+      "categorie": "DESCRIPTION_ECG",
+      "poids": 2
+    },
+    {
+      "ontology_id": "TROUBLE_DE_LA_DEPOLARISATION_VENTRICULAIRE",
+      "surface_form": "trouble de dépolarisation",
+      "source_type": "synonym",
+      "concept_name": "Trouble de la dépolarisation ventriculaire",
+      "categorie": "DESCRIPTION_ECG",
+      "poids": 2
+    },
+    {
       "ontology_id": "TROUBLE_DE_REPOLARISATION",
       "surface_form": "Trouble de repolarisation",
       "source_type": "canonical",
@@ -12387,22 +12243,6 @@
     {
       "ontology_id": "TROUBLES_DE_CONDUCTION_ET_DE_L_AUTOMATICITE",
       "surface_form": "trouble de conduction diffus",
-      "source_type": "synonym",
-      "concept_name": "Troubles de conduction et de l'automaticité",
-      "categorie": "DESCRIPTION_ECG",
-      "poids": 2
-    },
-    {
-      "ontology_id": "TROUBLES_DE_CONDUCTION_ET_DE_L_AUTOMATICITE",
-      "surface_form": "trouble de conduction atrioventriculaire",
-      "source_type": "synonym",
-      "concept_name": "Troubles de conduction et de l'automaticité",
-      "categorie": "DESCRIPTION_ECG",
-      "poids": 2
-    },
-    {
-      "ontology_id": "TROUBLES_DE_CONDUCTION_ET_DE_L_AUTOMATICITE",
-      "surface_form": "trouble de conduction auriculo-ventriculaire",
       "source_type": "synonym",
       "concept_name": "Troubles de conduction et de l'automaticité",
       "categorie": "DESCRIPTION_ECG",
@@ -12585,6 +12425,22 @@
       "poids": 2
     },
     {
+      "ontology_id": "UNE_ONDE_P_BLOQUEE",
+      "surface_form": "blocage de l'onde P",
+      "source_type": "synonym",
+      "concept_name": "Une onde P bloquée",
+      "categorie": "DESCRIPTION_ECG",
+      "poids": 2
+    },
+    {
+      "ontology_id": "UNE_ONDE_P_BLOQUEE",
+      "surface_form": "blocage de la onde P",
+      "source_type": "synonym",
+      "concept_name": "Une onde P bloquée",
+      "categorie": "DESCRIPTION_ECG",
+      "poids": 2
+    },
+    {
       "ontology_id": "VENTRICULE_DROIT",
       "surface_form": "Ventricule droit",
       "source_type": "canonical",
@@ -12717,94 +12573,6 @@
       "surface_form": "ondes S profondes en V1-V2",
       "source_type": "synonym",
       "concept_name": "Voltage du QRS anormal",
-      "categorie": "DESCRIPTION_ECG",
-      "poids": 2
-    },
-    {
-      "ontology_id": "VOLTAGE_DU_QRS_NORMAL",
-      "surface_form": "Voltage du QRS normal",
-      "source_type": "canonical",
-      "concept_name": "Voltage du QRS normal",
-      "categorie": "DESCRIPTION_ECG",
-      "poids": 2
-    },
-    {
-      "ontology_id": "VOLTAGE_DU_QRS_NORMAL",
-      "surface_form": "Amplitude normale du QRS",
-      "source_type": "synonym",
-      "concept_name": "Voltage du QRS normal",
-      "categorie": "DESCRIPTION_ECG",
-      "poids": 2
-    },
-    {
-      "ontology_id": "VOLTAGE_DU_QRS_NORMAL",
-      "surface_form": "normovolté",
-      "source_type": "synonym",
-      "concept_name": "Voltage du QRS normal",
-      "categorie": "DESCRIPTION_ECG",
-      "poids": 2
-    },
-    {
-      "ontology_id": "VOLTAGE_DU_QRS_NORMAL",
-      "surface_form": "complexes QRS dépassant 5 mm en périphérique",
-      "source_type": "synonym",
-      "concept_name": "Voltage du QRS normal",
-      "categorie": "DESCRIPTION_ECG",
-      "poids": 2
-    },
-    {
-      "ontology_id": "VOLTAGE_DU_QRS_NORMAL",
-      "surface_form": "complexes QRS dépassant 10 mm en précordial",
-      "source_type": "synonym",
-      "concept_name": "Voltage du QRS normal",
-      "categorie": "DESCRIPTION_ECG",
-      "poids": 2
-    },
-    {
-      "ontology_id": "VOLTAGE_DU_QRS_NORMAL",
-      "surface_form": "QRS > 5 mm en dérivation périphérique",
-      "source_type": "synonym",
-      "concept_name": "Voltage du QRS normal",
-      "categorie": "DESCRIPTION_ECG",
-      "poids": 2
-    },
-    {
-      "ontology_id": "VOLTAGE_DU_QRS_NORMAL",
-      "surface_form": "QRS > 10 mm en dérivation précordiale",
-      "source_type": "synonym",
-      "concept_name": "Voltage du QRS normal",
-      "categorie": "DESCRIPTION_ECG",
-      "poids": 2
-    },
-    {
-      "ontology_id": "VOLTAGE_DU_QRS_NORMAL",
-      "surface_form": "amplitudes normales des complexes QRS",
-      "source_type": "synonym",
-      "concept_name": "Voltage du QRS normal",
-      "categorie": "DESCRIPTION_ECG",
-      "poids": 2
-    },
-    {
-      "ontology_id": "VOLTAGE_DU_QRS_NORMAL",
-      "surface_form": "voltage QRS précordial conservé",
-      "source_type": "synonym",
-      "concept_name": "Voltage du QRS normal",
-      "categorie": "DESCRIPTION_ECG",
-      "poids": 2
-    },
-    {
-      "ontology_id": "VOLTAGE_DU_QRS_NORMAL",
-      "surface_form": "voltage plus important dans les dérivations précordiales",
-      "source_type": "synonym",
-      "concept_name": "Voltage du QRS normal",
-      "categorie": "DESCRIPTION_ECG",
-      "poids": 2
-    },
-    {
-      "ontology_id": "VOLTAGE_DU_QRS_NORMAL",
-      "surface_form": "QRS > 10 mm en précordial",
-      "source_type": "synonym",
-      "concept_name": "Voltage du QRS normal",
       "categorie": "DESCRIPTION_ECG",
       "poids": 2
     },
@@ -13281,54 +13049,6 @@
       "poids": 2
     },
     {
-      "ontology_id": "VOLTAGE_NORMAL_DU_QRS",
-      "surface_form": "Voltage normal du QRS",
-      "source_type": "canonical",
-      "concept_name": "Voltage normal du QRS",
-      "categorie": "DESCRIPTION_ECG",
-      "poids": 2
-    },
-    {
-      "ontology_id": "VOLTAGE_NORMAL_DU_QRS",
-      "surface_form": "voltage normal",
-      "source_type": "synonym",
-      "concept_name": "Voltage normal du QRS",
-      "categorie": "DESCRIPTION_ECG",
-      "poids": 2
-    },
-    {
-      "ontology_id": "VOLTAGE_NORMAL_DU_QRS",
-      "surface_form": "amplitude normale du QRS",
-      "source_type": "synonym",
-      "concept_name": "Voltage normal du QRS",
-      "categorie": "DESCRIPTION_ECG",
-      "poids": 2
-    },
-    {
-      "ontology_id": "VOLTAGE_NORMAL_DU_QRS",
-      "surface_form": "voltage QRS conservé",
-      "source_type": "synonym",
-      "concept_name": "Voltage normal du QRS",
-      "categorie": "DESCRIPTION_ECG",
-      "poids": 2
-    },
-    {
-      "ontology_id": "VOLTAGE_NORMAL_DU_QRS",
-      "surface_form": "pas de microvoltage",
-      "source_type": "synonym",
-      "concept_name": "Voltage normal du QRS",
-      "categorie": "DESCRIPTION_ECG",
-      "poids": 2
-    },
-    {
-      "ontology_id": "VOLTAGE_NORMAL_DU_QRS",
-      "surface_form": "absence d'hypertrophie ventriculaire",
-      "source_type": "synonym",
-      "concept_name": "Voltage normal du QRS",
-      "categorie": "DESCRIPTION_ECG",
-      "poids": 2
-    },
-    {
       "ontology_id": "MYOCARDITE",
       "surface_form": "Myocardite",
       "source_type": "canonical",
@@ -13399,15 +13119,583 @@
       "concept_name": "Takotsubo",
       "categorie": "DIAGNOSTIC_MAJEUR",
       "poids": 4
+    },
+    {
+      "ontology_id": "TACHYCARDIE_VENTRICULAIRE_NON_SOUTENUE",
+      "surface_form": "Tachycardie ventriculaire non soutenue",
+      "source_type": "canonical",
+      "concept_name": "Tachycardie ventriculaire non soutenue",
+      "categorie": "DIAGNOSTIC_URGENT",
+      "poids": 4
+    },
+    {
+      "ontology_id": "TACHYCARDIE_VENTRICULAIRE_NON_SOUTENUE",
+      "surface_form": "TVNS",
+      "source_type": "synonym",
+      "concept_name": "Tachycardie ventriculaire non soutenue",
+      "categorie": "DIAGNOSTIC_URGENT",
+      "poids": 4
+    },
+    {
+      "ontology_id": "TACHYCARDIE_VENTRICULAIRE_NON_SOUTENUE",
+      "surface_form": "TV non soutenue",
+      "source_type": "synonym",
+      "concept_name": "Tachycardie ventriculaire non soutenue",
+      "categorie": "DIAGNOSTIC_URGENT",
+      "poids": 4
+    },
+    {
+      "ontology_id": "TACHYCARDIE_VENTRICULAIRE_NON_SOUTENUE",
+      "surface_form": "salve de TV non soutenue",
+      "source_type": "synonym",
+      "concept_name": "Tachycardie ventriculaire non soutenue",
+      "categorie": "DIAGNOSTIC_URGENT",
+      "poids": 4
+    },
+    {
+      "ontology_id": "TACHYCARDIE_VENTRICULAIRE_NON_SOUTENUE",
+      "surface_form": "tachycardie ventriculaire non soutenue",
+      "source_type": "synonym",
+      "concept_name": "Tachycardie ventriculaire non soutenue",
+      "categorie": "DIAGNOSTIC_URGENT",
+      "poids": 4
+    },
+    {
+      "ontology_id": "TACHYCARDIE_VENTRICULAIRE_NON_SOUTENUE",
+      "surface_form": "réduction spontanée < 30 secondes",
+      "source_type": "synonym",
+      "concept_name": "Tachycardie ventriculaire non soutenue",
+      "categorie": "DIAGNOSTIC_URGENT",
+      "poids": 4
+    },
+    {
+      "ontology_id": "TACHYCARDIE_VENTRICULAIRE_SOUTENUE",
+      "surface_form": "Tachycardie ventriculaire soutenue",
+      "source_type": "canonical",
+      "concept_name": "Tachycardie ventriculaire soutenue",
+      "categorie": "DIAGNOSTIC_URGENT",
+      "poids": 5
+    },
+    {
+      "ontology_id": "TACHYCARDIE_VENTRICULAIRE_SOUTENUE",
+      "surface_form": "TV soutenue",
+      "source_type": "synonym",
+      "concept_name": "Tachycardie ventriculaire soutenue",
+      "categorie": "DIAGNOSTIC_URGENT",
+      "poids": 5
+    },
+    {
+      "ontology_id": "TACHYCARDIE_VENTRICULAIRE_SOUTENUE",
+      "surface_form": "tachycardie ventriculaire soutenue",
+      "source_type": "synonym",
+      "concept_name": "Tachycardie ventriculaire soutenue",
+      "categorie": "DIAGNOSTIC_URGENT",
+      "poids": 5
+    },
+    {
+      "ontology_id": "TACHYCARDIE_VENTRICULAIRE_SOUTENUE",
+      "surface_form": "TV prolongée",
+      "source_type": "synonym",
+      "concept_name": "Tachycardie ventriculaire soutenue",
+      "categorie": "DIAGNOSTIC_URGENT",
+      "poids": 5
+    },
+    {
+      "ontology_id": "TACHYCARDIE_VENTRICULAIRE_SOUTENUE",
+      "surface_form": "TV > 30 secondes",
+      "source_type": "synonym",
+      "concept_name": "Tachycardie ventriculaire soutenue",
+      "categorie": "DIAGNOSTIC_URGENT",
+      "poids": 5
+    },
+    {
+      "ontology_id": "ANGOR_DE_PRINZMETAL",
+      "surface_form": "Angor de Prinzmetal",
+      "source_type": "canonical",
+      "concept_name": "Angor de Prinzmetal",
+      "categorie": "DIAGNOSTIC_MAJEUR",
+      "poids": 5
+    },
+    {
+      "ontology_id": "ANGOR_DE_PRINZMETAL",
+      "surface_form": "Prinzmetal",
+      "source_type": "synonym",
+      "concept_name": "Angor de Prinzmetal",
+      "categorie": "DIAGNOSTIC_MAJEUR",
+      "poids": 5
+    },
+    {
+      "ontology_id": "ANGOR_DE_PRINZMETAL",
+      "surface_form": "angor de Prinzmetal",
+      "source_type": "synonym",
+      "concept_name": "Angor de Prinzmetal",
+      "categorie": "DIAGNOSTIC_MAJEUR",
+      "poids": 5
+    },
+    {
+      "ontology_id": "ANGOR_DE_PRINZMETAL",
+      "surface_form": "angor vasospastique",
+      "source_type": "synonym",
+      "concept_name": "Angor de Prinzmetal",
+      "categorie": "DIAGNOSTIC_MAJEUR",
+      "poids": 5
+    },
+    {
+      "ontology_id": "ANGOR_DE_PRINZMETAL",
+      "surface_form": "spasme coronaire",
+      "source_type": "synonym",
+      "concept_name": "Angor de Prinzmetal",
+      "categorie": "DIAGNOSTIC_MAJEUR",
+      "poids": 5
+    },
+    {
+      "ontology_id": "ANGOR_DE_PRINZMETAL",
+      "surface_form": "spasme coronaire droit",
+      "source_type": "synonym",
+      "concept_name": "Angor de Prinzmetal",
+      "categorie": "DIAGNOSTIC_MAJEUR",
+      "poids": 5
+    },
+    {
+      "ontology_id": "ANGOR_DE_PRINZMETAL",
+      "surface_form": "spasme coronarien",
+      "source_type": "synonym",
+      "concept_name": "Angor de Prinzmetal",
+      "categorie": "DIAGNOSTIC_MAJEUR",
+      "poids": 5
+    },
+    {
+      "ontology_id": "ANGOR_DE_PRINZMETAL",
+      "surface_form": "sus-décalage transitoire régressif sous trinitrine",
+      "source_type": "synonym",
+      "concept_name": "Angor de Prinzmetal",
+      "categorie": "DIAGNOSTIC_MAJEUR",
+      "poids": 5
+    },
+    {
+      "ontology_id": "ANGOR_DE_PRINZMETAL",
+      "surface_form": "vasospasme coronaire",
+      "source_type": "synonym",
+      "concept_name": "Angor de Prinzmetal",
+      "categorie": "DIAGNOSTIC_MAJEUR",
+      "poids": 5
+    },
+    {
+      "ontology_id": "EXTENSION_VENTRICULE_DROIT",
+      "surface_form": "Extension au ventricule droit",
+      "source_type": "canonical",
+      "concept_name": "Extension au ventricule droit",
+      "categorie": "DIAGNOSTIC_MOYEN",
+      "poids": 3
+    },
+    {
+      "ontology_id": "EXTENSION_VENTRICULE_DROIT",
+      "surface_form": "extension au ventricule droit",
+      "source_type": "synonym",
+      "concept_name": "Extension au ventricule droit",
+      "categorie": "DIAGNOSTIC_MOYEN",
+      "poids": 3
+    },
+    {
+      "ontology_id": "EXTENSION_VENTRICULE_DROIT",
+      "surface_form": "atteinte du ventricule droit associée",
+      "source_type": "synonym",
+      "concept_name": "Extension au ventricule droit",
+      "categorie": "DIAGNOSTIC_MOYEN",
+      "poids": 3
+    },
+    {
+      "ontology_id": "EXTENSION_VENTRICULE_DROIT",
+      "surface_form": "sus-décalage V3R-V4R",
+      "source_type": "synonym",
+      "concept_name": "Extension au ventricule droit",
+      "categorie": "DIAGNOSTIC_MOYEN",
+      "poids": 3
+    },
+    {
+      "ontology_id": "MALADIE_RYTHMIQUE_OREILLETTE",
+      "surface_form": "Maladie rythmique de l'oreillette",
+      "source_type": "canonical",
+      "concept_name": "Maladie rythmique de l'oreillette",
+      "categorie": "DIAGNOSTIC_MAJEUR",
+      "poids": 4
+    },
+    {
+      "ontology_id": "MALADIE_RYTHMIQUE_OREILLETTE",
+      "surface_form": "maladie de l'oreillette",
+      "source_type": "synonym",
+      "concept_name": "Maladie rythmique de l'oreillette",
+      "categorie": "DIAGNOSTIC_MAJEUR",
+      "poids": 4
+    },
+    {
+      "ontology_id": "MALADIE_RYTHMIQUE_OREILLETTE",
+      "surface_form": "syndrome bradycardie-tachycardie",
+      "source_type": "synonym",
+      "concept_name": "Maladie rythmique de l'oreillette",
+      "categorie": "DIAGNOSTIC_MAJEUR",
+      "poids": 4
+    },
+    {
+      "ontology_id": "MALADIE_RYTHMIQUE_OREILLETTE",
+      "surface_form": "syndrome tachycardie-bradycardie",
+      "source_type": "synonym",
+      "concept_name": "Maladie rythmique de l'oreillette",
+      "categorie": "DIAGNOSTIC_MAJEUR",
+      "poids": 4
+    },
+    {
+      "ontology_id": "MALADIE_RYTHMIQUE_OREILLETTE",
+      "surface_form": "maladie rythmique auriculaire",
+      "source_type": "synonym",
+      "concept_name": "Maladie rythmique de l'oreillette",
+      "categorie": "DIAGNOSTIC_MAJEUR",
+      "poids": 4
+    },
+    {
+      "ontology_id": "MALADIE_RYTHMIQUE_OREILLETTE",
+      "surface_form": "alternance tachyarythmie atriale et dysfonction sinusale",
+      "source_type": "synonym",
+      "concept_name": "Maladie rythmique de l'oreillette",
+      "categorie": "DIAGNOSTIC_MAJEUR",
+      "poids": 4
+    },
+    {
+      "ontology_id": "S1Q3",
+      "surface_form": "Aspect S1Q3 (McGinn-White)",
+      "source_type": "canonical",
+      "concept_name": "Aspect S1Q3 (McGinn-White)",
+      "categorie": "DIAGNOSTIC_MOYEN",
+      "poids": 3
+    },
+    {
+      "ontology_id": "S1Q3",
+      "surface_form": "S1Q3",
+      "source_type": "synonym",
+      "concept_name": "Aspect S1Q3 (McGinn-White)",
+      "categorie": "DIAGNOSTIC_MOYEN",
+      "poids": 3
+    },
+    {
+      "ontology_id": "S1Q3",
+      "surface_form": "S1q3",
+      "source_type": "synonym",
+      "concept_name": "Aspect S1Q3 (McGinn-White)",
+      "categorie": "DIAGNOSTIC_MOYEN",
+      "poids": 3
+    },
+    {
+      "ontology_id": "S1Q3",
+      "surface_form": "S1Q3T3",
+      "source_type": "synonym",
+      "concept_name": "Aspect S1Q3 (McGinn-White)",
+      "categorie": "DIAGNOSTIC_MOYEN",
+      "poids": 3
+    },
+    {
+      "ontology_id": "S1Q3",
+      "surface_form": "S1q3T3",
+      "source_type": "synonym",
+      "concept_name": "Aspect S1Q3 (McGinn-White)",
+      "categorie": "DIAGNOSTIC_MOYEN",
+      "poids": 3
+    },
+    {
+      "ontology_id": "S1Q3",
+      "surface_form": "aspect de McGinn-White",
+      "source_type": "synonym",
+      "concept_name": "Aspect S1Q3 (McGinn-White)",
+      "categorie": "DIAGNOSTIC_MOYEN",
+      "poids": 3
+    },
+    {
+      "ontology_id": "S1Q3",
+      "surface_form": "onde S en DI et onde Q en DIII",
+      "source_type": "synonym",
+      "concept_name": "Aspect S1Q3 (McGinn-White)",
+      "categorie": "DIAGNOSTIC_MOYEN",
+      "poids": 3
+    },
+    {
+      "ontology_id": "ONDE_P_RETROGRADE",
+      "surface_form": "Onde P rétrograde",
+      "source_type": "canonical",
+      "concept_name": "Onde P rétrograde",
+      "categorie": "DESCRIPTION_ECG",
+      "poids": 2
+    },
+    {
+      "ontology_id": "ONDE_P_RETROGRADE",
+      "surface_form": "onde P rétrograde",
+      "source_type": "synonym",
+      "concept_name": "Onde P rétrograde",
+      "categorie": "DESCRIPTION_ECG",
+      "poids": 2
+    },
+    {
+      "ontology_id": "ONDE_P_RETROGRADE",
+      "surface_form": "activité atriale rétrograde",
+      "source_type": "synonym",
+      "concept_name": "Onde P rétrograde",
+      "categorie": "DESCRIPTION_ECG",
+      "poids": 2
+    },
+    {
+      "ontology_id": "ONDE_P_RETROGRADE",
+      "surface_form": "onde P négative en inférieur",
+      "source_type": "synonym",
+      "concept_name": "Onde P rétrograde",
+      "categorie": "DESCRIPTION_ECG",
+      "poids": 2
+    },
+    {
+      "ontology_id": "ONDE_P_RETROGRADE",
+      "surface_form": "ondes P' rétrogrades",
+      "source_type": "synonym",
+      "concept_name": "Onde P rétrograde",
+      "categorie": "DESCRIPTION_ECG",
+      "poids": 2
+    },
+    {
+      "ontology_id": "ONDE_P_RETROGRADE",
+      "surface_form": "conduction atriale rétrograde",
+      "source_type": "synonym",
+      "concept_name": "Onde P rétrograde",
+      "categorie": "DESCRIPTION_ECG",
+      "poids": 2
+    },
+    {
+      "ontology_id": "BLOC_DE_BRANCHE_ALTERNANT",
+      "surface_form": "Bloc de branche alternant",
+      "source_type": "canonical",
+      "concept_name": "Bloc de branche alternant",
+      "categorie": "DIAGNOSTIC_MAJEUR",
+      "poids": 4
+    },
+    {
+      "ontology_id": "BLOC_DE_BRANCHE_ALTERNANT",
+      "surface_form": "bloc de branche alternant",
+      "source_type": "synonym",
+      "concept_name": "Bloc de branche alternant",
+      "categorie": "DIAGNOSTIC_MAJEUR",
+      "poids": 4
+    },
+    {
+      "ontology_id": "BLOC_DE_BRANCHE_ALTERNANT",
+      "surface_form": "alternance bloc de branche droit/gauche",
+      "source_type": "synonym",
+      "concept_name": "Bloc de branche alternant",
+      "categorie": "DIAGNOSTIC_MAJEUR",
+      "poids": 4
+    },
+    {
+      "ontology_id": "BLOC_DE_BRANCHE_ALTERNANT",
+      "surface_form": "alternance BBD/BBG",
+      "source_type": "synonym",
+      "concept_name": "Bloc de branche alternant",
+      "categorie": "DIAGNOSTIC_MAJEUR",
+      "poids": 4
+    },
+    {
+      "ontology_id": "FLUTTER_ATRIAL",
+      "surface_form": "Flutter atrial",
+      "source_type": "canonical",
+      "concept_name": "Flutter atrial",
+      "categorie": "DIAGNOSTIC_MAJEUR",
+      "poids": 4
+    },
+    {
+      "ontology_id": "FLUTTER_ATRIAL",
+      "surface_form": "flutter atrial",
+      "source_type": "synonym",
+      "concept_name": "Flutter atrial",
+      "categorie": "DIAGNOSTIC_MAJEUR",
+      "poids": 4
+    },
+    {
+      "ontology_id": "FLUTTER_ATRIAL",
+      "surface_form": "flutter auriculaire",
+      "source_type": "synonym",
+      "concept_name": "Flutter atrial",
+      "categorie": "DIAGNOSTIC_MAJEUR",
+      "poids": 4
+    },
+    {
+      "ontology_id": "FLUTTER_ATRIAL",
+      "surface_form": "flutter",
+      "source_type": "synonym",
+      "concept_name": "Flutter atrial",
+      "categorie": "DIAGNOSTIC_MAJEUR",
+      "poids": 4
+    },
+    {
+      "ontology_id": "SYNCOPE",
+      "surface_form": "Syncope",
+      "source_type": "canonical",
+      "concept_name": "Syncope",
+      "categorie": "CONTEXTE_CLINIQUE",
+      "poids": 2
+    },
+    {
+      "ontology_id": "SYNCOPE",
+      "surface_form": "syncope",
+      "source_type": "synonym",
+      "concept_name": "Syncope",
+      "categorie": "CONTEXTE_CLINIQUE",
+      "poids": 2
+    },
+    {
+      "ontology_id": "SYNCOPE",
+      "surface_form": "malaise avec perte de connaissance",
+      "source_type": "synonym",
+      "concept_name": "Syncope",
+      "categorie": "CONTEXTE_CLINIQUE",
+      "poids": 2
+    },
+    {
+      "ontology_id": "SYNCOPE",
+      "surface_form": "perte de connaissance brève",
+      "source_type": "synonym",
+      "concept_name": "Syncope",
+      "categorie": "CONTEXTE_CLINIQUE",
+      "poids": 2
+    },
+    {
+      "ontology_id": "SYNCOPE",
+      "surface_form": "contexte de syncopes",
+      "source_type": "synonym",
+      "concept_name": "Syncope",
+      "categorie": "CONTEXTE_CLINIQUE",
+      "poids": 2
+    },
+    {
+      "ontology_id": "VOLTAGE_DU_QRS_NORMAL",
+      "surface_form": "Voltage du QRS normal",
+      "source_type": "canonical",
+      "concept_name": "Voltage du QRS normal",
+      "categorie": "DESCRIPTION_ECG",
+      "poids": 2
+    },
+    {
+      "ontology_id": "VOLTAGE_DU_QRS_NORMAL",
+      "surface_form": "Amplitude normale du QRS",
+      "source_type": "synonym",
+      "concept_name": "Voltage du QRS normal",
+      "categorie": "DESCRIPTION_ECG",
+      "poids": 2
+    },
+    {
+      "ontology_id": "VOLTAGE_DU_QRS_NORMAL",
+      "surface_form": "normovolté",
+      "source_type": "synonym",
+      "concept_name": "Voltage du QRS normal",
+      "categorie": "DESCRIPTION_ECG",
+      "poids": 2
+    },
+    {
+      "ontology_id": "VOLTAGE_DU_QRS_NORMAL",
+      "surface_form": "complexes QRS dépassant 5 mm en périphérique",
+      "source_type": "synonym",
+      "concept_name": "Voltage du QRS normal",
+      "categorie": "DESCRIPTION_ECG",
+      "poids": 2
+    },
+    {
+      "ontology_id": "VOLTAGE_DU_QRS_NORMAL",
+      "surface_form": "complexes QRS dépassant 10 mm en précordial",
+      "source_type": "synonym",
+      "concept_name": "Voltage du QRS normal",
+      "categorie": "DESCRIPTION_ECG",
+      "poids": 2
+    },
+    {
+      "ontology_id": "VOLTAGE_DU_QRS_NORMAL",
+      "surface_form": "QRS > 5 mm en dérivation périphérique",
+      "source_type": "synonym",
+      "concept_name": "Voltage du QRS normal",
+      "categorie": "DESCRIPTION_ECG",
+      "poids": 2
+    },
+    {
+      "ontology_id": "VOLTAGE_DU_QRS_NORMAL",
+      "surface_form": "QRS > 10 mm en dérivation précordiale",
+      "source_type": "synonym",
+      "concept_name": "Voltage du QRS normal",
+      "categorie": "DESCRIPTION_ECG",
+      "poids": 2
+    },
+    {
+      "ontology_id": "VOLTAGE_DU_QRS_NORMAL",
+      "surface_form": "amplitudes normales des complexes QRS",
+      "source_type": "synonym",
+      "concept_name": "Voltage du QRS normal",
+      "categorie": "DESCRIPTION_ECG",
+      "poids": 2
+    },
+    {
+      "ontology_id": "VOLTAGE_DU_QRS_NORMAL",
+      "surface_form": "voltage QRS précordial conservé",
+      "source_type": "synonym",
+      "concept_name": "Voltage du QRS normal",
+      "categorie": "DESCRIPTION_ECG",
+      "poids": 2
+    },
+    {
+      "ontology_id": "VOLTAGE_DU_QRS_NORMAL",
+      "surface_form": "voltage plus important dans les dérivations précordiales",
+      "source_type": "synonym",
+      "concept_name": "Voltage du QRS normal",
+      "categorie": "DESCRIPTION_ECG",
+      "poids": 2
+    },
+    {
+      "ontology_id": "VOLTAGE_DU_QRS_NORMAL",
+      "surface_form": "QRS > 10 mm en précordial",
+      "source_type": "synonym",
+      "concept_name": "Voltage du QRS normal",
+      "categorie": "DESCRIPTION_ECG",
+      "poids": 2
+    },
+    {
+      "ontology_id": "VOLTAGE_DU_QRS_NORMAL",
+      "surface_form": "voltage normal",
+      "source_type": "synonym",
+      "concept_name": "Voltage du QRS normal",
+      "categorie": "DESCRIPTION_ECG",
+      "poids": 2
+    },
+    {
+      "ontology_id": "VOLTAGE_DU_QRS_NORMAL",
+      "surface_form": "voltage QRS conservé",
+      "source_type": "synonym",
+      "concept_name": "Voltage du QRS normal",
+      "categorie": "DESCRIPTION_ECG",
+      "poids": 2
+    },
+    {
+      "ontology_id": "VOLTAGE_DU_QRS_NORMAL",
+      "surface_form": "pas de microvoltage",
+      "source_type": "synonym",
+      "concept_name": "Voltage du QRS normal",
+      "categorie": "DESCRIPTION_ECG",
+      "poids": 2
+    },
+    {
+      "ontology_id": "VOLTAGE_DU_QRS_NORMAL",
+      "surface_form": "absence d'hypertrophie ventriculaire",
+      "source_type": "synonym",
+      "concept_name": "Voltage du QRS normal",
+      "categorie": "DESCRIPTION_ECG",
+      "poids": 2
     }
   ],
   "embedding_model": "text-embedding-3-small",
   "embedding_dims": 1536,
-  "total_concepts": 349,
-  "total_documents": 1676,
+  "total_concepts": 358,
+  "total_documents": 1711,
   "stats": {
-    "canonical": 349,
-    "synonym": 1327,
+    "canonical": 358,
+    "synonym": 1353,
     "implication": 0,
     "skipped_empty": 0
   },
