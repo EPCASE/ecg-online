@@ -311,7 +311,9 @@
         "CRITERES_DE_SGARBOSSA",
         "COURANT_DE_LESION_SOUS_ENDOCARDIQUE",
         "COURANT_DE_LESION_SOUS_EPICARDIQUE",
-        "ST_RAIDE"
+        "ST_RAIDE",
+        "ANGOR_DE_PRINZMETAL",
+        "S1Q3"
       ],
       "hide": 1
     },
@@ -1090,7 +1092,8 @@
       ],
       "children": [
         "BLOC_DE_BRANCHE_GAUCHE",
-        "BLOC_DE_BRANCHE_DROIT"
+        "BLOC_DE_BRANCHE_DROIT",
+        "BLOC_DE_BRANCHE_ALTERNANT"
       ],
       "origin_structure": [
         "RESEAU_DE_PURKINJE"
@@ -1930,7 +1933,8 @@
       ],
       "children": [
         "BLOC_SINO_ATRIAL",
-        "PARALYSIE_SINUSALE"
+        "PARALYSIE_SINUSALE",
+        "MALADIE_RYTHMIQUE_OREILLETTE"
       ],
       "origin_structure": [
         "NOEUD_SINUSAL"
@@ -2442,6 +2446,9 @@
         "DESORGANISEE",
         "IRREGULIER",
         "TREMULATION_DE_LA_LIGNE_DE_BASE",
+        "QRS_FINS"
+      ],
+      "has_qualifier_families": [
         "FREQUENCE"
       ],
       "synonymes": [
@@ -2597,7 +2604,6 @@
         "Flutter isthmique",
         "Flutter typique",
         "Flutter droit",
-        "flutter atrial",
         "aspect de flutter atrial",
         "flutter atrial avec aspect en dents de scie dans les dérivations inférieures",
         "aspect de flutter commun",
@@ -3612,7 +3618,8 @@
       ],
       "children": [
         "ABSENCE_D_ONDE_P",
-        "ONDE_P_PRESENTE"
+        "ONDE_P_PRESENTE",
+        "ONDE_P_RETROGRADE"
       ],
       "origin_structure": [
         "OREILLETTES"
@@ -5548,7 +5555,6 @@
       ],
       "synonymes": [
         "AT",
-        "Flutter atrial",
         "TA",
         "tachycardie régulière dans les oreillettes",
         "arythmie atriale organisée",
@@ -5565,7 +5571,8 @@
       "children": [
         "FLUTTER_DROIT_TYPIQUE",
         "TACHYCARDIE_ATRIALE_FOCALE",
-        "FLUTTER_ATRIAL_ATYPIQUE"
+        "FLUTTER_ATRIAL_ATYPIQUE",
+        "FLUTTER_ATRIAL"
       ],
       "origin_structure": [
         "OREILLETTES"
@@ -5901,9 +5908,6 @@
         "VT",
         "axe en faveur d'une Tachycardie ventriculaire",
         "tachycardie ventriculiare",
-        "TVNS",
-        "tachycardie ventriculaire soutenue",
-        "TV soutenue",
         "salve de TV",
         "salves de TV"
       ],
@@ -5916,7 +5920,9 @@
         "TACHYCARDIE_VENTRICULAIRE_INFUNDIBULAIRE",
         "TACHYCARDIE_VENTRICULAIRE_BIDIRECTIONNELLE",
         "TACHYCARDIE_VENTRICULAIRE_CICATRICIELLE",
-        "TV_FASCICULAIRE"
+        "TV_FASCICULAIRE",
+        "TACHYCARDIE_VENTRICULAIRE_NON_SOUTENUE",
+        "TACHYCARDIE_VENTRICULAIRE_SOUTENUE"
       ],
       "territoires_possibles": [
         "LOCALISATION_ESV"
@@ -6330,7 +6336,8 @@
       ],
       "children": [
         "PAROI_LIBRE_DU_VENTRICULE_DROIT",
-        "PAROI_INFERIEURE_DU_VENTRICULE_DROIT"
+        "PAROI_INFERIEURE_DU_VENTRICULE_DROIT",
+        "EXTENSION_VENTRICULE_DROIT"
       ],
       "electrode": [
         "V3R",
@@ -6779,6 +6786,230 @@
       "parents": [
         "PATHOLOGIE"
       ]
+    },
+    "TACHYCARDIE_VENTRICULAIRE_NON_SOUTENUE": {
+      "concept_name": "Tachycardie ventriculaire non soutenue",
+      "concept_name_en": "Non-sustained ventricular tachycardia",
+      "categorie": "DIAGNOSTIC_URGENT",
+      "poids": 4,
+      "type": "pattern",
+      "requires": [
+        "QRS_LARGE",
+        "TACHYCARDIE",
+        "NON_SOUTENU"
+      ],
+      "supports": [
+        "COMPLEXE_DE_FUSION",
+        "CAPTURE_SUPRAVENTRICULAIRE",
+        "DISSOCIATION_ATRIO_VENTRICULAIRE"
+      ],
+      "has_qualifiers": [
+        "MONOMORPHE"
+      ],
+      "excludes": [
+        "TACHYCARDIE_VENTRICULAIRE_SOUTENUE"
+      ],
+      "synonymes": [
+        "TVNS",
+        "TV non soutenue",
+        "salve de TV non soutenue",
+        "tachycardie ventriculaire non soutenue",
+        "réduction spontanée < 30 secondes"
+      ],
+      "parents": [
+        "TACHYCARDIE_VENTRICULAIRE"
+      ],
+      "origin_structure": [
+        "VENTRICULE"
+      ],
+      "mayhaveterritory": true
+    },
+    "TACHYCARDIE_VENTRICULAIRE_SOUTENUE": {
+      "concept_name": "Tachycardie ventriculaire soutenue",
+      "concept_name_en": "Sustained ventricular tachycardia",
+      "categorie": "DIAGNOSTIC_URGENT",
+      "poids": 5,
+      "type": "pattern",
+      "requires": [
+        "QRS_LARGE",
+        "TACHYCARDIE",
+        "SOUTENU"
+      ],
+      "supports": [
+        "COMPLEXE_DE_FUSION",
+        "CAPTURE_SUPRAVENTRICULAIRE",
+        "DISSOCIATION_ATRIO_VENTRICULAIRE"
+      ],
+      "has_qualifiers": [
+        "MONOMORPHE"
+      ],
+      "excludes": [
+        "TACHYCARDIE_VENTRICULAIRE_NON_SOUTENUE"
+      ],
+      "synonymes": [
+        "TV soutenue",
+        "tachycardie ventriculaire soutenue",
+        "TV prolongée",
+        "TV > 30 secondes"
+      ],
+      "parents": [
+        "TACHYCARDIE_VENTRICULAIRE"
+      ],
+      "origin_structure": [
+        "VENTRICULE"
+      ],
+      "mayhaveterritory": true
+    },
+    "ANGOR_DE_PRINZMETAL": {
+      "concept_name": "Angor de Prinzmetal",
+      "concept_name_en": "Prinzmetal's angina",
+      "categorie": "DIAGNOSTIC_MAJEUR",
+      "poids": 5,
+      "type": "pattern",
+      "requires": [
+        "COURANT_DE_LESION_SOUS_EPICARDIQUE"
+      ],
+      "synonymes": [
+        "Prinzmetal",
+        "angor de Prinzmetal",
+        "angor vasospastique",
+        "spasme coronaire",
+        "spasme coronaire droit",
+        "spasme coronarien",
+        "sus-décalage transitoire régressif sous trinitrine",
+        "vasospasme coronaire"
+      ],
+      "parents": [
+        "ANOMALIES_DU_SEGMENT_ST"
+      ],
+      "comment": "Sus-décalage ST transitoire et régressif (spontanément ou sous trinitrine), lié à un spasme coronaire — distinct du SCA ST+ par constitution de plaque (cf. relecture 2026-08-09, cas 70)."
+    },
+    "EXTENSION_VENTRICULE_DROIT": {
+      "concept_name": "Extension au ventricule droit",
+      "concept_name_en": "Right ventricular extension",
+      "categorie": "DIAGNOSTIC_MOYEN",
+      "poids": 3,
+      "type": "finding",
+      "parents": [
+        "VENTRICULE_DROIT"
+      ],
+      "synonymes": [
+        "extension au ventricule droit",
+        "atteinte du ventricule droit associée",
+        "sus-décalage V3R-V4R"
+      ],
+      "comment": "Cf. relecture 2026-08-09, cas 60 : extension VD sur SCA ST+ inférieur, sus-décalage significatif en V3R-V4R."
+    },
+    "MALADIE_RYTHMIQUE_OREILLETTE": {
+      "concept_name": "Maladie rythmique de l'oreillette",
+      "concept_name_en": "Sick sinus syndrome (tachy-brady)",
+      "categorie": "DIAGNOSTIC_MAJEUR",
+      "poids": 4,
+      "type": "pattern",
+      "requires": [
+        "FIBRILLATION_ATRIALE",
+        "DYSFONCTION_SINUSALE"
+      ],
+      "supports": [
+        "BRADYCARDIE_SINUSALE"
+      ],
+      "synonymes": [
+        "maladie de l'oreillette",
+        "syndrome bradycardie-tachycardie",
+        "syndrome tachycardie-bradycardie",
+        "maladie rythmique auriculaire",
+        "alternance tachyarythmie atriale et dysfonction sinusale"
+      ],
+      "parents": [
+        "DYSFONCTION_SINUSALE"
+      ],
+      "comment": "Alternance d'épisodes de tachyarythmie atriale (le plus souvent FA) et de dysfonction sinusale/bradycardie sinusale — cf. relecture 2026-08-09, cas 31."
+    },
+    "S1Q3": {
+      "concept_name": "Aspect S1Q3 (McGinn-White)",
+      "concept_name_en": "S1Q3 pattern",
+      "categorie": "DIAGNOSTIC_MOYEN",
+      "poids": 3,
+      "type": "pattern",
+      "has_qualifiers": [
+        "ONDE_T_NEGATIVE"
+      ],
+      "synonymes": [
+        "S1Q3",
+        "S1q3",
+        "S1Q3T3",
+        "S1q3T3",
+        "aspect de McGinn-White",
+        "onde S en DI et onde Q en DIII"
+      ],
+      "parents": [
+        "ANOMALIES_DU_SEGMENT_ST"
+      ],
+      "comment": "Signe évocateur (non spécifique) de cœur pulmonaire aigu/embolie pulmonaire — cf. relecture 2026-08-09, cas 53/54."
+    },
+    "ONDE_P_RETROGRADE": {
+      "concept_name": "Onde P rétrograde",
+      "concept_name_en": "Retrograde P wave",
+      "categorie": "DESCRIPTION_ECG",
+      "poids": 2,
+      "type": "finding",
+      "synonymes": [
+        "onde P rétrograde",
+        "activité atriale rétrograde",
+        "onde P négative en inférieur",
+        "ondes P' rétrogrades",
+        "conduction atriale rétrograde"
+      ],
+      "parents": [
+        "ONDE_P"
+      ],
+      "comment": "Activité atriale rétrograde (négative en inférieur, positive en V1/aVR), typique d'une dépolarisation atriale de bas en haut (rythme jonctionnel, TV avec conduction rétrograde…) — cf. relecture 2026-08-09, cas 44/60."
+    },
+    "BLOC_DE_BRANCHE_ALTERNANT": {
+      "concept_name": "Bloc de branche alternant",
+      "concept_name_en": "Alternating bundle branch block",
+      "categorie": "DIAGNOSTIC_MAJEUR",
+      "poids": 4,
+      "type": "pattern",
+      "synonymes": [
+        "bloc de branche alternant",
+        "alternance bloc de branche droit/gauche",
+        "alternance BBD/BBG"
+      ],
+      "parents": [
+        "BLOC_DE_BRANCHE"
+      ],
+      "comment": "Alternance d'un bloc de branche droit et d'un bloc de branche gauche sur des tracés successifs — signe de maladie bi/trifasciculaire sévère, à haut risque de BAV complet. Cf. relecture 2026-08-09, cas 14."
+    },
+    "FLUTTER_ATRIAL": {
+      "concept_name": "Flutter atrial",
+      "concept_name_en": "Atrial flutter",
+      "categorie": "DIAGNOSTIC_MAJEUR",
+      "poids": 4,
+      "type": "pattern",
+      "synonymes": [
+        "flutter atrial",
+        "flutter auriculaire",
+        "flutter"
+      ],
+      "parents": [
+        "TACHYCARDIE_ATRIALE"
+      ],
+      "comment": "Concept générique de flutter atrial, utilisé pour une exclusion large sans choisir de sous-type précis. Les sous-types spécifiques (FLUTTER_DROIT_TYPIQUE, FLUTTER_ATRIAL_ATYPIQUE, etc.) restent rattachés à TACHYCARDIE_ATRIALE, pas à ce concept générique, pour ne pas créer de double hiérarchie. Cf. relecture 2026-08-09, cas 65."
+    },
+    "SYNCOPE": {
+      "concept_name": "Syncope",
+      "concept_name_en": "Syncope",
+      "categorie": "CONTEXTE_CLINIQUE",
+      "poids": 2,
+      "type": "context",
+      "synonymes": [
+        "syncope",
+        "malaise avec perte de connaissance",
+        "perte de connaissance brève",
+        "contexte de syncopes"
+      ],
+      "comment": "Contexte clinique (pas un signe ECG) — motif de réalisation de l'ECG, pertinent pour évaluer le risque de trouble conductif paroxystique (BAV complet infra-hissien…). Cf. relecture 2026-08-09, cas 11."
     }
   },
   "qualifier_families": {

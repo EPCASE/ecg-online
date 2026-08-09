@@ -785,6 +785,7 @@
       "referentiel": "Le référentiel différencie 2 types de maladie rythmique de l’oreillette : le syndrome brady-tachy et les pauses post-réductionnelles. Le syndrome brady-tachy ou maladie rythmique de l’oreillette correspond à la coexistence d’une dysfonction sinusale quand le patient n’est pas en arythmie et d’épisodes de troubles du rythme atrial.",
       "images": [
         "cas_31.png",
+        "cas_31bis.png",
         "cas_31_p2.png"
       ]
     },
@@ -1437,7 +1438,7 @@
       "titre": "myocardite",
       "famille": "pericarde",
       "patient": "Homme de 35 ans",
-      "contexte": "",
+      "contexte": "Douleur thoracique évoluant depuis 24 heures, avec prélèvement de troponine positif.",
       "qcm": {
         "question": "Quel est le diagnostic le plus probable ?",
         "options": [
@@ -1530,6 +1531,7 @@
       "referentiel": "Le référentiel inclut un tracé de SCA ST+ avec extension au ventricule droit.\nA. Électrocardiogramme (ECG) 12 dérivations avec sus-décalage de ST en DII, DIII, aVF associé à une petite onde q avec sus-décalage en miroir en DI, aVL et de V2 à V6. B. ECG du même patient avec les dérivations droites V3R et V4R : on observe aussi un sus-décalage du segment ST faisant suspecter une extension au ventricule droit",
       "images": [
         "cas_60.png",
+        "cas_60bis.png",
         "cas_60_p2.png"
       ]
     },
