@@ -30,7 +30,7 @@
 
 | # | Action | Statut |
 |---|--------|:------:|
-| P1.5 | Étendre le golden de **scoring** (40-50 cas, ≥2 experts, plusieurs validants/cas — actuellement 75 cas mais mono-expert) | 🔄 en cours — relecture complète des 75 cas assistée par IA faite (2026-08-09, outillage `scoring_v2_review.py`/`gpt_annotator.py`), mais toujours **mono-expert** ; annotation multi-expert indépendante reste à faire |
+| P1.5 | Étendre le golden de **scoring** (40-50 cas, ≥2 experts, plusieurs validants/cas — actuellement 75 cas mais mono-expert) | ✅ considéré comme suffisant (décision 2026-08-09) — relecture complète des 75 cas via **double lecture humain + IA** (outillage `scoring_v2_review.py`/`gpt_annotator.py`) ; une annotation multi-expert totalement indépendante n'est pas jugée nécessaire en plus |
 | P1.6 | Refondre la métrique : note exactitude (existante) + note fiabilité (pénalité concepts faux pondérée par gravité clinique) | ❌ maintenant déblocable (cf. P0.2, chiffres disponibles) |
 | P1.7 | Corriger la négation trop généreuse (`absent("trouble de repolarisation")` → `ECG_NORMAL` complet = 100 % avec une seule négation isolée) | ❌ pas commencé |
 | P1.8 | Ablation par brique (NER/Search/Juge) + validation humaine d'un échantillon du juge | ❌ pas commencé |
