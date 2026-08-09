@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-08-09T15:59:40",
+  "updated": "2026-08-09T16:55:18",
   "cases": {
     "48": {
       "ai_suggested_criteria": {
@@ -9929,6 +9929,114 @@
         ],
         "synthese": "Les critères couvrent le diagnostic principal, mais sous-évaluent nettement le sus-décalage ST antérieur et omettent l’évolution électrique décrite après revascularisation.",
         "based_on": "pilot_v2"
+      },
+      "expert_1": {
+        "annotateur": "",
+        "annotated_at": "2026-08-09T16:55:18",
+        "criteria": [
+          {
+            "alternative_group": null,
+            "comment": "Migré depuis le barème existant (scoring_config.json, rôle d'origine=complementaire) — à RE-VALIDER par le relecteur (role/importance/error_severity/sufficient_alone posés par défaut, pas encore expertisés pour ce schéma V2).",
+            "concept_id": "RYTHME_SINUSAL",
+            "criterion_id": "case_62_rythme_sinusal",
+            "error_severity": "minor",
+            "evidence_source": "bareme_v1_migre",
+            "expected_status": "present",
+            "expert_confidence": "medium",
+            "group_logic": "ALL",
+            "group_min_n": null,
+            "importance": "minor",
+            "label": "Rythme sinusal",
+            "minimum_specificity": "exact_only",
+            "role": "optional",
+            "sufficient_alone": false
+          },
+          {
+            "alternative_group": null,
+            "comment": "Migré depuis le barème existant (scoring_config.json, rôle d'origine=complementaire) — à RE-VALIDER par le relecteur (role/importance/error_severity/sufficient_alone posés par défaut, pas encore expertisés pour ce schéma V2).",
+            "concept_id": "PR_NORMAL",
+            "criterion_id": "case_62_pr_normal",
+            "error_severity": "minor",
+            "evidence_source": "bareme_v1_migre",
+            "expected_status": "present",
+            "expert_confidence": "medium",
+            "group_logic": "ALL",
+            "group_min_n": null,
+            "importance": "minor",
+            "label": "Intervalle PR normal",
+            "minimum_specificity": "exact_only",
+            "role": "optional",
+            "sufficient_alone": false
+          },
+          {
+            "alternative_group": null,
+            "comment": "Migré depuis le barème existant (scoring_config.json, rôle d'origine=validant) — à RE-VALIDER par le relecteur (role/importance/error_severity/sufficient_alone posés par défaut, pas encore expertisés pour ce schéma V2).",
+            "concept_id": "BLOC_DE_BRANCHE_GAUCHE_COMPLET",
+            "criterion_id": "case_62_bloc_de_branche_gauche_complet",
+            "error_severity": "major",
+            "evidence_source": "bareme_v1_migre",
+            "expected_status": "present",
+            "expert_confidence": "medium",
+            "group_logic": "ALL",
+            "group_min_n": null,
+            "importance": "major",
+            "label": "Bloc de branche gauche complet : QRS > 120 ms, QS en V1, positivité exclusive en V6",
+            "minimum_specificity": "exact_only",
+            "role": "required",
+            "sufficient_alone": false
+          },
+          {
+            "alternative_group": null,
+            "comment": "Migré depuis le barème existant (scoring_config.json, rôle d'origine=complementaire) — à RE-VALIDER par le relecteur (role/importance/error_severity/sufficient_alone posés par défaut, pas encore expertisés pour ce schéma V2).",
+            "concept_id": "DEVIATION_AXIALE_GAUCHE",
+            "criterion_id": "case_62_deviation_axiale_gauche",
+            "error_severity": "minor",
+            "evidence_source": "bareme_v1_migre",
+            "expected_status": "present",
+            "expert_confidence": "medium",
+            "group_logic": "ALL",
+            "group_min_n": null,
+            "importance": "minor",
+            "label": "Axe gauche",
+            "minimum_specificity": "exact_only",
+            "role": "optional",
+            "sufficient_alone": false
+          },
+          {
+            "alternative_group": null,
+            "comment": "Migré depuis le barème existant (scoring_config.json, rôle d'origine=complementaire) — à RE-VALIDER par le relecteur (role/importance/error_severity/sufficient_alone posés par défaut, pas encore expertisés pour ce schéma V2).",
+            "concept_id": "COURANT_DE_LESION_SOUS_EPICARDIQUE",
+            "criterion_id": "case_62_courant_de_lesion_sous_epicardique",
+            "error_severity": "minor",
+            "evidence_source": "bareme_v1_migre",
+            "expected_status": "present",
+            "expert_confidence": "medium",
+            "group_logic": "ALL",
+            "group_min_n": null,
+            "importance": "minor",
+            "label": "Sus-décalage ST antérieur de V1 à V4, très ample en V2-V3 (> 5 mm)",
+            "minimum_specificity": "exact_only",
+            "role": "optional",
+            "sufficient_alone": false
+          },
+          {
+            "alternative_group": null,
+            "comment": "Migré depuis le barème existant (scoring_config.json, rôle d'origine=validant) — à RE-VALIDER par le relecteur (role/importance/error_severity/sufficient_alone posés par défaut, pas encore expertisés pour ce schéma V2).",
+            "concept_id": "SYNDROME_CORONARIEN_A_LA_PHASE_AIGUE_AVEC_SUS_DECALAGE_DU_SEGMENT_ST",
+            "criterion_id": "case_62_syndrome_coronarien_a_la_phase_aigue_avec_sus_decalage_du_segment_st",
+            "error_severity": "major",
+            "evidence_source": "bareme_v1_migre",
+            "expected_status": "present",
+            "expert_confidence": "medium",
+            "group_logic": "ALL",
+            "group_min_n": null,
+            "importance": "major",
+            "label": "Diagnostic de SCA ST+ antérieur dans un contexte de douleur thoracique, malgré le BBG",
+            "minimum_specificity": "exact_only",
+            "role": "required",
+            "sufficient_alone": false
+          }
+        ]
       }
     },
     "63": {
