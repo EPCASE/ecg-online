@@ -11735,7 +11735,7 @@
           {
             "alternative_group": null,
             "comment": "Migré depuis le barème existant (scoring_config.json, rôle d'origine=validant) — à RE-VALIDER par le relecteur (role/importance/error_severity/sufficient_alone posés par défaut, pas encore expertisés pour ce schéma V2).",
-            "concept_id": "VOLTAGE_DU_QRS_NORMAL",
+            "concept_id": "VOLTAGE_NORMAL_DU_QRS",
             "criterion_id": "case_75_voltage_du_qrs_normal",
             "error_severity": "minor",
             "evidence_source": "bareme_v1_migre",

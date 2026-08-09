@@ -563,7 +563,6 @@
         "trouble du rythme ventriculaire",
         "arythmie ventriculaire maligne",
         "arythmies ventriculaires potentiellement léthales",
-        "arythmie ventriculaire polymorphe",
         "troubles du rythme ventriculaire grave"
       ]
     },
@@ -573,9 +572,6 @@
       "categorie": "DIAGNOSTIC_MAJEUR",
       "poids": 4,
       "type": "finding",
-      "synonymes": [
-        "BRS"
-      ],
       "parents": [
         "PATHOLOGIE"
       ],
@@ -1118,7 +1114,6 @@
         "BBD",
         "RBBB",
         "bloc de branche droite",
-        "aspect de bloc de branche droite",
         "bloc de branche droit associé"
       ],
       "parents": [
@@ -1155,9 +1150,7 @@
         "bloc de branche droite complet",
         "aspect de bloc de branche droite complet",
         "bloc de branche droit complet typique",
-        "aspect de bloc de branche droit complet",
-        "aspect de bloc de branche droite",
-        "bloc de branche droite"
+        "aspect de bloc de branche droit complet"
       ],
       "parents": [
         "BLOC_DE_BRANCHE_DROIT"
@@ -1180,8 +1173,7 @@
         "LBBB",
         "Blocs de branchement gauche",
         "bloc gauche",
-        "aspect caractéristique de bloc de branche gauche",
-        "aspect de bloc de branche gauche"
+        "aspect caractéristique de bloc de branche gauche"
       ],
       "parents": [
         "BLOC_DE_BRANCHE"
@@ -1697,7 +1689,6 @@
         "Sous-décalage du segment ST $",
         "sous décalage",
         "Sous décalage ST",
-        "sous-décalage en miroir",
         "sous-décalage significatif",
         "ST sous-décalé",
         "sous décalage modéré du segment ST",
@@ -1925,7 +1916,6 @@
         "SND",
         "dysfonction sinusale symptomatique",
         "dysfonction sinusale paroxystique",
-        "perte de l'automatisme sinusal",
         "baisse de l'automatisme sinusal"
       ],
       "parents": [
@@ -2192,8 +2182,7 @@
         "RYTHME_REGULIER"
       ],
       "synonymes": [
-        "rythme d'échappement",
-        "échappement jonctionnel"
+        "rythme d'échappement"
       ],
       "parents": [
         "ARYTHMIE"
@@ -2551,7 +2540,6 @@
       ],
       "synonymes": [
         "Flutter atrial non commun",
-        "TA",
         "flutter atypique",
         "flutters atypiques"
       ],
@@ -3467,7 +3455,6 @@
       ],
       "synonymes": [
         "Onde P sinusale",
-        "activité atriale sinusale",
         "activité atriale provenant du nœud sinusal",
         "onde P positive en D2, D3, aVF",
         "ondes P de morphologie normale",
@@ -3681,8 +3668,6 @@
         "DUREE_ONDE_P__120_MS"
       ],
       "synonymes": [
-        "ondes P de morphologie normale",
-        "morphologie normale des ondes P",
         "ondes P normales"
       ]
     },
@@ -3725,7 +3710,6 @@
         "ondes P visibles",
         "onde P parfaitement identifiable",
         "onde P avant chaque QRS",
-        "onde P avant chaque complexe QRS",
         "ondes P clairement visibles",
         "ondes P distinguables",
         "onde P visible",
@@ -4731,7 +4715,6 @@
       "poids": 2,
       "type": "pattern",
       "synonymes": [
-        "ERS",
         "Notch",
         "slurre"
       ],
@@ -4786,7 +4769,6 @@
       "poids": 4,
       "type": "qualifier",
       "synonymes": [
-        "RIJA",
         "Rythme jonctionnel",
         "échappement jonctionnel",
         "foyer d'échappement jonctionnel",
@@ -5310,7 +5292,6 @@
         "Syndrome coronarien avec sus-décalage",
         "infarctus st+",
         "Syndrome coronarien aigu ST+",
-        "Onde de Pardee",
         "SCA ST+ inférieur",
         "infarctus inférieur avec sus-décalage du segment ST",
         "syndrome coronaire aigu inférieur",
@@ -5591,7 +5572,6 @@
         "DESORGANISEE"
       ],
       "synonymes": [
-        "AT",
         "TAF",
         "Tachycardie atriale ectopique"
       ],
@@ -6260,8 +6240,6 @@
         "trouble de la conduction",
         "trouble de conduction",
         "trouble de conduction diffus",
-        "trouble de conduction atrioventriculaire",
-        "trouble de conduction auriculo-ventriculaire",
         "troubles de conduction",
         "troubles de la conduction",
         "troubles du rythme ventriculaire graves"
@@ -6395,7 +6373,6 @@
         "PRESENCE_DE_QRS"
       ],
       "children": [
-        "VOLTAGE_DU_QRS_NORMAL",
         "VOLTAGE_DU_QRS_ANORMAL"
       ],
       "hide": 1
@@ -6421,37 +6398,6 @@
         "grandes ondes R en V5-V6",
         "ondes S profondes en V1-V2"
       ]
-    },
-    "VOLTAGE_DU_QRS_NORMAL": {
-      "concept_name": "Voltage du QRS normal",
-      "concept_name_en": "QRS voltage",
-      "categorie": "DESCRIPTION_ECG",
-      "poids": 2,
-      "type": "finding",
-      "excludes": [
-        "MICROVOLTAGE",
-        "TROUBLE_DE_CONDUCTION_INTRAVENTRICULAIRE",
-        "HYPERTROPHIE_VENTRICULAIRE_GAUCHE"
-      ],
-      "synonymes": [
-        "Amplitude normale du QRS",
-        "normovolté",
-        "complexes QRS dépassant 5 mm en périphérique",
-        "complexes QRS dépassant 10 mm en précordial",
-        "QRS > 5 mm en dérivation périphérique",
-        "QRS > 10 mm en dérivation précordiale",
-        "amplitudes normales des complexes QRS",
-        "voltage QRS précordial conservé",
-        "voltage plus important dans les dérivations précordiales",
-        "QRS > 10 mm en précordial"
-      ],
-      "parents": [
-        "VOLTAGE_DU_QRS"
-      ],
-      "origin_structure": [
-        "VENTRICULE"
-      ],
-      "hide": 1
     },
     "WOLF_MALIN": {
       "concept_name": "Wolf malin",
@@ -6739,12 +6685,27 @@
         "amplitude normale du QRS",
         "voltage QRS conservé",
         "pas de microvoltage",
-        "absence d'hypertrophie ventriculaire"
+        "absence d'hypertrophie ventriculaire",
+        "normovolté",
+        "complexes QRS dépassant 5 mm en périphérique",
+        "complexes QRS dépassant 10 mm en précordial",
+        "QRS > 5 mm en dérivation périphérique",
+        "QRS > 10 mm en dérivation précordiale",
+        "amplitudes normales des complexes QRS",
+        "voltage QRS précordial conservé",
+        "voltage plus important dans les dérivations précordiales",
+        "QRS > 10 mm en précordial"
       ],
       "excludes": [
+        "HYPERTROPHIE_VENTRICULAIRE_GAUCHE",
         "MICROVOLTAGE",
-        "HYPERTROPHIE_VENTRICULAIRE_GAUCHE"
-      ]
+        "TROUBLE_DE_CONDUCTION_INTRAVENTRICULAIRE"
+      ],
+      "origin_structure": [
+        "VENTRICULE"
+      ],
+      "concept_name_en": "QRS voltage",
+      "comment": "Fusionné avec VOLTAGE_DU_QRS_NORMAL le 2026-08-09 (doublon quasi-identique, même parent VOLTAGE_DU_QRS) — VOLTAGE_NORMAL_DU_QRS conservé car porteur de l'inférence ECG_NORMAL (QRS_NORMAL.requires)."
     },
     "MYOCARDITE": {
       "concept_name": "Myocardite",
