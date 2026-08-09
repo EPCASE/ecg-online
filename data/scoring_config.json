@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-07-06T23:07:37",
+  "updated": "2026-08-10T00:22:52.318672",
   "cases": {
     "2": {
       "roles": {
@@ -534,7 +534,6 @@
     "41": {
       "roles": {
         "Diagnostic de flutter atrial commun typique": "validant",
-        "Origine oreillette droite, macro-réentrée passant par l’isthme cavo-tricuspide, sens antihoraire": "complementaire",
         "Activité atriale rapide régulière monomorphe autour de 270/min": "complementaire",
         "Ondes F en dents de scie dans les dérivations inférieures sans retour à la ligne isoélectrique": "complementaire",
         "Activité atriale peu voltée/plate en DI, positive en V1, négative en V6": "complementaire",
@@ -649,7 +648,7 @@
         "Tachycardie irrégulière à QRS larges monomorphes": "complementaire",
         "Diagnostic de fibrillation atriale : activité atriale rapide, irrégulière, anarchique / trémulation de la ligne de base, absence de rythme sinusal analysable": "validant",
         "Bloc de branche droite complet : QRS > 120 ms, rsR’ en V1, onde S large en DI et V6": "complementaire",
-        "Comprendre que les QRS larges sont liés au bloc de branche associé dans une tachycardie supraventriculaire": "validant",
+        "Comprendre que les QRS larges sont liés au bloc de branche associé dans une tachycardie supraventriculaire": "complementaire",
         "Éliminer torsade de pointes et fibrillation ventriculaire devant des QRS monomorphes": "complementaire",
         "PR non analysable en fibrillation atriale": "complementaire",
         "Après cardioversion : même aspect de BBD complet en rythme sinusal, avec hypertrophie auriculaire gauche comme substrat atrial favorable": "complementaire"

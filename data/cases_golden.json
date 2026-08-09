@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-07-06T23:07:13",
+  "updated": "2026-08-10T00:22:52.315469",
   "model": "gpt-5.5",
   "cases": {
     "3": {
@@ -1354,14 +1354,6 @@
           "confiance": 0.83,
           "valide_par": "gpt",
           "justification": "Négation principale: ne pas retenir Wenckebach/Mobitz 1."
-        },
-        "Risque élevé d’évolution vers BAV complet, indication de stimulateur selon le texte pédagogique": {
-          "golden_id": "BAV_COMPLET",
-          "concept_name": "BAV complet",
-          "statut": "present",
-          "confiance": 0.78,
-          "valide_par": "gpt",
-          "justification": "Concept central mentionné: évolution possible vers BAV complet."
         }
       }
     },
@@ -2523,14 +2515,6 @@
           "confiance": 0.98,
           "valide_par": "gpt",
           "justification": "Concept exact pour flutter atrial commun/droit typique dépendant de l’ICT."
-        },
-        "Origine oreillette droite, macro-réentrée passant par l’isthme cavo-tricuspide, sens antihoraire": {
-          "golden_id": "FLUTTER_ATRIAL_ANTIHORAIRE",
-          "concept_name": "Flutter atrial antihoraire",
-          "statut": "present",
-          "confiance": 0.9,
-          "valide_par": "gpt",
-          "justification": "Le sens antihoraire est le trait spécifique; flutter droit typique aussi impliqué."
         },
         "Activité atriale rapide régulière monomorphe autour de 270/min": {
           "golden_id": "ONDE_F",
