@@ -30,7 +30,7 @@
 
 | # | Action | Statut |
 |---|--------|:------:|
-| P1.5 | Étendre le golden de **scoring** (40-50 cas, ≥2 experts, plusieurs validants/cas — actuellement 75 cas mais mono-expert) | ❌ pas commencé — **Phase E (prérequis) ✅ terminée**, prêt à démarrer |
+| P1.5 | Étendre le golden de **scoring** (40-50 cas, ≥2 experts, plusieurs validants/cas — actuellement 75 cas mais mono-expert) | 🔄 en cours — relecture complète des 75 cas assistée par IA faite (2026-08-09, outillage `scoring_v2_review.py`/`gpt_annotator.py`), mais toujours **mono-expert** ; annotation multi-expert indépendante reste à faire |
 | P1.6 | Refondre la métrique : note exactitude (existante) + note fiabilité (pénalité concepts faux pondérée par gravité clinique) | ❌ maintenant déblocable (cf. P0.2, chiffres disponibles) |
 | P1.7 | Corriger la négation trop généreuse (`absent("trouble de repolarisation")` → `ECG_NORMAL` complet = 100 % avec une seule négation isolée) | ❌ pas commencé |
 | P1.8 | Ablation par brique (NER/Search/Juge) + validation humaine d'un échantillon du juge | ❌ pas commencé |
@@ -104,6 +104,26 @@ Liste des 19 cas traités (obtenue via `python scripts/audit_golden.py`) :
    juge LLM (brique non-déterministe) entre l'exécution actuelle et le score
    historique du Google Sheet, pas une régression introduite par les corrections.
 5. ❌ Reste à faire : commit + push.
+
+### 🧹 Session du 2026-08-09 — Relecture ontologique des 75 cas + outillage IA
+
+Rattachée à P1.3/P1.5 (cf. `audit_doc/roadmap_scientifique_2026.md` §0 pour
+le détail complet) :
+- 10 nouveaux concepts ontologiques, correction de redondances structurelles.
+- Décision de fusion catégorie D (voltage QRS normal) prise puis **annulée**
+  dans la même session ; `.owl` régénéré/archivé.
+- Non-régression validée deux fois : `audit_golden.py` (0 bloquant) et
+  comparaison numérique `scoring_v3` avant/après sur les 75 cas (0 régression,
+  90.89 % avant/après).
+- **Bug corrigé** : dérive silencieuse et pré-existante entre les 3 copies
+  vendorées de `ontology_v2.json` sur 5 concepts — resynchronisées et
+  vérifiées identiques (commits `8a82d20`/`44b2cd3` côté "ECG lecture",
+  `4bc15e0` côté `ecg-online`).
+- Nettoyage de ~40 fichiers temporaires (logs, `.bak*`, versions
+  intermédiaires) — commits `3c19b27` (ecg-online) et `44b2cd3` (ECG lecture).
+- Outillage IA de relecture opérationnel : `app/gpt_annotator.py`
+  (`review_scoring_criteria()`/`suggest_scoring_criteria()`),
+  `app/scoring_v2_review.py`, UI `frontend/scoring_review.html`.
 
 ### 🔜 Prochaine étape : voir `audit_doc/roadmap_scientifique_2026.md`
 
