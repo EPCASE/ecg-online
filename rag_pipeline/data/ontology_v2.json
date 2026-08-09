@@ -4578,7 +4578,7 @@
       "type": "pattern",
       "requires": [
         "MORPHOLOGIE_DU_QRS_NORMALE",
-        "VOLTAGE_NORMAL_DU_QRS"
+        "VOLTAGE_DU_QRS_NORMAL"
       ],
       "has_qualifiers": [
         "PAS_D_ANOMALIE_DE_LE_REPOLARISATION",
@@ -6373,7 +6373,8 @@
         "PRESENCE_DE_QRS"
       ],
       "children": [
-        "VOLTAGE_DU_QRS_ANORMAL"
+        "VOLTAGE_DU_QRS_ANORMAL",
+        "VOLTAGE_DU_QRS_NORMAL"
       ],
       "hide": 1
     },
@@ -6672,41 +6673,6 @@
         "SURDETECTION"
       ]
     },
-    "VOLTAGE_NORMAL_DU_QRS": {
-      "concept_name": "Voltage normal du QRS",
-      "categorie": "DESCRIPTION_ECG",
-      "poids": 2,
-      "type": "pattern",
-      "parents": [
-        "VOLTAGE_DU_QRS"
-      ],
-      "synonymes": [
-        "voltage normal",
-        "amplitude normale du QRS",
-        "voltage QRS conservé",
-        "pas de microvoltage",
-        "absence d'hypertrophie ventriculaire",
-        "normovolté",
-        "complexes QRS dépassant 5 mm en périphérique",
-        "complexes QRS dépassant 10 mm en précordial",
-        "QRS > 5 mm en dérivation périphérique",
-        "QRS > 10 mm en dérivation précordiale",
-        "amplitudes normales des complexes QRS",
-        "voltage QRS précordial conservé",
-        "voltage plus important dans les dérivations précordiales",
-        "QRS > 10 mm en précordial"
-      ],
-      "excludes": [
-        "HYPERTROPHIE_VENTRICULAIRE_GAUCHE",
-        "MICROVOLTAGE",
-        "TROUBLE_DE_CONDUCTION_INTRAVENTRICULAIRE"
-      ],
-      "origin_structure": [
-        "VENTRICULE"
-      ],
-      "concept_name_en": "QRS voltage",
-      "comment": "Fusionné avec VOLTAGE_DU_QRS_NORMAL le 2026-08-09 (doublon quasi-identique, même parent VOLTAGE_DU_QRS) — VOLTAGE_NORMAL_DU_QRS conservé car porteur de l'inférence ECG_NORMAL (QRS_NORMAL.requires)."
-    },
     "MYOCARDITE": {
       "concept_name": "Myocardite",
       "categorie": "DIAGNOSTIC_MAJEUR",
@@ -6971,6 +6937,42 @@
         "contexte de syncopes"
       ],
       "comment": "Contexte clinique (pas un signe ECG) — motif de réalisation de l'ECG, pertinent pour évaluer le risque de trouble conductif paroxystique (BAV complet infra-hissien…). Cf. relecture 2026-08-09, cas 11."
+    },
+    "VOLTAGE_DU_QRS_NORMAL": {
+      "concept_name": "Voltage du QRS normal",
+      "concept_name_en": "QRS voltage",
+      "categorie": "DESCRIPTION_ECG",
+      "poids": 2,
+      "type": "finding",
+      "excludes": [
+        "HYPERTROPHIE_VENTRICULAIRE_GAUCHE",
+        "MICROVOLTAGE",
+        "TROUBLE_DE_CONDUCTION_INTRAVENTRICULAIRE"
+      ],
+      "synonymes": [
+        "Amplitude normale du QRS",
+        "normovolté",
+        "complexes QRS dépassant 5 mm en périphérique",
+        "complexes QRS dépassant 10 mm en précordial",
+        "QRS > 5 mm en dérivation périphérique",
+        "QRS > 10 mm en dérivation précordiale",
+        "amplitudes normales des complexes QRS",
+        "voltage QRS précordial conservé",
+        "voltage plus important dans les dérivations précordiales",
+        "QRS > 10 mm en précordial",
+        "voltage normal",
+        "voltage QRS conservé",
+        "pas de microvoltage",
+        "absence d'hypertrophie ventriculaire"
+      ],
+      "parents": [
+        "VOLTAGE_DU_QRS"
+      ],
+      "origin_structure": [
+        "VENTRICULE"
+      ],
+      "hide": 1,
+      "comment": "Ex-VOLTAGE_NORMAL_DU_QRS (fusion inversée le 2026-08-09 : VOLTAGE_DU_QRS_NORMAL restauré comme concept canonique car seul à exister réellement dans le .owl)."
     }
   },
   "qualifier_families": {

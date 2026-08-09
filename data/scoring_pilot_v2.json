@@ -8979,7 +8979,7 @@
       },
       {
         "criterion_id": "case_75_voltage_du_qrs_normal",
-        "concept_id": "VOLTAGE_NORMAL_DU_QRS",
+        "concept_id": "VOLTAGE_DU_QRS_NORMAL",
         "label": "Absence de microvoltage précordial franc : QRS > 10 mm en V3-V4",
         "role": "required",
         "expected_status": "present",

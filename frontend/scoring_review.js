@@ -1,8 +1,10 @@
-/* scoring_review.js — page de double annotation indépendante du golden
- * conceptuel de scoring V2 (P1.3, cf. audit_doc/roadmap_scientifique_2026.md).
- * Réplique le pattern déjà validé par annotation.js (golden d'extraction),
- * appliqué cette fois aux critères structurés scoring_v2 (pas des concepts
- * extraits d'une réponse libre). */
+/* scoring_review.js — page d'annotation solo + second avis IA du golden
+ * conceptuel de scoring V2 (P1.3 simplifié, cf.
+ * audit_doc/roadmap_scientifique_2026.md §P1.3). Un seul relecteur humain
+ * valide/corrige les critères de chaque cas ECG (tracé + texte de référence
+ * affichés), puis peut demander un second avis GPT qui signale les points
+ * douteux directement sur les critères concernés — pas de second relecteur
+ * humain ni d'étape d'adjudication séparée. */
 const API = "";
 const CURATION_KEY = new URLSearchParams(location.search).get("key") || "";
 
@@ -37,26 +39,19 @@ const ENUMS = {
   expert_confidence: ["high", "medium", "low"],
   evidence_source: ["expert_consensus", "single_expert", "gpt_assisted_reviewed", "literature"],
 };
-const COMPARED_FIELDS = [
-  "concept_id", "label", "role", "expected_status", "importance",
-  "error_severity", "alternative_group", "group_logic", "group_min_n",
-  "sufficient_alone", "minimum_specificity",
-];
 
 let OVERVIEW = [];
-let CURRENT = null;       // {case_id, pilot_criteria, expert_1, expert_2, adjudication}
+let CURRENT = null;       // {case_id, pilot_criteria, expert_1, ai_review, ai_suggested_criteria, ecg}
 let CURRENT_ID = null;
-let CRITERIA = [];        // état de travail pour le slot actif
-let ACTIVE_SLOT = "expert_1";
-let DISAGREEMENTS = [];   // désaccords calculés côté serveur, pour l'onglet adjudication
+let CRITERIA = [];        // état de travail (critères du relecteur)
+let ONTO_CACHE = new Map(); // query -> [{id, name, categorie}] (autocomplétion concept_id)
 
 async function init() {
   await loadOverview();
   $("#save-btn").addEventListener("click", saveCurrent);
-  $("#slot-1").addEventListener("click", () => switchSlot("expert_1"));
-  $("#slot-2").addEventListener("click", () => switchSlot("expert_2"));
-  $("#slot-adj").addEventListener("click", () => switchSlot("adjudication"));
-  $("#compute-disagree-btn").addEventListener("click", computeDisagreements);
+  $("#ai-review-btn").addEventListener("click", requestAiReview);
+  $("#ai-suggest-btn").addEventListener("click", requestAiSuggest);
+  $("#add-criterion-btn").addEventListener("click", () => addCriterion());
 }
 
 async function loadOverview() {
@@ -67,9 +62,8 @@ async function loadOverview() {
 }
 
 function statusIcon(status) {
-  if (status === "adjudicated") return '<span class="status-adjudicated">✓</span>';
-  if (status === "ready_for_adjudication") return '<span class="status-ready">👥</span>';
-  if (status === "partial") return '<span class="status-partial">½</span>';
+  if (status === "reviewed") return '<span class="status-reviewed">✓</span>';
+  if (status === "annotated") return '<span class="status-annotated">✎</span>';
   return '<span class="status-pending">○</span>';
 }
 
@@ -78,11 +72,11 @@ function renderItemList() {
   list.innerHTML = "";
   OVERVIEW.forEach((it) => {
     const li = el("li", CURRENT_ID === it.case_id ? "active" : "");
-    const disagreeBadge = it.n_disagreements
-      ? `<span class="disagree-badge" title="${it.n_disagreements} désaccord(s)">⚠️ ${it.n_disagreements}</span> `
+    const alertBadge = it.n_alertes
+      ? `<span class="alert-badge" title="${it.n_alertes} alerte(s) IA">🤖 ${it.n_alertes}</span> `
       : "";
     li.innerHTML = `${statusIcon(it.status)} <b>Cas ${it.case_id}</b> ` +
-      `${disagreeBadge}<br>` +
+      `${alertBadge}<br>` +
       `<span class="muted" style="font-size:.75rem">${escapeHtml(it.label)} · ${it.n_criteria_pilot} critères</span>`;
     li.addEventListener("click", () => selectItem(it.case_id));
     list.appendChild(li);
@@ -91,39 +85,30 @@ function renderItemList() {
 
 async function selectItem(caseId) {
   CURRENT_ID = caseId;
-  ACTIVE_SLOT = "expert_1";
-  DISAGREEMENTS = [];
   const data = await apiFetch(`${API}/api/scoring-review/${caseId}`).then((r) => r.json());
   CURRENT = data;
   renderItemList();
   renderItem();
 }
 
-function switchSlot(slot) {
-  if (slot === "adjudication" && (!CURRENT.expert_1 || !CURRENT.expert_2)) {
-    $("#save-status").textContent = "⏳ Les deux relecteurs doivent d'abord terminer leur annotation.";
-    return;
-  }
-  ACTIVE_SLOT = slot;
-  renderItem();
-}
-
-function criteriaForSlot() {
-  if (ACTIVE_SLOT === "adjudication") {
-    const adj = CURRENT.adjudication;
-    if (adj && Array.isArray(adj.criteria)) return adj.criteria.map((c) => Object.assign({}, c));
-    // Pré-remplissage adjudication : part de expert_1, l'adjudicateur corrige
-    // les champs en désaccord en s'appuyant sur la liste calculée.
-    const e1 = CURRENT.expert_1;
-    return (e1 && Array.isArray(e1.criteria) ? e1.criteria : []).map((c) => Object.assign({}, c));
-  }
-  const existing = CURRENT[ACTIVE_SLOT];
+function criteriaForWork() {
+  const existing = CURRENT.expert_1;
   if (existing && Array.isArray(existing.criteria)) {
     return existing.criteria.map((c) => Object.assign({}, c));
   }
-  // Pré-remplissage neutre : le pilote solo P1.2, à confirmer/corriger
-  // indépendamment (pas de recopie d'un relecteur vers l'autre).
+  // Pré-remplissage : le pilote solo P1.2, à confirmer/corriger.
   return (CURRENT.pilot_criteria || []).map((c) => Object.assign({}, c));
+}
+
+function renderEcgPanel() {
+  const ecg = CURRENT.ecg || {};
+  const imgBox = $("#ecg-img-box");
+  imgBox.innerHTML = (ecg.images || []).map((name) =>
+    `<img src="/images/${encodeURIComponent(name)}" alt="Tracé ECG cas ${CURRENT_ID}">`
+  ).join("") || '<p class="muted">Aucun tracé disponible pour ce cas.</p>';
+  $("#ecg-patient").textContent = ecg.titre || `Cas ${CURRENT_ID}`;
+  $("#ecg-contexte").textContent = [ecg.patient, ecg.contexte].filter(Boolean).join(" — ");
+  $("#ecg-interpretation").textContent = ecg.interpretation_ref || "(non disponible)";
 }
 
 function renderItem() {
@@ -133,59 +118,228 @@ function renderItem() {
   $("#item-title").textContent = `Cas ${CURRENT_ID}`;
   $("#item-label").textContent = meta.label || "";
 
-  $("#slot-1").classList.toggle("active", ACTIVE_SLOT === "expert_1");
-  $("#slot-2").classList.toggle("active", ACTIVE_SLOT === "expert_2");
-  $("#slot-adj").classList.toggle("active", ACTIVE_SLOT === "adjudication");
-  $("#slot-adj").classList.toggle("locked", !(CURRENT.expert_1 && CURRENT.expert_2));
-
-  const existing = ACTIVE_SLOT === "adjudication" ? CURRENT.adjudication : CURRENT[ACTIVE_SLOT];
-  const who = ACTIVE_SLOT === "adjudication" ? (existing && existing.adjudicateur)
-    : (existing && existing.annotateur);
-  $("#annotateur-name").value = who || "";
+  const existing = CURRENT.expert_1;
+  $("#annotateur-name").value = (existing && existing.annotateur) || "";
   $("#item-status").textContent = existing
-    ? `${ACTIVE_SLOT === "adjudication" ? "adjugé" : "annoté"} par ${who || "?"}`
-    : "en attente";
+    ? `annoté par ${existing.annotateur || "?"}`
+    : "en attente d'annotation";
 
-  $("#compute-disagree-btn").classList.toggle("hidden", ACTIVE_SLOT !== "adjudication");
-
-  CRITERIA = criteriaForSlot();
-  renderAdjudicationBanner();
-  renderDisagreeBox();
+  renderEcgPanel();
+  CRITERIA = criteriaForWork();
+  renderAiBox();
+  renderSuggestBox();
   renderCriteriaList();
 }
 
-function renderAdjudicationBanner() {
-  const banner = $("#adjudication-banner");
-  if (ACTIVE_SLOT !== "adjudication") { banner.classList.add("hidden"); return; }
-  banner.classList.remove("hidden");
-  banner.innerHTML = CURRENT.adjudication
-    ? `✅ Version consensuelle déjà enregistrée par <b>${escapeHtml(CURRENT.adjudication.adjudicateur || "?")}</b> le ${escapeHtml(CURRENT.adjudication.adjudicated_at || "")}.`
-    : `🧭 Pré-rempli depuis Relecteur 1. Clique « Calculer les désaccords » pour voir les champs divergents avec Relecteur 2, puis corrige les critères ci-dessous avant d'enregistrer la version consensuelle.`;
+function alertsForCriterion(criterionId) {
+  const ai = CURRENT.ai_review;
+  if (!ai || !Array.isArray(ai.alertes)) return [];
+  return ai.alertes.filter((a) => a.criterion_id === criterionId);
 }
 
-function renderDisagreeBox() {
-  const box = $("#disagree-box");
-  if (ACTIVE_SLOT !== "adjudication" || !DISAGREEMENTS.length) {
+// Alertes IA non rattachées à un critère existant (omissions notamment :
+// criterion_id vide car le critère n'existe pas encore) — sinon elles ne
+// s'affichent nulle part puisqu'aucune carte ne correspond.
+function unattachedAlerts() {
+  const ai = CURRENT.ai_review;
+  if (!ai || !Array.isArray(ai.alertes)) return [];
+  const knownIds = new Set(CRITERIA.map((c) => c.criterion_id));
+  return ai.alertes.filter((a) => !a.criterion_id || !knownIds.has(a.criterion_id));
+}
+
+function blankCriterion() {
+  return {
+    criterion_id: `case_${CURRENT_ID}_nouveau_${Date.now().toString(36)}`,
+    concept_id: "",
+    label: "",
+    role: "optional",
+    expected_status: "present",
+    importance: "intermediate",
+    error_severity: "minor",
+    alternative_group: null,
+    group_logic: "ALL",
+    group_min_n: null,
+    sufficient_alone: false,
+    minimum_specificity: "exact_only",
+    expert_confidence: "medium",
+    evidence_source: "single_expert",
+    comment: "",
+  };
+}
+
+function addCriterion(prefill) {
+  const c = Object.assign(blankCriterion(), prefill || {});
+  CRITERIA.push(c);
+  renderCriteriaList();
+  renderAiBox();
+  renderSuggestBox();
+  const cards = document.querySelectorAll(".crit-card");
+  const last = cards[cards.length - 1];
+  if (last) last.scrollIntoView({ behavior: "smooth", block: "center" });
+}
+
+// ─────────────── Passe IA "premier jet" : génère des critères candidats
+// directement depuis le texte de référence, à relire/valider un par un.
+async function requestAiSuggest() {
+  if (!CURRENT_ID) return;
+  $("#save-status").textContent = "🤖 L'IA propose des critères à partir du texte de référence…";
+  try {
+    const res = await apiFetch(`${API}/api/scoring-review/${CURRENT_ID}/ai-suggest`, { method: "POST" });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || err.description || `HTTP ${res.status}`);
+    }
+    const data = await res.json();
+    CURRENT.ai_suggested_criteria = data.ai_suggested_criteria;
+    renderSuggestBox();
+    $("#save-status").textContent = "✅ Critères candidats générés — relis et ajoute ceux qui te semblent pertinents.";
+    await loadOverview();
+    renderItemList();
+  } catch (ex) {
+    $("#save-status").textContent = `❌ ${ex.message}`;
+  }
+}
+
+function knownCriterionKeys() {
+  // concept_id + label, pour éviter de proposer un doublon déjà ajouté.
+  return new Set(CRITERIA.map((c) => `${c.concept_id}|${c.label}`));
+}
+
+function suggestionKey(c) {
+  // Les suggestions non résolues n'ont pas encore de concept_id -> on clé
+  // sur le nom clinique proposé par l'IA, stable tant que non traité.
+  return `${c.concept_name_propose || c.concept_id}|${c.label}`;
+}
+
+function renderSuggestBox() {
+  const box = $("#suggest-box");
+  const sug = CURRENT.ai_suggested_criteria;
+  if (!sug || !Array.isArray(sug.criteria) || !sug.criteria.length) {
+    box.classList.add("hidden");
+    box.innerHTML = "";
+    return;
+  }
+  const known = knownCriterionKeys();
+  const remaining = sug.criteria.filter((c) => !known.has(`${c.concept_id}|${c.label}`));
+  if (!remaining.length) {
     box.classList.add("hidden");
     box.innerHTML = "";
     return;
   }
   box.classList.remove("hidden");
-  box.innerHTML = `<div class="disagree-title">⚠️ ${DISAGREEMENTS.length} désaccord(s) détecté(s) — les désaccords constituent eux-mêmes un résultat scientifique (roadmap §P1.3), corrige ci-dessous en connaissance de cause :</div>` +
-    DISAGREEMENTS.map((d) => `
-      <div class="disagree-row">
-        <span class="cid">${escapeHtml(d.criterion_id)}</span>
-        <span class="field">${escapeHtml(d.field)}</span>
-        <span class="val">R1: ${escapeHtml(JSON.stringify(d.expert_1_value))}</span>
-        <span class="val">R2: ${escapeHtml(JSON.stringify(d.expert_2_value))}</span>
-      </div>`).join("");
+  box.innerHTML = `<div class="suggest-title">💡 Critères candidats proposés par l'IA (${escapeHtml(sug.model || "")}) — chaque concept est vérifié contre l'ontologie ; à relire et valider :</div>` +
+    remaining.map((c, idx) => {
+      const candidates = c.onto_candidates || [];
+      const resolvedBadge = c.resolved
+        ? `<span class="onto-badge onto-badge-ok">✅ ${escapeHtml(c.concept_id)} (dans l'ontologie)</span>`
+        : `<span class="onto-badge onto-badge-warn">⚠️ absent de l'ontologie — à discuter</span>`;
+      const candidatesHtml = !c.resolved && candidates.length ? `
+        <div class="onto-candidates">
+          <label style="font-size:.7rem;color:#64748b;font-weight:700">Concept proposé par l'IA : « ${escapeHtml(c.concept_name_propose || "")} » — piste la plus proche trouvée dans l'ontologie :</label>
+          <select class="onto-candidate-select" data-idx="${idx}">
+            <option value="">— aucune piste ne convient, créer un nouveau concept —</option>
+            ${candidates.map((m) => `<option value="${escapeHtml(m.id)}">${escapeHtml(m.name)} (${escapeHtml(m.id)}, score ${m.score}${m.categorie ? ", " + escapeHtml(m.categorie) : ""})</option>`).join("")}
+          </select>
+        </div>` : (!c.resolved ? `
+        <div class="onto-candidates">
+          <label style="font-size:.7rem;color:#64748b;font-weight:700">Aucune piste trouvée dans l'ontologie pour « ${escapeHtml(c.concept_name_propose || "")} ».</label>
+        </div>` : "");
+      const newIdHtml = !c.resolved ? `
+        <div class="onto-candidates">
+          <label style="font-size:.7rem;color:#64748b;font-weight:700">…ou nouvel identifiant à créer dans l'ontologie (à discuter avant ajout définitif) :</label>
+          <input type="text" class="onto-new-id" data-idx="${idx}" placeholder="ex. NOUVEAU_CONCEPT_ID" value="">
+        </div>` : "";
+      return `
+      <div class="suggest-row" data-idx="${idx}">
+        <div class="suggest-row-main">
+          <b>${escapeHtml(c.label)}</b>
+          <span class="muted" style="font-size:.75rem">role=${escapeHtml(c.role)} · importance=${escapeHtml(c.importance)}</span>
+          <div>${resolvedBadge}</div>
+          ${candidatesHtml}
+          ${newIdHtml}
+          <p class="muted" style="font-size:.78rem;margin:4px 0 0">${escapeHtml(c.comment || "")}</p>
+        </div>
+        <div class="suggest-row-actions">
+          <button type="button" class="btn-primary btn-accept-suggestion" data-idx="${idx}">✅ Ajouter</button>
+          <button type="button" class="btn-ghost btn-reject-suggestion" data-idx="${idx}">✕ Ignorer</button>
+        </div>
+      </div>`;
+    }).join("");
+
+  box.querySelectorAll(".btn-accept-suggestion").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const idx = Number(btn.dataset.idx);
+      const c = remaining[idx];
+      const row = box.querySelector(`.suggest-row[data-idx="${idx}"]`);
+      let concept_id = c.concept_id;
+      if (!c.resolved) {
+        const sel = row.querySelector(".onto-candidate-select");
+        const newIdInput = row.querySelector(".onto-new-id");
+        const chosen = (sel && sel.value) || "";
+        const typed = (newIdInput && newIdInput.value.trim()) || "";
+        concept_id = chosen || typed;
+        if (!concept_id) {
+          alert("Choisis une piste ontologique ou saisis un nouvel identifiant avant d'ajouter ce critère (concept absent de l'ontologie — à trancher).");
+          return;
+        }
+      }
+      addCriterion(Object.assign({}, c, {
+        concept_id,
+        criterion_id: `case_${CURRENT_ID}_${concept_id.toLowerCase()}`,
+      }));
+    });
+  });
+  box.querySelectorAll(".btn-reject-suggestion").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const c = remaining[Number(btn.dataset.idx)];
+      // Marque comme "connu" localement pour la masquer sans la supprimer
+      // du stockage serveur (traçabilité de ce qui a été proposé).
+      const key = suggestionKey(c);
+      CURRENT.ai_suggested_criteria.criteria = CURRENT.ai_suggested_criteria.criteria
+        .filter((x) => suggestionKey(x) !== key);
+      renderSuggestBox();
+    });
+  });
 }
 
-function divergingFieldsFor(criterionId) {
-  if (ACTIVE_SLOT !== "adjudication") return new Set();
-  return new Set(
-    DISAGREEMENTS.filter((d) => d.criterion_id === criterionId).map((d) => d.field)
-  );
+function renderAiBox() {
+  const box = $("#ai-box");
+  const ai = CURRENT.ai_review;
+  if (!ai) {
+    box.classList.add("hidden");
+    box.innerHTML = "";
+    return;
+  }
+  box.classList.remove("hidden");
+  const nAlertes = (ai.alertes || []).length;
+  const unattached = unattachedAlerts();
+  box.innerHTML = `<div class="ai-title">🤖 Second avis IA (${escapeHtml(ai.model || "")}, ${escapeHtml(ai.generated_at || "")})</div>` +
+    `<p>${escapeHtml(ai.synthese || "")}</p>` +
+    (nAlertes
+      ? `<p>${nAlertes} alerte(s) — repérées ci-dessous, sur les cartes concernées (surlignées en rouge). Corrige si tu es convaincu, sinon ignore.</p>`
+      : `<p class="ai-empty">Aucune alerte : l'IA n'a rien trouvé à signaler sur ces critères.</p>`) +
+    (unattached.length
+      ? `<div class="ai-omissions">` +
+        unattached.map((a, idx) => `
+          <div class="ai-omission-row">
+            <b>${escapeHtml(a.type_probleme)}</b> — ${escapeHtml(a.commentaire)}
+            ${a.type_probleme === "omission"
+              ? `<button type="button" class="btn-ghost btn-add-omission" data-idx="${idx}">➕ Créer ce critère${a.label_suggere ? ` : « ${escapeHtml(a.label_suggere)} »` : ""}</button>`
+              : ""}
+          </div>`).join("") +
+        `</div>`
+      : "");
+
+  box.querySelectorAll(".btn-add-omission").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const a = unattached[Number(btn.dataset.idx)];
+      addCriterion({
+        concept_id: a.concept_suggere || "",
+        label: a.label_suggere || a.commentaire || "",
+        comment: `Ajouté suite à une alerte IA (omission) : ${a.commentaire}`,
+      });
+    });
+  });
 }
 
 function selectHtml(field, value, idx) {
@@ -199,28 +353,29 @@ function renderCriteriaList() {
   const box = $("#crit-list");
   box.innerHTML = "";
   CRITERIA.forEach((c, i) => {
-    const diverging = divergingFieldsFor(c.criterion_id);
-    const card = el("div", "crit-card" + (diverging.size ? " disagree" : ""));
-    const cls = (f) => diverging.has(f) ? "diverging-field" : "";
+    const alerts = alertsForCriterion(c.criterion_id);
+    const card = el("div", "crit-card" + (alerts.length ? " has-alert" : ""));
     card.innerHTML = `
       <div class="crit-head">
         <span class="cid">${escapeHtml(c.criterion_id)}</span>
         <span class="label">${escapeHtml(c.label)}</span>
       </div>
       <div class="crit-grid">
-        <div class="crit-field ${cls("concept_id")}"><label>Concept ID</label>
-          <input type="text" data-i="${i}" data-field="concept_id" value="${escapeHtml(c.concept_id)}"></div>
-        <div class="crit-field ${cls("role")}"><label>Rôle</label>${selectHtml("role", c.role, i)}</div>
-        <div class="crit-field ${cls("expected_status")}"><label>Statut attendu</label>${selectHtml("expected_status", c.expected_status, i)}</div>
-        <div class="crit-field ${cls("importance")}"><label>Importance</label>${selectHtml("importance", c.importance, i)}</div>
-        <div class="crit-field ${cls("error_severity")}"><label>Gravité erreur</label>${selectHtml("error_severity", c.error_severity, i)}</div>
-        <div class="crit-field ${cls("group_logic")}"><label>Logique groupe</label>${selectHtml("group_logic", c.group_logic, i)}</div>
-        <div class="crit-field ${cls("alternative_group")}"><label>Groupe alternatif</label>
+        <div class="crit-field"><label>Concept ID (ontologie)</label>
+          <input type="text" data-i="${i}" data-field="concept_id" class="concept-search" list="onto-list-${i}"
+                 value="${escapeHtml(c.concept_id)}" placeholder="Tape pour chercher…" autocomplete="off">
+          <datalist id="onto-list-${i}"></datalist></div>
+        <div class="crit-field"><label>Rôle</label>${selectHtml("role", c.role, i)}</div>
+        <div class="crit-field"><label>Statut attendu</label>${selectHtml("expected_status", c.expected_status, i)}</div>
+        <div class="crit-field"><label>Importance</label>${selectHtml("importance", c.importance, i)}</div>
+        <div class="crit-field"><label>Gravité erreur</label>${selectHtml("error_severity", c.error_severity, i)}</div>
+        <div class="crit-field"><label>Logique groupe</label>${selectHtml("group_logic", c.group_logic, i)}</div>
+        <div class="crit-field"><label>Groupe alternatif</label>
           <input type="text" data-i="${i}" data-field="alternative_group" value="${escapeHtml(c.alternative_group || "")}"></div>
-        <div class="crit-field ${cls("group_min_n")}"><label>Seuil (AT_LEAST_N)</label>
+        <div class="crit-field"><label>Seuil (AT_LEAST_N)</label>
           <input type="number" min="1" data-i="${i}" data-field="group_min_n" value="${c.group_min_n == null ? "" : c.group_min_n}"></div>
-        <div class="crit-field ${cls("minimum_specificity")}"><label>Spécificité min.</label>${selectHtml("minimum_specificity", c.minimum_specificity, i)}</div>
-        <div class="crit-field checkbox ${cls("sufficient_alone")}">
+        <div class="crit-field"><label>Spécificité min.</label>${selectHtml("minimum_specificity", c.minimum_specificity, i)}</div>
+        <div class="crit-field checkbox">
           <input type="checkbox" id="suf-${i}" data-i="${i}" data-field="sufficient_alone" ${c.sufficient_alone ? "checked" : ""}>
           <label for="suf-${i}">Suffit seul</label></div>
         <div class="crit-field"><label>Confiance experte</label>${selectHtml("expert_confidence", c.expert_confidence, i)}</div>
@@ -229,7 +384,8 @@ function renderCriteriaList() {
       <div class="crit-comment">
         <label style="font-size:.7rem;text-transform:uppercase;color:#64748b;font-weight:700">Commentaire</label>
         <textarea data-i="${i}" data-field="comment" rows="2">${escapeHtml(c.comment || "")}</textarea>
-      </div>`;
+      </div>
+      ${alerts.map((a) => `<div class="crit-alert"><b>${escapeHtml(a.type_probleme)}</b> — ${escapeHtml(a.commentaire)}</div>`).join("")}`;
 
     card.querySelectorAll("select, input[type=text], input[type=number], textarea").forEach((input) => {
       const evt = input.tagName === "TEXTAREA" || input.type === "text" || input.type === "number" ? "input" : "change";
@@ -244,45 +400,82 @@ function renderCriteriaList() {
     card.querySelector(`#suf-${i}`).addEventListener("change", (e) => {
       CRITERIA[i].sufficient_alone = e.target.checked;
     });
+    wireConceptAutocomplete(card.querySelector(".concept-search"), i);
     box.appendChild(card);
   });
 }
 
-async function computeDisagreements() {
-  const data = await apiFetch(`${API}/api/scoring-review/${CURRENT_ID}/disagreements`).then((r) => r.json());
-  DISAGREEMENTS = data.disagreements || [];
-  renderDisagreeBox();
-  renderCriteriaList();
-  await loadOverview();
-  renderItemList();
+function wireConceptAutocomplete(input, idx) {
+  if (!input) return;
+  let timer = null;
+  input.addEventListener("input", (e) => {
+    const q = e.target.value.trim();
+    if (timer) clearTimeout(timer);
+    if (q.length < 2) return;
+    timer = setTimeout(() => fillOntoDatalist(q, idx), 250);
+  });
+}
+
+async function fillOntoDatalist(q, idx) {
+  let results;
+  if (ONTO_CACHE.has(q)) {
+    results = ONTO_CACHE.get(q);
+  } else {
+    try {
+      const res = await apiFetch(`/api/onto/search?q=${encodeURIComponent(q)}&limit=15`);
+      results = (res && res.available && res.results) ? res.results : [];
+    } catch (err) {
+      results = [];
+    }
+    ONTO_CACHE.set(q, results);
+  }
+  const dl = document.getElementById(`onto-list-${idx}`);
+  if (!dl) return;
+  dl.innerHTML = results.map((r) =>
+    `<option value="${escapeHtml(r.id)}">${escapeHtml(r.name || "")} ${r.categorie ? "(" + escapeHtml(r.categorie) + ")" : ""}</option>`
+  ).join("");
 }
 
 async function saveCurrent() {
   const who = $("#annotateur-name").value.trim();
   $("#save-status").textContent = "Enregistrement…";
   try {
-    let res;
-    if (ACTIVE_SLOT === "adjudication") {
-      res = await apiFetch(`${API}/api/scoring-review/${CURRENT_ID}/adjudication`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ criteria: CRITERIA, disagreements: DISAGREEMENTS, adjudicateur: who }),
-      });
-    } else {
-      res = await apiFetch(`${API}/api/scoring-review/${CURRENT_ID}/${ACTIVE_SLOT}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ criteria: CRITERIA, annotateur: who }),
-      });
-    }
+    const res = await apiFetch(`${API}/api/scoring-review/${CURRENT_ID}/expert_1`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ criteria: CRITERIA, annotateur: who }),
+    });
     if (!res.ok) {
       const err = await res.json().catch(() => ({}));
       throw new Error(err.error || err.description || `HTTP ${res.status}`);
     }
     const data = await res.json();
-    if (ACTIVE_SLOT === "adjudication") CURRENT.adjudication = data.adjudication;
-    else CURRENT[ACTIVE_SLOT] = data[ACTIVE_SLOT];
+    CURRENT.expert_1 = data.expert_1;
     $("#save-status").textContent = "✅ Enregistré.";
+    await loadOverview();
+    renderItemList();
+  } catch (ex) {
+    $("#save-status").textContent = `❌ ${ex.message}`;
+  }
+}
+
+async function requestAiReview() {
+  if (!CURRENT || !CURRENT.expert_1) {
+    $("#save-status").textContent = "⏳ Enregistre d'abord ton annotation avant de demander un avis IA.";
+    return;
+  }
+  $("#save-status").textContent = "🤖 L'IA relit tes critères…";
+  try {
+    const res = await apiFetch(`${API}/api/scoring-review/${CURRENT_ID}/ai-review`, { method: "POST" });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || err.description || `HTTP ${res.status}`);
+    }
+    const data = await res.json();
+    CURRENT.ai_review = data.ai_review;
+    renderAiBox();
+    renderCriteriaList();
+    $("#save-status").textContent = "✅ Avis IA reçu.";
     await loadOverview();
     renderItemList();
   } catch (ex) {

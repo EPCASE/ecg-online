@@ -29,14 +29,14 @@ Endpoints :
   GET  /api/annotation/<item_id>       -> texte + extraction pipeline + concepts déjà annotés
   POST /api/annotation/<item_id>       -> enregistre l'annotation experte {concepts, annotateur, slot}
 
-  -- Golden conceptuel de scoring V2 — annotation multi-expert (P1.3, cf.
-     audit_doc/roadmap_scientifique_2026.md §P1.3) --
-  GET  /scoring-review                          -> page de double annotation (protégée)
+  -- Golden conceptuel de scoring V2 — annotation solo + second avis IA
+     (P1.3 simplifié, cf. audit_doc/roadmap_scientifique_2026.md §P1.3) --
+  GET  /scoring-review                          -> page d'annotation (protégée)
   GET  /api/scoring-review/overview             -> liste des 10 cas pilote + statut
-  GET  /api/scoring-review/<case_id>             -> critères pilote + expert_1/expert_2/adjudication
-  POST /api/scoring-review/<case_id>/<slot>      -> enregistre l'annotation experte (slot=expert_1|expert_2)
-  GET  /api/scoring-review/<case_id>/disagreements -> désaccords calculés entre expert_1/expert_2
-  POST /api/scoring-review/<case_id>/adjudication  -> enregistre la version consensuelle + résolutions
+  GET  /api/scoring-review/<case_id>             -> cas ECG (image, texte) + critères + avis IA
+  POST /api/scoring-review/<case_id>/<slot>      -> enregistre l'annotation du relecteur (slot=expert_1)
+  POST /api/scoring-review/<case_id>/ai-review   -> génère/régénère le second avis GPT
+  POST /api/scoring-review/<case_id>/ai-suggest  -> génère des critères candidats (premier jet IA à relire/valider)
 
 Lancement local :  python -m app.server   (ou via run.py)
 Prod (Scalingo)  :  gunicorn "app.server:create_app()"
@@ -551,34 +551,34 @@ def create_app() -> Flask:
             raise RuntimeError("unreachable")
         return jsonify({"case_id": case_id, "saved": True, **entry})
 
-    @app.get("/api/scoring-review/<case_id>/disagreements")
-    def scoring_review_disagreements(case_id: str):
+    @app.post("/api/scoring-review/<case_id>/ai-review")
+    def scoring_review_ai(case_id: str):
         if not _curation_authorized(request):
             abort(403, description="Accès réservé.")
-        return jsonify({
-            "case_id": case_id,
-            "disagreements": scoring_v2_review.compute_disagreements(case_id),
-        })
-
-    @app.post("/api/scoring-review/<case_id>/adjudication")
-    def scoring_review_adjudicate(case_id: str):
-        if not _curation_authorized(request):
-            abort(403, description="Accès réservé.")
-        payload = request.get_json(silent=True) or {}
-        criteria = payload.get("criteria")
-        disagreements = payload.get("disagreements", [])
-        if not isinstance(criteria, list):
-            abort(400, description="Champ 'criteria' (liste) requis.")
-            raise RuntimeError("unreachable")
-        if not isinstance(disagreements, list):
-            abort(400, description="Champ 'disagreements' doit être une liste.")
-            raise RuntimeError("unreachable")
-        adjudicateur = str(payload.get("adjudicateur", "")).strip()[:80]
         try:
-            entry = scoring_v2_review.save_adjudication(
-                case_id, criteria, disagreements, adjudicateur=adjudicateur)
+            entry = scoring_v2_review.generate_ai_review(case_id)
+        except KeyError:
+            abort(404, description=f"Cas '{case_id}' introuvable.")
+            raise RuntimeError("unreachable")
         except ValueError as exc:
             abort(400, description=str(exc))
+            raise RuntimeError("unreachable")
+        except RuntimeError as exc:
+            abort(502, description=str(exc))
+            raise RuntimeError("unreachable")
+        return jsonify({"case_id": case_id, "saved": True, **entry})
+
+    @app.post("/api/scoring-review/<case_id>/ai-suggest")
+    def scoring_review_ai_suggest(case_id: str):
+        if not _curation_authorized(request):
+            abort(403, description="Accès réservé.")
+        try:
+            entry = scoring_v2_review.generate_ai_suggested_criteria(case_id)
+        except KeyError:
+            abort(404, description=f"Cas '{case_id}' introuvable.")
+            raise RuntimeError("unreachable")
+        except RuntimeError as exc:
+            abort(502, description=str(exc))
             raise RuntimeError("unreachable")
         return jsonify({"case_id": case_id, "saved": True, **entry})
 

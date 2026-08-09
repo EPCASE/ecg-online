@@ -156,6 +156,43 @@ def resolve_concept(cid: Optional[str]) -> Optional[dict]:
     }
 
 
+def related_concepts(concept_id: str) -> List[dict]:
+    """Concepts STRUCTURELLEMENT liés à `concept_id` dans l'ontologie :
+    `requires` (éléments indispensables au diagnostic, ex. ECG_NORMAL requires
+    RYTHME_SINUSAL/QRS_NORMAL/...), `supports` (éléments qui renforcent le
+    diagnostic sans être indispensables) et `children` (sous-types plus
+    spécifiques). Sert à CONTRAINDRE la génération de critères candidats à la
+    structure déjà validée de l'ontologie, plutôt que de laisser un LLM
+    fragmenter librement le texte en critères descriptifs redondants qui
+    reformulent juste le diagnostic principal (cf. demande : « se reposer sur
+    la structure de l'ontologie plutôt que de multiplier les descriptifs »).
+
+    Renvoie une liste de dicts {id, name, categorie, type, relation} où
+    relation ∈ {"requires", "supports", "children"} (dédupliquée par id,
+    priorité requires > supports > children si un concept apparaît dans
+    plusieurs listes)."""
+    concepts = _onto_concepts()
+    c = concepts.get(concept_id)
+    if not c:
+        return []
+    seen = {}
+    for relation in ("requires", "supports", "children"):
+        for rid in (c.get(relation) or []):
+            if rid in seen:
+                continue
+            rc = concepts.get(rid)
+            if not rc:
+                continue
+            seen[rid] = {
+                "id": rid,
+                "name": rc.get("concept_name", ""),
+                "categorie": rc.get("categorie", ""),
+                "type": rc.get("type", ""),
+                "relation": relation,
+            }
+    return list(seen.values())
+
+
 @lru_cache(maxsize=1)
 def _search_rows() -> List[dict]:
     """Pré-calcul de l'index de recherche (nom + synonymes normalisés)."""

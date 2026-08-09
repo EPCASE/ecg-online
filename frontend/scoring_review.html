@@ -15,21 +15,25 @@
   .item-list li { padding: 8px 10px; border-radius: 8px; cursor: pointer; margin-bottom: 4px; font-size: 0.85rem; }
   .item-list li:hover { background: var(--surface-hover, #eef2ff); }
   .item-list li.active { background: var(--accent, #4f46e5); color: #fff; }
-  .item-list .status-adjudicated { color: #16a34a; }
-  .item-list li.active .status-adjudicated { color: #bbf7d0; }
-  .item-list .status-ready { color: #7c3aed; }
-  .item-list .status-partial { color: #d97706; }
+  .item-list .status-reviewed { color: #16a34a; }
+  .item-list li.active .status-reviewed { color: #bbf7d0; }
+  .item-list .status-annotated { color: #7c3aed; }
   .item-list .status-pending { color: #94a3b8; }
-  .item-list .disagree-badge { color: #dc2626; font-weight: 700; font-size: 0.75rem; }
-  .item-list li.active .disagree-badge { color: #fecaca; }
+  .item-list .alert-badge { color: #dc2626; font-weight: 700; font-size: 0.75rem; }
+  .item-list li.active .alert-badge { color: #fecaca; }
 
-  .slot-toggle { display: flex; gap: 6px; margin-bottom: 14px; }
-  .slot-toggle button { flex: 1; }
-  .slot-toggle button.active { background: var(--accent, #4f46e5); color: #fff; }
-  .slot-toggle button.locked { opacity: .55; }
+  .ecg-panel { display: flex; gap: 16px; margin-bottom: 16px; flex-wrap: wrap; align-items: flex-start; }
+  .ecg-img-box { flex: 0 0 auto; max-width: 480px; }
+  .ecg-img-box img { max-width: 100%; border-radius: 10px; border: 1px solid #e2e8f0; background: #fff; }
+  .ecg-info { flex: 1; min-width: 240px; background: #fff; color: #0f172a; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px 14px; font-size: 0.85rem; }
+  .ecg-info h4 { margin: 0 0 6px; font-size: 0.9rem; }
+  .ecg-info .muted { color: #64748b; }
+  .ecg-info details { margin-top: 8px; }
+  .ecg-info details summary { cursor: pointer; font-weight: 700; color: #4f46e5; }
+  .ecg-info details pre { white-space: pre-wrap; font-family: inherit; font-size: 0.82rem; margin-top: 6px; }
 
   .crit-card { background: #fff; color: #0f172a; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px 14px; margin-bottom: 10px; }
-  .crit-card.disagree { border-left: 4px solid #dc2626; background: #fff7f7; }
+  .crit-card.has-alert { border-left: 4px solid #dc2626; background: #fff7f7; }
   .crit-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 6px; }
   .crit-head .cid { font-family: monospace; font-size: 0.72rem; color: #64748b; }
   .crit-head .label { font-weight: 700; flex: 1; }
@@ -42,17 +46,30 @@
   .crit-field.checkbox { flex-direction: row; align-items: center; gap: 6px; }
   .crit-comment { margin-top: 8px; }
   .crit-comment textarea { width: 100%; font-size: 0.82rem; color: #0f172a; background: #fff; border: 1px solid #e2e8f0; border-radius: 6px; padding: 6px 8px; }
-  .diverging-field { outline: 2px solid #f87171; outline-offset: 2px; border-radius: 6px; }
+  .crit-alert { margin-top: 8px; background: #fef2f2; border: 1px solid #fca5a5; color: #7f1d1d; border-radius: 8px; padding: 6px 10px; font-size: 0.8rem; }
+  .crit-alert b { text-transform: uppercase; font-size: 0.68rem; }
 
-  .disagree-box { background: #fef2f2; border: 1px solid #fca5a5; color: #7f1d1d; border-radius: 10px; padding: 10px 14px; margin: 10px 0 14px; font-size: 0.85rem; }
-  .disagree-title { font-weight: 700; margin-bottom: 6px; }
-  .disagree-row { display: flex; gap: 10px; padding: 4px 0; align-items: baseline; flex-wrap: wrap; }
-  .disagree-row .cid { font-family: monospace; font-size: 0.7rem; }
-  .disagree-row .field { font-weight: 700; }
-  .disagree-row .val { background: #fff; border: 1px solid #fca5a5; border-radius: 4px; padding: 1px 6px; font-size: 0.78rem; }
+  .ai-box { background: #eef2ff; border: 1px solid #c7d2fe; color: #3730a3; border-radius: 10px; padding: 10px 14px; margin: 10px 0 14px; font-size: 0.85rem; }
+  .ai-box .ai-title { font-weight: 700; margin-bottom: 6px; }
+  .ai-box .ai-empty { color: #6366f1; font-style: italic; }
+  .ai-omissions { margin-top: 8px; border-top: 1px solid #c7d2fe; padding-top: 8px; }
+  .ai-omission-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 4px 0; }
+  .btn-add-omission { font-size: 0.78rem; padding: 3px 10px; white-space: nowrap; }
+
+  #suggest-box.hidden, #ai-box.hidden { display: none; }
+  #suggest-box { background: #ecfdf5; border: 1px solid #a7f3d0; color: #065f46; border-radius: 10px; padding: 10px 14px; margin: 10px 0 14px; font-size: 0.85rem; }
+  .suggest-title { font-weight: 700; margin-bottom: 8px; }
+  .suggest-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; background: #fff; border: 1px solid #d1fae5; border-radius: 8px; padding: 8px 10px; margin-bottom: 6px; }
+  .suggest-row-main { flex: 1; min-width: 220px; color: #0f172a; }
+  .suggest-row-actions { display: flex; gap: 6px; white-space: nowrap; }
+  .btn-accept-suggestion, .btn-reject-suggestion { font-size: 0.78rem; padding: 3px 10px; }
+  .onto-badge { display: inline-block; font-size: 0.72rem; font-weight: 700; border-radius: 6px; padding: 2px 8px; margin: 3px 0; }
+  .onto-badge-ok { background: #d1fae5; color: #065f46; }
+  .onto-badge-warn { background: #fef3c7; color: #92400e; }
+  .onto-candidates { margin: 4px 0; }
+  .onto-candidate-select, .onto-new-id { font-size: 0.8rem; color: #0f172a; background: #fff; border: 1px solid #e2e8f0; border-radius: 6px; padding: 4px 6px; width: 100%; max-width: 420px; margin-top: 2px; }
 
   #annotateur-name { color: #0f172a; background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 6px 10px; }
-  .adjudication-banner { background: #ecfdf5; border: 1px solid #6ee7b7; color: #065f46; border-radius: 10px; padding: 10px 14px; margin-bottom: 12px; font-size: 0.85rem; }
 </style>
 </head>
 <body>
@@ -60,8 +77,8 @@
   <div class="brand">
     <span class="logo">〜♥</span>
     <div>
-      <h1>Golden de scoring V2 — Annotation multi-expert</h1>
-      <p class="tagline">P1.3 : chaque cas est annoté indépendamment par 2 experts, puis adjugé (cf. audit_doc/roadmap_scientifique_2026.md §P1.3)</p>
+      <h1>Golden de scoring V2 — Annotation + second avis IA</h1>
+      <p class="tagline">P1.3 simplifié : un relecteur valide les critères de chaque cas, puis demande un second avis GPT (cf. audit_doc/roadmap_scientifique_2026.md §P1.3)</p>
     </div>
   </div>
   <div class="header-actions">
@@ -82,13 +99,13 @@
   <section class="content">
     <div id="welcome" class="welcome">
       <div class="welcome-card">
-        <h2>Double annotation indépendante 🔬</h2>
+        <h2>Annotation du golden de scoring 🔬</h2>
         <p>Choisis un cas à gauche. Pour chaque cas :</p>
         <ul class="tips">
-          <li><b>Relecteur 1</b> et <b>Relecteur 2</b> annotent <b>indépendamment</b> (chacun repart du même pilote solo P1.2 comme base neutre, à confirmer ou corriger).</li>
-          <li>Une fois les deux annotations enregistrées, l'onglet <b>Désaccords</b> liste automatiquement les champs divergents entre les deux relecteurs.</li>
-          <li>L'<b>adjudication</b> produit la version consensuelle finale — les deux annotations initiales restent conservées et consultables séparément (traçabilité scientifique).</li>
-          <li>Les cas marqués 👥 ⚠️ ont des désaccords non encore adjugés.</li>
+          <li>Le <b>tracé ECG</b> et le texte de référence du cas s'affichent en haut — annote en les regardant, pas à l'aveugle.</li>
+          <li>Corrige/valide chaque critère proposé (pré-rempli depuis le premier jet solo P1.2).</li>
+          <li>Une fois enregistré, clique « 🤖 Demander un second avis IA » : GPT relit tes critères à la lumière du texte de référence et signale les points douteux directement sur les cartes concernées.</li>
+          <li>Corrige tes critères si tu es convaincu par une alerte IA, puis ré-enregistre — pas d'étape séparée d'adjudication.</li>
         </ul>
         <p class="muted">Sélectionne un cas à gauche pour commencer.</p>
       </div>
@@ -103,22 +120,31 @@
         <span id="item-status" class="case-num"></span>
       </div>
 
-      <div id="slot-toggle" class="slot-toggle">
-        <button id="slot-1" data-slot="expert_1">Relecteur 1</button>
-        <button id="slot-2" data-slot="expert_2">Relecteur 2</button>
-        <button id="slot-adj" data-slot="adjudication">Adjudication</button>
+      <div class="ecg-panel">
+        <div class="ecg-img-box" id="ecg-img-box"></div>
+        <div class="ecg-info">
+          <h4 id="ecg-patient"></h4>
+          <p class="muted" id="ecg-contexte"></p>
+          <details>
+            <summary>Interprétation de référence</summary>
+            <pre id="ecg-interpretation"></pre>
+          </details>
+        </div>
       </div>
 
-      <div id="adjudication-banner" class="adjudication-banner hidden"></div>
-      <div id="disagree-box" class="disagree-box hidden"></div>
+      <div id="ai-box" class="ai-box hidden"></div>
+      <div id="suggest-box" class="hidden"></div>
 
-      <h3>Critères</h3>
+      <h3>Critères
+        <button id="add-criterion-btn" type="button" class="btn-ghost" style="font-size:.8rem;padding:2px 10px;">➕ Ajouter un critère</button>
+      </h3>
       <div id="crit-list"></div>
 
       <div style="margin-top:16px; display:flex; gap:10px; align-items:center; flex-wrap: wrap;">
-        <input id="annotateur-name" type="text" placeholder="Ton nom (annotateur)" style="max-width:220px" />
+        <input id="annotateur-name" type="text" placeholder="Ton nom (relecteur)" style="max-width:220px" />
         <button id="save-btn" class="btn-primary">💾 Enregistrer</button>
-        <button id="compute-disagree-btn" class="btn-ghost hidden">🔍 Calculer les désaccords</button>
+        <button id="ai-review-btn" class="btn-ghost">🤖 Demander un second avis IA</button>
+        <button id="ai-suggest-btn" class="btn-ghost">💡 Suggérer des critères (IA)</button>
         <span id="save-status" class="muted"></span>
       </div>
     </article>

@@ -71,7 +71,7 @@
     "minimum_specificity": {
       "type": "string",
       "enum": ["exact_only", "child_ok", "parent_ok", "any_related"],
-      "description": "Spécificité minimale acceptée dans la hiérarchie ontologique (ex: 'child_ok' = un concept plus spécifique que celui attendu est accepté)."
+      "description": "Spécificité minimale acceptée dans la hiérarchie ontologique (ex: 'child_ok' = un concept plus spécifique que celui attendu est accepté). ⚠️ NON ENCORE BRANCHÉ AU MOTEUR DE SCORING EN PRODUCTION (2026-08) : rag_pipeline/scoring_v3.py applique aujourd'hui une règle GLOBALE et uniforme, câblée en dur, quel que soit le concept (enfant trouvé → 1.0 toujours, parent direct → 2/3, parent éloigné → 1/3 ; cf. règles 1b/1c de scoring_v3.py). Ce champ est la couche de correction PAR CRITÈRE prévue pour remplacer cette règle globale — le brancher est un prérequis de P4 (refonte scoring). Tant que ce n'est pas fait, l'annotation de ce champ prépare le travail mais n'a AUCUN effet sur la note réelle des étudiants."
     },
     "expert_confidence": {
       "type": "string",
