@@ -35,6 +35,11 @@ ENUMS = {
     "expert_confidence": {"high", "medium", "low"},
     "evidence_source": {
         "expert_consensus", "single_expert", "gpt_assisted_reviewed", "literature",
+        # Ajoutés le 2026-08-10 : origines réelles utilisées par la migration
+        # bareme_v1 -> scoring_v2 (scripts/merge_bareme_into_pilot_v2.py,
+        # scripts/bootstrap_pilot_v2_all_cases.py), absentes de l'enum initial
+        # P1.1 alors que 483 critères sur les 75 cas les utilisent déjà.
+        "bareme_v1_migre", "bareme_v1_valide",
     },
     "minimum_specificity": {"exact_only", "child_ok", "parent_ok", "any_related"},
 }

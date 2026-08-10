@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-08-09T18:41:07",
+  "updated": "2026-08-10T18:46:14.451623",
   "cases": {
     "48": {
       "ai_suggested_criteria": {
@@ -354,14 +354,14 @@
             "criterion_id": "case_27_nouveau_mskpq33k",
             "error_severity": "dangerous",
             "evidence_source": "single_expert",
-            "expected_status": "present",
+            "expected_status": "hypothesis_acceptable",
             "expert_confidence": "medium",
             "group_logic": "ALL",
             "group_min_n": null,
             "importance": "major",
             "label": "Signes ECG évocateurs d'une hyperkaliémie",
             "minimum_specificity": "exact_only",
-            "role": "alternative",
+            "role": "required",
             "sufficient_alone": true
           }
         ]
@@ -1735,7 +1735,7 @@
             "importance": "major",
             "label": "Onde P ample, fine/pointue, environ 3 mm en DII, dépassant le seuil de 2,5 mm",
             "minimum_specificity": "exact_only",
-            "role": "alternative",
+            "role": "optional",
             "sufficient_alone": false
           },
           {
@@ -1852,7 +1852,7 @@
             "importance": "major",
             "label": "Indice de Sokolow positif, autour de 43 mm, supérieur à 35 mm",
             "minimum_specificity": "exact_only",
-            "role": "alternative",
+            "role": "optional",
             "sufficient_alone": false
           },
           {
@@ -2472,7 +2472,7 @@
             "sufficient_alone": false
           },
           {
-            "alternative_group": null,
+            "alternative_group": "case_9_bbd",
             "comment": "Migré depuis le barème existant (scoring_config.json, rôle d'origine=complementaire) — à RE-VALIDER par le relecteur (role/importance/error_severity/sufficient_alone posés par défaut, pas encore expertisés pour ce schéma V2).",
             "concept_id": "BLOC_DE_BRANCHE_DROIT",
             "criterion_id": "case_9_bloc_de_branche_droit",
@@ -2480,7 +2480,7 @@
             "evidence_source": "bareme_v1_migre",
             "expected_status": "present",
             "expert_confidence": "medium",
-            "group_logic": "ALL",
+            "group_logic": "ANY",
             "group_min_n": null,
             "importance": "intermediate",
             "label": "Morphologie de bloc de branche droite en V6 : qRS avec onde S large et traînante terminale",
@@ -2540,7 +2540,7 @@
             "sufficient_alone": false
           },
           {
-            "alternative_group": null,
+            "alternative_group": "case_9_bbd",
             "comment": "Migré depuis le barème existant (scoring_config.json, rôle d'origine=validant) — à RE-VALIDER par le relecteur (role/importance/error_severity/sufficient_alone posés par défaut, pas encore expertisés pour ce schéma V2).",
             "concept_id": "BLOC_DE_BRANCHE_DROIT_COMPLET",
             "criterion_id": "case_9_bloc_de_branche_droit_complet",
@@ -2548,7 +2548,7 @@
             "evidence_source": "bareme_v1_migre",
             "expected_status": "present",
             "expert_confidence": "medium",
-            "group_logic": "ALL",
+            "group_logic": "ANY",
             "group_min_n": null,
             "importance": "major",
             "label": "Conclusion diagnostique : bloc de branche droite complet typique",
@@ -2692,7 +2692,7 @@
             "importance": "major",
             "label": "Conclusion : bloc bifasciculaire = BBD complet + hémibloc antérieur gauche, associé à BAV1",
             "minimum_specificity": "exact_only",
-            "role": "alternative",
+            "role": "optional",
             "sufficient_alone": true
           },
           {
@@ -3128,7 +3128,7 @@
             "sufficient_alone": false
           },
           {
-            "alternative_group": null,
+            "alternative_group": "case_13_bbg",
             "comment": "Migré depuis le barème existant (scoring_config.json, rôle d'origine=complementaire) — à RE-VALIDER par le relecteur (role/importance/error_severity/sufficient_alone posés par défaut, pas encore expertisés pour ce schéma V2).",
             "concept_id": "BLOC_DE_BRANCHE_GAUCHE",
             "criterion_id": "case_13_bloc_de_branche_gauche",
@@ -3136,7 +3136,7 @@
             "evidence_source": "bareme_v1_migre",
             "expected_status": "present",
             "expert_confidence": "medium",
-            "group_logic": "ALL",
+            "group_logic": "ANY",
             "group_min_n": null,
             "importance": "intermediate",
             "label": "Morphologie de bloc de branche gauche : QRS négatif QS ou rS en V1-V2",
@@ -3162,7 +3162,7 @@
             "sufficient_alone": false
           },
           {
-            "alternative_group": null,
+            "alternative_group": "case_13_bbg",
             "comment": "Migré depuis le barème existant (scoring_config.json, rôle d'origine=validant) — à RE-VALIDER par le relecteur (role/importance/error_severity/sufficient_alone posés par défaut, pas encore expertisés pour ce schéma V2).",
             "concept_id": "BLOC_DE_BRANCHE_GAUCHE_COMPLET",
             "criterion_id": "case_13_bloc_de_branche_gauche_complet",
@@ -3170,7 +3170,7 @@
             "evidence_source": "bareme_v1_migre",
             "expected_status": "present",
             "expert_confidence": "medium",
-            "group_logic": "ALL",
+            "group_logic": "ANY",
             "group_min_n": null,
             "importance": "major",
             "label": "Conclusion diagnostique : bloc de branche gauche complet",
@@ -3287,7 +3287,7 @@
             "importance": "minor",
             "label": "Conclure à un ECG préoccupant chez un patient syncopal nécessitant hospitalisation urgente/stimulation",
             "minimum_specificity": "exact_only",
-            "role": "exclusion",
+            "role": "required",
             "sufficient_alone": false
           },
           {
@@ -3346,7 +3346,7 @@
             "concept_id": "BAV_COMPLET",
             "label": "Ne pas conclure à un BAV complet (le trouble est un bloc de branche alternant, pas un BAV)",
             "role": "exclusion",
-            "expected_status": "present",
+            "expected_status": "absent",
             "importance": "intermediate",
             "error_severity": "major",
             "alternative_group": null,
@@ -3681,7 +3681,7 @@
             "concept_id": "HYPERTROPHIE_VENTRICULAIRE_GAUCHE",
             "label": "Ne pas conclure à une hypertrophie ventriculaire gauche",
             "role": "exclusion",
-            "expected_status": "present",
+            "expected_status": "absent",
             "importance": "intermediate",
             "error_severity": "minor",
             "alternative_group": null,
@@ -3698,7 +3698,7 @@
             "concept_id": "HYPERTROPHIE_VENTRICULAIRE_DROITE",
             "label": "Ne pas conclure à une hypertrophie ventriculaire droite",
             "role": "exclusion",
-            "expected_status": "present",
+            "expected_status": "absent",
             "importance": "intermediate",
             "error_severity": "minor",
             "alternative_group": null,
@@ -4407,7 +4407,7 @@
             "sufficient_alone": false
           },
           {
-            "alternative_group": null,
+            "alternative_group": "case_21_diag",
             "comment": "Migré depuis le barème existant (scoring_config.json, rôle d'origine=validant) — à RE-VALIDER par le relecteur (role/importance/error_severity/sufficient_alone posés par défaut, pas encore expertisés pour ce schéma V2).",
             "concept_id": "DYSFONCTION_SINUSALE",
             "criterion_id": "case_21_dysfonction_sinusale",
@@ -4415,7 +4415,7 @@
             "evidence_source": "bareme_v1_migre",
             "expected_status": "present",
             "expert_confidence": "medium",
-            "group_logic": "ALL",
+            "group_logic": "ANY",
             "group_min_n": null,
             "importance": "major",
             "label": "Diagnostic principal : dysfonction sinusale avec échappement jonctionnel et conduction rétrograde",
@@ -4424,7 +4424,7 @@
             "sufficient_alone": false
           },
           {
-            "alternative_group": null,
+            "alternative_group": "case_21_diag",
             "comment": "Migré depuis le barème existant (scoring_config.json, rôle d'origine=complementaire) — à RE-VALIDER par le relecteur (role/importance/error_severity/sufficient_alone posés par défaut, pas encore expertisés pour ce schéma V2).",
             "concept_id": "BLOC_SINO_ATRIAL",
             "criterion_id": "case_21_bloc_sino_atrial",
@@ -4432,7 +4432,7 @@
             "evidence_source": "bareme_v1_migre",
             "expected_status": "hypothesis_acceptable",
             "expert_confidence": "medium",
-            "group_logic": "ALL",
+            "group_logic": "ANY",
             "group_min_n": null,
             "importance": "intermediate",
             "label": "Bloc sino-auriculaire du troisième degré possible, sans nécessité de trancher avec perte d’automatisme sinusal",
@@ -4945,7 +4945,7 @@
             "concept_id": "DYSFONCTION_SINUSALE",
             "label": "Ne pas conclure à une dysfonction sinusale",
             "role": "exclusion",
-            "expected_status": "present",
+            "expected_status": "absent",
             "importance": "intermediate",
             "error_severity": "minor",
             "alternative_group": null,
@@ -5113,7 +5113,7 @@
             "concept_id": "BAV_COMPLET",
             "label": "Ne pas conclure à un BAV complet",
             "role": "exclusion",
-            "expected_status": "present",
+            "expected_status": "absent",
             "importance": "intermediate",
             "error_severity": "minor",
             "alternative_group": null,
@@ -5303,7 +5303,7 @@
             "concept_id": "DYSFONCTION_SINUSALE",
             "label": "Ne pas conclure à une dysfonction sinusale",
             "role": "exclusion",
-            "expected_status": "present",
+            "expected_status": "absent",
             "importance": "intermediate",
             "error_severity": "minor",
             "alternative_group": null,
@@ -5380,7 +5380,7 @@
             "importance": "major",
             "label": "Bradycardie ventriculaire majeure régulière à environ 20/min",
             "minimum_specificity": "exact_only",
-            "role": "alternative",
+            "role": "optional",
             "sufficient_alone": false
           },
           {
@@ -5611,7 +5611,7 @@
             "criterion_id": "case_31_nouveau_mslsjpc6",
             "concept_id": "MALADIE_RYTHMIQUE_OREILLETTE",
             "label": "Maladie rythmique de l'oreillette (syndrome bradycardie-tachycardie)",
-            "role": "alternative",
+            "role": "required",
             "expected_status": "present",
             "importance": "major",
             "error_severity": "major",
@@ -6646,7 +6646,7 @@
             "concept_id": "BAV_COMPLET",
             "label": "Ne pas conclure à un BAV complet",
             "role": "exclusion",
-            "expected_status": "present",
+            "expected_status": "absent",
             "importance": "intermediate",
             "error_severity": "major",
             "alternative_group": null,
@@ -6882,7 +6882,7 @@
         "annotated_at": "2026-08-09T14:49:17",
         "criteria": [
           {
-            "alternative_group": null,
+            "alternative_group": "case_41_flutter",
             "comment": "Migré depuis le barème existant (scoring_config.json, rôle d'origine=validant) — à RE-VALIDER par le relecteur (role/importance/error_severity/sufficient_alone posés par défaut, pas encore expertisés pour ce schéma V2).",
             "concept_id": "FLUTTER_DROIT_TYPIQUE",
             "criterion_id": "case_41_flutter_droit_typique",
@@ -6890,7 +6890,7 @@
             "evidence_source": "bareme_v1_migre",
             "expected_status": "present",
             "expert_confidence": "medium",
-            "group_logic": "ALL",
+            "group_logic": "ANY",
             "group_min_n": null,
             "importance": "major",
             "label": "Diagnostic de flutter atrial commun typique",
@@ -6899,7 +6899,7 @@
             "sufficient_alone": false
           },
           {
-            "alternative_group": null,
+            "alternative_group": "case_41_flutter",
             "comment": "Migré depuis le barème existant (scoring_config.json, rôle d'origine=complementaire) — à RE-VALIDER par le relecteur (role/importance/error_severity/sufficient_alone posés par défaut, pas encore expertisés pour ce schéma V2).",
             "concept_id": "FLUTTER_ATRIAL_ANTIHORAIRE",
             "criterion_id": "case_41_flutter_atrial_antihoraire",
@@ -6907,7 +6907,7 @@
             "evidence_source": "bareme_v1_migre",
             "expected_status": "present",
             "expert_confidence": "medium",
-            "group_logic": "ALL",
+            "group_logic": "ANY",
             "group_min_n": null,
             "importance": "minor",
             "label": "Origine oreillette droite, macro-réentrée passant par l’isthme cavo-tricuspide, sens antihoraire",
@@ -7389,7 +7389,7 @@
             "importance": "major",
             "label": "Diagnostic final : tachycardie jonctionnelle orthodromique sur voie accessoire, syndrome de Wolff-Parkinson-White",
             "minimum_specificity": "exact_only",
-            "role": "alternative",
+            "role": "required",
             "sufficient_alone": false
           },
           {
@@ -7501,7 +7501,7 @@
             "criterion_id": "case_44_qrs_fins",
             "error_severity": "major",
             "evidence_source": "bareme_v1_migre",
-            "expected_status": "present",
+            "expected_status": "absent",
             "expert_confidence": "medium",
             "group_logic": "ALL",
             "group_min_n": null,
@@ -7713,7 +7713,7 @@
             "sufficient_alone": false
           },
           {
-            "alternative_group": null,
+            "alternative_group": "case_46_diag",
             "comment": "Migré depuis le barème existant (scoring_config.json, rôle d'origine=validant) — à RE-VALIDER par le relecteur (role/importance/error_severity/sufficient_alone posés par défaut, pas encore expertisés pour ce schéma V2).",
             "concept_id": "TJ_ANTIDROMIQUE_UTILISANT_UNE_VOIE_ACCESSOIRE",
             "criterion_id": "case_46_tj_antidromique_utilisant_une_voie_accessoire",
@@ -7721,7 +7721,7 @@
             "evidence_source": "bareme_v1_migre",
             "expected_status": "present",
             "expert_confidence": "medium",
-            "group_logic": "ALL",
+            "group_logic": "ANY",
             "group_min_n": null,
             "importance": "major",
             "label": "Diagnostics à évoquer : tachycardie ventriculaire ou tachycardie jonctionnelle antidromique sur voie accessoire",
@@ -7788,8 +7788,8 @@
             "expected_status": "hypothesis_acceptable",
             "importance": "major",
             "error_severity": "major",
-            "alternative_group": null,
-            "group_logic": "ALL",
+            "alternative_group": "case_46_diag",
+            "group_logic": "ANY",
             "group_min_n": null,
             "sufficient_alone": false,
             "minimum_specificity": "exact_only",
@@ -7972,7 +7972,7 @@
             "concept_id": "CAPTURE_SUPRAVENTRICULAIRE",
             "label": "Absence de complexe de capture supraventriculaire",
             "role": "exclusion",
-            "expected_status": "present",
+            "expected_status": "absent",
             "importance": "intermediate",
             "error_severity": "minor",
             "alternative_group": null,
@@ -8096,7 +8096,7 @@
             "criterion_id": "case_49_monomorphe",
             "error_severity": "minor",
             "evidence_source": "bareme_v1_migre",
-            "expected_status": "present",
+            "expected_status": "absent",
             "expert_confidence": "medium",
             "group_logic": "ALL",
             "group_min_n": null,
@@ -8128,7 +8128,7 @@
             "concept_id": "TORSADE_DE_POINTES",
             "label": "Ne pas conclure à une torsade de pointes",
             "role": "exclusion",
-            "expected_status": "present",
+            "expected_status": "absent",
             "importance": "intermediate",
             "error_severity": "minor",
             "alternative_group": null,
@@ -8305,7 +8305,7 @@
             "sufficient_alone": false
           },
           {
-            "alternative_group": null,
+            "alternative_group": "case_50_tv_poly_fv",
             "comment": "Migré depuis le barème existant (scoring_config.json, rôle d'origine=complementaire) — à RE-VALIDER par le relecteur (role/importance/error_severity/sufficient_alone posés par défaut, pas encore expertisés pour ce schéma V2).",
             "concept_id": "TACHYCARDIE_VENTRICULAIRE_POLYMORPHE",
             "criterion_id": "case_50_tachycardie_ventriculaire_polymorphe",
@@ -8313,7 +8313,7 @@
             "evidence_source": "bareme_v1_migre",
             "expected_status": "present",
             "expert_confidence": "medium",
-            "group_logic": "ALL",
+            "group_logic": "ANY",
             "group_min_n": null,
             "importance": "minor",
             "label": "Déclenchement d’une tachycardie ventriculaire polymorphe non soutenue puis d’une fibrillation ventriculaire",
@@ -8322,7 +8322,7 @@
             "sufficient_alone": false
           },
           {
-            "alternative_group": null,
+            "alternative_group": "case_50_tv_poly_fv",
             "comment": "Migré depuis le barème existant (scoring_config.json, rôle d'origine=validant) — à RE-VALIDER par le relecteur (role/importance/error_severity/sufficient_alone posés par défaut, pas encore expertisés pour ce schéma V2).",
             "concept_id": "FIBRILLATION_VENTRICULAIRE",
             "criterion_id": "case_50_fibrillation_ventriculaire",
@@ -8330,7 +8330,7 @@
             "evidence_source": "bareme_v1_migre",
             "expected_status": "present",
             "expert_confidence": "medium",
-            "group_logic": "ALL",
+            "group_logic": "ANY",
             "group_min_n": null,
             "importance": "major",
             "label": "Fibrillation ventriculaire : QRS larges, polymorphes, irréguliers, activité anarchique",
@@ -8393,7 +8393,7 @@
         "annotated_at": "2026-08-09T18:41:07",
         "criteria": [
           {
-            "alternative_group": null,
+            "alternative_group": "case_51_tv_poly",
             "comment": "Migré depuis le barème existant (scoring_config.json, rôle d'origine=validant) — à RE-VALIDER par le relecteur (role/importance/error_severity/sufficient_alone posés par défaut, pas encore expertisés pour ce schéma V2).",
             "concept_id": "TORSADE_DE_POINTES",
             "criterion_id": "case_51_torsade_de_pointes",
@@ -8401,7 +8401,7 @@
             "evidence_source": "bareme_v1_migre",
             "expected_status": "present",
             "expert_confidence": "medium",
-            "group_logic": "ALL",
+            "group_logic": "ANY",
             "group_min_n": null,
             "importance": "major",
             "label": "Diagnostic de torsade de pointes",
@@ -8427,7 +8427,7 @@
             "sufficient_alone": false
           },
           {
-            "alternative_group": null,
+            "alternative_group": "case_51_tv_poly",
             "comment": "Migré depuis le barème existant (scoring_config.json, rôle d'origine=complementaire) — à RE-VALIDER par le relecteur (role/importance/error_severity/sufficient_alone posés par défaut, pas encore expertisés pour ce schéma V2).",
             "concept_id": "TACHYCARDIE_VENTRICULAIRE_POLYMORPHE",
             "criterion_id": "case_51_tachycardie_ventriculaire_polymorphe",
@@ -8435,7 +8435,7 @@
             "evidence_source": "bareme_v1_migre",
             "expected_status": "present",
             "expert_confidence": "medium",
-            "group_logic": "ALL",
+            "group_logic": "ANY",
             "group_min_n": null,
             "importance": "minor",
             "label": "Tachycardie ventriculaire polymorphe à QRS larges",
@@ -9179,7 +9179,7 @@
             "criterion_id": "case_55_nouveau_msltivks",
             "concept_id": "MIROIR",
             "label": "Absence d'image en miroir (diffus, non systématisé)",
-            "role": "alternative",
+            "role": "optional",
             "expected_status": "absent",
             "importance": "intermediate",
             "error_severity": "minor",
@@ -11512,7 +11512,7 @@
         "annotated_at": "2026-08-09T15:27:13",
         "criteria": [
           {
-            "alternative_group": null,
+            "alternative_group": "case_73_diag",
             "comment": "Migré depuis le barème existant (scoring_config.json, rôle d'origine=validant) — à RE-VALIDER par le relecteur (role/importance/error_severity/sufficient_alone posés par défaut, pas encore expertisés pour ce schéma V2).",
             "concept_id": "HYPERKALIEMIE",
             "criterion_id": "case_73_hyperkaliemie",
@@ -11520,7 +11520,7 @@
             "evidence_source": "bareme_v1_migre",
             "expected_status": "present",
             "expert_confidence": "medium",
-            "group_logic": "ALL",
+            "group_logic": "ANY",
             "group_min_n": null,
             "importance": "major",
             "label": "Diagnostic d’hyperkaliémie menaçante avec signes ECG",
@@ -11621,8 +11621,8 @@
             "expected_status": "hypothesis_acceptable",
             "importance": "major",
             "error_severity": "major",
-            "alternative_group": null,
-            "group_logic": "ALL",
+            "alternative_group": "case_73_diag",
+            "group_logic": "ANY",
             "group_min_n": null,
             "sufficient_alone": false,
             "minimum_specificity": "exact_only",
@@ -11746,7 +11746,7 @@
             "importance": "intermediate",
             "label": "Absence de microvoltage précordial franc : QRS > 10 mm en V3-V4",
             "minimum_specificity": "exact_only",
-            "role": "exclusion",
+            "role": "optional",
             "sufficient_alone": false
           },
           {
