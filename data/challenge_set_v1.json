@@ -139,6 +139,36 @@
       "verification_attendue": [
         "le score ne doit pas dépasser celui d'une réponse claire et concise équivalente ; documenter si une pénalité anti-bourrage existe ou si c'est un gap à traiter en P4"
       ]
+    },
+    {
+      "id": "chal_14_bav2_mobitz2_qualifier",
+      "pattern": "elargissement_echantillon_qualifier / cas_source_25",
+      "case_id": "25",
+      "texte_etudiant": "Ondes P bloquées de façon intermittente sans allongement progressif du PR, bloc bifasciculaire associé, pause pathologique au décours.",
+      "risque_cible": "Décrit uniquement les descripteurs du BAV 2 Mobitz 2 (onde P bloquée, PR fixe, bloc bifasciculaire, pause) SANS jamais nommer explicitement 'BAV 2 Mobitz 2' — vise à déclencher un match_type=requires/qualifier sur le validant principal, pour élargir l'échantillon de mesure du taux de contradiction du feedback au-delà du seul cas 41.",
+      "verification_attendue": [
+        "le concept BAV_2_MOBITZ_2 doit être crédité via requires/qualifier (pas exact), utile pour la mesure de contradiction du feedback"
+      ]
+    },
+    {
+      "id": "chal_15_hyperkaliemie_qualifier",
+      "pattern": "elargissement_echantillon_qualifier / cas_source_27",
+      "case_id": "27",
+      "texte_etudiant": "Ondes T amples et pointues, élargissement progressif des QRS, disparition des ondes P, trouble ionique sévère probable en cause.",
+      "risque_cible": "Décrit les descripteurs électriques de l'hyperkaliémie sans nommer le mot 'hyperkaliémie' ni 'BAV de haut grade' explicitement — vise à déclencher un match indirect sur HYPERKALIEMIE/BAV_DE_HAUT_GRADE pour élargir l'échantillon de mesure.",
+      "verification_attendue": [
+        "le concept validant doit être crédité via un match_type indirect, à observer pour la mesure de contradiction du feedback"
+      ]
+    },
+    {
+      "id": "chal_16_hyperkaliemie_menacante_qualifier",
+      "pattern": "elargissement_echantillon_qualifier / cas_source_73",
+      "case_id": "73",
+      "texte_etudiant": "Tracé évocateur d'un trouble métabolique sévère avec anomalies diffuses de la repolarisation et élargissement des complexes, contexte de dysfonction rénale à évoquer.",
+      "risque_cible": "Formulation périphrastique évoquant l'hyperkaliémie sans jamais utiliser le mot — vise un match_type indirect (qualifier/implies) sur HYPERKALIEMIE pour élargir l'échantillon de mesure du taux de contradiction.",
+      "verification_attendue": [
+        "le concept validant doit être crédité via un match_type indirect, à observer pour la mesure de contradiction du feedback"
+      ]
     }
   ]
 }

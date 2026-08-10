@@ -54,6 +54,8 @@ TARGET_ITEM_IDS = [
     "chal_01_redundant_alternative_credit",
     "chal_07_diagnostic_juste_sans_justification",
     "chal_09_concept_enfant_plus_specifique",
+    "chal_14_bav2_mobitz2_qualifier",
+    "chal_16_hyperkaliemie_menacante_qualifier",
 ]
 
 # Détection déterministe (regex) d'une contradiction explicite dans le
