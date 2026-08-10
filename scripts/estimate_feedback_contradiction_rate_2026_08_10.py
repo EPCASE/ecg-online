@@ -67,18 +67,22 @@ _NEG_RE = re.compile(r"sans\s+(?:le|la|l['’])\s*(?:nommer|identifier|mentionne
 
 
 class _JudgeCallCounter(logging.Handler):
-    """Compte les warnings 'Affirmation(s) clinique(s) non fondée(s)' émis
-    par pedagogical_feedback pendant une génération, pour savoir si le
-    garde-fou a dû intervenir."""
+    """Compte les warnings 'Affirmation(s) clinique(s) non fondée(s)' (juge
+    LLM) et 'Contradiction de statut détectée' (garde-fou déterministe,
+    ajouté le 2026-08-10) émis par pedagogical_feedback pendant une
+    génération, pour savoir quel mécanisme a dû intervenir."""
 
     def __init__(self):
         super().__init__()
         self.triggered = False
+        self.deterministic_guardrail_triggered = False
 
     def emit(self, record):
         msg = record.getMessage()
         if "Affirmation(s) clinique(s) non fondée(s)" in msg:
             self.triggered = True
+        if "Contradiction de statut détectée" in msg:
+            self.deterministic_guardrail_triggered = True
 
 
 def detect_residual_contradiction(text: str) -> bool:
@@ -114,6 +118,7 @@ def run_one(item: dict) -> dict:
     return {
         "match_types": [vd.match_type for vd in report.validant_details],
         "judge_triggered": handler.triggered,
+        "deterministic_guardrail_triggered": handler.deterministic_guardrail_triggered,
         "residual_contradiction_in_final_text": detect_residual_contradiction(fb.texte),
         "texte": fb.texte,
     }
@@ -130,12 +135,14 @@ def main():
 
     total_runs = 0
     total_judge_triggered = 0
+    total_deterministic_triggered = 0
     total_residual = 0
     per_item_summary = []
 
     for item_id in TARGET_ITEM_IDS:
         item = items[item_id]
         judge_count = 0
+        deterministic_count = 0
         residual_count = 0
         for i in range(args.n):
             print(f"\n--- {item_id} run {i+1}/{args.n} ---")
@@ -143,22 +150,28 @@ def main():
             total_runs += 1
             print("match_types:", res["match_types"])
             print("judge_triggered:", res["judge_triggered"])
+            print("deterministic_guardrail_triggered:", res["deterministic_guardrail_triggered"])
             print("residual_contradiction_in_final_text:", res["residual_contradiction_in_final_text"])
             if res["judge_triggered"]:
                 judge_count += 1
                 total_judge_triggered += 1
+            if res["deterministic_guardrail_triggered"]:
+                deterministic_count += 1
+                total_deterministic_triggered += 1
             if res["residual_contradiction_in_final_text"]:
                 residual_count += 1
                 total_residual += 1
                 print("⚠️  CONTRADICTION RÉSIDUELLE DANS LE TEXTE FINAL :")
                 print(res["texte"])
-        per_item_summary.append((item_id, judge_count, residual_count, args.n))
+        per_item_summary.append((item_id, judge_count, deterministic_count, residual_count, args.n))
 
     print(f"\n{'='*80}\nRÉSUMÉ ({total_runs} générations au total sur {len(TARGET_ITEM_IDS)} items)")
-    for item_id, judge_count, residual_count, n in per_item_summary:
-        print(f"  {item_id}: garde-fou déclenché {judge_count}/{n} — contradiction résiduelle finale {residual_count}/{n}")
-    print(f"\nTaux global de déclenchement du garde-fou : {total_judge_triggered}/{total_runs} "
+    for item_id, judge_count, deterministic_count, residual_count, n in per_item_summary:
+        print(f"  {item_id}: juge LLM {judge_count}/{n} — garde-fou déterministe {deterministic_count}/{n} — contradiction résiduelle finale {residual_count}/{n}")
+    print(f"\nTaux global de déclenchement du juge LLM : {total_judge_triggered}/{total_runs} "
           f"({100*total_judge_triggered/total_runs:.0f}%)")
+    print(f"Taux global de déclenchement du garde-fou déterministe : {total_deterministic_triggered}/{total_runs} "
+          f"({100*total_deterministic_triggered/total_runs:.0f}%)")
     print(f"Taux global de contradiction résiduelle dans le texte FINAL livré à l'étudiant : "
           f"{total_residual}/{total_runs} ({100*total_residual/total_runs:.0f}%)")
 
