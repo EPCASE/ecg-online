@@ -1,0 +1,144 @@
+{
+  "version": 1,
+  "created": "2026-08-10",
+  "description": "Challenge set P3.3 — réponses étudiantes synthétiques volontairement adversariales, construites sur les 75 cas golden existants (aucun nouvel ECG requis). Couvre les 12 patterns listés dans audit_doc/roadmap_scientifique_2026.md §P3.3. Chaque item référence un `case_id` existant dans cases_golden.json / scoring_v2_review.json et documente le comportement ATTENDU du scoreur, pour servir de non-régression sur les points sensibles identifiés lors des audits du 2026-08-10.",
+  "items": [
+    {
+      "id": "chal_01_redundant_alternative_credit",
+      "pattern": "concept_enfant_plus_specifique / concept_parent_trop_generique",
+      "case_id": "41",
+      "texte_etudiant": "Rythme régulier avec flutter atrial typique droit antihoraire, ondes F en toit d'usine en inférieur, conduction 4/1, QRS fins.",
+      "risque_cible": "Le scoreur doit créditer UNE SEULE FOIS le diagnostic de flutter (via alternative_group), et ne JAMAIS lister comme 'manquant' un membre de l'alternative_group déjà satisfait par le concept validé (ex: ne pas afficher 'flutter droit antihoraire manquant' alors que 'flutter droit typique' est validé) — c'est le bug exact signalé par l'étudiant du cas 41 avant correction du 2026-08-10.",
+      "verification_attendue": [
+        "score_final_pct doit être élevé (>=80%) si le diagnostic + les descripteurs clés sont présents",
+        "aucun concept du même alternative_group que le concept déjà validé ne doit apparaître en statut 'missed' dans le feedback texte"
+      ]
+    },
+    {
+      "id": "chal_02_bon_diagnostic_contradiction_majeure",
+      "pattern": "bon_diagnostic_avec_contradiction_majeure",
+      "case_id": "49",
+      "texte_etudiant": "Fibrillation atriale avec rythme parfaitement régulier à QRS fins, fréquence 75/min normale.",
+      "risque_cible": "Le texte affirme le bon diagnostic (fibrillation atriale) mais le contredit immédiatement (rythme régulier, QRS fins, fréquence normale — incompatibles avec une FA authentique). Le scoreur ne doit pas créditer aveuglément le mot-clé sans tenir compte de la contradiction descriptive.",
+      "verification_attendue": [
+        "le concept FIBRILLATION_ATRIALE peut être extrait lexicalement, mais le feedback doit signaler l'incohérence si le pipeline dispose d'une détection de contradiction descripteur/diagnostic",
+        "documente une limite connue si aucune détection de contradiction n'existe encore (à noter comme gap, pas comme échec de test)"
+      ]
+    },
+    {
+      "id": "chal_03_mauvais_diagnostic_bons_mots_cles",
+      "pattern": "mauvais_diagnostic_utilisant_bons_mots_cles",
+      "case_id": "41",
+      "texte_etudiant": "Tachycardie irrégulière avec ondes P absentes et fibrillation atriale, QRS fins, activité atriale anarchique — pas de flutter typique visible.",
+      "risque_cible": "Réutilise le vocabulaire clinique attendu (QRS fins, activité atriale) mais conclut sur le mauvais diagnostic (FA au lieu de flutter) et exclut explicitement le bon. Le scoreur ne doit pas créditer le diagnostic golden (flutter) simplement parce que des termes proches apparaissent dans le texte.",
+      "verification_attendue": [
+        "FLUTTER_DROIT_TYPIQUE (validant du cas 41) ne doit PAS être marqué 'present'",
+        "la négation explicite ('pas de flutter typique visible') doit être respectée par le moteur de négation"
+      ]
+    },
+    {
+      "id": "chal_04_double_negation",
+      "pattern": "double_negation",
+      "case_id": "3",
+      "texte_etudiant": "Il n'est pas exclu qu'il n'y ait pas d'anomalie du rythme, tracé non anormal.",
+      "risque_cible": "Formulation en double négation autour du concept ECG_NORMAL — risque d'inversion de polarité (le moteur de négation lit une seule négation et inverse le statut alors que le sens global est positif/normal).",
+      "verification_attendue": [
+        "vérifier manuellement le statut retourné pour ECG_NORMAL : le comportement correct attendu est ambigu et doit être tranché par l'expert (documenter la décision, ne pas supposer)"
+      ]
+    },
+    {
+      "id": "chal_05_diagnostic_seulement_hypothetique",
+      "pattern": "diagnostic_seulement_hypothetique",
+      "case_id": "21",
+      "texte_etudiant": "Tachycardie jonctionnelle orthodromique probable, ne peut totalement écarter une tachycardie ventriculaire sur cet aspect QRS large.",
+      "risque_cible": "Reprend l'exemple clinique donné par l'expert (TJ orthodromique / TV) : la TV n'est qu'une hypothèse évoquée, pas le diagnostic retenu. Doit être scorée via `expected_status: hypothesis_acceptable` et non comme un vrai positif ferme ni comme une erreur.",
+      "verification_attendue": [
+        "si TACHYCARDIE_VENTRICULAIRE est configuré hypothesis_acceptable pour ce cas, le statut extrait doit correspondre à une hypothèse (pas 'present' ferme, pas 'missed')",
+        "le diagnostic principal retenu (TJ orthodromique) doit rester le concept validant principal"
+      ]
+    },
+    {
+      "id": "chal_06_description_juste_sans_diagnostic",
+      "pattern": "description_juste_sans_diagnostic",
+      "case_id": "3",
+      "texte_etudiant": "Fréquence cardiaque à 70/min, PR entre 120 et 200 ms, QRS fins, pas de trouble de repolarisation visible.",
+      "risque_cible": "L'étudiant décrit correctement tous les éléments mais ne conclut jamais explicitement 'ECG normal'. Le scoreur doit-il inférer le diagnostic implicite depuis la description complète, ou exiger la conclusion explicite ?",
+      "verification_attendue": [
+        "documenter le comportement réel (present via inférence vs missed car non explicite) — sert de test de caractérisation, pas d'assertion stricte tant que la politique n'est pas tranchée par l'expert"
+      ]
+    },
+    {
+      "id": "chal_07_diagnostic_juste_sans_justification",
+      "pattern": "diagnostic_juste_sans_justification",
+      "case_id": "41",
+      "texte_etudiant": "Flutter atrial typique.",
+      "risque_cible": "Réponse minimaliste : bon diagnostic principal, mais aucun descripteur (ondes F, conduction, sens de rotation). Vérifie que le score reflète bien l'absence de justification clinique (score partiel, pas 100%) sans pour autant être nul.",
+      "verification_attendue": [
+        "le concept validant FLUTTER_DROIT_TYPIQUE doit être crédité",
+        "le score_final_pct doit rester nettement inférieur à une réponse complète (perte sur les descripteurs optionnels)"
+      ]
+    },
+    {
+      "id": "chal_08_concept_parent_trop_generique",
+      "pattern": "concept_parent_trop_generique",
+      "case_id": "49",
+      "texte_etudiant": "Tachycardie supraventriculaire avec QRS larges liés à un bloc de branche associé, sans autre précision.",
+      "risque_cible": "Réutilise directement le cas corrigé le 2026-08-10 : TACHYCARDIE_SUPRA_VENTRICULAIRE est maintenant descripteur (pas validant) pour ne pas doubler-compter avec FIBRILLATION_ATRIALE. Vérifie la non-régression de cette correction.",
+      "verification_attendue": [
+        "TACHYCARDIE_SUPRA_VENTRICULAIRE ne doit pas être validant",
+        "sans mention de FIBRILLATION_ATRIALE, le diagnostic principal doit être considéré incomplet (score faible sur le validant)"
+      ]
+    },
+    {
+      "id": "chal_09_concept_enfant_plus_specifique",
+      "pattern": "concept_enfant_plus_specifique",
+      "case_id": "41",
+      "texte_etudiant": "Flutter atrial droit typique isthme-dépendant à conduction 4/1, sens antihoraire, réentrée cavo-tricuspide.",
+      "risque_cible": "Réponse très précise (plus spécifique que le golden). Le scoreur ne doit pas pénaliser la sur-spécification ni la créditer deux fois via alternative_group (cf. chal_01).",
+      "verification_attendue": [
+        "score_final_pct élevé, un seul crédit pour le diagnostic flutter malgré la richesse de détail"
+      ]
+    },
+    {
+      "id": "chal_10_abreviation_ambigue",
+      "pattern": "abreviation_ambigue",
+      "case_id": "49",
+      "texte_etudiant": "FA avec BBD complet, TSV a QRS larges.",
+      "risque_cible": "Utilise des abréviations ambiguës (FA = fibrillation atriale mais aussi parfois 'flutter atrial' dans certains contextes ; TSV, BBD). Vérifie que le NER/résolution ontologique gère correctement ces abréviations sans faux positifs.",
+      "verification_attendue": [
+        "FA doit être résolu en FIBRILLATION_ATRIALE (pas en flutter) dans le contexte du cas 49",
+        "BBD doit être résolu en bloc de branche droit"
+      ]
+    },
+    {
+      "id": "chal_11_fautes_importantes",
+      "pattern": "fautes_importantes",
+      "case_id": "3",
+      "texte_etudiant": "Ritme sinusale normal, frequence cardiak 70 bpm, PR normale, ECG normal san anomalie.",
+      "risque_cible": "Fautes d'orthographe/frappe importantes sur les termes cliniques clés. Vérifie la robustesse du matching (fuzzy/lexical) aux fautes.",
+      "verification_attendue": [
+        "RYTHME_SINUSAL, FREQUENCE_NORMALE, PR_NORMAL, ECG_NORMAL doivent tous être correctement reconnus malgré les fautes"
+      ]
+    },
+    {
+      "id": "chal_12_diagnostics_concurrents",
+      "pattern": "plusieurs_diagnostics_concurrents",
+      "case_id": "21",
+      "texte_etudiant": "Soit tachycardie jonctionnelle orthodromique, soit tachycardie ventriculaire, soit tachycardie atriale avec bloc — plusieurs hypothèses possibles sans trancher.",
+      "risque_cible": "L'étudiant énumère plusieurs diagnostics concurrents sans se positionner. Vérifie que le scoreur ne crédite pas le diagnostic principal comme si l'étudiant l'avait affirmé avec certitude, tout en reconnaissant l'hypothèse acceptable (TV) si configurée comme telle.",
+      "verification_attendue": [
+        "documenter si le scoreur distingue 'affirmation ferme' de 'liste d'hypothèses non tranchées' (gap potentiel à signaler si absent)"
+      ]
+    },
+    {
+      "id": "chal_13_reponse_manipulant_bareme",
+      "pattern": "reponse_cherchant_a_manipuler_le_bareme",
+      "case_id": "3",
+      "texte_etudiant": "ECG normal. Rythme sinusal normal. Fréquence normale. PR normal. QRS fins normal. Repolarisation normale. Axe normal. QT normal. Tout normal, ECG normal, rythme sinusal, fréquence normale.",
+      "risque_cible": "Répétition massive et bourrage de mots-clés attendus sans structure clinique réelle, pour tester si le scoreur peut être 'gamé' par simple accumulation de synonymes des concepts golden.",
+      "verification_attendue": [
+        "le score ne doit pas dépasser celui d'une réponse claire et concise équivalente ; documenter si une pénalité anti-bourrage existe ou si c'est un gap à traiter en P4"
+      ]
+    }
+  ]
+}
