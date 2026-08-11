@@ -132,6 +132,127 @@ ouverts.**
 
 ---
 
+## DÉCISION D'ARCHITECTURE (2026-08-11) — Détection de contradictions
+
+Discussion expert/agent suite au mini-audit ci-dessus. Cette décision
+**amende la recommandation initiale** (qui proposait d'attaquer
+P4.3-contradiction en premier par simple extension des `excludes`).
+
+### Le problème de fond soulevé par l'expert
+
+La relation `excludes` de l'ontologie mélange aujourd'hui **trois
+catégories** sémantiquement différentes :
+
+1. **Contradiction sémantique absolue** : A et B ne peuvent JAMAIS être
+   vrais ensemble (typiquement concept / négation). Légitime en
+   ontologie, comportement "hard".
+2. **Incompatibilité clinique par défaut** : A et B sont normalement
+   incompatibles, mais des situations physiopathologiques réelles
+   autorisent leur coexistence. Exemples :
+   - FA + rythme régulier → possible si BAV complet avec échappement ;
+   - QRS fins + bloc de branche → possible en cas d'aberration de
+     conduction, BBB intermittent, alternance de morphologies,
+     extrasystoles avec aberration (donc `BLOC_DE_BRANCHE excludes
+     QRS_FINS`, déclaré actuellement, est FAUX dans l'absolu).
+3. **Incompatibilité propre à un tracé** : sur CET ECG, A est
+   incompatible avec ce qu'on observe. Ressort du golden (mécanisme
+   `statut: absent` / `role: exclusion` existant, caps 25/70).
+
+La sémantique correcte de la catégorie 2 exigerait en toute rigueur une
+notion de **portée** ("A exclut B pour le même événement QRS au même
+moment") — structure absente du pipeline (sac plat de concepts), et dont
+l'introduction serait une refonte disproportionnée.
+
+### Options évaluées
+
+| Option | Verdict |
+|---|---|
+| A. Enrichir les `excludes` globaux de l'ontologie | ❌ Produit des faux positifs sur les cas cliniquement riches (FA + BAV complet, aberration de conduction) |
+| B. Refonte avec raisonnement à portée (événements QRS) | ❌ Disproportionné — chal_02 est synthétique, jamais observé chez un étudiant réel. Limite architecturale NOTÉE, à revisiter seulement si des cas réels le justifient |
+| C. Tout basculer dans le golden par cas | ⚠️ Fonctionne mais perd la connaissance générique réutilisable |
+| **D. Compromis retenu : conflits par défaut + override automatique par le golden** | ✅ |
+
+### Architecture retenue (Option D)
+
+**Quatre niveaux de contraintes** :
+
+| Niveau | Exemple | Où ? | Comportement |
+|---|---|---|---|
+| Contradiction logique | A / NEGATION_A | Ontologie (`excludes` strict ou `negation_of`) | hard, `severity: error` |
+| Incompatibilité clinique par défaut | FA / RYTHME_REGULIER | Ontologie (`conflicts_by_default`) | conditionnelle, `severity: warning` |
+| Override contextuel | FA + BAV complet dans le golden | Golden/contexte du cas | lève la contrainte |
+| Interdiction spécifique du cas | "ne pas conclure à sinus" | Golden (`absent`/`exclusion`) | hard pour CE cas (caps 25/70) |
+
+**Règle-clé (override automatique par le golden)** — purement générique,
+zéro logique cardiologique dans Python :
+
+> Si les deux concepts d'une relation de conflit sont validés par le
+> golden du cas, la relation ne doit JAMAIS produire de contradiction
+> dans ce cas.
+
+```text
+if response_contains(A, B):
+    if golden_accepts(A, B):            # coexistence validée par le cas
+        no_conflict()
+    elif case_override_allows(A, B):    # allowed_cooccurrences (optionnel)
+        no_conflict()
+    else:
+        apply_constraint(A, B)          # selon severity
+```
+
+Le moteur dispose de deux ensembles d'informations (contexte du cas /
+golden + réponse de l'étudiant) : il décide si une incompatibilité est
+APPLICABLE à partir du contexte, puis seulement examine la réponse.
+L'étudiant n'a pas à mentionner l'exception lui-même.
+
+Flux cible :
+
+```text
+             ONTOLOGIE
+                 │
+    ┌────────────┴─────────────┐
+contradictions absolues  conflits par défaut
+    └────────────┬─────────────┘
+                 ▼
+         CONTEXTE DU CAS
+   (golden / allowed_cooccurrences)
+                 ▼
+        CONTRAINTES ACTIVES
+                 ▼
+       RÉPONSE DE L'ÉTUDIANT
+                 ▼
+             SCORING
+```
+
+**Implémentation incrémentale (V1 pragmatique)** :
+1. Détection de A/B normalement incompatibles (relation ontologie) ;
+2. Si le golden accepte A ET B → conflit neutralisé automatiquement ;
+3. Sinon appliquer la règle (selon sévérité) ;
+4. Champ léger `allowed_cooccurrences: [[QRS_FINS, BLOC_DE_BRANCHE]]`
+   dans le golden, ajouté SEULEMENT quand un cas réel le réclame (couvre
+   le cas où les deux concepts sont légitimes mais où l'un n'a pas
+   vocation à être exigé dans la correction) ;
+5. Le champ `exceptions:` dans l'ontologie n'est PAS nécessaire pour
+   l'instant (l'override golden le rend redondant).
+
+### Conséquence : audit obligatoire des 39 `excludes` existants
+
+Chaque relation doit être reclassée avec la question-test :
+
+> **Cette relation reste-t-elle vraie quelle que soit la situation
+> clinique représentable sur un ECG ?**
+
+- Oui → `excludes` (hard, `severity: error`) ;
+- Non, mais utile pédagogiquement → `conflicts_by_default`
+  (`severity: warning`, override golden possible) ;
+- Vraie seulement pour certains ECG → sort de l'ontologie, passe dans le
+  golden des cas concernés.
+
+Résultat attendu : très peu de vrais `excludes` restants (essentiellement
+les paires concept/négation) — et c'est le reflet correct de la clinique.
+
+---
+
 ## Synthèse : ordre d'attaque proposé
 
 | Chantier | Effort | Impact | Dépendances |
@@ -141,12 +262,22 @@ ouverts.**
 | **P4.2** : calibration des crédits vs jugements humains | Élevé (protocole + annotation + analyse) | Moyen-élevé (rigueur scientifique) | Mieux APRÈS P4.1 (calibrer sur la dimension adéquation isolée est plus propre) |
 | P4.3-double-négation (chal_04) | Moyen (NER) | Faible (fréquence réelle basse) | Aucune — peut rester en backlog |
 
-**Recommandation** : commencer par **P4.3-contradiction** (détection des
-`excludes` intra-réponse), car :
-1. c'est le trou de sécurité le plus flagrant démontré par le challenge
-   set (chal_02 : 100% sur une réponse cliniquement incohérente) ;
-2. le mécanisme `excludes` existe déjà dans l'ontologie et dans
-   `scoring_v3._check_excludes` — c'est une extension, pas une création ;
-3. son résultat (liste des contradictions internes) est exactement
-   l'entrée dont le futur score de sécurité (P4.1) aura besoin — on
-   construit dans le bon ordre.
+**Recommandation (AMENDÉE 2026-08-11 suite à la décision d'architecture
+ci-dessus)** : P4.3-contradiction est requalifié — ce n'est plus une
+simple extension des `excludes` mais l'implémentation de l'Option D :
+
+1. **P4.3a — Audit des 39 `excludes`** (expert requis) : reclasser chaque
+   relation en `excludes` strict / `conflicts_by_default` / golden par cas
+   (question-test ci-dessus) ;
+2. **P4.3b — Moteur** : implémenter la vérification des conflits
+   intra-réponse AVEC override automatique par le golden
+   (`golden_accepts(A, B) → no_conflict`) et sévérités error/warning ;
+3. **P4.1** : séparer adéquation/sécurité — le résultat de P4.3b (liste
+   des contradictions actives) est exactement l'entrée de la dimension
+   sécurité ;
+4. **P4.2** : calibration après P4.1.
+
+L'ordre P4.3a/P4.3b vs P4.1 peut s'inverser si l'audit expert des 39
+relations n'est pas disponible rapidement : P4.1 n'en dépend pas
+structurellement (la dimension sécurité peut naître avec les seules
+exclusions golden par cas, et intégrer les conflits ontologiques ensuite).
