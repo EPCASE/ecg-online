@@ -46,6 +46,20 @@ VALIDANT_FOUND_THRESHOLD_PCT: float = 60.0
 EXCLUSION_RANG_A_SCORE_CAP: int = 25
 EXCLUSION_RANG_B_SCORE_CAP: int = 70
 
+# ─────────────────────────── Sécurité P4.1 (rag_pipeline/safety_score.py) ──────────
+
+# ⚠️ VALEURS DE TRANSITION NON CALIBRÉES (P4.1, 2026-08-11) — à ré-estimer en
+# P4.2 contre des jugements humains. Ce ne sont PAS des seuils cliniquement
+# validés : elles traduisent simplement les anciens caps 25/70 (pénalité =
+# 100 - cap) pour une transition compréhensible vers le score de sécurité
+# multiplicatif (score = adéquation × sécurité / 100).
+SAFETY_PENALTY_EXCLUSION_A: int = 75    # exclusion golden rang A affirmée
+SAFETY_PENALTY_EXCLUSION_B: int = 30    # exclusion golden rang B affirmée
+SAFETY_PENALTY_HARD_CONTRADICTION: int = 75  # contradiction HARD (excludes) active
+SAFETY_PENALTY_DEFAULT_CONFLICT: int = 0     # DEFAULT actif : observable +
+#   pédagogique UNIQUEMENT en V1 (monde ouvert). Activation éventuelle d'une
+#   pénalité APRÈS la mesure P4.3c (juge contextuel + annotation expert).
+
 # ─────────────────────────── Scoring ontologique (rag_pipeline/scoring_v3.py) ──────
 
 # Crédit accordé quand un concept golden n'est pas trouvé directement mais
