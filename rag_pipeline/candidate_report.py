@@ -362,6 +362,11 @@ class ExtractedConcept:
     # --- Métriques de confiance (NEW) ---
     top_k_candidats: list = field(default_factory=list)   # Top-K candidats avec scores
     llm_confiance: int = -1    # Confiance LLM auto-évaluée (0-100), -1 si coupe-circuit
+    # --- Span textuel (P4.3c étape 0) : phrase porteuse du terme, telle que
+    # fournie par le NER (`ClinicalEntity.contexte_phrase`). Nécessaire au
+    # futur juge contextuel des contradictions ; "" pour les concepts inférés
+    # (pattern_inference) qui n'ont pas de span réel.
+    contexte_phrase: str = ""
 
 
 @dataclass
@@ -627,6 +632,7 @@ def generate_candidate_report(
                 justification=resolution.get("justification", ""),
                 top_k_candidats=resolution.get("top_k_candidats", []),
                 llm_confiance=resolution.get("llm_confiance", -1),
+                contexte_phrase=getattr(entite, "contexte_phrase", "") or "",
             )
             report.concepts_extraits.append(concept)
 

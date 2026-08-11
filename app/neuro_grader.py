@@ -559,8 +559,11 @@ def _check_coherence(report, num) -> dict:
         return out
 
     # 1) Concepts AFFIRMÉS par le candidat (seuls les `present` se contredisent).
+    #    On collecte aussi TOUTES les phrases porteuses par concept (spans,
+    #    P4.3c étape 0) — sans agrégation, cf. cas limite n°6 du brainstorm.
     _rank = {"present": 3, "hypothese": 2, "absent": 1}
     cand: dict = {}
+    spans_by_concept: dict = {}
     for c in getattr(report, "concepts_extraits", []):
         cid = getattr(c, "ontology_id", "NONE")
         if not cid or cid == "NONE":
@@ -568,6 +571,9 @@ def _check_coherence(report, num) -> dict:
         st = getattr(c, "statut", "present")
         if cid not in cand or _rank.get(st, 0) > _rank.get(cand[cid], 0):
             cand[cid] = st
+        span = (getattr(c, "contexte_phrase", "") or "").strip()
+        if span and span not in spans_by_concept.setdefault(cid, []):
+            spans_by_concept[cid].append(span)
     found_present = {cid for cid, st in cand.items() if st == "present"}
     if len(found_present) < 2:
         return out
@@ -594,6 +600,16 @@ def _check_coherence(report, num) -> dict:
         contradictions = coherence.check_response_coherence(found_present, case_golden)
     except Exception:
         return out
+
+    # Instrumentation passive P4.3c étape 0 : journaliser les paires candidates
+    # avec leurs spans (AUCUN effet sur la note, jamais d'exception).
+    try:
+        import coherence_log  # type: ignore  # vendoré rag_pipeline
+        coherence_log.log_candidate_pairs(num, contradictions, spans_by_concept,
+                                          pipeline_version=PIPELINE_VERSION)
+    except Exception:
+        pass
+
     for ct in contradictions:
         out["contradictions"].append(ct)
         if ct.status == coherence.DATA_INCONSISTENCY:
