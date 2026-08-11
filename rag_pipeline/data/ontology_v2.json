@@ -170,9 +170,7 @@
       "categorie": "DESCRIPTION_ECG",
       "poids": 2,
       "type": "pattern",
-      "excludes": [
-        "MORPHOLOGIE_ANORMALE_DU_QRS"
-      ],
+      "excludes": [],
       "synonymes": [
         "Onde Q physiologique",
         "Pas d'onde Q",
@@ -528,9 +526,7 @@
         "IRREGULIER",
         "RYTHME_SINUSAL"
       ],
-      "excludes": [
-        "ONDE_P_ANORMALE"
-      ],
+      "excludes": [],
       "synonymes": [
         "Arythmie sinusale respiratoire",
         "arythmie sinusale physiologique",
@@ -1082,8 +1078,7 @@
         "QRS_LARGE"
       ],
       "excludes": [
-        "QRS_FINS",
-        "BLOC_FASCICULAIRE"
+        "QRS_FINS"
       ],
       "parents": [
         "TROUBLE_DE_CONDUCTION_INTRAVENTRICULAIRE"
@@ -2537,8 +2532,7 @@
       ],
       "excludes": [
         "FIBRILLATION_ATRIALE",
-        "FLUTTER_DROIT_TYPIQUE",
-        "TOIT_D_USINE"
+        "FLUTTER_DROIT_TYPIQUE"
       ],
       "synonymes": [
         "Flutter atrial non commun",
@@ -4429,9 +4423,7 @@
       "categorie": "DESCRIPTION_ECG",
       "poids": 2,
       "type": "finding",
-      "excludes": [
-        "ABSENCE_DE_QRS"
-      ],
+      "excludes": [],
       "parents": [
         "QRS"
       ],
@@ -4602,8 +4594,6 @@
         "MORPHOLOGIE_DU_QRS_NORMALE"
       ],
       "excludes": [
-        "FAISCEAU_ACCESSOIRE_A_CONDUCTION_ANTEROGRADE",
-        "PREEXCITATION_VENTRICULAIRE_PAR_FIBRE_DE_MAHAIM",
         "ONDE_EPSILON",
         "TROUBLE_DE_CONDUCTION_INTRAVENTRICULAIRE"
       ],
@@ -5425,9 +5415,7 @@
         "CARDIOPATHIE_ISCHEMIQUE_CHRONIQUE",
         "CARDIOMYOPATHIE_HYPERTROPHIQUE"
       ],
-      "excludes": [
-        "ABSENCE_D_ONDE_Q_PATHOLOGIQUE"
-      ],
+      "excludes": [],
       "parents": [
         "TROUBLE_DE_CONDUCTION_INTRAVENTRICULAIRE",
         "CARDIOPATHIE_ISCHEMIQUE_CHRONIQUE"
@@ -5986,9 +5974,7 @@
       "has_qualifiers": [
         "POLYMORPHE"
       ],
-      "excludes": [
-        "ORGANISEE"
-      ],
+      "excludes": [],
       "synonymes": [
         "Polymorphic VT",
         "TV polymorphe",
@@ -6226,9 +6212,7 @@
         "ANOMALIE_DES_ONDES_T"
       ],
       "excludes": [
-        "PAS_D_ANOMALIE_DE_LE_REPOLARISATION",
-        "ONDE_U_NORMALE",
-        "ST_NORMAL"
+        "PAS_D_ANOMALIE_DE_LE_REPOLARISATION"
       ],
       "synonymes": [
         "Trouble de la repolarisation",
@@ -6969,8 +6953,7 @@
       "type": "finding",
       "excludes": [
         "HYPERTROPHIE_VENTRICULAIRE_GAUCHE",
-        "MICROVOLTAGE",
-        "TROUBLE_DE_CONDUCTION_INTRAVENTRICULAIRE"
+        "MICROVOLTAGE"
       ],
       "synonymes": [
         "Amplitude normale du QRS",
