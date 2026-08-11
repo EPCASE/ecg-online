@@ -3342,7 +3342,8 @@
       "origin_structure": [
         "VENTRICULE"
       ],
-      "excludes": [
+      "excludes": [],
+      "conflicts_by_default": [
         "VOLTAGE_DU_QRS_NORMAL"
       ]
     },
@@ -6984,9 +6985,7 @@
       "categorie": "DESCRIPTION_ECG",
       "poids": 2,
       "type": "finding",
-      "excludes": [
-        "MICROVOLTAGE"
-      ],
+      "excludes": [],
       "synonymes": [
         "Amplitude normale du QRS",
         "normovolté",
