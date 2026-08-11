@@ -301,6 +301,12 @@ def _report_to_correction(report, num: int, exclusions: Optional[List[dict]] = N
     elements_errones.extend(excl_report["errones"])
     elements_trouves.extend(excl_report["trouves"])
 
+    # ── Cohérence intra-réponse (P4.3b) : contradictions entre concepts
+    #    AFFIRMÉS, via l'ontologie (excludes HARD / conflicts_by_default) avec
+    #    override par le golden du cas. Voir rag_pipeline/coherence.py et
+    #    docs/P4.3b_design_moteur_coherence_2026_08_11.md.
+    coh_report = _check_coherence(report, num)
+
     # ── Sous-scores : diagnostic = score V3 (piloté par les validants) ;
     #    descriptif = taux de descripteurs trouvés.
     nb_desc_att = getattr(report, "nb_descripteurs_attendus", 0) or 0
@@ -330,6 +336,16 @@ def _report_to_correction(report, num: int, exclusions: Optional[List[dict]] = N
         if type_erreur == "aucune":
             type_erreur = "etudiant"
 
+    # ── Cohérence P4.3b : seule une contradiction HARD active plafonne
+    #    (même cap que rang A). Les DEFAULT actives (warning) ne plafonnent
+    #    PAS en V1 (monde ouvert : UNKNOWN ≠ faux) — feedback uniquement.
+    if coh_report["hard_active"]:
+        score = min(score, th.EXCLUSION_RANG_A_SCORE_CAP)
+        score_diagnostic = min(score_diagnostic, th.EXCLUSION_RANG_A_SCORE_CAP)
+        correspondance = "incorrecte"
+        type_erreur = "etudiant"
+    elements_errones.extend(coh_report["errones"])
+
     # ── Diagnostic retenu : 1er validant trouvé, sinon le concept extrait dominant
     diagnostic_retenu = _guess_retained_dx(report)
 
@@ -340,6 +356,18 @@ def _report_to_correction(report, num: int, exclusions: Optional[List[dict]] = N
         rappel = "; ".join(e["label"] for e in excl_report["errones"])
         commentaire = (f"⚠️ **À écarter, pas à affirmer :** {rappel}.\n\n"
                        + (commentaire or ""))
+    if coh_report["warnings"]:
+        # DEFAULT actif : feedback prudent, sans pénalité (monde ouvert, V1).
+        avert = " ".join(coh_report["warnings"])
+        commentaire = (commentaire or "") + f"\n\n💡 **À vérifier :** {avert}"
+    if coh_report["data_inconsistencies"]:
+        # HARD contredit par le golden → problème de DONNÉES, jamais l'étudiant.
+        import logging
+        for ct in coh_report["data_inconsistencies"]:
+            logging.getLogger(__name__).error(
+                "[coherence] data_inconsistency cas %s : golden accepte les 2 pôles "
+                "d'un excludes HARD (%s ↔ %s) — auditer ontologie/golden.",
+                num, ct.concept_a, ct.concept_b)
 
     verdict = _verdict(score, nb_val_found, nb_val_att)
 
@@ -453,6 +481,77 @@ def _check_exclusions(report, exclusions: List[dict]) -> dict:
                 "rang": rang if rang in ("A", "B", "C") else "A",
             })
         # sinon (non mentionné / hypothèse) : neutre.
+    return out
+
+
+def _check_coherence(report, num) -> dict:
+    """Contradictions INTRA-réponse entre concepts AFFIRMÉS (P4.3b).
+
+    Délègue à `rag_pipeline/coherence.py` :
+      • HARD (excludes) actif      → `hard_active` = True (cap rang A) + erroné.
+      • DEFAULT (conflict) actif   → warning pédagogique prudent, PAS de cap V1.
+      • overridden (golden accepte les deux) → silencieux.
+      • data_inconsistency (HARD que le golden accepte des 2 côtés) → alerte
+        audit (log), AUCUN effet étudiant.
+
+    Retourne {errones, warnings, hard_active, data_inconsistencies}.
+    Ne lève jamais : en cas de module/golden indisponible → rapport vide.
+    """
+    out = {"errones": [], "warnings": [], "hard_active": False,
+           "data_inconsistencies": []}
+    try:
+        import coherence  # type: ignore  # vendoré dans rag_pipeline (sys.path)
+    except Exception:
+        return out
+
+    # 1) Concepts AFFIRMÉS par le candidat (seuls les `present` se contredisent).
+    _rank = {"present": 3, "hypothese": 2, "absent": 1}
+    cand: dict = {}
+    for c in getattr(report, "concepts_extraits", []):
+        cid = getattr(c, "ontology_id", "NONE")
+        if not cid or cid == "NONE":
+            continue
+        st = getattr(c, "statut", "present")
+        if cid not in cand or _rank.get(st, 0) > _rank.get(cand[cid], 0):
+            cand[cid] = st
+    found_present = {cid for cid, st in cand.items() if st == "present"}
+    if len(found_present) < 2:
+        return out
+
+    # 2) Golden du cas au format attendu par coherence (mapping {i: {golden_id, statut}}).
+    mapping: dict = {}
+    try:
+        golden = golden_config.golden_for_scorer(num) or {}
+        i = 0
+        for key in ("validants", "descripteurs"):  # exclusions déjà incluses (statut=absent)
+            for item in golden.get(key, []) or []:
+                gid = item.get("concept_id")
+                if not gid:
+                    continue
+                mapping[str(i)] = {"golden_id": gid,
+                                   "statut": item.get("statut", "present")}
+                i += 1
+    except Exception:
+        mapping = {}
+    case_golden = {"mapping": mapping}
+
+    # 3) Vérification et tri par statut/sévérité.
+    try:
+        contradictions = coherence.check_response_coherence(found_present, case_golden)
+    except Exception:
+        return out
+    for ct in contradictions:
+        if ct.status == coherence.DATA_INCONSISTENCY:
+            out["data_inconsistencies"].append(ct)
+        elif ct.status == coherence.ACTIVE:
+            fb = coherence.format_contradiction_feedback(ct)
+            if ct.severity == "error":
+                out["hard_active"] = True
+                out["errones"].append({"label": fb, "correction":
+                                       "ces deux affirmations sont incompatibles"})
+            else:
+                out["warnings"].append(fb)
+        # overridden → silencieux.
     return out
 
 
