@@ -2464,6 +2464,9 @@
       ],
       "origin_structure": [
         "OREILLETTES"
+      ],
+      "conflicts_by_default": [
+        "RYTHME_REGULIER"
       ]
     },
     "FIBRILLATION_VENTRICULAIRE": {
