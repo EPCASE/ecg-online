@@ -37,7 +37,7 @@ if TYPE_CHECKING:
 # l'ontologie golden. Exposé dans /api/grade (champ "pipeline_version") pour
 # que chaque réponse historisée (Google Sheets) soit rattachable à une version
 # précise du pipeline — indispensable dès que 2+ experts golden coexistent.
-PIPELINE_VERSION = "neuro-v1.2"
+PIPELINE_VERSION = "neuro-v1.3"  # P4.2 : golden override, cap concurrent, pénalité graduée sibling
 
 # ── Localisation du pipeline vendoré ────────────────────────────────────────
 _PIPELINE_DIR = Path(__file__).resolve().parent.parent / "rag_pipeline"
