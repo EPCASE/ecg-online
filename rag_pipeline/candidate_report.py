@@ -362,6 +362,11 @@ class ExtractedConcept:
     # --- Métriques de confiance (NEW) ---
     top_k_candidats: list = field(default_factory=list)   # Top-K candidats avec scores
     llm_confiance: int = -1    # Confiance LLM auto-évaluée (0-100), -1 si coupe-circuit
+    # --- Span textuel (P4.3c étape 0) : phrase porteuse du terme, telle que
+    # fournie par le NER (`ClinicalEntity.contexte_phrase`). Nécessaire au
+    # futur juge contextuel des contradictions ; "" pour les concepts inférés
+    # (pattern_inference) qui n'ont pas de span réel.
+    contexte_phrase: str = ""
 
 
 @dataclass
@@ -627,6 +632,7 @@ def generate_candidate_report(
                 justification=resolution.get("justification", ""),
                 top_k_candidats=resolution.get("top_k_candidats", []),
                 llm_confiance=resolution.get("llm_confiance", -1),
+                contexte_phrase=getattr(entite, "contexte_phrase", "") or "",
             )
             report.concepts_extraits.append(concept)
 
@@ -717,6 +723,10 @@ def generate_candidate_report(
             found_ids=found_ids,
             expected_ids=validant_ids,
             absent_ids=absent_ids,
+            # P4.2 (variante 2) : TOUT le golden (validants + descripteurs)
+            # alimente le golden override des exclusions — une variante
+            # acceptée en rang C (descripteur) ne doit pas exclure un validant.
+            golden_all_ids=list(golden_ids),
         )
 
         report.score_final_pct = v3_result.score_pct
@@ -777,7 +787,8 @@ def generate_candidate_report(
             #      la logique `requires` → un concept déduit avec succès côté
             #      validant (ex. TACHYCARDIE_SINUSALE via requires satisfaits)
             #      restait affiché "manqué" côté descripteur (cas 39/40).
-            cs = _score_one_concept(nid, found_set, None)
+            cs = _score_one_concept(nid, found_set, None,
+                                    {normalize_key(g) for g in golden_ids})
             # NB (bug "Bloc interatrial" du 2026-08-06) : un match de type
             # "support" est le lien le PLUS FAIBLE du scoring V3 (poids 1/3,
             # ex: BLOC_INTERATRIAL a "supports: [RYTHME_SINUSAL]" — un lien

@@ -32,3 +32,6 @@ _scratch/
 /_smoke_*.py
 /_analyze_*.py
 /_debug_*.py
+
+# Dumps locaux Google Sheets (donnees etudiantes)
+_sheet_*.json

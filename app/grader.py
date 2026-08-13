@@ -231,6 +231,12 @@ class Correction:
     # de l'interprétation NER/ontologie par l'étudiant → curation golden). Vide
     # pour le backend GPT (pas d'extraction ontologique explicite exposée).
     concepts_detectes: List[dict] = field(default_factory=list)
+    # ── P4.1 : mesures PRIMAIRES séparées (le `score` global n'est plus qu'un
+    # produit adéquation × sécurité / 100). Défauts rétrocompatibles : le
+    # backend GPT ne les distingue pas (sécurité 100 → score = adéquation).
+    score_adequation: int = 0     # couverture du golden (score V3)
+    score_securite: int = 100     # 100 - pénalités de sécurité dédupliquées
+    safety_events: List[dict] = field(default_factory=list)  # traçabilité/audit/P4.3c
 
     def to_dict(self):
         return asdict(self)

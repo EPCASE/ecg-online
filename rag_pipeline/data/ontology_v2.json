@@ -3342,7 +3342,8 @@
       "origin_structure": [
         "VENTRICULE"
       ],
-      "excludes": [
+      "excludes": [],
+      "conflicts_by_default": [
         "VOLTAGE_DU_QRS_NORMAL"
       ]
     },
@@ -6942,7 +6943,11 @@
       "parents": [
         "BLOC_DE_BRANCHE"
       ],
-      "comment": "Alternance d'un bloc de branche droit et d'un bloc de branche gauche sur des tracés successifs — signe de maladie bi/trifasciculaire sévère, à haut risque de BAV complet. Cf. relecture 2026-08-09, cas 14."
+      "comment": "Alternance d'un bloc de branche droit et d'un bloc de branche gauche sur des tracés successifs — signe de maladie bi/trifasciculaire sévère, à haut risque de BAV complet. Cf. relecture 2026-08-09, cas 14.",
+      "requires": [
+        "BLOC_DE_BRANCHE_DROIT",
+        "BLOC_DE_BRANCHE_GAUCHE"
+      ]
     },
     "FLUTTER_ATRIAL": {
       "concept_name": "Flutter atrial",
@@ -6984,9 +6989,7 @@
       "categorie": "DESCRIPTION_ECG",
       "poids": 2,
       "type": "finding",
-      "excludes": [
-        "MICROVOLTAGE"
-      ],
+      "excludes": [],
       "synonymes": [
         "Amplitude normale du QRS",
         "normovolté",

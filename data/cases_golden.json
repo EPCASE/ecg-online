@@ -85,6 +85,14 @@
           "confiance": 0.72,
           "valide_par": "gpt",
           "justification": "Négation composite; concept candidat central existant: séquelle de nécrose."
+        },
+        "Arythmie sinusale physiologique respiratoire (variante normale, acceptée)": {
+          "golden_id": "ARYTHMIE_SINUSALE",
+          "concept_name": "Arythmie sinusale",
+          "statut": "present",
+          "confiance": 1.0,
+          "valide_par": "humain",
+          "justification": "P4.2 calibration 2026-08-12 — variante physiologique créditée par l'expert ; ajoutée au golden pour activer le golden override des exclusions (scoring_v3, variante 2)."
         }
       }
     },
@@ -445,6 +453,14 @@
           "confiance": 0.9,
           "valide_par": "gpt",
           "justification": "Concept exact pour absence de trouble de repolarisation; QT normal est secondaire."
+        },
+        "Ondes T négatives en V1-V3 (variante normale, acceptée)": {
+          "golden_id": "ONDE_T_NEGATIVE",
+          "concept_name": "Onde T négative",
+          "statut": "present",
+          "confiance": 1.0,
+          "valide_par": "humain",
+          "justification": "P4.2 calibration 2026-08-12 — variante physiologique créditée par l'expert ; ajoutée au golden pour activer le golden override des exclusions (scoring_v3, variante 2)."
         }
       }
     },
@@ -995,12 +1011,12 @@
       "diagnostic_principal": "Bloc de branche alternant avec troubles de conduction atrio-ventriculaire",
       "mapping": {
         "Décrire l’alternance bloc de branche droite complet / bloc de branche gauche complet": {
-          "golden_id": "BLOC_DE_BRANCHE",
-          "concept_name": "Bloc de branche",
+          "golden_id": "BLOC_DE_BRANCHE_ALTERNANT",
+          "concept_name": "Bloc de branche alternant",
           "statut": "present",
           "confiance": 0.7,
-          "valide_par": "gpt",
-          "justification": "Concept ombrelle fidèle aux morphologies BBDc/BBGc alternantes."
+          "valide_par": "humain",
+          "justification": "P4.2 2026-08-13 — le parent générique BLOC_DE_BRANCHE créditait un simple BBG/BBD isolé (S022/S049/S139). Le validant est le bloc ALTERNANT ; alternative BBD+BBG via requires ontologique."
         },
         "Reconnaître les ondes P bloquées traduisant un trouble de conduction atrio-ventriculaire": {
           "golden_id": "UNE_ONDE_P_BLOQUEE",

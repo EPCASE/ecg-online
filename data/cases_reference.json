@@ -195,6 +195,10 @@
         {
           "label": "Ne pas retenir hémibloc antérieur gauche, séquelle antéro-septale, HVG ou HVD",
           "rang": "A"
+        },
+        {
+          "label": "Arythmie sinusale physiologique respiratoire (variante normale, acceptée)",
+          "rang": "C"
         }
       ],
       "fiche_secours": {
@@ -628,6 +632,10 @@
         {
           "label": "Absence de trouble de la repolarisation et QT normal",
           "rang": "B"
+        },
+        {
+          "label": "Ondes T négatives en V1-V3 (variante normale, acceptée)",
+          "rang": "C"
         }
       ],
       "fiche_secours": {

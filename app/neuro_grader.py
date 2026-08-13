@@ -37,7 +37,7 @@ if TYPE_CHECKING:
 # l'ontologie golden. Exposé dans /api/grade (champ "pipeline_version") pour
 # que chaque réponse historisée (Google Sheets) soit rattachable à une version
 # précise du pipeline — indispensable dès que 2+ experts golden coexistent.
-PIPELINE_VERSION = "neuro-v1.1"
+PIPELINE_VERSION = "neuro-v1.3"  # P4.2 : golden override, cap concurrent, pénalité graduée sibling
 
 # ── Localisation du pipeline vendoré ────────────────────────────────────────
 _PIPELINE_DIR = Path(__file__).resolve().parent.parent / "rag_pipeline"
@@ -301,6 +301,12 @@ def _report_to_correction(report, num: int, exclusions: Optional[List[dict]] = N
     elements_errones.extend(excl_report["errones"])
     elements_trouves.extend(excl_report["trouves"])
 
+    # ── Cohérence intra-réponse (P4.3b) : contradictions entre concepts
+    #    AFFIRMÉS, via l'ontologie (excludes HARD / conflicts_by_default) avec
+    #    override par le golden du cas. Voir rag_pipeline/coherence.py et
+    #    docs/P4.3b_design_moteur_coherence_2026_08_11.md.
+    coh_report = _check_coherence(report, num)
+
     # ── Sous-scores : diagnostic = score V3 (piloté par les validants) ;
     #    descriptif = taux de descripteurs trouvés.
     nb_desc_att = getattr(report, "nb_descripteurs_attendus", 0) or 0
@@ -313,22 +319,30 @@ def _report_to_correction(report, num: int, exclusions: Optional[List[dict]] = N
     nb_val_found = getattr(report, "nb_validants_trouves", 0) or 0
     correspondance, type_erreur = _classify(score, nb_val_found, nb_val_att)
 
-    # ── Non-régression : affirmer un concept À ÉCARTER est une faute de
-    #    sécurité clinique. On plafonne le score et on force l'erreur clinique.
-    #    Rang A (grave, ex. « miroir » affirmé = confond myocardite et SCA ST+) :
-    #    plafond très bas + correspondance « incorrecte ». Rang B : plafond doux.
-    if excl_report["violated_A"]:
-        score = min(score, th.EXCLUSION_RANG_A_SCORE_CAP)
-        score_diagnostic = min(score_diagnostic, th.EXCLUSION_RANG_A_SCORE_CAP)
+    # ── Sécurité P4.1 : les détecteurs (exclusions golden, cohérence P4.3b)
+    #    sont traduits en SafetyEvent ; safety_score les consomme. Le score
+    #    global devient un PRODUIT explicite adéquation × sécurité (plus de
+    #    min() destructif). Voir docs/P4.1_design_adequation_securite_2026_08_11.md.
+    _golden_validant_ids = {vd.golden_id for vd in getattr(report, "validant_details", [])
+                            if getattr(vd, "golden_id", "")}
+    safety_events = _build_safety_events(excl_report, coh_report, _golden_validant_ids)
+    import safety_score as _ss  # type: ignore  # vendoré rag_pipeline (sys.path)
+    score_adequation = score
+    score_securite = _ss.compute_safety_score(safety_events)
+    score = _ss.combine_scores(score_adequation, score_securite)
+    score_diagnostic = _ss.combine_scores(score_diagnostic, score_securite)
+
+    # ── Correspondance / type d'erreur : une faute de sécurité GRAVE (rang A
+    #    ou contradiction HARD) force l'erreur clinique ; rang B seul adoucit.
+    if excl_report["violated_A"] or coh_report["hard_active"]:
         correspondance = "incorrecte"
         type_erreur = "etudiant"
     elif excl_report["violated_B"]:
-        score = min(score, th.EXCLUSION_RANG_B_SCORE_CAP)          # exclusion mineure affirmée = plafond doux
-        score_diagnostic = min(score_diagnostic, th.EXCLUSION_RANG_B_SCORE_CAP)
         if correspondance in ("exacte", "acceptable"):
             correspondance = "partielle"
         if type_erreur == "aucune":
             type_erreur = "etudiant"
+    elements_errones.extend(coh_report["errones"])
 
     # ── Diagnostic retenu : 1er validant trouvé, sinon le concept extrait dominant
     diagnostic_retenu = _guess_retained_dx(report)
@@ -340,6 +354,18 @@ def _report_to_correction(report, num: int, exclusions: Optional[List[dict]] = N
         rappel = "; ".join(e["label"] for e in excl_report["errones"])
         commentaire = (f"⚠️ **À écarter, pas à affirmer :** {rappel}.\n\n"
                        + (commentaire or ""))
+    if coh_report["warnings"]:
+        # DEFAULT actif : feedback prudent, sans pénalité (monde ouvert, V1).
+        avert = " ".join(coh_report["warnings"])
+        commentaire = (commentaire or "") + f"\n\n💡 **À vérifier :** {avert}"
+    if coh_report["data_inconsistencies"]:
+        # HARD contredit par le golden → problème de DONNÉES, jamais l'étudiant.
+        import logging
+        for ct in coh_report["data_inconsistencies"]:
+            logging.getLogger(__name__).error(
+                "[coherence] data_inconsistency cas %s : golden accepte les 2 pôles "
+                "d'un excludes HARD (%s ↔ %s) — auditer ontologie/golden.",
+                num, ct.concept_a, ct.concept_b)
 
     verdict = _verdict(score, nb_val_found, nb_val_att)
 
@@ -357,6 +383,9 @@ def _report_to_correction(report, num: int, exclusions: Optional[List[dict]] = N
         commentaire=commentaire,
         model="neuro-pipeline-v3",
         concepts_detectes=_concepts_for_review(report),
+        score_adequation=score_adequation,
+        score_securite=score_securite,
+        safety_events=[ev.to_dict() for ev in safety_events],
     )
 
 
@@ -408,10 +437,13 @@ def _check_exclusions(report, exclusions: List[dict]) -> dict:
       • Le candidat NIE (absent) correctement → point de sécurité (✓ trouvé).
       • Concept non mentionné, ou en simple hypothèse → neutre.
 
-    Retourne {errones, trouves, violated_A, violated_B} pour que l'appelant
-    ajuste éléments + score + type d'erreur.
+    Retourne {errones, trouves, violated_A, violated_B, violations} pour que
+    l'appelant ajuste éléments + score + type d'erreur. `violations` liste
+    (concept_id, rang) de chaque exclusion affirmée — matière première des
+    SafetyEvent (P4.1).
     """
-    out = {"errones": [], "trouves": [], "violated_A": False, "violated_B": False}
+    out = {"errones": [], "trouves": [], "violated_A": False, "violated_B": False,
+           "violations": []}
     if not exclusions:
         return out
 
@@ -442,6 +474,7 @@ def _check_exclusions(report, exclusions: List[dict]) -> dict:
                 "label": f"{name} affirmé à tort",
                 "correction": f"à écarter ici (la référence signale « {ex.get('label', 'absence')} »)",
             })
+            out["violations"].append((cid, rang))
             if rang == "A":
                 out["violated_A"] = True
             else:
@@ -453,6 +486,186 @@ def _check_exclusions(report, exclusions: List[dict]) -> dict:
                 "rang": rang if rang in ("A", "B", "C") else "A",
             })
         # sinon (non mentionné / hypothèse) : neutre.
+    return out
+
+
+def _is_sibling_of_golden(concept_id: str, golden_ids: set) -> bool:
+    """P4.2 (2026-08-13) : le concept exclu affirmé est-il un FRÈRE ontologique
+    direct (même parent immédiat) d'un validant golden ? Erreur de SOUS-TYPE
+    (ex. Mobitz 1 affirmé quand le golden est Mobitz 2, cas 25 : S047/S134) →
+    pénalité réduite (SAFETY_PENALTY_EXCLUSION_A_SIBLING). Détection symétrique
+    et conservatrice : uniquement les parents directs, via l'ontologie v2."""
+    if not concept_id or not golden_ids:
+        return False
+    try:
+        import scoring_v3 as _sv3  # type: ignore  # vendoré rag_pipeline (sys.path)
+        onto = _sv3._get_ontology_v2()
+        concepts = onto["concepts"]
+        nk = _sv3.normalize_key
+        ne = nk(concept_id)
+        golden_norm = {nk(g) for g in golden_ids}
+        c = concepts.get(ne)
+        if not c:
+            return False
+        for parent in c.get("parents", []) or []:
+            p = concepts.get(nk(parent))
+            if not p:
+                continue
+            for sib in p.get("children", []) or []:
+                ns = nk(sib)
+                if ns != ne and ns in golden_norm:
+                    return True
+    except Exception:
+        return False
+    return False
+
+
+def _build_safety_events(excl_report: dict, coh_report: dict,
+                         golden_validant_ids: Optional[set] = None) -> list:
+    """Traduit les rapports des détecteurs en SafetyEvent (format pivot P4.1).
+
+    neuro_grader RASSEMBLE ; safety_score CONSOMME. Le calcul du score de
+    sécurité ne connaît ni les exclusions golden ni la cohérence P4.3b —
+    demain P4.3c ajoutera des événements `source="llm_contextual_judge"`
+    ou passera des status à `waived` sans toucher au calcul.
+    """
+    import safety_score as _ss  # type: ignore  # vendoré rag_pipeline (sys.path)
+    th = _thresholds()
+    events: list = []
+
+    # 1) Exclusions golden violées (concept à ÉCARTER affirmé).
+    #    P4.2 : rang A « frère du golden » (erreur de sous-type) → pénalité réduite.
+    for cid, rang in excl_report.get("violations", []):
+        is_a = (rang == "A")
+        is_sibling = is_a and _is_sibling_of_golden(cid, golden_validant_ids or set())
+        if is_sibling:
+            penalty = th.SAFETY_PENALTY_EXCLUSION_A_SIBLING
+            reason = ("concept golden statut=absent affirmé — erreur de sous-type "
+                      "(frère ontologique direct du diagnostic golden)")
+        else:
+            penalty = (th.SAFETY_PENALTY_EXCLUSION_A if is_a
+                       else th.SAFETY_PENALTY_EXCLUSION_B)
+            reason = "concept golden statut=absent affirmé par l'étudiant"
+        events.append(_ss.SafetyEvent(
+            kind=f"golden_exclusion_{'A' if is_a else 'B'}",
+            severity="error",
+            concept_ids=(cid,),
+            source="golden_exclusion",
+            status=_ss.STATUS_ACTIVE,
+            penalty=penalty,
+            reason=reason,
+        ))
+
+    # 2) Contradictions intra-réponse (P4.3b) — TOUS les états sont tracés,
+    #    seuls les HARD actifs portent une pénalité.
+    for ct in coh_report.get("contradictions", []):
+        is_hard = (ct.severity == "error")
+        if ct.status == "active":
+            status = _ss.STATUS_ACTIVE
+        elif ct.status == "data_inconsistency":
+            status = _ss.STATUS_DATA_INCONSISTENCY
+        else:
+            status = _ss.STATUS_OVERRIDDEN
+        events.append(_ss.SafetyEvent(
+            kind="hard_contradiction" if is_hard else "default_conflict",
+            severity="error" if is_hard else "warning",
+            concept_ids=(ct.concept_a, ct.concept_b),
+            source="symbolic",
+            status=status,
+            penalty=(th.SAFETY_PENALTY_HARD_CONTRADICTION if is_hard
+                     else th.SAFETY_PENALTY_DEFAULT_CONFLICT),
+            reason=ct.detail or ct.kind,
+        ))
+    return events
+
+
+def _check_coherence(report, num) -> dict:
+    """Contradictions INTRA-réponse entre concepts AFFIRMÉS (P4.3b).
+
+    Délègue à `rag_pipeline/coherence.py` :
+      • HARD (excludes) actif      → `hard_active` = True (cap rang A) + erroné.
+      • DEFAULT (conflict) actif   → warning pédagogique prudent, PAS de cap V1.
+      • overridden (golden accepte les deux) → silencieux.
+      • data_inconsistency (HARD que le golden accepte des 2 côtés) → alerte
+        audit (log), AUCUN effet étudiant.
+
+    Retourne {errones, warnings, hard_active, data_inconsistencies,
+    contradictions} — `contradictions` = liste brute des objets Contradiction
+    (matière première des SafetyEvent, P4.1).
+    Ne lève jamais : en cas de module/golden indisponible → rapport vide.
+    """
+    out = {"errones": [], "warnings": [], "hard_active": False,
+           "data_inconsistencies": [], "contradictions": []}
+    try:
+        import coherence  # type: ignore  # vendoré dans rag_pipeline (sys.path)
+    except Exception:
+        return out
+
+    # 1) Concepts AFFIRMÉS par le candidat (seuls les `present` se contredisent).
+    #    On collecte aussi TOUTES les phrases porteuses par concept (spans,
+    #    P4.3c étape 0) — sans agrégation, cf. cas limite n°6 du brainstorm.
+    _rank = {"present": 3, "hypothese": 2, "absent": 1}
+    cand: dict = {}
+    spans_by_concept: dict = {}
+    for c in getattr(report, "concepts_extraits", []):
+        cid = getattr(c, "ontology_id", "NONE")
+        if not cid or cid == "NONE":
+            continue
+        st = getattr(c, "statut", "present")
+        if cid not in cand or _rank.get(st, 0) > _rank.get(cand[cid], 0):
+            cand[cid] = st
+        span = (getattr(c, "contexte_phrase", "") or "").strip()
+        if span and span not in spans_by_concept.setdefault(cid, []):
+            spans_by_concept[cid].append(span)
+    found_present = {cid for cid, st in cand.items() if st == "present"}
+    if len(found_present) < 2:
+        return out
+
+    # 2) Golden du cas au format attendu par coherence (mapping {i: {golden_id, statut}}).
+    mapping: dict = {}
+    try:
+        golden = golden_config.golden_for_scorer(num) or {}
+        i = 0
+        for key in ("validants", "descripteurs"):  # exclusions déjà incluses (statut=absent)
+            for item in golden.get(key, []) or []:
+                gid = item.get("concept_id")
+                if not gid:
+                    continue
+                mapping[str(i)] = {"golden_id": gid,
+                                   "statut": item.get("statut", "present")}
+                i += 1
+    except Exception:
+        mapping = {}
+    case_golden = {"mapping": mapping}
+
+    # 3) Vérification et tri par statut/sévérité.
+    try:
+        contradictions = coherence.check_response_coherence(found_present, case_golden)
+    except Exception:
+        return out
+
+    # Instrumentation passive P4.3c étape 0 : journaliser les paires candidates
+    # avec leurs spans (AUCUN effet sur la note, jamais d'exception).
+    try:
+        import coherence_log  # type: ignore  # vendoré rag_pipeline
+        coherence_log.log_candidate_pairs(num, contradictions, spans_by_concept,
+                                          pipeline_version=PIPELINE_VERSION)
+    except Exception:
+        pass
+
+    for ct in contradictions:
+        out["contradictions"].append(ct)
+        if ct.status == coherence.DATA_INCONSISTENCY:
+            out["data_inconsistencies"].append(ct)
+        elif ct.status == coherence.ACTIVE:
+            fb = coherence.format_contradiction_feedback(ct)
+            if ct.severity == "error":
+                out["hard_active"] = True
+                out["errones"].append({"label": fb, "correction":
+                                       "ces deux affirmations sont incompatibles"})
+            else:
+                out["warnings"].append(fb)
+        # overridden → silencieux.
     return out
 
 

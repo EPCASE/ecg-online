@@ -29,6 +29,17 @@ Principe :
     On ne cumule PAS les sources : on prend toujours le score max
     (enfant > parent+1 > qualifier > parent+2 > support).
 
+⚠️ TODO P4 (refonte scoring, cf. ecg-online/data/scoring_schema_v2.json,
+    champ `minimum_specificity`, et ecg-online/app/scoring_v2_review.py) :
+    les règles 1b/1c ci-dessus sont GLOBALES et câblées en dur (un enfant
+    donne TOUJOURS 1.0, un parent TOUJOURS 2/3 ou 1/3, quel que soit le
+    concept). Le golden scoring_v2 (annoté en P1.3 via /scoring-review)
+    prévoit une tolérance PAR CRITÈRE (exact_only/child_ok/parent_ok/
+    any_related) censée remplacer cette heuristique globale. Tant que ce
+    fichier n'est pas mis à jour pour lire `minimum_specificity`, les
+    annotations P1.3 sur ce champ n'ont AUCUN effet sur la note réelle des
+    étudiants — seule cette règle 1b/1c ci-dessus s'applique en production.
+
 Conversion des négations :
     Les concepts avec statut "absent" sont convertis en concepts positifs
     via le mapping ontologique (excludes / excludes_families).
@@ -274,28 +285,40 @@ def _get_all_children_recursive(concept_id: str, max_depth: int = 3) -> Set[str]
 def _check_excludes(
     concept_id: str,
     found_set: Set[str],
+    golden_set: Optional[Set[str]] = None,
 ) -> Optional[str]:
     """
     Vérifie si un concept trouvé par l'étudiant est dans les excludes
     ou excludes_families du concept attendu.
     Retourne l'ID du concept excluant trouvé, ou None.
+
+    Golden override (P4.2, arbitrage expert 2026-08-12, variante 2) :
+    si le concept excluant fait LUI-MÊME partie du golden du cas, l'exclusion
+    est neutralisée — un concept attendu (donc correct) ne peut pas
+    simultanément être crédité et servir à annuler un autre concept attendu.
+    Exemple : cas 3, ARYTHMIE_SINUSALE (golden, rang C) est un descendant de
+    la famille ARYTHMIE qui exclut ECG_NORMAL → sans override, décrire la
+    variante physiologique annulait tout le score. Les exclusions restent
+    pleinement actives quand l'excluant n'est PAS attendu (FA affirmée sur un
+    cas « ECG normal » → exclusion maintenue).
     """
     onto = _get_ontology_v2()
     concepts = onto["concepts"]
     c = concepts.get(concept_id, {})
+    golden = golden_set or set()
 
     # Excludes directs
     for exc in c.get("excludes", []):
-        if exc in found_set:
+        if exc in found_set and exc not in golden:
             return exc
 
     # Excludes families : chaque famille = un concept parent dont tous
     # les descendants sont exclus
     for fam in c.get("excludes_families", []):
-        if fam in found_set:
+        if fam in found_set and fam not in golden:
             return fam
         children = _get_all_children_recursive(fam)
-        hit = found_set & children
+        hit = {h for h in (found_set & children) if h not in golden}
         if hit:
             return sorted(hit)[0]
 
@@ -425,6 +448,44 @@ def _find_parent_in_found(concept_id: str, found_set: Set[str]) -> Tuple[Optiona
     return (best_parent, best_dist) if best_parent else (None, 0)
 
 
+def _find_concurrent_sibling(
+    concept_id: str,
+    found_set: Set[str],
+    golden_set: Optional[Set[str]] = None,
+) -> Optional[str]:
+    """P4.2 prototype « diagnostic concurrent » (arbitrage expert 2026-08-13).
+
+    Un concept golden inféré uniquement via `requires` ne mérite pas le crédit
+    plein si l'étudiant a AFFIRMÉ un diagnostic CONCURRENT : un FRÈRE
+    ontologique (même parent direct) présent dans found_set mais absent du
+    golden. Ex. cas 39 (arythmie sinusale) : « rythme sinusal irrégulier » +
+    conclusion « extrasystole atriale » (frère dans ARYTHMIE_ATRIALE) —
+    l'expert note 30 (« besoin d'affirmer l'arythmie sinusale »), la machine
+    créditait 100 via requires. Idem cas 38 (FA) conclu « échappement ».
+
+    Retourne l'ID du frère concurrent trouvé, ou None. Ne regarde que les
+    frères DIRECTS (même parent immédiat) pour rester conservateur.
+    """
+    onto = _get_ontology_v2()
+    concepts = onto["concepts"]
+    c = concepts.get(concept_id)
+    if not c:
+        return None
+    golden = golden_set or set()
+    ne = normalize_key(concept_id)
+    for parent in c.get("parents", []) or []:
+        p = concepts.get(normalize_key(parent))
+        if not p:
+            continue
+        for sib in p.get("children", []) or []:
+            ns = normalize_key(sib)
+            if ns == ne or ns in golden:
+                continue
+            if ns in found_set:
+                return ns
+    return None
+
+
 # ---------------------------------------------------------------------------
 # Recursive sub-require scoring
 # ---------------------------------------------------------------------------
@@ -493,12 +554,15 @@ def _score_one_concept(
     expected_id: str,
     found_set: Set[str],
     absent_set: Optional[Set[str]] = None,
+    golden_set: Optional[Set[str]] = None,
 ) -> ConceptScore:
     """
     Calcule le score d'UN concept golden par rapport aux found_ids.
 
     `absent_set` : concepts extraits avec statut 'absent' (l'étudiant a nié
     « pas de X »). Sert au crédit déclaratif `negation_of` (bloc 1e).
+    `golden_set` : ensemble des ids golden du cas (normalisés) — neutralise
+    les exclusions portées par un concept lui-même attendu (golden override).
     """
     onto = _get_ontology_v2()
     concepts = onto["concepts"]
@@ -510,7 +574,7 @@ def _score_one_concept(
     cs = ConceptScore(concept_id=neid, concept_name=cname)
 
     # ── 0. Vérifier les exclusions d'abord ─────────────────────────
-    excluded_by = _check_excludes(neid, found_set)
+    excluded_by = _check_excludes(neid, found_set, golden_set)
     if excluded_by:
         cs.match_type = "excluded"
         cs.score = 0.0
@@ -605,6 +669,18 @@ def _score_one_concept(
         ratio = partial_credit / len(requires)
         req_score = round(ratio, 4)
 
+        # P4.2 prototype (2026-08-13) : plafonner le crédit `requires` si un
+        # diagnostic CONCURRENT (frère ontologique hors golden) est affirmé —
+        # les descripteurs justifient le diagnostic mais l'étudiant a conclu
+        # AUTRE CHOSE (S041 : extrasystole atriale au lieu d'arythmie
+        # sinusale ; S053 : échappement au lieu de FA).
+        concurrent = _find_concurrent_sibling(neid, found_set, golden_set)
+        if concurrent and req_score > scoring_thresholds.CONCURRENT_SIBLING_REQUIRES_CAP:
+            req_score = scoring_thresholds.CONCURRENT_SIBLING_REQUIRES_CAP
+            concurrent_note = f" — cap diagnostic concurrent ({concurrent})"
+        else:
+            concurrent_note = ""
+
         # Prendre le max entre requires et parent hierarchy.
         # NB : on exige req_score > 0 (et pas seulement >= parent), sinon le cas
         # « aucun require présent ET pas de parent » (0 >= 0) tombait ici et
@@ -618,7 +694,7 @@ def _score_one_concept(
             cs.requires_found = len(satisfied)
             cs.requires_satisfied = satisfied
             cs.requires_missing = missing
-            cs.detail = f"{partial_credit:.1f}/{len(requires)} requires"
+            cs.detail = f"{partial_credit:.1f}/{len(requires)} requires{concurrent_note}"
         elif parent_cs_score > 0:
             cs.score = parent_cs_score
             # match_type and detail already set from parent block above
@@ -698,6 +774,7 @@ def score_student_response_v3(
     found_ids: List[str],
     expected_ids: List[str],
     absent_ids: Optional[List[str]] = None,
+    golden_all_ids: Optional[List[str]] = None,
 ) -> ScoringResultV3:
     """
     Scoring V3 ontologique.
@@ -707,6 +784,11 @@ def score_student_response_v3(
         expected_ids: IDs des concepts attendus (golden set)
         absent_ids:   IDs des concepts avec statut "absent" dans le NER.
                       Convertis en concepts positifs via le mapping ontologique.
+        golden_all_ids: TOUS les IDs du golden du cas (validants + descripteurs)
+                      pour le golden override des exclusions (P4.2, variante 2).
+                      Si None, on retombe sur expected_ids (validants seuls) —
+                      insuffisant quand la variante acceptée est un descripteur
+                      (ex. ARYTHMIE_SINUSALE rang C du cas 3).
 
     Returns:
         ScoringResultV3 avec le détail par concept et le score global.
@@ -734,8 +816,12 @@ def score_student_response_v3(
             logger.debug("Negation: absent(%s) → +%s", absent_id, positive_id)
 
     # Scorer chaque concept golden
+    # golden_set : tous les ids du golden (validants + descripteurs si fournis)
+    # — pour le golden override des exclusions (un excluant lui-même golden ne
+    # peut pas exclure).
+    golden_set = {normalize_key(g) for g in (golden_all_ids or expected_ids)}
     for eid in expected_ids:
-        cs = _score_one_concept(eid, found_set, absent_set)
+        cs = _score_one_concept(eid, found_set, absent_set, golden_set)
         result.concept_scores.append(cs)
 
     # Agrégation : chaque concept vaut 1/N
