@@ -54,6 +54,11 @@ EXCLUSION_RANG_B_SCORE_CAP: int = 70
 # 100 - cap) pour une transition compréhensible vers le score de sécurité
 # multiplicatif (score = adéquation × sécurité / 100).
 SAFETY_PENALTY_EXCLUSION_A: int = 75    # exclusion golden rang A affirmée
+# P4.2 (2026-08-13, S047/S134) : erreur de SOUS-TYPE — le concept exclu affirmé
+# est un frère ontologique direct d'un validant golden (ex. Mobitz 1 affirmé
+# quand le golden est Mobitz 2). Faute réelle mais moins grave qu'un diagnostic
+# incompatible : pénalité réduite (sécurité 50 au lieu de 25).
+SAFETY_PENALTY_EXCLUSION_A_SIBLING: int = 50
 SAFETY_PENALTY_EXCLUSION_B: int = 30    # exclusion golden rang B affirmée
 SAFETY_PENALTY_HARD_CONTRADICTION: int = 75  # contradiction HARD (excludes) active
 SAFETY_PENALTY_DEFAULT_CONFLICT: int = 0     # DEFAULT actif : observable +
@@ -70,6 +75,15 @@ SUB_REQUIRE_QUALIFIER_CREDIT: float = 2.0 / 3.0
 # Crédit accordé quand seul un `supports` (élément de support, encore plus
 # indirect que le qualifiant) du concept golden est reconnu.
 SUB_REQUIRE_SUPPORT_CREDIT: float = 1.0 / 3.0
+
+# P4.2 prototype (arbitrage expert 2026-08-13, copies S041/S053) : plafond du
+# crédit `requires` quand l'étudiant AFFIRME un diagnostic CONCURRENT — un
+# frère ontologique (même parent direct) du concept attendu, hors golden.
+# Ex. cas 39 : ARYTHMIE_SINUSALE inférée à 100 % via requires (sinusal +
+# irrégulier) alors que l'étudiant conclut « extrasystole atriale » (frère
+# dans ARYTHMIE_ATRIALE) → l'expert exige que le diagnostic soit AFFIRMÉ
+# (« on a donc besoin d'affirmer l'arythmie sinusale ») : crédit plafonné.
+CONCURRENT_SIBLING_REQUIRES_CAP: float = 1.0 / 3.0
 
 # Crédit pour la relation déclarative `implies` (antécédent clinique) —
 # GELÉ À 0.0 (Option A, découplage de la brique scoring, cf. commentaire

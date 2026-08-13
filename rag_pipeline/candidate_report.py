@@ -723,6 +723,10 @@ def generate_candidate_report(
             found_ids=found_ids,
             expected_ids=validant_ids,
             absent_ids=absent_ids,
+            # P4.2 (variante 2) : TOUT le golden (validants + descripteurs)
+            # alimente le golden override des exclusions — une variante
+            # acceptée en rang C (descripteur) ne doit pas exclure un validant.
+            golden_all_ids=list(golden_ids),
         )
 
         report.score_final_pct = v3_result.score_pct
@@ -783,7 +787,8 @@ def generate_candidate_report(
             #      la logique `requires` → un concept déduit avec succès côté
             #      validant (ex. TACHYCARDIE_SINUSALE via requires satisfaits)
             #      restait affiché "manqué" côté descripteur (cas 39/40).
-            cs = _score_one_concept(nid, found_set, None)
+            cs = _score_one_concept(nid, found_set, None,
+                                    {normalize_key(g) for g in golden_ids})
             # NB (bug "Bloc interatrial" du 2026-08-06) : un match de type
             # "support" est le lien le PLUS FAIBLE du scoring V3 (poids 1/3,
             # ex: BLOC_INTERATRIAL a "supports: [RYTHME_SINUSAL]" — un lien

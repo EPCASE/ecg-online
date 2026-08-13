@@ -323,7 +323,9 @@ def _report_to_correction(report, num: int, exclusions: Optional[List[dict]] = N
     #    sont traduits en SafetyEvent ; safety_score les consomme. Le score
     #    global devient un PRODUIT explicite adéquation × sécurité (plus de
     #    min() destructif). Voir docs/P4.1_design_adequation_securite_2026_08_11.md.
-    safety_events = _build_safety_events(excl_report, coh_report)
+    _golden_validant_ids = {vd.golden_id for vd in getattr(report, "validant_details", [])
+                            if getattr(vd, "golden_id", "")}
+    safety_events = _build_safety_events(excl_report, coh_report, _golden_validant_ids)
     import safety_score as _ss  # type: ignore  # vendoré rag_pipeline (sys.path)
     score_adequation = score
     score_securite = _ss.compute_safety_score(safety_events)
@@ -487,7 +489,39 @@ def _check_exclusions(report, exclusions: List[dict]) -> dict:
     return out
 
 
-def _build_safety_events(excl_report: dict, coh_report: dict) -> list:
+def _is_sibling_of_golden(concept_id: str, golden_ids: set) -> bool:
+    """P4.2 (2026-08-13) : le concept exclu affirmé est-il un FRÈRE ontologique
+    direct (même parent immédiat) d'un validant golden ? Erreur de SOUS-TYPE
+    (ex. Mobitz 1 affirmé quand le golden est Mobitz 2, cas 25 : S047/S134) →
+    pénalité réduite (SAFETY_PENALTY_EXCLUSION_A_SIBLING). Détection symétrique
+    et conservatrice : uniquement les parents directs, via l'ontologie v2."""
+    if not concept_id or not golden_ids:
+        return False
+    try:
+        import scoring_v3 as _sv3  # type: ignore  # vendoré rag_pipeline (sys.path)
+        onto = _sv3._get_ontology_v2()
+        concepts = onto["concepts"]
+        nk = _sv3.normalize_key
+        ne = nk(concept_id)
+        golden_norm = {nk(g) for g in golden_ids}
+        c = concepts.get(ne)
+        if not c:
+            return False
+        for parent in c.get("parents", []) or []:
+            p = concepts.get(nk(parent))
+            if not p:
+                continue
+            for sib in p.get("children", []) or []:
+                ns = nk(sib)
+                if ns != ne and ns in golden_norm:
+                    return True
+    except Exception:
+        return False
+    return False
+
+
+def _build_safety_events(excl_report: dict, coh_report: dict,
+                         golden_validant_ids: Optional[set] = None) -> list:
     """Traduit les rapports des détecteurs en SafetyEvent (format pivot P4.1).
 
     neuro_grader RASSEMBLE ; safety_score CONSOMME. Le calcul du score de
@@ -500,17 +534,26 @@ def _build_safety_events(excl_report: dict, coh_report: dict) -> list:
     events: list = []
 
     # 1) Exclusions golden violées (concept à ÉCARTER affirmé).
+    #    P4.2 : rang A « frère du golden » (erreur de sous-type) → pénalité réduite.
     for cid, rang in excl_report.get("violations", []):
         is_a = (rang == "A")
+        is_sibling = is_a and _is_sibling_of_golden(cid, golden_validant_ids or set())
+        if is_sibling:
+            penalty = th.SAFETY_PENALTY_EXCLUSION_A_SIBLING
+            reason = ("concept golden statut=absent affirmé — erreur de sous-type "
+                      "(frère ontologique direct du diagnostic golden)")
+        else:
+            penalty = (th.SAFETY_PENALTY_EXCLUSION_A if is_a
+                       else th.SAFETY_PENALTY_EXCLUSION_B)
+            reason = "concept golden statut=absent affirmé par l'étudiant"
         events.append(_ss.SafetyEvent(
             kind=f"golden_exclusion_{'A' if is_a else 'B'}",
             severity="error",
             concept_ids=(cid,),
             source="golden_exclusion",
             status=_ss.STATUS_ACTIVE,
-            penalty=(th.SAFETY_PENALTY_EXCLUSION_A if is_a
-                     else th.SAFETY_PENALTY_EXCLUSION_B),
-            reason="concept golden statut=absent affirmé par l'étudiant",
+            penalty=penalty,
+            reason=reason,
         ))
 
     # 2) Contradictions intra-réponse (P4.3b) — TOUS les états sont tracés,
